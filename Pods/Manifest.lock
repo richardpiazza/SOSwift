@@ -1,0 +1,12 @@
+PODS:
+  - CodeQuickKit/Foundation (4.2.3)
+
+DEPENDENCIES:
+  - CodeQuickKit/Foundation (~> 4.2)
+
+SPEC CHECKSUMS:
+  CodeQuickKit: 608e618b437cbe63ab112431fa0e63778ee28376
+
+PODFILE CHECKSUM: 718c315608dab70ed9ef46a76f481a1053bdb351
+
+COCOAPODS: 1.1.1

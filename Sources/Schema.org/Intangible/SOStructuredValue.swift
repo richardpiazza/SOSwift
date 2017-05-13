@@ -1,0 +1,5 @@
+import Foundation
+
+public protocol SchemaStructuredValue: SchemaIntangible, SchemaBooleanOrNumberOrStructuredValueOrText, SchemaEnumerationOrPropertyValueOrQualitativeValueOrQuantitativeValueOrStructuredValue {
+    
+}
