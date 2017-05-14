@@ -11,11 +11,11 @@ public class SOEvent: SOThing, Event {
     /// The subject matter of the content.
     public var about: Thing?
     /// An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-    public var actor: Person?
+    public var actor: [Person]?
     /// The overall rating, based on a collection of reviews or ratings, of the item.
     public var aggregateRating: AggregateRating?
     /// A person or organization attending the event.
-    public var attendee: OrganizationOrPerson?
+    public var attendee: [OrganizationOrPerson]?
     /// An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
     public var audience: Audience?
     /// The person or organization who wrote a composition, or who is the composer of a work performed at some event.
@@ -23,7 +23,7 @@ public class SOEvent: SOThing, Event {
     /// A secondary contributor to the CreativeWork or Event.
     public var contributor: OrganizationOrPerson?
     /// A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
-    public var director: Person?
+    public var director: [Person]?
     /// The time admission will commence.
     public var doorTime: DateTime?
     /// The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.
@@ -47,7 +47,7 @@ public class SOEvent: SOThing, Event {
     /// An organizer of an Event.
     public var organizer: OrganizationOrPerson?
     /// A performer at the event—for example, a presenter, musician, musical group or actor.
-    public var performer: OrganizationOrPerson?
+    public var performer: [OrganizationOrPerson]?
     /// Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated.
     public var previousStartDate: DateOnly?
     /// The CreativeWork that captured all or part of this Event. Inverse property: recordedAt.
@@ -55,13 +55,13 @@ public class SOEvent: SOThing, Event {
     /// The number of attendee places for an event that remain unallocated.
     public var remainingAttendeeCapacity: Int?
     /// A review of the item. Supersedes reviews.
-    public var review: Review?
+    public var review: [Review]?
     /// A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
     public var sponsor: OrganizationOrPerson?
     /// The start date and time of the item (in ISO 8601 date format).
     public var startDate: DateOnlyOrDateTime?
     /// An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference. Supersedes subEvents. Inverse property: superEvent.
-    public var subEvent: Event?
+    public var subEvent: [Event]?
     /// An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent. Inverse property: subEvent.
     public var superEvent: Event?
     /// Organization or person who adapts a creative work to different languages, regional  differences and technical requirements of a target market, or that translates during some event.

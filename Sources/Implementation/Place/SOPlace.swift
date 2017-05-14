@@ -21,9 +21,9 @@ public class SOPlace: SOThing, Place {
     /// The basic containment relation between a place and one that contains it. Inverse property: containsPlace.
     public var containedInPlace: Place?
     /// The basic containment relation between a place and another that it contains. Inverse property: containedInPlace.
-    public var containsPlace: Place?
+    public var containsPlace: [Place]?
     /// Upcoming or past event associated with this place, organization, or action.
-    public var event: Event?
+    public var event: [Event]?
     /// The fax number.
     public var faxNumber: String?
     /// The geo coordinates of the place.
@@ -41,9 +41,9 @@ public class SOPlace: SOThing, Place {
     /// The opening hours of a certain place.
     public var openingHoursSpecification: [OpeningHoursSpecification]?
     /// A photograph of this place.
-    public var photo: ImageObjectOrPhotograph?
+    public var photo: [ImageObjectOrPhotograph]?
     /// A review of the item.
-    public var review: Review?
+    public var review: [Review]?
     /// Indicates whether it is allowed to smoke in the place, e.g. in the restaurant, hotel or hotel room.
     public var smokingAllowed: Bool?
     /// The special opening hours of a certain place.

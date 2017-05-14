@@ -6,4 +6,10 @@ public class SOBrand: SOIntangible, Brand {
         return "Brand"
     }
     
+    /// The overall rating, based on a collection of reviews or ratings, of the item.
+    public var aggregateRating: AggregateRating?
+    /// An associated logo.
+    public var logo: ImageObjectOrURL?
+    /// A review of the item.
+    public var review: [Review]?
 }

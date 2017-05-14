@@ -5,4 +5,6 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
         return "PublicationEvent"
     }
     
+    /// A broadcast service associated with the publication event.
+    public var publishedOn: BroadcastService?
 }

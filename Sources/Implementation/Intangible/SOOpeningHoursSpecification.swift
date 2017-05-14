@@ -3,7 +3,7 @@ import Foundation
 /// A structured value providing information about the opening hours of a place or a certain service inside a place.
 /// The place is open if the opens property is specified, and closed otherwise.
 /// If the value for the closes property is less than the value for the opens property then the hour range is assumed to span over the next day.
-public class SOOpeningHoursSpecification: SOThing, OpeningHoursSpecification {
+public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecification {
     override public class var type: String {
         return "OpeningHoursSpecification"
     }

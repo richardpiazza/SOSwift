@@ -4,7 +4,8 @@ public protocol ProductConformance:
                     CreativeWorkOrProductOrURL,
                     ProductOrTextOrURL,
                     ProductOrService,
-                    OwnershipInfoOrProduct
+                    OwnershipInfoOrProduct,
+                    ProductOrText
                 {}
 
 /// Any offered product or service.

@@ -1,7 +1,8 @@
 import Foundation
 
 public protocol PropertyValueConformance:
-                    Identifier
+                    Identifier,
+                    PropertyValueOrText
                 {}
 
 /// A property-value pair, e.g. representing a feature of a product or place.

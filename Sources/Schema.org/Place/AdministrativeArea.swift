@@ -1,8 +1,10 @@
 import Foundation
 
-public protocol SchemaAdministrativeAreaDataTypeConformance:
-                    AdministrativeAreaOrGeoShapeOrPlaceOrText {}
+public protocol AdministrativeAreaConformance:
+                    AdministrativeAreaOrGeoShapeOrPlaceOrText
+                {}
 
-public protocol AdministrativeArea: Place, SchemaAdministrativeAreaDataTypeConformance {
+/// A geographical region, typically under the jurisdiction of a particular government.
+public protocol AdministrativeArea: Place, AdministrativeAreaConformance {
     
 }

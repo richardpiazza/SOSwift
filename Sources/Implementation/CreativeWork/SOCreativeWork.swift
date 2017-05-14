@@ -1,10 +1,93 @@
 import Foundation
 
-/// The most generic kind of creative work, including books, movies, photographs,
-/// software programs, etc.
+/// The most generic kind of creative work, including books, movies, photographs, software programs, etc.
 public class SOCreativeWork: SOThing, CreativeWork {
+    public struct Keys {
+        public static let about = "about"
+        public static let accessMode = "accessMode"
+        public static let accessModeSufficient = "accessModeSufficient"
+        public static let accessibilityAPI = "accessibilityAPI"
+        public static let accessibilityControl = "accessibilityControl"
+        public static let accessibilityFeature = "accessibilityFeature"
+        public static let accessibilityHazard = "accessibilityHazard"
+        public static let accessibilitySummary = "accessibilitySummary"
+        public static let accountablePerson = "accountablePerson"
+        public static let aggregateRating = "aggregateRating"
+        public static let alternativeHeadline = "alternativeHeadline"
+        public static let associatedMedia = "associatedMedia"
+        public static let audience = "audience"
+        public static let audio = "audio"
+        public static let author = "author"
+        public static let award = "award"
+        public static let character = "character"
+        public static let citation = "citation"
+        public static let comment = "comment"
+        public static let commentCount = "commentCount"
+        public static let contentLocation = "contentLocation"
+        public static let contentRating = "contenttRating"
+        public static let contributor = "contributor"
+        public static let copyrightHolder = "copyrightHolder"
+        public static let copyrightYear = "copyrightYear"
+        public static let creator = "creator"
+        public static let dateCreaated = "dateCreated"
+        public static let dateModified = "dateModified"
+        public static let datePublished = "datePublished"
+        public static let discussionUrl = "discussionUrl"
+        public static let editor = "editor"
+        public static let educationalAlignment = "educationaalAlignment"
+        public static let educationalUse = "educationalUse"
+        public static let encoding = "encoding"
+        public static let exampleOfWork = "exampleOfWork"
+        public static let fileFormat = "fileFormat"
+        public static let funder = "funder"
+        public static let genre = "genre"
+        public static let hasPart = "hasPart"
+        public static let headline = "headline"
+        public static let inLanguage = "inLaungage"
+        public static let interactionStatistic = "interactionStatistic"
+        public static let interactivityType = "interactivityType"
+        public static let isAccessibleForFree = "isAccessibleForFree"
+        public static let isBasedOn = "isBasedOn"
+        public static let isFamilyFriendly = "isFamilyFriendly"
+        public static let isPartOf = "isPartOf"
+        public static let keywords = "keywords"
+        public static let learningResourceType = "learningResourceType"
+        public static let license = "license"
+        public static let locationCreated = "locationCreated"
+        public static let mainEntity = "mainEntity"
+        public static let material = "material"
+        public static let mentions = "mentions"
+        public static let offers = "offers"
+        public static let position = "position"
+        public static let producer = "producer"
+        public static let provider = "provider"
+        public static let publication = "publication"
+        public static let publisher = "publisher"
+        public static let publishingPriciples = "publishingPrinciples"
+        public static let recordedAt = "recordedAt"
+        public static let releasedEvent = "releasedEvent"
+        public static let review = "review"
+        public static let schemaVersion = "schemaVersion"
+        public static let sourceOrganization = "sourceOrganization"
+        public static let spatialCoverage = "spatialCoverage"
+        public static let sponsor = "sponsor"
+        public static let temperalCoverage = "temperalCoverage"
+        public static let text = "text"
+        public static let thumbnailUrl = "thumbnailUrl"
+        public static let timeRequired = "timeRequired"
+        public static let translator = "translator"
+        public static let typicalAgeRange = "typicalAgeRange"
+        public static let version = "version"
+        public static let video = "video"
+        public static let workExample = "workExample"
+    }
+    
     override public class var type: String {
         return "CreativeWork"
+    }
+    
+    override public class var specificTypes: [Thing.Type] {
+        return [SOAudioObject.self, SOImageObject.self, SOVideoObject.self]
     }
     
     /// The subject matter of the content.
@@ -140,7 +223,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// The textual content of this CreativeWork.
     public var text: String?
     /// A thumbnail image relevant to the Thing.
-    public var thumbnailURL: URL?
+    public var thumbnailUrl: URL?
     /// Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'P30M', 'P1H25M'.
     public var timeRequired: Duration?
     /// Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market, or that translates during some event.

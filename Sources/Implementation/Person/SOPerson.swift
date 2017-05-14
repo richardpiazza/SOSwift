@@ -15,19 +15,19 @@ public class SOPerson: SOThing, Person {
     /// An organization that the person is an alumni of. Inverse property: alumni.
     public var alumniOf: EducationalOrganizationOrOrganization?
     /// An award won by or for this item.
-    public var award: String?
+    public var award: [String]?
     /// Date of birth.
     public var birthDate: DateOnly?
     /// The place where the person was born.
     public var birthPlace: Place?
     /// The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
-    public var brand: BrandOrOrganization?
+    public var brand: [BrandOrOrganization]?
     /// A child of the person.
     public var children: [Person]?
     /// A colleague of the person.
-    public var colleague: PersonOrURL?
+    public var colleague: [PersonOrURL]?
     /// A contact point for a person or organization.
-    public var contactPoint: ContactPoint?
+    public var contactPoint: [ContactPoint]?
     /// Date of death.
     public var deathDate: DateOnly?
     /// The place where the person died.
@@ -53,7 +53,7 @@ public class SOPerson: SOThing, Person {
     /// Indicates an OfferCatalog listing for this Organization, Person, or Service.
     public var hasOfferCatalog: OfferCatalog?
     /// Points-of-Sales operated by the organization or person.
-    public var hasPOS: Place?
+    public var hasPOS: [Place]?
     /// The height of the item.
     public var height: DistanceOrQuantitativeValue?
     /// A contact location for a person's residence.
@@ -81,7 +81,7 @@ public class SOPerson: SOThing, Person {
     /// Products owned by the organization or person.
     public var owns: [ProductOrService]?
     /// A parent of this person.
-    public var parent: Person?
+    public var parent: [Person]?
     /// Event that this person is a performer or participant in.
     public var performerIn: Event?
     /// The most generic familial relation.
@@ -89,7 +89,7 @@ public class SOPerson: SOThing, Person {
     /// A pointer to products or services sought by the organization or person (demand).
     public var seeks: [Demand]?
     /// A sibling of the person.
-    public var sibling: Person?
+    public var sibling: [Person]?
     /// A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
     public var sponsor: OrganizationOrPerson?
     /// The person's spouse.
