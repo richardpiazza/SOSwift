@@ -24,7 +24,7 @@ public class SOThing: Thing {
     }
     
     public class var specificTypes: [Thing.Type] {
-        return [SOAction.self, CreativeWork.self, Event.self, SOIntangible.self, Organization.self, Person.self, Place.self, SOProduct.self]
+        return [SOAction.self, SOCreativeWork.self, SOEvent.self, SOIntangible.self, SOOrganization.self, SOPerson.self, SOPlace.self, SOProduct.self]
     }
     
     /// An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax.
@@ -125,15 +125,15 @@ public class SOThing: Thing {
             }
         }
         if let value = dictionary[Keys.image] {
-            if let typedValue = value as? [String : AnyObject], typedValue[Keys.type] as? String == ImageObject.type {
-                self.image = ImageObject(dictionary: typedValue)
+            if let typedValue = value as? [String : AnyObject], typedValue[Keys.type] as? String == SOImageObject.type {
+                self.image = SOImageObject(dictionary: typedValue)
             } else if let typedValue = value as? String {
                 self.image = URL(string: typedValue)
             }
         }
         if let value = dictionary[Keys.mainEntityOfPage] as? CreativeWorkOrURL {
-            if let typedValue = value as? [String : AnyObject], typedValue[Keys.type] as? String == CreativeWork.type {
-                self.mainEntityOfPage = CreativeWork(dictionary: typedValue)
+            if let typedValue = value as? [String : AnyObject], typedValue[Keys.type] as? String == SOCreativeWork.type {
+                self.mainEntityOfPage = SOCreativeWork(dictionary: typedValue)
             } else if let typedValue = value as? String {
                 self.mainEntityOfPage = URL(string: typedValue)
             }
@@ -190,14 +190,14 @@ public class SOThing: Thing {
             }
         }
         if let value = self.image {
-            if let typedValue = value as? ImageObject {
+            if let typedValue = value as? SOImageObject {
                 dictionary[Keys.image] = typedValue.dictionary as AnyObject
             } else if let typedValue = value as? URL {
                 dictionary[Keys.image] = typedValue.absoluteString as AnyObject
             }
         }
         if let value = self.mainEntityOfPage {
-            if let typedValue = value as? CreativeWork {
+            if let typedValue = value as? SOCreativeWork {
                 dictionary[Keys.mainEntityOfPage] = typedValue.dictionary as AnyObject
             } else if let typedValue = value as? URL {
                 dictionary[Keys.mainEntityOfPage] = typedValue.absoluteString as AnyObject

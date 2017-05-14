@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaDemand: Intangible {
+public protocol Demand: Intangible {
     
 }

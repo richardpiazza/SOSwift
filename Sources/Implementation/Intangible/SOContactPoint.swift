@@ -1,6 +1,6 @@
 import Foundation
 
-public class ContactPoint: SOStructuredValue, SchemaContactPoint {
+public class SOContactPoint: SOStructuredValue, ContactPoint {
     override public class var type: String {
         return "ContactPoint"
     }

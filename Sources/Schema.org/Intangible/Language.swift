@@ -4,6 +4,6 @@ public protocol LanguageConformance:
                     LanguageOrText
                 {}
 
-public protocol SchemaLanguage: Intangible, LanguageConformance {
+public protocol Language: Intangible, LanguageConformance {
     
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public class Review: SOThing, SchemaReview {
+public class SOReview: SOThing, Review {
     override public class var type: String {
         return "Review"
     }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// A photograph.
-public class Photograph: CreativeWork, SchemaPhotograph {
+public class SOPhotograph: SOCreativeWork, Photograph {
     override public class var type: String {
         return "Photograph"
     }

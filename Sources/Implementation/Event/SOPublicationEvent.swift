@@ -1,6 +1,6 @@
 import Foundation
 
-public class PublicationEvent: Event, SchemaPublicationEvent {
+public class SOPublicationEvent: SOEvent, PublicationEvent {
     override public class var type: String {
         return "PublicationEvent"
     }

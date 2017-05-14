@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaQuantity: Intangible {
+public protocol Quantity: Intangible {
     
 }

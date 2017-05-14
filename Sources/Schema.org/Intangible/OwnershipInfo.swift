@@ -1,10 +1,10 @@
 import Foundation
 
-public protocol SchemaOwnershipInfoDataTypeConformance:
+public protocol OwnershipInfoConformance:
                     OwnershipInfoOrProduct
                 {}
 
-public protocol SchemaOwnershipInfo: StructuredValue, SchemaOwnershipInfoDataTypeConformance {
+public protocol OwnershipInfo: StructuredValue, OwnershipInfoConformance {
     var acquiredFrom: OrganizationOrPerson? { get set }
     var ownedFrom: DateTime? { get set }
     var ownedThrough: DateTime? { get set }

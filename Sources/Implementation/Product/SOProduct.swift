@@ -17,9 +17,9 @@ public class SOProduct: SOThing, Product {
     /// - Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. http://schema.org/width, http://schema.org/color, http://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
     public var additionalProperty: PropertyValue?
     /// The overall rating, based on a collection of reviews or ratings, of the item.
-    public var aggregateRating: SchemaAggregateRating?
+    public var aggregateRating: AggregateRating?
     /// An intended audience, i.e. a group for whom something was created.
-    public var audience: SchemaAudience?
+    public var audience: Audience?
     /// An award won by or for this item.
     public var award: String?
     /// The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
@@ -53,7 +53,7 @@ public class SOProduct: SOThing, Product {
     /// An associated logo.
     public var logo: ImageObjectOrURL?
     /// The manufacturer of the product.
-    public var manufacturer: SchemaOrganization?
+    public var manufacturer: Organization?
     /// A material that something is made from, e.g. leather, wool, cotton, paper.
     public var material: ProductOrTextOrURL?
     /// The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.
@@ -61,7 +61,7 @@ public class SOProduct: SOThing, Product {
     /// The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
     public var mpn: String?
     /// An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-    public var offers: [SchemaOffer]?
+    public var offers: [Offer]?
     /// The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789".
     public var productID: String?
     /// The date of production of the item, e.g. vehicle.
@@ -71,11 +71,11 @@ public class SOProduct: SOThing, Product {
     /// The release date of a product or product model. This can be used to distinguish the exact variant of a product.
     public var releaseDate: DateOnly?
     /// A review of the item.
-    public var review: SchemaReview?
+    public var review: Review?
     /// The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
     public var sku: String?
     /// The weight of the product or person.
-    public var weight: SchemaQuantitativeValue?
+    public var weight: QuantitativeValue?
     /// The width of the item.
     public var width: DistanceOrQuantitativeValue?
 }

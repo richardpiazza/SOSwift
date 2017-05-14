@@ -1,4 +1,4 @@
 import Foundation
 
-public protocol SchemaAudioObject: SchemaMediaObject {
+public protocol AudioObject: MediaObject {
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// A person (alive, dead, undead, or fictional).
-public class Person: SOThing, SchemaPerson {
+public class SOPerson: SOThing, Person {
     override public class var type: String {
         return "Person"
     }
@@ -11,7 +11,7 @@ public class Person: SOThing, SchemaPerson {
     /// Physical address of the item.
     public var address: PostalAddressOrText?
     /// An organization that this person is affiliated with. For example, a school/university, a club, or a team.
-    public var affiliation: SchemaOrganization?
+    public var affiliation: Organization?
     /// An organization that the person is an alumni of. Inverse property: alumni.
     public var alumniOf: EducationalOrganizationOrOrganization?
     /// An award won by or for this item.
@@ -19,19 +19,19 @@ public class Person: SOThing, SchemaPerson {
     /// Date of birth.
     public var birthDate: DateOnly?
     /// The place where the person was born.
-    public var birthPlace: SchemaPlace?
+    public var birthPlace: Place?
     /// The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
     public var brand: BrandOrOrganization?
     /// A child of the person.
-    public var children: [SchemaPerson]?
+    public var children: [Person]?
     /// A colleague of the person.
     public var colleague: PersonOrURL?
     /// A contact point for a person or organization.
-    public var contactPoint: SchemaContactPoint?
+    public var contactPoint: ContactPoint?
     /// Date of death.
     public var deathDate: DateOnly?
     /// The place where the person died.
-    public var deathPlace: SchemaPlace?
+    public var deathPlace: Place?
     /// The Dun & Bradstreet DUNS number for identifying an organization or business person.
     public var duns: String?
     /// Email address.
@@ -41,7 +41,7 @@ public class Person: SOThing, SchemaPerson {
     /// The fax number.
     public var faxNumber: String?
     /// The most generic uni-directional social relation.
-    public var follows: [SchemaPerson]?
+    public var follows: [Person]?
     /// A person or organization that supports (sponsors) something through some kind of financial contribution.
     public var funder: OrganizationOrPerson?
     /// Gender of the person. While http://schema.org/Male and http://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender.
@@ -51,9 +51,9 @@ public class Person: SOThing, SchemaPerson {
     /// The Global Location Number (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.
     public var globalLocationNumber: String?
     /// Indicates an OfferCatalog listing for this Organization, Person, or Service.
-    public var hasOfferCatalog: SchemaOfferCatalog?
+    public var hasOfferCatalog: OfferCatalog?
     /// Points-of-Sales operated by the organization or person.
-    public var hasPOS: SchemaPlace?
+    public var hasPOS: Place?
     /// The height of the item.
     public var height: DistanceOrQuantitativeValue?
     /// A contact location for a person's residence.
@@ -67,33 +67,33 @@ public class Person: SOThing, SchemaPerson {
     /// The job title of the person (for example, Financial Manager).
     public var jobTitle: String?
     /// The most generic bi-directional social/work relation.
-    public var knows: [SchemaPerson]?
+    public var knows: [Person]?
     /// A pointer to products or services offered by the organization or person. Inverse property: offeredBy.
-    public var makesOffer: [SchemaOffer]?
+    public var makesOffer: [Offer]?
     /// An Organization (or ProgramMembership) to which this Person or Organization belongs. Inverse property: member.
     public var memberOf: [OrganizationOrProgramMembership]?
     /// The North American Industry Classification System (NAICS) code for a particular organization or business person.
     public var naics: String?
     /// Nationality of the person.
-    public var nationality: SchemaCountry?
+    public var nationality: Country?
     /// The total financial value of the person as calculated by subtracting assets from liabilities.
     public var netWorth: MonetaryAmountOrPriceSpecification?
     /// Products owned by the organization or person.
     public var owns: [ProductOrService]?
     /// A parent of this person.
-    public var parent: SchemaPerson?
+    public var parent: Person?
     /// Event that this person is a performer or participant in.
-    public var performerIn: SchemaEvent?
+    public var performerIn: Event?
     /// The most generic familial relation.
-    public var relatedTo: [SchemaPerson]?
+    public var relatedTo: [Person]?
     /// A pointer to products or services sought by the organization or person (demand).
-    public var seeks: [SchemaDemand]?
+    public var seeks: [Demand]?
     /// A sibling of the person.
-    public var sibling: SchemaPerson?
+    public var sibling: Person?
     /// A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
     public var sponsor: OrganizationOrPerson?
     /// The person's spouse.
-    public var spouse: SchemaPerson?
+    public var spouse: Person?
     /// The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.
     public var taxID: String?
     /// The telephone number.
@@ -101,9 +101,9 @@ public class Person: SOThing, SchemaPerson {
     /// The Value-added Tax ID of the organization or person.
     public var vatID: String?
     /// The weight of the product or person.
-    public var weight: SchemaQuantitativeValue?
+    public var weight: QuantitativeValue?
     /// A contact location for a person's place of work.
     public var workLocation: ContactPointOrPlace?
     /// Organizations that the person works for.
-    public var worksFor: [SchemaOrganization]?
+    public var worksFor: [Organization]?
 }

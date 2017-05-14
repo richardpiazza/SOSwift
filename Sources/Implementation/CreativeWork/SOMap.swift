@@ -1,7 +1,7 @@
 import Foundation
 
 /// A map.
-public class Map: CreativeWork, SchemaMap {
+public class SOMap: SOCreativeWork, Map {
     override public class var type: String {
         return "Map"
     }

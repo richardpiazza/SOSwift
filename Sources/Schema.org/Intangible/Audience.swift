@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaAudience: Thing {
+public protocol Audience: Thing {
     
 }

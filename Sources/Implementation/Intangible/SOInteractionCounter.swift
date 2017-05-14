@@ -1,6 +1,6 @@
 import Foundation
 
-public class InteractionCounter: SOStructuredValue, SchemaInteractionCounter {
+public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
     override public class var type: String {
         return "InteractionCounter"
     }

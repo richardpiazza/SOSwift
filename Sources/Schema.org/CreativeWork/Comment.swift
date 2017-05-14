@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaComment: SchemaCreativeWork {
+public protocol Comment: CreativeWork {
     
 }

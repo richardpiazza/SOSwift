@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaMediaObject: SchemaCreativeWork {
+public protocol MediaObject: CreativeWork {
     
 }

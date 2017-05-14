@@ -1,8 +1,12 @@
 import Foundation
 
-public protocol SchemaPriceSpecification: StructuredValue, MonetaryAmountOrPriceSpecification {
-    var eligibleQuantity: SchemaQuantitativeValue? { get set }
-    var eligibleTransactionVolume: SchemaPriceSpecification? { get set }
+public protocol PriceSpecificationConformance:
+                    MonetaryAmountOrPriceSpecification
+                {}
+
+public protocol PriceSpecification: StructuredValue, PriceSpecificationConformance {
+    var eligibleQuantity: QuantitativeValue? { get set }
+    var eligibleTransactionVolume: PriceSpecification? { get set }
     var maxPrice: Number? { get set }
     var minPrice: Number? { get set }
     var price: NumberOrText? { get set }

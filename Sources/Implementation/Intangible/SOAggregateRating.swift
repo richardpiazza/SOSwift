@@ -1,6 +1,6 @@
 import Foundation
 
-public class AggregateRating: Rating, SchemaAggregateRating {
+public class SOAggregateRating: SORating, AggregateRating {
     override public class var type: String {
         return "AggregateRating"
     }

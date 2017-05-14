@@ -1,7 +1,7 @@
 import Foundation
 
 /// Entities that have a somewhat fixed, physical extension.
-public class Place: SOThing, SchemaPlace {
+public class SOPlace: SOThing, Place {
     override public class var type: String {
         return "Place"
     }
@@ -12,18 +12,18 @@ public class Place: SOThing, SchemaPlace {
     /// Physical address of the item.
     public var address: PostalAddressOrText?
     /// The overall rating, based on a collection of reviews or ratings, of the item.
-    public var aggregateRating: SchemaAggregateRating?
+    public var aggregateRating: AggregateRating?
     /// An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs.
-    public var amenityFeature: SchemaLocationFeatureSpecification?
+    public var amenityFeature: LocationFeatureSpecification?
     /// A short textual code (also called "store code") that uniquely identifies a place of business. The code is typically assigned by the parentOrganization and used in structured URLs.
     /// - For example, in the URL http://www.starbucks.co.uk/store-locator/etc/detail/3047 the code "3047" is a branchCode for a particular branch.
     public var branchCode: String?
     /// The basic containment relation between a place and one that contains it. Inverse property: containsPlace.
-    public var containedInPlace: SchemaPlace?
+    public var containedInPlace: Place?
     /// The basic containment relation between a place and another that it contains. Inverse property: containedInPlace.
-    public var containsPlace: SchemaPlace?
+    public var containsPlace: Place?
     /// Upcoming or past event associated with this place, organization, or action.
-    public var event: SchemaEvent?
+    public var event: Event?
     /// The fax number.
     public var faxNumber: String?
     /// The geo coordinates of the place.
@@ -39,16 +39,16 @@ public class Place: SOThing, SchemaPlace {
     /// The total number of individuals that may attend an event or venue.
     public var maximumAttendeeCapacity: Int?
     /// The opening hours of a certain place.
-    public var openingHoursSpecification: [SchemaOpeningHoursSpecification]?
+    public var openingHoursSpecification: [OpeningHoursSpecification]?
     /// A photograph of this place.
     public var photo: ImageObjectOrPhotograph?
     /// A review of the item.
-    public var review: SchemaReview?
+    public var review: Review?
     /// Indicates whether it is allowed to smoke in the place, e.g. in the restaurant, hotel or hotel room.
     public var smokingAllowed: Bool?
     /// The special opening hours of a certain place.
     /// Use this to explicitly override general opening hours brought in scope by openingHoursSpecification or openingHours.
-    public var specialOpeningHoursSpecification: [SchemaOpeningHoursSpecification]?
+    public var specialOpeningHoursSpecification: [OpeningHoursSpecification]?
     /// The telephone number.
     public var telephone: String?
 }

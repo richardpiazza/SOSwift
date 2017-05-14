@@ -1,20 +1,20 @@
 import Foundation
 
-public protocol SchemaPlaceDataTypeConformance:
+public protocol PlaceConformance:
                     PlaceOrPostalAddressOrText,
                     ContactPointOrPlace,
                     AdministrativeAreaOrGeoShapeOrPlaceOrText
                 {}
 
-public protocol SchemaPlace: Thing, SchemaPlaceDataTypeConformance {
+public protocol Place: Thing, PlaceConformance {
     var additionalProperty: PropertyValue? { get set }
     var address: PostalAddressOrText? { get set }
-    var aggregateRating: SchemaAggregateRating? { get set }
-    var amenityFeature: SchemaLocationFeatureSpecification? { get set }
+    var aggregateRating: AggregateRating? { get set }
+    var amenityFeature: LocationFeatureSpecification? { get set }
     var branchCode: String? { get set }
-    var containedInPlace: SchemaPlace? { get set }
-    var containsPlace: SchemaPlace? { get set }
-    var event: SchemaEvent? { get set }
+    var containedInPlace: Place? { get set }
+    var containsPlace: Place? { get set }
+    var event: Event? { get set }
     var faxNumber: String? { get set }
     var geo: GeoCoordinatesOrGeoShape? { get set }
     var globalLocationNumber: String? { get set }
@@ -22,10 +22,10 @@ public protocol SchemaPlace: Thing, SchemaPlaceDataTypeConformance {
     var isicV4: String? { get set }
     var logo: ImageObjectOrURL? { get set }
     var maximumAttendeeCapacity: Int? { get set }
-    var openingHoursSpecification: [SchemaOpeningHoursSpecification]? { get set }
+    var openingHoursSpecification: [OpeningHoursSpecification]? { get set }
     var photo: ImageObjectOrPhotograph? { get set }
-    var review: SchemaReview? { get set }
+    var review: Review? { get set }
     var smokingAllowed: Bool? { get set }
-    var specialOpeningHoursSpecification: [SchemaOpeningHoursSpecification]? { get set }
+    var specialOpeningHoursSpecification: [OpeningHoursSpecification]? { get set }
     var telephone: String? { get set }
 }

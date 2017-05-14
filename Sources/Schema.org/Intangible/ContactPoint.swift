@@ -1,5 +1,9 @@
 import Foundation
 
-public protocol SchemaContactPoint: StructuredValue, ContactPointOrPlace {
+public protocol ContactPointConformance:
+                    ContactPointOrPlace
+                {}
+
+public protocol ContactPoint: StructuredValue, ContactPointConformance {
     
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// A structured value providing information about when a certain organization or person owned a certain product.
-public class OwnershipInfo: SOStructuredValue, SchemaOwnershipInfo {
+public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
     override public class var type: String {
         return "OwnershipInfo"
     }

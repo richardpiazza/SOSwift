@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol SchemaMonetaryAmount: Thing, MonetaryAmountOrPriceSpecification {
+public protocol MonetaryAmount: Thing, MonetaryAmountOrPriceSpecification {
     var currency: String? { get set }
     var maxValue: Number? { get set }
     var minValue: Number? { get set }

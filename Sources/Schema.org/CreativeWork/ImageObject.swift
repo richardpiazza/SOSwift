@@ -1,9 +1,9 @@
 import Foundation
 
-public protocol SchemaImageObjectDataTypeConformance:
+public protocol ImageObjectConformance:
                     ImageObjectOrURL,
                     ImageObjectOrPhotograph {}
 
-public protocol SchemaImageObject: SchemaMediaObject, SchemaImageObjectDataTypeConformance {
+public protocol ImageObject: MediaObject, ImageObjectConformance {
     
 }

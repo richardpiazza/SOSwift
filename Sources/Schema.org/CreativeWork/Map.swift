@@ -1,8 +1,9 @@
 import Foundation
 
-public protocol SchemaMapDataTypeConformace:
-                    MapOrURL {}
+public protocol MapConformace:
+                    MapOrURL
+                {}
 
-public protocol SchemaMap: SchemaCreativeWork, SchemaMapDataTypeConformace {
+public protocol Map: CreativeWork, MapConformace {
     var mapType: MapType? { get set }
 }

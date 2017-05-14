@@ -92,7 +92,7 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
                         self.valueReference = typeClass.initialize(dictionary: typedValue) as? ValueReference
                     }
                 }
-                for typeClass in Enumeration.specificTypes {
+                for typeClass in SOEnumeration.specificTypes {
                     if typeClass.type == typeName {
                         self.valueReference = typeClass.initialize(dictionary: typedValue) as? ValueReference
                     }
@@ -148,7 +148,7 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
             }
         }
         if let value = self.valueReference {
-            if let typedValue = value as? Enumeration {
+            if let typedValue = value as? SOEnumeration {
                 dictionary[Keys.valueReference] = typedValue.dictionary as AnyObject
             } else if let typedValue = value as? SOStructuredValue {
                 dictionary[Keys.valueReference] = typedValue.dictionary as AnyObject

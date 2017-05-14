@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaOffer: Thing {
+public protocol Offer: Thing {
     
 }

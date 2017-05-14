@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaRating: Intangible {
+public protocol Rating: Intangible {
     
 }

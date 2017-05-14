@@ -4,6 +4,6 @@ public protocol AlignmentObjectConformance:
                     AlignmentObjectOrCourseOrText
                 {}
 
-public protocol SchemaAlignmentObject: Intangible, AlignmentObjectConformance {
+public protocol AlignmentObject: Intangible, AlignmentObjectConformance {
     
 }

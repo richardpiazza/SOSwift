@@ -1,10 +1,10 @@
 import Foundation
 
-public protocol SchemaProductModelDataTypeConformance:
+public protocol ProductModelConformance:
                     ProductModelOrText {}
 
-public protocol SchemaProductModel: Product, SchemaProductModelDataTypeConformance {
-    var isVariantOf: SchemaProductModel? { get set }
-    var predecessorOf: SchemaProductModel? { get set }
-    var successorOf: SchemaProductModel? { get set }
+public protocol ProductModel: Product, ProductModelConformance {
+    var isVariantOf: ProductModel? { get set }
+    var predecessorOf: ProductModel? { get set }
+    var successorOf: ProductModel? { get set }
 }

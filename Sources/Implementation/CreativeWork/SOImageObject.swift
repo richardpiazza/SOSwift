@@ -1,6 +1,6 @@
 import Foundation
 
-public class ImageObject: MediaObject, SchemaImageObject, ImageObjectOrURL {
+public class SOImageObject: SOMediaObject, ImageObject {
     override public class var type: String {
         return "ImageObject"
     }

@@ -1,6 +1,6 @@
 import Foundation
 
 /// A geographical region, typically under the jurisdiction of a particular government.
-public class AdministrativeArea: Place, SchemaAdministrativeArea {
+public class SOAdministrativeArea: SOPlace, AdministrativeArea {
     
 }

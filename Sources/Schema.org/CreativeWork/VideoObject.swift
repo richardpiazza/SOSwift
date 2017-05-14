@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaVideoObject: SchemaMediaObject {
+public protocol VideoObject: MediaObject {
     
 }

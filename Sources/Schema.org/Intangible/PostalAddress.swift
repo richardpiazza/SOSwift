@@ -1,5 +1,10 @@
 import Foundation
 
-public protocol SchemaPostalAddress: SchemaContactPoint, PostalAddressOrText, PlaceOrPostalAddressOrText {
+public protocol PostalAddressConformance:
+                    PostalAddressOrText,
+                    PlaceOrPostalAddressOrText
+                {}
+
+public protocol PostalAddress: ContactPoint, PostalAddressConformance {
     
 }

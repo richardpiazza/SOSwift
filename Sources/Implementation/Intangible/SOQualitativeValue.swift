@@ -1,7 +1,7 @@
 import Foundation
 
 /// A predefined value for a product characteristic, e.g. the power cord plug type 'US' or the garment sizes 'S', 'M', 'L', and 'XL'.
-public class QualitativeValue: Enumeration, SchemaQualitativeValue {
+public class SOQualitativeValue: SOEnumeration, QualitativeValue {
     override public class var type: String {
         return "QualitativeValue"
     }
@@ -10,17 +10,17 @@ public class QualitativeValue: Enumeration, SchemaQualitativeValue {
     /// - note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. http://schema.org/width, http://schema.org/color, http://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
     public var additionalProperty: PropertyValue?
     /// This ordering relation for qualitative values indicates that the subject is equal to the object.
-    public var equal: SchemaQualitativeValue?
+    public var equal: QualitativeValue?
     /// This ordering relation for qualitative values indicates that the subject is greater than the object.
-    public var greater: SchemaQualitativeValue?
+    public var greater: QualitativeValue?
     /// This ordering relation for qualitative values indicates that the subject is greater than or equal to the object.
-    public var greaterOrEqual: SchemaQualitativeValue?
+    public var greaterOrEqual: QualitativeValue?
     /// This ordering relation for qualitative values indicates that the subject is lesser than the object.
-    public var lesser: SchemaQualitativeValue?
+    public var lesser: QualitativeValue?
     /// This ordering relation for qualitative values indicates that the subject is lesser than or equal to the object.
-    public var lesserOrEqual: SchemaQualitativeValue?
+    public var lesserOrEqual: QualitativeValue?
     /// This ordering relation for qualitative values indicates that the subject is not equal to the object.
-    public var nonEqual: SchemaQualitativeValue?
+    public var nonEqual: QualitativeValue?
     /// A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
     public var valueReference: ValueReference?
 }

@@ -4,5 +4,5 @@ public protocol ServiceConformance:
                     ProductOrService
                 {}
 
-public protocol SchemaService: Intangible, ServiceConformance {
+public protocol Service: Intangible, ServiceConformance {
 }

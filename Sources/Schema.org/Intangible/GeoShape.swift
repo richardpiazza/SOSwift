@@ -1,10 +1,10 @@
 import Foundation
 
-public protocol SchemaGeoShapeDataTypeConformance:
+public protocol GeoShapeConformance:
                     GeoCoordinatesOrGeoShape,
                     AdministrativeAreaOrGeoShapeOrPlaceOrText {}
 
-public protocol SchemaGeoShape: Thing, SchemaGeoShapeDataTypeConformance {
+public protocol GeoShape: Thing, GeoShapeConformance {
     var address: PostalAddressOrText? { get set }
     var addressCountry: CountryOrText? { get set }
     var box: String? { get set }

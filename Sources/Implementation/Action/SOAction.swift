@@ -51,10 +51,10 @@ public class SOAction: SOThing, Action {
             self.actionStatus = ActionStatus(rawValue: value)
         }
         if let value = dictionary[Keys.agent] as? [String : AnyObject] {
-            if let typeName = value[SOThing.Keys.type] as? String, typeName == Organization.type {
-                self.agent = Organization(dictionary: value)
-            } else if let typeName = value[SOThing.Keys.type] as? String, typeName == Person.type {
-                self.agent = Person(dictionary: value)
+            if let typeName = value[SOThing.Keys.type] as? String, typeName == SOOrganization.type {
+                self.agent = SOOrganization(dictionary: value)
+            } else if let typeName = value[SOThing.Keys.type] as? String, typeName == SOPerson.type {
+                self.agent = SOPerson(dictionary: value)
             }
         }
         if let value = dictionary[Keys.endTime] as? String {
@@ -67,10 +67,10 @@ public class SOAction: SOThing, Action {
             self.instrument = SOThing(dictionary: value)
         }
         if let value = dictionary[Keys.location] {
-            if let typedValue = value as? [String : AnyObject], typedValue[SOThing.Keys.type] as? String == Place.type {
-                self.location = Place(dictionary: typedValue)
-            } else if let typedValue = value as? [String : AnyObject], typedValue[SOThing.Keys.type] as? String == PostalAddress.type {
-                self.location = PostalAddress(dictionary: typedValue)
+            if let typedValue = value as? [String : AnyObject], typedValue[SOThing.Keys.type] as? String == SOPlace.type {
+                self.location = SOPlace(dictionary: typedValue)
+            } else if let typedValue = value as? [String : AnyObject], typedValue[SOThing.Keys.type] as? String == SOPostalAddress.type {
+                self.location = SOPostalAddress(dictionary: typedValue)
             } else if let typedValue = value as? String {
                 self.location = typedValue
             }
@@ -79,10 +79,10 @@ public class SOAction: SOThing, Action {
             self.object = SOThing(dictionary: value)
         }
         if let value = dictionary[Keys.participant] as? [String : AnyObject] {
-            if let typeName = value[SOThing.Keys.type] as? String, typeName == Organization.type {
-                self.participant = Organization(dictionary: value)
-            } else if let typeName = value[SOThing.Keys.type] as? String, typeName == Person.type {
-                self.participant = Person(dictionary: value)
+            if let typeName = value[SOThing.Keys.type] as? String, typeName == SOOrganization.type {
+                self.participant = SOOrganization(dictionary: value)
+            } else if let typeName = value[SOThing.Keys.type] as? String, typeName == SOPerson.type {
+                self.participant = SOPerson(dictionary: value)
             }
         }
         if let value = dictionary[Keys.result] as? [String : AnyObject] {
@@ -102,9 +102,9 @@ public class SOAction: SOThing, Action {
             dictionary[Keys.actionStatus] = value.rawValue as AnyObject
         }
         if let value = self.agent {
-            if let typedValue = value as? Organization {
+            if let typedValue = value as? SOOrganization {
                 dictionary[Keys.agent] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? Person {
+            } else if let typedValue = value as? SOPerson {
                 dictionary[Keys.agent] = typedValue.dictionary as AnyObject
             }
         }
@@ -118,9 +118,9 @@ public class SOAction: SOThing, Action {
             dictionary[Keys.instrument] = value.dictionary as AnyObject
         }
         if let value = self.location {
-            if let typedValue = value as? Place {
+            if let typedValue = value as? SOPlace {
                 dictionary[Keys.location] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? PostalAddress {
+            } else if let typedValue = value as? SOPostalAddress {
                 dictionary[Keys.location] = typedValue.dictionary as AnyObject
             } else if let typedValue = value as? String {
                 dictionary[Keys.location] = typedValue as AnyObject
@@ -130,9 +130,9 @@ public class SOAction: SOThing, Action {
             dictionary[Keys.object] = value.dictionary as AnyObject
         }
         if let value = self.participant {
-            if let typedValue = value as? Organization {
+            if let typedValue = value as? SOOrganization {
                 dictionary[Keys.participant] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? Person {
+            } else if let typedValue = value as? SOPerson {
                 dictionary[Keys.participant] = typedValue.dictionary as AnyObject
             }
         }

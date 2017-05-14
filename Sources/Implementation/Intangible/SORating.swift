@@ -1,6 +1,6 @@
 import Foundation
 
-public class Rating: SOIntangible, SchemaRating {
+public class SORating: SOIntangible, Rating {
     override public class var type: String {
         return "Rating"
     }

@@ -1,54 +1,54 @@
 import Foundation
 
-public protocol SchemaPerson: Thing, PersonOrURL, OrganizationOrPerson {
+public protocol Person: Thing, PersonOrURL, OrganizationOrPerson {
     var additionalName: String? { get set }
     var address: PostalAddressOrText? { get set }
-    var affiliation: SchemaOrganization? { get set }
+    var affiliation: Organization? { get set }
     var alumniOf: EducationalOrganizationOrOrganization? { get set }
     var award: String? { get set }
     var birthDate: DateOnly? { get set }
-    var birthPlace: SchemaPlace? { get set }
+    var birthPlace: Place? { get set }
     var brand: BrandOrOrganization? { get set }
-    var children: [SchemaPerson]? { get set }
+    var children: [Person]? { get set }
     var colleague: PersonOrURL? { get set }
-    var contactPoint: SchemaContactPoint? { get set }
+    var contactPoint: ContactPoint? { get set }
     var deathDate: DateOnly? { get set }
-    var deathPlace: SchemaPlace? { get set }
+    var deathPlace: Place? { get set }
     var duns: String? { get set }
     var email: String? { get set }
     var familyName: String? { get set }
     var faxNumber: String? { get set }
-    var follows: [SchemaPerson]? { get set }
+    var follows: [Person]? { get set }
     var funder: OrganizationOrPerson? { get set }
     var gender: GenderOrText? { get set }
     var givenName: String? { get set }
     var globalLocationNumber: String? { get set }
-    var hasOfferCatalog: SchemaOfferCatalog? { get set }
-    var hasPOS: SchemaPlace? { get set }
+    var hasOfferCatalog: OfferCatalog? { get set }
+    var hasPOS: Place? { get set }
     var height: DistanceOrQuantitativeValue? { get set }
     var homeLocation: ContactPointOrPlace? { get set }
     var honorificPrefix: String? { get set }
     var honorificSuffix: String? { get set }
     var isicV4: String? { get set }
     var jobTitle: String? { get set }
-    var knows: [SchemaPerson]? { get set }
-    var makesOffer: [SchemaOffer]? { get set }
+    var knows: [Person]? { get set }
+    var makesOffer: [Offer]? { get set }
     var memberOf: [OrganizationOrProgramMembership]? { get set }
     var naics: String? { get set }
-    var nationality: SchemaCountry? { get set }
+    var nationality: Country? { get set }
     var netWorth: MonetaryAmountOrPriceSpecification? { get set }
     var owns: [ProductOrService]? { get set }
-    var parent: SchemaPerson? { get set }
-    var performerIn: SchemaEvent? { get set }
-    var relatedTo: [SchemaPerson]? { get set }
-    var seeks: [SchemaDemand]? { get set }
-    var sibling: SchemaPerson? { get set }
+    var parent: Person? { get set }
+    var performerIn: Event? { get set }
+    var relatedTo: [Person]? { get set }
+    var seeks: [Demand]? { get set }
+    var sibling: Person? { get set }
     var sponsor: OrganizationOrPerson? { get set }
-    var spouse: SchemaPerson? { get set }
+    var spouse: Person? { get set }
     var taxID: String? { get set }
     var telephone: String? { get set }
     var vatID: String? { get set }
-    var weight: SchemaQuantitativeValue? { get set }
+    var weight: QuantitativeValue? { get set }
     var workLocation: ContactPointOrPlace? { get set }
-    var worksFor: [SchemaOrganization]? { get set }
+    var worksFor: [Organization]? { get set }
 }

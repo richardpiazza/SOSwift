@@ -1,12 +1,12 @@
 import Foundation
 
-public protocol SchemaQualitativeValue: SchemaEnumeration {
+public protocol QualitativeValue: Enumeration {
     var additionalProperty: PropertyValue? { get set }
-    var equal: SchemaQualitativeValue? { get set }
-    var greater: SchemaQualitativeValue? { get set }
-    var greaterOrEqual: SchemaQualitativeValue? { get set }
-    var lesser: SchemaQualitativeValue? { get set }
-    var lesserOrEqual: SchemaQualitativeValue? { get set }
-    var nonEqual: SchemaQualitativeValue? { get set }
+    var equal: QualitativeValue? { get set }
+    var greater: QualitativeValue? { get set }
+    var greaterOrEqual: QualitativeValue? { get set }
+    var lesser: QualitativeValue? { get set }
+    var lesserOrEqual: QualitativeValue? { get set }
+    var nonEqual: QualitativeValue? { get set }
     var valueReference: ValueReference? { get set }
 }

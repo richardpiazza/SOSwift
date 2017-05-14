@@ -1,9 +1,9 @@
 import Foundation
 
-public protocol SchemaGeoCoordinatesDataTypeConformance:
+public protocol GeoCoordinatesConformance:
                     GeoCoordinatesOrGeoShape {}
 
-public protocol SchemaGeoCoordinates: StructuredValue, SchemaGeoCoordinatesDataTypeConformance {
+public protocol GeoCoordinates: StructuredValue, GeoCoordinatesConformance {
     var address: PostalAddressOrText? { get set }
     var addressCountry: CountryOrText? { get set }
     var elevation: NumberOrText? { get set }

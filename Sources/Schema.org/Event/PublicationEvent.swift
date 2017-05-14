@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaPublicationEvent: SchemaEvent {
+public protocol PublicationEvent: Event {
 }
 

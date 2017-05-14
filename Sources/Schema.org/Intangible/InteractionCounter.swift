@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaInteractionCounter: StructuredValue {
+public protocol InteractionCounter: StructuredValue {
     
 }

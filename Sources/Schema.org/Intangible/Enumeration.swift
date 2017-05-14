@@ -4,6 +4,6 @@ public protocol EnumerationConformance:
                     ValueReference
                 {}
 
-public protocol SchemaEnumeration: Intangible, EnumerationConformance {
+public protocol Enumeration: Intangible, EnumerationConformance {
     
 }

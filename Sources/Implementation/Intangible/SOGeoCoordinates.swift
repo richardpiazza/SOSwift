@@ -1,7 +1,7 @@
 import Foundation
 
 /// The geographic coordinates of a place or event.
-public class GeoCoordinates: SOStructuredValue, SchemaGeoCoordinates {
+public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
     override public class var type: String {
         return "GeoCoordinates"
     }

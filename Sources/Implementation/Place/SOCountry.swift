@@ -1,6 +1,6 @@
 import Foundation
 
 /// A country.
-public class Country: AdministrativeArea, SchemaCountry {
+public class SOCountry: SOAdministrativeArea, Country {
     
 }

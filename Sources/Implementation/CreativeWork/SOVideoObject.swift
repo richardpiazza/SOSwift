@@ -1,6 +1,6 @@
 import Foundation
 
-public class VideoObject: MediaObject, SchemaVideoObject {
+public class SOVideoObject: SOMediaObject, VideoObject {
     override public class var type: String {
         return "VideoObject"
     }

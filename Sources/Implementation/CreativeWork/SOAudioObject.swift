@@ -1,6 +1,6 @@
 import Foundation
 
-public class AudioObject: MediaObject, SchemaAudioObject {
+public class SOAudioObject: SOMediaObject, AudioObject {
     override public class var type: String {
         return "AudioObject"
     }

@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaOfferCatalog: SchemaItemList {
+public protocol OfferCatalog: ItemList {
     
 }

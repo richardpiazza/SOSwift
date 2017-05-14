@@ -1,5 +1,9 @@
 import Foundation
 
-public protocol SchemaDistance: SchemaQuantity, DistanceOrQuantitativeValue {
+public protocol DistanceConformance:
+                    DistanceOrQuantitativeValue
+                {}
+
+public protocol Distance: Quantity, DistanceConformance {
     
 }

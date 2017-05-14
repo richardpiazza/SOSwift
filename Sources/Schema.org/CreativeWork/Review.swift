@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol SchemaReview: Thing {
+public protocol Review: Thing {
     
 }
 

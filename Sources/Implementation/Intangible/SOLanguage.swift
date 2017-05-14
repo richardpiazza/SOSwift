@@ -1,6 +1,6 @@
 import Foundation
 
-public class Language: SOIntangible, SchemaLanguage {
+public class SOLanguage: SOIntangible, Language {
     override public class var type: String {
         return "Language"
     }

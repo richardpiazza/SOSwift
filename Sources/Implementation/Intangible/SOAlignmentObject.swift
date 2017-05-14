@@ -1,6 +1,6 @@
 import Foundation
 
-public class AlignmentObject: SOIntangible, SchemaAlignmentObject {
+public class SOAlignmentObject: SOIntangible, AlignmentObject {
     override public class var type: String {
         return "AlignmentObject"
     }

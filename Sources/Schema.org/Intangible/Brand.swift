@@ -4,5 +4,5 @@ public protocol BrandConformance:
                     BrandOrOrganization
                 {}
 
-public protocol SchemaBrand: Intangible, BrandConformance {
+public protocol Brand: Intangible, BrandConformance {
 }

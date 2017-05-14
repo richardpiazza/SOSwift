@@ -7,8 +7,8 @@ public class SOStructuredValue: SOIntangible, StructuredValue {
     }
     
     override public class var specificTypes: [Thing.Type] {
-        return [ContactPoint.self, GeoCoordinates.self, GeoShape.self, InteractionCounter.self, MonetaryAmount.self,
-                OpeningHoursSpecification.self, OwnershipInfo.self, PriceSpecification.self, SOPropertyValue.self,
-                QuantitativeValue.self]
+        return [SOContactPoint.self, SOGeoCoordinates.self, SOGeoShape.self, SOInteractionCounter.self, SOMonetaryAmount.self,
+                SOOpeningHoursSpecification.self, SOOwnershipInfo.self, SOPriceSpecification.self, SOPropertyValue.self,
+                SOQuantitativeValue.self]
     }
 }

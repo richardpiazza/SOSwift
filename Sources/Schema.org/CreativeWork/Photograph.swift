@@ -1,8 +1,9 @@
 import Foundation
 
-public protocol SchemaPhotographDataTypeConformance:
-                    ImageObjectOrPhotograph {}
+public protocol PhotographConformance:
+                    ImageObjectOrPhotograph
+                {}
 
-public protocol SchemaPhotograph: SchemaCreativeWork, SchemaPhotographDataTypeConformance {
+public protocol Photograph: CreativeWork, PhotographConformance {
     
 }

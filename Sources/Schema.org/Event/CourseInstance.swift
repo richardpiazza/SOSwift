@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol SchemaCourseInstance: SchemaEvent {
+public protocol CourseInstance: Event {
     var courseMode: TextOrURL? { get set }
-    var instructor: SchemaPerson? { get set }
+    var instructor: Person? { get set }
 }

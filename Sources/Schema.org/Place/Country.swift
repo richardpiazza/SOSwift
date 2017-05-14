@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaCountry: SchemaAdministrativeArea {
+public protocol Country: AdministrativeArea {
     
 }

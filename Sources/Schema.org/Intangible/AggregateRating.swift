@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SchemaAggregateRating: SchemaRating {
+public protocol AggregateRating: Rating {
     
 }

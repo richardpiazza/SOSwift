@@ -1,7 +1,7 @@
 import Foundation
 
 /// A point value or interval for product characteristics and other purposes.
-public class QuantitativeValue: SOStructuredValue, SchemaQuantitativeValue {
+public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
     public override class var type: String {
         return "QuantitativeValue"
     }
