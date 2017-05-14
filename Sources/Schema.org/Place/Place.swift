@@ -3,7 +3,7 @@ import Foundation
 public protocol PlaceConformance:
                     PlaceOrPostalAddressOrText,
                     ContactPointOrPlace,
-                    AdministrativeAreaOrGeoShapeOrPlaceOrText
+                    AreaServed
                 {}
 
 /// Entities that have a somewhat fixed, physical extension.

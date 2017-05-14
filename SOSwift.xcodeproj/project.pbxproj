@@ -23,7 +23,7 @@
 		E16DB8CD1EC7585900E73447 /* Photograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB8561EC7585900E73447 /* Photograph.swift */; };
 		E16DB8CE1EC7585900E73447 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB8571EC7585900E73447 /* Review.swift */; };
 		E16DB8CF1EC7585900E73447 /* VideoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB8581EC7585900E73447 /* VideoObject.swift */; };
-		E16DB8D01EC7585900E73447 /* AdministrativeAreaOrGeoShapeOrPlaceOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB85A1EC7585900E73447 /* AdministrativeAreaOrGeoShapeOrPlaceOrText.swift */; };
+		E16DB8D01EC7585900E73447 /* AreaServed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB85A1EC7585900E73447 /* AreaServed.swift */; };
 		E16DB8D11EC7585900E73447 /* AlignmentObjectOrCourseOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB85B1EC7585900E73447 /* AlignmentObjectOrCourseOrText.swift */; };
 		E16DB8D21EC7585900E73447 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB85C1EC7585900E73447 /* Value.swift */; };
 		E16DB8D31EC7585900E73447 /* BrandOrOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB85D1EC7585900E73447 /* BrandOrOrganization.swift */; };
@@ -235,7 +235,7 @@
 		E16DB8561EC7585900E73447 /* Photograph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photograph.swift; sourceTree = "<group>"; };
 		E16DB8571EC7585900E73447 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		E16DB8581EC7585900E73447 /* VideoObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoObject.swift; sourceTree = "<group>"; };
-		E16DB85A1EC7585900E73447 /* AdministrativeAreaOrGeoShapeOrPlaceOrText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdministrativeAreaOrGeoShapeOrPlaceOrText.swift; sourceTree = "<group>"; };
+		E16DB85A1EC7585900E73447 /* AreaServed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaServed.swift; sourceTree = "<group>"; };
 		E16DB85B1EC7585900E73447 /* AlignmentObjectOrCourseOrText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignmentObjectOrCourseOrText.swift; sourceTree = "<group>"; };
 		E16DB85C1EC7585900E73447 /* Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 		E16DB85D1EC7585900E73447 /* BrandOrOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandOrOrganization.swift; sourceTree = "<group>"; };
@@ -578,8 +578,8 @@
 		E16DB8591EC7585900E73447 /* DataType */ = {
 			isa = PBXGroup;
 			children = (
-				E16DB85A1EC7585900E73447 /* AdministrativeAreaOrGeoShapeOrPlaceOrText.swift */,
 				E16DB85B1EC7585900E73447 /* AlignmentObjectOrCourseOrText.swift */,
+				E16DB85A1EC7585900E73447 /* AreaServed.swift */,
 				E16DB85D1EC7585900E73447 /* BrandOrOrganization.swift */,
 				E16DB85E1EC7585900E73447 /* ContactPointOrPlace.swift */,
 				E16DB85F1EC7585900E73447 /* CountryOrText.swift */,
@@ -1167,7 +1167,7 @@
 				E16DBA131EC758A800E73447 /* SOEducationalOrganization.swift in Sources */,
 				E16DBA151EC758A800E73447 /* SOPerson.swift in Sources */,
 				E16DB90F1EC7585900E73447 /* ContactPoint.swift in Sources */,
-				E16DB8D01EC7585900E73447 /* AdministrativeAreaOrGeoShapeOrPlaceOrText.swift in Sources */,
+				E16DB8D01EC7585900E73447 /* AreaServed.swift in Sources */,
 				E16DB9181EC7585900E73447 /* ItemList.swift in Sources */,
 				E16DBA111EC758A800E73447 /* SOService.swift in Sources */,
 				E16DBA1B1EC758A800E73447 /* SOThing.swift in Sources */,

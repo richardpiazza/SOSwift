@@ -2,7 +2,7 @@ import Foundation
 
 public protocol GeoShapeConformance:
                     GeoCoordinatesOrGeoShape,
-                    AdministrativeAreaOrGeoShapeOrPlaceOrText {}
+                    AreaServed {}
 
 /// The geographic shape of a place.
 /// A GeoShape can be described using several properties whose values are based on latitude/longitude pairs.

@@ -8,7 +8,7 @@ public class SOOrganization: SOThing, Organization {
     public var address: PostalAddressOrText?
     public var aggregateRating: AggregateRating?
     public var alumni: [Person]?
-    public var areaServed: AdministrativeAreaOrGeoShapeOrPlaceOrText?
+    public var areaServed: AreaServed?
     public var award: [String]?
     public var brand: [BrandOrOrganization]?
     public var contactPoint: [ContactPoint]?

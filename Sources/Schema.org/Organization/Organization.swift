@@ -16,7 +16,7 @@ public protocol Organization: Thing, OrganizationConformance {
     /// Inverse property: alumniOf.
     var alumni: [Person]? { get set }
     /// The geographic area where a service or offered item is provided.
-    var areaServed: AdministrativeAreaOrGeoShapeOrPlaceOrText? { get set }
+    var areaServed: AreaServed? { get set }
     /// An award won by or for this item
     var award: [String]? { get set }
     /// The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.

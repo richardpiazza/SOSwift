@@ -7,7 +7,7 @@ public protocol ContactPointConformance:
 /// A contact point—for example, a Customer Complaints department.
 public protocol ContactPoint: StructuredValue, ContactPointConformance {
     /// The geographic area where a service or offered item is provided.
-    var areaServed: AdministrativeAreaOrGeoShapeOrPlaceOrText? { get set }
+    var areaServed: AreaServed? { get set }
     /// A language someone may use with the item. Please use one of the language codes from the IETF BCP 47 standard.
     var availableLanguage: LanguageOrText? { get set }
     /// An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers).

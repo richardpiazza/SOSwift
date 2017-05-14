@@ -6,7 +6,7 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
     }
     
     /// The geographic area where a service or offered item is provided.
-    public var areaServed: AdministrativeAreaOrGeoShapeOrPlaceOrText?
+    public var areaServed: AreaServed?
     /// A language someone may use with the item. Please use one of the language codes from the IETF BCP 47 standard.
     public var availableLanguage: LanguageOrText?
     /// An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers).

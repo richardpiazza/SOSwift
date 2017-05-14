@@ -9,7 +9,7 @@ public class SOService: SOIntangible, Service {
     /// The overall rating, based on a collection of reviews or ratings, of the item.
     public var aggregateRating: AggregateRating?
     /// The geographic area where a service or offered item is provided.
-    public var areaServed: AdministrativeAreaOrGeoShapeOrPlaceOrText?
+    public var areaServed: AreaServed?
     /// An intended audience, i.e. a group for whom something was created.
     public var audience: Audience?
     /// A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).

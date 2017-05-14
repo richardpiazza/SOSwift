@@ -9,7 +9,7 @@ public protocol Service: Intangible, ServiceConformance {
     /// The overall rating, based on a collection of reviews or ratings, of the item.
     var aggregateRating: AggregateRating? { get set }
     /// The geographic area where a service or offered item is provided.
-    var areaServed: AdministrativeAreaOrGeoShapeOrPlaceOrText? { get set }
+    var areaServed: AreaServed? { get set }
     /// An intended audience, i.e. a group for whom something was created.
     var audience: Audience? { get set }
     /// A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
