@@ -236,4 +236,77 @@ public class SOCreativeWork: SOThing, CreativeWork {
     public var video: VideoObject?
     /// Example/instance/realization/derivation of the concept of this creative work. eg. The paperback edition, first edition, or eBook. Inverse property: exampleOfWork.
     public var workExample: CreativeWork?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+        if let value = dictionary[Keys.about] as? [String : AnyObject] {
+            self.about = SOThing(dictionary: value)
+        }
+        if let value = dictionary[Keys.accessMode] as? String {
+            self.accessMode = AccessMode(rawValue: value)
+        }
+        if let value = dictionary[Keys.accessModeSufficient] {
+            self.accessModeSufficient = []
+            if let typedValue = value as? [String] {
+                for element in typedValue {
+                    if let item = AccessModeSufficient(rawValue: element) {
+                        self.accessModeSufficient?.append(item)
+                    }
+                }
+            } else if let typedValue = value as? String {
+                if let item = AccessModeSufficient(rawValue: typedValue) {
+                    self.accessModeSufficient?.append(item)
+                }
+            }
+            
+        }
+        if let value = dictionary[Keys.accessibilityAPI] as? String {
+            self.accessibilityAPI = AccessibilityAPI(rawValue: value)
+        }
+        if let value = dictionary[Keys.accessibilityFeature] as? String {
+            self.accessibilityFeature = AccessibilityFeature(rawValue: value)
+        }
+        if let value = dictionary[Keys.accessibilityHazard] as? String {
+            self.accessibilityHazard = AccessibilityHazard(rawValue: value)
+        }
+        if let value = dictionary[Keys.accessibilitySummary] as? String {
+            self.accessibilitySummary = value
+        }
+        if let value = dictionary[Keys.accountablePerson] as? [String : AnyObject] {
+            self.accountablePerson = SOPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.aggregateRating] as? [String : AnyObject] {
+            self.aggregateRating = SOAggregateRating(dictionary: value)
+        }
+        if let value = dictionary[Keys.alternativeHeadline] as? String {
+            self.alternativeHeadline = value
+        }
+        if let value = dictionary[Keys.associatedMedia] as? [String : AnyObject] {
+            self.associatedMedia = SOMediaObject(dictionary: value)
+        }
+        if let value = dictionary[Keys.audience] as? [String : AnyObject] {
+            self.audience = SOAudience(dictionary: value)
+        }
+        if let value = dictionary[Keys.audio] as? [String : AnyObject] {
+            self.audio = SOAudioObject(dictionary: value)
+        }
+        if let value = dictionary[Keys.author] as? [String : AnyObject] {
+            self.author = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.award] as? String {
+            self.award = value
+        }
+        if let value = dictionary[Keys.character] as? [String : AnyObject] {
+            self.character = SOPerson(dictionary: value)
+        }
+        
+    }
+    
+    public override var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        if let value = self.about {
+            dictionary[Keys.about] = value.dictionary as AnyObject
+        }
+        return dictionary
+    }
 }

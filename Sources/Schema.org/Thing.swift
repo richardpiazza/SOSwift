@@ -42,6 +42,7 @@ public protocol Thing: ThingConformance {
     var url: URL? { get set }
     
     init(dictionary: [String : AnyObject])
+    var dictionary: [String : AnyObject] { get }
 }
 
 public extension Thing {
@@ -49,7 +50,7 @@ public extension Thing {
         return "http://www.schema.org"
     }
     
-    static func initialize(dictionary: [String : AnyObject]) -> Self {
+    static func make(dictionary: [String : AnyObject]) -> Self {
         return self.init(dictionary: dictionary)
     }
 }

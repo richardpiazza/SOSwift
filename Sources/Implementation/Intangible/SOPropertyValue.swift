@@ -38,121 +38,50 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     public required init(dictionary: [String : AnyObject]) {
         super.init(dictionary: dictionary)
         if let value = dictionary[Keys.maxValue] {
-            if let typedValue = value as? Int {
-                self.maxValue = typedValue
-            } else if let typedValue = value as? Float {
-                self.maxValue = typedValue
-            }
+            self.maxValue = makeNumber(anyObject: value)
         }
         if let value = dictionary[Keys.minValue] {
-            if let typedValue = value as? Int {
-                self.minValue = typedValue
-            } else if let typedValue = value as? Float {
-                self.minValue = typedValue
-            }
+            self.minValue = makeNumber(anyObject: value)
         }
         if let value = dictionary[Keys.propertyID] {
-            if let typedValue = value as? String, typedValue.contains("://") {
-                self.propertyID = URL(string: typedValue)
-            } else if let typedValue = value as? String {
-                self.propertyID = typedValue
-            }
+            self.propertyID = makeTextOrURL(anyObject: value)
         }
         if let value = dictionary[Keys.unitCode] {
-            if let typedValue = value as? String, typedValue.contains("://") {
-                self.unitCode = URL(string: typedValue)
-            } else if let typedValue = value as? String {
-                self.unitCode = typedValue
-            }
+            self.unitCode = makeTextOrURL(anyObject: value)
         }
         if let value = dictionary[Keys.unitText] as? String {
             self.unitText = value
         }
         if let value = dictionary[Keys.value] {
-            if let typedValue = value as? [String : AnyObject], let typeName = typedValue[SOThing.Keys.type] as? String {
-                for typeClass in SOStructuredValue.specificTypes {
-                    if typeClass.type == typeName {
-                        self.value = typeClass.initialize(dictionary: typedValue) as? Value
-                    }
-                }
-            } else if let typedValue = value as? Float {
-                self.value = typedValue
-            } else if let typedValue = value as? Int {
-                self.value = typedValue
-            } else if let typedValue = value as? Bool {
-                self.value = typedValue
-            } else if let typedValue = value as? String {
-                self.value = typedValue
-            }
+            self.value = makeValue(anyObject: value)
         }
         if let value = dictionary[Keys.valueReference] {
-            if let typedValue = value as? [String : AnyObject], let typeName = typedValue[SOThing.Keys.type] as? String {
-                for typeClass in SOStructuredValue.specificTypes {
-                    if typeClass.type == typeName {
-                        self.valueReference = typeClass.initialize(dictionary: typedValue) as? ValueReference
-                    }
-                }
-                for typeClass in SOEnumeration.specificTypes {
-                    if typeClass.type == typeName {
-                        self.valueReference = typeClass.initialize(dictionary: typedValue) as? ValueReference
-                    }
-                }
-            }
+            self.valueReference = makeValueReference(anyObject: value)
         }
     }
     
     public override var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.maxValue {
-            if let typedValue = value as? Int {
-                dictionary[Keys.maxValue] = typedValue as AnyObject
-            } else if let typedValue = value as? Float {
-                dictionary[Keys.maxValue] = typedValue as AnyObject
-            }
+        if let value = self.maxValue?.dictionaryValue {
+            dictionary[Keys.maxValue] = value
         }
-        if let value = self.minValue {
-            if let typedValue = value as? Int {
-                dictionary[Keys.minValue] = typedValue as AnyObject
-            } else if let typedValue = value as? Float {
-                dictionary[Keys.minValue] = typedValue as AnyObject
-            }
+        if let value = self.minValue?.dictionaryValue {
+            dictionary[Keys.minValue] = value
         }
-        if let value = self.propertyID {
-            if let typedValue = value as? URL {
-                dictionary[Keys.propertyID] = typedValue.absoluteString as AnyObject
-            } else if let typedValue = value as? String {
-                dictionary[Keys.propertyID] = typedValue as AnyObject
-            }
+        if let value = self.propertyID?.dictionaryValue {
+            dictionary[Keys.propertyID] = value
         }
-        if let value = self.unitCode {
-            if let typedValue = value as? URL {
-                dictionary[Keys.unitCode] = typedValue.absoluteString as AnyObject
-            } else if let typedValue = value as? String {
-                dictionary[Keys.unitCode] = typedValue as AnyObject
-            }
+        if let value = self.unitCode?.dictionaryValue {
+            dictionary[Keys.unitCode] = value
         }
         if let value = self.unitText {
             dictionary[Keys.unitText] = value as AnyObject
         }
-        if let value = self.value {
-            if let typedValue = value as? String {
-                dictionary[Keys.value] = typedValue as AnyObject
-            } else if let typedValue = value as? Bool {
-                dictionary[Keys.value] = typedValue as AnyObject
-            } else if let typedValue = value as? Float {
-                dictionary[Keys.value] = typedValue as AnyObject
-            } else if let typedValue = value as? Int {
-                dictionary[Keys.value] = typedValue as AnyObject
-            } else if let typedValue = value as? SOStructuredValue {
-                dictionary[Keys.value] = typedValue.dictionary as AnyObject
-            }
+        if let value = self.value?.dictionaryValue {
+            dictionary[Keys.value] = value
         }
-        if let value = self.valueReference {
-            if let typedValue = value as? SOEnumeration {
-                dictionary[Keys.valueReference] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? SOStructuredValue {
-                dictionary[Keys.valueReference] = typedValue.dictionary as AnyObject
-            }
+        if let value = self.valueReference?.dictionaryValue {
+            dictionary[Keys.valueReference] = value
         }
         return dictionary
     }

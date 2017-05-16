@@ -55,7 +55,8 @@ public class SOThing: Thing {
     /// URL of the item.
     public var url: URL?
     
-    public init() {
+    public convenience init() {
+        self.init(dictionary: [String : AnyObject]())
     }
     
     public convenience init(json: String) {
@@ -107,42 +108,22 @@ public class SOThing: Thing {
             self.disambiguatingDescription = value
         }
         if let value = dictionary[Keys.identifier] {
-            if let typedValue = value as? [String : AnyObject], typedValue[Keys.type] as? String == SOPropertyValue.type {
-                self.identifier = SOPropertyValue(dictionary: typedValue)
-            } else if let typedValue = value as? String, typedValue.contains("://") {
-                self.identifier = URL(string: typedValue)
-            } else if let typedValue = value as? String {
-                self.identifier = typedValue
-            }
+            self.identifier = makeIdentifier(anyObject: value)
         }
         if let value = dictionary[Keys.id] {
-            if let typedValue = value as? [String : AnyObject], typedValue[Keys.type] as? String == SOPropertyValue.type {
-                self.identifier = SOPropertyValue(dictionary: typedValue)
-            } else if let typedValue = value as? String, typedValue.contains("://") {
-                self.identifier = URL(string: typedValue)
-            } else if let typedValue = value as? String {
-                self.identifier = typedValue
-            }
+            self.identifier = makeIdentifier(anyObject: value)
         }
         if let value = dictionary[Keys.image] {
-            if let typedValue = value as? [String : AnyObject], typedValue[Keys.type] as? String == SOImageObject.type {
-                self.image = SOImageObject(dictionary: typedValue)
-            } else if let typedValue = value as? String {
-                self.image = URL(string: typedValue)
-            }
+            self.image = makeImageObjectOrURL(anyObject: value)
         }
-        if let value = dictionary[Keys.mainEntityOfPage] as? CreativeWorkOrURL {
-            if let typedValue = value as? [String : AnyObject], typedValue[Keys.type] as? String == SOCreativeWork.type {
-                self.mainEntityOfPage = SOCreativeWork(dictionary: typedValue)
-            } else if let typedValue = value as? String {
-                self.mainEntityOfPage = URL(string: typedValue)
-            }
+        if let value = dictionary[Keys.mainEntityOfPage] {
+            self.mainEntityOfPage = makeCreativeWorkOrURL(anyObject: value)
         }
         if let value = dictionary[Keys.name] as? String {
             self.name = value
         }
-        if let value = dictionary[Keys.potentialAction] as? SOAction {
-            self.potentialAction = value
+        if let value = dictionary[Keys.potentialAction] as? [String : AnyObject] {
+            self.potentialAction = SOAction(dictionary: value)
         }
         if let value = dictionary[Keys.sameAs] {
             self.sameAs = [URL]()
@@ -180,28 +161,14 @@ public class SOThing: Thing {
         if let value = self.disambiguatingDescription {
             dictionary[Keys.disambiguatingDescription] = value as AnyObject
         }
-        if let value = self.identifier {
-            if let typedValue = value as? SOPropertyValue {
-                dictionary[Keys.id] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? URL {
-                dictionary[Keys.id] = typedValue.absoluteString as AnyObject
-            } else if let typedValue = value as? String {
-                dictionary[Keys.id] = typedValue as AnyObject
-            }
+        if let value = self.identifier?.dictionaryValue {
+            dictionary[Keys.id] = value
         }
-        if let value = self.image {
-            if let typedValue = value as? SOImageObject {
-                dictionary[Keys.image] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? URL {
-                dictionary[Keys.image] = typedValue.absoluteString as AnyObject
-            }
+        if let value = self.image?.dictionaryValue {
+            dictionary[Keys.image] = value
         }
-        if let value = self.mainEntityOfPage {
-            if let typedValue = value as? SOCreativeWork {
-                dictionary[Keys.mainEntityOfPage] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? URL {
-                dictionary[Keys.mainEntityOfPage] = typedValue.absoluteString as AnyObject
-            }
+        if let value = self.mainEntityOfPage?.dictionaryValue {
+            dictionary[Keys.mainEntityOfPage] = value
         }
         if let value = self.potentialAction as? SOAction {
             dictionary[Keys.potentialAction] = value.dictionary as AnyObject
@@ -235,5 +202,114 @@ public class SOThing: Thing {
         }
         
         return json
+    }
+}
+
+public extension SOThing {
+    /// Initialize an `Identifier`
+    internal func makeIdentifier(anyObject: AnyObject) -> Identifier? {
+        if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOPropertyValue.type {
+            return SOPropertyValue(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String, typedValue.contains("://") {
+            return URL(string: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialize an `ImageObject` or `URL`
+    internal func makeImageObjectOrURL(anyObject: AnyObject) -> ImageObjectOrURL? {
+        if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOImageObject.type {
+            return SOImageObject(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return URL(string: typedValue)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize an `CreativeWork` or `URL`
+    internal func makeCreativeWorkOrURL(anyObject: AnyObject) -> CreativeWorkOrURL? {
+        if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOCreativeWork.type {
+            return SOCreativeWork(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return URL(string: typedValue)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize an `Organization` or `Person`
+    internal func makeOrganizationOrPerson(dictionary: [String : AnyObject]) -> OrganizationOrPerson? {
+        if dictionary[Keys.type] as? String == SOOrganization.type {
+            return SOOrganization(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOPerson.type {
+            return SOPerson(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize an `Int` or `Float`
+    internal func makeNumber(anyObject: AnyObject) -> Number? {
+        if let typedValue = anyObject as? Int {
+            return typedValue
+        } else if let typedValue = anyObject as? Float {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialize a `String` or `URL`
+    internal func makeTextOrURL(anyObject: AnyObject) -> TextOrURL? {
+        if let typedValue = anyObject as? String, typedValue.contains("://") {
+            return URL(string: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialize a `Value`
+    internal func makeValue(anyObject: AnyObject) -> Value? {
+        if let typedValue = anyObject as? [String : AnyObject], let typeName = typedValue[SOThing.Keys.type] as? String {
+            for typeClass in SOStructuredValue.specificTypes {
+                if typeClass.type == typeName {
+                    return typeClass.make(dictionary: typedValue) as? Value
+                }
+            }
+        } else if let typedValue = anyObject as? Float {
+            return typedValue
+        } else if let typedValue = anyObject as? Int {
+            return typedValue
+        } else if let typedValue = anyObject as? Bool {
+            return typedValue
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialize a `ReferenceValue`
+    internal func makeValueReference(anyObject: AnyObject) -> ValueReference? {
+        if let typedValue = anyObject as? [String : AnyObject], let typeName = typedValue[SOThing.Keys.type] as? String {
+            for typeClass in SOStructuredValue.specificTypes {
+                if typeClass.type == typeName {
+                    return typeClass.make(dictionary: typedValue) as? ValueReference
+                }
+            }
+            for typeClass in SOEnumeration.specificTypes {
+                if typeClass.type == typeName {
+                    return typeClass.make(dictionary: typedValue) as? ValueReference
+                }
+            }
+        }
+        
+        return nil
     }
 }
