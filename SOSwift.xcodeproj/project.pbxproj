@@ -179,6 +179,12 @@
 		E16DBA191EC758A800E73447 /* SOProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB9AA1EC758A800E73447 /* SOProduct.swift */; };
 		E16DBA1A1EC758A800E73447 /* SOProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB9AB1EC758A800E73447 /* SOProductModel.swift */; };
 		E16DBA1B1EC758A800E73447 /* SOThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB9AC1EC758A800E73447 /* SOThing.swift */; };
+		E170D56C1ECC81630002BF15 /* SOAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170D56B1ECC81630002BF15 /* SOAnswer.swift */; };
+		E170D56E1ECC816A0002BF15 /* SOQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170D56D1ECC816A0002BF15 /* SOQuestion.swift */; };
+		E170D5701ECC88790002BF15 /* SOArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170D56F1ECC88790002BF15 /* SOArticle.swift */; };
+		E170D5721ECC88940002BF15 /* SONewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170D5711ECC88940002BF15 /* SONewsArticle.swift */; };
+		E170D5741ECC9F480002BF15 /* SOPerformingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170D5731ECC9F480002BF15 /* SOPerformingGroup.swift */; };
+		E170D5761ECC9F6C0002BF15 /* SOMusicGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E170D5751ECC9F6C0002BF15 /* SOMusicGroup.swift */; };
 		E194A9B51EC8C9EE0010F1B0 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A9B41EC8C9EE0010F1B0 /* Article.swift */; };
 		E194A9B71EC8CA120010F1B0 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A9B61EC8CA120010F1B0 /* NewsArticle.swift */; };
 		E194A9B91EC8F2DF0010F1B0 /* PropertyValueOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A9B81EC8F2DF0010F1B0 /* PropertyValueOrText.swift */; };
@@ -392,6 +398,12 @@
 		E16DB9AA1EC758A800E73447 /* SOProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOProduct.swift; sourceTree = "<group>"; };
 		E16DB9AB1EC758A800E73447 /* SOProductModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOProductModel.swift; sourceTree = "<group>"; };
 		E16DB9AC1EC758A800E73447 /* SOThing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOThing.swift; sourceTree = "<group>"; };
+		E170D56B1ECC81630002BF15 /* SOAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAnswer.swift; sourceTree = "<group>"; };
+		E170D56D1ECC816A0002BF15 /* SOQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOQuestion.swift; sourceTree = "<group>"; };
+		E170D56F1ECC88790002BF15 /* SOArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOArticle.swift; sourceTree = "<group>"; };
+		E170D5711ECC88940002BF15 /* SONewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SONewsArticle.swift; sourceTree = "<group>"; };
+		E170D5731ECC9F480002BF15 /* SOPerformingGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPerformingGroup.swift; sourceTree = "<group>"; };
+		E170D5751ECC9F6C0002BF15 /* SOMusicGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMusicGroup.swift; sourceTree = "<group>"; };
 		E194A9B41EC8C9EE0010F1B0 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		E194A9B61EC8CA120010F1B0 /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
 		E194A9B81EC8F2DF0010F1B0 /* PropertyValueOrText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyValueOrText.swift; sourceTree = "<group>"; };
@@ -754,6 +766,8 @@
 		E16DB9361EC758A800E73447 /* CreativeWork */ = {
 			isa = PBXGroup;
 			children = (
+				E170D56B1ECC81630002BF15 /* SOAnswer.swift */,
+				E170D56F1ECC88790002BF15 /* SOArticle.swift */,
 				E16DB9371EC758A800E73447 /* SOAudioObject.swift */,
 				E16DB9381EC758A800E73447 /* SOComment.swift */,
 				E16DB9391EC758A800E73447 /* SOCourse.swift */,
@@ -761,7 +775,9 @@
 				E16DB93B1EC758A800E73447 /* SOImageObject.swift */,
 				E16DB93C1EC758A800E73447 /* SOMap.swift */,
 				E16DB93D1EC758A800E73447 /* SOMediaObject.swift */,
+				E170D5711ECC88940002BF15 /* SONewsArticle.swift */,
 				E16DB93E1EC758A800E73447 /* SOPhotograph.swift */,
+				E170D56D1ECC816A0002BF15 /* SOQuestion.swift */,
 				E16DB93F1EC758A800E73447 /* SOReview.swift */,
 				E16DB9401EC758A800E73447 /* SOVideoObject.swift */,
 			);
@@ -821,7 +837,9 @@
 			isa = PBXGroup;
 			children = (
 				E16DB9A11EC758A800E73447 /* SOEducationalOrganization.swift */,
+				E170D5751ECC9F6C0002BF15 /* SOMusicGroup.swift */,
 				E16DB9A21EC758A800E73447 /* SOOrganization.swift */,
+				E170D5731ECC9F480002BF15 /* SOPerformingGroup.swift */,
 			);
 			path = Organization;
 			sourceTree = "<group>";
@@ -1060,6 +1078,7 @@
 				E16DBA031EC758A800E73447 /* SOLocationFeatureSpecification.swift in Sources */,
 				E16DB8F11EC7585900E73447 /* PlaceOrPostalAddressOrText.swift in Sources */,
 				E16DB9211EC7585900E73447 /* PostalAddress.swift in Sources */,
+				E170D5721ECC88940002BF15 /* SONewsArticle.swift in Sources */,
 				E16DB9F61EC758A800E73447 /* SOBrand.swift in Sources */,
 				E16DB9311EC7585900E73447 /* Product.swift in Sources */,
 				E16DBA081EC758A800E73447 /* SOOwnershipInfo.swift in Sources */,
@@ -1070,6 +1089,7 @@
 				E16DB9031EC7585900E73447 /* Gender.swift in Sources */,
 				E16DB92A1EC7585900E73447 /* StructuredValue.swift in Sources */,
 				E16DB8DF1EC7585900E73447 /* EducationalOrganizationOrOrganization.swift in Sources */,
+				E170D5701ECC88790002BF15 /* SOArticle.swift in Sources */,
 				E16DB8F01EC7585900E73447 /* PersonOrURL.swift in Sources */,
 				E16DB9FF1EC758A800E73447 /* SOInteractionCounter.swift in Sources */,
 				E16DB9281EC7585900E73447 /* Rating.swift in Sources */,
@@ -1174,6 +1194,7 @@
 				E16DB8D01EC7585900E73447 /* AreaServed.swift in Sources */,
 				E16DB9181EC7585900E73447 /* ItemList.swift in Sources */,
 				E16DBA111EC758A800E73447 /* SOService.swift in Sources */,
+				E170D56E1ECC816A0002BF15 /* SOQuestion.swift in Sources */,
 				E16DBA1B1EC758A800E73447 /* SOThing.swift in Sources */,
 				E16DBA0D1EC758A800E73447 /* SOQualitativeValue.swift in Sources */,
 				E16DB8F51EC7585900E73447 /* ProductOrTextOrURL.swift in Sources */,
@@ -1198,8 +1219,10 @@
 				E16DB91D1EC7585900E73447 /* Offer.swift in Sources */,
 				E16DB8FA1EC7585900E73447 /* AccessibilityAPI.swift in Sources */,
 				E16DB8DC1EC7585900E73447 /* DateTimeOrTextOrURL.swift in Sources */,
+				E170D5741ECC9F480002BF15 /* SOPerformingGroup.swift in Sources */,
 				E16DB8F41EC7585900E73447 /* ProductOrService.swift in Sources */,
 				E194A9BB1EC8F3890010F1B0 /* PerformingGroup.swift in Sources */,
+				E170D56C1ECC81630002BF15 /* SOAnswer.swift in Sources */,
 				E194A9C71EC8FF280010F1B0 /* MusicPlaylist.swift in Sources */,
 				E16DBA021EC758A800E73447 /* SOListItem.swift in Sources */,
 				E16DB8D51EC7585900E73447 /* CountryOrText.swift in Sources */,
@@ -1207,6 +1230,7 @@
 				E16DBA0E1EC758A800E73447 /* SOQuantitativeValue.swift in Sources */,
 				E16DB8EB1EC7585900E73447 /* Number.swift in Sources */,
 				E16DB8D11EC7585900E73447 /* AlignmentObjectOrCourseOrText.swift in Sources */,
+				E170D5761ECC9F6C0002BF15 /* SOMusicGroup.swift in Sources */,
 				E16DB9001EC7585900E73447 /* ActionStatus.swift in Sources */,
 				E16DB9FE1EC758A800E73447 /* SOIntangible.swift in Sources */,
 				E16DB8E21EC7585900E73447 /* GeoCoordinatesOrGeoShape.swift in Sources */,

@@ -7,7 +7,7 @@ public protocol Question: CreativeWork {
     /// The number of answers this question has received.
     var answerCount: Int? { get set }
     /// The number of downvotes this question, answer or comment has received from the community.
-    var downvoteCountn: Int? { get set }
+    var downvoteCount: Int? { get set }
     /// An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
     var suggestedAnswer: Answer? { get set }
     /// The number of upvotes this question, answer or comment has received from the community.

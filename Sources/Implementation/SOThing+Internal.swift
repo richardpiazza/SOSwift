@@ -1,6 +1,19 @@
 import Foundation
 
 public extension SOThing {
+    /// Initialize an `AlignmentObject`, `Course`, or `String`
+    internal func makeAlignmentObjectOrCourseOrText(anyObject: AnyObject) -> AlignmentObjectOrCourseOrText? {
+        if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOAlignmentObject.type {
+            return SOAlignmentObject(dictionary: typedValue)
+        } else if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOCourse.type {
+            return SOCourse(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
     /// Initialize a `CreativeWork`, `Product`, or `String`
     internal func makeCreativeWorkOrProductOrText(anyObject: AnyObject) -> CreativeWorkOrProductOrURL? {
         if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOCreativeWork.type {
@@ -42,6 +55,17 @@ public extension SOThing {
             return URL(string: typedValue)
         } else if let typedValue = anyObject as? String {
             return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialize a `Distance` or `QuantitativeValue`
+    internal func makeDistanceOrQuantitativeValue(dictionary: [String : AnyObject]) -> DistanceOrQuantitativeValue? {
+        if dictionary[Keys.type] as? String == SODistance.type {
+            return SODistance(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOQuantitativeValue.type {
+            return SOQuantitativeValue(dictionary: dictionary)
         }
         
         return nil
@@ -93,6 +117,17 @@ public extension SOThing {
         return nil
     }
     
+    /// Initialize a `MusicGroup` or `Person`
+    internal func makeMusicGroupOrPerson(dictionary: [String : AnyObject]) -> MusicGroupOrPerson? {
+        if dictionary[Keys.type] as? String == SOMusicGroup.type {
+            return SOMusicGroup(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOPerson.type {
+            return SOPerson(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
     /// Initialize an `Int` or `Float`
     internal func makeNumber(anyObject: AnyObject) -> Number? {
         if let typedValue = anyObject as? Int {
@@ -138,6 +173,17 @@ public extension SOThing {
             return SOProduct(dictionary: typedValue)
         } else if let typedValue = anyObject as? String, typedValue.contains("://") {
             return URL(string: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialze a `PropertyValue` or `String`
+    internal func makePropertyValueOrText(anyObject: AnyObject) -> PropertyValueOrText? {
+        if let typedValue = anyObject as? [String : AnyObject] {
+            return SOPropertyValue(dictionary: typedValue)
         } else if let typedValue = anyObject as? String {
             return typedValue
         }

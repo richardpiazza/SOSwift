@@ -3,6 +3,25 @@ import Foundation
 /// A media object, such as an image, video, or audio object embedded in a web page or a downloadable dataset i.e. DataDownload.
 /// - note: that a creative work may have many media objects associated with it on the same web page. For example, a page about a single song (MusicRecording) may have a music video (VideoObject), and a high and low bandwidth audio stream (2 AudioObject's).
 public class SOMediaObject: SOCreativeWork, MediaObject {
+    public struct Keys {
+        public static let associatedArticle = "associatedArticle"
+        public static let bitrate = "bitrate"
+        public static let contentSize = "contentSize"
+        public static let contentUrl = "contentUrl"
+        public static let duration = "duration"
+        public static let embedUrl = "embedUrl"
+        public static let encodesCreativeWork = "encodesCreativeWork"
+        public static let encodingFormat = "encodingFormat"
+        public static let expires = "expires"
+        public static let height = "height"
+        public static let playerType = "playerType"
+        public static let productionCompany = "productionCompany"
+        public static let regionsAllowed = "regionsAllowed"
+        public static let requiresSubscription = "requiresSubscription"
+        public static let uploadDate = "uploadDate"
+        public static let width = "width"
+    }
+    
     override public class var type: String {
         return "MediaObject"
     }
@@ -39,4 +58,109 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
     public var uploadDate: DateOnly?
     /// The width of the item.
     public var width: DistanceOrQuantitativeValue?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+        if let value = dictionary[Keys.associatedArticle] as? [String : AnyObject] {
+            self.associatedArticle = SONewsArticle(dictionary: value)
+        }
+        if let value = dictionary[Keys.bitrate] as? String {
+            self.bitrate = value
+        }
+        if let value = dictionary[Keys.contentSize] as? String {
+            self.contentSize = value
+        }
+        if let value = dictionary[Keys.contentUrl] as? String {
+            self.contentUrl = URL(string: value)
+        }
+        if let value = dictionary[Keys.duration] as? String {
+            self.duration = value
+        }
+        if let value = dictionary[Keys.embedUrl] as? String {
+            self.embedUrl = URL(string: value)
+        }
+        if let value = dictionary[Keys.encodesCreativeWork] as? [String : AnyObject] {
+            self.encodesCreativeWork = SOCreativeWork(dictionary: value)
+        }
+        if let value = dictionary[Keys.encodingFormat] as? String {
+            self.encodingFormat = value
+        }
+        if let value = dictionary[Keys.expires] as? String {
+            self.expires = value
+        }
+        if let value = dictionary[Keys.height] as? [String : AnyObject] {
+            self.height = makeDistanceOrQuantitativeValue(dictionary: value)
+        }
+        if let value = dictionary[Keys.playerType] as? String {
+            self.playerType = value
+        }
+        if let value = dictionary[Keys.productionCompany] as? [String : AnyObject] {
+            self.productionCompany = SOOrganization(dictionary: value)
+        }
+        if let value = dictionary[Keys.regionsAllowed] as? [String : AnyObject] {
+            self.regionsAllowed = SOPlace(dictionary: value)
+        }
+        if let value = dictionary[Keys.requiresSubscription] as? Bool {
+            self.requiresSubscription = value
+        }
+        if let value = dictionary[Keys.uploadDate] as? String {
+            self.uploadDate = value
+        }
+        if let value = dictionary[Keys.width] as? [String : AnyObject] {
+            self.width = makeDistanceOrQuantitativeValue(dictionary: value)
+        }
+    }
+    
+    public override var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        if let value = self.associatedArticle?.dictionary {
+            dictionary[Keys.associatedArticle] = value as AnyObject
+        }
+        if let value = self.bitrate {
+            dictionary[Keys.bitrate] = value as AnyObject
+        }
+        if let value = self.contentSize {
+            dictionary[Keys.contentSize] = value as AnyObject
+        }
+        if let value = self.contentUrl {
+            dictionary[Keys.contentUrl] = value.absoluteString as AnyObject
+        }
+        if let value = self.duration as? String {
+            dictionary[Keys.duration] = value as AnyObject
+        }
+        if let value = self.embedUrl {
+            dictionary[Keys.embedUrl] = value.absoluteString as AnyObject
+        }
+        if let value = self.encodesCreativeWork?.dictionary {
+            dictionary[Keys.encodesCreativeWork] = value as AnyObject
+        }
+        if let value = self.encodingFormat {
+            dictionary[Keys.encodingFormat] = value as AnyObject
+        }
+        if let value = self.expires as? String {
+            dictionary[Keys.expires] = value as AnyObject
+        }
+        if let value = self.height?.dictionaryValue {
+            dictionary[Keys.height] = value
+        }
+        if let value = self.playerType {
+            dictionary[Keys.playerType] = value as AnyObject
+        }
+        if let value = self.productionCompany?.dictionary {
+            dictionary[Keys.productionCompany] = value as AnyObject
+        }
+        if let value = self.regionsAllowed?.dictionary {
+            dictionary[Keys.regionsAllowed] = value as AnyObject
+        }
+        if let value = self.requiresSubscription {
+            dictionary[Keys.requiresSubscription] = value as AnyObject
+        }
+        if let value = self.uploadDate as? String {
+            dictionary[Keys.uploadDate] = value as AnyObject
+        }
+        if let value = self.width?.dictionaryValue {
+            dictionary[Keys.width] = value
+        }
+        return dictionary
+    }
 }
