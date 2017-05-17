@@ -71,7 +71,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         public static let sourceOrganization = "sourceOrganization"
         public static let spatialCoverage = "spatialCoverage"
         public static let sponsor = "sponsor"
-        public static let temperalCoverage = "temperalCoverage"
+        public static let temporalCoverage = "temporalCoverage"
         public static let text = "text"
         public static let thumbnailUrl = "thumbnailUrl"
         public static let timeRequired = "timeRequired"
@@ -299,13 +299,395 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = dictionary[Keys.character] as? [String : AnyObject] {
             self.character = SOPerson(dictionary: value)
         }
-        
+        if let value = dictionary[Keys.citation] {
+            self.citation = makeCreativeWorkOrText(anyObject: value)
+        }
+        if let value = dictionary[Keys.comment] as? [String : AnyObject] {
+            self.comment = SOComment(dictionary: value)
+        }
+        if let value = dictionary[Keys.commentCount] as? Int {
+            self.commentCount = value
+        }
+        if let value = dictionary[Keys.contentLocation] as? [String : AnyObject] {
+            self.contentLocation = SOPlace(dictionary: value)
+        }
+        if let value = dictionary[Keys.contentRating] as? String {
+            self.contentRating = value
+        }
+        if let value = dictionary[Keys.contributor] as? [String : AnyObject] {
+            self.contributor = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.copyrightHolder] as? [String : AnyObject] {
+            self.copyrightHolder = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.copyrightYear] as? Int {
+            self.copyrightYear = value
+        }
+        if let value = dictionary[Keys.creator] as? [String : AnyObject] {
+            self.creator = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.dateCreaated] as? String {
+            self.dateCreated = value
+        }
+        if let value = dictionary[Keys.dateModified] as? String {
+            self.dateModified = value
+        }
+        if let value = dictionary[Keys.datePublished] as? String {
+            self.datePublished = value
+        }
+        if let value = dictionary[Keys.discussionUrl] as? String {
+            self.discussionURL = URL(string: value)
+        }
+        if let value = dictionary[Keys.editor] as? [String : AnyObject] {
+            self.editor = SOPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.educationalAlignment] as? [String : AnyObject] {
+            self.educationalAlignment = SOAlignmentObject(dictionary: value)
+        }
+        if let value = dictionary[Keys.educationalUse] as? String {
+            self.educationalUse = value
+        }
+        if let value = dictionary[Keys.encoding] as? [String : AnyObject] {
+            self.encoding = SOMediaObject(dictionary: value)
+        }
+        if let value = dictionary[Keys.exampleOfWork] as? [String : AnyObject] {
+            self.exampleOfWork = SOCreativeWork(dictionary: value)
+        }
+        if let value = dictionary[Keys.fileFormat] {
+            self.fileFormat = makeTextOrURL(anyObject: value)
+        }
+        if let value = dictionary[Keys.funder] as? [String : AnyObject] {
+            self.funder = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.genre] {
+            self.genre = makeTextOrURL(anyObject: value)
+        }
+        if let value = dictionary[Keys.hasPart] as? [String : AnyObject] {
+            self.hasPart = SOCreativeWork(dictionary: value)
+        }
+        if let value = dictionary[Keys.headline] as? String {
+            self.headline = value
+        }
+        if let value = dictionary[Keys.inLanguage] {
+            self.inLanguage = makeLanguageOrText(anyObject: value)
+        }
+        if let value = dictionary[Keys.interactionStatistic] as? [String : AnyObject] {
+            self.interactionStatistic = SOInteractionCounter(dictionary: value)
+        }
+        if let value = dictionary[Keys.interactivityType] as? String {
+            self.interactivityType = Interactivity(rawValue: value)
+        }
+        if let value = dictionary[Keys.isAccessibleForFree] as? Bool {
+            self.isAccessibleForFree = value
+        }
+        if let value = dictionary[Keys.isBasedOn] {
+            self.isBasedOn = makeCreativeWorkOrProductOrText(anyObject: value)
+        }
+        if let value = dictionary[Keys.isFamilyFriendly] as? Bool {
+            self.isFamilyFriendly = value
+        }
+        if let value = dictionary[Keys.isPartOf] as? [String : AnyObject] {
+            self.isPartOf = SOCreativeWork(dictionary: value)
+        }
+        if let value = dictionary[Keys.keywords] as? String {
+            self.keywords = value
+        }
+        if let value = dictionary[Keys.learningResourceType] as? String {
+            self.learningResourceType = value
+        }
+        if let value = dictionary[Keys.license] {
+            self.license = makeCreativeWorkOrURL(anyObject: value)
+        }
+        if let value = dictionary[Keys.locationCreated] as? [String : AnyObject] {
+            self.locationCreated = SOPlace(dictionary: value)
+        }
+        if let value = dictionary[Keys.mainEntity] as? [String : AnyObject] {
+            self.mainEntity = SOThing(dictionary: value)
+        }
+        if let value = dictionary[Keys.material] {
+            self.material = makeProductOrTextOrURL(anyObject: value)
+        }
+        if let value = dictionary[Keys.mentions] as? [String : AnyObject] {
+            self.mentions = SOThing(dictionary: value)
+        }
+        if let value = dictionary[Keys.offers] {
+            self.offers = makeOffers(anyObject: value)
+        }
+        if let value = dictionary[Keys.position] {
+            self.position = makeIntegerOrText(anyObject: value)
+        }
+        if let value = dictionary[Keys.producer] as? [String : AnyObject] {
+            self.producer = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.provider] as? [String : AnyObject] {
+            self.provider = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.releasedEvent] as? [String : AnyObject] {
+            self.releasedEvent = SOPublicationEvent(dictionary: value)
+        }
+        if let value = dictionary[Keys.review] as? [String : AnyObject] {
+            self.review = SOReview(dictionary: value)
+        }
+        if let value = dictionary[Keys.schemaVersion] {
+            self.schemaVersion = makeTextOrURL(anyObject: value)
+        }
+        if let value = dictionary[Keys.sourceOrganization] as? [String : AnyObject] {
+            self.sourceOrganization = SOOrganization(dictionary: value)
+        }
+        if let value = dictionary[Keys.spatialCoverage] as? [String : AnyObject] {
+            self.spatialCoverage = SOPlace(dictionary: value)
+        }
+        if let value = dictionary[Keys.sponsor] as? [String : AnyObject] {
+            self.sponsor = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.temporalCoverage] {
+            self.temporalCoverage = makeDateTimeOrTextOrURL(anyObject: value)
+        }
+        if let value = dictionary[Keys.text] as? String {
+            self.text = value
+        }
+        if let value = dictionary[Keys.thumbnailUrl] as? String {
+            self.thumbnailUrl = URL(string: value)
+        }
+        if let value = dictionary[Keys.timeRequired] as? String {
+            self.timeRequired = value
+        }
+        if let value = dictionary[Keys.translator] as? [String : AnyObject] {
+            self.translator = makeOrganizationOrPerson(dictionary: value)
+        }
+        if let value = dictionary[Keys.typicalAgeRange] as? String {
+            self.typicalAgeRange = value
+        }
+        if let value = dictionary[Keys.version] {
+            self.version = makeIntegerOrText(anyObject: value)
+        }
+        if let value = dictionary[Keys.video] as? [String : AnyObject] {
+            self.video = SOVideoObject(dictionary: value)
+        }
+        if let value = dictionary[Keys.workExample] as? [String : AnyObject] {
+            self.workExample = SOCreativeWork(dictionary: value)
+        }
     }
     
     public override var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
         if let value = self.about {
             dictionary[Keys.about] = value.dictionary as AnyObject
+        }
+        if let value = self.accessMode {
+            dictionary[Keys.accessMode] = value.rawValue as AnyObject
+        }
+        if let value = self.accessModeSufficient {
+            var values = [String]()
+            for element in value {
+                values.append(element.rawValue)
+            }
+            dictionary[Keys.accessModeSufficient] = values as AnyObject
+        }
+        if let value = self.accessibilityAPI {
+            dictionary[Keys.accessibilityAPI] = value.rawValue as AnyObject
+        }
+        if let value = self.accessibilityControl {
+            dictionary[Keys.accessibilityControl] = value.rawValue as AnyObject
+        }
+        if let value = self.accessibilityFeature {
+            dictionary[Keys.accessibilityFeature] = value.rawValue as AnyObject
+        }
+        if let value = self.accessibilityHazard {
+            dictionary[Keys.accessibilityHazard] = value.rawValue as AnyObject
+        }
+        if let value = self.accessibilitySummary {
+            dictionary[Keys.accessibilitySummary] = value as AnyObject
+        }
+        if let value = self.accountablePerson?.dictionary {
+            dictionary[Keys.accountablePerson] = value as AnyObject
+        }
+        if let value = self.aggregateRating?.dictionary {
+            dictionary[Keys.aggregateRating] = value as AnyObject
+        }
+        if let value = self.alternativeHeadline {
+            dictionary[Keys.alternativeHeadline] = value as AnyObject
+        }
+        if let value = self.associatedMedia?.dictionary {
+            dictionary[Keys.associatedMedia] = value as AnyObject
+        }
+        if let value = self.audience?.dictionary {
+            dictionary[Keys.audience] = value as AnyObject
+        }
+        if let value = self.audio?.dictionary {
+            dictionary[Keys.audio] = value as AnyObject
+        }
+        if let value = self.author?.dictionaryValue {
+            dictionary[Keys.author] = value
+        }
+        if let value = self.award {
+            dictionary[Keys.award] = value as AnyObject
+        }
+        if let value = self.character?.dictionary {
+            dictionary[Keys.character] = value as AnyObject
+        }
+        if let value = self.citation?.dictionaryValue {
+            dictionary[Keys.citation] = value
+        }
+        if let value = self.comment?.dictionary {
+            dictionary[Keys.comment] = value as AnyObject
+        }
+        if let value = self.commentCount {
+            dictionary[Keys.commentCount] = value as AnyObject
+        }
+        if let value = self.contentLocation?.dictionary {
+            dictionary[Keys.contentLocation] = value as AnyObject
+        }
+        if let value = self.contentRating {
+            dictionary[Keys.contentRating] = value as AnyObject
+        }
+        if let value = self.contributor?.dictionaryValue {
+            dictionary[Keys.contributor] = value
+        }
+        if let value = self.copyrightHolder?.dictionaryValue {
+            dictionary[Keys.copyrightHolder] = value
+        }
+        if let value = self.copyrightYear {
+            dictionary[Keys.copyrightYear] = value as AnyObject
+        }
+        if let value = self.creator?.dictionaryValue {
+            dictionary[Keys.creator] = value
+        }
+        if let value = self.dateCreated as? String {
+            dictionary[Keys.dateCreaated] = value as AnyObject
+        }
+        if let value = self.dateModified as? String {
+            dictionary[Keys.dateModified] = value as AnyObject
+        }
+        if let value = self.datePublished as? String {
+            dictionary[Keys.datePublished] = value as AnyObject
+        }
+        if let value = self.discussionURL {
+            dictionary[Keys.discussionUrl] = value.absoluteString as AnyObject
+        }
+        if let value = self.editor?.dictionary {
+            dictionary[Keys.editor] = value as AnyObject
+        }
+        if let value = self.educationalAlignment?.dictionary {
+            dictionary[Keys.educationalAlignment] = value as AnyObject
+        }
+        if let value = self.educationalUse {
+            dictionary[Keys.educationalUse] = value as AnyObject
+        }
+        if let value = self.encoding?.dictionary {
+            dictionary[Keys.encoding] = value as AnyObject
+        }
+        if let value = self.exampleOfWork?.dictionary {
+            dictionary[Keys.exampleOfWork] = value as AnyObject
+        }
+        if let value = self.fileFormat?.dictionaryValue {
+            dictionary[Keys.fileFormat] = value
+        }
+        if let value = self.funder?.dictionaryValue {
+            dictionary[Keys.funder] = value
+        }
+        if let value = self.genre?.dictionaryValue {
+            dictionary[Keys.genre] = value
+        }
+        if let value = self.hasPart?.dictionary {
+            dictionary[Keys.hasPart] = value as AnyObject
+        }
+        if let value = self.headline {
+            dictionary[Keys.headline] = value as AnyObject
+        }
+        if let value = self.inLanguage?.dictionaryValue {
+            dictionary[Keys.inLanguage] = value
+        }
+        if let value = self.interactionStatistic?.dictionary {
+            dictionary[Keys.inLanguage] = value as AnyObject
+        }
+        if let value = self.interactivityType {
+            dictionary[Keys.interactivityType] = value.rawValue as AnyObject
+        }
+        if let value = self.isAccessibleForFree {
+            dictionary[Keys.isAccessibleForFree] = value as AnyObject
+        }
+        if let value = self.isBasedOn?.dictionaryValue {
+            dictionary[Keys.isBasedOn] = value
+        }
+        if let value = self.isFamilyFriendly {
+            dictionary[Keys.isFamilyFriendly] = value as AnyObject
+        }
+        if let value = self.isPartOf?.dictionary {
+            dictionary[Keys.isPartOf] = value as AnyObject
+        }
+        if let value = self.keywords {
+            dictionary[Keys.keywords] = value as AnyObject
+        }
+        if let value = self.learningResourceType {
+            dictionary[Keys.learningResourceType] = value as AnyObject
+        }
+        if let value = self.license?.dictionaryValue {
+            dictionary[Keys.license] = value
+        }
+        if let value = self.locationCreated?.dictionary {
+            dictionary[Keys.locationCreated] = value as AnyObject
+        }
+        if let value = self.mainEntity?.dictionary {
+            dictionary[Keys.mainEntity] = value as AnyObject
+        }
+        if let value = self.material?.dictionaryValue {
+            dictionary[Keys.material] = value
+        }
+        if let value = self.mentions?.dictionary {
+            dictionary[Keys.mentions] = value as AnyObject
+        }
+        if let value = self.offers {
+            var values = [[String : AnyObject]]()
+            for element in value {
+                values.append(element.dictionary)
+            }
+            dictionary[Keys.offers] = values as AnyObject
+        }
+        if let value = self.position?.dictionaryValue {
+            dictionary[Keys.position] = value
+        }
+        if let value = self.producer?.dictionaryValue {
+            dictionary[Keys.producer] = value
+        }
+        if let value = self.provider?.dictionaryValue {
+            dictionary[Keys.provider] = value
+        }
+        if let value = self.releasedEvent?.dictionary {
+            dictionary[Keys.releasedEvent] = value as AnyObject
+        }
+        if let value = self.review?.dictionary {
+            dictionary[Keys.review] = value as AnyObject
+        }
+        if let value = self.schemaVersion?.dictionaryValue {
+            dictionary[Keys.schemaVersion] = value
+        }
+        if let value = self.temporalCoverage as? String {
+            dictionary[Keys.temporalCoverage] = value as AnyObject
+        }
+        if let value = self.text {
+            dictionary[Keys.text] = value as AnyObject
+        }
+        if let value = self.thumbnailUrl {
+            dictionary[Keys.thumbnailUrl] = value.absoluteString as AnyObject
+        }
+        if let value = self.timeRequired as? String {
+            dictionary[Keys.timeRequired] = value as AnyObject
+        }
+        if let value = self.translator?.dictionaryValue {
+            dictionary[Keys.translator] = value
+        }
+        if let value = self.typicalAgeRange {
+            dictionary[Keys.typicalAgeRange] = value as AnyObject
+        }
+        if let value = self.version?.dictionaryValue {
+            dictionary[Keys.version] = value
+        }
+        if let value = self.video?.dictionary {
+            dictionary[Keys.video] = value as AnyObject
+        }
+        if let value = self.workExample?.dictionary {
+            dictionary[Keys.workExample] = value as AnyObject
         }
         return dictionary
     }

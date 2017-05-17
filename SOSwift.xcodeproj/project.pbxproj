@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		744C925F56828E4E185FF51E /* Pods_SOSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5BADE5DDA92CE25E1FCE72 /* Pods_SOSwiftTests.framework */; };
 		74BB4B580051974230AE4941 /* Pods_SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23D74A45B9F646EE5077285 /* Pods_SOSwift.framework */; };
+		E13D5DF81ECB9355001251DD /* SOThing+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */; };
 		E16DB82C1EC753F700E73447 /* SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16DB8221EC753F700E73447 /* SOSwift.framework */; };
 		E16DB8311EC753F700E73447 /* SOSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB8301EC753F700E73447 /* SOSwiftTests.swift */; };
 		E16DB8331EC753F700E73447 /* SOSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E16DB8251EC753F700E73447 /* SOSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -218,6 +219,7 @@
 		BD352AD139F4EB32CD6D1DFA /* Pods-SOSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SOSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SOSwiftTests/Pods-SOSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		D23D74A45B9F646EE5077285 /* Pods_SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5BADE5DDA92CE25E1FCE72 /* Pods_SOSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SOSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SOThing+Internal.swift"; sourceTree = "<group>"; };
 		E16DB8221EC753F700E73447 /* SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16DB8251EC753F700E73447 /* SOSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOSwift.h; sourceTree = "<group>"; };
 		E16DB8261EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 				E16DB9A51EC758A800E73447 /* Place */,
 				E16DB9A91EC758A800E73447 /* Product */,
 				E16DB9AC1EC758A800E73447 /* SOThing.swift */,
+				E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -1125,6 +1128,7 @@
 				E16DB8EF1EC7585900E73447 /* OwnershipInfoOrProduct.swift in Sources */,
 				E16DB9331EC7585900E73447 /* Thing.swift in Sources */,
 				E194A9BD1EC8F3AA0010F1B0 /* MusicGroup.swift in Sources */,
+				E13D5DF81ECB9355001251DD /* SOThing+Internal.swift in Sources */,
 				E16DB8E91EC7585900E73447 /* MapOrURL.swift in Sources */,
 				E16DBA101EC758A800E73447 /* SORating.swift in Sources */,
 				E16DB8CE1EC7585900E73447 /* Review.swift in Sources */,
