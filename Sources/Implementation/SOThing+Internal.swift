@@ -14,6 +14,64 @@ public extension SOThing {
         return nil
     }
     
+    /// Initialize `AdministrativeArea`, `GeoShape`, `Place`, or `String`
+    internal func makeAreaServed(anyObject: AnyObject) -> AreaServed? {
+        if let typedValue = anyObject as? [String : AnyObject] {
+            if typedValue[Keys.type] as? String == SOAdministrativeArea.type {
+                return SOAdministrativeArea(dictionary: typedValue)
+            } else if typedValue[Keys.type] as? String == SOGeoShape.type {
+                return SOGeoShape(dictionary: typedValue)
+            } else if typedValue[Keys.type] as? String == SOPlace.type {
+                return SOPlace(dictionary: typedValue)
+            }
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialize `Brand` or `Organization`
+    internal func makeBrandOrOrganization(dictionary: [String : AnyObject]) -> BrandOrOrganization? {
+        if dictionary[Keys.type] as? String == SOBrand.type {
+            return SOBrand(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOOrganization.type {
+            return SOOrganization(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize [`BrandOrOrganization`]
+    internal func makeBrandOrOgranizations(anyObject: AnyObject) -> [BrandOrOrganization] {
+        var array = [BrandOrOrganization]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                if let item = makeBrandOrOrganization(dictionary: element) {
+                    array.append(item)
+                }
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            if let item = makeBrandOrOrganization(dictionary: typedValue) {
+                array.append(item)
+            }
+        }
+        return array
+    }
+    
+    /// Initialize [`ContactPoint`]
+    internal func makeContactPoints(anyObject: AnyObject) -> [ContactPoint] {
+        var array = [ContactPoint]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SOContactPoint(dictionary: element))
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SOContactPoint(dictionary: typedValue))
+        }
+        return array
+    }
+    
     /// Initialize a `CreativeWork`, `Product`, or `String`
     internal func makeCreativeWorkOrProductOrText(anyObject: AnyObject) -> CreativeWorkOrProductOrURL? {
         if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOCreativeWork.type {
@@ -58,6 +116,19 @@ public extension SOThing {
         }
         
         return nil
+    }
+    
+    /// Initialize [`Demand`]
+    internal func makeDemands(anyObject: AnyObject) -> [Demand] {
+        var array = [Demand]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SODemand(dictionary: element))
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SODemand(dictionary: typedValue))
+        }
+        return array
     }
     
     /// Initialize a `Distance` or `QuantitativeValue`
@@ -197,6 +268,30 @@ public extension SOThing {
         return array
     }
     
+    /// Initialize `Organization` or `ProgramMembership`
+    internal func makeOrganizationOrProgramMembership(dictionary: [String : AnyObject]) -> OrganizationOrProgramMembership? {
+        if dictionary[Keys.type] as? String == SOOrganization.type {
+            return SOOrganization(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOProgramMembership.type {
+            return SOProgramMembership(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize [`OwnershipInfoOrProduct`]
+    internal func makeOwnershipInfoOrProducts(elements: [[String : AnyObject]]) -> [OwnershipInfoOrProduct] {
+        var array = [OwnershipInfoOrProduct]()
+        for element in elements {
+            if element[Keys.type] as? String == SOOwnershipInfo.type {
+                array.append(SOOwnershipInfo(dictionary: element))
+            } else if element[Keys.type] as? String == SOProduct.type {
+                array.append(SOProduct(dictionary: element))
+            }
+        }
+        return array
+    }
+    
     /// Initialize [`Person`]
     internal func makePersons(anyObject: AnyObject) -> [Person] {
         var array = [Person]()
@@ -215,6 +310,30 @@ public extension SOThing {
         if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOPlace.type {
             return SOPlace(dictionary: typedValue)
         } else if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOPostalAddress.type {
+            return SOPostalAddress(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialize [`Place`]
+    internal func makePlaces(anyObject: AnyObject) -> [Place] {
+        var array = [Place]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SOPlace(dictionary: element))
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SOPlace(dictionary: typedValue))
+        }
+        return array
+    }
+    
+    /// Initialize `PostalAddress` or `String`
+    internal func makePostalAddressOrText(anyObject: AnyObject) -> PostalAddressOrText? {
+        if let typedValue = anyObject as? [String : AnyObject] {
             return SOPostalAddress(dictionary: typedValue)
         } else if let typedValue = anyObject as? String {
             return typedValue
@@ -256,6 +375,17 @@ public extension SOThing {
             }
         } else if let typedValue = anyObject as? [String : AnyObject] {
             array.append(SOReview(dictionary: typedValue))
+        }
+        return array
+    }
+    
+    /// Initialize [`String`]
+    internal func makeStrings(anyObject: AnyObject) -> [String] {
+        var array = [String]()
+        if let typedValue = anyObject as? [String] {
+            array.append(contentsOf: typedValue)
+        } else if let typedValue = anyObject as? String {
+            array.append(typedValue)
         }
         return array
     }

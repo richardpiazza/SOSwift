@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		744C925F56828E4E185FF51E /* Pods_SOSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5BADE5DDA92CE25E1FCE72 /* Pods_SOSwiftTests.framework */; };
 		74BB4B580051974230AE4941 /* Pods_SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23D74A45B9F646EE5077285 /* Pods_SOSwift.framework */; };
+		E118AFAC1ECDDCC300D97B7C /* SOBroadcastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118AFAB1ECDDCC300D97B7C /* SOBroadcastService.swift */; };
 		E13D5DF81ECB9355001251DD /* SOThing+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */; };
 		E16DB82C1EC753F700E73447 /* SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16DB8221EC753F700E73447 /* SOSwift.framework */; };
 		E16DB8311EC753F700E73447 /* SOSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB8301EC753F700E73447 /* SOSwiftTests.swift */; };
@@ -225,6 +226,7 @@
 		BD352AD139F4EB32CD6D1DFA /* Pods-SOSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SOSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SOSwiftTests/Pods-SOSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		D23D74A45B9F646EE5077285 /* Pods_SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5BADE5DDA92CE25E1FCE72 /* Pods_SOSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SOSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E118AFAB1ECDDCC300D97B7C /* SOBroadcastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOBroadcastService.swift; sourceTree = "<group>"; };
 		E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SOThing+Internal.swift"; sourceTree = "<group>"; };
 		E16DB8221EC753F700E73447 /* SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16DB8251EC753F700E73447 /* SOSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOSwift.h; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 				E16DB9811EC758A800E73447 /* SOAlignmentObject.swift */,
 				E16DB9821EC758A800E73447 /* SOAudience.swift */,
 				E16DB9831EC758A800E73447 /* SOBrand.swift */,
+				E118AFAB1ECDDCC300D97B7C /* SOBroadcastService.swift */,
 				E16DB9841EC758A800E73447 /* SOContactPoint.swift */,
 				E16DB9851EC758A800E73447 /* SODemand.swift */,
 				E16DB9861EC758A800E73447 /* SODistance.swift */,
@@ -1153,6 +1156,7 @@
 				E16DBA101EC758A800E73447 /* SORating.swift in Sources */,
 				E16DB8CE1EC7585900E73447 /* Review.swift in Sources */,
 				E16DB9091EC7585900E73447 /* Event.swift in Sources */,
+				E118AFAC1ECDDCC300D97B7C /* SOBroadcastService.swift in Sources */,
 				E16DB9AD1EC758A800E73447 /* SOAction.swift in Sources */,
 				E16DB9221EC7585900E73447 /* PriceSpecification.swift in Sources */,
 				E16DB9F51EC758A800E73447 /* SOAudience.swift in Sources */,

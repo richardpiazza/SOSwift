@@ -1,6 +1,10 @@
 import Foundation
 
 public class SOPublicationEvent: SOEvent, PublicationEvent {
+    public struct Keys {
+        public static let publishedOn = "publishedOn"
+    }
+    
     override public class var type: String {
         return "PublicationEvent"
     }
@@ -10,11 +14,16 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
     
     public required init(dictionary: [String : AnyObject]) {
         super.init(dictionary: dictionary)
+        if let value = dictionary[Keys.publishedOn] as? [String : AnyObject] {
+            self.publishedOn = SOBroadcastService(dictionary: value)
+        }
     }
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        
+        if let value = self.publishedOn?.dictionary {
+            dictionary[Keys.publishedOn] = value as AnyObject
+        }
         return dictionary
     }
 }
