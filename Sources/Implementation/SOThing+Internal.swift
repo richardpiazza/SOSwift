@@ -190,6 +190,34 @@ public extension SOThing {
         return nil
     }
     
+    /// Initialize `ItemList` or `MusicRecording`
+    internal func makeItemListOrMusicRecording(dictionary: [String : AnyObject]) -> ItemListOrMusicRecording? {
+        if dictionary[Keys.type] as? String == SOItemList.type {
+            return SOItemList(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOMusicRecording.type {
+            return SOMusicRecording(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize [`ItemListOrMusicRecording`]
+    internal func makeItemListOrMusicRecordings(anyObject: AnyObject) -> [ItemListOrMusicRecording] {
+        var array = [ItemListOrMusicRecording]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                if let item = makeItemListOrMusicRecording(dictionary: element) {
+                    array.append(item)
+                }
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            if let item = makeItemListOrMusicRecording(dictionary: typedValue) {
+                array.append(item)
+            }
+        }
+        return array
+    }
+    
     /// Initialize a `Language` or `String`
     internal func makeLanguageOrText(anyObject: AnyObject) -> LanguageOrText? {
         if let typedValue = anyObject as? [String : AnyObject] {
@@ -199,6 +227,19 @@ public extension SOThing {
         }
         
         return nil
+    }
+    
+    internal func makeMusicAlbums(anyObject: AnyObject) -> [MusicAlbum] {
+        var array = [MusicAlbum]()
+        if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SOMusicAlbum(dictionary: typedValue))
+        } else if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SOMusicAlbum(dictionary: element))
+            }
+        }
+        
+        return array
     }
     
     /// Initialize a `MusicGroup` or `Person`
@@ -224,20 +265,17 @@ public extension SOThing {
     }
     
     /// Initialize a single `Offer` or array or `Offer`
-    internal func makeOffers(anyObject: AnyObject) -> [Offer]? {
-        var offers: [Offer]
+    internal func makeOffers(anyObject: AnyObject) -> [Offer] {
+        var array = [Offer]()
         if let typedValue = anyObject as? [String : AnyObject] {
-            offers = [SOOffer(dictionary: typedValue)]
+            array.append(SOOffer(dictionary: typedValue))
         } else if let typedValue = anyObject as? [[String : AnyObject]] {
-            offers = []
             for element in typedValue {
-                offers.append(SOOffer(dictionary: element))
+                array.append(SOOffer(dictionary: element))
             }
-        } else {
-            return nil
         }
         
-        return offers
+        return array
     }
     
     /// Initialize an `Organization` or `Person`
@@ -390,6 +428,7 @@ public extension SOThing {
         return array
     }
     
+    // TODO: This should accept a `String`
     /// Initialize a `String` or `URL`
     internal func makeTextOrURL(anyObject: AnyObject) -> TextOrURL? {
         if let typedValue = anyObject as? String, typedValue.contains("://") {

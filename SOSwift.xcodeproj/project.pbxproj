@@ -10,6 +10,9 @@
 		744C925F56828E4E185FF51E /* Pods_SOSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5BADE5DDA92CE25E1FCE72 /* Pods_SOSwiftTests.framework */; };
 		74BB4B580051974230AE4941 /* Pods_SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23D74A45B9F646EE5077285 /* Pods_SOSwift.framework */; };
 		E118AFAC1ECDDCC300D97B7C /* SOBroadcastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118AFAB1ECDDCC300D97B7C /* SOBroadcastService.swift */; };
+		E118AFB01ECE1F2700D97B7C /* SOMusicPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118AFAF1ECE1F2700D97B7C /* SOMusicPlaylist.swift */; };
+		E118AFB21ECE1F5400D97B7C /* SOMusicAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118AFB11ECE1F5400D97B7C /* SOMusicAlbum.swift */; };
+		E118AFB41ECE20B500D97B7C /* SOMusicRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118AFB31ECE20B500D97B7C /* SOMusicRecording.swift */; };
 		E13D5DF81ECB9355001251DD /* SOThing+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */; };
 		E16DB82C1EC753F700E73447 /* SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16DB8221EC753F700E73447 /* SOSwift.framework */; };
 		E16DB8311EC753F700E73447 /* SOSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB8301EC753F700E73447 /* SOSwiftTests.swift */; };
@@ -227,6 +230,9 @@
 		D23D74A45B9F646EE5077285 /* Pods_SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5BADE5DDA92CE25E1FCE72 /* Pods_SOSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SOSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E118AFAB1ECDDCC300D97B7C /* SOBroadcastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOBroadcastService.swift; sourceTree = "<group>"; };
+		E118AFAF1ECE1F2700D97B7C /* SOMusicPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMusicPlaylist.swift; sourceTree = "<group>"; };
+		E118AFB11ECE1F5400D97B7C /* SOMusicAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMusicAlbum.swift; sourceTree = "<group>"; };
+		E118AFB31ECE20B500D97B7C /* SOMusicRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMusicRecording.swift; sourceTree = "<group>"; };
 		E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SOThing+Internal.swift"; sourceTree = "<group>"; };
 		E16DB8221EC753F700E73447 /* SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16DB8251EC753F700E73447 /* SOSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOSwift.h; sourceTree = "<group>"; };
@@ -777,11 +783,14 @@
 				E16DB93B1EC758A800E73447 /* SOImageObject.swift */,
 				E16DB93C1EC758A800E73447 /* SOMap.swift */,
 				E16DB93D1EC758A800E73447 /* SOMediaObject.swift */,
+				E118AFAF1ECE1F2700D97B7C /* SOMusicPlaylist.swift */,
 				E170D5711ECC88940002BF15 /* SONewsArticle.swift */,
 				E16DB93E1EC758A800E73447 /* SOPhotograph.swift */,
 				E170D56D1ECC816A0002BF15 /* SOQuestion.swift */,
 				E16DB93F1EC758A800E73447 /* SOReview.swift */,
 				E16DB9401EC758A800E73447 /* SOVideoObject.swift */,
+				E118AFB11ECE1F5400D97B7C /* SOMusicAlbum.swift */,
+				E118AFB31ECE20B500D97B7C /* SOMusicRecording.swift */,
 			);
 			path = CreativeWork;
 			sourceTree = "<group>";
@@ -1069,6 +1078,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E16DB9F41EC758A800E73447 /* SOAlignmentObject.swift in Sources */,
+				E118AFB01ECE1F2700D97B7C /* SOMusicPlaylist.swift in Sources */,
 				E16DB9011EC7585900E73447 /* DayOfWeek.swift in Sources */,
 				E16DB8F91EC7585900E73447 /* Time.swift in Sources */,
 				E194A9C31EC8F5DE0010F1B0 /* Question.swift in Sources */,
@@ -1130,6 +1140,7 @@
 				E16DB8CC1EC7585900E73447 /* MediaObject.swift in Sources */,
 				E16DBA0A1EC758A800E73447 /* SOPriceSpecification.swift in Sources */,
 				E16DB9261EC7585900E73447 /* QuantitativeValue.swift in Sources */,
+				E118AFB41ECE20B500D97B7C /* SOMusicRecording.swift in Sources */,
 				E16DBA001EC758A800E73447 /* SOItemList.swift in Sources */,
 				E16DBA051EC758A800E73447 /* SOOffer.swift in Sources */,
 				E16DB8FB1EC7585900E73447 /* AccessibilityControl.swift in Sources */,
@@ -1158,6 +1169,7 @@
 				E16DB9091EC7585900E73447 /* Event.swift in Sources */,
 				E118AFAC1ECDDCC300D97B7C /* SOBroadcastService.swift in Sources */,
 				E16DB9AD1EC758A800E73447 /* SOAction.swift in Sources */,
+				E118AFB21ECE1F5400D97B7C /* SOMusicAlbum.swift in Sources */,
 				E16DB9221EC7585900E73447 /* PriceSpecification.swift in Sources */,
 				E16DB9F51EC758A800E73447 /* SOAudience.swift in Sources */,
 				E16DB9F81EC758A800E73447 /* SODemand.swift in Sources */,
