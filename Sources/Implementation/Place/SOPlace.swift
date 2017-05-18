@@ -51,4 +51,14 @@ public class SOPlace: SOThing, Place {
     public var specialOpeningHoursSpecification: [OpeningHoursSpecification]?
     /// The telephone number.
     public var telephone: String?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+    }
+    
+    override public var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        
+        return dictionary
+    }
 }

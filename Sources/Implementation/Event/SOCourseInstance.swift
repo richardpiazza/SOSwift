@@ -10,5 +10,15 @@ public class SOCourseInstance: SOEvent, CourseInstance {
     public var courseMode: TextOrURL?
     /// A person assigned to instruct or provide instructional assistance for the CourseInstance.
     public var instructor: Person?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+    }
+    
+    override public var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        
+        return dictionary
+    }
 }
 

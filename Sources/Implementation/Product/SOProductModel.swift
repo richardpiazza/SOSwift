@@ -12,4 +12,14 @@ public class SOProductModel: SOProduct, ProductModel {
     public var predecessorOf: ProductModel?
     /// A pointer from a newer variant of a product to its previous, often discontinued predecessor.
     public var successorOf: ProductModel?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+    }
+    
+    override public var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        
+        return dictionary
+    }
 }

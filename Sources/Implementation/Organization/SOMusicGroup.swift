@@ -10,4 +10,14 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
     public var genre: TextOrURL?
     /// A music recording (track) - usually a single song. If an ItemList is given, the list should contain items of type MusicRecording.
     public var track: [ItemListOrMusicRecording]?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+    }
+    
+    override public var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        
+        return dictionary
+    }
 }

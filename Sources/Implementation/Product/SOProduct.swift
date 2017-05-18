@@ -78,4 +78,14 @@ public class SOProduct: SOThing, Product {
     public var weight: QuantitativeValue?
     /// The width of the item.
     public var width: DistanceOrQuantitativeValue?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+    }
+    
+    override public var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        
+        return dictionary
+    }
 }

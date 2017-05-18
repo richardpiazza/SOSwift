@@ -106,4 +106,14 @@ public class SOPerson: SOThing, Person {
     public var workLocation: ContactPointOrPlace?
     /// Organizations that the person works for.
     public var worksFor: [Organization]?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+    }
+    
+    override public var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        
+        return dictionary
+    }
 }

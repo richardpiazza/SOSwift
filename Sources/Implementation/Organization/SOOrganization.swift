@@ -45,4 +45,14 @@ public class SOOrganization: SOThing, Organization {
     public var taxID: String?
     public var telephone: String?
     public var vatID: String?
+    
+    public required init(dictionary: [String : AnyObject]) {
+        super.init(dictionary: dictionary)
+    }
+    
+    override public var dictionary: [String : AnyObject] {
+        var dictionary = super.dictionary
+        
+        return dictionary
+    }
 }

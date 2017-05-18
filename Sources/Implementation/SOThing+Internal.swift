@@ -71,6 +71,19 @@ public extension SOThing {
         return nil
     }
     
+    /// Initialize [`Event`]
+    internal func makeEvents(anyObject: AnyObject) -> [Event] {
+        var array = [Event]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SOEvent(dictionary: element))
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SOEvent(dictionary: typedValue))
+        }
+        return array
+    }
+    
     /// Initialize an `Identifier`
     internal func makeIdentifier(anyObject: AnyObject) -> Identifier? {
         if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOPropertyValue.type {
@@ -167,7 +180,50 @@ public extension SOThing {
         return nil
     }
     
-    /// Initialized `Product`, `String`, or `URL`
+    /// Initialize [`OrganizationOrPerson`]
+    internal func makeOrganizationOrPersons(anyObject: AnyObject) -> [OrganizationOrPerson] {
+        var array = [OrganizationOrPerson]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                if let item = makeOrganizationOrPerson(dictionary: element) {
+                    array.append(item)
+                }
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            if let item = makeOrganizationOrPerson(dictionary: typedValue) {
+                array.append(item)
+            }
+        }
+        return array
+    }
+    
+    /// Initialize [`Person`]
+    internal func makePersons(anyObject: AnyObject) -> [Person] {
+        var array = [Person]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SOPerson(dictionary: element))
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SOPerson(dictionary: typedValue))
+        }
+        return array
+    }
+    
+    /// Initialize `Place`, `PostalAddress`, or `Text`
+    internal func makePlaceOrPostalAddressOrText(anyObject: AnyObject) -> PlaceOrPostalAddressOrText? {
+        if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOPlace.type {
+            return SOPlace(dictionary: typedValue)
+        } else if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOPostalAddress.type {
+            return SOPostalAddress(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
+    /// Initialize `Product`, `String`, or `URL`
     internal func makeProductOrTextOrURL(anyObject: AnyObject) -> ProductOrTextOrURL? {
         if let typedValue = anyObject as? [String : AnyObject] {
             return SOProduct(dictionary: typedValue)
@@ -189,6 +245,19 @@ public extension SOThing {
         }
         
         return nil
+    }
+    
+    /// Initialize [`Review`]
+    internal func makeReviews(anyObject: AnyObject) -> [Review] {
+        var array = [Review]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SOReview(dictionary: element))
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SOReview(dictionary: typedValue))
+        }
+        return array
     }
     
     /// Initialize a `String` or `URL`
