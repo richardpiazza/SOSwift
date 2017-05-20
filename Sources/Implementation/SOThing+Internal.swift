@@ -177,6 +177,17 @@ public extension SOThing {
         return array
     }
     
+    /// Initialize `GeoCoordinates` or `GeoShape`
+    internal func makeGeoCoordinatesOrGeoShape(dictionary: [String : AnyObject]) -> GeoCoordinatesOrGeoShape? {
+        if dictionary[Keys.type] as? String == SOGeoCoordinates.type {
+            return SOGeoCoordinates(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOGeoShape.type {
+            return SOGeoShape(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
     /// Initialize an `Identifier`
     internal func makeIdentifier(anyObject: AnyObject) -> Identifier? {
         if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOPropertyValue.type {
@@ -188,6 +199,35 @@ public extension SOThing {
         }
         
         return nil
+    }
+    
+    /// Initialize `ImageObject` or `Photograph`
+    internal func makeImageObjectOrPhotograph(dictionary: [String : AnyObject]) -> ImageObjectOrPhotograph? {
+        if dictionary[Keys.type] as? String == SOImageObject.type {
+            return SOImageObject(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOPhotograph.type {
+            return SOPhotograph(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize [`ImageObjectOrPhotograph`]
+    internal func makeImageObjectOrPhotographs(anyObject: AnyObject) -> [ImageObjectOrPhotograph] {
+        var array = [ImageObjectOrPhotograph]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                if let item = makeImageObjectOrPhotograph(dictionary: element) {
+                    array.append(item)
+                }
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            if let item = makeImageObjectOrPhotograph(dictionary: typedValue) {
+                array.append(item)
+            }
+        }
+        
+        return array
     }
     
     /// Initialize an `ImageObject` or `URL`
@@ -251,6 +291,17 @@ public extension SOThing {
         return nil
     }
     
+    /// Initialize `Map` or `URL`
+    internal func makeMapOrURL(anyObject: AnyObject) -> MapOrURL? {
+        if let typedValue = anyObject as? [String : AnyObject] {
+            return SOMap(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String, typedValue.contains("://") {
+            return URL(string: typedValue)
+        }
+        
+        return nil
+    }
+    
     /// Initialize `MonetaryAmount` or `PriceSpecification`
     internal func makeMonetaryAmountOrPriceSpecification(dictionary: [String : AnyObject]) -> MonetaryAmountOrPriceSpecification? {
         if dictionary[Keys.type] as? String == SOMonetaryAmount.type {
@@ -307,6 +358,20 @@ public extension SOThing {
             for element in typedValue {
                 array.append(SOOffer(dictionary: element))
             }
+        }
+        
+        return array
+    }
+    
+    /// Initialize [`OpeningHoursSpecificiation`]
+    internal func makeOpeningHoursSpecifications(anyObject: AnyObject) -> [OpeningHoursSpecification] {
+        var array = [OpeningHoursSpecification]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SOOpeningHoursSpecification(dictionary: element))
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SOOpeningHoursSpecification(dictionary: typedValue))
         }
         
         return array
