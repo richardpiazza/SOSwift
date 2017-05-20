@@ -65,7 +65,7 @@ public protocol Product: Thing, ProductConformance {
     /// The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789".
     var productID: String? { get set }
     /// The date of production of the item, e.g. vehicle.
-    var productionDte: DateOnly? { get set }
+    var productionDate: DateOnly? { get set }
     /// The date the item e.g. vehicle was purchased by the current owner.
     var purchaseDate: DateOnly? { get set }
     /// The release date of a product or product model. This can be used to distinguish the exact variant of a product.

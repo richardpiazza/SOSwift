@@ -7,6 +7,34 @@ public class SOProduct: SOThing, Product {
         public static let aggregateRating = "aggregateRating"
         public static let audience = "audience"
         public static let award = "award"
+        public static let brand = "brand"
+        public static let category = "category"
+        public static let color = "color"
+        public static let depth = "depth"
+        public static let gtin12 = "gtin12"
+        public static let gtin13 = "gtin13"
+        public static let gtin14 = "gtin14"
+        public static let gtin8 = "gtin8"
+        public static let height = "height"
+        public static let isAccessoryOrSparePartFor = "isAccessoryOrSparePartFor"
+        public static let isConsumableFor = "isConsumableFor"
+        public static let isRelatedTo = "isRelatedTo"
+        public static let isSimilarTo = "isSimilarTo"
+        public static let itemCondition = "itemCondition"
+        public static let logo = "logo"
+        public static let manufacturer = "manufacturer"
+        public static let material = "material"
+        public static let model = "model"
+        public static let mpn = "mpn"
+        public static let offers = "offers"
+        public static let productID = "productID"
+        public static let productionDate = "productionDate"
+        public static let purchaseDate = "purchaseDate"
+        public static let releaseDate = "releaseDate"
+        public static let review = "review"
+        public static let sku = "sku"
+        public static let weight = "weight"
+        public static let width = "width"
     }
     
     override public class var type: String {
@@ -65,7 +93,7 @@ public class SOProduct: SOThing, Product {
     /// The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789".
     public var productID: String?
     /// The date of production of the item, e.g. vehicle.
-    public var productionDte: DateOnly?
+    public var productionDate: DateOnly?
     /// The date the item e.g. vehicle was purchased by the current owner.
     public var purchaseDate: DateOnly?
     /// The release date of a product or product model. This can be used to distinguish the exact variant of a product.
@@ -81,11 +109,206 @@ public class SOProduct: SOThing, Product {
     
     public required init(dictionary: [String : AnyObject]) {
         super.init(dictionary: dictionary)
+        if let value = dictionary[Keys.additionalProperty] as? [String : AnyObject] {
+            self.additionalProperty = SOPropertyValue(dictionary: value)
+        }
+        if let value = dictionary[Keys.aggregateRating] as? [String : AnyObject] {
+            self.aggregateRating = SOAggregateRating(dictionary: value)
+        }
+        if let value = dictionary[Keys.audience] as? [String : AnyObject] {
+            self.audience = SOAudience(dictionary: value)
+        }
+        if let value = dictionary[Keys.award] as? String {
+            self.award = value
+        }
+        if let value = dictionary[Keys.brand] as? [String : AnyObject] {
+            self.brand = makeBrandOrOrganization(dictionary: value)
+        }
+        if let value = dictionary[Keys.category] {
+            self.category = makeTextOrThing(anyObject: value)
+        }
+        if let value = dictionary[Keys.color] as? String {
+            self.color = value
+        }
+        if let value = dictionary[Keys.depth] as? [String : AnyObject] {
+            self.depth = makeDistanceOrQuantitativeValue(dictionary: value)
+        }
+        if let value = dictionary[Keys.gtin12] as? String {
+            self.gtin12 = value
+        }
+        if let value = dictionary[Keys.gtin13] as? String {
+            self.gtin13 = value
+        }
+        if let value = dictionary[Keys.gtin14] as? String {
+            self.gtin14 = value
+        }
+        if let value = dictionary[Keys.gtin8] as? String {
+            self.gtin8 = value
+        }
+        if let value = dictionary[Keys.height] as? [String : AnyObject] {
+            self.height = makeDistanceOrQuantitativeValue(dictionary: value)
+        }
+        if let value = dictionary[Keys.isAccessoryOrSparePartFor] as? [String : AnyObject] {
+            self.isAccessoryOrSparePartFor = SOProduct(dictionary: value)
+        }
+        if let value = dictionary[Keys.isConsumableFor] as? [String : AnyObject] {
+            self.isConsumableFor = SOProduct(dictionary: value)
+        }
+        if let value = dictionary[Keys.isRelatedTo] as? [String : AnyObject] {
+            self.isRelatedTo = makeProductOrService(dictionary: value)
+        }
+        if let value = dictionary[Keys.isSimilarTo] as? [String : AnyObject] {
+            self.isSimilarTo = makeProductOrService(dictionary: value)
+        }
+        if let value = dictionary[Keys.itemCondition] as? String {
+            self.itemCondition = OfferItemCondition(rawValue: value)
+        }
+        if let value = dictionary[Keys.logo] {
+            self.logo = makeImageObjectOrURL(anyObject: value)
+        }
+        if let value = dictionary[Keys.manufacturer] as? [String : AnyObject] {
+            self.manufacturer = SOOrganization(dictionary: value)
+        }
+        if let value = dictionary[Keys.material] {
+            self.material = makeProductOrTextOrURL(anyObject: value)
+        }
+        if let value = dictionary[Keys.model] {
+            self.model = makeProductModelOrText(anyObject: value)
+        }
+        if let value = dictionary[Keys.mpn] as? String {
+            self.mpn = value
+        }
+        if let value = dictionary[Keys.offers] {
+            self.offers = makeOffers(anyObject: value)
+        }
+        if let value = dictionary[Keys.productID] as? String {
+            self.productID = value
+        }
+        if let value = dictionary[Keys.productionDate] as? String {
+            self.productionDate = value
+        }
+        if let value = dictionary[Keys.purchaseDate] as? String {
+            self.purchaseDate = value
+        }
+        if let value = dictionary[Keys.releaseDate] as? String {
+            self.releaseDate = value
+        }
+        if let value = dictionary[Keys.review] as? [String : AnyObject] {
+            self.review = SOReview(dictionary: value)
+        }
+        if let value = dictionary[Keys.sku] as? String {
+            self.sku = value
+        }
+        if let value = dictionary[Keys.weight] as? [String : AnyObject] {
+            self.weight = SOQuantitativeValue(dictionary: value)
+        }
+        if let value = dictionary[Keys.width] as? [String : AnyObject] {
+            self.width = makeDistanceOrQuantitativeValue(dictionary: value)
+        }
     }
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        
+        if let value = self.additionalProperty?.dictionary {
+            dictionary[Keys.additionalProperty] = value as AnyObject
+        }
+        if let value = self.aggregateRating?.dictionary {
+            dictionary[Keys.aggregateRating] = value as AnyObject
+        }
+        if let value = self.audience?.dictionary {
+            dictionary[Keys.audience] = value as AnyObject
+        }
+        if let value = self.award {
+            dictionary[Keys.award] = value as AnyObject
+        }
+        if let value = self.brand?.dictionaryValue {
+            dictionary[Keys.brand] = value
+        }
+        if let value = self.category?.dictionaryValue {
+            dictionary[Keys.category] = value
+        }
+        if let value = self.color {
+            dictionary[Keys.color] = value as AnyObject
+        }
+        if let value = self.depth?.dictionaryValue {
+            dictionary[Keys.depth] = value
+        }
+        if let value = self.gtin12 {
+            dictionary[Keys.gtin12] = value as AnyObject
+        }
+        if let value = self.gtin13 {
+            dictionary[Keys.gtin13] = value as AnyObject
+        }
+        if let value = self.gtin14 {
+            dictionary[Keys.gtin14] = value as AnyObject
+        }
+        if let value = self.gtin8 {
+            dictionary[Keys.gtin8] = value as AnyObject
+        }
+        if let value = self.height?.dictionaryValue {
+            dictionary[Keys.height] = value
+        }
+        if let value = self.isAccessoryOrSparePartFor?.dictionary {
+            dictionary[Keys.isAccessoryOrSparePartFor] = value as AnyObject
+        }
+        if let value = self.isConsumableFor?.dictionary {
+            dictionary[Keys.isConsumableFor] = value as AnyObject
+        }
+        if let value = self.isRelatedTo?.dictionaryValue {
+            dictionary[Keys.isRelatedTo] = value
+        }
+        if let value = self.isSimilarTo?.dictionaryValue {
+            dictionary[Keys.isSimilarTo] = value
+        }
+        if let value = self.itemCondition {
+            dictionary[Keys.itemCondition] = value.rawValue as AnyObject
+        }
+        if let value = self.logo?.dictionaryValue {
+            dictionary[Keys.logo] = value
+        }
+        if let value = self.manufacturer?.dictionary {
+            dictionary[Keys.manufacturer] = value as AnyObject
+        }
+        if let value = self.material?.dictionaryValue {
+            dictionary[Keys.material] = value
+        }
+        if let value = self.model?.dictionaryValue {
+            dictionary[Keys.model] = value
+        }
+        if let value = self.mpn {
+            dictionary[Keys.mpn] = value as AnyObject
+        }
+        if let value = self.offers {
+            var values = [[String : AnyObject]]()
+            for element in value {
+                values.append(element.dictionary)
+            }
+            dictionary[Keys.offers] = values as AnyObject
+        }
+        if let value = self.productID {
+            dictionary[Keys.productID] = value as AnyObject
+        }
+        if let value = self.productionDate as? String {
+            dictionary[Keys.productionDate] = value as AnyObject
+        }
+        if let value = self.purchaseDate as? String {
+            dictionary[Keys.purchaseDate] = value as AnyObject
+        }
+        if let value = self.releaseDate as? String {
+            dictionary[Keys.releaseDate] = value as AnyObject
+        }
+        if let value = self.review?.dictionary {
+            dictionary[Keys.review] = value as AnyObject
+        }
+        if let value = self.sku {
+            dictionary[Keys.sku] = value as AnyObject
+        }
+        if let value = self.weight?.dictionary {
+            dictionary[Keys.weight] = value as AnyObject
+        }
+        if let value = self.width?.dictionaryValue {
+            dictionary[Keys.width] = value
+        }
         return dictionary
     }
 }

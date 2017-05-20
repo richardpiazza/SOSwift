@@ -532,6 +532,17 @@ public extension SOThing {
         return nil
     }
     
+    /// Initialize `ProductModel` or `String`
+    internal func makeProductModelOrText(anyObject: AnyObject) -> ProductModelOrText? {
+        if let typedValue = anyObject as? [String : AnyObject] {
+            return SOProductModel(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
+    }
+    
     /// Initialize a `Product` or `Service`
     internal func makeProductOrService(dictionary: [String : AnyObject]) -> ProductOrService? {
         if dictionary[Keys.type] as? String == SOProduct.type {
@@ -607,6 +618,17 @@ public extension SOThing {
             array.append(typedValue)
         }
         return array
+    }
+    
+    /// Initialize `String` or `Thing`
+    internal func makeTextOrThing(anyObject: AnyObject) -> TextOrThing? {
+        if let typedValue = anyObject as? [String : AnyObject] {
+            return SOThing(dictionary: typedValue)
+        } else if let typedValue = anyObject as? String {
+            return typedValue
+        }
+        
+        return nil
     }
     
     // TODO: This should accept a `String`

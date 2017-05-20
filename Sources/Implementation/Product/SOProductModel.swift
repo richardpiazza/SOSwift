@@ -2,6 +2,12 @@ import Foundation
 
 /// A datasheet or vendor specification of a product (in the sense of a prototypical description).
 public class SOProductModel: SOProduct, ProductModel {
+    public struct Keys {
+        public static let isVariantOf = "isVariantOf"
+        public static let predecessorOf = "predecessorOf"
+        public static let successorOf = "successorOf"
+    }
+    
     override public class var type: String {
         return "ProductModel"
     }
@@ -15,11 +21,28 @@ public class SOProductModel: SOProduct, ProductModel {
     
     public required init(dictionary: [String : AnyObject]) {
         super.init(dictionary: dictionary)
+        if let value = dictionary[Keys.isVariantOf] as? [String : AnyObject] {
+            self.isVariantOf = SOProductModel(dictionary: value)
+        }
+        if let value = dictionary[Keys.predecessorOf] as? [String : AnyObject] {
+            self.predecessorOf = SOProductModel(dictionary: value)
+        }
+        if let value = dictionary[Keys.successorOf] as? [String : AnyObject] {
+            self.successorOf = SOProductModel(dictionary: value)
+        }
     }
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        
+        if let value = self.isVariantOf?.dictionary {
+            dictionary[Keys.isVariantOf] = value as AnyObject
+        }
+        if let value = self.predecessorOf?.dictionary {
+            dictionary[Keys.predecessorOf] = value as AnyObject
+        }
+        if let value = self.successorOf?.dictionary {
+            dictionary[Keys.successorOf] = value as AnyObject
+        }
         return dictionary
     }
 }
