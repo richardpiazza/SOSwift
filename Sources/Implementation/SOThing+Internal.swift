@@ -59,6 +59,17 @@ public extension SOThing {
         return array
     }
     
+    /// Initialize `ContactPoint` or `Place`
+    internal func makeContactPointOrPlace(dictionary: [String : AnyObject]) -> ContactPointOrPlace? {
+        if dictionary[Keys.type] as? String == SOContactPoint.type {
+            return SOContactPoint(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOPlace.type {
+            return SOPlace(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
     /// Initialize [`ContactPoint`]
     internal func makeContactPoints(anyObject: AnyObject) -> [ContactPoint] {
         var array = [ContactPoint]()
@@ -137,6 +148,17 @@ public extension SOThing {
             return SODistance(dictionary: dictionary)
         } else if dictionary[Keys.type] as? String == SOQuantitativeValue.type {
             return SOQuantitativeValue(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize `EducationalOrganization` or `Organization`
+    internal func makeEducationalOrganizationOrOrganization(dictionary: [String : AnyObject]) -> EducationalOrganizationOrOrganization? {
+        if dictionary[Keys.type] as? String == SOEducationalOrganization.type {
+            return SOEducationalOrganization(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOOrganization.type {
+            return SOOrganization(dictionary: dictionary)
         }
         
         return nil
@@ -229,6 +251,18 @@ public extension SOThing {
         return nil
     }
     
+    /// Initialize `MonetaryAmount` or `PriceSpecification`
+    internal func makeMonetaryAmountOrPriceSpecification(dictionary: [String : AnyObject]) -> MonetaryAmountOrPriceSpecification? {
+        if dictionary[Keys.type] as? String == SOMonetaryAmount.type {
+            return SOMonetaryAmount(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOPriceSpecification.type {
+            return SOPriceSpecification(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
+    /// Intiailze [`MusicAlbum`]
     internal func makeMusicAlbums(anyObject: AnyObject) -> [MusicAlbum] {
         var array = [MusicAlbum]()
         if let typedValue = anyObject as? [String : AnyObject] {
@@ -317,6 +351,35 @@ public extension SOThing {
         return nil
     }
     
+    internal func makeOrganizationOrProgramMemberships(anyObject: AnyObject) -> [OrganizationOrProgramMembership] {
+        var array = [OrganizationOrProgramMembership]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                if let item = makeOrganizationOrProgramMembership(dictionary: element) {
+                    array.append(item)
+                }
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            if let item = makeOrganizationOrProgramMembership(dictionary: typedValue) {
+                array.append(item)
+            }
+        }
+        
+        return array
+    }
+    
+    internal func makeOrganizations(anyObject: AnyObject) -> [Organization] {
+        var array = [Organization]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                array.append(SOOrganization(dictionary: element))
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            array.append(SOOrganization(dictionary: typedValue))
+        }
+        return array
+    }
+    
     /// Initialize [`OwnershipInfoOrProduct`]
     internal func makeOwnershipInfoOrProducts(elements: [[String : AnyObject]]) -> [OwnershipInfoOrProduct] {
         var array = [OwnershipInfoOrProduct]()
@@ -327,6 +390,30 @@ public extension SOThing {
                 array.append(SOProduct(dictionary: element))
             }
         }
+        return array
+    }
+    
+    /// Initialize [`PersonOrURL`]
+    internal func makePersonOrURLs(anyObject: AnyObject) -> [PersonOrURL] {
+        var array = [PersonOrURL]()
+        if let typedValue = anyObject as? [AnyObject] {
+            for element in typedValue {
+                if let item = element as? [String : AnyObject], item[Keys.type] as? String == SOPerson.type {
+                    array.append(SOPerson(dictionary: item))
+                } else if let item = element as? String, item.contains("://") {
+                    if let url = URL(string: item) {
+                        array.append(url)
+                    }
+                }
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject], typedValue[Keys.type] as? String == SOPerson.type {
+            array.append(SOPerson(dictionary: typedValue))
+        } else if let typedValue = anyObject as? String, typedValue.contains("://") {
+            if let item = URL(string: typedValue) {
+                array.append(item)
+            }
+        }
+        
         return array
     }
     
@@ -378,6 +465,35 @@ public extension SOThing {
         }
         
         return nil
+    }
+    
+    /// Initialize a `Product` or `Service`
+    internal func makeProductOrService(dictionary: [String : AnyObject]) -> ProductOrService? {
+        if dictionary[Keys.type] as? String == SOProduct.type {
+            return SOProduct(dictionary: dictionary)
+        } else if dictionary[Keys.type] as? String == SOService.type {
+            return SOService(dictionary: dictionary)
+        }
+        
+        return nil
+    }
+    
+    /// Initialize [`ProductOrService`]
+    internal func makeProductOrServices(anyObject: AnyObject) -> [ProductOrService] {
+        var array = [ProductOrService]()
+        if let typedValue = anyObject as? [[String : AnyObject]] {
+            for element in typedValue {
+                if let item = makeProductOrService(dictionary: element) {
+                    array.append(item)
+                }
+            }
+        } else if let typedValue = anyObject as? [String : AnyObject] {
+            if let item = makeProductOrService(dictionary: typedValue) {
+                array.append(item)
+            }
+        }
+        
+        return array
     }
     
     /// Initialize `Product`, `String`, or `URL`
