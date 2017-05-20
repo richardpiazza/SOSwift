@@ -13,9 +13,9 @@
 		E118AFB01ECE1F2700D97B7C /* SOMusicPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118AFAF1ECE1F2700D97B7C /* SOMusicPlaylist.swift */; };
 		E118AFB21ECE1F5400D97B7C /* SOMusicAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118AFB11ECE1F5400D97B7C /* SOMusicAlbum.swift */; };
 		E118AFB41ECE20B500D97B7C /* SOMusicRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118AFB31ECE20B500D97B7C /* SOMusicRecording.swift */; };
+		E11B4BE81ED0B561000AAD5F /* DataTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11B4BE71ED0B561000AAD5F /* DataTypeTests.swift */; };
 		E13D5DF81ECB9355001251DD /* SOThing+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */; };
 		E16DB82C1EC753F700E73447 /* SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16DB8221EC753F700E73447 /* SOSwift.framework */; };
-		E16DB8311EC753F700E73447 /* SOSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB8301EC753F700E73447 /* SOSwiftTests.swift */; };
 		E16DB8331EC753F700E73447 /* SOSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E16DB8251EC753F700E73447 /* SOSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E16DB8C51EC7585900E73447 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB84D1EC7585900E73447 /* Action.swift */; };
 		E16DB8C61EC7585900E73447 /* AudioObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16DB84F1EC7585900E73447 /* AudioObject.swift */; };
@@ -233,12 +233,12 @@
 		E118AFAF1ECE1F2700D97B7C /* SOMusicPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMusicPlaylist.swift; sourceTree = "<group>"; };
 		E118AFB11ECE1F5400D97B7C /* SOMusicAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMusicAlbum.swift; sourceTree = "<group>"; };
 		E118AFB31ECE20B500D97B7C /* SOMusicRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMusicRecording.swift; sourceTree = "<group>"; };
+		E11B4BE71ED0B561000AAD5F /* DataTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypeTests.swift; sourceTree = "<group>"; };
 		E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SOThing+Internal.swift"; sourceTree = "<group>"; };
 		E16DB8221EC753F700E73447 /* SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16DB8251EC753F700E73447 /* SOSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOSwift.h; sourceTree = "<group>"; };
 		E16DB8261EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E16DB82B1EC753F700E73447 /* SOSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SOSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E16DB8301EC753F700E73447 /* SOSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSwiftTests.swift; sourceTree = "<group>"; };
 		E16DB8321EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E16DB84D1EC7585900E73447 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		E16DB84F1EC7585900E73447 /* AudioObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioObject.swift; sourceTree = "<group>"; };
@@ -511,8 +511,8 @@
 		E16DB82F1EC753F700E73447 /* SOSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				E16DB8301EC753F700E73447 /* SOSwiftTests.swift */,
 				E16DB8321EC753F700E73447 /* Info.plist */,
+				E11B4BE71ED0B561000AAD5F /* DataTypeTests.swift */,
 				E1A5CCE31EC7986E004B90DE /* SOThingTests.swift */,
 			);
 			path = SOSwiftTests;
@@ -1283,7 +1283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A5CCE41EC7986E004B90DE /* SOThingTests.swift in Sources */,
-				E16DB8311EC753F700E73447 /* SOSwiftTests.swift in Sources */,
+				E11B4BE81ED0B561000AAD5F /* DataTypeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

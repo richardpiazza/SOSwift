@@ -11,21 +11,38 @@ class SOThingTests: XCTestCase {
         super.tearDown()
     }
     
-    func testIdentifier() {
-        let urlIdentifier = "{\"identifier\":\"http://schema.org/Thing\"}"
-        var thing = SOThing(json: urlIdentifier)
-        XCTAssertNotNil(thing.identifier as? URL)
-        XCTAssertTrue(thing.dictionary[SOThing.Keys.id] as? String == "http://schema.org/Thing")
+    /// Test `SOThing`
+    func testSOThing() {
+        var json = "{"
+        json.append("\"additionalType\":\"http://schema.org/MedicalEntity\"")
+        json.append(",\"alternativeName\":\"Pencil Pusher\"")
+        json.append(",\"description\":\"A cog in the machine.\"")
+        json.append(",\"disambiguatingDescription\":\"An administrative pencil pusher.\"")
+        json.append(",\"identifier\":\"1234567890\"")
+        json.append(",\"image\":\"https://www.google.com/logo.png\"")
+        json.append(",\"mainEntityOfPage\":{")
+        json.append("\"@type\":\"CreativeWork\"")
+        json.append(",\"name\":\"Some Creative Work\"")
+        json.append("}")
+        json.append(",\"name\":\"Bobs Hospital\"")
+        json.append(",\"potentialAction\":{")
+        json.append("\"@type\":\"Action\"")
+        json.append(",\"name\":\"Go Go Gadget Arm\"")
+        json.append("}")
+        json.append(",\"sameAs\":[")
+        json.append("\"https://www.facebook.com/bobshospital\"")
+        json.append("]")
+        json.append(",\"url\":\"http://www.bobshospital.com\"")
+        json.append("}")
+        let thing = SOThing(json: json)
         
-        let stringIdentifier = "{\"identifier\":\"12345\"}"
-        thing = SOThing(json: stringIdentifier)
-        XCTAssertNotNil(thing.identifier as? String)
-        XCTAssertTrue(thing.dictionary[SOThing.Keys.id] as? String == "12345")
+        XCTAssertNotNil(thing.additionalType)
+        XCTAssertTrue(thing.additionalType == URL(string: "http://schema.org/MedicalEntity"))
         
-        let propertyValueIdentifier = "{\"identifier\":{\"@type\":\"PropertyValue\",\"value\":\"12345\"}}"
-        thing = SOThing(json: propertyValueIdentifier)
-        XCTAssertNotNil(thing.identifier as? PropertyValue)
-        let pv = thing.dictionary[SOThing.Keys.id] as? [String : AnyObject]
-        XCTAssertTrue(pv?["value"] as? String == "12345")
+        XCTAssertNotNil(thing.alternativeName)
+        XCTAssertTrue(thing.alternativeName == "Pencil Pusher")
+        
+        XCTAssertNotNil(thing.description)
+        XCTAssertTrue(thing.description == "A cog in the machine.")
     }
 }
