@@ -6,7 +6,6 @@ target 'SOSwift' do
   use_frameworks!
 
   # Pods for SOSwift
-  pod 'CodeQuickKit/Foundation', '~> 4.2'
 
   target 'SOSwiftTests' do
     inherit! :search_paths

@@ -1,6 +1,0 @@
-framework module CodeQuickKit {
-  umbrella header "CodeQuickKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

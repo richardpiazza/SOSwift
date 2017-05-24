@@ -22,31 +22,28 @@ Pod::Spec.new do |s|
 
   s.osx.frameworks = 'Foundation'
   s.osx.deployment_target = "10.12"
-  s.osx.source_files = 'Sources/*'
 
   s.ios.frameworks = 'Foundation'
   s.ios.deployment_target = "10.0"
-  s.ios.source_files = 'Sources/*'
 
   s.tvos.frameworks = 'Foundation'
   s.tvos.deployment_target = "10.0"
-  s.tvos.source_files = 'Sources/*'
 
   s.watchos.frameworks = 'Foundation'
   s.watchos.deployment_target = "3.0"
-  s.watchos.source_files = 'Sources/*'
 
   s.source = { :git => "https://github.com/richardpiazza/SOSwift.git", :tag => s.version.to_s }
   s.requires_arc = true
   s.default_subspec = 'Implementation'
 
-  s.subspec 'SchemaOnly' do |framework|
-    framework.frameworks = 'Foundation'
-    framework.source_files = 'Sources/Schema.org/*'
+  s.subspec 'SchemaOnly' do |sub|
+    sub.frameworks = 'Foundation'
+    sub.source_files = 'Sources/Schema.org/*', 'Sources/Schema.org/*/*'
   end
 
-  s.subspec 'Implementation' do |platform|
-    platform.dependency 'CodeQuickKit/Foundation'
-    platform.source_files = 'Sources/*'
+  s.subspec 'Implementation' do |sub|
+    sub.frameworks = 'Foundation'
+    sub.dependency 'SOSwift/SchemaOnly'
+    sub.source_files = 'Sources/Implementation/*', 'Sources/Implementation/*/*'
   end
 end

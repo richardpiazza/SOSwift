@@ -28,6 +28,6 @@
 import PackageDescription
 
 let package = Package(
-    name: "CodeQuickKit",
+    name: "SOSwift",
     dependencies: []
 )
