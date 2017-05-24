@@ -10,15 +10,15 @@ Schema.org is a collaborative, community activity with a mission to create, main
 
 _Sources/Schema.org/*_
 
-pod 'SOSwift/SchemaOnly', '~> 0.1'
+    pod 'SOSwift/SchemaOnly', '~> 0.1'
 
 This tree contains all of the protocol implementations of the primary structures and data types.
 
 
 _Sources/Implementation/*_
 
-pod 'SOSwift/Implementation', '~> 0.1'
-pod 'SOSwift', '~> 0.1' (default subspec)
+    pod 'SOSwift/Implementation', '~> 0.1'
+    pod 'SOSwift', '~> 0.1' (default subspec)
 
 This tree contains a basic implementation of the Schema classes along with De/Serialization.
 
