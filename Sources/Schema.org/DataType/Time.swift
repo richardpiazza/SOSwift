@@ -3,7 +3,7 @@ import Foundation
 fileprivate struct TimeFormatter {
     static var iso8601: ISO8601DateFormatter {
         let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withTime, .withTimeZone]
+        formatter.formatOptions = [.withTime, .withTimeZone, .withColonSeparatorInTime, .withColonSeparatorInTimeZone]
         return formatter
     }
 }
