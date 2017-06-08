@@ -170,6 +170,9 @@ public class SOThing: Thing {
         if let value = self.mainEntityOfPage?.dictionaryValue {
             dictionary[Keys.mainEntityOfPage] = value
         }
+        if let value = self.name {
+            dictionary[Keys.name] = value as AnyObject
+        }
         if let value = self.potentialAction as? SOAction {
             dictionary[Keys.potentialAction] = value.dictionary as AnyObject
         }
