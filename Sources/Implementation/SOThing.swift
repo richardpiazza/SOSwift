@@ -147,8 +147,8 @@ public class SOThing: Thing {
     
     public var dictionary: [String : AnyObject] {
         var dictionary = [String : AnyObject]()
-        dictionary[Keys.context] = type(of: self).context as AnyObject
-        dictionary[Keys.type] = type(of: self).type as AnyObject
+        dictionary[Keys.context] = Swift.type(of: self).context as AnyObject
+        dictionary[Keys.type] = Swift.type(of: self).type as AnyObject
         if let value = self.additionalType {
             dictionary[Keys.additionalType] = value.absoluteString as AnyObject
         }
