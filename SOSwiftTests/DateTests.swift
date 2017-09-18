@@ -5,8 +5,20 @@ import SOSwiftVocabulary
 class DateTests: XCTestCase {
 
     let dateOnly: DateOnly = "2017-05-28"
-    let dateTime: DateTime = "2017-05-28T12:30:00-06:00"
-    let timeOnly: Time = "12:30:00-06:00"
+    var dateTime: DateTime {
+        if Calendar.current.timeZone.isDaylightSavingTime() {
+            return "2017-05-28T12:30:00-06:00"
+        } else {
+            return "2017-05-28T12:30:00-06:00"
+        }
+    }
+    var timeOnly: Time {
+        if Calendar.current.timeZone.isDaylightSavingTime() {
+            return "12:30:00-06:00"
+        } else {
+            return "12:30:00-06:00"
+        }
+    }
     let centralStandardTime = TimeZone(abbreviation: "CST")!
     
     override func setUp() {
@@ -31,8 +43,15 @@ class DateTests: XCTestCase {
             return
         }
         
-        let result = Calendar.current.compare(expectedDate, to: date, toGranularity: .day)
-        XCTAssertEqual(result, .orderedSame)
+        #if os(Linux)
+            let reverseComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
+            XCTAssertEqual(reverseComponents.year, 2017)
+            XCTAssertEqual(reverseComponents.month, 5)
+            XCTAssertEqual(reverseComponents.day, 28)
+        #else
+            let result = Calendar.current.compare(expectedDate, to: date, toGranularity: .day)
+            XCTAssertEqual(result, .orderedSame)
+        #endif
     }
     
     func testDateTime() {
@@ -52,8 +71,19 @@ class DateTests: XCTestCase {
             return
         }
         
-        let result = Calendar.current.compare(expectedDate, to: date, toGranularity: .second)
-        XCTAssertEqual(result, .orderedSame)
+        #if os(Linux)
+            let reverseComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .timeZone], from: date)
+            XCTAssertEqual(reverseComponents.year, 2017)
+            XCTAssertEqual(reverseComponents.month, 5)
+            XCTAssertEqual(reverseComponents.day, 28)
+            XCTAssertEqual(reverseComponents.hour, 12)
+            XCTAssertEqual(reverseComponents.minute, 30)
+            XCTAssertEqual(reverseComponents.second, 0)
+            XCTAssertEqual(reverseComponents.timeZone, centralStandardTime)
+        #else
+            let result = Calendar.current.compare(expectedDate, to: date, toGranularity: .second)
+            XCTAssertEqual(result, .orderedSame)
+        #endif
     }
     
     func testTime() {
@@ -68,7 +98,15 @@ class DateTests: XCTestCase {
             return
         }
         
-        let result = Calendar.current.compare(expectedDate, to: date, toGranularity: .second)
-        XCTAssertEqual(result, .orderedSame)
+        #if os(Linux)
+            let reverseComponents = Calendar.current.dateComponents([.hour, .minute, .second, .timeZone], from: date)
+            XCTAssertEqual(reverseComponents.hour, 12)
+            XCTAssertEqual(reverseComponents.minute, 30)
+            XCTAssertEqual(reverseComponents.second, 0)
+            XCTAssertEqual(reverseComponents.timeZone, centralStandardTime)
+        #else
+            let result = Calendar.current.compare(expectedDate, to: date, toGranularity: .second)
+            XCTAssertEqual(result, .orderedSame)
+        #endif
     }
 }
