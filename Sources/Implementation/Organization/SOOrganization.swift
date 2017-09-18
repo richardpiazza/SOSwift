@@ -265,10 +265,10 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.address?.dictionaryValue {
             dictionary[Keys.address] = value
         }
-        if let value = self.aggregateRating?.dictionary {
-            dictionary[Keys.aggregateRating] = value as AnyObject
+        if let value = self.aggregateRating as? SOAggregateRating {
+            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
         }
-        if let value = self.alumni {
+        if let value = self.alumni as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -290,15 +290,15 @@ public class SOOrganization: SOThing, Organization {
             }
             dictionary[Keys.brand] = values as AnyObject
         }
-        if let value = self.contactPoint {
+        if let value = self.contactPoint as? [SOContactPoint] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.contactPoint] = values as AnyObject
         }
-        if let value = self.department?.dictionary {
-            dictionary[Keys.department] = value as AnyObject
+        if let value = self.department as? SOOrganization {
+            dictionary[Keys.department] = value.dictionary as AnyObject
         }
         if let value = self.dissolutionDate as? String {
             dictionary[Keys.dissolutionDate] = value as AnyObject
@@ -309,14 +309,14 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.email {
             dictionary[Keys.email] = value as AnyObject
         }
-        if let value = self.employee {
+        if let value = self.employee as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.employee] = values as AnyObject
         }
-        if let value = self.event {
+        if let value = self.event as? [SOEvent] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -326,7 +326,7 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.faxNumber {
             dictionary[Keys.faxNumber] = value as AnyObject
         }
-        if let value = self.founder {
+        if let value = self.founder as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -336,8 +336,8 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.foundingDate as? String {
             dictionary[Keys.foundingDate] = value as AnyObject
         }
-        if let value = self.foundingLocation?.dictionary {
-            dictionary[Keys.foundingLocation] = value as AnyObject
+        if let value = self.foundingLocation as? SOPlace {
+            dictionary[Keys.foundingLocation] = value.dictionary as AnyObject
         }
         if let value = self.funder?.dictionaryValue {
             dictionary[Keys.funder] = value
@@ -345,10 +345,10 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.globalLocationNumber {
             dictionary[Keys.globalLocationNumber] = value as AnyObject
         }
-        if let value = self.hasOfferCatalog?.dictionary {
-            dictionary[Keys.hasOfferCatalog] = value as AnyObject
+        if let value = self.hasOfferCatalog as? SOOfferCatalog {
+            dictionary[Keys.hasOfferCatalog] = value.dictionary as AnyObject
         }
-        if let value = self.hasPOS {
+        if let value = self.hasPOS as? [SOPlace] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -370,7 +370,7 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.logo?.dictionaryValue {
             dictionary[Keys.logo] = value
         }
-        if let value = self.makesOffers {
+        if let value = self.makesOffers as? [SOOffer] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -392,8 +392,8 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.naics {
             dictionary[Keys.naics] = value as AnyObject
         }
-        if let value = self.numberOfEmployees?.dictionary {
-            dictionary[Keys.numberOfEmployees] = value as AnyObject
+        if let value = self.numberOfEmployees as? SOQuantitativeValue {
+            dictionary[Keys.numberOfEmployees] = value.dictionary as AnyObject
         }
         if let value = self.owns {
             var values = [AnyObject]()
@@ -404,17 +404,17 @@ public class SOOrganization: SOThing, Organization {
             }
             dictionary[Keys.owns] = values as AnyObject
         }
-        if let value = self.parentOrganization?.dictionary {
-            dictionary[Keys.parentOrganization] = value as AnyObject
+        if let value = self.parentOrganization as? SOOrganization {
+            dictionary[Keys.parentOrganization] = value.dictionary as AnyObject
         }
-        if let value = self.review {
+        if let value = self.review as? [SOReview] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.review] = values as AnyObject
         }
-        if let value = self.seeks {
+        if let value = self.seeks as? [SODemand] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -424,8 +424,8 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.sponsor?.dictionaryValue {
             dictionary[Keys.sponsor] = value
         }
-        if let value = self.subOrganization?.dictionary {
-            dictionary[Keys.subOrganization] = value as AnyObject
+        if let value = self.subOrganization as? SOOrganization {
+            dictionary[Keys.subOrganization] = value.dictionary as AnyObject
         }
         if let value = self.taxID {
             dictionary[Keys.taxID] = value as AnyObject

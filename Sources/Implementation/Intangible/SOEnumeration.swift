@@ -6,7 +6,7 @@ public class SOEnumeration: SOIntangible, Enumeration {
         return "Enumeration"
     }
     
-    override public class var specificTypes: [Thing.Type] {
+    override public class var specificTypes: [MakeableThing.Type] {
         return [SOQualitativeValue.self]
     }
 }

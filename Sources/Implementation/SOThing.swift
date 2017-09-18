@@ -1,7 +1,7 @@
 import Foundation
 
 /// The most generic type of item.
-public class SOThing: Thing {
+public class SOThing: MakeableThing {
     public struct Keys {
         public static let context = "@context"
         public static let id = "@id"
@@ -23,7 +23,7 @@ public class SOThing: Thing {
         return "Thing"
     }
     
-    public class var specificTypes: [Thing.Type] {
+    public class var specificTypes: [MakeableThing.Type] {
         return [SOAction.self, SOCreativeWork.self, SOEvent.self, SOIntangible.self, SOOrganization.self, SOPerson.self, SOPlace.self, SOProduct.self]
     }
     

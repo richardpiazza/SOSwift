@@ -145,32 +145,32 @@ public class SOPlace: SOThing, Place {
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.additionalProperty?.dictionary {
-            dictionary[Keys.additionalProperty] = value as AnyObject
+        if let value = self.additionalProperty as? SOPropertyValue {
+            dictionary[Keys.additionalProperty] = value.dictionary as AnyObject
         }
         if let value = self.address?.dictionaryValue {
             dictionary[Keys.address] = value
         }
-        if let value = self.aggregateRating?.dictionary {
-            dictionary[Keys.aggregateRating] = value as AnyObject
+        if let value = self.aggregateRating as? SOAggregateRating {
+            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
         }
-        if let value = self.amenityFeature?.dictionary {
-            dictionary[Keys.amenityFeature] = value as AnyObject
+        if let value = self.amenityFeature as? SOLocationFeatureSpecification {
+            dictionary[Keys.amenityFeature] = value.dictionary as AnyObject
         }
         if let value = self.branchCode {
             dictionary[Keys.branchCode] = value as AnyObject
         }
-        if let value = self.containedInPlace?.dictionary {
-            dictionary[Keys.containedInPlace] = value as AnyObject
+        if let value = self.containedInPlace as? SOPlace {
+            dictionary[Keys.containedInPlace] = value.dictionary as AnyObject
         }
-        if let value = self.containsPlace {
+        if let value = self.containsPlace as? [SOPlace] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.containsPlace] = values as AnyObject
         }
-        if let value = self.event {
+        if let value = self.event as? [SOEvent] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -198,7 +198,7 @@ public class SOPlace: SOThing, Place {
         if let value = self.maximumAttendeeCapacity {
             dictionary[Keys.maximumAttendeeCapacity] = value as AnyObject
         }
-        if let value = self.openingHoursSpecification {
+        if let value = self.openingHoursSpecification as? [SOOpeningHoursSpecification] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -214,7 +214,7 @@ public class SOPlace: SOThing, Place {
             }
             dictionary[Keys.photo] = values as AnyObject
         }
-        if let value = self.review {
+        if let value = self.review as? [SOReview] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -224,7 +224,7 @@ public class SOPlace: SOThing, Place {
         if let value = self.smokingAllowed {
             dictionary[Keys.smokingAllowed] = value as AnyObject
         }
-        if let value = self.specialOpeningHoursSpecification {
+        if let value = self.specialOpeningHoursSpecification as? [SOOpeningHoursSpecification] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)

@@ -21,8 +21,8 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.publishedOn?.dictionary {
-            dictionary[Keys.publishedOn] = value as AnyObject
+        if let value = self.publishedOn as? SOBroadcastService {
+            dictionary[Keys.publishedOn] = value.dictionary as AnyObject
         }
         return dictionary
     }

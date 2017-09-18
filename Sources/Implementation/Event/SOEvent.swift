@@ -210,18 +210,18 @@ public class SOEvent: SOThing, Event {
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.about?.dictionary {
-            dictionary[Keys.about] = value as AnyObject
+        if let value = self.about as? SOThing {
+            dictionary[Keys.about] = value.dictionary as AnyObject
         }
-        if let value = self.actor {
+        if let value = self.actor as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.actor] = values as AnyObject
         }
-        if let value = self.aggregateRating?.dictionary {
-            dictionary[Keys.aggregateRating] = value as AnyObject
+        if let value = self.aggregateRating as? SOAggregateRating {
+            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
         }
         if let value = self.attendee {
             var values = [AnyObject]()
@@ -232,8 +232,8 @@ public class SOEvent: SOThing, Event {
             }
             dictionary[Keys.attendee] = values as AnyObject
         }
-        if let value = self.audience?.dictionary {
-            dictionary[Keys.audience] = value as AnyObject
+        if let value = self.audience as? SOAudience {
+            dictionary[Keys.audience] = value.dictionary as AnyObject
         }
         if let value = self.composer?.dictionaryValue {
             dictionary[Keys.composer] = value
@@ -241,7 +241,7 @@ public class SOEvent: SOThing, Event {
         if let value = self.contributor?.dictionaryValue {
             dictionary[Keys.contributor] = value
         }
-        if let value = self.director {
+        if let value = self.director as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -275,7 +275,7 @@ public class SOEvent: SOThing, Event {
         if let value = self.maximumAttendeeCapacity {
             dictionary[Keys.maximumAttendeeCapacity] = value as AnyObject
         }
-        if let value = self.offers {
+        if let value = self.offers as? [SOOffer] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -297,13 +297,13 @@ public class SOEvent: SOThing, Event {
         if let value = self.previousStartDate as? String {
             dictionary[Keys.previousStartDate] = value as AnyObject
         }
-        if let value = self.recordedIn?.dictionary {
-            dictionary[Keys.recordedIn] = value as AnyObject
+        if let value = self.recordedIn as? SOCreativeWork {
+            dictionary[Keys.recordedIn] = value.dictionary as AnyObject
         }
         if let value = self.remainingAttendeeCapacity {
             dictionary[Keys.remainingAttendeeCapacity] = value as AnyObject
         }
-        if let value = self.review {
+        if let value = self.review as? [SOReview] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -316,15 +316,15 @@ public class SOEvent: SOThing, Event {
         if let value = self.startDate as? String {
             dictionary[Keys.startDate] = value as AnyObject
         }
-        if let value = self.subEvent {
+        if let value = self.subEvent as? [SOEvent] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.subEvent] = values as AnyObject
         }
-        if let value = self.superEvent?.dictionary {
-            dictionary[Keys.superEvent] = value as AnyObject
+        if let value = self.superEvent as? SOEvent {
+            dictionary[Keys.superEvent] = value.dictionary as AnyObject
         }
         if let value = self.translator?.dictionaryValue {
             dictionary[Keys.translator] = value
@@ -332,11 +332,11 @@ public class SOEvent: SOThing, Event {
         if let value = self.typicalAgeRange {
             dictionary[Keys.typicalAgeRange] = value as AnyObject
         }
-        if let value = self.workFeatured?.dictionary {
-            dictionary[Keys.workFeatured] = value as AnyObject
+        if let value = self.workFeatured as? SOCreativeWork {
+            dictionary[Keys.workFeatured] = value.dictionary as AnyObject
         }
-        if let value = self.workPerformed?.dictionary {
-            dictionary[Keys.workPerformed] = value as AnyObject
+        if let value = self.workPerformed as? SOCreativeWork {
+            dictionary[Keys.workPerformed] = value.dictionary as AnyObject
         }
         return dictionary
     }

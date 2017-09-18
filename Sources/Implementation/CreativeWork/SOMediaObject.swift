@@ -113,8 +113,8 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
     
     public override var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.associatedArticle?.dictionary {
-            dictionary[Keys.associatedArticle] = value as AnyObject
+        if let value = self.associatedArticle as? SONewsArticle {
+            dictionary[Keys.associatedArticle] = value.dictionary as AnyObject
         }
         if let value = self.bitrate {
             dictionary[Keys.bitrate] = value as AnyObject
@@ -131,8 +131,8 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         if let value = self.embedUrl {
             dictionary[Keys.embedUrl] = value.absoluteString as AnyObject
         }
-        if let value = self.encodesCreativeWork?.dictionary {
-            dictionary[Keys.encodesCreativeWork] = value as AnyObject
+        if let value = self.encodesCreativeWork as? SOCreativeWork {
+            dictionary[Keys.encodesCreativeWork] = value.dictionary as AnyObject
         }
         if let value = self.encodingFormat {
             dictionary[Keys.encodingFormat] = value as AnyObject
@@ -146,11 +146,11 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         if let value = self.playerType {
             dictionary[Keys.playerType] = value as AnyObject
         }
-        if let value = self.productionCompany?.dictionary {
-            dictionary[Keys.productionCompany] = value as AnyObject
+        if let value = self.productionCompany as? SOOrganization {
+            dictionary[Keys.productionCompany] = value.dictionary as AnyObject
         }
-        if let value = self.regionsAllowed?.dictionary {
-            dictionary[Keys.regionsAllowed] = value as AnyObject
+        if let value = self.regionsAllowed as? SOPlace {
+            dictionary[Keys.regionsAllowed] = value.dictionary as AnyObject
         }
         if let value = self.requiresSubscription {
             dictionary[Keys.requiresSubscription] = value as AnyObject

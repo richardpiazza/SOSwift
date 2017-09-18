@@ -78,7 +78,7 @@ public class SOVideoObject: SOMediaObject, VideoObject {
     
     public override var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.actor {
+        if let value = self.actor as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -88,7 +88,7 @@ public class SOVideoObject: SOMediaObject, VideoObject {
         if let value = self.caption {
             dictionary[Keys.caption] = value as AnyObject
         }
-        if let value = self.director {
+        if let value = self.director as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -98,8 +98,8 @@ public class SOVideoObject: SOMediaObject, VideoObject {
         if let value = self.musicBy?.dictionaryValue {
             dictionary[Keys.musicBy] = value
         }
-        if let value = self.thumbnail?.dictionary {
-            dictionary[Keys.thumbnail] = value as AnyObject
+        if let value = self.thumbnail as? SOImageObject {
+            dictionary[Keys.thumbnail] = value.dictionary as AnyObject
         }
         if let value = self.transcript {
             dictionary[Keys.transcript] = value as AnyObject

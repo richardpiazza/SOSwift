@@ -16,6 +16,42 @@
 		E11B4BE81ED0B561000AAD5F /* DataTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11B4BE71ED0B561000AAD5F /* DataTypeTests.swift */; };
 		E137CAC41F700F9700CB175C /* DateTime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CAC31F700F9700CB175C /* DateTime+Extension.swift */; };
 		E137CAC61F700FBF00CB175C /* Time+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CAC51F700FBF00CB175C /* Time+Extension.swift */; };
+		E137CC161F701C3B00CB175C /* MakeableThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC151F701C3B00CB175C /* MakeableThing.swift */; };
+		E137CC181F701CF200CB175C /* PlaceOrPostalAddressOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC171F701CF200CB175C /* PlaceOrPostalAddressOrText+Extension.swift */; };
+		E137CC1A1F701D4F00CB175C /* EducationalOrganizationOrOrganization+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC191F701D4F00CB175C /* EducationalOrganizationOrOrganization+Extension.swift */; };
+		E137CC1C1F701D8100CB175C /* ContactPointOrPlace+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC1B1F701D8100CB175C /* ContactPointOrPlace+Extension.swift */; };
+		E137CC1E1F701DA700CB175C /* PersonOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC1D1F701DA700CB175C /* PersonOrURL+Extension.swift */; };
+		E137CC201F702D5900CB175C /* TextOrThing+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC1F1F702D5900CB175C /* TextOrThing+Extension.swift */; };
+		E137CC221F702D7F00CB175C /* ImageObjectOrPhotograph+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC211F702D7F00CB175C /* ImageObjectOrPhotograph+Extension.swift */; };
+		E137CC241F702DB500CB175C /* PostalAddressOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC231F702DB500CB175C /* PostalAddressOrText+Extension.swift */; };
+		E137CC261F702DD700CB175C /* ValueReference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC251F702DD700CB175C /* ValueReference+Extension.swift */; };
+		E137CC281F702E0D00CB175C /* OwnershipInfoOrProduct+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC271F702E0D00CB175C /* OwnershipInfoOrProduct+Extension.swift */; };
+		E137CC2A1F702EB700CB175C /* MapOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC291F702EB700CB175C /* MapOrURL+Extension.swift */; };
+		E137CC2C1F702F2200CB175C /* CreativeWorkOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC2B1F702F2200CB175C /* CreativeWorkOrURL+Extension.swift */; };
+		E137CC2E1F702F3D00CB175C /* Identifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC2D1F702F3D00CB175C /* Identifier+Extension.swift */; };
+		E137CC301F70309D00CB175C /* DistanceOrQuantitativeValue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC2F1F70309D00CB175C /* DistanceOrQuantitativeValue+Extension.swift */; };
+		E137CC321F7030CE00CB175C /* Value+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC311F7030CE00CB175C /* Value+Extension.swift */; };
+		E137CC341F7031EA00CB175C /* AreaServed+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC331F7031EA00CB175C /* AreaServed+Extension.swift */; };
+		E137CC361F70341200CB175C /* ProductOrTextOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC351F70341200CB175C /* ProductOrTextOrURL+Extension.swift */; };
+		E137CC381F70346F00CB175C /* BrandOrOrganization+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC371F70346F00CB175C /* BrandOrOrganization+Extension.swift */; };
+		E137CC3A1F70350800CB175C /* CreativeWorkOrProductOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC391F70350800CB175C /* CreativeWorkOrProductOrURL+Extension.swift */; };
+		E137CC3C1F70353800CB175C /* CreativeWorkOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC3B1F70353800CB175C /* CreativeWorkOrText+Extension.swift */; };
+		E137CC3E1F70355400CB175C /* AlignmentObjectOrCourseOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC3D1F70355400CB175C /* AlignmentObjectOrCourseOrText+Extension.swift */; };
+		E137CC401F70357E00CB175C /* GenderOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC3F1F70357E00CB175C /* GenderOrText+Extension.swift */; };
+		E137CC421F70359800CB175C /* GeoCoordinatesOrGeoShape+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC411F70359800CB175C /* GeoCoordinatesOrGeoShape+Extension.swift */; };
+		E137CC441F7035B400CB175C /* ImageObjectOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC431F7035B400CB175C /* ImageObjectOrURL+Extension.swift */; };
+		E137CC461F7035D500CB175C /* IntegerOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC451F7035D500CB175C /* IntegerOrText+Extension.swift */; };
+		E137CC481F7035F000CB175C /* ItemListOrMusicRecording+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC471F7035F000CB175C /* ItemListOrMusicRecording+Extension.swift */; };
+		E137CC4A1F70360C00CB175C /* LanguageOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC491F70360C00CB175C /* LanguageOrText+Extension.swift */; };
+		E137CC4C1F70362600CB175C /* MonetaryAmountOrPriceSpecification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC4B1F70362600CB175C /* MonetaryAmountOrPriceSpecification+Extension.swift */; };
+		E137CC4E1F70363E00CB175C /* MusicGroupOrPerson+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC4D1F70363E00CB175C /* MusicGroupOrPerson+Extension.swift */; };
+		E137CC501F70365C00CB175C /* Number+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC4F1F70365C00CB175C /* Number+Extension.swift */; };
+		E137CC521F70367100CB175C /* OrganizationOrPerson+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC511F70367100CB175C /* OrganizationOrPerson+Extension.swift */; };
+		E137CC541F70368B00CB175C /* OrganizationOrProgramMembership+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC531F70368B00CB175C /* OrganizationOrProgramMembership+Extension.swift */; };
+		E137CC561F7036AA00CB175C /* ProductModelOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC551F7036AA00CB175C /* ProductModelOrText+Extension.swift */; };
+		E137CC581F7036C900CB175C /* ProductOrService+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC571F7036C900CB175C /* ProductOrService+Extension.swift */; };
+		E137CC5A1F7036E800CB175C /* PropertyValueOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC591F7036E800CB175C /* PropertyValueOrText+Extension.swift */; };
+		E137CC5C1F70370600CB175C /* TextOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137CC5B1F70370600CB175C /* TextOrURL+Extension.swift */; };
 		E13D5DF81ECB9355001251DD /* SOThing+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */; };
 		E16DB82C1EC753F700E73447 /* SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16DB8221EC753F700E73447 /* SOSwift.framework */; };
 		E16DB8331EC753F700E73447 /* SOSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E16DB8251EC753F700E73447 /* SOSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -242,6 +278,42 @@
 		E11B4BE71ED0B561000AAD5F /* DataTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypeTests.swift; sourceTree = "<group>"; };
 		E137CAC31F700F9700CB175C /* DateTime+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateTime+Extension.swift"; sourceTree = "<group>"; };
 		E137CAC51F700FBF00CB175C /* Time+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time+Extension.swift"; sourceTree = "<group>"; };
+		E137CC151F701C3B00CB175C /* MakeableThing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeableThing.swift; sourceTree = "<group>"; };
+		E137CC171F701CF200CB175C /* PlaceOrPostalAddressOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaceOrPostalAddressOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC191F701D4F00CB175C /* EducationalOrganizationOrOrganization+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EducationalOrganizationOrOrganization+Extension.swift"; sourceTree = "<group>"; };
+		E137CC1B1F701D8100CB175C /* ContactPointOrPlace+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactPointOrPlace+Extension.swift"; sourceTree = "<group>"; };
+		E137CC1D1F701DA700CB175C /* PersonOrURL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonOrURL+Extension.swift"; sourceTree = "<group>"; };
+		E137CC1F1F702D5900CB175C /* TextOrThing+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextOrThing+Extension.swift"; sourceTree = "<group>"; };
+		E137CC211F702D7F00CB175C /* ImageObjectOrPhotograph+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageObjectOrPhotograph+Extension.swift"; sourceTree = "<group>"; };
+		E137CC231F702DB500CB175C /* PostalAddressOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostalAddressOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC251F702DD700CB175C /* ValueReference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueReference+Extension.swift"; sourceTree = "<group>"; };
+		E137CC271F702E0D00CB175C /* OwnershipInfoOrProduct+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OwnershipInfoOrProduct+Extension.swift"; sourceTree = "<group>"; };
+		E137CC291F702EB700CB175C /* MapOrURL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapOrURL+Extension.swift"; sourceTree = "<group>"; };
+		E137CC2B1F702F2200CB175C /* CreativeWorkOrURL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreativeWorkOrURL+Extension.swift"; sourceTree = "<group>"; };
+		E137CC2D1F702F3D00CB175C /* Identifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Identifier+Extension.swift"; sourceTree = "<group>"; };
+		E137CC2F1F70309D00CB175C /* DistanceOrQuantitativeValue+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DistanceOrQuantitativeValue+Extension.swift"; sourceTree = "<group>"; };
+		E137CC311F7030CE00CB175C /* Value+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Value+Extension.swift"; sourceTree = "<group>"; };
+		E137CC331F7031EA00CB175C /* AreaServed+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AreaServed+Extension.swift"; sourceTree = "<group>"; };
+		E137CC351F70341200CB175C /* ProductOrTextOrURL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductOrTextOrURL+Extension.swift"; sourceTree = "<group>"; };
+		E137CC371F70346F00CB175C /* BrandOrOrganization+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrandOrOrganization+Extension.swift"; sourceTree = "<group>"; };
+		E137CC391F70350800CB175C /* CreativeWorkOrProductOrURL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreativeWorkOrProductOrURL+Extension.swift"; sourceTree = "<group>"; };
+		E137CC3B1F70353800CB175C /* CreativeWorkOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreativeWorkOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC3D1F70355400CB175C /* AlignmentObjectOrCourseOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlignmentObjectOrCourseOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC3F1F70357E00CB175C /* GenderOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenderOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC411F70359800CB175C /* GeoCoordinatesOrGeoShape+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoCoordinatesOrGeoShape+Extension.swift"; sourceTree = "<group>"; };
+		E137CC431F7035B400CB175C /* ImageObjectOrURL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageObjectOrURL+Extension.swift"; sourceTree = "<group>"; };
+		E137CC451F7035D500CB175C /* IntegerOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntegerOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC471F7035F000CB175C /* ItemListOrMusicRecording+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemListOrMusicRecording+Extension.swift"; sourceTree = "<group>"; };
+		E137CC491F70360C00CB175C /* LanguageOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LanguageOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC4B1F70362600CB175C /* MonetaryAmountOrPriceSpecification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonetaryAmountOrPriceSpecification+Extension.swift"; sourceTree = "<group>"; };
+		E137CC4D1F70363E00CB175C /* MusicGroupOrPerson+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MusicGroupOrPerson+Extension.swift"; sourceTree = "<group>"; };
+		E137CC4F1F70365C00CB175C /* Number+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Extension.swift"; sourceTree = "<group>"; };
+		E137CC511F70367100CB175C /* OrganizationOrPerson+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrganizationOrPerson+Extension.swift"; sourceTree = "<group>"; };
+		E137CC531F70368B00CB175C /* OrganizationOrProgramMembership+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrganizationOrProgramMembership+Extension.swift"; sourceTree = "<group>"; };
+		E137CC551F7036AA00CB175C /* ProductModelOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductModelOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC571F7036C900CB175C /* ProductOrService+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductOrService+Extension.swift"; sourceTree = "<group>"; };
+		E137CC591F7036E800CB175C /* PropertyValueOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PropertyValueOrText+Extension.swift"; sourceTree = "<group>"; };
+		E137CC5B1F70370600CB175C /* TextOrURL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextOrURL+Extension.swift"; sourceTree = "<group>"; };
 		E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SOThing+Internal.swift"; sourceTree = "<group>"; };
 		E16DB8221EC753F700E73447 /* SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16DB8251EC753F700E73447 /* SOSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOSwift.h; sourceTree = "<group>"; };
@@ -554,6 +626,7 @@
 				E16DB9A31EC758A800E73447 /* Person */,
 				E16DB9A51EC758A800E73447 /* Place */,
 				E16DB9A91EC758A800E73447 /* Product */,
+				E137CC151F701C3B00CB175C /* MakeableThing.swift */,
 				E16DB9AC1EC758A800E73447 /* SOThing.swift */,
 				E13D5DF71ECB9355001251DD /* SOThing+Internal.swift */,
 			);
@@ -902,9 +975,44 @@
 		E1C4F2CC1F700EDD00143A85 /* DataType */ = {
 			isa = PBXGroup;
 			children = (
+				E137CC3D1F70355400CB175C /* AlignmentObjectOrCourseOrText+Extension.swift */,
+				E137CC331F7031EA00CB175C /* AreaServed+Extension.swift */,
+				E137CC371F70346F00CB175C /* BrandOrOrganization+Extension.swift */,
+				E137CC1B1F701D8100CB175C /* ContactPointOrPlace+Extension.swift */,
+				E137CC2B1F702F2200CB175C /* CreativeWorkOrURL+Extension.swift */,
+				E137CC391F70350800CB175C /* CreativeWorkOrProductOrURL+Extension.swift */,
+				E137CC3B1F70353800CB175C /* CreativeWorkOrText+Extension.swift */,
 				E1C4F2CD1F700F0700143A85 /* DateOnly+Extension.swift */,
 				E137CAC31F700F9700CB175C /* DateTime+Extension.swift */,
+				E137CC2F1F70309D00CB175C /* DistanceOrQuantitativeValue+Extension.swift */,
+				E137CC191F701D4F00CB175C /* EducationalOrganizationOrOrganization+Extension.swift */,
+				E137CC3F1F70357E00CB175C /* GenderOrText+Extension.swift */,
+				E137CC411F70359800CB175C /* GeoCoordinatesOrGeoShape+Extension.swift */,
+				E137CC2D1F702F3D00CB175C /* Identifier+Extension.swift */,
+				E137CC211F702D7F00CB175C /* ImageObjectOrPhotograph+Extension.swift */,
+				E137CC431F7035B400CB175C /* ImageObjectOrURL+Extension.swift */,
+				E137CC451F7035D500CB175C /* IntegerOrText+Extension.swift */,
+				E137CC471F7035F000CB175C /* ItemListOrMusicRecording+Extension.swift */,
+				E137CC491F70360C00CB175C /* LanguageOrText+Extension.swift */,
+				E137CC291F702EB700CB175C /* MapOrURL+Extension.swift */,
+				E137CC4B1F70362600CB175C /* MonetaryAmountOrPriceSpecification+Extension.swift */,
+				E137CC4D1F70363E00CB175C /* MusicGroupOrPerson+Extension.swift */,
+				E137CC4F1F70365C00CB175C /* Number+Extension.swift */,
+				E137CC511F70367100CB175C /* OrganizationOrPerson+Extension.swift */,
+				E137CC531F70368B00CB175C /* OrganizationOrProgramMembership+Extension.swift */,
+				E137CC271F702E0D00CB175C /* OwnershipInfoOrProduct+Extension.swift */,
+				E137CC1D1F701DA700CB175C /* PersonOrURL+Extension.swift */,
+				E137CC171F701CF200CB175C /* PlaceOrPostalAddressOrText+Extension.swift */,
+				E137CC231F702DB500CB175C /* PostalAddressOrText+Extension.swift */,
+				E137CC551F7036AA00CB175C /* ProductModelOrText+Extension.swift */,
+				E137CC571F7036C900CB175C /* ProductOrService+Extension.swift */,
+				E137CC351F70341200CB175C /* ProductOrTextOrURL+Extension.swift */,
+				E137CC591F7036E800CB175C /* PropertyValueOrText+Extension.swift */,
+				E137CC1F1F702D5900CB175C /* TextOrThing+Extension.swift */,
+				E137CC5B1F70370600CB175C /* TextOrURL+Extension.swift */,
 				E137CAC51F700FBF00CB175C /* Time+Extension.swift */,
+				E137CC311F7030CE00CB175C /* Value+Extension.swift */,
+				E137CC251F702DD700CB175C /* ValueReference+Extension.swift */,
 			);
 			path = DataType;
 			sourceTree = "<group>";
@@ -1105,7 +1213,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E16DB9F41EC758A800E73447 /* SOAlignmentObject.swift in Sources */,
+				E137CC221F702D7F00CB175C /* ImageObjectOrPhotograph+Extension.swift in Sources */,
 				E118AFB01ECE1F2700D97B7C /* SOMusicPlaylist.swift in Sources */,
+				E137CC4A1F70360C00CB175C /* LanguageOrText+Extension.swift in Sources */,
 				E16DB9011EC7585900E73447 /* DayOfWeek.swift in Sources */,
 				E16DB8F91EC7585900E73447 /* Time.swift in Sources */,
 				E194A9C31EC8F5DE0010F1B0 /* Question.swift in Sources */,
@@ -1121,6 +1231,7 @@
 				E16DB9211EC7585900E73447 /* PostalAddress.swift in Sources */,
 				E137CAC61F700FBF00CB175C /* Time+Extension.swift in Sources */,
 				E170D5721ECC88940002BF15 /* SONewsArticle.swift in Sources */,
+				E137CC481F7035F000CB175C /* ItemListOrMusicRecording+Extension.swift in Sources */,
 				E16DB9F61EC758A800E73447 /* SOBrand.swift in Sources */,
 				E16DB9311EC7585900E73447 /* Product.swift in Sources */,
 				E16DBA081EC758A800E73447 /* SOOwnershipInfo.swift in Sources */,
@@ -1131,17 +1242,24 @@
 				E16DB9031EC7585900E73447 /* Gender.swift in Sources */,
 				E16DB92A1EC7585900E73447 /* StructuredValue.swift in Sources */,
 				E16DB8DF1EC7585900E73447 /* EducationalOrganizationOrOrganization.swift in Sources */,
+				E137CC301F70309D00CB175C /* DistanceOrQuantitativeValue+Extension.swift in Sources */,
 				E170D5701ECC88790002BF15 /* SOArticle.swift in Sources */,
 				E16DB8F01EC7585900E73447 /* PersonOrURL.swift in Sources */,
+				E137CC241F702DB500CB175C /* PostalAddressOrText+Extension.swift in Sources */,
 				E16DB9FF1EC758A800E73447 /* SOInteractionCounter.swift in Sources */,
 				E16DB9281EC7585900E73447 /* Rating.swift in Sources */,
 				E16DB8FF1EC7585900E73447 /* AccessModeSufficient.swift in Sources */,
 				E194A9CB1EC8FFD40010F1B0 /* MusicRecording.swift in Sources */,
 				E16DB9161EC7585900E73447 /* Intangible.swift in Sources */,
+				E137CC4C1F70362600CB175C /* MonetaryAmountOrPriceSpecification+Extension.swift in Sources */,
+				E137CC281F702E0D00CB175C /* OwnershipInfoOrProduct+Extension.swift in Sources */,
 				E16DB8CF1EC7585900E73447 /* VideoObject.swift in Sources */,
+				E137CC1E1F701DA700CB175C /* PersonOrURL+Extension.swift in Sources */,
 				E194A9D91EC90B350010F1B0 /* Website.swift in Sources */,
+				E137CC2E1F702F3D00CB175C /* Identifier+Extension.swift in Sources */,
 				E16DB9101EC7585900E73447 /* Demand.swift in Sources */,
 				E16DB9241EC7585900E73447 /* PropertyValue.swift in Sources */,
+				E137CC3E1F70355400CB175C /* AlignmentObjectOrCourseOrText+Extension.swift in Sources */,
 				E16DB9B01EC758A800E73447 /* SOCourse.swift in Sources */,
 				E194A9CD1EC9000A0010F1B0 /* ItemListOrMusicRecording.swift in Sources */,
 				E16DB9B11EC758A800E73447 /* SOCreativeWork.swift in Sources */,
@@ -1151,11 +1269,13 @@
 				E16DB8CA1EC7585900E73447 /* ImageObject.swift in Sources */,
 				E194A9D71EC908390010F1B0 /* DataFeed.swift in Sources */,
 				E16DB91C1EC7585900E73447 /* MonetaryAmount.swift in Sources */,
+				E137CC321F7030CE00CB175C /* Value+Extension.swift in Sources */,
 				E16DB8DB1EC7585900E73447 /* DateTime.swift in Sources */,
 				E16DB8E11EC7585900E73447 /* GenderOrText.swift in Sources */,
 				E16DB8F71EC7585900E73447 /* TextOrThing.swift in Sources */,
 				E16DB9B51EC758A800E73447 /* SOPhotograph.swift in Sources */,
 				E16DB9321EC7585900E73447 /* ProductModel.swift in Sources */,
+				E137CC2C1F702F2200CB175C /* CreativeWorkOrURL+Extension.swift in Sources */,
 				E16DB8C81EC7585900E73447 /* Course.swift in Sources */,
 				E16DB8FE1EC7585900E73447 /* AccessMode.swift in Sources */,
 				E16DB8E31EC7585900E73447 /* ImageObjectOrPhotograph.swift in Sources */,
@@ -1178,8 +1298,10 @@
 				E16DB8F21EC7585900E73447 /* PostalAddressOrText.swift in Sources */,
 				E16DB9071EC7585900E73447 /* OfferItemCondition.swift in Sources */,
 				E16DB8E61EC7585900E73447 /* ItemListOrderOrText.swift in Sources */,
+				E137CC181F701CF200CB175C /* PlaceOrPostalAddressOrText+Extension.swift in Sources */,
 				E16DB9AE1EC758A800E73447 /* SOAudioObject.swift in Sources */,
 				E16DB9F11EC758A800E73447 /* SOEvent.swift in Sources */,
+				E137CC2A1F702EB700CB175C /* MapOrURL+Extension.swift in Sources */,
 				E16DB9131EC7585900E73447 /* Enumeration.swift in Sources */,
 				E16DB9151EC7585900E73447 /* GeoShape.swift in Sources */,
 				E16DB8CD1EC7585900E73447 /* Photograph.swift in Sources */,
@@ -1200,6 +1322,7 @@
 				E16DB9AD1EC758A800E73447 /* SOAction.swift in Sources */,
 				E118AFB21ECE1F5400D97B7C /* SOMusicAlbum.swift in Sources */,
 				E16DB9221EC7585900E73447 /* PriceSpecification.swift in Sources */,
+				E137CC401F70357E00CB175C /* GenderOrText+Extension.swift in Sources */,
 				E16DB9F51EC758A800E73447 /* SOAudience.swift in Sources */,
 				E16DB9F81EC758A800E73447 /* SODemand.swift in Sources */,
 				E16DB9301EC7585900E73447 /* Place.swift in Sources */,
@@ -1212,27 +1335,40 @@
 				E16DB91A1EC7585900E73447 /* ListItem.swift in Sources */,
 				E16DB8CB1EC7585900E73447 /* Map.swift in Sources */,
 				E16DB91F1EC7585900E73447 /* OpeningHoursSpecification.swift in Sources */,
+				E137CC4E1F70363E00CB175C /* MusicGroupOrPerson+Extension.swift in Sources */,
 				E16DB9111EC7585900E73447 /* Distance.swift in Sources */,
 				E16DB92F1EC7585900E73447 /* Country.swift in Sources */,
+				E137CC5C1F70370600CB175C /* TextOrURL+Extension.swift in Sources */,
+				E137CC5A1F7036E800CB175C /* PropertyValueOrText+Extension.swift in Sources */,
 				E16DB9B71EC758A800E73447 /* SOVideoObject.swift in Sources */,
 				E16DB90D1EC7585900E73447 /* Audience.swift in Sources */,
 				E16DB9F21EC758A800E73447 /* SOPublicationEvent.swift in Sources */,
 				E16DB8F61EC7585900E73447 /* Identifier.swift in Sources */,
+				E137CC461F7035D500CB175C /* IntegerOrText+Extension.swift in Sources */,
 				E16DB92B1EC7585900E73447 /* EducationalOrganization.swift in Sources */,
 				E16DB8E51EC7585900E73447 /* IntegerOrText.swift in Sources */,
 				E16DBA141EC758A800E73447 /* SOOrganization.swift in Sources */,
 				E16DB92D1EC7585900E73447 /* Person.swift in Sources */,
+				E137CC581F7036C900CB175C /* ProductOrService+Extension.swift in Sources */,
 				E16DB9051EC7585900E73447 /* ItemListOrder.swift in Sources */,
+				E137CC3A1F70350800CB175C /* CreativeWorkOrProductOrURL+Extension.swift in Sources */,
+				E137CC261F702DD700CB175C /* ValueReference+Extension.swift in Sources */,
 				E16DB8EC1EC7585900E73447 /* NumberOrText.swift in Sources */,
 				E16DBA121EC758A800E73447 /* SOStructuredValue.swift in Sources */,
+				E137CC3C1F70353800CB175C /* CreativeWorkOrText+Extension.swift in Sources */,
+				E137CC361F70341200CB175C /* ProductOrTextOrURL+Extension.swift in Sources */,
 				E137CAC41F700F9700CB175C /* DateTime+Extension.swift in Sources */,
 				E16DB8DD1EC7585900E73447 /* DistanceOrQuantitativeValue.swift in Sources */,
 				E16DB8D21EC7585900E73447 /* Value.swift in Sources */,
 				E16DBA191EC758A800E73447 /* SOProduct.swift in Sources */,
+				E137CC201F702D5900CB175C /* TextOrThing+Extension.swift in Sources */,
 				E16DBA1A1EC758A800E73447 /* SOProductModel.swift in Sources */,
+				E137CC381F70346F00CB175C /* BrandOrOrganization+Extension.swift in Sources */,
 				E16DB9AF1EC758A800E73447 /* SOComment.swift in Sources */,
+				E137CC1A1F701D4F00CB175C /* EducationalOrganizationOrOrganization+Extension.swift in Sources */,
 				E16DBA0B1EC758A800E73447 /* SOProgramMembership.swift in Sources */,
 				E16DB90A1EC7585900E73447 /* PublicationEvent.swift in Sources */,
+				E137CC501F70365C00CB175C /* Number+Extension.swift in Sources */,
 				E16DB91E1EC7585900E73447 /* OfferCatalog.swift in Sources */,
 				E16DBA131EC758A800E73447 /* SOEducationalOrganization.swift in Sources */,
 				E16DBA151EC758A800E73447 /* SOPerson.swift in Sources */,
@@ -1267,27 +1403,35 @@
 				E16DB8DC1EC7585900E73447 /* DateTimeOrTextOrURL.swift in Sources */,
 				E170D5741ECC9F480002BF15 /* SOPerformingGroup.swift in Sources */,
 				E16DB8F41EC7585900E73447 /* ProductOrService.swift in Sources */,
+				E137CC541F70368B00CB175C /* OrganizationOrProgramMembership+Extension.swift in Sources */,
 				E194A9BB1EC8F3890010F1B0 /* PerformingGroup.swift in Sources */,
 				E170D56C1ECC81630002BF15 /* SOAnswer.swift in Sources */,
 				E194A9C71EC8FF280010F1B0 /* MusicPlaylist.swift in Sources */,
 				E16DBA021EC758A800E73447 /* SOListItem.swift in Sources */,
 				E16DB8D51EC7585900E73447 /* CountryOrText.swift in Sources */,
 				E16DB8C61EC7585900E73447 /* AudioObject.swift in Sources */,
+				E137CC1C1F701D8100CB175C /* ContactPointOrPlace+Extension.swift in Sources */,
 				E16DBA0E1EC758A800E73447 /* SOQuantitativeValue.swift in Sources */,
+				E137CC521F70367100CB175C /* OrganizationOrPerson+Extension.swift in Sources */,
+				E137CC341F7031EA00CB175C /* AreaServed+Extension.swift in Sources */,
 				E16DB8EB1EC7585900E73447 /* Number.swift in Sources */,
 				E16DB8D11EC7585900E73447 /* AlignmentObjectOrCourseOrText.swift in Sources */,
 				E170D5761ECC9F6C0002BF15 /* SOMusicGroup.swift in Sources */,
 				E16DB9001EC7585900E73447 /* ActionStatus.swift in Sources */,
+				E137CC561F7036AA00CB175C /* ProductModelOrText+Extension.swift in Sources */,
 				E16DB9FE1EC758A800E73447 /* SOIntangible.swift in Sources */,
 				E16DB8E21EC7585900E73447 /* GeoCoordinatesOrGeoShape.swift in Sources */,
+				E137CC161F701C3B00CB175C /* MakeableThing.swift in Sources */,
 				E16DB91B1EC7585900E73447 /* LocationFeatureSpecification.swift in Sources */,
 				E16DB9F91EC758A800E73447 /* SODistance.swift in Sources */,
 				E16DB9191EC7585900E73447 /* Language.swift in Sources */,
 				E16DB8F31EC7585900E73447 /* ProductModelOrText.swift in Sources */,
 				E16DB9081EC7585900E73447 /* CourseInstance.swift in Sources */,
 				E16DBA061EC758A800E73447 /* SOOfferCatalog.swift in Sources */,
+				E137CC441F7035B400CB175C /* ImageObjectOrURL+Extension.swift in Sources */,
 				E194A9B91EC8F2DF0010F1B0 /* PropertyValueOrText.swift in Sources */,
 				E16DB8C91EC7585900E73447 /* CreativeWork.swift in Sources */,
+				E137CC421F70359800CB175C /* GeoCoordinatesOrGeoShape+Extension.swift in Sources */,
 				E16DB9FD1EC758A800E73447 /* SOGeoShape.swift in Sources */,
 				E16DB9B41EC758A800E73447 /* SOMediaObject.swift in Sources */,
 				E194A9BF1EC8F42F0010F1B0 /* MusicGroupOrPerson.swift in Sources */,

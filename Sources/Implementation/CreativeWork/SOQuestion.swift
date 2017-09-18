@@ -46,8 +46,8 @@ public class SOQuestion: SOCreativeWork, Question {
     
     public override var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.acceptedAnswer?.dictionary {
-            dictionary[Keys.acceptedAnswer] = value as AnyObject
+        if let value = self.acceptedAnswer as? SOAnswer {
+            dictionary[Keys.acceptedAnswer] = value.dictionary as AnyObject
         }
         if let value = self.answerCount {
             dictionary[Keys.answerCount] = value as AnyObject
@@ -55,8 +55,8 @@ public class SOQuestion: SOCreativeWork, Question {
         if let value = self.downvoteCount {
             dictionary[Keys.downvoteCount] = value as AnyObject
         }
-        if let value = self.suggestedAnswer?.dictionary {
-            dictionary[Keys.suggestedAnswer] = value as AnyObject
+        if let value = self.suggestedAnswer as? SOAnswer {
+            dictionary[Keys.suggestedAnswer] = value.dictionary as AnyObject
         }
         if let value = self.upvoteCount {
             dictionary[Keys.upvoteCount] = value as AnyObject

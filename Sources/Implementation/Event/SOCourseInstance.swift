@@ -31,8 +31,8 @@ public class SOCourseInstance: SOEvent, CourseInstance {
         if let value = self.courseMode?.dictionaryValue {
             dictionary[Keys.courseMode] = value
         }
-        if let value = self.instructor?.dictionary {
-            dictionary[Keys.instructor] = value as AnyObject
+        if let value = self.instructor as? SOPerson {
+            dictionary[Keys.instructor] = value.dictionary as AnyObject
         }
         return dictionary
     }

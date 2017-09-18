@@ -34,14 +34,14 @@ public class SOProductModel: SOProduct, ProductModel {
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.isVariantOf?.dictionary {
-            dictionary[Keys.isVariantOf] = value as AnyObject
+        if let value = self.isVariantOf as? SOProductModel {
+            dictionary[Keys.isVariantOf] = value.dictionary as AnyObject
         }
-        if let value = self.predecessorOf?.dictionary {
-            dictionary[Keys.predecessorOf] = value as AnyObject
+        if let value = self.predecessorOf as? SOProductModel {
+            dictionary[Keys.predecessorOf] = value.dictionary as AnyObject
         }
-        if let value = self.successorOf?.dictionary {
-            dictionary[Keys.successorOf] = value as AnyObject
+        if let value = self.successorOf as? SOProductModel {
+            dictionary[Keys.successorOf] = value.dictionary as AnyObject
         }
         return dictionary
     }

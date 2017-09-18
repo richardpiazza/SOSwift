@@ -34,7 +34,7 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.album {
+        if let value = self.album as? [SOMusicAlbum] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)

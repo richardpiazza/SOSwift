@@ -58,8 +58,8 @@ public class SOCourse: SOCreativeWork, Course {
             }
             dictionary[Keys.coursePrerequisites] = values as AnyObject
         }
-        if let value = self.hasCourseInstance?.dictionary {
-            dictionary[Keys.hasCourseInstance] = value as AnyObject
+        if let value = self.hasCourseInstance as? SOCourseInstance {
+            dictionary[Keys.hasCourseInstance] = value.dictionary as AnyObject
         }
         return dictionary
     }

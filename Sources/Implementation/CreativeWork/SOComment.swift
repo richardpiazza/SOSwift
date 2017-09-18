@@ -38,8 +38,8 @@ public class SOComment: SOCreativeWork, Comment {
         if let value = self.downvoteCount {
             dictionary[Keys.downvoteCount] = value as AnyObject
         }
-        if let value = self.parentItem?.dictionary {
-            dictionary[Keys.parentItem] = value as AnyObject
+        if let value = self.parentItem as? SOQuestion {
+            dictionary[Keys.parentItem] = value.dictionary as AnyObject
         }
         if let value = self.upvoteCount {
             dictionary[Keys.upvoteCount] = value as AnyObject

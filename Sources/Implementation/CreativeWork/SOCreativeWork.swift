@@ -86,7 +86,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         return "CreativeWork"
     }
     
-    override public class var specificTypes: [Thing.Type] {
+    override public class var specificTypes: [MakeableThing.Type] {
         return [SOAudioObject.self, SOImageObject.self, SOVideoObject.self]
     }
     
@@ -471,7 +471,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     
     public override var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.about {
+        if let value = self.about as? SOThing {
             dictionary[Keys.about] = value.dictionary as AnyObject
         }
         if let value = self.accessMode {
@@ -499,23 +499,23 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.accessibilitySummary {
             dictionary[Keys.accessibilitySummary] = value as AnyObject
         }
-        if let value = self.accountablePerson?.dictionary {
-            dictionary[Keys.accountablePerson] = value as AnyObject
+        if let value = self.accountablePerson as? SOPerson {
+            dictionary[Keys.accountablePerson] = value.dictionary as AnyObject
         }
-        if let value = self.aggregateRating?.dictionary {
-            dictionary[Keys.aggregateRating] = value as AnyObject
+        if let value = self.aggregateRating as? SOAggregateRating {
+            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
         }
         if let value = self.alternativeHeadline {
             dictionary[Keys.alternativeHeadline] = value as AnyObject
         }
-        if let value = self.associatedMedia?.dictionary {
-            dictionary[Keys.associatedMedia] = value as AnyObject
+        if let value = self.associatedMedia as? SOMediaObject {
+            dictionary[Keys.associatedMedia] = value.dictionary as AnyObject
         }
-        if let value = self.audience?.dictionary {
-            dictionary[Keys.audience] = value as AnyObject
+        if let value = self.audience as? SOAudience {
+            dictionary[Keys.audience] = value.dictionary as AnyObject
         }
-        if let value = self.audio?.dictionary {
-            dictionary[Keys.audio] = value as AnyObject
+        if let value = self.audio as? SOAudioObject {
+            dictionary[Keys.audio] = value.dictionary as AnyObject
         }
         if let value = self.author?.dictionaryValue {
             dictionary[Keys.author] = value
@@ -523,20 +523,20 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.award {
             dictionary[Keys.award] = value as AnyObject
         }
-        if let value = self.character?.dictionary {
-            dictionary[Keys.character] = value as AnyObject
+        if let value = self.character as? SOPerson {
+            dictionary[Keys.character] = value.dictionary as AnyObject
         }
         if let value = self.citation?.dictionaryValue {
             dictionary[Keys.citation] = value
         }
-        if let value = self.comment?.dictionary {
-            dictionary[Keys.comment] = value as AnyObject
+        if let value = self.comment as? SOComment {
+            dictionary[Keys.comment] = value.dictionary as AnyObject
         }
         if let value = self.commentCount {
             dictionary[Keys.commentCount] = value as AnyObject
         }
-        if let value = self.contentLocation?.dictionary {
-            dictionary[Keys.contentLocation] = value as AnyObject
+        if let value = self.contentLocation as? SOPlace {
+            dictionary[Keys.contentLocation] = value.dictionary as AnyObject
         }
         if let value = self.contentRating {
             dictionary[Keys.contentRating] = value as AnyObject
@@ -565,20 +565,20 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.discussionURL {
             dictionary[Keys.discussionUrl] = value.absoluteString as AnyObject
         }
-        if let value = self.editor?.dictionary {
-            dictionary[Keys.editor] = value as AnyObject
+        if let value = self.editor as? SOPerson {
+            dictionary[Keys.editor] = value.dictionary as AnyObject
         }
-        if let value = self.educationalAlignment?.dictionary {
-            dictionary[Keys.educationalAlignment] = value as AnyObject
+        if let value = self.educationalAlignment as? SOAlignmentObject {
+            dictionary[Keys.educationalAlignment] = value.dictionary as AnyObject
         }
         if let value = self.educationalUse {
             dictionary[Keys.educationalUse] = value as AnyObject
         }
-        if let value = self.encoding?.dictionary {
-            dictionary[Keys.encoding] = value as AnyObject
+        if let value = self.encoding as? SOMediaObject {
+            dictionary[Keys.encoding] = value.dictionary as AnyObject
         }
-        if let value = self.exampleOfWork?.dictionary {
-            dictionary[Keys.exampleOfWork] = value as AnyObject
+        if let value = self.exampleOfWork as? SOCreativeWork {
+            dictionary[Keys.exampleOfWork] = value.dictionary as AnyObject
         }
         if let value = self.fileFormat?.dictionaryValue {
             dictionary[Keys.fileFormat] = value
@@ -589,8 +589,8 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.genre?.dictionaryValue {
             dictionary[Keys.genre] = value
         }
-        if let value = self.hasPart?.dictionary {
-            dictionary[Keys.hasPart] = value as AnyObject
+        if let value = self.hasPart as? SOCreativeWork {
+            dictionary[Keys.hasPart] = value.dictionary as AnyObject
         }
         if let value = self.headline {
             dictionary[Keys.headline] = value as AnyObject
@@ -598,8 +598,8 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.inLanguage?.dictionaryValue {
             dictionary[Keys.inLanguage] = value
         }
-        if let value = self.interactionStatistic?.dictionary {
-            dictionary[Keys.inLanguage] = value as AnyObject
+        if let value = self.interactionStatistic as? SOInteractionCounter {
+            dictionary[Keys.inLanguage] = value.dictionary as AnyObject
         }
         if let value = self.interactivityType {
             dictionary[Keys.interactivityType] = value.rawValue as AnyObject
@@ -613,8 +613,8 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.isFamilyFriendly {
             dictionary[Keys.isFamilyFriendly] = value as AnyObject
         }
-        if let value = self.isPartOf?.dictionary {
-            dictionary[Keys.isPartOf] = value as AnyObject
+        if let value = self.isPartOf as? SOCreativeWork {
+            dictionary[Keys.isPartOf] = value.dictionary as AnyObject
         }
         if let value = self.keywords {
             dictionary[Keys.keywords] = value as AnyObject
@@ -625,19 +625,19 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.license?.dictionaryValue {
             dictionary[Keys.license] = value
         }
-        if let value = self.locationCreated?.dictionary {
-            dictionary[Keys.locationCreated] = value as AnyObject
+        if let value = self.locationCreated as? SOPlace {
+            dictionary[Keys.locationCreated] = value.dictionary as AnyObject
         }
-        if let value = self.mainEntity?.dictionary {
-            dictionary[Keys.mainEntity] = value as AnyObject
+        if let value = self.mainEntity as? SOThing {
+            dictionary[Keys.mainEntity] = value.dictionary as AnyObject
         }
         if let value = self.material?.dictionaryValue {
             dictionary[Keys.material] = value
         }
-        if let value = self.mentions?.dictionary {
-            dictionary[Keys.mentions] = value as AnyObject
+        if let value = self.mentions as? SOThing {
+            dictionary[Keys.mentions] = value.dictionary as AnyObject
         }
-        if let value = self.offers {
+        if let value = self.offers as? [SOOffer] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -653,11 +653,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.provider?.dictionaryValue {
             dictionary[Keys.provider] = value
         }
-        if let value = self.releasedEvent?.dictionary {
-            dictionary[Keys.releasedEvent] = value as AnyObject
+        if let value = self.releasedEvent as? SOPublicationEvent {
+            dictionary[Keys.releasedEvent] = value.dictionary as AnyObject
         }
-        if let value = self.review?.dictionary {
-            dictionary[Keys.review] = value as AnyObject
+        if let value = self.review as? SOReview {
+            dictionary[Keys.review] = value.dictionary as AnyObject
         }
         if let value = self.schemaVersion?.dictionaryValue {
             dictionary[Keys.schemaVersion] = value
@@ -683,11 +683,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.version?.dictionaryValue {
             dictionary[Keys.version] = value
         }
-        if let value = self.video?.dictionary {
-            dictionary[Keys.video] = value as AnyObject
+        if let value = self.video as? SOVideoObject {
+            dictionary[Keys.video] = value.dictionary as AnyObject
         }
-        if let value = self.workExample?.dictionary {
-            dictionary[Keys.workExample] = value as AnyObject
+        if let value = self.workExample as? SOCreativeWork {
+            dictionary[Keys.workExample] = value.dictionary as AnyObject
         }
         return dictionary
     }

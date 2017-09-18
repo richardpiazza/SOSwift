@@ -35,14 +35,14 @@ public class SOReview: SOCreativeWork, Review {
     
     public override var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.itemReviewed?.dictionary {
-            dictionary[Keys.itemReviewed] = value as AnyObject
+        if let value = self.itemReviewed as? SOThing {
+            dictionary[Keys.itemReviewed] = value.dictionary as AnyObject
         }
         if let value = self.reviewBody {
             dictionary[Keys.reviewBody] = value as AnyObject
         }
-        if let value = self.reviewRating?.dictionary {
-            dictionary[Keys.reviewRating] = value as AnyObject
+        if let value = self.reviewRating as? SORating {
+            dictionary[Keys.reviewRating] = value.dictionary as AnyObject
         }
         return dictionary
     }

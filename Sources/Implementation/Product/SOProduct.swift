@@ -209,14 +209,14 @@ public class SOProduct: SOThing, Product {
     
     override public var dictionary: [String : AnyObject] {
         var dictionary = super.dictionary
-        if let value = self.additionalProperty?.dictionary {
-            dictionary[Keys.additionalProperty] = value as AnyObject
+        if let value = self.additionalProperty as? SOPropertyValue {
+            dictionary[Keys.additionalProperty] = value.dictionary as AnyObject
         }
-        if let value = self.aggregateRating?.dictionary {
-            dictionary[Keys.aggregateRating] = value as AnyObject
+        if let value = self.aggregateRating as? SOAggregateRating {
+            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
         }
-        if let value = self.audience?.dictionary {
-            dictionary[Keys.audience] = value as AnyObject
+        if let value = self.audience as? SOAudience {
+            dictionary[Keys.audience] = value.dictionary as AnyObject
         }
         if let value = self.award {
             dictionary[Keys.award] = value as AnyObject
@@ -248,11 +248,11 @@ public class SOProduct: SOThing, Product {
         if let value = self.height?.dictionaryValue {
             dictionary[Keys.height] = value
         }
-        if let value = self.isAccessoryOrSparePartFor?.dictionary {
-            dictionary[Keys.isAccessoryOrSparePartFor] = value as AnyObject
+        if let value = self.isAccessoryOrSparePartFor as? SOProduct {
+            dictionary[Keys.isAccessoryOrSparePartFor] = value.dictionary as AnyObject
         }
-        if let value = self.isConsumableFor?.dictionary {
-            dictionary[Keys.isConsumableFor] = value as AnyObject
+        if let value = self.isConsumableFor as? SOProduct {
+            dictionary[Keys.isConsumableFor] = value.dictionary as AnyObject
         }
         if let value = self.isRelatedTo?.dictionaryValue {
             dictionary[Keys.isRelatedTo] = value
@@ -266,8 +266,8 @@ public class SOProduct: SOThing, Product {
         if let value = self.logo?.dictionaryValue {
             dictionary[Keys.logo] = value
         }
-        if let value = self.manufacturer?.dictionary {
-            dictionary[Keys.manufacturer] = value as AnyObject
+        if let value = self.manufacturer as? SOOrganization {
+            dictionary[Keys.manufacturer] = value.dictionary as AnyObject
         }
         if let value = self.material?.dictionaryValue {
             dictionary[Keys.material] = value
@@ -278,7 +278,7 @@ public class SOProduct: SOThing, Product {
         if let value = self.mpn {
             dictionary[Keys.mpn] = value as AnyObject
         }
-        if let value = self.offers {
+        if let value = self.offers as? [SOOffer] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -297,14 +297,14 @@ public class SOProduct: SOThing, Product {
         if let value = self.releaseDate as? String {
             dictionary[Keys.releaseDate] = value as AnyObject
         }
-        if let value = self.review?.dictionary {
-            dictionary[Keys.review] = value as AnyObject
+        if let value = self.review as? SOReview {
+            dictionary[Keys.review] = value.dictionary as AnyObject
         }
         if let value = self.sku {
             dictionary[Keys.sku] = value as AnyObject
         }
-        if let value = self.weight?.dictionary {
-            dictionary[Keys.weight] = value as AnyObject
+        if let value = self.weight as? SOQuantitativeValue {
+            dictionary[Keys.weight] = value.dictionary as AnyObject
         }
         if let value = self.width?.dictionaryValue {
             dictionary[Keys.width] = value

@@ -326,8 +326,8 @@ public class SOPerson: SOThing, Person {
         if let value = self.address?.dictionaryValue {
             dictionary[Keys.address] = value
         }
-        if let value = self.affiliation?.dictionary {
-            dictionary[Keys.affiliation] = value as AnyObject
+        if let value = self.affiliation as? SOOrganization {
+            dictionary[Keys.affiliation] = value.dictionary as AnyObject
         }
         if let value = self.alumniOf?.dictionaryValue {
             dictionary[Keys.alumniOf] = value
@@ -338,8 +338,8 @@ public class SOPerson: SOThing, Person {
         if let value = self.birthDate as? String {
             dictionary[Keys.birthDate] = value as AnyObject
         }
-        if let value = self.birthPlace?.dictionary {
-            dictionary[Keys.birthPlace] = value as AnyObject
+        if let value = self.birthPlace as? SOPlace {
+            dictionary[Keys.birthPlace] = value.dictionary as AnyObject
         }
         if let value = self.brand {
             var values = [AnyObject]()
@@ -350,7 +350,7 @@ public class SOPerson: SOThing, Person {
             }
             dictionary[Keys.brand] = values as AnyObject
         }
-        if let value = self.children {
+        if let value = self.children as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -366,7 +366,7 @@ public class SOPerson: SOThing, Person {
             }
             dictionary[Keys.colleague] = values as AnyObject
         }
-        if let value = self.contactPoint {
+        if let value = self.contactPoint as? [SOContactPoint] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -376,8 +376,8 @@ public class SOPerson: SOThing, Person {
         if let value = self.deathDate as? String {
             dictionary[Keys.deathDate] = value as AnyObject
         }
-        if let value = self.deathPlace?.dictionary {
-            dictionary[Keys.deathPlace] = value as AnyObject
+        if let value = self.deathPlace as? SOPlace {
+            dictionary[Keys.deathPlace] = value.dictionary as AnyObject
         }
         if let value = self.duns {
             dictionary[Keys.duns] = value as AnyObject
@@ -391,7 +391,7 @@ public class SOPerson: SOThing, Person {
         if let value = self.faxNumber {
             dictionary[Keys.faxNumber] = value as AnyObject
         }
-        if let value = self.follows {
+        if let value = self.follows as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -410,10 +410,10 @@ public class SOPerson: SOThing, Person {
         if let value = self.globalLocationNumber {
             dictionary[Keys.globalLocationNumber] = value as AnyObject
         }
-        if let value = self.hasOfferCatalog?.dictionary {
-            dictionary[Keys.hasOfferCatalog] = value as AnyObject
+        if let value = self.hasOfferCatalog as? SOOfferCatalog {
+            dictionary[Keys.hasOfferCatalog] = value.dictionary as AnyObject
         }
-        if let value = self.hasPOS {
+        if let value = self.hasPOS as? [SOPlace] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -438,14 +438,14 @@ public class SOPerson: SOThing, Person {
         if let value = self.jobTitle {
             dictionary[Keys.jobTitle] = value as AnyObject
         }
-        if let value = self.knows {
+        if let value = self.knows as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.knows] = values as AnyObject
         }
-        if let value = self.makesOffer {
+        if let value = self.makesOffer as? [SOOffer] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -464,8 +464,8 @@ public class SOPerson: SOThing, Person {
         if let value = self.naics {
             dictionary[Keys.naics] = value as AnyObject
         }
-        if let value = self.nationality?.dictionary {
-            dictionary[Keys.nationality] = value as AnyObject
+        if let value = self.nationality as? SOCountry {
+            dictionary[Keys.nationality] = value.dictionary as AnyObject
         }
         if let value = self.netWorth?.dictionaryValue {
             dictionary[Keys.netWorth] = value
@@ -479,31 +479,31 @@ public class SOPerson: SOThing, Person {
             }
             dictionary[Keys.owns] = values as AnyObject
         }
-        if let value = self.parent {
+        if let value = self.parent as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.parent] = values as AnyObject
         }
-        if let value = self.performerIn?.dictionary {
-            dictionary[Keys.performerIn] = value as AnyObject
+        if let value = self.performerIn as? SOEvent {
+            dictionary[Keys.performerIn] = value.dictionary as AnyObject
         }
-        if let value = self.relatedTo {
+        if let value = self.relatedTo as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.relatedTo] = values as AnyObject
         }
-        if let value = self.seeks {
+        if let value = self.seeks as? [SODemand] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
             }
             dictionary[Keys.seeks] = values as AnyObject
         }
-        if let value = self.sibling {
+        if let value = self.sibling as? [SOPerson] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)
@@ -513,8 +513,8 @@ public class SOPerson: SOThing, Person {
         if let value = self.sponsor?.dictionaryValue {
             dictionary[Keys.sponsor] = value
         }
-        if let value = self.spouse?.dictionary {
-            dictionary[Keys.spouse] = value as AnyObject
+        if let value = self.spouse as? SOPerson {
+            dictionary[Keys.spouse] = value.dictionary as AnyObject
         }
         if let value = self.taxID {
             dictionary[Keys.taxID] = value as AnyObject
@@ -525,13 +525,13 @@ public class SOPerson: SOThing, Person {
         if let value = self.vatID {
             dictionary[Keys.vatID] = value as AnyObject
         }
-        if let value = self.weight?.dictionary {
-            dictionary[Keys.weight] = value as AnyObject
+        if let value = self.weight as? SOQuantitativeValue {
+            dictionary[Keys.weight] = value.dictionary as AnyObject
         }
         if let value = self.workLocation?.dictionaryValue {
             dictionary[Keys.workLocation] = value
         }
-        if let value = self.worksFor {
+        if let value = self.worksFor as? [SOOrganization] {
             var values = [[String : AnyObject]]()
             for element in value {
                 values.append(element.dictionary)

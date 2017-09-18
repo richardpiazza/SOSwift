@@ -9,8 +9,6 @@ public protocol ThingConformance:
 public protocol Thing: ThingConformance {
     /// The canonical name of this type
     static var type: String { get }
-    /// Specific Type subtypes
-    static var specificTypes: [Thing.Type] { get }
     
     /// An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax.
     /// This is a relationship between something and a class that the thing is in.
@@ -40,17 +38,10 @@ public protocol Thing: ThingConformance {
     var sameAs: [URL]? { get set }
     /// URL of the item.
     var url: URL? { get set }
-    
-    init(dictionary: [String : AnyObject])
-    var dictionary: [String : AnyObject] { get }
 }
 
 public extension Thing {
     public static var context: String {
         return "http://www.schema.org"
-    }
-    
-    static func make(dictionary: [String : AnyObject]) -> Self {
-        return self.init(dictionary: dictionary)
     }
 }

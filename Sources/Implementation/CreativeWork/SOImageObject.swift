@@ -49,8 +49,8 @@ public class SOImageObject: SOMediaObject, ImageObject {
         if let value = self.representativeOfPage {
             dictionary[Keys.representativeOfPage] = value as AnyObject
         }
-        if let value = self.thumbnail?.dictionary {
-            dictionary[Keys.thumbnail] = value as AnyObject
+        if let value = self.thumbnail as? SOImageObject {
+            dictionary[Keys.thumbnail] = value.dictionary as AnyObject
         }
         return dictionary
     }
