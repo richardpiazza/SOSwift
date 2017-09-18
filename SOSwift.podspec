@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name = "SOSwift"
-  s.version = "0.1.4"
+  s.version = "0.2.0"
   s.summary = "A swift implementation of Schema.org structured data vocabulary."
   s.description = <<-DESC
   Schema.org is a collaborative, community activity with a mission to create, maintain,
@@ -20,30 +20,14 @@ Pod::Spec.new do |s|
   s.author = { "Richard Piazza" => "github@richardpiazza.com" }
   s.social_media_url = 'https://twitter.com/richardpiazza'
 
-  s.osx.frameworks = 'Foundation'
-  s.osx.deployment_target = "10.12"
-
-  s.ios.frameworks = 'Foundation'
-  s.ios.deployment_target = "10.0"
-
-  s.tvos.frameworks = 'Foundation'
-  s.tvos.deployment_target = "10.0"
-
-  s.watchos.frameworks = 'Foundation'
-  s.watchos.deployment_target = "3.0"
-
   s.source = { :git => "https://github.com/richardpiazza/SOSwift.git", :tag => s.version.to_s }
+  s.source_files = 'Sources/*'
+  s.frameworks = 'Foundation'
   s.requires_arc = true
-  s.default_subspec = 'Implementation'
+  s.dependency 'SOSwiftVocabulary', '~> 0.1'
 
-  s.subspec 'SchemaOnly' do |sub|
-    sub.frameworks = 'Foundation'
-    sub.source_files = 'Sources/Schema.org/*', 'Sources/Schema.org/*/*'
-  end
-
-  s.subspec 'Implementation' do |sub|
-    sub.frameworks = 'Foundation'
-    sub.dependency 'SOSwift/SchemaOnly'
-    sub.source_files = 'Sources/Implementation/*', 'Sources/Implementation/*/*'
-  end
+  s.osx.deployment_target = "10.13"
+  s.ios.deployment_target = "11.0"
+  s.tvos.deployment_target = "11.0"
+  s.watchos.deployment_target = "4.0"
 end

@@ -29,5 +29,7 @@ import PackageDescription
 
 let package = Package(
     name: "SOSwift",
-    dependencies: []
+    dependencies: [
+        .Package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", majorVersion: 0, minor: 1)
+    ]
 )

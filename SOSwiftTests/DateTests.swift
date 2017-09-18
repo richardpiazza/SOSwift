@@ -1,4 +1,5 @@
 import XCTest
+import SOSwiftVocabulary
 @testable import SOSwift
 
 class DateTests: XCTestCase {

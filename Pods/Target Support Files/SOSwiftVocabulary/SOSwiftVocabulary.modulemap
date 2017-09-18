@@ -1,0 +1,6 @@
+framework module SOSwiftVocabulary {
+  umbrella header "SOSwiftVocabulary-umbrella.h"
+
+  export *
+  module * { export * }
+}

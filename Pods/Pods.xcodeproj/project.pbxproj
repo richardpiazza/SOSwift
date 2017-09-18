@@ -7,68 +7,362 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B0D682E8772F3E1DFF408855D194CF6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		2ED7B8E2899B7D18932D83B4ABD2184A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		6EE5EA779D7361772E2B2FA5D958DE79 /* Pods-SOSwiftTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9F5BEA2C237829080721C4D79E0DCE /* Pods-SOSwiftTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7EAE5DBA26A7140B6D127FB35536DEB3 /* Pods-SOSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BEF78F690B8C27830C17E6261710A1 /* Pods-SOSwift-dummy.m */; };
-		85E3E404C56EF31AC2F0B4B256DC0995 /* Pods-SOSwiftTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B401FD997D265910B2706978593DC /* Pods-SOSwiftTests-dummy.m */; };
-		A554F94972D33EE24E8FF2A527968FEB /* Pods-SOSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E431D294792598C8C6E2A0337A68E2A /* Pods-SOSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0082BA1968E6C7DE3A06FC2F6B841991 /* ContactPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752DB255A841653027A660890887DAE1 /* ContactPoint.swift */; };
+		02B556B1916A199B21E22A1964B16C7C /* AccessibilityAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA2372114C98863FA409E8988D9F9A /* AccessibilityAPI.swift */; };
+		03C5D2C9046044F26A9E4717F67DB116 /* Pods-SOSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BEF78F690B8C27830C17E6261710A1 /* Pods-SOSwift-dummy.m */; };
+		042FE4ACF7C5367BD1B3ED214B38242A /* PriceSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950392C3F86A0867CBE52FB220E33F3F /* PriceSpecification.swift */; };
+		0664306EAF523E2408C78B4036EE5BB5 /* AccessibilityHazard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B84A64F9B514175262D256F4A5F09F8 /* AccessibilityHazard.swift */; };
+		0737FC22400B6B5A67B1D1D4E1062ADD /* VideoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C04F94A628072AE9A48E12FBC07670 /* VideoObject.swift */; };
+		08E21FF7030B328087EBD15EE8E097E0 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14AF4B821FA5CE1003DA94F6EAE0DCB /* Brand.swift */; };
+		08EFCDD320815A8E6908055482E4ABFC /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74204DDB7BA88CDDB76C29942D6F986A /* DateTime.swift */; };
+		0A2BDD11BA2351E91913597A8646418F /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD259E67DAF6A76BC078B47E9BF7CDC /* Identifier.swift */; };
+		108EC4228011BF8858C8CF94CEE0BEB7 /* MapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7365D68BF15EDB9C3E5C896F297093DB /* MapType.swift */; };
+		10C7C09C7C7B392928DD36640B81B587 /* ItemListOrMusicRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE1C68D92977BB1B8C5DACF17E74AF9 /* ItemListOrMusicRecording.swift */; };
+		123F92F3B18719CCE462AFAE5CDA59A0 /* DateTimeOrTextOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9551F8B50B2869868DE55AA02B4531 /* DateTimeOrTextOrURL.swift */; };
+		13B47DA9BFBF8878C48B322AB3317992 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F19B89B74F5B2E514B8CB628F761463 /* ProductModel.swift */; };
+		16AB387B7DE979AB7F045F3FA45F1EB2 /* SoftwareApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2051B5A40421DFC8B160F0CD4AC20BA /* SoftwareApplication.swift */; };
+		1E5902134F7339AC6117CAA16E351F67 /* ImageObjectOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC42C2A5DD1529704704C809AFCFCDD /* ImageObjectOrURL.swift */; };
+		2108B19410B42D01EC745FB6A6C65642 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA16B02B48FBD2B84516D49C0A77945D /* Duration.swift */; };
+		21DA8113486155CD3EC8A20756AC0B4F /* AggregateRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F0C3308A72C470DE8BC6FB4DBECC75 /* AggregateRating.swift */; };
+		22F051E269E4B3638AB2A8E011C96D3D /* CreativeWorkOrProductOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BF5D0BE3BE8FDA4F9377C22E2C7BF8 /* CreativeWorkOrProductOrURL.swift */; };
+		240DC82BE2085E88DB95534EE58367B4 /* AccessMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD522079A606FEA17DAA3AF0856C6B /* AccessMode.swift */; };
+		24905C6C8FFF7DC9AF225A90F013A486 /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101186C712406FAE974537606EAB4CB9 /* ImageObject.swift */; };
+		25F0F26901CC1678CD1C15995EE5F55F /* IntegerOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E695042BBCBBF5E657352425BD8F28DF /* IntegerOrText.swift */; };
+		264665D01525FC632F58BE2A827E8E0C /* BrandOrOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4384E071B0E06E484DF07A6A7E2C389E /* BrandOrOrganization.swift */; };
+		268C63DB13DDBE58567199FBDB42D6C8 /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F38BD5A8DF85CDE5DE0219102ACA7D /* DayOfWeek.swift */; };
+		29B498899DD9988786B72194D453AD07 /* MediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4151CA9962509D6A956577C36EBAD9 /* MediaObject.swift */; };
+		2B3E8CA2DAD925A471D6E6E3AA2B16F3 /* Dataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E30BA5353D4E0FCAA72FCCCCFB2B5F4 /* Dataset.swift */; };
+		2D2D37F8165797E449B0DCA953300C01 /* PlaceOrPostalAddressOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25ACA65B37B42B21A481DCE79A7E2DF /* PlaceOrPostalAddressOrText.swift */; };
+		2DB2C1E059738FB8EA795D72267A929A /* Photograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C1658E314B6D523D7106C394EF58C /* Photograph.swift */; };
+		2E6B6268234B49259B43DE84ED56FE55 /* GenderOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA27CA1C71A7A562D3D7C163849E4797 /* GenderOrText.swift */; };
+		31C924A0CF736B8F23D6A263299659AA /* PostalAddressOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF51EC42D06F618DF768F29F9474CA4B /* PostalAddressOrText.swift */; };
+		35A61BC8587D896FE49E5E609649B6AC /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412C506FD659E11B02D7D4C85FCD9902 /* Article.swift */; };
+		368CB6E1DC82D6B4E722C90D88397392 /* SOSwiftVocabulary-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB2A1BB3B14B94A72808AF3FE009337 /* SOSwiftVocabulary-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		36D58E149AA59D912D86AD4221771D1D /* AreaServed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275BB19C2F8D02937DAE351F109A94B4 /* AreaServed.swift */; };
+		3E93EEB3CF6D32152ACAA9FA851629D5 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89E5E261B645D75E8D77C52944C3E7 /* Action.swift */; };
+		3F69F3E23366170991CF9E254C254101 /* MonetaryAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1122E202A3AC4BF860986EDDB9ADC7 /* MonetaryAmount.swift */; };
+		3FABBCDCCC8C203AF1059CA67079AFEF /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BFFB0C07FA2D49448F59FA9AF3E9A7 /* Comment.swift */; };
+		43B961A189FF23401331B86C70C988C6 /* Pods-SOSwiftTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B401FD997D265910B2706978593DC /* Pods-SOSwiftTests-dummy.m */; };
+		486A1516CEB1A684E6CF6B259253C1A3 /* TextOrThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C024B264D61EEADC9B4AA9B5B8251DD /* TextOrThing.swift */; };
+		488011D8BD3F40CB46B0EEC3A3DDD1B1 /* ProductOrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33198B83ECC352F7163B6944DEB51C47 /* ProductOrService.swift */; };
+		48D378F58512FCA042DEAA6C3DF6E3FB /* ItemListOrderOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D456E25D23D18B420B3D929D0C356E90 /* ItemListOrderOrText.swift */; };
+		4926F7659896A0A418B82511D976D746 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B702DEDFCF551CDC9C28EB17298282C7 /* Organization.swift */; };
+		4AA6A7852B5D22883D6723659A3DB4F5 /* PersonOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3AEAC63F0A7548401AFEB2C58A238C /* PersonOrURL.swift */; };
+		4DB4CFDA9FDE1F26915B382ADE3E9CB7 /* PropertyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F776E9F077AFD6B63FEA783A347E1 /* PropertyValue.swift */; };
+		4F03A9E8383DC3879C5F0627F783FF96 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D82A859987756ADDB40FF6578B3959 /* Product.swift */; };
+		4FC1EE9681F60E30E2564960E59168A1 /* EventStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A686B60FE0E5EA6E2A474072DAC5564F /* EventStatus.swift */; };
+		50C655E1D1F845A88C156F22D62097C3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6526E38143AA3C7320583E142AA64538 /* Cocoa.framework */; };
+		51793A0CF1F0F9FFB13AB835DFFDA30C /* ContactPointOrPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4F42F10578D14747EA9447854C841 /* ContactPointOrPlace.swift */; };
+		51D5ADC2831F784B3CEEE69B19B88B6F /* BroadcastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA04214B936F180576082444B08ACDAF /* BroadcastService.swift */; };
+		5349495E7B1D7C26DFE05A23A7230C13 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF451AAAC6CAAEF3D7C84802EDF0C61 /* Answer.swift */; };
+		59BD41B618A2826E5C8CB5CBBFBA0F9E /* AlignmentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56520BA1B75B2C1C6F956D1C58F991A4 /* AlignmentObject.swift */; };
+		5B30423F8FEC2D493A7004FED534CDFE /* CreativeWorkOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB29D28AC56E951C0B163CF487E6A1B6 /* CreativeWorkOrURL.swift */; };
+		5C9666216388F37CDB9926A4CDAED02A /* EntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C501F82E3A2B8F8585305508D5E057 /* EntryPoint.swift */; };
+		6064674A8891C173D4D444194EF63A4E /* DateOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E7B799E9C0278C55C7000AED71425 /* DateOnly.swift */; };
+		62F92E17F3BDCDC0DE30CED119CBF7A7 /* PostalAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A5AE9FD7B482E5E2D0393D285F465 /* PostalAddress.swift */; };
+		63C36E758BF58E87857390E4AC80382F /* QualitativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EA0C131B45E54152C07B4AF5D7E54 /* QualitativeValue.swift */; };
+		65426CB9A7A68F993AAB3EA106E05FAA /* InteractionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A3FD64C2C3822930286913790F957 /* InteractionCounter.swift */; };
+		6AF23555379FEF26ED58FC6A04129EFC /* ListItemOrTextOrThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251274C6D59255D53FC0541506B28FF6 /* ListItemOrTextOrThing.swift */; };
+		6E6A9ECC82B025E2231581ABF8815D41 /* ValueReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F45FEB2384A682159A786F7B15257CA /* ValueReference.swift */; };
+		6FDFDC7CD1ED19A64F1D568B7B96D716 /* ProductModelOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346EF39A9E68FA016FDA90468BA4413F /* ProductModelOrText.swift */; };
+		6FE2C5D267B591064751B0A89D1401D9 /* EducationalOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E7FC73D9EE210DDF57AAA10BEDB549 /* EducationalOrganization.swift */; };
+		70A695C1054D26859D887DAA168CA95B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C6645BB2CDC44429A19BEF67C488AE /* Person.swift */; };
+		72E90C2C943B364B2AFB615B0476C921 /* OfferCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2798C58E8A5D67E9B8EEF3C920A2F25 /* OfferCatalog.swift */; };
+		7BDA868D8378638C2C831F5C19336A2C /* StructuredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BBD0F3F64824F929905BB980240B3B /* StructuredValue.swift */; };
+		7CC53BAA4849FC6BD6A471288B623493 /* OwnershipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF808D6A048C1363384EE0DD30E34A /* OwnershipInfo.swift */; };
+		7CD7F1D2EF80E0E9B3554D445D43688E /* OpeningHoursSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49148F2C86FDEAEF9C31DEA69858D7B /* OpeningHoursSpecification.swift */; };
+		7E216662671D830F04DBD016CE43D476 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74802A917A958E90A93C48327DD2ADD4 /* Map.swift */; };
+		873226F54C8757260FA9697E9D8AA975 /* LanguageOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9DF7912F20763EAF0BFFCD3079CB3F /* LanguageOrText.swift */; };
+		886EF710CD39F20F9302407FA42B8856 /* Website.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38909C700AE09DBC465456BE9D75318 /* Website.swift */; };
+		896578316034C0CD1CD992F7046D906D /* Interactivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C887132DB468B242930865E07B8F1F5 /* Interactivity.swift */; };
+		8A6285BDAF2554E9C82787E46FCEFC9D /* AudioObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39EC5283A54BA983ED5CE6EBD65FCA2 /* AudioObject.swift */; };
+		8AD8998EB9FF7D9A7CC6E29DFDE14AA0 /* PropertyValueOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F615556F39ECC7BD42B68E7453F724DA /* PropertyValueOrText.swift */; };
+		8B8D9D141F13F107FFDE36C496275D79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6526E38143AA3C7320583E142AA64538 /* Cocoa.framework */; };
+		90652E977E98B6E74A19CA22348EE31F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E110E3518E2D475577D0E2056C8B05D /* Foundation.framework */; };
+		90B2D87DCB2C2D4D8039E91CAEDB0620 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF677DB71C95D7D849555EA56D5CC0 /* Number.swift */; };
+		91BEF5911873B447EB669F5E7490CE14 /* ItemListOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A02EF1873F704FC3C2A728EFCF3CBD5 /* ItemListOrder.swift */; };
+		9387047BC77CADDC7EA1CA6AB84FFC6A /* MapOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43503DEB4DA56C6B5F9652D70B4D0E69 /* MapOrURL.swift */; };
+		951168B8F34D274A937E9558049A6A6D /* Pods-SOSwiftTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9F5BEA2C237829080721C4D79E0DCE /* Pods-SOSwiftTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99270B1076DBD93F37B7ED0BF1F91AA4 /* ProductOrTextOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A6D2B397FDD1D66BDF9C4589D3AEB /* ProductOrTextOrURL.swift */; };
+		9A2102152F76A65FC5C3E0BC81232160 /* SOSwiftVocabulary-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4592CED0D0DB70BE7D53187F9C4CBCF /* SOSwiftVocabulary-dummy.m */; };
+		9B07ABE80F9FA46CE41A98BFD0D52DAD /* Demand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EF2E0B97F8EAF706A6C8D59024B7 /* Demand.swift */; };
+		9BF26483CD7AC31FA43765EC829AA3E5 /* DataFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC64DC33D05AB13C051318D99BBBEBC /* DataFeed.swift */; };
+		9C11CA53A384A92B941FDD4121F4103D /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A70244359E0821E078C9D04A468A1B /* Thing.swift */; };
+		9C5A46DD1A652CAFB25CCC0FBEF45B46 /* MusicGroupOrPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C3559D3AEB4F47D5C49404909513 /* MusicGroupOrPerson.swift */; };
+		9C71373B802C0D4AEF9F92B47DEC5B2B /* AccessibilityFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD6F317CBB2FF3906D545C46EF6E3B7 /* AccessibilityFeature.swift */; };
+		9CDF4CBDF738C3A5A98B33D73B3EE24B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FF86941D5C504A21C91333E0736A5 /* Question.swift */; };
+		9D1EEAFA632CB52D047C3AFA4FE2CA0A /* ProgramMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213607095A0BE2BF4A1CF27E6AAA58A /* ProgramMembership.swift */; };
+		9F0B91F40FDA18F150A426CF2300BED7 /* OwnershipInfoOrProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7887E844237D5876D9998BA27B93EAE8 /* OwnershipInfoOrProduct.swift */; };
+		A00D3D1F78377DE25F6A29B635A10398 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F43B5C25DE4B4C345C23E8A49BE060 /* Offer.swift */; };
+		A0569FA2337DDB903D1696F7C9C9FBE2 /* OrganizationOrPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AEE5568290E7B20232CC62762A9D07 /* OrganizationOrPerson.swift */; };
+		A4B10213C8156EF43B6A1630DE47B58F /* GeoShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2345440730D43B9D69A10B9BF4DC00 /* GeoShape.swift */; };
+		A5D76E3CD9F6F6931578968BFB8C7E40 /* OrganizationOrProgramMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = D974175383E22F479F61FC807D27712B /* OrganizationOrProgramMembership.swift */; };
+		A6182EB67BBFF0967C8090D9E85A8B02 /* ImageObjectOrPhotograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCCAF48D337A9CBA6E2F52112793EDE /* ImageObjectOrPhotograph.swift */; };
+		A6C145C3C6DAA80B122F619E3CD7145B /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB39F8CD48B68FCC53B7B124BF626A7 /* Course.swift */; };
+		AB727A5E6FE85A78E5258D3CCFEE3F58 /* Audience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806D71FAA8FBF46A575A48DA7B4FA9FE /* Audience.swift */; };
+		AF6A86EF24196C1814286F6909140082 /* ProductOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD33477BBC3E35FAC7DFD50AE3047BE6 /* ProductOrText.swift */; };
+		AF9DFD323F140BDFB224F7A5B27CAEE1 /* MusicGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E1872DB5C027ACD32B1853FF9B17DD /* MusicGroup.swift */; };
+		B23BBB472385CFAAA405DC9D257443D1 /* MusicRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D95B3D020166CF9896E654A731C7B /* MusicRecording.swift */; };
+		B40A1714C29A73D4B1DB80A2868DA834 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16AB26F2C2BA36247D836C08348D718 /* Review.swift */; };
+		B60002634D926F4320D40AC253D33B61 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796A232CF51CA145CD43EA9B9D22BD8 /* Distance.swift */; };
+		B61920DCD535D7EAE6B11D4D0113387C /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF473F4A5ACC8C7F32F626D3C09C7B /* ListItem.swift */; };
+		BB1DA68BC94323566D7AA6EBBE49F41E /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A008BCEC991C7A69064649912DF2C5E /* Gender.swift */; };
+		BDB83A138A3B2E9EF86B1453DE046664 /* PerformingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478FB74F9F86B1015FB934664FC9EC3E /* PerformingGroup.swift */; };
+		BE0D3EEF4C280D5658F56B1904374A8E /* ContactPointOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8364B53A8EED3CC56B59BFCEAFC9E17 /* ContactPointOption.swift */; };
+		C01146D4056A86B04E1FE8B853495FDE /* DistanceOrQuantitativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401AA05EAB10678C8D12A56D5DAD34C /* DistanceOrQuantitativeValue.swift */; };
+		C428876B2D2FC4632BCEE61240F93DF0 /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1914C1CD3FB28ACF2064A7ECC4198B7 /* ItemList.swift */; };
+		C6149EA9F68E2EF00746F2B762BABF28 /* NumberOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43D0470A6D8089F5C0D240BFE47916E /* NumberOrText.swift */; };
+		C73AA7DDED303236A3554DC00A335CFE /* PublicationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F503C74795915717B7E3B5FCA2ABE72 /* PublicationEvent.swift */; };
+		C7FBD3FFE08B9FC36389ECC355AEBF20 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C536D9D2BA5FAC7DADF36AC49E97E2 /* Event.swift */; };
+		C949E8C1E8FE566311D537695EE4A74A /* OfferItemCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A62F4958189836DA029F6BAF6E0562 /* OfferItemCondition.swift */; };
+		CAD6BAAACD64AFBB55E1E3E9D67958FF /* ActionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A82403FDE9D7BB1C8AF99290324888 /* ActionStatus.swift */; };
+		CB2612DBAB63ADA286F5BB2E4756A9C1 /* TextOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCF1D0DF16B001F6FF9F605C27EDC91 /* TextOrURL.swift */; };
+		CC3EA19D9D082E632E3F2661E5805423 /* LocationFeatureSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0511AE6CEEC2B6E89CE80EE3A0DA7C9 /* LocationFeatureSpecification.swift */; };
+		CCE914DAD6B09E3591B2C4068CADCF00 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C02800C0C99EAC6741B8B14383AF0 /* Service.swift */; };
+		CE25531B9793C65955605873ACA254C2 /* SoftwareApplicationOrWebsite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75C1A389DD7F528232C36678F4CD8BB /* SoftwareApplicationOrWebsite.swift */; };
+		CFBB1F48580441642CFE1BF4852F098F /* EducationalOrganizationOrOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB570B6E4180084AAF54F05BE3039B2C /* EducationalOrganizationOrOrganization.swift */; };
+		D2A0B05669304255B2673488B19FFCAC /* Pods-SOSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E431D294792598C8C6E2A0337A68E2A /* Pods-SOSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2E00ADDE769CC5485836A86FB8A01F5 /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27C113A550A8FD67B3DF0E4BCDCD24 /* Enumeration.swift */; };
+		D2FF6C0670B047EDCA076F575F74DE85 /* GeoCoordinatesOrGeoShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2EAA7CEE5091552EB36EA7210E9D75 /* GeoCoordinatesOrGeoShape.swift */; };
+		D3D64D58D4949641B301E0B1465F68A1 /* Intangible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567A3275E590FF296A717DEC36CB770F /* Intangible.swift */; };
+		D48B5E215065B38A7CCFD6A94F8B4F84 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3724032B807EF2FB168E04ED0F6F4195 /* Time.swift */; };
+		D68DA60C21177F72884BB2CF6181A4CA /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76185D5DD972FDB66D3C159312460D35 /* Place.swift */; };
+		D7D4A52B9C3CA7882BC4D15BDF7130EB /* MonetaryAmountOrPriceSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18FA25830E73FB0E279E217CE4FE05 /* MonetaryAmountOrPriceSpecification.swift */; };
+		D9641A484339D2F8F2D1B7A60C63255F /* QuantitativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41807EF42CF5B0A9C009D63A81D94099 /* QuantitativeValue.swift */; };
+		DBCC1B30648707480FF761F9781C69A4 /* CreativeWorkOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CF74F295C24A4985BEB6A4AB5647BC /* CreativeWorkOrText.swift */; };
+		DDFB1503B184AAC4E7B6A709A72E4B4E /* ServiceChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DBC820805E741D469262B3C96F0D34 /* ServiceChannel.swift */; };
+		DFF922257D6EEF10EF45AC0089078AE5 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81A941C78F0F5F355AD2D5C71CB4C2D /* Rating.swift */; };
+		E3C907159151CCDA71F34CC076CDFDC3 /* GeoCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75546E1251546AAEF774F25BE7F31C3B /* GeoCoordinates.swift */; };
+		E5B74F312295239850FE15AA42362775 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6526E38143AA3C7320583E142AA64538 /* Cocoa.framework */; };
+		E5BDD0E5DF2A4726E478B93344C2694D /* CourseInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FC944F92AB97FF8FC13B26FD9E385 /* CourseInstance.swift */; };
+		E784736F2CA73F580F8F0E61AFC68253 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E87119FE905F9B5F8A4491368C28C /* NewsArticle.swift */; };
+		E79448EC6356697D6733E8EAA103B223 /* MusicAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CB6BD3D9022A250B20943EE42194D3 /* MusicAlbum.swift */; };
+		EA3EC5B56C77E54DD3C216A531F47AFD /* AccessModeSufficient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A01ED07155EF128C89EF7CFE4D9120 /* AccessModeSufficient.swift */; };
+		EB0DF76ED3B20952C113A9906C28FCA8 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C93D36716370AD368F3BCB2684BE5 /* Country.swift */; };
+		ECEC45207C4003E30A6D95C5E0C08617 /* CreativeWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15ABD9C1406F016B8A0913E90721E61 /* CreativeWork.swift */; };
+		F06EA2C85EA546D4A085052EDCA16109 /* MusicPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56D50BCD54B2B3426FD69B7D7C412D /* MusicPlaylist.swift */; };
+		F0C1E1E4AD4C7913D08242BC893826F9 /* CountryOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B192EF43785AD5D134071161476085DB /* CountryOrText.swift */; };
+		F4F85FF70B716FB54255CD5C2C975DF3 /* DateOnlyOrDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4CDA9B9CCECA82F404B35485A0A23 /* DateOnlyOrDateTime.swift */; };
+		F72FFD33B41E0F116528ECEA930A9520 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D475C0E9002127240B32913EDD9A2 /* Language.swift */; };
+		FAF976D278E8E2A6FF9180632455C88D /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538941DD2D550FCCE34A7EB4DDCF8BDF /* Quantity.swift */; };
+		FB65507C7370CA20670E23E60240DC31 /* AlignmentObjectOrCourseOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8571C19BD442B8EE4A2BB074E10D73 /* AlignmentObjectOrCourseOrText.swift */; };
+		FB7B1051B617B4E20872C8D365515BC7 /* AccessibilityControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F897830F273E773B340B00EB7E8F647 /* AccessibilityControl.swift */; };
+		FD13359D9E4C1C95CC26B913338BC056 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF7E3D903D3260A177849D06358AB9 /* Value.swift */; };
+		FDC25C678918A417C31C6B1FC0F9B151 /* AdministrativeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BB3A738C026038A1C90BF594A82F58 /* AdministrativeArea.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8589BBB8DA02E7EB91F52B06A0C1BC76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C731D25E9EF7CF03B59FA3B4341AF060;
+			remoteInfo = SOSwiftVocabulary;
+		};
+		AE8D4B9F225282514072F30CB7A6DDDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C731D25E9EF7CF03B59FA3B4341AF060;
+			remoteInfo = SOSwiftVocabulary;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		01A01ED07155EF128C89EF7CFE4D9120 /* AccessModeSufficient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessModeSufficient.swift; path = Sources/AccessModeSufficient.swift; sourceTree = "<group>"; };
+		03CF74F295C24A4985BEB6A4AB5647BC /* CreativeWorkOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreativeWorkOrText.swift; path = Sources/CreativeWorkOrText.swift; sourceTree = "<group>"; };
 		049B401FD997D265910B2706978593DC /* Pods-SOSwiftTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SOSwiftTests-dummy.m"; sourceTree = "<group>"; };
 		04AAD6B5DC870970D53694F247CA2887 /* Pods-SOSwiftTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SOSwiftTests-frameworks.sh"; sourceTree = "<group>"; };
 		07F8D7B7D6DCA01C7912C64E092F71C7 /* Pods-SOSwiftTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SOSwiftTests-resources.sh"; sourceTree = "<group>"; };
+		09AEE5568290E7B20232CC62762A9D07 /* OrganizationOrPerson.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OrganizationOrPerson.swift; path = Sources/OrganizationOrPerson.swift; sourceTree = "<group>"; };
 		0CCC2DBEFFEAA5883D4C2653A34D5D1C /* Pods-SOSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SOSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		101186C712406FAE974537606EAB4CB9 /* ImageObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageObject.swift; path = Sources/ImageObject.swift; sourceTree = "<group>"; };
+		110C1658E314B6D523D7106C394EF58C /* Photograph.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Photograph.swift; path = Sources/Photograph.swift; sourceTree = "<group>"; };
+		14C536D9D2BA5FAC7DADF36AC49E97E2 /* Event.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Sources/Event.swift; sourceTree = "<group>"; };
+		1A008BCEC991C7A69064649912DF2C5E /* Gender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Gender.swift; path = Sources/Gender.swift; sourceTree = "<group>"; };
 		1D5A1B2842B5B65599E80B1FCCC746BF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D9F5BEA2C237829080721C4D79E0DCE /* Pods-SOSwiftTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SOSwiftTests-umbrella.h"; sourceTree = "<group>"; };
+		1E110E3518E2D475577D0E2056C8B05D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		1E431D294792598C8C6E2A0337A68E2A /* Pods-SOSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SOSwift-umbrella.h"; sourceTree = "<group>"; };
-		20DCE701407016B9284B5BBE089D9512 /* Pods_SOSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SOSwiftTests.framework; path = "Pods-SOSwiftTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		222C93D36716370AD368F3BCB2684BE5 /* Country.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Country.swift; path = Sources/Country.swift; sourceTree = "<group>"; };
+		22FD522079A606FEA17DAA3AF0856C6B /* AccessMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessMode.swift; path = Sources/AccessMode.swift; sourceTree = "<group>"; };
+		251274C6D59255D53FC0541506B28FF6 /* ListItemOrTextOrThing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListItemOrTextOrThing.swift; path = Sources/ListItemOrTextOrThing.swift; sourceTree = "<group>"; };
+		25F38BD5A8DF85CDE5DE0219102ACA7D /* DayOfWeek.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DayOfWeek.swift; path = Sources/DayOfWeek.swift; sourceTree = "<group>"; };
+		275BB19C2F8D02937DAE351F109A94B4 /* AreaServed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AreaServed.swift; path = Sources/AreaServed.swift; sourceTree = "<group>"; };
+		28F43B5C25DE4B4C345C23E8A49BE060 /* Offer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Offer.swift; path = Sources/Offer.swift; sourceTree = "<group>"; };
+		296C02800C0C99EAC6741B8B14383AF0 /* Service.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Sources/Service.swift; sourceTree = "<group>"; };
+		2B9551F8B50B2869868DE55AA02B4531 /* DateTimeOrTextOrURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateTimeOrTextOrURL.swift; path = Sources/DateTimeOrTextOrURL.swift; sourceTree = "<group>"; };
+		2D4151CA9962509D6A956577C36EBAD9 /* MediaObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaObject.swift; path = Sources/MediaObject.swift; sourceTree = "<group>"; };
+		2FD259E67DAF6A76BC078B47E9BF7CDC /* Identifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Identifier.swift; path = Sources/Identifier.swift; sourceTree = "<group>"; };
+		2FDF808D6A048C1363384EE0DD30E34A /* OwnershipInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OwnershipInfo.swift; path = Sources/OwnershipInfo.swift; sourceTree = "<group>"; };
+		3213607095A0BE2BF4A1CF27E6AAA58A /* ProgramMembership.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProgramMembership.swift; path = Sources/ProgramMembership.swift; sourceTree = "<group>"; };
+		330D475C0E9002127240B32913EDD9A2 /* Language.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Language.swift; path = Sources/Language.swift; sourceTree = "<group>"; };
+		33198B83ECC352F7163B6944DEB51C47 /* ProductOrService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductOrService.swift; path = Sources/ProductOrService.swift; sourceTree = "<group>"; };
+		33A7C3559D3AEB4F47D5C49404909513 /* MusicGroupOrPerson.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MusicGroupOrPerson.swift; path = Sources/MusicGroupOrPerson.swift; sourceTree = "<group>"; };
+		346EF39A9E68FA016FDA90468BA4413F /* ProductModelOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductModelOrText.swift; path = Sources/ProductModelOrText.swift; sourceTree = "<group>"; };
+		36BF53EAC0E7B924B20A7CBFF259018C /* SOSwiftVocabulary.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SOSwiftVocabulary.modulemap; sourceTree = "<group>"; };
+		3724032B807EF2FB168E04ED0F6F4195 /* Time.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Time.swift; path = Sources/Time.swift; sourceTree = "<group>"; };
+		37BB3A738C026038A1C90BF594A82F58 /* AdministrativeArea.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdministrativeArea.swift; path = Sources/AdministrativeArea.swift; sourceTree = "<group>"; };
+		38E4CDA9B9CCECA82F404B35485A0A23 /* DateOnlyOrDateTime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateOnlyOrDateTime.swift; path = Sources/DateOnlyOrDateTime.swift; sourceTree = "<group>"; };
+		412C506FD659E11B02D7D4C85FCD9902 /* Article.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Article.swift; path = Sources/Article.swift; sourceTree = "<group>"; };
+		41807EF42CF5B0A9C009D63A81D94099 /* QuantitativeValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuantitativeValue.swift; path = Sources/QuantitativeValue.swift; sourceTree = "<group>"; };
+		43503DEB4DA56C6B5F9652D70B4D0E69 /* MapOrURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapOrURL.swift; path = Sources/MapOrURL.swift; sourceTree = "<group>"; };
+		4384E071B0E06E484DF07A6A7E2C389E /* BrandOrOrganization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BrandOrOrganization.swift; path = Sources/BrandOrOrganization.swift; sourceTree = "<group>"; };
+		44AF677DB71C95D7D849555EA56D5CC0 /* Number.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Number.swift; path = Sources/Number.swift; sourceTree = "<group>"; };
 		477AB2E290182D1827B5B6093B518343 /* Pods-SOSwiftTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SOSwiftTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		478FB74F9F86B1015FB934664FC9EC3E /* PerformingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerformingGroup.swift; path = Sources/PerformingGroup.swift; sourceTree = "<group>"; };
 		4953F6E11A5F8095D7CEAC0C48C0DCDD /* Pods-SOSwiftTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SOSwiftTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		4B84A64F9B514175262D256F4A5F09F8 /* AccessibilityHazard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibilityHazard.swift; path = Sources/AccessibilityHazard.swift; sourceTree = "<group>"; };
+		4D89E5E261B645D75E8D77C52944C3E7 /* Action.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Action.swift; path = Sources/Action.swift; sourceTree = "<group>"; };
+		4F45FEB2384A682159A786F7B15257CA /* ValueReference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValueReference.swift; path = Sources/ValueReference.swift; sourceTree = "<group>"; };
+		50CB6BD3D9022A250B20943EE42194D3 /* MusicAlbum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MusicAlbum.swift; path = Sources/MusicAlbum.swift; sourceTree = "<group>"; };
+		538941DD2D550FCCE34A7EB4DDCF8BDF /* Quantity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Quantity.swift; path = Sources/Quantity.swift; sourceTree = "<group>"; };
+		539FF86941D5C504A21C91333E0736A5 /* Question.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Question.swift; path = Sources/Question.swift; sourceTree = "<group>"; };
+		54E1872DB5C027ACD32B1853FF9B17DD /* MusicGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MusicGroup.swift; path = Sources/MusicGroup.swift; sourceTree = "<group>"; };
+		56520BA1B75B2C1C6F956D1C58F991A4 /* AlignmentObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlignmentObject.swift; path = Sources/AlignmentObject.swift; sourceTree = "<group>"; };
+		567A3275E590FF296A717DEC36CB770F /* Intangible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Intangible.swift; path = Sources/Intangible.swift; sourceTree = "<group>"; };
+		58C04F94A628072AE9A48E12FBC07670 /* VideoObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoObject.swift; path = Sources/VideoObject.swift; sourceTree = "<group>"; };
+		5B3F776E9F077AFD6B63FEA783A347E1 /* PropertyValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PropertyValue.swift; path = Sources/PropertyValue.swift; sourceTree = "<group>"; };
+		5B9D95B3D020166CF9896E654A731C7B /* MusicRecording.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MusicRecording.swift; path = Sources/MusicRecording.swift; sourceTree = "<group>"; };
+		5BD6F317CBB2FF3906D545C46EF6E3B7 /* AccessibilityFeature.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibilityFeature.swift; path = Sources/AccessibilityFeature.swift; sourceTree = "<group>"; };
+		5CE1C68D92977BB1B8C5DACF17E74AF9 /* ItemListOrMusicRecording.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemListOrMusicRecording.swift; path = Sources/ItemListOrMusicRecording.swift; sourceTree = "<group>"; };
+		5E1122E202A3AC4BF860986EDDB9ADC7 /* MonetaryAmount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MonetaryAmount.swift; path = Sources/MonetaryAmount.swift; sourceTree = "<group>"; };
+		5F19B89B74F5B2E514B8CB628F761463 /* ProductModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductModel.swift; path = Sources/ProductModel.swift; sourceTree = "<group>"; };
+		5F897830F273E773B340B00EB7E8F647 /* AccessibilityControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibilityControl.swift; path = Sources/AccessibilityControl.swift; sourceTree = "<group>"; };
+		60CF7E3D903D3260A177849D06358AB9 /* Value.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Value.swift; path = Sources/Value.swift; sourceTree = "<group>"; };
 		622087FB7C18788DEBE6B60D66721CD9 /* Pods-SOSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SOSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		626B820BCDC19D965504CC2B3481017E /* Pods-SOSwift-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SOSwift-resources.sh"; sourceTree = "<group>"; };
+		6526E38143AA3C7320583E142AA64538 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		6AF451AAAC6CAAEF3D7C84802EDF0C61 /* Answer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = Sources/Answer.swift; sourceTree = "<group>"; };
+		6C887132DB468B242930865E07B8F1F5 /* Interactivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Interactivity.swift; path = Sources/Interactivity.swift; sourceTree = "<group>"; };
+		6E30BA5353D4E0FCAA72FCCCCFB2B5F4 /* Dataset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dataset.swift; path = Sources/Dataset.swift; sourceTree = "<group>"; };
+		6FCF1D0DF16B001F6FF9F605C27EDC91 /* TextOrURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextOrURL.swift; path = Sources/TextOrURL.swift; sourceTree = "<group>"; };
 		717C8888287638A96E9A76C38B42AA7D /* Pods-SOSwiftTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SOSwiftTests.modulemap"; sourceTree = "<group>"; };
+		71BFFB0C07FA2D49448F59FA9AF3E9A7 /* Comment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = Sources/Comment.swift; sourceTree = "<group>"; };
+		7365D68BF15EDB9C3E5C896F297093DB /* MapType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapType.swift; path = Sources/MapType.swift; sourceTree = "<group>"; };
+		74204DDB7BA88CDDB76C29942D6F986A /* DateTime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateTime.swift; path = Sources/DateTime.swift; sourceTree = "<group>"; };
+		74802A917A958E90A93C48327DD2ADD4 /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/Map.swift; sourceTree = "<group>"; };
+		752DB255A841653027A660890887DAE1 /* ContactPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContactPoint.swift; path = Sources/ContactPoint.swift; sourceTree = "<group>"; };
+		75546E1251546AAEF774F25BE7F31C3B /* GeoCoordinates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GeoCoordinates.swift; path = Sources/GeoCoordinates.swift; sourceTree = "<group>"; };
+		76185D5DD972FDB66D3C159312460D35 /* Place.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Place.swift; path = Sources/Place.swift; sourceTree = "<group>"; };
 		76610DF9EA03980FBB964073C39B7162 /* Pods-SOSwift-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SOSwift-acknowledgements.markdown"; sourceTree = "<group>"; };
+		777CD4CCCF592A1418E5ABDF5193159B /* Pods_SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SOSwift.framework; path = "Pods-SOSwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7887E844237D5876D9998BA27B93EAE8 /* OwnershipInfoOrProduct.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OwnershipInfoOrProduct.swift; path = Sources/OwnershipInfoOrProduct.swift; sourceTree = "<group>"; };
+		7B18FA25830E73FB0E279E217CE4FE05 /* MonetaryAmountOrPriceSpecification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MonetaryAmountOrPriceSpecification.swift; path = Sources/MonetaryAmountOrPriceSpecification.swift; sourceTree = "<group>"; };
+		7DC64DC33D05AB13C051318D99BBBEBC /* DataFeed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataFeed.swift; path = Sources/DataFeed.swift; sourceTree = "<group>"; };
+		7EAF473F4A5ACC8C7F32F626D3C09C7B /* ListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListItem.swift; path = Sources/ListItem.swift; sourceTree = "<group>"; };
+		7F503C74795915717B7E3B5FCA2ABE72 /* PublicationEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicationEvent.swift; path = Sources/PublicationEvent.swift; sourceTree = "<group>"; };
+		806D71FAA8FBF46A575A48DA7B4FA9FE /* Audience.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Audience.swift; path = Sources/Audience.swift; sourceTree = "<group>"; };
 		83FC2605D1126EA04A213DD001270FC9 /* Pods-SOSwift-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SOSwift-acknowledgements.plist"; sourceTree = "<group>"; };
+		84A82403FDE9D7BB1C8AF99290324888 /* ActionStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ActionStatus.swift; path = Sources/ActionStatus.swift; sourceTree = "<group>"; };
+		8A02EF1873F704FC3C2A728EFCF3CBD5 /* ItemListOrder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemListOrder.swift; path = Sources/ItemListOrder.swift; sourceTree = "<group>"; };
+		8A2EAA7CEE5091552EB36EA7210E9D75 /* GeoCoordinatesOrGeoShape.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GeoCoordinatesOrGeoShape.swift; path = Sources/GeoCoordinatesOrGeoShape.swift; sourceTree = "<group>"; };
+		8A9DF7912F20763EAF0BFFCD3079CB3F /* LanguageOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LanguageOrText.swift; path = Sources/LanguageOrText.swift; sourceTree = "<group>"; };
+		8B27C113A550A8FD67B3DF0E4BCDCD24 /* Enumeration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enumeration.swift; path = Sources/Enumeration.swift; sourceTree = "<group>"; };
+		8C56D50BCD54B2B3426FD69B7D7C412D /* MusicPlaylist.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MusicPlaylist.swift; path = Sources/MusicPlaylist.swift; sourceTree = "<group>"; };
+		92C6645BB2CDC44429A19BEF67C488AE /* Person.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Sources/Person.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		950392C3F86A0867CBE52FB220E33F3F /* PriceSpecification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PriceSpecification.swift; path = Sources/PriceSpecification.swift; sourceTree = "<group>"; };
+		9C024B264D61EEADC9B4AA9B5B8251DD /* TextOrThing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextOrThing.swift; path = Sources/TextOrThing.swift; sourceTree = "<group>"; };
+		9D2345440730D43B9D69A10B9BF4DC00 /* GeoShape.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GeoShape.swift; path = Sources/GeoShape.swift; sourceTree = "<group>"; };
 		9D489CE9BE381F86A099C9AE31EAB80C /* Pods-SOSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SOSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
+		9DC42C2A5DD1529704704C809AFCFCDD /* ImageObjectOrURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageObjectOrURL.swift; path = Sources/ImageObjectOrURL.swift; sourceTree = "<group>"; };
+		A16AB26F2C2BA36247D836C08348D718 /* Review.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Review.swift; path = Sources/Review.swift; sourceTree = "<group>"; };
+		A1BF5D0BE3BE8FDA4F9377C22E2C7BF8 /* CreativeWorkOrProductOrURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreativeWorkOrProductOrURL.swift; path = Sources/CreativeWorkOrProductOrURL.swift; sourceTree = "<group>"; };
+		A3F0C3308A72C470DE8BC6FB4DBECC75 /* AggregateRating.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AggregateRating.swift; path = Sources/AggregateRating.swift; sourceTree = "<group>"; };
 		A52C7E5C0209FB1581016C9513601AD9 /* Pods-SOSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SOSwift.release.xcconfig"; sourceTree = "<group>"; };
+		A686B60FE0E5EA6E2A474072DAC5564F /* EventStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventStatus.swift; path = Sources/EventStatus.swift; sourceTree = "<group>"; };
 		A7BEF78F690B8C27830C17E6261710A1 /* Pods-SOSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SOSwift-dummy.m"; sourceTree = "<group>"; };
+		A9A70244359E0821E078C9D04A468A1B /* Thing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Thing.swift; path = Sources/Thing.swift; sourceTree = "<group>"; };
+		AB570B6E4180084AAF54F05BE3039B2C /* EducationalOrganizationOrOrganization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EducationalOrganizationOrOrganization.swift; path = Sources/EducationalOrganizationOrOrganization.swift; sourceTree = "<group>"; };
+		AF51EC42D06F618DF768F29F9474CA4B /* PostalAddressOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PostalAddressOrText.swift; path = Sources/PostalAddressOrText.swift; sourceTree = "<group>"; };
+		B192EF43785AD5D134071161476085DB /* CountryOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CountryOrText.swift; path = Sources/CountryOrText.swift; sourceTree = "<group>"; };
+		B2051B5A40421DFC8B160F0CD4AC20BA /* SoftwareApplication.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoftwareApplication.swift; path = Sources/SoftwareApplication.swift; sourceTree = "<group>"; };
+		B2A62F4958189836DA029F6BAF6E0562 /* OfferItemCondition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OfferItemCondition.swift; path = Sources/OfferItemCondition.swift; sourceTree = "<group>"; };
+		B702DEDFCF551CDC9C28EB17298282C7 /* Organization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Organization.swift; path = Sources/Organization.swift; sourceTree = "<group>"; };
+		B7C501F82E3A2B8F8585305508D5E057 /* EntryPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EntryPoint.swift; path = Sources/EntryPoint.swift; sourceTree = "<group>"; };
+		B927EF2E0B97F8EAF706A6C8D59024B7 /* Demand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Demand.swift; path = Sources/Demand.swift; sourceTree = "<group>"; };
+		BB54F0E35743659320D92EC3B479B788 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF8571C19BD442B8EE4A2BB074E10D73 /* AlignmentObjectOrCourseOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlignmentObjectOrCourseOrText.swift; path = Sources/AlignmentObjectOrCourseOrText.swift; sourceTree = "<group>"; };
+		BFB2A1BB3B14B94A72808AF3FE009337 /* SOSwiftVocabulary-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SOSwiftVocabulary-umbrella.h"; sourceTree = "<group>"; };
+		BFBA2372114C98863FA409E8988D9F9A /* AccessibilityAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibilityAPI.swift; path = Sources/AccessibilityAPI.swift; sourceTree = "<group>"; };
+		C1DBC820805E741D469262B3C96F0D34 /* ServiceChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServiceChannel.swift; path = Sources/ServiceChannel.swift; sourceTree = "<group>"; };
 		C201747A19417849806C3C8E47D611F3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C39EC5283A54BA983ED5CE6EBD65FCA2 /* AudioObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioObject.swift; path = Sources/AudioObject.swift; sourceTree = "<group>"; };
+		C42FC944F92AB97FF8FC13B26FD9E385 /* CourseInstance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseInstance.swift; path = Sources/CourseInstance.swift; sourceTree = "<group>"; };
+		C43D0470A6D8089F5C0D240BFE47916E /* NumberOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NumberOrText.swift; path = Sources/NumberOrText.swift; sourceTree = "<group>"; };
+		C4592CED0D0DB70BE7D53187F9C4CBCF /* SOSwiftVocabulary-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SOSwiftVocabulary-dummy.m"; sourceTree = "<group>"; };
+		C49148F2C86FDEAEF9C31DEA69858D7B /* OpeningHoursSpecification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OpeningHoursSpecification.swift; path = Sources/OpeningHoursSpecification.swift; sourceTree = "<group>"; };
+		C57E87119FE905F9B5F8A4491368C28C /* NewsArticle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewsArticle.swift; path = Sources/NewsArticle.swift; sourceTree = "<group>"; };
+		C75A5AE9FD7B482E5E2D0393D285F465 /* PostalAddress.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PostalAddress.swift; path = Sources/PostalAddress.swift; sourceTree = "<group>"; };
+		C8364B53A8EED3CC56B59BFCEAFC9E17 /* ContactPointOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContactPointOption.swift; path = Sources/ContactPointOption.swift; sourceTree = "<group>"; };
+		C9D82A859987756ADDB40FF6578B3959 /* Product.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Product.swift; path = Sources/Product.swift; sourceTree = "<group>"; };
+		CA04214B936F180576082444B08ACDAF /* BroadcastService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BroadcastService.swift; path = Sources/BroadcastService.swift; sourceTree = "<group>"; };
+		CB29D28AC56E951C0B163CF487E6A1B6 /* CreativeWorkOrURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreativeWorkOrURL.swift; path = Sources/CreativeWorkOrURL.swift; sourceTree = "<group>"; };
+		CBCCAF48D337A9CBA6E2F52112793EDE /* ImageObjectOrPhotograph.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageObjectOrPhotograph.swift; path = Sources/ImageObjectOrPhotograph.swift; sourceTree = "<group>"; };
+		CD33477BBC3E35FAC7DFD50AE3047BE6 /* ProductOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductOrText.swift; path = Sources/ProductOrText.swift; sourceTree = "<group>"; };
+		CD8A6D2B397FDD1D66BDF9C4589D3AEB /* ProductOrTextOrURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductOrTextOrURL.swift; path = Sources/ProductOrTextOrURL.swift; sourceTree = "<group>"; };
+		CF2EA0C131B45E54152C07B4AF5D7E54 /* QualitativeValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QualitativeValue.swift; path = Sources/QualitativeValue.swift; sourceTree = "<group>"; };
+		D15ABD9C1406F016B8A0913E90721E61 /* CreativeWork.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreativeWork.swift; path = Sources/CreativeWork.swift; sourceTree = "<group>"; };
+		D38909C700AE09DBC465456BE9D75318 /* Website.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Website.swift; path = Sources/Website.swift; sourceTree = "<group>"; };
+		D456E25D23D18B420B3D929D0C356E90 /* ItemListOrderOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemListOrderOrText.swift; path = Sources/ItemListOrderOrText.swift; sourceTree = "<group>"; };
+		D75E7B799E9C0278C55C7000AED71425 /* DateOnly.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateOnly.swift; path = Sources/DateOnly.swift; sourceTree = "<group>"; };
+		D796A232CF51CA145CD43EA9B9D22BD8 /* Distance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Distance.swift; path = Sources/Distance.swift; sourceTree = "<group>"; };
+		D85732B0F0C6EE1AFF0C4D9FE0E67EF7 /* SOSwiftVocabulary-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SOSwiftVocabulary-prefix.pch"; sourceTree = "<group>"; };
+		D974175383E22F479F61FC807D27712B /* OrganizationOrProgramMembership.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OrganizationOrProgramMembership.swift; path = Sources/OrganizationOrProgramMembership.swift; sourceTree = "<group>"; };
+		DA16B02B48FBD2B84516D49C0A77945D /* Duration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Duration.swift; path = Sources/Duration.swift; sourceTree = "<group>"; };
+		DC3AEAC63F0A7548401AFEB2C58A238C /* PersonOrURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PersonOrURL.swift; path = Sources/PersonOrURL.swift; sourceTree = "<group>"; };
+		DFACF062B3B5FCE71E505DDC5A3588F6 /* Pods_SOSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SOSwiftTests.framework; path = "Pods-SOSwiftTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E14AF4B821FA5CE1003DA94F6EAE0DCB /* Brand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Brand.swift; path = Sources/Brand.swift; sourceTree = "<group>"; };
+		E1914C1CD3FB28ACF2064A7ECC4198B7 /* ItemList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemList.swift; path = Sources/ItemList.swift; sourceTree = "<group>"; };
+		E2798C58E8A5D67E9B8EEF3C920A2F25 /* OfferCatalog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OfferCatalog.swift; path = Sources/OfferCatalog.swift; sourceTree = "<group>"; };
+		E4C4F42F10578D14747EA9447854C841 /* ContactPointOrPlace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContactPointOrPlace.swift; path = Sources/ContactPointOrPlace.swift; sourceTree = "<group>"; };
+		E5FCDBF3DB49FB484447672211E73FB0 /* SOSwiftVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SOSwiftVocabulary.framework; path = SOSwiftVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E695042BBCBBF5E657352425BD8F28DF /* IntegerOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntegerOrText.swift; path = Sources/IntegerOrText.swift; sourceTree = "<group>"; };
+		E81A941C78F0F5F355AD2D5C71CB4C2D /* Rating.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Sources/Rating.swift; sourceTree = "<group>"; };
+		EA27CA1C71A7A562D3D7C163849E4797 /* GenderOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenderOrText.swift; path = Sources/GenderOrText.swift; sourceTree = "<group>"; };
+		F0511AE6CEEC2B6E89CE80EE3A0DA7C9 /* LocationFeatureSpecification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocationFeatureSpecification.swift; path = Sources/LocationFeatureSpecification.swift; sourceTree = "<group>"; };
+		F25ACA65B37B42B21A481DCE79A7E2DF /* PlaceOrPostalAddressOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PlaceOrPostalAddressOrText.swift; path = Sources/PlaceOrPostalAddressOrText.swift; sourceTree = "<group>"; };
 		F302F64C1384A7143FE1A6640F48ECF8 /* Pods-SOSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SOSwift.modulemap"; sourceTree = "<group>"; };
-		F72C8DADB3031FDA5E12259FDBB9A1F1 /* Pods_SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SOSwift.framework; path = "Pods-SOSwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F401AA05EAB10678C8D12A56D5DAD34C /* DistanceOrQuantitativeValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DistanceOrQuantitativeValue.swift; path = Sources/DistanceOrQuantitativeValue.swift; sourceTree = "<group>"; };
+		F45A3FD64C2C3822930286913790F957 /* InteractionCounter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InteractionCounter.swift; path = Sources/InteractionCounter.swift; sourceTree = "<group>"; };
+		F4E7FC73D9EE210DDF57AAA10BEDB549 /* EducationalOrganization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EducationalOrganization.swift; path = Sources/EducationalOrganization.swift; sourceTree = "<group>"; };
+		F615556F39ECC7BD42B68E7453F724DA /* PropertyValueOrText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PropertyValueOrText.swift; path = Sources/PropertyValueOrText.swift; sourceTree = "<group>"; };
+		F63862B483F9FB39C13A138888CDF182 /* SOSwiftVocabulary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SOSwiftVocabulary.xcconfig; sourceTree = "<group>"; };
+		F75C1A389DD7F528232C36678F4CD8BB /* SoftwareApplicationOrWebsite.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoftwareApplicationOrWebsite.swift; path = Sources/SoftwareApplicationOrWebsite.swift; sourceTree = "<group>"; };
+		F7BBD0F3F64824F929905BB980240B3B /* StructuredValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StructuredValue.swift; path = Sources/StructuredValue.swift; sourceTree = "<group>"; };
+		FEB39F8CD48B68FCC53B7B124BF626A7 /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = Sources/Course.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		80E74563C5B39E601FBD776865E77832 /* Frameworks */ = {
+		5CBF4927AAE41A71BE062E7B2CF711C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B0D682E8772F3E1DFF408855D194CF6 /* Cocoa.framework in Frameworks */,
+				E5B74F312295239850FE15AA42362775 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		939D92E560CC396F402B2675FD53F133 /* Frameworks */ = {
+		6FCA8F4F2C2D929560D654C3DBA56FE4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ED7B8E2899B7D18932D83B4ABD2184A /* Cocoa.framework in Frameworks */,
+				50C655E1D1F845A88C156F22D62097C3 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB8F51A4E476CFF8A7330A98925CFE47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B8D9D141F13F107FFDE36C496275D79 /* Cocoa.framework in Frameworks */,
+				90652E977E98B6E74A19CA22348EE31F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04C068A18C5413F804A2959126093416 /* OS X */ = {
-			isa = PBXGroup;
-			children = (
-				270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */,
-			);
-			name = "OS X";
-			sourceTree = "<group>";
-		};
 		1BE676FAF4FB0A4BF99CA5052D117CCB /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,21 +390,155 @@
 			path = "Target Support Files/Pods-SOSwiftTests";
 			sourceTree = "<group>";
 		};
-		3358183D73E6DA076AC5D543A69686F7 /* Products */ = {
+		2195FF75877E2DEDFEAE54194492AC8E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F72C8DADB3031FDA5E12259FDBB9A1F1 /* Pods_SOSwift.framework */,
-				20DCE701407016B9284B5BBE089D9512 /* Pods_SOSwiftTests.framework */,
+				777CD4CCCF592A1418E5ABDF5193159B /* Pods_SOSwift.framework */,
+				DFACF062B3B5FCE71E505DDC5A3588F6 /* Pods_SOSwiftTests.framework */,
+				E5FCDBF3DB49FB484447672211E73FB0 /* SOSwiftVocabulary.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
+		276456A3EEF84ECE1D33EABC8AD1FAF1 /* SOSwiftVocabulary */ = {
 			isa = PBXGroup;
 			children = (
-				04C068A18C5413F804A2959126093416 /* OS X */,
+				BFBA2372114C98863FA409E8988D9F9A /* AccessibilityAPI.swift */,
+				5F897830F273E773B340B00EB7E8F647 /* AccessibilityControl.swift */,
+				5BD6F317CBB2FF3906D545C46EF6E3B7 /* AccessibilityFeature.swift */,
+				4B84A64F9B514175262D256F4A5F09F8 /* AccessibilityHazard.swift */,
+				22FD522079A606FEA17DAA3AF0856C6B /* AccessMode.swift */,
+				01A01ED07155EF128C89EF7CFE4D9120 /* AccessModeSufficient.swift */,
+				4D89E5E261B645D75E8D77C52944C3E7 /* Action.swift */,
+				84A82403FDE9D7BB1C8AF99290324888 /* ActionStatus.swift */,
+				37BB3A738C026038A1C90BF594A82F58 /* AdministrativeArea.swift */,
+				A3F0C3308A72C470DE8BC6FB4DBECC75 /* AggregateRating.swift */,
+				56520BA1B75B2C1C6F956D1C58F991A4 /* AlignmentObject.swift */,
+				BF8571C19BD442B8EE4A2BB074E10D73 /* AlignmentObjectOrCourseOrText.swift */,
+				6AF451AAAC6CAAEF3D7C84802EDF0C61 /* Answer.swift */,
+				275BB19C2F8D02937DAE351F109A94B4 /* AreaServed.swift */,
+				412C506FD659E11B02D7D4C85FCD9902 /* Article.swift */,
+				806D71FAA8FBF46A575A48DA7B4FA9FE /* Audience.swift */,
+				C39EC5283A54BA983ED5CE6EBD65FCA2 /* AudioObject.swift */,
+				E14AF4B821FA5CE1003DA94F6EAE0DCB /* Brand.swift */,
+				4384E071B0E06E484DF07A6A7E2C389E /* BrandOrOrganization.swift */,
+				CA04214B936F180576082444B08ACDAF /* BroadcastService.swift */,
+				71BFFB0C07FA2D49448F59FA9AF3E9A7 /* Comment.swift */,
+				752DB255A841653027A660890887DAE1 /* ContactPoint.swift */,
+				C8364B53A8EED3CC56B59BFCEAFC9E17 /* ContactPointOption.swift */,
+				E4C4F42F10578D14747EA9447854C841 /* ContactPointOrPlace.swift */,
+				222C93D36716370AD368F3BCB2684BE5 /* Country.swift */,
+				B192EF43785AD5D134071161476085DB /* CountryOrText.swift */,
+				FEB39F8CD48B68FCC53B7B124BF626A7 /* Course.swift */,
+				C42FC944F92AB97FF8FC13B26FD9E385 /* CourseInstance.swift */,
+				D15ABD9C1406F016B8A0913E90721E61 /* CreativeWork.swift */,
+				A1BF5D0BE3BE8FDA4F9377C22E2C7BF8 /* CreativeWorkOrProductOrURL.swift */,
+				03CF74F295C24A4985BEB6A4AB5647BC /* CreativeWorkOrText.swift */,
+				CB29D28AC56E951C0B163CF487E6A1B6 /* CreativeWorkOrURL.swift */,
+				7DC64DC33D05AB13C051318D99BBBEBC /* DataFeed.swift */,
+				6E30BA5353D4E0FCAA72FCCCCFB2B5F4 /* Dataset.swift */,
+				D75E7B799E9C0278C55C7000AED71425 /* DateOnly.swift */,
+				38E4CDA9B9CCECA82F404B35485A0A23 /* DateOnlyOrDateTime.swift */,
+				74204DDB7BA88CDDB76C29942D6F986A /* DateTime.swift */,
+				2B9551F8B50B2869868DE55AA02B4531 /* DateTimeOrTextOrURL.swift */,
+				25F38BD5A8DF85CDE5DE0219102ACA7D /* DayOfWeek.swift */,
+				B927EF2E0B97F8EAF706A6C8D59024B7 /* Demand.swift */,
+				D796A232CF51CA145CD43EA9B9D22BD8 /* Distance.swift */,
+				F401AA05EAB10678C8D12A56D5DAD34C /* DistanceOrQuantitativeValue.swift */,
+				DA16B02B48FBD2B84516D49C0A77945D /* Duration.swift */,
+				F4E7FC73D9EE210DDF57AAA10BEDB549 /* EducationalOrganization.swift */,
+				AB570B6E4180084AAF54F05BE3039B2C /* EducationalOrganizationOrOrganization.swift */,
+				B7C501F82E3A2B8F8585305508D5E057 /* EntryPoint.swift */,
+				8B27C113A550A8FD67B3DF0E4BCDCD24 /* Enumeration.swift */,
+				14C536D9D2BA5FAC7DADF36AC49E97E2 /* Event.swift */,
+				A686B60FE0E5EA6E2A474072DAC5564F /* EventStatus.swift */,
+				1A008BCEC991C7A69064649912DF2C5E /* Gender.swift */,
+				EA27CA1C71A7A562D3D7C163849E4797 /* GenderOrText.swift */,
+				75546E1251546AAEF774F25BE7F31C3B /* GeoCoordinates.swift */,
+				8A2EAA7CEE5091552EB36EA7210E9D75 /* GeoCoordinatesOrGeoShape.swift */,
+				9D2345440730D43B9D69A10B9BF4DC00 /* GeoShape.swift */,
+				2FD259E67DAF6A76BC078B47E9BF7CDC /* Identifier.swift */,
+				101186C712406FAE974537606EAB4CB9 /* ImageObject.swift */,
+				CBCCAF48D337A9CBA6E2F52112793EDE /* ImageObjectOrPhotograph.swift */,
+				9DC42C2A5DD1529704704C809AFCFCDD /* ImageObjectOrURL.swift */,
+				567A3275E590FF296A717DEC36CB770F /* Intangible.swift */,
+				E695042BBCBBF5E657352425BD8F28DF /* IntegerOrText.swift */,
+				F45A3FD64C2C3822930286913790F957 /* InteractionCounter.swift */,
+				6C887132DB468B242930865E07B8F1F5 /* Interactivity.swift */,
+				E1914C1CD3FB28ACF2064A7ECC4198B7 /* ItemList.swift */,
+				8A02EF1873F704FC3C2A728EFCF3CBD5 /* ItemListOrder.swift */,
+				D456E25D23D18B420B3D929D0C356E90 /* ItemListOrderOrText.swift */,
+				5CE1C68D92977BB1B8C5DACF17E74AF9 /* ItemListOrMusicRecording.swift */,
+				330D475C0E9002127240B32913EDD9A2 /* Language.swift */,
+				8A9DF7912F20763EAF0BFFCD3079CB3F /* LanguageOrText.swift */,
+				7EAF473F4A5ACC8C7F32F626D3C09C7B /* ListItem.swift */,
+				251274C6D59255D53FC0541506B28FF6 /* ListItemOrTextOrThing.swift */,
+				F0511AE6CEEC2B6E89CE80EE3A0DA7C9 /* LocationFeatureSpecification.swift */,
+				74802A917A958E90A93C48327DD2ADD4 /* Map.swift */,
+				43503DEB4DA56C6B5F9652D70B4D0E69 /* MapOrURL.swift */,
+				7365D68BF15EDB9C3E5C896F297093DB /* MapType.swift */,
+				2D4151CA9962509D6A956577C36EBAD9 /* MediaObject.swift */,
+				5E1122E202A3AC4BF860986EDDB9ADC7 /* MonetaryAmount.swift */,
+				7B18FA25830E73FB0E279E217CE4FE05 /* MonetaryAmountOrPriceSpecification.swift */,
+				50CB6BD3D9022A250B20943EE42194D3 /* MusicAlbum.swift */,
+				54E1872DB5C027ACD32B1853FF9B17DD /* MusicGroup.swift */,
+				33A7C3559D3AEB4F47D5C49404909513 /* MusicGroupOrPerson.swift */,
+				8C56D50BCD54B2B3426FD69B7D7C412D /* MusicPlaylist.swift */,
+				5B9D95B3D020166CF9896E654A731C7B /* MusicRecording.swift */,
+				C57E87119FE905F9B5F8A4491368C28C /* NewsArticle.swift */,
+				44AF677DB71C95D7D849555EA56D5CC0 /* Number.swift */,
+				C43D0470A6D8089F5C0D240BFE47916E /* NumberOrText.swift */,
+				28F43B5C25DE4B4C345C23E8A49BE060 /* Offer.swift */,
+				E2798C58E8A5D67E9B8EEF3C920A2F25 /* OfferCatalog.swift */,
+				B2A62F4958189836DA029F6BAF6E0562 /* OfferItemCondition.swift */,
+				C49148F2C86FDEAEF9C31DEA69858D7B /* OpeningHoursSpecification.swift */,
+				B702DEDFCF551CDC9C28EB17298282C7 /* Organization.swift */,
+				09AEE5568290E7B20232CC62762A9D07 /* OrganizationOrPerson.swift */,
+				D974175383E22F479F61FC807D27712B /* OrganizationOrProgramMembership.swift */,
+				2FDF808D6A048C1363384EE0DD30E34A /* OwnershipInfo.swift */,
+				7887E844237D5876D9998BA27B93EAE8 /* OwnershipInfoOrProduct.swift */,
+				478FB74F9F86B1015FB934664FC9EC3E /* PerformingGroup.swift */,
+				92C6645BB2CDC44429A19BEF67C488AE /* Person.swift */,
+				DC3AEAC63F0A7548401AFEB2C58A238C /* PersonOrURL.swift */,
+				110C1658E314B6D523D7106C394EF58C /* Photograph.swift */,
+				76185D5DD972FDB66D3C159312460D35 /* Place.swift */,
+				F25ACA65B37B42B21A481DCE79A7E2DF /* PlaceOrPostalAddressOrText.swift */,
+				C75A5AE9FD7B482E5E2D0393D285F465 /* PostalAddress.swift */,
+				AF51EC42D06F618DF768F29F9474CA4B /* PostalAddressOrText.swift */,
+				950392C3F86A0867CBE52FB220E33F3F /* PriceSpecification.swift */,
+				C9D82A859987756ADDB40FF6578B3959 /* Product.swift */,
+				5F19B89B74F5B2E514B8CB628F761463 /* ProductModel.swift */,
+				346EF39A9E68FA016FDA90468BA4413F /* ProductModelOrText.swift */,
+				33198B83ECC352F7163B6944DEB51C47 /* ProductOrService.swift */,
+				CD33477BBC3E35FAC7DFD50AE3047BE6 /* ProductOrText.swift */,
+				CD8A6D2B397FDD1D66BDF9C4589D3AEB /* ProductOrTextOrURL.swift */,
+				3213607095A0BE2BF4A1CF27E6AAA58A /* ProgramMembership.swift */,
+				5B3F776E9F077AFD6B63FEA783A347E1 /* PropertyValue.swift */,
+				F615556F39ECC7BD42B68E7453F724DA /* PropertyValueOrText.swift */,
+				7F503C74795915717B7E3B5FCA2ABE72 /* PublicationEvent.swift */,
+				CF2EA0C131B45E54152C07B4AF5D7E54 /* QualitativeValue.swift */,
+				41807EF42CF5B0A9C009D63A81D94099 /* QuantitativeValue.swift */,
+				538941DD2D550FCCE34A7EB4DDCF8BDF /* Quantity.swift */,
+				539FF86941D5C504A21C91333E0736A5 /* Question.swift */,
+				E81A941C78F0F5F355AD2D5C71CB4C2D /* Rating.swift */,
+				A16AB26F2C2BA36247D836C08348D718 /* Review.swift */,
+				296C02800C0C99EAC6741B8B14383AF0 /* Service.swift */,
+				C1DBC820805E741D469262B3C96F0D34 /* ServiceChannel.swift */,
+				B2051B5A40421DFC8B160F0CD4AC20BA /* SoftwareApplication.swift */,
+				F75C1A389DD7F528232C36678F4CD8BB /* SoftwareApplicationOrWebsite.swift */,
+				F7BBD0F3F64824F929905BB980240B3B /* StructuredValue.swift */,
+				9C024B264D61EEADC9B4AA9B5B8251DD /* TextOrThing.swift */,
+				6FCF1D0DF16B001F6FF9F605C27EDC91 /* TextOrURL.swift */,
+				A9A70244359E0821E078C9D04A468A1B /* Thing.swift */,
+				3724032B807EF2FB168E04ED0F6F4195 /* Time.swift */,
+				60CF7E3D903D3260A177849D06358AB9 /* Value.swift */,
+				4F45FEB2384A682159A786F7B15257CA /* ValueReference.swift */,
+				58C04F94A628072AE9A48E12FBC07670 /* VideoObject.swift */,
+				D38909C700AE09DBC465456BE9D75318 /* Website.swift */,
+				B21C948B898534257F0E9B8B36D58289 /* Support Files */,
 			);
-			name = Frameworks;
+			name = SOSwiftVocabulary;
+			path = SOSwiftVocabulary;
 			sourceTree = "<group>";
 		};
 		55DCDFFFFBDD050B6117894AD3D6522A /* Pods-SOSwift */ = {
@@ -134,66 +562,133 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
-				3358183D73E6DA076AC5D543A69686F7 /* Products */,
+				D648CE86F139C7CCFD55D5B8A03BE74B /* Frameworks */,
+				CC46F69E2F39F9352923D7BCEE202BD5 /* Pods */,
+				2195FF75877E2DEDFEAE54194492AC8E /* Products */,
 				1BE676FAF4FB0A4BF99CA5052D117CCB /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		92FC4590B3B6C6A2141FDC7D1DA8879E /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				6526E38143AA3C7320583E142AA64538 /* Cocoa.framework */,
+				1E110E3518E2D475577D0E2056C8B05D /* Foundation.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		B21C948B898534257F0E9B8B36D58289 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB54F0E35743659320D92EC3B479B788 /* Info.plist */,
+				36BF53EAC0E7B924B20A7CBFF259018C /* SOSwiftVocabulary.modulemap */,
+				F63862B483F9FB39C13A138888CDF182 /* SOSwiftVocabulary.xcconfig */,
+				C4592CED0D0DB70BE7D53187F9C4CBCF /* SOSwiftVocabulary-dummy.m */,
+				D85732B0F0C6EE1AFF0C4D9FE0E67EF7 /* SOSwiftVocabulary-prefix.pch */,
+				BFB2A1BB3B14B94A72808AF3FE009337 /* SOSwiftVocabulary-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SOSwiftVocabulary";
+			sourceTree = "<group>";
+		};
+		CC46F69E2F39F9352923D7BCEE202BD5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				276456A3EEF84ECE1D33EABC8AD1FAF1 /* SOSwiftVocabulary */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D648CE86F139C7CCFD55D5B8A03BE74B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92FC4590B3B6C6A2141FDC7D1DA8879E /* OS X */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		56EE40AF51484E99CC8883917FE7A42E /* Headers */ = {
+		6EE9BACB0AE773D9BCEA3873D2450AE6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE5EA779D7361772E2B2FA5D958DE79 /* Pods-SOSwiftTests-umbrella.h in Headers */,
+				951168B8F34D274A937E9558049A6A6D /* Pods-SOSwiftTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5E6739DC3F00738CD799746D748481C1 /* Headers */ = {
+		B13DC13FB242648FEA15D9F7C6E39BFB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A554F94972D33EE24E8FF2A527968FEB /* Pods-SOSwift-umbrella.h in Headers */,
+				D2A0B05669304255B2673488B19FFCAC /* Pods-SOSwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49B301A30D055B0F0C587D2D8542297 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				368CB6E1DC82D6B4E722C90D88397392 /* SOSwiftVocabulary-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		479B899CF60A3BF95496C238ADDA4B8C /* Pods-SOSwift */ = {
+		92F215C1977805D35B8E25AE8EB3F7B9 /* Pods-SOSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F36B8B2A532729040A52A19DABF7D4F4 /* Build configuration list for PBXNativeTarget "Pods-SOSwift" */;
+			buildConfigurationList = 61195076E4E397BF420C1028303477F2 /* Build configuration list for PBXNativeTarget "Pods-SOSwift" */;
 			buildPhases = (
-				4360B0F8DFE4DCAC06C0862DCB5E366A /* Sources */,
-				939D92E560CC396F402B2675FD53F133 /* Frameworks */,
-				5E6739DC3F00738CD799746D748481C1 /* Headers */,
+				567883815E4D85A18A7A9D306E7DE8BB /* Sources */,
+				5CBF4927AAE41A71BE062E7B2CF711C4 /* Frameworks */,
+				B13DC13FB242648FEA15D9F7C6E39BFB /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1E4F208C6B8CA24157CE96750B24DEFB /* PBXTargetDependency */,
 			);
 			name = "Pods-SOSwift";
 			productName = "Pods-SOSwift";
-			productReference = F72C8DADB3031FDA5E12259FDBB9A1F1 /* Pods_SOSwift.framework */;
+			productReference = 777CD4CCCF592A1418E5ABDF5193159B /* Pods_SOSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		AD64ED74C09C6387666DBB75F2D5DC13 /* Pods-SOSwiftTests */ = {
+		C731D25E9EF7CF03B59FA3B4341AF060 /* SOSwiftVocabulary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7B454054C4163287822CA6DEC5B1EB7 /* Build configuration list for PBXNativeTarget "Pods-SOSwiftTests" */;
+			buildConfigurationList = 1269785D93D325CB6871F1F15325DEB1 /* Build configuration list for PBXNativeTarget "SOSwiftVocabulary" */;
 			buildPhases = (
-				79D4D59775A124EF1752A217F82A17AA /* Sources */,
-				80E74563C5B39E601FBD776865E77832 /* Frameworks */,
-				56EE40AF51484E99CC8883917FE7A42E /* Headers */,
+				88D097A9747CFC5E688E6E12D3C4EC89 /* Sources */,
+				FB8F51A4E476CFF8A7330A98925CFE47 /* Frameworks */,
+				F49B301A30D055B0F0C587D2D8542297 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			name = SOSwiftVocabulary;
+			productName = SOSwiftVocabulary;
+			productReference = E5FCDBF3DB49FB484447672211E73FB0 /* SOSwiftVocabulary.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DBC8F6BEB5237A20849EB7D92AD47F9F /* Pods-SOSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7A50E008461632CC660A16C305240D5 /* Build configuration list for PBXNativeTarget "Pods-SOSwiftTests" */;
+			buildPhases = (
+				BC7715FA6BFB307F8E2AF9D090055A47 /* Sources */,
+				6FCA8F4F2C2D929560D654C3DBA56FE4 /* Frameworks */,
+				6EE9BACB0AE773D9BCEA3873D2450AE6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E930330957B5BC12358039D473E7F56 /* PBXTargetDependency */,
+			);
 			name = "Pods-SOSwiftTests";
 			productName = "Pods-SOSwiftTests";
-			productReference = 20DCE701407016B9284B5BBE089D9512 /* Pods_SOSwiftTests.framework */;
+			productReference = DFACF062B3B5FCE71E505DDC5A3588F6 /* Pods_SOSwiftTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -202,7 +697,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -213,78 +708,198 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 3358183D73E6DA076AC5D543A69686F7 /* Products */;
+			productRefGroup = 2195FF75877E2DEDFEAE54194492AC8E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				479B899CF60A3BF95496C238ADDA4B8C /* Pods-SOSwift */,
-				AD64ED74C09C6387666DBB75F2D5DC13 /* Pods-SOSwiftTests */,
+				92F215C1977805D35B8E25AE8EB3F7B9 /* Pods-SOSwift */,
+				DBC8F6BEB5237A20849EB7D92AD47F9F /* Pods-SOSwiftTests */,
+				C731D25E9EF7CF03B59FA3B4341AF060 /* SOSwiftVocabulary */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4360B0F8DFE4DCAC06C0862DCB5E366A /* Sources */ = {
+		567883815E4D85A18A7A9D306E7DE8BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EAE5DBA26A7140B6D127FB35536DEB3 /* Pods-SOSwift-dummy.m in Sources */,
+				03C5D2C9046044F26A9E4717F67DB116 /* Pods-SOSwift-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		79D4D59775A124EF1752A217F82A17AA /* Sources */ = {
+		88D097A9747CFC5E688E6E12D3C4EC89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E3E404C56EF31AC2F0B4B256DC0995 /* Pods-SOSwiftTests-dummy.m in Sources */,
+				02B556B1916A199B21E22A1964B16C7C /* AccessibilityAPI.swift in Sources */,
+				FB7B1051B617B4E20872C8D365515BC7 /* AccessibilityControl.swift in Sources */,
+				9C71373B802C0D4AEF9F92B47DEC5B2B /* AccessibilityFeature.swift in Sources */,
+				0664306EAF523E2408C78B4036EE5BB5 /* AccessibilityHazard.swift in Sources */,
+				240DC82BE2085E88DB95534EE58367B4 /* AccessMode.swift in Sources */,
+				EA3EC5B56C77E54DD3C216A531F47AFD /* AccessModeSufficient.swift in Sources */,
+				3E93EEB3CF6D32152ACAA9FA851629D5 /* Action.swift in Sources */,
+				CAD6BAAACD64AFBB55E1E3E9D67958FF /* ActionStatus.swift in Sources */,
+				FDC25C678918A417C31C6B1FC0F9B151 /* AdministrativeArea.swift in Sources */,
+				21DA8113486155CD3EC8A20756AC0B4F /* AggregateRating.swift in Sources */,
+				59BD41B618A2826E5C8CB5CBBFBA0F9E /* AlignmentObject.swift in Sources */,
+				FB65507C7370CA20670E23E60240DC31 /* AlignmentObjectOrCourseOrText.swift in Sources */,
+				5349495E7B1D7C26DFE05A23A7230C13 /* Answer.swift in Sources */,
+				36D58E149AA59D912D86AD4221771D1D /* AreaServed.swift in Sources */,
+				35A61BC8587D896FE49E5E609649B6AC /* Article.swift in Sources */,
+				AB727A5E6FE85A78E5258D3CCFEE3F58 /* Audience.swift in Sources */,
+				8A6285BDAF2554E9C82787E46FCEFC9D /* AudioObject.swift in Sources */,
+				08E21FF7030B328087EBD15EE8E097E0 /* Brand.swift in Sources */,
+				264665D01525FC632F58BE2A827E8E0C /* BrandOrOrganization.swift in Sources */,
+				51D5ADC2831F784B3CEEE69B19B88B6F /* BroadcastService.swift in Sources */,
+				3FABBCDCCC8C203AF1059CA67079AFEF /* Comment.swift in Sources */,
+				0082BA1968E6C7DE3A06FC2F6B841991 /* ContactPoint.swift in Sources */,
+				BE0D3EEF4C280D5658F56B1904374A8E /* ContactPointOption.swift in Sources */,
+				51793A0CF1F0F9FFB13AB835DFFDA30C /* ContactPointOrPlace.swift in Sources */,
+				EB0DF76ED3B20952C113A9906C28FCA8 /* Country.swift in Sources */,
+				F0C1E1E4AD4C7913D08242BC893826F9 /* CountryOrText.swift in Sources */,
+				A6C145C3C6DAA80B122F619E3CD7145B /* Course.swift in Sources */,
+				E5BDD0E5DF2A4726E478B93344C2694D /* CourseInstance.swift in Sources */,
+				ECEC45207C4003E30A6D95C5E0C08617 /* CreativeWork.swift in Sources */,
+				22F051E269E4B3638AB2A8E011C96D3D /* CreativeWorkOrProductOrURL.swift in Sources */,
+				DBCC1B30648707480FF761F9781C69A4 /* CreativeWorkOrText.swift in Sources */,
+				5B30423F8FEC2D493A7004FED534CDFE /* CreativeWorkOrURL.swift in Sources */,
+				9BF26483CD7AC31FA43765EC829AA3E5 /* DataFeed.swift in Sources */,
+				2B3E8CA2DAD925A471D6E6E3AA2B16F3 /* Dataset.swift in Sources */,
+				6064674A8891C173D4D444194EF63A4E /* DateOnly.swift in Sources */,
+				F4F85FF70B716FB54255CD5C2C975DF3 /* DateOnlyOrDateTime.swift in Sources */,
+				08EFCDD320815A8E6908055482E4ABFC /* DateTime.swift in Sources */,
+				123F92F3B18719CCE462AFAE5CDA59A0 /* DateTimeOrTextOrURL.swift in Sources */,
+				268C63DB13DDBE58567199FBDB42D6C8 /* DayOfWeek.swift in Sources */,
+				9B07ABE80F9FA46CE41A98BFD0D52DAD /* Demand.swift in Sources */,
+				B60002634D926F4320D40AC253D33B61 /* Distance.swift in Sources */,
+				C01146D4056A86B04E1FE8B853495FDE /* DistanceOrQuantitativeValue.swift in Sources */,
+				2108B19410B42D01EC745FB6A6C65642 /* Duration.swift in Sources */,
+				6FE2C5D267B591064751B0A89D1401D9 /* EducationalOrganization.swift in Sources */,
+				CFBB1F48580441642CFE1BF4852F098F /* EducationalOrganizationOrOrganization.swift in Sources */,
+				5C9666216388F37CDB9926A4CDAED02A /* EntryPoint.swift in Sources */,
+				D2E00ADDE769CC5485836A86FB8A01F5 /* Enumeration.swift in Sources */,
+				C7FBD3FFE08B9FC36389ECC355AEBF20 /* Event.swift in Sources */,
+				4FC1EE9681F60E30E2564960E59168A1 /* EventStatus.swift in Sources */,
+				BB1DA68BC94323566D7AA6EBBE49F41E /* Gender.swift in Sources */,
+				2E6B6268234B49259B43DE84ED56FE55 /* GenderOrText.swift in Sources */,
+				E3C907159151CCDA71F34CC076CDFDC3 /* GeoCoordinates.swift in Sources */,
+				D2FF6C0670B047EDCA076F575F74DE85 /* GeoCoordinatesOrGeoShape.swift in Sources */,
+				A4B10213C8156EF43B6A1630DE47B58F /* GeoShape.swift in Sources */,
+				0A2BDD11BA2351E91913597A8646418F /* Identifier.swift in Sources */,
+				24905C6C8FFF7DC9AF225A90F013A486 /* ImageObject.swift in Sources */,
+				A6182EB67BBFF0967C8090D9E85A8B02 /* ImageObjectOrPhotograph.swift in Sources */,
+				1E5902134F7339AC6117CAA16E351F67 /* ImageObjectOrURL.swift in Sources */,
+				D3D64D58D4949641B301E0B1465F68A1 /* Intangible.swift in Sources */,
+				25F0F26901CC1678CD1C15995EE5F55F /* IntegerOrText.swift in Sources */,
+				65426CB9A7A68F993AAB3EA106E05FAA /* InteractionCounter.swift in Sources */,
+				896578316034C0CD1CD992F7046D906D /* Interactivity.swift in Sources */,
+				C428876B2D2FC4632BCEE61240F93DF0 /* ItemList.swift in Sources */,
+				91BEF5911873B447EB669F5E7490CE14 /* ItemListOrder.swift in Sources */,
+				48D378F58512FCA042DEAA6C3DF6E3FB /* ItemListOrderOrText.swift in Sources */,
+				10C7C09C7C7B392928DD36640B81B587 /* ItemListOrMusicRecording.swift in Sources */,
+				F72FFD33B41E0F116528ECEA930A9520 /* Language.swift in Sources */,
+				873226F54C8757260FA9697E9D8AA975 /* LanguageOrText.swift in Sources */,
+				B61920DCD535D7EAE6B11D4D0113387C /* ListItem.swift in Sources */,
+				6AF23555379FEF26ED58FC6A04129EFC /* ListItemOrTextOrThing.swift in Sources */,
+				CC3EA19D9D082E632E3F2661E5805423 /* LocationFeatureSpecification.swift in Sources */,
+				7E216662671D830F04DBD016CE43D476 /* Map.swift in Sources */,
+				9387047BC77CADDC7EA1CA6AB84FFC6A /* MapOrURL.swift in Sources */,
+				108EC4228011BF8858C8CF94CEE0BEB7 /* MapType.swift in Sources */,
+				29B498899DD9988786B72194D453AD07 /* MediaObject.swift in Sources */,
+				3F69F3E23366170991CF9E254C254101 /* MonetaryAmount.swift in Sources */,
+				D7D4A52B9C3CA7882BC4D15BDF7130EB /* MonetaryAmountOrPriceSpecification.swift in Sources */,
+				E79448EC6356697D6733E8EAA103B223 /* MusicAlbum.swift in Sources */,
+				AF9DFD323F140BDFB224F7A5B27CAEE1 /* MusicGroup.swift in Sources */,
+				9C5A46DD1A652CAFB25CCC0FBEF45B46 /* MusicGroupOrPerson.swift in Sources */,
+				F06EA2C85EA546D4A085052EDCA16109 /* MusicPlaylist.swift in Sources */,
+				B23BBB472385CFAAA405DC9D257443D1 /* MusicRecording.swift in Sources */,
+				E784736F2CA73F580F8F0E61AFC68253 /* NewsArticle.swift in Sources */,
+				90B2D87DCB2C2D4D8039E91CAEDB0620 /* Number.swift in Sources */,
+				C6149EA9F68E2EF00746F2B762BABF28 /* NumberOrText.swift in Sources */,
+				A00D3D1F78377DE25F6A29B635A10398 /* Offer.swift in Sources */,
+				72E90C2C943B364B2AFB615B0476C921 /* OfferCatalog.swift in Sources */,
+				C949E8C1E8FE566311D537695EE4A74A /* OfferItemCondition.swift in Sources */,
+				7CD7F1D2EF80E0E9B3554D445D43688E /* OpeningHoursSpecification.swift in Sources */,
+				4926F7659896A0A418B82511D976D746 /* Organization.swift in Sources */,
+				A0569FA2337DDB903D1696F7C9C9FBE2 /* OrganizationOrPerson.swift in Sources */,
+				A5D76E3CD9F6F6931578968BFB8C7E40 /* OrganizationOrProgramMembership.swift in Sources */,
+				7CC53BAA4849FC6BD6A471288B623493 /* OwnershipInfo.swift in Sources */,
+				9F0B91F40FDA18F150A426CF2300BED7 /* OwnershipInfoOrProduct.swift in Sources */,
+				BDB83A138A3B2E9EF86B1453DE046664 /* PerformingGroup.swift in Sources */,
+				70A695C1054D26859D887DAA168CA95B /* Person.swift in Sources */,
+				4AA6A7852B5D22883D6723659A3DB4F5 /* PersonOrURL.swift in Sources */,
+				2DB2C1E059738FB8EA795D72267A929A /* Photograph.swift in Sources */,
+				D68DA60C21177F72884BB2CF6181A4CA /* Place.swift in Sources */,
+				2D2D37F8165797E449B0DCA953300C01 /* PlaceOrPostalAddressOrText.swift in Sources */,
+				62F92E17F3BDCDC0DE30CED119CBF7A7 /* PostalAddress.swift in Sources */,
+				31C924A0CF736B8F23D6A263299659AA /* PostalAddressOrText.swift in Sources */,
+				042FE4ACF7C5367BD1B3ED214B38242A /* PriceSpecification.swift in Sources */,
+				4F03A9E8383DC3879C5F0627F783FF96 /* Product.swift in Sources */,
+				13B47DA9BFBF8878C48B322AB3317992 /* ProductModel.swift in Sources */,
+				6FDFDC7CD1ED19A64F1D568B7B96D716 /* ProductModelOrText.swift in Sources */,
+				488011D8BD3F40CB46B0EEC3A3DDD1B1 /* ProductOrService.swift in Sources */,
+				AF6A86EF24196C1814286F6909140082 /* ProductOrText.swift in Sources */,
+				99270B1076DBD93F37B7ED0BF1F91AA4 /* ProductOrTextOrURL.swift in Sources */,
+				9D1EEAFA632CB52D047C3AFA4FE2CA0A /* ProgramMembership.swift in Sources */,
+				4DB4CFDA9FDE1F26915B382ADE3E9CB7 /* PropertyValue.swift in Sources */,
+				8AD8998EB9FF7D9A7CC6E29DFDE14AA0 /* PropertyValueOrText.swift in Sources */,
+				C73AA7DDED303236A3554DC00A335CFE /* PublicationEvent.swift in Sources */,
+				63C36E758BF58E87857390E4AC80382F /* QualitativeValue.swift in Sources */,
+				D9641A484339D2F8F2D1B7A60C63255F /* QuantitativeValue.swift in Sources */,
+				FAF976D278E8E2A6FF9180632455C88D /* Quantity.swift in Sources */,
+				9CDF4CBDF738C3A5A98B33D73B3EE24B /* Question.swift in Sources */,
+				DFF922257D6EEF10EF45AC0089078AE5 /* Rating.swift in Sources */,
+				B40A1714C29A73D4B1DB80A2868DA834 /* Review.swift in Sources */,
+				CCE914DAD6B09E3591B2C4068CADCF00 /* Service.swift in Sources */,
+				DDFB1503B184AAC4E7B6A709A72E4B4E /* ServiceChannel.swift in Sources */,
+				16AB387B7DE979AB7F045F3FA45F1EB2 /* SoftwareApplication.swift in Sources */,
+				CE25531B9793C65955605873ACA254C2 /* SoftwareApplicationOrWebsite.swift in Sources */,
+				9A2102152F76A65FC5C3E0BC81232160 /* SOSwiftVocabulary-dummy.m in Sources */,
+				7BDA868D8378638C2C831F5C19336A2C /* StructuredValue.swift in Sources */,
+				486A1516CEB1A684E6CF6B259253C1A3 /* TextOrThing.swift in Sources */,
+				CB2612DBAB63ADA286F5BB2E4756A9C1 /* TextOrURL.swift in Sources */,
+				9C11CA53A384A92B941FDD4121F4103D /* Thing.swift in Sources */,
+				D48B5E215065B38A7CCFD6A94F8B4F84 /* Time.swift in Sources */,
+				FD13359D9E4C1C95CC26B913338BC056 /* Value.swift in Sources */,
+				6E6A9ECC82B025E2231581ABF8815D41 /* ValueReference.swift in Sources */,
+				0737FC22400B6B5A67B1D1D4E1062ADD /* VideoObject.swift in Sources */,
+				886EF710CD39F20F9302407FA42B8856 /* Website.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC7715FA6BFB307F8E2AF9D090055A47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43B961A189FF23401331B86C70C988C6 /* Pods-SOSwiftTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin XCBuildConfiguration section */
-		149F35B8EF4299D00219FD17915A4B58 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0CCC2DBEFFEAA5883D4C2653A34D5D1C /* Pods-SOSwift.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SOSwift/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/Pods-SOSwift/Pods-SOSwift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_SOSwift;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
+/* Begin PBXTargetDependency section */
+		1E4F208C6B8CA24157CE96750B24DEFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SOSwiftVocabulary;
+			target = C731D25E9EF7CF03B59FA3B4341AF060 /* SOSwiftVocabulary */;
+			targetProxy = AE8D4B9F225282514072F30CB7A6DDDC /* PBXContainerItemProxy */;
 		};
-		34342BBF37D3A9ED85FF2EB654934920 /* Debug */ = {
+		4E930330957B5BC12358039D473E7F56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SOSwiftVocabulary;
+			target = C731D25E9EF7CF03B59FA3B4341AF060 /* SOSwiftVocabulary */;
+			targetProxy = 8589BBB8DA02E7EB91F52B06A0C1BC76 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		05CC7D184CE374E9F52FA809D9330184 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -292,10 +907,57 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		714DED89313681B7AF595B92FFE7A083 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
@@ -316,89 +978,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		5AA187390A397C029DD560BCAE62FF93 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A52C7E5C0209FB1581016C9513601AD9 /* Pods-SOSwift.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SOSwift/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/Pods-SOSwift/Pods-SOSwift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_SOSwift;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		68EAA6223F6DD31DDA46A17AD876F8D7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 622087FB7C18788DEBE6B60D66721CD9 /* Pods-SOSwiftTests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SOSwiftTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/Pods-SOSwiftTests/Pods-SOSwiftTests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_SOSwiftTests;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		9108E8D6869FBB60FA7E319CF3F8C614 /* Release */ = {
+		928044979345F431C632FECB6E71F112 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D489CE9BE381F86A099C9AE31EAB80C /* Pods-SOSwiftTests.release.xcconfig */;
 			buildSettings = {
@@ -420,7 +1009,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MODULEMAP_FILE = "Target Support Files/Pods-SOSwiftTests/Pods-SOSwiftTests.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -430,77 +1019,239 @@
 				PRODUCT_NAME = Pods_SOSwiftTests;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		F6FC88CB717F413199C282718D2DC09F /* Release */ = {
+		947D5CA4B6FF477EB98171BFD57974D5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F63862B483F9FB39C13A138888CDF182 /* SOSwiftVocabulary.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SOSwiftVocabulary/SOSwiftVocabulary-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SOSwiftVocabulary/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/SOSwiftVocabulary/SOSwiftVocabulary.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SOSwiftVocabulary;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B592F4DAB7BC9B69697A1A349FADCD2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F63862B483F9FB39C13A138888CDF182 /* SOSwiftVocabulary.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SOSwiftVocabulary/SOSwiftVocabulary-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SOSwiftVocabulary/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/SOSwiftVocabulary/SOSwiftVocabulary.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SOSwiftVocabulary;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C6820909DF3611A8A9B8907C24B4B7C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 622087FB7C18788DEBE6B60D66721CD9 /* Pods-SOSwiftTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SOSwiftTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/Pods-SOSwiftTests/Pods-SOSwiftTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SOSwiftTests;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DF976AF81F8170BBC9747DD24D6423A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CCC2DBEFFEAA5883D4C2653A34D5D1C /* Pods-SOSwift.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SOSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/Pods-SOSwift/Pods-SOSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SOSwift;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F7E7D7EFA1CC37EF25024ADD09F93754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A52C7E5C0209FB1581016C9513601AD9 /* Pods-SOSwift.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SOSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/Pods-SOSwift/Pods-SOSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SOSwift;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1269785D93D325CB6871F1F15325DEB1 /* Build configuration list for PBXNativeTarget "SOSwiftVocabulary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B592F4DAB7BC9B69697A1A349FADCD2F /* Debug */,
+				947D5CA4B6FF477EB98171BFD57974D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				34342BBF37D3A9ED85FF2EB654934920 /* Debug */,
-				F6FC88CB717F413199C282718D2DC09F /* Release */,
+				714DED89313681B7AF595B92FFE7A083 /* Debug */,
+				05CC7D184CE374E9F52FA809D9330184 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F36B8B2A532729040A52A19DABF7D4F4 /* Build configuration list for PBXNativeTarget "Pods-SOSwift" */ = {
+		61195076E4E397BF420C1028303477F2 /* Build configuration list for PBXNativeTarget "Pods-SOSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				149F35B8EF4299D00219FD17915A4B58 /* Debug */,
-				5AA187390A397C029DD560BCAE62FF93 /* Release */,
+				DF976AF81F8170BBC9747DD24D6423A5 /* Debug */,
+				F7E7D7EFA1CC37EF25024ADD09F93754 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7B454054C4163287822CA6DEC5B1EB7 /* Build configuration list for PBXNativeTarget "Pods-SOSwiftTests" */ = {
+		E7A50E008461632CC660A16C305240D5 /* Build configuration list for PBXNativeTarget "Pods-SOSwiftTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				68EAA6223F6DD31DDA46A17AD876F8D7 /* Debug */,
-				9108E8D6869FBB60FA7E319CF3F8C614 /* Release */,
+				C6820909DF3611A8A9B8907C24B4B7C5 /* Debug */,
+				928044979345F431C632FECB6E71F112 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
