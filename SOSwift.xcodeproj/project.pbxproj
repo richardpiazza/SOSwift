@@ -23,6 +23,7 @@
 		E16812491F950B1100C3A0FC /* DateTimeOrTextOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16812481F950B1100C3A0FC /* DateTimeOrTextOrURL+Extension.swift */; };
 		E16DB82C1EC753F700E73447 /* SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16DB8221EC753F700E73447 /* SOSwift.framework */; };
 		E16DB8331EC753F700E73447 /* SOSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E16DB8251EC753F700E73447 /* SOSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1944D641F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */; };
 		E1E453401F70412E00236249 /* BrandOrOrganization+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E452D71F70411D00236249 /* BrandOrOrganization+Extension.swift */; };
 		E1E453411F70412E00236249 /* PlaceOrPostalAddressOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E452D81F70411D00236249 /* PlaceOrPostalAddressOrText+Extension.swift */; };
 		E1E453421F70412E00236249 /* SOQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E452D91F70411D00236249 /* SOQuestion.swift */; };
@@ -166,6 +167,7 @@
 		E16DB8261EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E16DB82B1EC753F700E73447 /* SOSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SOSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16DB8321EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateOnlyOrDateTime+Extension.swift"; sourceTree = "<group>"; };
 		E1E452D71F70411D00236249 /* BrandOrOrganization+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BrandOrOrganization+Extension.swift"; sourceTree = "<group>"; };
 		E1E452D81F70411D00236249 /* PlaceOrPostalAddressOrText+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlaceOrPostalAddressOrText+Extension.swift"; sourceTree = "<group>"; };
 		E1E452D91F70411D00236249 /* SOQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOQuestion.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				E1E4533A1F70412C00236249 /* CreativeWorkOrText+Extension.swift */,
 				E1E453321F70412B00236249 /* CreativeWorkOrURL+Extension.swift */,
 				E1E452DC1F70411D00236249 /* DateOnly+Extension.swift */,
+				E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */,
 				E1E453201F70412700236249 /* DateTime+Extension.swift */,
 				E16812481F950B1100C3A0FC /* DateTimeOrTextOrURL+Extension.swift */,
 				E1E453101F70412400236249 /* DistanceOrQuantitativeValue+Extension.swift */,
@@ -790,6 +793,7 @@
 				E1E453621F70412E00236249 /* MapOrURL+Extension.swift in Sources */,
 				E1E453951F70412E00236249 /* SOPerformingGroup.swift in Sources */,
 				E1E453A11F70412E00236249 /* SOProduct.swift in Sources */,
+				E1944D641F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift in Sources */,
 				E1E453501F70412E00236249 /* AreaServed+Extension.swift in Sources */,
 				E1E453881F70412E00236249 /* ValueReference+Extension.swift in Sources */,
 				E1E4535F1F70412E00236249 /* SOService.swift in Sources */,

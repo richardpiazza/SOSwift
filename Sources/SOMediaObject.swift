@@ -50,7 +50,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         case duration
         case embedUrl
         case encodesCreativeWork
-        case encodingForme
+        case encodingFormat
         case expires
         case height
         case playerType
@@ -64,8 +64,55 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        
-        
+        if let value = try container.decodeIfPresent(SONewsArticle.self, forKey: .associatedArticle) {
+            self.associatedArticle = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .bitrate) {
+            self.bitrate = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .contentSize) {
+            self.contentSize = value
+        }
+        if let value = try container.decodeIfPresent(URL.self, forKey: .contentUrl) {
+            self.contentUrl = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .duration) {
+            self.duration = value
+        }
+        if let value = try container.decodeIfPresent(URL.self, forKey: .embedUrl) {
+            self.embedUrl = value
+        }
+        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .encodesCreativeWork) {
+            self.encodesCreativeWork = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .encodingFormat) {
+            self.encodingFormat = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .expires) {
+            self.expires = value
+        }
+        if let value = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height) {
+            self.height = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .playerType) {
+            self.playerType = value
+        }
+        if let value = try container.decodeIfPresent(SOOrganization.self, forKey:.productionCompany) {
+            self.productionCompany = value
+        }
+        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .regionsAllowed) {
+            self.regionsAllowed = value
+        }
+        if let value = try container.decodeIfPresent(Bool.self, forKey: .requiresSubscription) {
+            self.requiresSubscription = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .uploadDate) {
+            self.uploadDate = value
+        }
+        if let value = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .width) {
+            self.width = value
+        }
+
         let superDecoder = try container.superDecoder()
         try super.init(from: superDecoder)
     }
@@ -73,7 +120,54 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        
+        if let value = self.associatedArticle as? SONewsArticle {
+            try container.encode(value, forKey: .associatedArticle)
+        }
+        if let value = self.bitrate {
+            try container.encode(value, forKey: .bitrate)
+        }
+        if let value = self.contentSize {
+            try container.encode(value, forKey: .contentSize)
+        }
+        if let value = self.contentUrl {
+            try container.encode(value, forKey: .contentUrl)
+        }
+        if let value = self.duration as? String {
+            try container.encode(value, forKey: .duration)
+        }
+        if let value = self.embedUrl {
+            try container.encode(value, forKey: .embedUrl)
+        }
+        if let value = self.encodesCreativeWork as? SOCreativeWork {
+            try container.encode(value, forKey: .encodesCreativeWork)
+        }
+        if let value = self.encodingFormat {
+            try container.encode(value, forKey: .encodingFormat)
+        }
+        if let value = self.expires as? String {
+            try container.encode(value, forKey: .expires)
+        }
+        if let value = self.height {
+            try container.encodeDistanceOrQuantitativeValue(value, forKey: .height)
+        }
+        if let value = self.playerType {
+            try container.encode(value, forKey: .playerType)
+        }
+        if let value = self.productionCompany as? SOOrganization {
+            try container.encode(value, forKey: .productionCompany)
+        }
+        if let value = self.regionsAllowed as? SOPlace {
+            try container.encode(value, forKey: .regionsAllowed)
+        }
+        if let value = self.requiresSubscription {
+            try container.encode(value, forKey: .requiresSubscription)
+        }
+        if let value = self.uploadDate as? String {
+            try container.encode(value, forKey: .uploadDate)
+        }
+        if let value = self.width {
+            try container.encodeDistanceOrQuantitativeValue(value, forKey: .width)
+        }
         
         let superEncoder = container.superEncoder()
         try super.encode(to: superEncoder)

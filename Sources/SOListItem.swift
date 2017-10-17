@@ -2,6 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 public class SOListItem: SOIntangible, ListItem {
+    
     override public class var type: String {
         return "ListItem"
     }

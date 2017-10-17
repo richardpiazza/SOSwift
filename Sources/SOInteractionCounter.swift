@@ -2,6 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
+    
     override public class var type: String {
         return "InteractionCounter"
     }
