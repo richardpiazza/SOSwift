@@ -141,7 +141,126 @@ public class SOOrganization: SOThing, Organization {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        
+        if let value = try container.decodePostalAddressOrTextIfPresent(forKey: .address) {
+            self.address = value
+        }
+        if let value = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating) {
+            self.aggregateRating = value
+        }
+        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .alumni) {
+            self.alumni = value
+        }
+        if let value = try container.decodeIfPresent([String].self, forKey: .award) {
+            self.award = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .areaSurved) {
+            self.areaServed = value
+        }
+        if let value = try container.decodeBrandsOrOrganizationsIfPresent(forKey: .brand) {
+            self.brand = value
+        }
+        if let value = try container.decodeIfPresent([SOContactPoint].self, forKey: .contactPoint) {
+            self.contactPoint = value
+        }
+        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .department) {
+            self.department = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .dissolutionDate) {
+            self.dissolutionDate = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .duns) {
+            self.duns = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .email) {
+            self.email = value
+        }
+        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .employee) {
+            self.employee = value
+        }
+        if let value = try container.decodeIfPresent([SOEvent].self, forKey: .event) {
+            self.event = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .faxNumber) {
+            self.faxNumber = value
+        }
+        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .founder) {
+            self.founder = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .foundingDate) {
+            self.foundingDate = value
+        }
+        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .foundingLocation) {
+            self.foundingLocation = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .funder) {
+            self.funder = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber) {
+            self.globalLocationNumber = value
+        }
+        if let value = try container.decodeIfPresent(SOOfferCatalog.self, forKey: .hasOfferCatalog) {
+            self.hasOfferCatalog = value
+        }
+        if let value = try container.decodeIfPresent([SOPlace].self, forKey: .hasPOS) {
+            self.hasPOS = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .isicV4) {
+            self.isicV4 = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .legalName) {
+            self.legalName = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .leiCode) {
+            self.leiCode = value
+        }
+        if let value = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .location) {
+            self.location = value
+        }
+        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .logo) {
+            self.logo = value
+        }
+        if let value = try container.decodeIfPresent([SOOffer].self, forKey: .makesOffers) {
+            self.makesOffers = value
+        }
+        if let value = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .member) {
+            self.member = value
+        }
+        if let value = try container.decodeOrganizationOrProgramMembershipIfPresent(forKey: .memberOf) {
+            self.memberOf = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .naics) {
+            self.naics = value
+        }
+        if let value = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .numberOfEmployees) {
+            self.numberOfEmployees = value
+        }
+        if let value = try container.decodeOwnershipInfosOrProductsIfPresent(forKey: .owns) {
+            self.owns = value
+        }
+        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .parentOrganization) {
+            self.parentOrganization = value
+        }
+        if let value = try container.decodeIfPresent([SOReview].self, forKey: .review) {
+            self.review = value
+        }
+        if let value = try container.decodeIfPresent([SODemand].self, forKey: .seeks) {
+            self.seeks = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor) {
+            self.sponsor = value
+        }
+        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .subOrganization) {
+            self.subOrganization = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .taxID) {
+            self.taxID = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .telephone) {
+            self.telephone = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .vatID) {
+            self.vatID = value
+        }
         
         let superDecoder = try container.superDecoder()
         try super.init(from: superDecoder)
@@ -150,7 +269,126 @@ public class SOOrganization: SOThing, Organization {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        
+        if let value = self.address {
+            try container.encodePostalAddressOrText(value, forKey: .address)
+        }
+        if let value = self.aggregateRating as? SOAggregateRating {
+            try container.encode(value, forKey: .aggregateRating)
+        }
+        if let value = self.alumni as? [SOPerson] {
+            try container.encode(value, forKey: .alumni)
+        }
+        if let value = self.areaServed as? String {
+            try container.encode(value, forKey: .areaSurved)
+        }
+        if let value = self.award {
+            try container.encode(value, forKey: .award)
+        }
+        if let value = self.brand {
+            try container.encodeBrandsOrOrganizations(value, forKey: .brand)
+        }
+        if let value = self.contactPoint as? [SOContactPoint] {
+            try container.encode(value, forKey: .contactPoint)
+        }
+        if let value = self.department as? SOOrganization {
+            try container.encode(value, forKey: .department)
+        }
+        if let value = self.dissolutionDate as? String {
+            try container.encode(value, forKey: .dissolutionDate)
+        }
+        if let value = self.duns {
+            try container.encode(value, forKey: .duns)
+        }
+        if let value = self.email {
+            try container.encode(value, forKey: .email)
+        }
+        if let value = self.employee as? [SOPerson] {
+            try container.encode(value, forKey: .employee)
+        }
+        if let value = self.event as? [SOEvent] {
+            try container.encode(value, forKey: .event)
+        }
+        if let value = self.faxNumber {
+            try container.encode(value, forKey: .faxNumber)
+        }
+        if let value = self.founder as? [SOPerson] {
+            try container.encode(value, forKey: .founder)
+        }
+        if let value = self.foundingDate as? String {
+            try container.encode(value, forKey: .foundingDate)
+        }
+        if let value = self.foundingLocation as? SOPlace {
+            try container.encode(value, forKey: .foundingLocation)
+        }
+        if let value = self.funder {
+            try container.encodeOrganizationOrPerson(value, forKey: .funder)
+        }
+        if let value = self.globalLocationNumber {
+            try container.encode(value, forKey: .globalLocationNumber)
+        }
+        if let value = self.hasOfferCatalog as? SOOfferCatalog {
+            try container.encode(value, forKey: .hasOfferCatalog)
+        }
+        if let value = self.hasPOS as? [SOPlace] {
+            try container.encode(value, forKey: .hasPOS)
+        }
+        if let value = self.isicV4 {
+            try container.encode(value, forKey: .isicV4)
+        }
+        if let value = self.legalName {
+            try container.encode(value, forKey: .legalName)
+        }
+        if let value = self.leiCode {
+            try container.encode(value, forKey: .leiCode)
+        }
+        if let value = self.location {
+            try container.encodePlaceOrPostalAddressOrText(value, forKey: .location)
+        }
+        if let value = self.logo {
+            try container.encodeImageObjectOrURL(value, forKey: .logo)
+        }
+        if let value = self.makesOffers as? [SOOffer] {
+            try container.encode(value, forKey: .makesOffers)
+        }
+        if let value = self.member {
+            try container.encodeOrganizationsOrPersons(value, forKey: .member)
+        }
+        if let value = self.memberOf {
+            try container.encodeOrganizationOrProgramMembership(value, forKey: .memberOf)
+        }
+        if let value = self.naics {
+            try container.encode(value, forKey: .naics)
+        }
+        if let value = self.numberOfEmployees as? SOQuantitativeValue {
+            try container.encode(value, forKey: .numberOfEmployees)
+        }
+        if let value = self.owns {
+            try container.encodeOwnershipInfosOrProducts(value, forKey: .owns)
+        }
+        if let value = self.parentOrganization as? SOOrganization {
+            try container.encode(value, forKey: .parentOrganization)
+        }
+        if let value = self.review as? [SOReview] {
+            try container.encode(value, forKey: .review)
+        }
+        if let value = self.seeks as? [SODemand] {
+            try container.encode(value, forKey: .seeks)
+        }
+        if let value = self.sponsor {
+            try container.encodeOrganizationOrPerson(value, forKey: .sponsor)
+        }
+        if let value = self.subOrganization as? SOOrganization {
+            try container.encode(value, forKey: .subOrganization)
+        }
+        if let value = self.taxID {
+            try container.encode(value, forKey: .taxID)
+        }
+        if let value = self.telephone {
+            try container.encode(value, forKey: .telephone)
+        }
+        if let value = self.vatID {
+            try container.encode(value, forKey: .vatID)
+        }
         
         let superEncoder = container.superEncoder()
         try super.encode(to: superEncoder)
