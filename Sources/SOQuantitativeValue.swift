@@ -61,7 +61,6 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
             self.valueReference = value
         }
         
-        
         let superDecoder = try container.superDecoder()
         try super.init(from: superDecoder)
     }
