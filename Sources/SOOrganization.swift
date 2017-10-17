@@ -3,49 +3,7 @@ import SOSwiftVocabulary
 
 /// An organization such as a school, NGO, corporation, club, etc.
 public class SOOrganization: SOThing, Organization {
-    public struct Keys {
-        public static let address = "address"
-        public static let aggregateRating = "aggregateRating"
-        public static let alumni = "alumni"
-        public static let areaServed = "areaServed"
-        public static let award = "award"
-        public static let brand = "brand"
-        public static let contactPoint = "contactPoint"
-        public static let department = "department"
-        public static let dissolutionDate = "dissolutionDate"
-        public static let duns = "duns"
-        public static let email = "email"
-        public static let employee = "employee"
-        public static let event = "event"
-        public static let faxNumber = "faxNumber"
-        public static let founder = "founder"
-        public static let foundingDate = "foundingDate"
-        public static let foundingLocation = "foundingLocation"
-        public static let funder = "funder"
-        public static let globalLocationNumber = "globalLocationNumber"
-        public static let hasOfferCatalog = "hasOfferCatalog"
-        public static let hasPOS = "hasPOS"
-        public static let isicV4 = "isicV4"
-        public static let legalName = "legalName"
-        public static let leiCode = "leiCode"
-        public static let location = "location"
-        public static let logo = "logo"
-        public static let makesOffers = "makesOffers"
-        public static let member = "member"
-        public static let memberOf = "memberOf"
-        public static let naics = "naics"
-        public static let numberOfEmployees = "numberOfEmployees"
-        public static let owns = "owns"
-        public static let parentOrganization = "parentOrganization"
-        public static let review = "review"
-        public static let seeks = "seeks"
-        public static let sponsor = "sponsor"
-        public static let subOrganization = "subOrganization"
-        public static let taxID = "taxID"
-        public static let telephone = "telephone"
-        public static let vatID = "vatID"
-    }
-    
+
     override public class var type: String {
         return "Organization"
     }
@@ -137,306 +95,64 @@ public class SOOrganization: SOThing, Organization {
     /// The Value-added Tax ID of the organization or person.
     public var vatID: String?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.address] {
-            self.address = makePostalAddressOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.aggregateRating] as? [String : AnyObject] {
-            self.aggregateRating = SOAggregateRating(dictionary: value)
-        }
-        if let value = dictionary[Keys.alumni] {
-            self.alumni = makePersons(anyObject: value)
-        }
-        if let value = dictionary[Keys.areaServed] {
-            self.areaServed = makeAreaServed(anyObject: value)
-        }
-        if let value = dictionary[Keys.award] {
-            self.award = makeStrings(anyObject: value)
-        }
-        if let value = dictionary[Keys.brand] {
-            self.brand = makeBrandOrOgranizations(anyObject: value)
-        }
-        if let value = dictionary[Keys.contactPoint] {
-            self.contactPoint = makeContactPoints(anyObject: value)
-        }
-        if let value = dictionary[Keys.department] as? [String : AnyObject] {
-            self.department = SOOrganization(dictionary: value)
-        }
-        if let value = dictionary[Keys.dissolutionDate] as? String {
-            self.dissolutionDate = value
-        }
-        if let value = dictionary[Keys.duns] as? String {
-            self.duns = value
-        }
-        if let value = dictionary[Keys.email] as? String {
-            self.email = value
-        }
-        if let value = dictionary[Keys.employee] {
-            self.employee = makePersons(anyObject: value)
-        }
-        if let value = dictionary[Keys.event] {
-            self.event = makeEvents(anyObject: value)
-        }
-        if let value = dictionary[Keys.faxNumber] as? String {
-            self.faxNumber = value
-        }
-        if let value = dictionary[Keys.founder] {
-            self.founder = makePersons(anyObject: value)
-        }
-        if let value = dictionary[Keys.foundingDate] as? String {
-            self.foundingDate = value
-        }
-        if let value = dictionary[Keys.foundingLocation] as? [String : AnyObject] {
-            self.foundingLocation = SOPlace(dictionary: value)
-        }
-        if let value = dictionary[Keys.funder] as? [String : AnyObject] {
-            self.funder = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.globalLocationNumber] as? String {
-            self.globalLocationNumber = value
-        }
-        if let value = dictionary[Keys.hasOfferCatalog] as? [String : AnyObject] {
-            self.hasOfferCatalog = SOOfferCatalog(dictionary: value)
-        }
-        if let value = dictionary[Keys.hasPOS] {
-            self.hasPOS = makePlaces(anyObject: value)
-        }
-        if let value = dictionary[Keys.isicV4] as? String {
-            self.isicV4 = value
-        }
-        if let value = dictionary[Keys.legalName] as? String {
-            self.legalName = value
-        }
-        if let value = dictionary[Keys.leiCode] as? String {
-            self.leiCode = value
-        }
-        if let value = dictionary[Keys.location] {
-            self.location = makePlaceOrPostalAddressOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.logo] {
-            self.logo = makeImageObjectOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.makesOffers] {
-            self.makesOffers = makeOffers(anyObject: value)
-        }
-        if let value = dictionary[Keys.member] {
-            self.member = makeOrganizationOrPersons(anyObject: value)
-        }
-        if let value = dictionary[Keys.memberOf] as? [String : AnyObject] {
-            self.memberOf = makeOrganizationOrProgramMembership(dictionary: value)
-        }
-        if let value = dictionary[Keys.naics] as? String {
-            self.naics = value
-        }
-        if let value = dictionary[Keys.numberOfEmployees] as? [String : AnyObject] {
-            self.numberOfEmployees = SOQuantitativeValue(dictionary: value)
-        }
-        if let value = dictionary[Keys.owns] as? [[String : AnyObject]] {
-            self.owns = makeOwnershipInfoOrProducts(elements: value)
-        }
-        if let value = dictionary[Keys.parentOrganization] as? [String : AnyObject] {
-            self.parentOrganization = SOOrganization(dictionary: value)
-        }
-        if let value = dictionary[Keys.review] {
-            self.review = makeReviews(anyObject: value)
-        }
-        if let value = dictionary[Keys.seeks] {
-            self.seeks = makeDemands(anyObject: value)
-        }
-        if let value = dictionary[Keys.sponsor] as? [String : AnyObject] {
-            self.sponsor = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.subOrganization] as? [String : AnyObject] {
-            self.subOrganization = SOOrganization(dictionary: value)
-        }
-        if let value = dictionary[Keys.taxID] as? String {
-            self.taxID = value
-        }
-        if let value = dictionary[Keys.telephone] as? String {
-            self.telephone = value
-        }
-        if let value = dictionary[Keys.vatID] as? String {
-            self.vatID = value
-        }
+    private enum CodingKeys: String, CodingKey {
+        case address
+        case aggregateRating
+        case alumni
+        case areaSurved
+        case award
+        case brand
+        case contactPoint
+        case department
+        case dissolutionDate
+        case duns
+        case email
+        case employee
+        case event
+        case faxNumber
+        case founder
+        case foundingDate
+        case foundingLocation
+        case funder
+        case globalLocationNumber
+        case hasOfferCatalog
+        case hasPOS
+        case isicV4
+        case legalName
+        case leiCode
+        case location
+        case logo
+        case makesOffers
+        case member
+        case memberOf
+        case naics
+        case numberOfEmployees
+        case owns
+        case parentOrganization
+        case review
+        case seeks
+        case sponsor
+        case subOrganization
+        case taxID
+        case telephone
+        case vatID
     }
     
-    override public var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.address?.dictionaryValue {
-            dictionary[Keys.address] = value
-        }
-        if let value = self.aggregateRating as? SOAggregateRating {
-            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
-        }
-        if let value = self.alumni as? [SOPerson] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.alumni] = values as AnyObject
-        }
-        if let value = self.areaServed?.dictionaryValue {
-            dictionary[Keys.areaServed] = value
-        }
-        if let value = self.award {
-            dictionary[Keys.award] = value as AnyObject
-        }
-        if let value = self.brand {
-            var values = [AnyObject]()
-            for element in value {
-                if let item = element.dictionaryValue {
-                    values.append(item)
-                }
-            }
-            dictionary[Keys.brand] = values as AnyObject
-        }
-        if let value = self.contactPoint as? [SOContactPoint] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.contactPoint] = values as AnyObject
-        }
-        if let value = self.department as? SOOrganization {
-            dictionary[Keys.department] = value.dictionary as AnyObject
-        }
-        if let value = self.dissolutionDate as? String {
-            dictionary[Keys.dissolutionDate] = value as AnyObject
-        }
-        if let value = self.duns {
-            dictionary[Keys.duns] = value as AnyObject
-        }
-        if let value = self.email {
-            dictionary[Keys.email] = value as AnyObject
-        }
-        if let value = self.employee as? [SOPerson] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.employee] = values as AnyObject
-        }
-        if let value = self.event as? [SOEvent] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.event] = values as AnyObject
-        }
-        if let value = self.faxNumber {
-            dictionary[Keys.faxNumber] = value as AnyObject
-        }
-        if let value = self.founder as? [SOPerson] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.founder] = values as AnyObject
-        }
-        if let value = self.foundingDate as? String {
-            dictionary[Keys.foundingDate] = value as AnyObject
-        }
-        if let value = self.foundingLocation as? SOPlace {
-            dictionary[Keys.foundingLocation] = value.dictionary as AnyObject
-        }
-        if let value = self.funder?.dictionaryValue {
-            dictionary[Keys.funder] = value
-        }
-        if let value = self.globalLocationNumber {
-            dictionary[Keys.globalLocationNumber] = value as AnyObject
-        }
-        if let value = self.hasOfferCatalog as? SOOfferCatalog {
-            dictionary[Keys.hasOfferCatalog] = value.dictionary as AnyObject
-        }
-        if let value = self.hasPOS as? [SOPlace] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.hasPOS] = values as AnyObject
-        }
-        if let value = self.isicV4 {
-            dictionary[Keys.isicV4] = value as AnyObject
-        }
-        if let value = self.legalName {
-            dictionary[Keys.legalName] = value as AnyObject
-        }
-        if let value = self.leiCode {
-            dictionary[Keys.leiCode] = value as AnyObject
-        }
-        if let value = self.location?.dictionaryValue {
-            dictionary[Keys.location] = value
-        }
-        if let value = self.logo?.dictionaryValue {
-            dictionary[Keys.logo] = value
-        }
-        if let value = self.makesOffers as? [SOOffer] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.makesOffers] = values as AnyObject
-        }
-        if let value = self.member {
-            var values = [AnyObject]()
-            for element in value {
-                if let item = element.dictionaryValue {
-                    values.append(item)
-                }
-            }
-            dictionary[Keys.member] = values as AnyObject
-        }
-        if let value = self.memberOf?.dictionaryValue {
-            dictionary[Keys.memberOf] = value
-        }
-        if let value = self.naics {
-            dictionary[Keys.naics] = value as AnyObject
-        }
-        if let value = self.numberOfEmployees as? SOQuantitativeValue {
-            dictionary[Keys.numberOfEmployees] = value.dictionary as AnyObject
-        }
-        if let value = self.owns {
-            var values = [AnyObject]()
-            for element in value {
-                if let item = element.dictionaryValue {
-                    values.append(item)
-                }
-            }
-            dictionary[Keys.owns] = values as AnyObject
-        }
-        if let value = self.parentOrganization as? SOOrganization {
-            dictionary[Keys.parentOrganization] = value.dictionary as AnyObject
-        }
-        if let value = self.review as? [SOReview] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.review] = values as AnyObject
-        }
-        if let value = self.seeks as? [SODemand] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.seeks] = values as AnyObject
-        }
-        if let value = self.sponsor?.dictionaryValue {
-            dictionary[Keys.sponsor] = value
-        }
-        if let value = self.subOrganization as? SOOrganization {
-            dictionary[Keys.subOrganization] = value.dictionary as AnyObject
-        }
-        if let value = self.taxID {
-            dictionary[Keys.taxID] = value as AnyObject
-        }
-        if let value = self.telephone {
-            dictionary[Keys.telephone] = value as AnyObject
-        }
-        if let value = self.vatID {
-            dictionary[Keys.vatID] = value as AnyObject
-        }
-        return dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

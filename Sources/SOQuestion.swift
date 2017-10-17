@@ -3,13 +3,6 @@ import SOSwiftVocabulary
 
 /// A specific question - e.g. from a user seeking answers online, or collected in a Frequently Asked Questions (FAQ) document.
 public class SOQuestion: SOCreativeWork, Question {
-    public struct Keys {
-        public static let acceptedAnswer = "acceptedAnswer"
-        public static let answerCount = "answerCount"
-        public static let downvoteCount = "downvoteCount"
-        public static let suggestedAnswer = "suggestedAnswer"
-        public static let upvoteCount = "upvoteCount"
-    }
     
     override public class var type: String {
         return "Question"
@@ -26,42 +19,57 @@ public class SOQuestion: SOCreativeWork, Question {
     /// The number of upvotes this question, answer or comment has received from the community.
     public var upvoteCount: Int?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.acceptedAnswer] as? [String : AnyObject] {
-            self.acceptedAnswer = SOAnswer(dictionary: value)
-        }
-        if let value = dictionary[Keys.answerCount] as? Int {
-            self.answerCount = value
-        }
-        if let value = dictionary[Keys.downvoteCount] as? Int {
-            self.downvoteCount = value
-        }
-        if let value = dictionary[Keys.suggestedAnswer] as? [String : AnyObject] {
-            self.suggestedAnswer = SOAnswer(dictionary: value)
-        }
-        if let value = dictionary[Keys.upvoteCount] as? Int {
-            self.upvoteCount = value
-        }
+    private enum CodingKeys: String, CodingKey {
+        case acceptedAnswer
+        case answerCount
+        case downvoteCount
+        case suggestedAnswer
+        case upvoteCount
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(SOAnswer.self, forKey: .acceptedAnswer) {
+            self.acceptedAnswer = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .answerCount) {
+            self.answerCount = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .downvoteCount) {
+            self.downvoteCount = value
+        }
+        if let value = try container.decodeIfPresent(SOAnswer.self, forKey: .suggestedAnswer) {
+            self.suggestedAnswer = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .upvoteCount) {
+            self.upvoteCount = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.acceptedAnswer as? SOAnswer {
-            dictionary[Keys.acceptedAnswer] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .acceptedAnswer)
         }
         if let value = self.answerCount {
-            dictionary[Keys.answerCount] = value as AnyObject
+            try container.encode(value, forKey: .answerCount)
         }
         if let value = self.downvoteCount {
-            dictionary[Keys.downvoteCount] = value as AnyObject
+            try container.encode(value, forKey: .downvoteCount)
         }
         if let value = self.suggestedAnswer as? SOAnswer {
-            dictionary[Keys.suggestedAnswer] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .suggestedAnswer)
         }
         if let value = self.upvoteCount {
-            dictionary[Keys.upvoteCount] = value as AnyObject
+            try container.encode(value, forKey: .upvoteCount)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

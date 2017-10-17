@@ -3,6 +3,7 @@ import SOSwiftVocabulary
 
 /// A service provided by an organization, e.g. delivery service, print services, etc.
 public class SOService: SOIntangible, Service {
+    
     override public class var type: String {
         return "Service"
     }
@@ -45,4 +46,44 @@ public class SOService: SOIntangible, Service {
     public var serviceOutput: Thing?
     /// The type of service being offered, e.g. veterans' benefits, emergency relief, etc.
     public var serviceType: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case aggregateRating
+        case areaServed
+        case audience
+        case availableChannel
+        case award
+        case brand
+        case broker
+        case category
+        case hasOfferCatalog
+        case hoursAvailable
+        case isRelatedTo
+        case isSimilarTo
+        case logo
+        case offers
+        case provider
+        case providerMobility
+        case review
+        case serviceOutput
+        case serviceType
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
+    }
 }

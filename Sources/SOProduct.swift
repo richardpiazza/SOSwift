@@ -3,41 +3,7 @@ import SOSwiftVocabulary
 
 /// Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online.
 public class SOProduct: SOThing, Product {
-    public struct Keys {
-        public static let additionalProperty = "additionalProperty"
-        public static let aggregateRating = "aggregateRating"
-        public static let audience = "audience"
-        public static let award = "award"
-        public static let brand = "brand"
-        public static let category = "category"
-        public static let color = "color"
-        public static let depth = "depth"
-        public static let gtin12 = "gtin12"
-        public static let gtin13 = "gtin13"
-        public static let gtin14 = "gtin14"
-        public static let gtin8 = "gtin8"
-        public static let height = "height"
-        public static let isAccessoryOrSparePartFor = "isAccessoryOrSparePartFor"
-        public static let isConsumableFor = "isConsumableFor"
-        public static let isRelatedTo = "isRelatedTo"
-        public static let isSimilarTo = "isSimilarTo"
-        public static let itemCondition = "itemCondition"
-        public static let logo = "logo"
-        public static let manufacturer = "manufacturer"
-        public static let material = "material"
-        public static let model = "model"
-        public static let mpn = "mpn"
-        public static let offers = "offers"
-        public static let productID = "productID"
-        public static let productionDate = "productionDate"
-        public static let purchaseDate = "purchaseDate"
-        public static let releaseDate = "releaseDate"
-        public static let review = "review"
-        public static let sku = "sku"
-        public static let weight = "weight"
-        public static let width = "width"
-    }
-    
+
     override public class var type: String {
         return "Product"
     }
@@ -108,208 +74,56 @@ public class SOProduct: SOThing, Product {
     /// The width of the item.
     public var width: DistanceOrQuantitativeValue?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.additionalProperty] as? [String : AnyObject] {
-            self.additionalProperty = SOPropertyValue(dictionary: value)
-        }
-        if let value = dictionary[Keys.aggregateRating] as? [String : AnyObject] {
-            self.aggregateRating = SOAggregateRating(dictionary: value)
-        }
-        if let value = dictionary[Keys.audience] as? [String : AnyObject] {
-            self.audience = SOAudience(dictionary: value)
-        }
-        if let value = dictionary[Keys.award] as? String {
-            self.award = value
-        }
-        if let value = dictionary[Keys.brand] as? [String : AnyObject] {
-            self.brand = makeBrandOrOrganization(dictionary: value)
-        }
-        if let value = dictionary[Keys.category] {
-            self.category = makeTextOrThing(anyObject: value)
-        }
-        if let value = dictionary[Keys.color] as? String {
-            self.color = value
-        }
-        if let value = dictionary[Keys.depth] as? [String : AnyObject] {
-            self.depth = makeDistanceOrQuantitativeValue(dictionary: value)
-        }
-        if let value = dictionary[Keys.gtin12] as? String {
-            self.gtin12 = value
-        }
-        if let value = dictionary[Keys.gtin13] as? String {
-            self.gtin13 = value
-        }
-        if let value = dictionary[Keys.gtin14] as? String {
-            self.gtin14 = value
-        }
-        if let value = dictionary[Keys.gtin8] as? String {
-            self.gtin8 = value
-        }
-        if let value = dictionary[Keys.height] as? [String : AnyObject] {
-            self.height = makeDistanceOrQuantitativeValue(dictionary: value)
-        }
-        if let value = dictionary[Keys.isAccessoryOrSparePartFor] as? [String : AnyObject] {
-            self.isAccessoryOrSparePartFor = SOProduct(dictionary: value)
-        }
-        if let value = dictionary[Keys.isConsumableFor] as? [String : AnyObject] {
-            self.isConsumableFor = SOProduct(dictionary: value)
-        }
-        if let value = dictionary[Keys.isRelatedTo] as? [String : AnyObject] {
-            self.isRelatedTo = makeProductOrService(dictionary: value)
-        }
-        if let value = dictionary[Keys.isSimilarTo] as? [String : AnyObject] {
-            self.isSimilarTo = makeProductOrService(dictionary: value)
-        }
-        if let value = dictionary[Keys.itemCondition] as? String {
-            self.itemCondition = OfferItemCondition(rawValue: value)
-        }
-        if let value = dictionary[Keys.logo] {
-            self.logo = makeImageObjectOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.manufacturer] as? [String : AnyObject] {
-            self.manufacturer = SOOrganization(dictionary: value)
-        }
-        if let value = dictionary[Keys.material] {
-            self.material = makeProductOrTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.model] {
-            self.model = makeProductModelOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.mpn] as? String {
-            self.mpn = value
-        }
-        if let value = dictionary[Keys.offers] {
-            self.offers = makeOffers(anyObject: value)
-        }
-        if let value = dictionary[Keys.productID] as? String {
-            self.productID = value
-        }
-        if let value = dictionary[Keys.productionDate] as? String {
-            self.productionDate = value
-        }
-        if let value = dictionary[Keys.purchaseDate] as? String {
-            self.purchaseDate = value
-        }
-        if let value = dictionary[Keys.releaseDate] as? String {
-            self.releaseDate = value
-        }
-        if let value = dictionary[Keys.review] as? [String : AnyObject] {
-            self.review = SOReview(dictionary: value)
-        }
-        if let value = dictionary[Keys.sku] as? String {
-            self.sku = value
-        }
-        if let value = dictionary[Keys.weight] as? [String : AnyObject] {
-            self.weight = SOQuantitativeValue(dictionary: value)
-        }
-        if let value = dictionary[Keys.width] as? [String : AnyObject] {
-            self.width = makeDistanceOrQuantitativeValue(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case additionalProperty
+        case aggregateRating
+        case audience
+        case award
+        case brand
+        case category
+        case color
+        case depth
+        case gtin12
+        case gtin13
+        case gtin14
+        case gtin8
+        case height
+        case isAccessoryOrSparePartFor
+        case isConsumableFor
+        case isRelatedTo
+        case isSimilarTo
+        case itemCondition
+        case logo
+        case manufacturer
+        case material
+        case model
+        case mpn
+        case offers
+        case productID
+        case productionDate
+        case purchaseDate
+        case releaseDate
+        case review
+        case sku
+        case weight
+        case width
     }
     
-    override public var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.additionalProperty as? SOPropertyValue {
-            dictionary[Keys.additionalProperty] = value.dictionary as AnyObject
-        }
-        if let value = self.aggregateRating as? SOAggregateRating {
-            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
-        }
-        if let value = self.audience as? SOAudience {
-            dictionary[Keys.audience] = value.dictionary as AnyObject
-        }
-        if let value = self.award {
-            dictionary[Keys.award] = value as AnyObject
-        }
-        if let value = self.brand?.dictionaryValue {
-            dictionary[Keys.brand] = value
-        }
-        if let value = self.category?.dictionaryValue {
-            dictionary[Keys.category] = value
-        }
-        if let value = self.color {
-            dictionary[Keys.color] = value as AnyObject
-        }
-        if let value = self.depth?.dictionaryValue {
-            dictionary[Keys.depth] = value
-        }
-        if let value = self.gtin12 {
-            dictionary[Keys.gtin12] = value as AnyObject
-        }
-        if let value = self.gtin13 {
-            dictionary[Keys.gtin13] = value as AnyObject
-        }
-        if let value = self.gtin14 {
-            dictionary[Keys.gtin14] = value as AnyObject
-        }
-        if let value = self.gtin8 {
-            dictionary[Keys.gtin8] = value as AnyObject
-        }
-        if let value = self.height?.dictionaryValue {
-            dictionary[Keys.height] = value
-        }
-        if let value = self.isAccessoryOrSparePartFor as? SOProduct {
-            dictionary[Keys.isAccessoryOrSparePartFor] = value.dictionary as AnyObject
-        }
-        if let value = self.isConsumableFor as? SOProduct {
-            dictionary[Keys.isConsumableFor] = value.dictionary as AnyObject
-        }
-        if let value = self.isRelatedTo?.dictionaryValue {
-            dictionary[Keys.isRelatedTo] = value
-        }
-        if let value = self.isSimilarTo?.dictionaryValue {
-            dictionary[Keys.isSimilarTo] = value
-        }
-        if let value = self.itemCondition {
-            dictionary[Keys.itemCondition] = value.rawValue as AnyObject
-        }
-        if let value = self.logo?.dictionaryValue {
-            dictionary[Keys.logo] = value
-        }
-        if let value = self.manufacturer as? SOOrganization {
-            dictionary[Keys.manufacturer] = value.dictionary as AnyObject
-        }
-        if let value = self.material?.dictionaryValue {
-            dictionary[Keys.material] = value
-        }
-        if let value = self.model?.dictionaryValue {
-            dictionary[Keys.model] = value
-        }
-        if let value = self.mpn {
-            dictionary[Keys.mpn] = value as AnyObject
-        }
-        if let value = self.offers as? [SOOffer] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.offers] = values as AnyObject
-        }
-        if let value = self.productID {
-            dictionary[Keys.productID] = value as AnyObject
-        }
-        if let value = self.productionDate as? String {
-            dictionary[Keys.productionDate] = value as AnyObject
-        }
-        if let value = self.purchaseDate as? String {
-            dictionary[Keys.purchaseDate] = value as AnyObject
-        }
-        if let value = self.releaseDate as? String {
-            dictionary[Keys.releaseDate] = value as AnyObject
-        }
-        if let value = self.review as? SOReview {
-            dictionary[Keys.review] = value.dictionary as AnyObject
-        }
-        if let value = self.sku {
-            dictionary[Keys.sku] = value as AnyObject
-        }
-        if let value = self.weight as? SOQuantitativeValue {
-            dictionary[Keys.weight] = value.dictionary as AnyObject
-        }
-        if let value = self.width?.dictionaryValue {
-            dictionary[Keys.width] = value
-        }
-        return dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

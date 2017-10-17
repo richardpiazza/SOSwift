@@ -1,14 +1,45 @@
 import Foundation
 import SOSwiftVocabulary
 
-public extension Identifier {
-    var dictionaryValue: AnyObject? {
-        if let typedValue = self as? SOPropertyValue {
-            return typedValue.dictionary as AnyObject
-        } else if let typedValue = self as? URL {
-            return typedValue.absoluteString as AnyObject
-        } else if let typedValue = self as? String {
-            return typedValue as AnyObject
+// MARK: - Identifier
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIdentifier(_ value: Identifier, forKey key: KeyedEncodingContainer.Key) throws {
+        if let typedValue = value as? SOPropertyValue {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? URL {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? String {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}
+
+public extension KeyedDecodingContainer {
+    public func decodeIdentifierIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> Identifier? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            let value = try self.decode([String : AnyObject].self, forKey: key)
+            if value["@type"] as? String == SOPropertyValue.type {
+                let data = try JSONEncoder().encode(value)
+                return try JSONDecoder().decode(SOPropertyValue.self, from: data)
+            }
+        } catch {
+        }
+        
+        do {
+            let value = try self.decode(URL.self, forKey: key)
+            return value
+        } catch {
+        }
+        
+        do {
+            let value = try self.decode(String.self, forKey: key)
+            return value
+        } catch {
         }
         
         return nil

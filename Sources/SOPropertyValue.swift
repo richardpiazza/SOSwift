@@ -5,15 +5,6 @@ import SOSwiftVocabulary
 /// Use the `name` property for the name of the property. If there is an additional human-readable version of the value, put that into the `description` property.
 /// Always use specific schema.org properties when a) they exist and b) you can populate them. Using PropertyValue as a substitute will typically not trigger the same effect as using the original, specific property.
 public class SOPropertyValue: SOStructuredValue, PropertyValue {
-    public struct Keys {
-        public static let maxValue = "maxValue"
-        public static let minValue = "minValue"
-        public static let propertyID = "propertyID"
-        public static let unitCode = "unitCode"
-        public static let unitText = "unitText"
-        public static let value = "value"
-        public static let valueReference = "valueReference"
-    }
     
     override public class var type: String {
         return "PropertyValue"
@@ -36,54 +27,71 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     /// A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
     public var valueReference: ValueReference?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.maxValue] {
-            self.maxValue = makeNumber(anyObject: value)
-        }
-        if let value = dictionary[Keys.minValue] {
-            self.minValue = makeNumber(anyObject: value)
-        }
-        if let value = dictionary[Keys.propertyID] {
-            self.propertyID = makeTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.unitCode] {
-            self.unitCode = makeTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.unitText] as? String {
-            self.unitText = value
-        }
-        if let value = dictionary[Keys.value] {
-            self.value = makeValue(anyObject: value)
-        }
-        if let value = dictionary[Keys.valueReference] {
-            self.valueReference = makeValueReference(anyObject: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case maxValue
+        case minValue
+        case propertyID
+        case unitCode
+        case unitText
+        case value
+        case valueReference
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.maxValue?.dictionaryValue {
-            dictionary[Keys.maxValue] = value
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeNumberIfPresent(forKey: .maxValue) {
+            self.maxValue = value
         }
-        if let value = self.minValue?.dictionaryValue {
-            dictionary[Keys.minValue] = value
+        if let value = try container.decodeNumberIfPresent(forKey: .minValue) {
+            self.minValue = value
         }
-        if let value = self.propertyID?.dictionaryValue {
-            dictionary[Keys.propertyID] = value
+        if let value = try container.decodeTextOrURLIfPresent(forKey: .propertyID) {
+            self.propertyID = value
         }
-        if let value = self.unitCode?.dictionaryValue {
-            dictionary[Keys.unitCode] = value
+        if let value = try container.decodeTextOrURLIfPresent(forKey: .unitCode) {
+            self.unitCode = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .unitText) {
+            self.unitText = value
+        }
+        if let value = try container.decodeValueIfPresent(forKey: .value) {
+            self.value = value
+        }
+        if let value = try container.decodeValueReferenceIfPresent(forKey: .valueReference) {
+            self.valueReference = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.maxValue {
+            try container.encodeNumber(value, forKey: .maxValue)
+        }
+        if let value = self.minValue {
+            try container.encodeNumber(value, forKey: .minValue)
+        }
+        if let value = self.propertyID {
+            try container.encodeTextOrURL(value, forKey: .propertyID)
+        }
+        if let value = self.unitCode {
+            try container.encodeTextOrURL(value, forKey: .unitCode)
         }
         if let value = self.unitText {
-            dictionary[Keys.unitText] = value as AnyObject
+            try container.encode(value, forKey: .unitText)
         }
-        if let value = self.value?.dictionaryValue {
-            dictionary[Keys.value] = value
+        if let value = self.value {
+            try container.encodeValue(value, forKey: .value)
         }
-        if let value = self.valueReference?.dictionaryValue {
-            dictionary[Keys.valueReference] = value
+        if let value = self.valueReference {
+            try container.encodeValueReference(value, forKey: .valueReference)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

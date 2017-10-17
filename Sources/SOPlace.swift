@@ -3,30 +3,7 @@ import SOSwiftVocabulary
 
 /// Entities that have a somewhat fixed, physical extension.
 public class SOPlace: SOThing, Place {
-    public struct Keys {
-        public static let additionalProperty = "additionalProperty"
-        public static let address = "address"
-        public static let aggregateRating = "aggregateRating"
-        public static let amenityFeature = "amenityFeature"
-        public static let branchCode = "branchCode"
-        public static let containedInPlace = "containedInPlace"
-        public static let containsPlace = "containsPlace"
-        public static let event = "event"
-        public static let faxNumber = "faxNumber"
-        public static let geo = "geo"
-        public static let globalLocationNumber = "globalLocationNumber"
-        public static let hasMap = "hasMap"
-        public static let isicV4 = "isicV4"
-        public static let logo = "logo"
-        public static let maximumAttendeeCapacity = "maximumAttendeeCapacity"
-        public static let openingHoursSpecification = "openingHoursSpecification"
-        public static let photo = "photo"
-        public static let review = "review"
-        public static let smokingAllowed = "smokingAllowed"
-        public static let specialOpeningHoursSpecification = "specialOpeningHoursSpecification"
-        public static let telephone = "telephon"
-    }
-    
+
     override public class var type: String {
         return "Place"
     }
@@ -77,164 +54,45 @@ public class SOPlace: SOThing, Place {
     /// The telephone number.
     public var telephone: String?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.additionalProperty] as? [String : AnyObject] {
-            self.additionalProperty = SOPropertyValue(dictionary: value)
-        }
-        if let value = dictionary[Keys.address] {
-            self.address = makePostalAddressOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.aggregateRating] as? [String : AnyObject] {
-            self.aggregateRating = SOAggregateRating(dictionary: value)
-        }
-        if let value = dictionary[Keys.amenityFeature] as? [String : AnyObject] {
-            self.amenityFeature = SOLocationFeatureSpecification(dictionary: value)
-        }
-        if let value = dictionary[Keys.branchCode] as? String {
-            self.branchCode = value
-        }
-        if let value = dictionary[Keys.containedInPlace] as? [String : AnyObject] {
-            self.containedInPlace = SOPlace(dictionary: value)
-        }
-        if let value = dictionary[Keys.containsPlace] {
-            self.containsPlace = makePlaces(anyObject: value)
-        }
-        if let value = dictionary[Keys.event] {
-            self.event = makeEvents(anyObject: value)
-        }
-        if let value = dictionary[Keys.faxNumber] as? String {
-            self.faxNumber = value
-        }
-        if let value = dictionary[Keys.geo] as? [String : AnyObject] {
-            self.geo = makeGeoCoordinatesOrGeoShape(dictionary: value)
-        }
-        if let value = dictionary[Keys.globalLocationNumber] as? String {
-            self.globalLocationNumber = value
-        }
-        if let value = dictionary[Keys.hasMap] {
-            self.hasMap = makeMapOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.isicV4] as? String {
-            self.isicV4 = value
-        }
-        if let value = dictionary[Keys.logo] {
-            self.logo = makeImageObjectOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.maximumAttendeeCapacity] as? Int {
-            self.maximumAttendeeCapacity = value
-        }
-        if let value = dictionary[Keys.openingHoursSpecification] {
-            self.openingHoursSpecification = makeOpeningHoursSpecifications(anyObject: value)
-        }
-        if let value = dictionary[Keys.photo] {
-            self.photo = makeImageObjectOrPhotographs(anyObject: value)
-        }
-        if let value = dictionary[Keys.review] {
-            self.review = makeReviews(anyObject: value)
-        }
-        if let value = dictionary[Keys.smokingAllowed] as? Bool {
-            self.smokingAllowed = value
-        }
-        if let value = dictionary[Keys.specialOpeningHoursSpecification] {
-            self.specialOpeningHoursSpecification = makeOpeningHoursSpecifications(anyObject: value)
-        }
-        if let value = dictionary[Keys.telephone] as? String {
-            self.telephone = value
-        }
+    private enum CodingKeys: String, CodingKey {
+        case additionalProperty
+        case address
+        case aggregateRating
+        case amenityFeature
+        case branchCode
+        case containedInPlace
+        case containsPlace
+        case event
+        case faxNumber
+        case geo
+        case globalLocationNumber
+        case hasMap
+        case isicV4
+        case logo
+        case maximumAttendeeCapacity
+        case openingHoursSpecification
+        case photo
+        case review
+        case smokingAllowed
+        case specialOpeningHoursSpecification
+        case telephone
     }
     
-    override public var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.additionalProperty as? SOPropertyValue {
-            dictionary[Keys.additionalProperty] = value.dictionary as AnyObject
-        }
-        if let value = self.address?.dictionaryValue {
-            dictionary[Keys.address] = value
-        }
-        if let value = self.aggregateRating as? SOAggregateRating {
-            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
-        }
-        if let value = self.amenityFeature as? SOLocationFeatureSpecification {
-            dictionary[Keys.amenityFeature] = value.dictionary as AnyObject
-        }
-        if let value = self.branchCode {
-            dictionary[Keys.branchCode] = value as AnyObject
-        }
-        if let value = self.containedInPlace as? SOPlace {
-            dictionary[Keys.containedInPlace] = value.dictionary as AnyObject
-        }
-        if let value = self.containsPlace as? [SOPlace] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.containsPlace] = values as AnyObject
-        }
-        if let value = self.event as? [SOEvent] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.event] = values as AnyObject
-        }
-        if let value = self.faxNumber {
-            dictionary[Keys.faxNumber] = value as AnyObject
-        }
-        if let value = self.geo?.dictionaryValue {
-            dictionary[Keys.geo] = value
-        }
-        if let value = self.globalLocationNumber {
-            dictionary[Keys.globalLocationNumber] = value as AnyObject
-        }
-        if let value = self.hasMap?.dictionaryValue {
-            dictionary[Keys.hasMap] = value
-        }
-        if let value = self.isicV4 {
-            dictionary[Keys.isicV4] = value as AnyObject
-        }
-        if let value = self.logo?.dictionaryValue {
-            dictionary[Keys.logo] = value
-        }
-        if let value = self.maximumAttendeeCapacity {
-            dictionary[Keys.maximumAttendeeCapacity] = value as AnyObject
-        }
-        if let value = self.openingHoursSpecification as? [SOOpeningHoursSpecification] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.openingHoursSpecification] = values as AnyObject
-        }
-        if let value = self.photo {
-            var values = [AnyObject]()
-            for element in value {
-                if let item = element.dictionaryValue {
-                    values.append(item)
-                }
-            }
-            dictionary[Keys.photo] = values as AnyObject
-        }
-        if let value = self.review as? [SOReview] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.review] = values as AnyObject
-        }
-        if let value = self.smokingAllowed {
-            dictionary[Keys.smokingAllowed] = value as AnyObject
-        }
-        if let value = self.specialOpeningHoursSpecification as? [SOOpeningHoursSpecification] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.specialOpeningHoursSpecification] = values as AnyObject
-        }
-        if let value = self.telephone {
-            dictionary[Keys.telephone] = value as AnyObject
-        }
-        return dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

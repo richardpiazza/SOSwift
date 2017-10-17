@@ -1,12 +1,34 @@
 import Foundation
 import SOSwiftVocabulary
 
-public extension Number {
-    var dictionaryValue: AnyObject? {
-        if let typedValue = self as? Int {
-            return typedValue as AnyObject
-        } else if let typedValue = self as? Float {
-            return typedValue as AnyObject
+// MARK: - Number
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeNumber(_ value: Number, forKey key: KeyedEncodingContainer.Key) throws {
+        if let typedValue = value as? Int {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? Float {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}
+
+public extension KeyedDecodingContainer {
+    public func decodeNumberIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> Number? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            let value = try self.decode(Int.self, forKey: key)
+            return value
+        } catch {
+        }
+        
+        do {
+            let value = try self.decode(Float.self, forKey: key)
+            return value
+        } catch {
         }
         
         return nil

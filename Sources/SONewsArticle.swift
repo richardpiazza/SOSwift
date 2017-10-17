@@ -3,14 +3,7 @@ import SOSwiftVocabulary
 
 /// A news article.
 public class SONewsArticle: SOArticle, NewsArticle {
-    public struct Keys {
-        public static let dateline = "dateline"
-        public static let printColumn = "printColumn"
-        public static let printEdition = "printEdition"
-        public static let printPage = "printPage"
-        public static let printSection = "printSection"
-    }
-    
+
     override public class var type: String {
         return "NewsArticle"
     }
@@ -26,42 +19,57 @@ public class SONewsArticle: SOArticle, NewsArticle {
     /// If this NewsArticle appears in print, this field indicates the print section in which the article appeared.
     public var printSection: String?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.dateline] as? String {
-            self.dateline = value
-        }
-        if let value = dictionary[Keys.printColumn] as? String {
-            self.printColumn = value
-        }
-        if let value = dictionary[Keys.printEdition] as? String {
-            self.printEdition = value
-        }
-        if let value = dictionary[Keys.printPage] as? String {
-            self.printPage = value
-        }
-        if let value = dictionary[Keys.printSection] as? String {
-            self.printSection = value
-        }
+    private enum CodingKeys: String, CodingKey {
+        case dateline
+        case printColumn
+        case printEdition
+        case printPage
+        case printSection
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(String.self, forKey: .dateline) {
+            self.dateline = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .printColumn) {
+            self.printColumn = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .printEdition) {
+            self.printEdition = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .printPage) {
+            self.printPage = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .printSection) {
+            self.printSection = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.dateline {
-            dictionary[Keys.dateline] = value as AnyObject
+            try container.encode(value, forKey: .dateline)
         }
         if let value = self.printColumn {
-            dictionary[Keys.printColumn] = value as AnyObject
+            try container.encode(value, forKey: .printColumn)
         }
         if let value = self.printEdition {
-            dictionary[Keys.printEdition] = value as AnyObject
+            try container.encode(value, forKey: .printEdition)
         }
         if let value = self.printPage {
-            dictionary[Keys.printPage] = value as AnyObject
+            try container.encode(value, forKey: .printPage)
         }
         if let value = self.printSection {
-            dictionary[Keys.printSection] = value as AnyObject
+            try container.encode(value, forKey: .printSection)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

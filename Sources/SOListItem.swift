@@ -14,4 +14,51 @@ public class SOListItem: SOIntangible, ListItem {
     public var position: IntegerOrText?
     /// A link to the ListItem that preceeds the current one.
     public var previousItem: ListItem?
+    
+    private enum CodingKeys: String, CodingKey {
+        case item
+        case nextItem
+        case position
+        case previousItem
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .item) {
+            self.item = value
+        }
+        if let value = try container.decodeIfPresent(SOListItem.self, forKey: .nextItem) {
+            self.nextItem = value
+        }
+        if let value = try container.decodeIntegerOrTextIfPresent(forKey: .position) {
+            self.position = value
+        }
+        if let value = try container.decodeIfPresent(SOListItem.self, forKey: .previousItem) {
+            self.previousItem = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.item as? SOThing {
+            try container.encode(value, forKey: .item)
+        }
+        if let value = self.nextItem as? SOListItem {
+            try container.encode(value, forKey: .nextItem)
+        }
+        if let value = self.position {
+            try container.encodeIntegerOrText(value, forKey: .position)
+        }
+        if let value = self.previousItem as? SOListItem {
+            try container.encode(value, forKey: .previousItem)
+        }
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
+    }
 }

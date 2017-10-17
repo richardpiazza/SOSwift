@@ -1,12 +1,36 @@
 import Foundation
 import SOSwiftVocabulary
 
-public extension CreativeWorkOrURL {
-    var dictionaryValue: AnyObject? {
-        if let typedValue = self as? SOCreativeWork {
-            return typedValue.dictionary as AnyObject
-        } else if let typedValue = self as? URL {
-            return typedValue.absoluteString as AnyObject
+// MARK: - CreativeWorkOrURL
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeCreativeWorkOrURL(_ value: CreativeWorkOrURL, forKey key: KeyedEncodingContainer.Key) throws {
+        if let typedValue = value as? SOCreativeWork {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? URL {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}
+
+public extension KeyedDecodingContainer {
+    public func decodeCreativeWorkOrURLIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> CreativeWorkOrURL? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            let value = try self.decode([String : AnyObject].self, forKey: key)
+            if value["@type"] as? String == SOCreativeWork.type {
+                
+            }
+        } catch {
+        }
+        
+        do {
+            let value = try self.decode(URL.self, forKey: key)
+            return value
+        } catch {
         }
         
         return nil

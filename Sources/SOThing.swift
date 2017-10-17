@@ -2,30 +2,10 @@ import Foundation
 import SOSwiftVocabulary
 
 /// The most generic type of item.
-public class SOThing: MakeableThing {
-    public struct Keys {
-        public static let context = "@context"
-        public static let id = "@id"
-        public static let type = "@type"
-        public static let additionalType = "additionalType"
-        public static let alternativeName = "alternativeName"
-        public static let description = "description"
-        public static let disambiguatingDescription = "disambiguatingDescription"
-        public static let identifier = "identifier"
-        public static let image = "image"
-        public static let mainEntityOfPage = "mainEntityOfPage"
-        public static let name = "name"
-        public static let potentialAction = "potentialAction"
-        public static let sameAs = "sameAs"
-        public static let url = "url"
-    }
+public class SOThing: Thing, Codable {
     
     public class var type: String {
         return "Thing"
-    }
-    
-    public class var specificTypes: [MakeableThing.Type] {
-        return [SOAction.self, SOCreativeWork.self, SOEvent.self, SOIntangible.self, SOOrganization.self, SOPerson.self, SOPlace.self, SOProduct.self]
     }
     
     /// An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax.
@@ -56,155 +36,102 @@ public class SOThing: MakeableThing {
     /// URL of the item.
     public var url: URL?
     
-    public convenience init() {
-        self.init(dictionary: [String : AnyObject]())
+    private enum CodingKeys: String, CodingKey {
+        case id = "@id"
+        case context = "@context"
+        case type = "@type"
+        case additionalType
+        case alternativeName
+        case description
+        case disabiguatingDescription
+        case identifier
+        case image
+        case mainEntityOfPage
+        case name
+        case potentialAction
+        case sameAs
+        case url
     }
     
-    public convenience init(json: String) {
-        guard let data = json.data(using: .utf8) else {
-            self.init(dictionary: [String : AnyObject]())
-            return
-        }
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        var dictionary: [String : AnyObject]
-        do {
-            if let object = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : AnyObject] {
-                dictionary = object
-            } else {
-                dictionary = [String : AnyObject]()
-            }
-        } catch {
-            dictionary = [String : AnyObject]()
+        if let value = try container.decodeIfPresent(URL.self, forKey: .additionalType) {
+            self.additionalType = value
         }
-        
-        self.init(dictionary: dictionary)
-    }
-    
-    public convenience init(data: Data) {
-        var dictionary: [String : AnyObject]
-        do {
-            if let object = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : AnyObject] {
-                dictionary = object
-            } else {
-                dictionary = [String : AnyObject]()
-            }
-        } catch {
-            dictionary = [String : AnyObject]()
-        }
-        
-        self.init(dictionary: dictionary)
-    }
-    
-    public required init(dictionary: [String : AnyObject]) {
-        if let value = dictionary[Keys.additionalType] as? String {
-            self.additionalType = URL(string: value)
-        }
-        if let value = dictionary[Keys.alternativeName] as? String {
-            self.alternativeName = value
-        }
-        if let value = dictionary[Keys.description] as? String {
-            self.description = value
-        }
-        if let value = dictionary[Keys.disambiguatingDescription] as? String {
-            self.disambiguatingDescription = value
-        }
-        if let value = dictionary[Keys.identifier] {
-            self.identifier = makeIdentifier(anyObject: value)
-        }
-        if let value = dictionary[Keys.id] {
-            self.identifier = makeIdentifier(anyObject: value)
-        }
-        if let value = dictionary[Keys.image] {
-            self.image = makeImageObjectOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.mainEntityOfPage] {
-            self.mainEntityOfPage = makeCreativeWorkOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.name] as? String {
+        if let value = try container.decodeIfPresent(String.self, forKey: .alternativeName) {
             self.name = value
         }
-        if let value = dictionary[Keys.potentialAction] as? [String : AnyObject] {
-            self.potentialAction = SOAction(dictionary: value)
+        if let value = try container.decodeIfPresent(String.self, forKey: .description) {
+            self.description = value
         }
-        if let value = dictionary[Keys.sameAs] {
-            self.sameAs = [URL]()
-            
-            if let typedValue = value as? [String] {
-                for element in typedValue {
-                    if let item = URL(string: element) {
-                        self.sameAs?.append(item)
-                    }
-                }
-            } else if let typedValue = value as? String {
-                if let item = URL(string: typedValue) {
-                    self.sameAs?.append(item)
-                }
-            }
+        if let value = try container.decodeIfPresent(String.self, forKey: .disabiguatingDescription) {
+            self.disambiguatingDescription = value
         }
-        if let value = dictionary[Keys.url] as? String {
-            self.url = URL(string: value)
+        if let value = try container.decodeIdentifierIfPresent(forKey: .id) {
+            self.identifier = value
+        }
+        if let value = try container.decodeIdentifierIfPresent(forKey: .identifier) {
+            self.identifier = value
+        }
+        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .image) {
+            self.image = value
+        }
+        if let value = try container.decodeCreativeWorkOrURLIfPresent(forKey: .mainEntityOfPage) {
+            self.mainEntityOfPage = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .name) {
+            self.name = value
+        }
+        if let value = try container.decodeIfPresent(SOAction.self, forKey: .potentialAction) {
+            self.potentialAction = value
+        }
+        if let value = try container.decodeIfPresent([URL].self, forKey: .sameAs) {
+            self.sameAs = value
+        }
+        if let value = try container.decodeIfPresent(URL.self, forKey: .url) {
+            self.url = value
         }
     }
     
-    public var dictionary: [String : AnyObject] {
-        var dictionary = [String : AnyObject]()
-        dictionary[Keys.context] = Swift.type(of: self).context as AnyObject
-        dictionary[Keys.type] = Swift.type(of: self).type as AnyObject
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(Swift.type(of: self).context, forKey: .context)
+        try container.encode(Swift.type(of: self).type, forKey: .type)
+        
         if let value = self.additionalType {
-            dictionary[Keys.additionalType] = value.absoluteString as AnyObject
+            try container.encode(value, forKey: .additionalType)
         }
         if let value = self.alternativeName {
-            dictionary[Keys.alternativeName] = value as AnyObject
+            try container.encode(value, forKey: .alternativeName)
         }
         if let value = self.description {
-            dictionary[Keys.description] = value as AnyObject
+            try container.encode(value, forKey: .description)
         }
         if let value = self.disambiguatingDescription {
-            dictionary[Keys.disambiguatingDescription] = value as AnyObject
+            try container.encode(value, forKey: .disabiguatingDescription)
         }
-        if let value = self.identifier?.dictionaryValue {
-            dictionary[Keys.id] = value
+        if let value = self.identifier {
+            try container.encodeIdentifier(value, forKey: .id)
         }
-        if let value = self.image?.dictionaryValue {
-            dictionary[Keys.image] = value
+        if let value = self.image {
+            try container.encodeImageObjectOrURL(value, forKey: .image)
         }
-        if let value = self.mainEntityOfPage?.dictionaryValue {
-            dictionary[Keys.mainEntityOfPage] = value
+        if let value = self.mainEntityOfPage {
+            try container.encodeCreativeWorkOrURL(value, forKey: .mainEntityOfPage)
         }
         if let value = self.name {
-            dictionary[Keys.name] = value as AnyObject
+            try container.encode(value, forKey: .name)
         }
         if let value = self.potentialAction as? SOAction {
-            dictionary[Keys.potentialAction] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .potentialAction)
         }
         if let value = self.sameAs {
-            var list = [String]()
-            for element in value {
-                list.append(element.absoluteString)
-            }
-            dictionary[Keys.sameAs] = list as AnyObject
+            try container.encode(value, forKey: .sameAs)
         }
         if let value = self.url {
-            dictionary[Keys.url] = value.absoluteString as AnyObject
+            try container.encode(value, forKey: .url)
         }
-        return dictionary
-    }
-    
-    public var data: Data {
-        let dictionary = self.dictionary
-        do {
-            return try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
-        } catch {
-            return Data()
-        }
-    }
-    
-    public var json: String {
-        let data = self.data
-        guard let json = String(data: data, encoding: .utf8) else {
-            return ""
-        }
-        
-        return json
     }
 }

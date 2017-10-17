@@ -3,6 +3,7 @@ import SOSwiftVocabulary
 
 /// A structured value providing information about when a certain organization or person owned a certain product.
 public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
+    
     override public class var type: String {
         return "OwnershipInfo"
     }
@@ -15,4 +16,51 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
     public var ownedThrough: DateTime?
     /// The product that this structured value is referring to.
     public var typeOfGood: ProductOrService?
+    
+    private enum CodingKeys: String, CodingKey {
+        case acquiredFrom
+        case ownedFrom
+        case ownedThrough
+        case typeOfGood
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .acquiredFrom) {
+            self.acquiredFrom = value
+        }
+        if let value = try container.decodeDateTimeIfPresent(forKey: .ownedFrom) {
+            self.ownedFrom = value
+        }
+        if let value = try container.decodeDateTimeIfPresent(forKey: .ownedThrough) {
+            self.ownedThrough = value
+        }
+        if let value = try container.decodeProductOrServiceIfPresent(forKey: .typeOfGood) {
+            self.typeOfGood = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.acquiredFrom {
+            try container.encodeOrganizationOrPerson(value, forKey: .acquiredFrom)
+        }
+        if let value = self.ownedFrom {
+            try container.encodeDateTime(value, forKey: .ownedFrom)
+        }
+        if let value = self.ownedThrough {
+            try container.encodeDateTime(value, forKey: .ownedThrough)
+        }
+        if let value = self.typeOfGood {
+            try container.encodeProductOrService(value, forKey: .typeOfGood)
+        }
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
+    }
 }

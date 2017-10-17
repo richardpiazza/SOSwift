@@ -3,20 +3,7 @@ import SOSwiftVocabulary
 
 /// An action performed by a direct agent and indirect participants upon a direct object. Optionally happens at a location with the help of an inanimate instrument. The execution of the action may produce a result. Specific action sub-type documentation specifies the exact expectation of each argument/role.
 public class SOAction: SOThing, Action {
-    public struct Keys {
-        public static let actionStatus = "actionStatus"
-        public static let agent = "agent"
-        public static let endTime = "endTime"
-        public static let error = "error"
-        public static let instrument = "instrument"
-        public static let location = "location"
-        public static let object = "object"
-        public static let participant = "participant"
-        public static let result = "result"
-        public static let startTime = "startTime"
-        public static let target = "target"
-    }
-    
+
     override public class var type: String {
         return "Action"
     }
@@ -46,106 +33,99 @@ public class SOAction: SOThing, Action {
     /// Indicates a target EntryPoint for an Action.
     public var target: EntryPoint?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.actionStatus] as? String {
-            self.actionStatus = ActionStatus(rawValue: value)
-        }
-        if let value = dictionary[Keys.agent] as? [String : AnyObject] {
-            if let typeName = value[SOThing.Keys.type] as? String, typeName == SOOrganization.type {
-                self.agent = SOOrganization(dictionary: value)
-            } else if let typeName = value[SOThing.Keys.type] as? String, typeName == SOPerson.type {
-                self.agent = SOPerson(dictionary: value)
-            }
-        }
-        if let value = dictionary[Keys.endTime] as? String {
-            self.endTime = value
-        }
-        if let value = dictionary[Keys.error] as? [String : AnyObject] {
-            self.error = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.instrument] as? [String : AnyObject] {
-            self.instrument = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.location] {
-            if let typedValue = value as? [String : AnyObject], typedValue[SOThing.Keys.type] as? String == SOPlace.type {
-                self.location = SOPlace(dictionary: typedValue)
-            } else if let typedValue = value as? [String : AnyObject], typedValue[SOThing.Keys.type] as? String == SOPostalAddress.type {
-                self.location = SOPostalAddress(dictionary: typedValue)
-            } else if let typedValue = value as? String {
-                self.location = typedValue
-            }
-        }
-        if let value = dictionary[Keys.object] as? [String : AnyObject] {
-            self.object = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.participant] as? [String : AnyObject] {
-            if let typeName = value[SOThing.Keys.type] as? String, typeName == SOOrganization.type {
-                self.participant = SOOrganization(dictionary: value)
-            } else if let typeName = value[SOThing.Keys.type] as? String, typeName == SOPerson.type {
-                self.participant = SOPerson(dictionary: value)
-            }
-        }
-        if let value = dictionary[Keys.result] as? [String : AnyObject] {
-            self.result = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.startTime] as? String {
-            self.startTime = value
-        }
-        if let value = dictionary[Keys.target] as? [String : AnyObject] {
-            self.target = SOEntryPoint(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case actionStatus
+        case agent
+        case endTime
+        case error
+        case instrument
+        case location
+        case object
+        case participant
+        case result
+        case startTime
+        case target
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(String.self, forKey: .actionStatus) {
+            self.actionStatus = ActionStatus(rawValue: value)
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .agent) {
+            self.agent = value
+        }
+        if let value = try container.decodeDateTimeIfPresent(forKey: .endTime) {
+            self.endTime = value
+        }
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .error) {
+            self.error = value
+        }
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .instrument) {
+            self.instrument = value
+        }
+        if let value = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .location) {
+            self.location = value
+        }
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .object) {
+            self.object = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .participant) {
+            self.participant = value
+        }
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .result) {
+            self.result = value
+        }
+        if let value = try container.decodeDateTimeIfPresent(forKey: .startTime) {
+            self.startTime = value
+        }
+        if let value = try container.decodeIfPresent(SOEntryPoint.self, forKey: .target) {
+            self.target = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.actionStatus {
-            dictionary[Keys.actionStatus] = value.rawValue as AnyObject
+            try container.encode(value.rawValue, forKey: .actionStatus)
         }
         if let value = self.agent {
-            if let typedValue = value as? SOOrganization {
-                dictionary[Keys.agent] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? SOPerson {
-                dictionary[Keys.agent] = typedValue.dictionary as AnyObject
-            }
+            try container.encodeOrganizationOrPerson(value, forKey: .agent)
         }
-        if let value = self.endTime as? String {
-            dictionary[Keys.endTime] = value as AnyObject
+        if let value = self.endTime {
+            try container.encodeDateTime(value, forKey: .endTime)
         }
         if let value = self.error as? SOThing {
-            dictionary[Keys.error] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .error)
         }
         if let value = self.instrument as? SOThing {
-            dictionary[Keys.instrument] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .instrument)
         }
         if let value = self.location {
-            if let typedValue = value as? SOPlace {
-                dictionary[Keys.location] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? SOPostalAddress {
-                dictionary[Keys.location] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? String {
-                dictionary[Keys.location] = typedValue as AnyObject
-            }
+            try container.encodePlaceOrPostalAddressOrText(value, forKey: .location)
         }
         if let value = self.object as? SOThing {
-            dictionary[Keys.object] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .object)
         }
         if let value = self.participant {
-            if let typedValue = value as? SOOrganization {
-                dictionary[Keys.participant] = typedValue.dictionary as AnyObject
-            } else if let typedValue = value as? SOPerson {
-                dictionary[Keys.participant] = typedValue.dictionary as AnyObject
-            }
+            try container.encodeOrganizationOrPerson(value, forKey: .participant)
         }
         if let value = self.result as? SOThing {
-            dictionary[Keys.result] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .result)
         }
-        if let value = self.startTime as? String {
-            dictionary[Keys.startTime] = value as AnyObject
+        if let value = self.startTime {
+            try container.encodeDateTime(value, forKey: .startTime)
         }
         if let value = self.target as? SOEntryPoint {
-            dictionary[Keys.target] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .target)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

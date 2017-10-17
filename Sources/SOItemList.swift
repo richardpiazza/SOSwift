@@ -3,6 +3,7 @@ import SOSwiftVocabulary
 
 /// A list of items of any sort—for example, Top 10 Movies About Weathermen, or Top 100 Party Songs. Not to be confused with HTML lists, which are often used only for formatting.
 public class SOItemList: SOIntangible, ItemList {
+    
     override public class var type: String {
         return "ItemList"
     }
@@ -15,4 +16,44 @@ public class SOItemList: SOIntangible, ItemList {
     public var itemListOrder: ItemListOrderOrText?
     /// The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list.
     public var numberOfItems: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case itemListElement
+        case itemListOrder
+        case numberOfItems
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeListItemOrTextOrThingIfPresent(forKey: .itemListElement) {
+            self.itemListElement = value
+        }
+        if let value = try container.decodeItemListOrderOrTextIfPresent(forKey: .itemListOrder) {
+            self.itemListOrder = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .numberOfItems) {
+            self.numberOfItems = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.itemListElement {
+            try container.encodeListItemOrTextOrThing(value, forKey: .itemListElement)
+        }
+        if let value = self.itemListOrder {
+            try container.encodeItemListOrderOrText(value, forKey: .itemListOrder)
+        }
+        if let value = self.numberOfItems {
+            try container.encode(value, forKey: .numberOfItems)
+        }
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
+    }
 }

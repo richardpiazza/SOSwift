@@ -5,41 +5,7 @@ import SOSwiftVocabulary
 /// Ticketing information may be added via the offers property. 
 /// Repeated events may be structured as separate Event objects.
 public class SOEvent: SOThing, Event {
-    public struct Keys {
-        public static let about = "about"
-        public static let actor = "actor"
-        public static let aggregateRating = "aggregateRating"
-        public static let attendee = "attendee"
-        public static let audience = "audience"
-        public static let composer = "composer"
-        public static let contributor = "contributor"
-        public static let director = "director"
-        public static let doorTime = "doorTime"
-        public static let duration = "duration"
-        public static let endDate = "endDate"
-        public static let eventStatus = "eventStatus"
-        public static let funder = "funder"
-        public static let inLanguage = "inLanguage"
-        public static let isAccessibleForFree = "isAccessibleForFree"
-        public static let location = "location"
-        public static let maximumAttendeeCapacity = "maximumAttendeeCapacity"
-        public static let offers = "offers"
-        public static let organizer = "organizer"
-        public static let performer = "performer"
-        public static let previousStartDate = "previousStartDate"
-        public static let recordedIn = "recordedIn"
-        public static let remainingAttendeeCapacity = "remainingAttendeeCapacity"
-        public static let review = "review"
-        public static let sponsor = "sponsor"
-        public static let startDate = "startDate"
-        public static let subEvent = "subEvent"
-        public static let superEvent = "superEvent"
-        public static let translator = "translator"
-        public static let typicalAgeRange = "typicalAgeRange"
-        public static let workFeatured = "workFeatured"
-        public static let workPerformed = "workPerformed"
-    }
-    
+
     override public class var type: String {
         return "Event"
     }
@@ -109,236 +75,56 @@ public class SOEvent: SOThing, Event {
     /// A work performed in some event, for example a play performed in a TheaterEvent.
     public var workPerformed: CreativeWork?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.about] as? [String : AnyObject] {
-            self.about = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.actor] {
-            self.actor = makePersons(anyObject: value)
-        }
-        if let value = dictionary[Keys.aggregateRating] as? [String : AnyObject] {
-            self.aggregateRating = SOAggregateRating(dictionary: value)
-        }
-        if let value = dictionary[Keys.attendee] {
-            self.attendee = makeOrganizationOrPersons(anyObject: value)
-        }
-        if let value = dictionary[Keys.audience] as? [String : AnyObject] {
-            self.audience = SOAudience(dictionary: value)
-        }
-        if let value = dictionary[Keys.composer] as? [String : AnyObject] {
-            self.composer = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.contributor] as? [String : AnyObject] {
-            self.contributor = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.director] {
-            self.director = makePersons(anyObject: value)
-        }
-        if let value = dictionary[Keys.doorTime] as? String {
-            self.doorTime = value
-        }
-        if let value = dictionary[Keys.duration] as? String {
-            self.duration = value
-        }
-        if let value = dictionary[Keys.endDate] as? String {
-            self.endDate = value
-        }
-        if let value = dictionary[Keys.eventStatus] as? String {
-            self.eventStatus = EventStatus(rawValue: value)
-        }
-        if let value = dictionary[Keys.funder] as? [String : AnyObject] {
-            self.funder = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.inLanguage] {
-            self.inLanguage = makeLanguageOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.isAccessibleForFree] as? Bool {
-            self.isAccessibleForFree = value
-        }
-        if let value = dictionary[Keys.location] {
-            self.location = makePlaceOrPostalAddressOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.maximumAttendeeCapacity] as? Int {
-            self.maximumAttendeeCapacity = value
-        }
-        if let value = dictionary[Keys.offers] {
-            self.offers = makeOffers(anyObject: value)
-        }
-        if let value = dictionary[Keys.organizer] as? [String : AnyObject] {
-            self.organizer = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.performer] {
-            self.performer = makeOrganizationOrPersons(anyObject: value)
-        }
-        if let value = dictionary[Keys.previousStartDate] as? String {
-            self.previousStartDate = value
-        }
-        if let value = dictionary[Keys.recordedIn] as? [String : AnyObject] {
-            self.recordedIn = SOCreativeWork(dictionary: value)
-        }
-        if let value = dictionary[Keys.remainingAttendeeCapacity] as? Int {
-            self.remainingAttendeeCapacity = value
-        }
-        if let value = dictionary[Keys.review] {
-            self.review = makeReviews(anyObject: value)
-        }
-        if let value = dictionary[Keys.sponsor] as? [String : AnyObject] {
-            self.sponsor = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.startDate] as? String {
-            self.startDate = value
-        }
-        if let value = dictionary[Keys.subEvent] {
-            self.subEvent = makeEvents(anyObject: value)
-        }
-        if let value = dictionary[Keys.superEvent] as? [String : AnyObject] {
-            self.superEvent = SOEvent(dictionary: value)
-        }
-        if let value = dictionary[Keys.translator] as? [String : AnyObject] {
-            self.translator = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.typicalAgeRange] as? String {
-            self.typicalAgeRange = value
-        }
-        if let value = dictionary[Keys.workFeatured] as? [String : AnyObject] {
-            self.workFeatured = SOCreativeWork(dictionary: value)
-        }
-        if let value = dictionary[Keys.workPerformed] as? [String : AnyObject] {
-            self.workPerformed = SOCreativeWork(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case about
+        case actor
+        case aggregateRating
+        case attendee
+        case audience
+        case composer
+        case contributor
+        case director
+        case doorTime
+        case duration
+        case endDate
+        case eventStatus
+        case funder
+        case inLanguage
+        case isAccessibleForFree
+        case location
+        case maximumAttendeeCapacity
+        case offers
+        case organizer
+        case performer
+        case previousStartDate
+        case recordedIn
+        case remainingAttendeeCapacity
+        case review
+        case sponsor
+        case startDate
+        case subEvent
+        case superEvent
+        case translator
+        case typicalAgeRange
+        case workFeatured
+        case workPerformed
     }
     
-    override public var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.about as? SOThing {
-            dictionary[Keys.about] = value.dictionary as AnyObject
-        }
-        if let value = self.actor as? [SOPerson] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.actor] = values as AnyObject
-        }
-        if let value = self.aggregateRating as? SOAggregateRating {
-            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
-        }
-        if let value = self.attendee {
-            var values = [AnyObject]()
-            for element in value {
-                if let item = element.dictionaryValue {
-                    values.append(item)
-                }
-            }
-            dictionary[Keys.attendee] = values as AnyObject
-        }
-        if let value = self.audience as? SOAudience {
-            dictionary[Keys.audience] = value.dictionary as AnyObject
-        }
-        if let value = self.composer?.dictionaryValue {
-            dictionary[Keys.composer] = value
-        }
-        if let value = self.contributor?.dictionaryValue {
-            dictionary[Keys.contributor] = value
-        }
-        if let value = self.director as? [SOPerson] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.director] = values as AnyObject
-        }
-        if let value = self.doorTime as? String {
-            dictionary[Keys.doorTime] = value as AnyObject
-        }
-        if let value = self.duration as? String {
-            dictionary[Keys.duration] = value as AnyObject
-        }
-        if let value = self.endDate as? String {
-            dictionary[Keys.endDate] = value as AnyObject
-        }
-        if let value = self.eventStatus {
-            dictionary[Keys.eventStatus] = value.rawValue as AnyObject
-        }
-        if let value = self.funder?.dictionaryValue {
-            dictionary[Keys.funder] = value
-        }
-        if let value = self.inLanguage?.dictionaryValue {
-            dictionary[Keys.inLanguage] = value
-        }
-        if let value = self.isAccessibleForFree {
-            dictionary[Keys.isAccessibleForFree] = value as AnyObject
-        }
-        if let value = self.location?.dictionaryValue {
-            dictionary[Keys.location] = value
-        }
-        if let value = self.maximumAttendeeCapacity {
-            dictionary[Keys.maximumAttendeeCapacity] = value as AnyObject
-        }
-        if let value = self.offers as? [SOOffer] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.offers] = values as AnyObject
-        }
-        if let value = self.organizer?.dictionaryValue {
-            dictionary[Keys.organizer] = value
-        }
-        if let value = self.performer {
-            var values = [AnyObject]()
-            for element in value {
-                if let item = element.dictionaryValue {
-                    values.append(item)
-                }
-            }
-            dictionary[Keys.performer] = values as AnyObject
-        }
-        if let value = self.previousStartDate as? String {
-            dictionary[Keys.previousStartDate] = value as AnyObject
-        }
-        if let value = self.recordedIn as? SOCreativeWork {
-            dictionary[Keys.recordedIn] = value.dictionary as AnyObject
-        }
-        if let value = self.remainingAttendeeCapacity {
-            dictionary[Keys.remainingAttendeeCapacity] = value as AnyObject
-        }
-        if let value = self.review as? [SOReview] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.review] = values as AnyObject
-        }
-        if let value = self.sponsor?.dictionaryValue {
-            dictionary[Keys.sponsor] = value
-        }
-        if let value = self.startDate as? String {
-            dictionary[Keys.startDate] = value as AnyObject
-        }
-        if let value = self.subEvent as? [SOEvent] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.subEvent] = values as AnyObject
-        }
-        if let value = self.superEvent as? SOEvent {
-            dictionary[Keys.superEvent] = value.dictionary as AnyObject
-        }
-        if let value = self.translator?.dictionaryValue {
-            dictionary[Keys.translator] = value
-        }
-        if let value = self.typicalAgeRange {
-            dictionary[Keys.typicalAgeRange] = value as AnyObject
-        }
-        if let value = self.workFeatured as? SOCreativeWork {
-            dictionary[Keys.workFeatured] = value.dictionary as AnyObject
-        }
-        if let value = self.workPerformed as? SOCreativeWork {
-            dictionary[Keys.workPerformed] = value.dictionary as AnyObject
-        }
-        return dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

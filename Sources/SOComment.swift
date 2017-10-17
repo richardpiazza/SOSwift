@@ -4,12 +4,7 @@ import SOSwiftVocabulary
 /// A comment on an item - for example, a comment on a blog post.
 /// The comment's content is expressed via the text property, and its topic via about, properties shared with all CreativeWorks.
 public class SOComment: SOCreativeWork, Comment {
-    public struct Keys {
-        public static let downvoteCount = "downvoteCount"
-        public static let parentItem = "parentItem"
-        public static let upvoteCount = "upvoteCount"
-    }
-    
+
     override public class var type: String {
         return "Comment"
     }
@@ -21,30 +16,43 @@ public class SOComment: SOCreativeWork, Comment {
     /// The number of upvotes this question, answer or comment has received from the community.
     public var upvoteCount: Int?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.downvoteCount] as? Int {
-            self.downvoteCount = value
-        }
-        if let value = dictionary[Keys.parentItem] as? [String : AnyObject] {
-            self.parentItem = SOQuestion(dictionary: value)
-        }
-        if let value = dictionary[Keys.upvoteCount] as? Int {
-            self.upvoteCount = value
-        }
+    private enum CodingKeys: String, CodingKey {
+        case downvoteCount
+        case parentItem
+        case upvoteCount
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(Int.self, forKey: .downvoteCount) {
+            self.downvoteCount = value
+        }
+        if let value = try container.decodeIfPresent(SOQuestion.self, forKey: .parentItem) {
+            self.parentItem = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .upvoteCount) {
+            self.upvoteCount = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.downvoteCount {
-            dictionary[Keys.downvoteCount] = value as AnyObject
+            try container.encode(value, forKey: .downvoteCount)
         }
         if let value = self.parentItem as? SOQuestion {
-            dictionary[Keys.parentItem] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .parentItem)
         }
         if let value = self.upvoteCount {
-            dictionary[Keys.upvoteCount] = value as AnyObject
+            try container.encode(value, forKey: .upvoteCount)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

@@ -3,13 +3,16 @@ import SOSwiftVocabulary
 
 /// Structured values are used when the value of a property has a more complex structure than simply being a textual value or a reference to another thing.
 public class SOStructuredValue: SOIntangible, StructuredValue {
+    
     override public class var type: String {
         return "StructuredValue"
     }
     
-    override public class var specificTypes: [MakeableThing.Type] {
-        return [SOContactPoint.self, SOGeoCoordinates.self, SOGeoShape.self, SOInteractionCounter.self, SOMonetaryAmount.self,
-                SOOpeningHoursSpecification.self, SOOwnershipInfo.self, SOPriceSpecification.self, SOPropertyValue.self,
-                SOQuantitativeValue.self]
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
     }
 }

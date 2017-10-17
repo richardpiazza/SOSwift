@@ -3,16 +3,6 @@ import SOSwiftVocabulary
 
 /// A video file.
 public class SOVideoObject: SOMediaObject, VideoObject {
-    public struct Keys {
-        public static let actor = "actor"
-        public static let caption = "caption"
-        public static let director = "director"
-        public static let musicBy = "musicBy"
-        public static let thumbnail = "thumbnail"
-        public static let transcript = "transcript"
-        public static let videoFrameSize = "videoFrameSize"
-        public static let videoQuality = "videoQuality"
-    }
     
     override public class var type: String {
         return "VideoObject"
@@ -35,82 +25,78 @@ public class SOVideoObject: SOMediaObject, VideoObject {
     /// The quality of the video.
     public var videoQuality: String?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.actor] {
-            self.actor = []
-            if let typedValue = value as? [String : AnyObject] {
-                self.actor?.append(SOPerson(dictionary: typedValue))
-            } else if let typedValue = value as? [[String : AnyObject]] {
-                for element in typedValue {
-                    self.actor?.append(SOPerson(dictionary: element))
-                }
-            }
-        }
-        if let value = dictionary[Keys.caption] as? String {
-            self.caption = value
-        }
-        if let value = dictionary[Keys.director] {
-            self.director = []
-            if let typedValue = value as? [String : AnyObject] {
-                self.director?.append(SOPerson(dictionary: typedValue))
-            } else if let typedValue = value as? [[String : AnyObject]] {
-                for element in typedValue {
-                    self.director?.append(SOPerson(dictionary: element))
-                }
-            }
-        }
-        if let value = dictionary[Keys.musicBy] as? [String : AnyObject] {
-            self.musicBy = makeMusicGroupOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.thumbnail] as? [String : AnyObject] {
-            self.thumbnail = SOImageObject(dictionary: value)
-        }
-        if let value = dictionary[Keys.transcript] as? String {
-            self.transcript = value
-        }
-        if let value = dictionary[Keys.videoFrameSize] as? String {
-            self.videoFrameSize = value
-        }
-        if let value = dictionary[Keys.videoQuality] as? String {
-            self.videoQuality = value
-        }
+    private enum CodingKeys: String, CodingKey {
+        case actor
+        case caption
+        case director
+        case musicBy
+        case thumbnail
+        case transcript
+        case videoFrameSize
+        case videoQuality
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .actor) {
+            self.actor = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .caption) {
+            self.caption = value
+        }
+        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .director) {
+            self.director = value
+        }
+        if let value = try container.decodeMusicGroupOrPersonIfPresent(forKey: .musicBy) {
+            self.musicBy = value
+        }
+        if let value = try container.decodeIfPresent(SOImageObject.self, forKey: .thumbnail) {
+            self.thumbnail = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .transcript) {
+            self.transcript = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .videoFrameSize) {
+            self.videoFrameSize = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .videoQuality) {
+            self.videoQuality = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.actor as? [SOPerson] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.actor] = values as AnyObject
+            try container.encode(value, forKey: .actor)
         }
         if let value = self.caption {
-            dictionary[Keys.caption] = value as AnyObject
+            try container.encode(value, forKey: .caption)
         }
         if let value = self.director as? [SOPerson] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.director] = values as AnyObject
+            try container.encode(value, forKey: .director)
         }
-        if let value = self.musicBy?.dictionaryValue {
-            dictionary[Keys.musicBy] = value
+        if let value = self.musicBy {
+            try container.encodeMusicGroupOrPerson(value, forKey: .musicBy)
         }
         if let value = self.thumbnail as? SOImageObject {
-            dictionary[Keys.thumbnail] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .thumbnail)
         }
         if let value = self.transcript {
-            dictionary[Keys.transcript] = value as AnyObject
+            try container.encode(value, forKey: .transcript)
         }
         if let value = self.videoFrameSize {
-            dictionary[Keys.videoFrameSize] = value as AnyObject
+            try container.encode(value, forKey: .videoFrameSize)
         }
         if let value = self.videoQuality {
-            dictionary[Keys.videoQuality] = value as AnyObject
+            try container.encode(value, forKey: .videoQuality)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

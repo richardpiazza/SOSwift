@@ -1,14 +1,45 @@
 import Foundation
 import SOSwiftVocabulary
 
-public extension ProductOrTextOrURL {
-    var dictionaryValue: AnyObject? {
-        if let typedValue = self as? SOProduct {
-            return typedValue.dictionary as AnyObject
-        } else if let typedValue = self as? String {
-            return typedValue as AnyObject
-        } else if let typedValue = self as? URL {
-            return typedValue.absoluteString as AnyObject
+// MARK: - ProductOrTextOrURL
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeProductOrTextOrURL(_ value: ProductOrTextOrURL, forKey key: KeyedEncodingContainer.Key) throws {
+        if let typedValue = value as? SOProduct {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? URL {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? String {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}
+
+public extension KeyedDecodingContainer {
+    public func decodeProductOrTextOrURLIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> ProductOrTextOrURL? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            let value = try self.decode([String : AnyObject].self, forKey: key)
+            if value["@type"] as? String == SOProduct.type {
+                let data = try JSONEncoder().encode(value)
+                return try JSONDecoder().decode(SOProduct.self, from: data)
+            }
+        } catch {
+        }
+        
+        do {
+            let value = try self.decode(URL.self, forKey: key)
+            return value
+        } catch {
+        }
+        
+        do {
+            let value = try self.decode(String.self, forKey: key)
+            return value
+        } catch {
         }
         
         return nil

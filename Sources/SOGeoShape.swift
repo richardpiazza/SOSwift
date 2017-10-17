@@ -23,4 +23,79 @@ public class SOGeoShape: SOThing, GeoShape {
     public var polygon: String?
     /// The postal code. For example, 94043.
     public var postalCode: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case address
+        case addressCountry
+        case box
+        case circle
+        case elevation
+        case line
+        case polygon
+        case postalCode
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodePostalAddressOrTextIfPresent(forKey: .address) {
+            self.address = value
+        }
+        if let value = try container.decodeCountryOrTextIfPresent(forKey: .addressCountry) {
+            self.addressCountry = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .box) {
+            self.box = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .circle) {
+            self.circle = value
+        }
+        if let value = try container.decodeNumberOrTextIfPresent(forKey: .elevation) {
+            self.elevation = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .line) {
+            self.line = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .polygon) {
+            self.polygon = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .postalCode) {
+            self.postalCode = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.address {
+            try container.encodePostalAddressOrText(value, forKey: .address)
+        }
+        if let value = self.addressCountry {
+            try container.encodeCountryOrText(value, forKey: .addressCountry)
+        }
+        if let value = self.box {
+            try container.encode(value, forKey: .box)
+        }
+        if let value = self.circle {
+            try container.encode(value, forKey: .circle)
+        }
+        if let value = self.elevation {
+            try container.encodeNumberOrText(value, forKey: .elevation)
+        }
+        if let value = self.line {
+            try container.encode(value, forKey: .line)
+        }
+        if let value = self.polygon {
+            try container.encode(value, forKey: .polygon)
+        }
+        if let value = self.postalCode {
+            try container.encode(value, forKey: .postalCode)
+        }
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
+    }
 }

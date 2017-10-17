@@ -87,10 +87,6 @@ public class SOCreativeWork: SOThing, CreativeWork {
         return "CreativeWork"
     }
     
-    override public class var specificTypes: [MakeableThing.Type] {
-        return [SOAudioObject.self, SOImageObject.self, SOVideoObject.self]
-    }
-    
     /// The subject matter of the content.
     public var about: Thing?
     /// The human sensory perceptual system or cognitive faculty through which a person may process or perceive information.
@@ -238,458 +234,539 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// Example/instance/realization/derivation of the concept of this creative work. eg. The paperback edition, first edition, or eBook. Inverse property: exampleOfWork.
     public var workExample: CreativeWork?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.about] as? [String : AnyObject] {
-            self.about = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.accessMode] as? String {
-            self.accessMode = AccessMode(rawValue: value)
-        }
-        if let value = dictionary[Keys.accessModeSufficient] {
-            self.accessModeSufficient = []
-            if let typedValue = value as? [String] {
-                for element in typedValue {
-                    if let item = AccessModeSufficient(rawValue: element) {
-                        self.accessModeSufficient?.append(item)
-                    }
-                }
-            } else if let typedValue = value as? String {
-                if let item = AccessModeSufficient(rawValue: typedValue) {
-                    self.accessModeSufficient?.append(item)
-                }
-            }
-            
-        }
-        if let value = dictionary[Keys.accessibilityAPI] as? String {
-            self.accessibilityAPI = AccessibilityAPI(rawValue: value)
-        }
-        if let value = dictionary[Keys.accessibilityFeature] as? String {
-            self.accessibilityFeature = AccessibilityFeature(rawValue: value)
-        }
-        if let value = dictionary[Keys.accessibilityHazard] as? String {
-            self.accessibilityHazard = AccessibilityHazard(rawValue: value)
-        }
-        if let value = dictionary[Keys.accessibilitySummary] as? String {
-            self.accessibilitySummary = value
-        }
-        if let value = dictionary[Keys.accountablePerson] as? [String : AnyObject] {
-            self.accountablePerson = SOPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.aggregateRating] as? [String : AnyObject] {
-            self.aggregateRating = SOAggregateRating(dictionary: value)
-        }
-        if let value = dictionary[Keys.alternativeHeadline] as? String {
-            self.alternativeHeadline = value
-        }
-        if let value = dictionary[Keys.associatedMedia] as? [String : AnyObject] {
-            self.associatedMedia = SOMediaObject(dictionary: value)
-        }
-        if let value = dictionary[Keys.audience] as? [String : AnyObject] {
-            self.audience = SOAudience(dictionary: value)
-        }
-        if let value = dictionary[Keys.audio] as? [String : AnyObject] {
-            self.audio = SOAudioObject(dictionary: value)
-        }
-        if let value = dictionary[Keys.author] as? [String : AnyObject] {
-            self.author = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.award] as? String {
-            self.award = value
-        }
-        if let value = dictionary[Keys.character] as? [String : AnyObject] {
-            self.character = SOPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.citation] {
-            self.citation = makeCreativeWorkOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.comment] as? [String : AnyObject] {
-            self.comment = SOComment(dictionary: value)
-        }
-        if let value = dictionary[Keys.commentCount] as? Int {
-            self.commentCount = value
-        }
-        if let value = dictionary[Keys.contentLocation] as? [String : AnyObject] {
-            self.contentLocation = SOPlace(dictionary: value)
-        }
-        if let value = dictionary[Keys.contentRating] as? String {
-            self.contentRating = value
-        }
-        if let value = dictionary[Keys.contributor] as? [String : AnyObject] {
-            self.contributor = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.copyrightHolder] as? [String : AnyObject] {
-            self.copyrightHolder = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.copyrightYear] as? Int {
-            self.copyrightYear = value
-        }
-        if let value = dictionary[Keys.creator] as? [String : AnyObject] {
-            self.creator = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.dateCreaated] as? String {
-            self.dateCreated = value
-        }
-        if let value = dictionary[Keys.dateModified] as? String {
-            self.dateModified = value
-        }
-        if let value = dictionary[Keys.datePublished] as? String {
-            self.datePublished = value
-        }
-        if let value = dictionary[Keys.discussionUrl] as? String {
-            self.discussionURL = URL(string: value)
-        }
-        if let value = dictionary[Keys.editor] as? [String : AnyObject] {
-            self.editor = SOPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.educationalAlignment] as? [String : AnyObject] {
-            self.educationalAlignment = SOAlignmentObject(dictionary: value)
-        }
-        if let value = dictionary[Keys.educationalUse] as? String {
-            self.educationalUse = value
-        }
-        if let value = dictionary[Keys.encoding] as? [String : AnyObject] {
-            self.encoding = SOMediaObject(dictionary: value)
-        }
-        if let value = dictionary[Keys.exampleOfWork] as? [String : AnyObject] {
-            self.exampleOfWork = SOCreativeWork(dictionary: value)
-        }
-        if let value = dictionary[Keys.fileFormat] {
-            self.fileFormat = makeTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.funder] as? [String : AnyObject] {
-            self.funder = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.genre] {
-            self.genre = makeTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.hasPart] as? [String : AnyObject] {
-            self.hasPart = SOCreativeWork(dictionary: value)
-        }
-        if let value = dictionary[Keys.headline] as? String {
-            self.headline = value
-        }
-        if let value = dictionary[Keys.inLanguage] {
-            self.inLanguage = makeLanguageOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.interactionStatistic] as? [String : AnyObject] {
-            self.interactionStatistic = SOInteractionCounter(dictionary: value)
-        }
-        if let value = dictionary[Keys.interactivityType] as? String {
-            self.interactivityType = Interactivity(rawValue: value)
-        }
-        if let value = dictionary[Keys.isAccessibleForFree] as? Bool {
-            self.isAccessibleForFree = value
-        }
-        if let value = dictionary[Keys.isBasedOn] {
-            self.isBasedOn = makeCreativeWorkOrProductOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.isFamilyFriendly] as? Bool {
-            self.isFamilyFriendly = value
-        }
-        if let value = dictionary[Keys.isPartOf] as? [String : AnyObject] {
-            self.isPartOf = SOCreativeWork(dictionary: value)
-        }
-        if let value = dictionary[Keys.keywords] as? String {
-            self.keywords = value
-        }
-        if let value = dictionary[Keys.learningResourceType] as? String {
-            self.learningResourceType = value
-        }
-        if let value = dictionary[Keys.license] {
-            self.license = makeCreativeWorkOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.locationCreated] as? [String : AnyObject] {
-            self.locationCreated = SOPlace(dictionary: value)
-        }
-        if let value = dictionary[Keys.mainEntity] as? [String : AnyObject] {
-            self.mainEntity = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.material] {
-            self.material = makeProductOrTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.mentions] as? [String : AnyObject] {
-            self.mentions = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.offers] {
-            self.offers = makeOffers(anyObject: value)
-        }
-        if let value = dictionary[Keys.position] {
-            self.position = makeIntegerOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.producer] as? [String : AnyObject] {
-            self.producer = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.provider] as? [String : AnyObject] {
-            self.provider = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.releasedEvent] as? [String : AnyObject] {
-            self.releasedEvent = SOPublicationEvent(dictionary: value)
-        }
-        if let value = dictionary[Keys.review] as? [String : AnyObject] {
-            self.review = SOReview(dictionary: value)
-        }
-        if let value = dictionary[Keys.schemaVersion] {
-            self.schemaVersion = makeTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.sourceOrganization] as? [String : AnyObject] {
-            self.sourceOrganization = SOOrganization(dictionary: value)
-        }
-        if let value = dictionary[Keys.spatialCoverage] as? [String : AnyObject] {
-            self.spatialCoverage = SOPlace(dictionary: value)
-        }
-        if let value = dictionary[Keys.sponsor] as? [String : AnyObject] {
-            self.sponsor = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.temporalCoverage] {
-            self.temporalCoverage = makeDateTimeOrTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.text] as? String {
-            self.text = value
-        }
-        if let value = dictionary[Keys.thumbnailUrl] as? String {
-            self.thumbnailUrl = URL(string: value)
-        }
-        if let value = dictionary[Keys.timeRequired] as? String {
-            self.timeRequired = value
-        }
-        if let value = dictionary[Keys.translator] as? [String : AnyObject] {
-            self.translator = makeOrganizationOrPerson(dictionary: value)
-        }
-        if let value = dictionary[Keys.typicalAgeRange] as? String {
-            self.typicalAgeRange = value
-        }
-        if let value = dictionary[Keys.version] {
-            self.version = makeIntegerOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.video] as? [String : AnyObject] {
-            self.video = SOVideoObject(dictionary: value)
-        }
-        if let value = dictionary[Keys.workExample] as? [String : AnyObject] {
-            self.workExample = SOCreativeWork(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case about
+        case accessMode
+        case accessModeSufficient
+        case accessibilityAPI
+        case accessibilityControl
+        case accessibilityFeature
+        case accessibilityHazard
+        case accessibilitySummary
+        case accountablePerson
+        case aggregateRating
+        case alternativeHeadline
+        case associatedMedia
+        case audience
+        case audio
+        case author
+        case award
+        case character
+        case citation
+        case comment
+        case commentCount
+        case contentLocation
+        case contentRating
+        case contributor
+        case copyrightHolder
+        case copyrightYear
+        case creator
+        case dateCreated
+        case dateModified
+        case datePublished
+        case discussionURL
+        case editor
+        case educationalAlignment
+        case educationalUse
+        case encoding
+        case exampleOfWork
+        case fileFormat
+        case funder
+        case genre
+        case hasPart
+        case headline
+        case inLanguage
+        case interactionStatistic
+        case interactivityType
+        case isAccessibleForFree
+        case isBasedOn
+        case isFamilyFriendly
+        case isPartOf
+        case keywords
+        case learningResourceType
+        case license
+        case locationCreated
+        case mainEntity
+        case material
+        case mentions
+        case offers
+        case position
+        case producer
+        case provider
+        case releasedEvent
+        case review
+        case schemaVersion
+        case sourceOrganization
+        case spatialCoverage
+        case sponsor
+        case temporalCoverage
+        case text
+        case thumbnailUrl
+        case timeRequired
+        case translator
+        case typicalAgeRange
+        case version
+        case video
+        case workExample
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .about) {
+            self.about = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .accessMode) {
+            self.accessMode = AccessMode(rawValue: value)
+        }
+        if let value = try container.decodeIfPresent([String].self, forKey: .accessModeSufficient) {
+            var accessModeSufficients = [AccessModeSufficient]()
+            value.forEach({ (v) in
+                if let ams = AccessModeSufficient(rawValue: v) {
+                    accessModeSufficients.append(ams)
+                }
+            })
+            self.accessModeSufficient = accessModeSufficients
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityAPI) {
+            self.accessibilityAPI = AccessibilityAPI(rawValue: value)
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityControl) {
+            self.accessibilityControl = AccessibilityControl(rawValue: value)
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityFeature) {
+            self.accessibilityFeature = AccessibilityFeature(rawValue: value)
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityHazard) {
+            self.accessibilityHazard = AccessibilityHazard(rawValue: value)
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .accessibilitySummary) {
+            self.accessibilitySummary = value
+        }
+        if let value = try container.decodeIfPresent(SOPerson.self, forKey: .accountablePerson) {
+            self.accountablePerson = value
+        }
+        if let value = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating) {
+            self.aggregateRating = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .alternativeHeadline) {
+            self.alternativeHeadline = value
+        }
+        if let value = try container.decodeIfPresent(SOMediaObject.self, forKey: .associatedMedia) {
+            self.associatedMedia = value
+        }
+        if let value = try container.decodeIfPresent(SOAudience.self, forKey: .audience) {
+            self.audience = value
+        }
+        if let value = try container.decodeIfPresent(SOAudioObject.self, forKey: .audio) {
+            self.audio = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .author) {
+            self.author = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .award) {
+            self.award = value
+        }
+        if let value = try container.decodeIfPresent(SOPerson.self, forKey: .character) {
+            self.character = value
+        }
+        if let value = try container.decodeCreativeWorkOrTextIfPresent(forKey: .citation) {
+            self.citation = value
+        }
+        if let value = try container.decodeIfPresent(SOComment.self, forKey: .comment) {
+            self.comment = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .commentCount) {
+            self.commentCount = value
+        }
+        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .contentLocation) {
+            self.contentLocation = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .contentRating) {
+            self.contentRating = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .contributor) {
+            self.contributor = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .copyrightHolder) {
+            self.copyrightHolder = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .copyrightYear) {
+            self.copyrightYear = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .creator) {
+            self.creator = value
+        }
+        if let value = try container.decodeDateTimeIfPresent(forKey: .dateCreated) {
+            self.dateCreated = value
+        }
+        if let value = try container.decodeDateTimeIfPresent(forKey: .dateModified) {
+            self.dateModified = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .datePublished) {
+            self.datePublished = value
+        }
+        if let value = try container.decodeIfPresent(URL.self, forKey: .discussionURL) {
+            self.discussionURL = value
+        }
+        if let value = try container.decodeIfPresent(SOPerson.self, forKey: .editor) {
+            self.editor = value
+        }
+        if let value = try container.decodeIfPresent(SOAlignmentObject.self, forKey: .educationalAlignment) {
+            self.educationalAlignment = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .educationalUse) {
+            self.educationalUse = value
+        }
+        if let value = try container.decodeIfPresent(SOMediaObject.self, forKey: .encoding) {
+            self.encoding = value
+        }
+        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .exampleOfWork) {
+            self.workExample = value
+        }
+        if let value = try container.decodeTextOrURLIfPresent(forKey: .fileFormat) {
+            self.fileFormat = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .funder) {
+            self.funder = value
+        }
+        if let value = try container.decodeTextOrURLIfPresent(forKey: .genre) {
+            self.genre = value
+        }
+        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .hasPart) {
+            self.hasPart = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .headline) {
+            self.headline = value
+        }
+        if let value = try container.decodeLanguageOrTextIfPresent(forKey: .inLanguage) {
+            self.inLanguage = value
+        }
+        if let value = try container.decodeIfPresent(SOInteractionCounter.self, forKey: .interactionStatistic) {
+            self.interactionStatistic = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .interactivityType) {
+            self.interactivityType = Interactivity(rawValue: value)
+        }
+        if let value = try container.decodeIfPresent(Bool.self, forKey: .isAccessibleForFree) {
+            self.isAccessibleForFree = value
+        }
+        if let value = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .isBasedOn) {
+            self.isBasedOn = value
+        }
+        if let value = try container.decodeIfPresent(Bool.self, forKey: .isFamilyFriendly) {
+            self.isFamilyFriendly = value
+        }
+        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .isPartOf) {
+            self.isPartOf = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .keywords) {
+            self.keywords = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .learningResourceType) {
+            self.learningResourceType = value
+        }
+        if let value = try container.decodeCreativeWorkOrURLIfPresent(forKey: .license) {
+            self.license = value
+        }
+        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .locationCreated) {
+            self.locationCreated = value
+        }
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .mainEntity) {
+            self.mainEntity = value
+        }
+        if let value = try container.decodeProductOrTextOrURLIfPresent(forKey: .material) {
+            self.material = value
+        }
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .mentions) {
+            self.mentions = value
+        }
+        if let value = try container.decodeIfPresent([SOOffer].self, forKey: .offers) {
+            self.offers = value
+        }
+        if let value = try container.decodeIntegerOrTextIfPresent(forKey: .position) {
+            self.position = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .producer) {
+            self.producer = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .provider) {
+            self.provider = value
+        }
+        if let value = try container.decodeIfPresent(SOPublicationEvent.self, forKey: .releasedEvent) {
+            self.releasedEvent = value
+        }
+        if let value = try container.decodeIfPresent(SOReview.self, forKey: .review) {
+            self.review = value
+        }
+        if let value = try container.decodeTextOrURLIfPresent(forKey: .schemaVersion) {
+            self.schemaVersion = value
+        }
+        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .sourceOrganization) {
+            self.sourceOrganization = value
+        }
+        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .spatialCoverage) {
+            self.spatialCoverage = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor) {
+            self.sponsor = value
+        }
+        if let value = try container.decodeDateTimeOrTextOrURLIfPresent(forKey: .temporalCoverage) {
+            self.temporalCoverage = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .text) {
+            self.text = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .timeRequired) {
+            self.timeRequired = value
+        }
+        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .translator) {
+            self.translator = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .typicalAgeRange) {
+            self.typicalAgeRange = value
+        }
+        if let value = try container.decodeIntegerOrTextIfPresent(forKey: .version) {
+            self.version = value
+        }
+        if let value = try container.decodeIfPresent(SOVideoObject.self, forKey: .video) {
+            self.video = value
+        }
+        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .workExample) {
+            self.workExample = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.about as? SOThing {
-            dictionary[Keys.about] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .about)
         }
         if let value = self.accessMode {
-            dictionary[Keys.accessMode] = value.rawValue as AnyObject
+            try container.encode(value.rawValue, forKey: .accessMode)
         }
         if let value = self.accessModeSufficient {
-            var values = [String]()
-            for element in value {
-                values.append(element.rawValue)
-            }
-            dictionary[Keys.accessModeSufficient] = values as AnyObject
+            let values = value.map({ (ams) -> String in
+                return ams.rawValue
+            })
+            try container.encode(values, forKey: .accessModeSufficient)
         }
         if let value = self.accessibilityAPI {
-            dictionary[Keys.accessibilityAPI] = value.rawValue as AnyObject
+            try container.encode(value.rawValue, forKey: .accessibilityAPI)
         }
         if let value = self.accessibilityControl {
-            dictionary[Keys.accessibilityControl] = value.rawValue as AnyObject
+            try container.encode(value.rawValue, forKey: .accessibilityControl)
         }
         if let value = self.accessibilityFeature {
-            dictionary[Keys.accessibilityFeature] = value.rawValue as AnyObject
+            try container.encode(value.rawValue, forKey: .accessibilityFeature)
         }
         if let value = self.accessibilityHazard {
-            dictionary[Keys.accessibilityHazard] = value.rawValue as AnyObject
+            try container.encode(value.rawValue, forKey: .accessibilityHazard)
         }
         if let value = self.accessibilitySummary {
-            dictionary[Keys.accessibilitySummary] = value as AnyObject
+            try container.encode(value, forKey: .accessibilitySummary)
         }
         if let value = self.accountablePerson as? SOPerson {
-            dictionary[Keys.accountablePerson] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .accountablePerson)
         }
         if let value = self.aggregateRating as? SOAggregateRating {
-            dictionary[Keys.aggregateRating] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .aggregateRating)
         }
         if let value = self.alternativeHeadline {
-            dictionary[Keys.alternativeHeadline] = value as AnyObject
+            try container.encode(value, forKey: .alternativeHeadline)
         }
         if let value = self.associatedMedia as? SOMediaObject {
-            dictionary[Keys.associatedMedia] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .associatedMedia)
         }
         if let value = self.audience as? SOAudience {
-            dictionary[Keys.audience] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .audience)
         }
         if let value = self.audio as? SOAudioObject {
-            dictionary[Keys.audio] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .audio)
         }
-        if let value = self.author?.dictionaryValue {
-            dictionary[Keys.author] = value
+        if let value = self.author {
+            try container.encodeOrganizationOrPerson(value, forKey: .author)
         }
         if let value = self.award {
-            dictionary[Keys.award] = value as AnyObject
+            try container.encode(value, forKey: .award)
         }
         if let value = self.character as? SOPerson {
-            dictionary[Keys.character] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .character)
         }
-        if let value = self.citation?.dictionaryValue {
-            dictionary[Keys.citation] = value
+        if let value = self.citation {
+            try container.encodeCreativeWorkOrText(value, forKey: .citation)
         }
         if let value = self.comment as? SOComment {
-            dictionary[Keys.comment] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .comment)
         }
         if let value = self.commentCount {
-            dictionary[Keys.commentCount] = value as AnyObject
+            try container.encode(value, forKey: .commentCount)
         }
         if let value = self.contentLocation as? SOPlace {
-            dictionary[Keys.contentLocation] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .contentLocation)
         }
         if let value = self.contentRating {
-            dictionary[Keys.contentRating] = value as AnyObject
+            try container.encode(value, forKey: .contentRating)
         }
-        if let value = self.contributor?.dictionaryValue {
-            dictionary[Keys.contributor] = value
+        if let value = self.contributor {
+            try container.encodeOrganizationOrPerson(value, forKey: .contributor)
         }
-        if let value = self.copyrightHolder?.dictionaryValue {
-            dictionary[Keys.copyrightHolder] = value
+        if let value = self.copyrightHolder {
+            try container.encodeOrganizationOrPerson(value, forKey: .copyrightHolder)
         }
         if let value = self.copyrightYear {
-            dictionary[Keys.copyrightYear] = value as AnyObject
+            try container.encode(value, forKey: .copyrightYear)
         }
-        if let value = self.creator?.dictionaryValue {
-            dictionary[Keys.creator] = value
+        if let value = self.creator {
+            try container.encodeOrganizationOrPerson(value, forKey: .creator)
         }
         if let value = self.dateCreated as? String {
-            dictionary[Keys.dateCreaated] = value as AnyObject
+            try container.encode(value, forKey: .dateCreated)
         }
         if let value = self.dateModified as? String {
-            dictionary[Keys.dateModified] = value as AnyObject
+            try container.encode(value, forKey: .dateModified)
         }
         if let value = self.datePublished as? String {
-            dictionary[Keys.datePublished] = value as AnyObject
+            try container.encode(value, forKey: .datePublished)
         }
         if let value = self.discussionURL {
-            dictionary[Keys.discussionUrl] = value.absoluteString as AnyObject
+            try container.encode(value, forKey: .discussionURL)
         }
         if let value = self.editor as? SOPerson {
-            dictionary[Keys.editor] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .editor)
         }
         if let value = self.educationalAlignment as? SOAlignmentObject {
-            dictionary[Keys.educationalAlignment] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .educationalAlignment)
         }
         if let value = self.educationalUse {
-            dictionary[Keys.educationalUse] = value as AnyObject
+            try container.encode(value, forKey: .educationalUse)
         }
         if let value = self.encoding as? SOMediaObject {
-            dictionary[Keys.encoding] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .encoding)
         }
         if let value = self.exampleOfWork as? SOCreativeWork {
-            dictionary[Keys.exampleOfWork] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .exampleOfWork)
         }
-        if let value = self.fileFormat?.dictionaryValue {
-            dictionary[Keys.fileFormat] = value
+        if let value = self.fileFormat {
+            try container.encodeTextOrURL(value, forKey: .fileFormat)
         }
-        if let value = self.funder?.dictionaryValue {
-            dictionary[Keys.funder] = value
+        if let value = self.funder {
+            try container.encodeOrganizationOrPerson(value, forKey: .funder)
         }
-        if let value = self.genre?.dictionaryValue {
-            dictionary[Keys.genre] = value
+        if let value = self.genre {
+            try container.encodeTextOrURL(value, forKey: .genre)
         }
         if let value = self.hasPart as? SOCreativeWork {
-            dictionary[Keys.hasPart] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .hasPart)
         }
         if let value = self.headline {
-            dictionary[Keys.headline] = value as AnyObject
+            try container.encode(value, forKey: .headline)
         }
-        if let value = self.inLanguage?.dictionaryValue {
-            dictionary[Keys.inLanguage] = value
+        if let value = self.inLanguage {
+            try container.encodeLanguageOrText(value, forKey: .inLanguage)
         }
         if let value = self.interactionStatistic as? SOInteractionCounter {
-            dictionary[Keys.inLanguage] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .interactionStatistic)
         }
         if let value = self.interactivityType {
-            dictionary[Keys.interactivityType] = value.rawValue as AnyObject
+            try container.encode(value.rawValue, forKey: .interactivityType)
         }
         if let value = self.isAccessibleForFree {
-            dictionary[Keys.isAccessibleForFree] = value as AnyObject
+            try container.encode(value, forKey: .isAccessibleForFree)
         }
-        if let value = self.isBasedOn?.dictionaryValue {
-            dictionary[Keys.isBasedOn] = value
+        if let value = self.isBasedOn {
+            try container.encodeCreativeWorkOrProductOrURL(value, forKey: .isBasedOn)
         }
         if let value = self.isFamilyFriendly {
-            dictionary[Keys.isFamilyFriendly] = value as AnyObject
+            try container.encode(value, forKey: .isFamilyFriendly)
         }
         if let value = self.isPartOf as? SOCreativeWork {
-            dictionary[Keys.isPartOf] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .isPartOf)
         }
         if let value = self.keywords {
-            dictionary[Keys.keywords] = value as AnyObject
+            try container.encode(value, forKey: .keywords)
         }
         if let value = self.learningResourceType {
-            dictionary[Keys.learningResourceType] = value as AnyObject
+            try container.encode(value, forKey: .learningResourceType)
         }
-        if let value = self.license?.dictionaryValue {
-            dictionary[Keys.license] = value
+        if let value = self.license {
+            try container.encodeCreativeWorkOrURL(value, forKey: .license)
         }
         if let value = self.locationCreated as? SOPlace {
-            dictionary[Keys.locationCreated] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .locationCreated)
         }
         if let value = self.mainEntity as? SOThing {
-            dictionary[Keys.mainEntity] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .mainEntity)
         }
-        if let value = self.material?.dictionaryValue {
-            dictionary[Keys.material] = value
+        if let value = self.material {
+            try container.encodeProductOrTextOrURL(value, forKey: .material)
         }
         if let value = self.mentions as? SOThing {
-            dictionary[Keys.mentions] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .mentions)
         }
         if let value = self.offers as? [SOOffer] {
-            var values = [[String : AnyObject]]()
-            for element in value {
-                values.append(element.dictionary)
-            }
-            dictionary[Keys.offers] = values as AnyObject
+            try container.encode(value, forKey: .offers)
         }
-        if let value = self.position?.dictionaryValue {
-            dictionary[Keys.position] = value
+        if let value = self.position {
+            try container.encodeIntegerOrText(value, forKey: .position)
         }
-        if let value = self.producer?.dictionaryValue {
-            dictionary[Keys.producer] = value
+        if let value = self.producer {
+            try container.encodeOrganizationOrPerson(value, forKey: .producer)
         }
-        if let value = self.provider?.dictionaryValue {
-            dictionary[Keys.provider] = value
+        if let value = self.provider {
+            try container.encodeOrganizationOrPerson(value, forKey: .provider)
         }
         if let value = self.releasedEvent as? SOPublicationEvent {
-            dictionary[Keys.releasedEvent] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .releasedEvent)
         }
         if let value = self.review as? SOReview {
-            dictionary[Keys.review] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .review)
         }
-        if let value = self.schemaVersion?.dictionaryValue {
-            dictionary[Keys.schemaVersion] = value
+        if let value = self.schemaVersion {
+            try container.encodeTextOrURL(value, forKey: .schemaVersion)
         }
-        if let value = self.temporalCoverage as? String {
-            dictionary[Keys.temporalCoverage] = value as AnyObject
+        if let value = self.sourceOrganization as? SOOrganization {
+            try container.encode(value, forKey: .sourceOrganization)
+        }
+        if let value = self.spatialCoverage as? SOPlace {
+            try container.encode(value, forKey: .spatialCoverage)
+        }
+        if let value = self.sponsor {
+            try container.encodeOrganizationOrPerson(value, forKey: .sponsor)
+        }
+        if let value = self.temporalCoverage {
+            try container.encodeDateTimeOrTextOrURL(value, forKey: .temporalCoverage)
         }
         if let value = self.text {
-            dictionary[Keys.text] = value as AnyObject
+            try container.encode(value, forKey: .text)
         }
         if let value = self.thumbnailUrl {
-            dictionary[Keys.thumbnailUrl] = value.absoluteString as AnyObject
+            try container.encode(value, forKey: .thumbnailUrl)
         }
         if let value = self.timeRequired as? String {
-            dictionary[Keys.timeRequired] = value as AnyObject
+            try container.encode(value, forKey: .timeRequired)
         }
-        if let value = self.translator?.dictionaryValue {
-            dictionary[Keys.translator] = value
+        if let value = self.translator {
+            try container.encodeOrganizationOrPerson(value, forKey: .translator)
         }
         if let value = self.typicalAgeRange {
-            dictionary[Keys.typicalAgeRange] = value as AnyObject
+            try container.encode(value, forKey: .typicalAgeRange)
         }
-        if let value = self.version?.dictionaryValue {
-            dictionary[Keys.version] = value
+        if let value = self.version {
+            try container.encodeIntegerOrText(value, forKey: .version)
         }
         if let value = self.video as? SOVideoObject {
-            dictionary[Keys.video] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .video)
         }
         if let value = self.workExample as? SOCreativeWork {
-            dictionary[Keys.workExample] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .workExample)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

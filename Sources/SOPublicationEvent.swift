@@ -2,9 +2,6 @@ import Foundation
 import SOSwiftVocabulary
 
 public class SOPublicationEvent: SOEvent, PublicationEvent {
-    public struct Keys {
-        public static let publishedOn = "publishedOn"
-    }
     
     override public class var type: String {
         return "PublicationEvent"
@@ -13,18 +10,29 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
     /// A broadcast service associated with the publication event.
     public var publishedOn: BroadcastService?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.publishedOn] as? [String : AnyObject] {
-            self.publishedOn = SOBroadcastService(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case publishedOn
     }
     
-    override public var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.publishedOn as? SOBroadcastService {
-            dictionary[Keys.publishedOn] = value.dictionary as AnyObject
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(SOBroadcastService.self, forKey: .publishedOn) {
+            self.publishedOn = value
         }
-        return dictionary
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.publishedOn as? SOBroadcastService {
+            try container.encode(value, forKey: .publishedOn)
+        }
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

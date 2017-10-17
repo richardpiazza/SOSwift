@@ -3,11 +3,7 @@ import SOSwiftVocabulary
 
 /// An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.
 public class SOCourseInstance: SOEvent, CourseInstance {
-    public struct Keys {
-        public static let courseMode = "courseMode"
-        public static let instructor = "instructor"
-    }
-    
+
     override public class var type: String {
         return "CourseInstance"
     }
@@ -17,25 +13,37 @@ public class SOCourseInstance: SOEvent, CourseInstance {
     /// A person assigned to instruct or provide instructional assistance for the CourseInstance.
     public var instructor: Person?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.courseMode] {
-            self.courseMode = makeTextOrURL(anyObject: value)
-        }
-        if let value = dictionary[Keys.instructor] as? [String : AnyObject] {
-            self.instructor = SOPerson(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case courseMode
+        case instructor
     }
     
-    override public var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.courseMode?.dictionaryValue {
-            dictionary[Keys.courseMode] = value
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeTextOrURLIfPresent(forKey: .courseMode) {
+            self.courseMode = value
+        }
+        if let value = try container.decodeIfPresent(SOPerson.self, forKey: .instructor) {
+            self.instructor = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.courseMode {
+            try container.encodeTextOrURL(value, forKey: .courseMode)
         }
         if let value = self.instructor as? SOPerson {
-            dictionary[Keys.instructor] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .instructor)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }
 

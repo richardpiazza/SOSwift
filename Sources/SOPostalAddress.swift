@@ -2,15 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 public class SOPostalAddress: SOContactPoint, PostalAddress {
-    public struct Keys {
-        public static let addressCountry = "addressCountry"
-        public static let addressLocality = "addressLocality"
-        public static let addressRegion = "addressRegion"
-        public static let postOfficeBoxNumber = "postOfficeBoxNumber"
-        public static let postalCode = "postalCode"
-        public static let streetAddress = "streetAddress"
-    }
-    
+
     override public class var type: String {
         return "PostalAddress"
     }
@@ -28,49 +20,65 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
     /// The street address. For example, 1600 Amphitheatre Pkwy.
     public var streetAddress: String?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.addressCountry] as? String {
-            self.addressCountry = value
-        }
-        if let value = dictionary[Keys.addressLocality] as? String {
-            self.addressLocality = value
-        }
-        if let value = dictionary[Keys.addressRegion] as? String {
-            self.addressRegion = value
-        }
-        if let value = dictionary[Keys.postOfficeBoxNumber] as? String {
-            self.postOfficeBoxNumber = value
-        }
-        if let value = dictionary[Keys.postalCode] as? String {
-            self.postalCode = value
-        }
-        if let value = dictionary[Keys.streetAddress] as? String {
-            self.streetAddress = value
-        }
+    private enum CodingKeys: String, CodingKey {
+        case addressCountry
+        case addressLocality
+        case addressRegion
+        case postOfficeBoxNumber
+        case postalCode
+        case streetAddress
     }
     
-    override public var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.addressCountry as? String {
-            dictionary[Keys.addressCountry] = value as AnyObject
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeCountryOrTextIfPresent(forKey: .addressCountry) {
+            self.addressCountry = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .addressLocality) {
+            self.addressLocality = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .addressRegion) {
+            self.addressRegion = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .postOfficeBoxNumber) {
+            self.postOfficeBoxNumber = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .postalCode) {
+            self.postalCode = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .streetAddress) {
+            self.streetAddress = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.addressCountry {
+            try container.encodeCountryOrText(value, forKey: .addressCountry)
         }
         if let value = self.addressLocality {
-            dictionary[Keys.addressLocality] = value as AnyObject
+            try container.encode(value, forKey: .addressLocality)
         }
         if let value = self.addressRegion {
-            dictionary[Keys.addressRegion] = value as AnyObject
+            try container.encode(value, forKey: .addressRegion)
         }
         if let value = self.postOfficeBoxNumber {
-            dictionary[Keys.postOfficeBoxNumber] = value as AnyObject
+            try container.encode(value, forKey: .postOfficeBoxNumber)
         }
         if let value = self.postalCode {
-            dictionary[Keys.postalCode] = value as AnyObject
+            try container.encode(value, forKey: .postalCode)
         }
         if let value = self.streetAddress {
-            dictionary[Keys.streetAddress] = value as AnyObject
+            try container.encode(value, forKey: .streetAddress)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
     
     public var street: String? {

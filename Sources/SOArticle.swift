@@ -4,15 +4,7 @@ import SOSwiftVocabulary
 /// An article, such as a news article or piece of investigative report.
 /// Newspapers and magazines have articles of many different types and this is intended to cover them all.
 public class SOArticle: SOCreativeWork, Article {
-    public struct Keys {
-        public static let articleBody = "articleBody"
-        public static let articleSection = "articleSection"
-        public static let pageEnd = "pageEnd"
-        public static let pageStart = "pageStart"
-        public static let pagination = "pagination"
-        public static let wordCount = "wordCount"
-    }
-    
+
     override public class var type: String {
         return "Article"
     }
@@ -30,48 +22,64 @@ public class SOArticle: SOCreativeWork, Article {
     /// The number of words in the text of the Article.
     public var wordCount: Int?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.articleBody] as? String {
-            self.articleBody = value
-        }
-        if let value = dictionary[Keys.articleSection] as? String {
-            self.articleSection = value
-        }
-        if let value = dictionary[Keys.pageEnd] {
-            self.pageEnd = makeIntegerOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.pageStart] {
-            self.pageStart = makeIntegerOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.pagination] as? String {
-            self.pagination = value
-        }
-        if let value = dictionary[Keys.wordCount] as? Int {
-            self.wordCount = value
-        }
+    private enum CodingKeys: String, CodingKey {
+        case articleBody
+        case articleSection
+        case pageEnd
+        case pageStart
+        case pagination
+        case wordCount
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(String.self, forKey: .articleBody) {
+            self.articleBody = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .articleSection) {
+            self.articleSection = value
+        }
+        if let value = try container.decodeIntegerOrTextIfPresent(forKey: .pageEnd) {
+            self.pageEnd = value
+        }
+        if let value = try container.decodeIntegerOrTextIfPresent(forKey: .pageStart) {
+            self.pageStart = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .pagination) {
+            self.pagination = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .wordCount) {
+            self.wordCount = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.articleBody {
-            dictionary[Keys.articleBody] = value as AnyObject
+            try container.encode(value, forKey: .articleBody)
         }
         if let value = self.articleSection {
-            dictionary[Keys.articleSection] = value as AnyObject
+            try container.encode(value, forKey: .articleSection)
         }
-        if let value = self.pageEnd?.dictionaryValue {
-            dictionary[Keys.pageEnd] = value
+        if let value = self.pageEnd {
+            try container.encodeIntegerOrText(value, forKey: .pageEnd)
         }
-        if let value = self.pageStart?.dictionaryValue {
-            dictionary[Keys.pageStart] = value
+        if let value = self.pageStart {
+            try container.encodeIntegerOrText(value, forKey: .pageStart)
         }
         if let value = self.pagination {
-            dictionary[Keys.pagination] = value as AnyObject
+            try container.encode(value, forKey: .pagination)
         }
         if let value = self.wordCount {
-            dictionary[Keys.wordCount] = value as AnyObject
+            try container.encode(value, forKey: .wordCount)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

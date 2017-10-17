@@ -3,11 +3,6 @@ import SOSwiftVocabulary
 
 /// A review of an item - for example, of a restaurant, movie, or store.
 public class SOReview: SOCreativeWork, Review {
-    public struct Keys {
-        public static let itemReviewed = "itemReviewed"
-        public static let reviewBody = "reviewBody"
-        public static let reviewRating = "reviewRating"
-    }
     
     override public class var type: String {
         return "Review"
@@ -21,30 +16,43 @@ public class SOReview: SOCreativeWork, Review {
     /// - note: Reviews can themselves be rated. The reviewRating applies to rating given by the review. The aggregateRating property applies to the review itself, as a creative work.
     public var reviewRating: Rating?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.itemReviewed] as? [String : AnyObject] {
-            self.itemReviewed = SOThing(dictionary: value)
-        }
-        if let value = dictionary[Keys.reviewBody] as? String {
-            self.reviewBody = value
-        }
-        if let value = dictionary[Keys.reviewRating] as? [String : AnyObject] {
-            self.reviewRating = SORating(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case itemReviewed
+        case reviewBody
+        case reviewRating
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(SOThing.self, forKey: .itemReviewed) {
+            self.itemReviewed = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .reviewBody) {
+            self.reviewBody = value
+        }
+        if let value = try container.decodeIfPresent(SORating.self, forKey: .reviewRating) {
+            self.reviewRating = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.itemReviewed as? SOThing {
-            dictionary[Keys.itemReviewed] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .itemReviewed)
         }
         if let value = self.reviewBody {
-            dictionary[Keys.reviewBody] = value as AnyObject
+            try container.encode(value, forKey: .reviewBody)
         }
         if let value = self.reviewRating as? SORating {
-            dictionary[Keys.reviewRating] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .reviewRating)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

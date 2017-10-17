@@ -3,13 +3,7 @@ import SOSwiftVocabulary
 
 /// An image file.
 public class SOImageObject: SOMediaObject, ImageObject {
-    public struct Keys {
-        public static let caption = "caption"
-        public static let exifData = "exifData"
-        public static let representativeOfPage = "representativeOfPage"
-        public static let thumbnail = "thumbnail"
-    }
-    
+
     override public class var type: String {
         return "ImageObject"
     }
@@ -23,36 +17,50 @@ public class SOImageObject: SOMediaObject, ImageObject {
     /// Thumbnail image for an image or video.
     public var thumbnail: ImageObject?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.caption] as? String {
-            self.caption = value
-        }
-        if let value = dictionary[Keys.exifData] {
-            self.exifData = makePropertyValueOrText(anyObject: value)
-        }
-        if let value = dictionary[Keys.representativeOfPage] as? Bool {
-            self.representativeOfPage = value
-        }
-        if let value = dictionary[Keys.thumbnail] as? [String : AnyObject] {
-            self.thumbnail = SOImageObject(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case caption
+        case exifData
+        case representativeOfPage
+        case thumbnail
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
-        if let value = self.caption {
-            dictionary[Keys.caption] = value as AnyObject
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(String.self, forKey: .caption) {
+            self.caption = value
         }
-        if let value = self.exifData?.dictionaryValue {
-            dictionary[Keys.exifData] = value
+        if let value = try container.decodePropertyValueOrTextIfPresent(forKey: .exifData) {
+            self.exifData = value
+        }
+        if let value = try container.decodeIfPresent(Bool.self, forKey: .representativeOfPage) {
+            self.representativeOfPage = value
+        }
+        if let value = try container.decodeIfPresent(SOImageObject.self, forKey: .thumbnail) {
+            self.thumbnail = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.caption {
+            try container.encode(value, forKey: .caption)
+        }
+        if let value = self.exifData {
+            try container.encodePropertyValueOrText(value, forKey: .exifData)
         }
         if let value = self.representativeOfPage {
-            dictionary[Keys.representativeOfPage] = value as AnyObject
+            try container.encode(value, forKey: .representativeOfPage)
         }
         if let value = self.thumbnail as? SOImageObject {
-            dictionary[Keys.thumbnail] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .thumbnail)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }

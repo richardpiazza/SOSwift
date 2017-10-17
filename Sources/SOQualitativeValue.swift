@@ -3,6 +3,7 @@ import SOSwiftVocabulary
 
 /// A predefined value for a product characteristic, e.g. the power cord plug type 'US' or the garment sizes 'S', 'M', 'L', and 'XL'.
 public class SOQualitativeValue: SOEnumeration, QualitativeValue {
+    
     override public class var type: String {
         return "QualitativeValue"
     }
@@ -24,4 +25,79 @@ public class SOQualitativeValue: SOEnumeration, QualitativeValue {
     public var nonEqual: QualitativeValue?
     /// A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
     public var valueReference: ValueReference?
+    
+    private enum CodingKeys: String, CodingKey {
+        case additionalProperty
+        case equal
+        case greater
+        case greaterOrEqual
+        case lesser
+        case lesserOrEqual
+        case nonEqual
+        case valueReference
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty) {
+            self.additionalProperty = value
+        }
+        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .equal) {
+            self.equal = value
+        }
+        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .greater) {
+            self.greater = value
+        }
+        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .greaterOrEqual) {
+            self.greaterOrEqual = value
+        }
+        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .lesser) {
+            self.lesser = value
+        }
+        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .lesserOrEqual) {
+            self.lesserOrEqual = value
+        }
+        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .nonEqual) {
+            self.nonEqual = value
+        }
+        if let value = try container.decodeValueReferenceIfPresent(forKey: .valueReference) {
+            self.valueReference = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = self.additionalProperty as? SOPropertyValue {
+            try container.encode(value, forKey: .additionalProperty)
+        }
+        if let value = self.equal as? SOQualitativeValue {
+            try container.encode(value, forKey: .equal)
+        }
+        if let value = self.greater as? SOQualitativeValue {
+            try container.encode(value, forKey: .greater)
+        }
+        if let value = self.greaterOrEqual as? SOQualitativeValue {
+            try container.encode(value, forKey: .greaterOrEqual)
+        }
+        if let value = self.lesser as? SOQualitativeValue {
+            try container.encode(value, forKey: .lesser)
+        }
+        if let value = self.lesserOrEqual as? SOQualitativeValue {
+            try container.encode(value, forKey: .lesserOrEqual)
+        }
+        if let value = self.nonEqual as? SOQualitativeValue {
+            try container.encode(value, forKey: .nonEqual)
+        }
+        if let value = self.valueReference {
+            try container.encodeValueReference(value, forKey: .valueReference)
+        }
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
+    }
 }

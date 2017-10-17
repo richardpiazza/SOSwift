@@ -4,12 +4,7 @@ import SOSwiftVocabulary
 /// A description of an educational course which may be offered as distinct instances at which take place at different times or take place at different locations, or be offered through different media or modes of study.
 /// An educational course is a sequence of one or more educational events and/or creative works which aims to build knowledge, competence or ability of learners.
 public class SOCourse: SOCreativeWork, Course {
-    public struct Keys {
-        public static let courseCode = "courseCode"
-        public static let coursePrerequisites = "coursePrerequisites"
-        public static let hasCourseInstance = "hasCourseInstance"
-    }
-    
+
     override public class var type: String {
         return "Course"
     }
@@ -21,47 +16,43 @@ public class SOCourse: SOCreativeWork, Course {
     /// An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.
     public var hasCourseInstance: CourseInstance?
     
-    public required init(dictionary: [String : AnyObject]) {
-        super.init(dictionary: dictionary)
-        if let value = dictionary[Keys.courseCode] as? String {
-            self.courseCode = value
-        }
-        if let value = dictionary[Keys.coursePrerequisites] {
-            self.coursePrerequisites = []
-            if let typedValue = value as? [[String : AnyObject]] {
-                for element in typedValue {
-                    if let item = makeAlignmentObjectOrCourseOrText(anyObject: element as AnyObject) {
-                        self.coursePrerequisites?.append(item)
-                    }
-                }
-            } else {
-                if let item = makeAlignmentObjectOrCourseOrText(anyObject: value) {
-                    self.coursePrerequisites?.append(item)
-                }
-            }
-        }
-        if let value = dictionary[Keys.hasCourseInstance] as? [String : AnyObject] {
-            self.hasCourseInstance = SOCourseInstance(dictionary: value)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case courseCode
+        case coursePrerequisites
+        case hasCourseInstance
     }
     
-    public override var dictionary: [String : AnyObject] {
-        var dictionary = super.dictionary
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let value = try container.decodeIfPresent(String.self, forKey: .courseCode) {
+            self.courseCode = value
+        }
+        if let value = try container.decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey: .coursePrerequisites) {
+            self.coursePrerequisites = value
+        }
+        if let value = try container.decodeIfPresent(SOCourseInstance.self, forKey: .hasCourseInstance) {
+            self.hasCourseInstance = value
+        }
+        
+        let superDecoder = try container.superDecoder()
+        try super.init(from: superDecoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
         if let value = self.courseCode {
-            dictionary[Keys.courseCode] = value as AnyObject
+            try container.encode(value, forKey: .courseCode)
         }
         if let value = self.coursePrerequisites {
-            var values = [AnyObject]()
-            for element in value {
-                if let item = element.dictionaryValue {
-                    values.append(item)
-                }
-            }
-            dictionary[Keys.coursePrerequisites] = values as AnyObject
+            try container.encodeAlignmentObjectsOrCoursesOrTexts(value, forKey: .coursePrerequisites)
         }
         if let value = self.hasCourseInstance as? SOCourseInstance {
-            dictionary[Keys.hasCourseInstance] = value.dictionary as AnyObject
+            try container.encode(value, forKey: .hasCourseInstance)
         }
-        return dictionary
+        
+        let superEncoder = container.superEncoder()
+        try super.encode(to: superEncoder)
     }
 }
