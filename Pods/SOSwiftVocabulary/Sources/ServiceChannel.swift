@@ -15,7 +15,7 @@ public protocol ServiceChannel: Intangible {
     /// The address for accessing the service by mail.
     var servicePostalAddress: PostalAddress? { get set }
     /// The number to access the service by text message.
-    var serviceSmsNunmber: ContactPoint? { get set }
+    var serviceSmsNumber: ContactPoint? { get set }
     /// The website to access the service.
     var serviceUrl: URL? { get set }
 }

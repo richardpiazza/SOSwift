@@ -130,6 +130,7 @@
 		E1F1F04B1F954E03001B5CEC /* SOWebsite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1F04A1F954E03001B5CEC /* SOWebsite.swift */; };
 		E1F1F04D1F959597001B5CEC /* SODataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1F04C1F959597001B5CEC /* SODataset.swift */; };
 		E1F1F04F1F9595D3001B5CEC /* SODataFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1F04E1F9595D3001B5CEC /* SODataFeed.swift */; };
+		E1F1F0511F959BEE001B5CEC /* SOServiceChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1F0501F959BEE001B5CEC /* SOServiceChannel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +273,7 @@
 		E1F1F04A1F954E03001B5CEC /* SOWebsite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOWebsite.swift; sourceTree = "<group>"; };
 		E1F1F04C1F959597001B5CEC /* SODataset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SODataset.swift; sourceTree = "<group>"; };
 		E1F1F04E1F9595D3001B5CEC /* SODataFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SODataFeed.swift; sourceTree = "<group>"; };
+		E1F1F0501F959BEE001B5CEC /* SOServiceChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOServiceChannel.swift; sourceTree = "<group>"; };
 		F5B9BB4021633CF679139C90 /* Pods-SOSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SOSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SOSwiftTests/Pods-SOSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -487,6 +489,7 @@
 				E1E4532A1F70412900236249 /* SORating.swift */,
 				E1E453091F70412300236249 /* SOReview.swift */,
 				E1E452F61F70412000236249 /* SOService.swift */,
+				E1F1F0501F959BEE001B5CEC /* SOServiceChannel.swift */,
 				E13DFC921F9514FC00CAF2B2 /* SOSoftwareApplication.swift */,
 				E1E453111F70412400236249 /* SOStructuredValue.swift */,
 				E1E452FC1F70412000236249 /* SOThing.swift */,
@@ -756,6 +759,7 @@
 				E1E453711F70412E00236249 /* SOQuantitativeValue.swift in Sources */,
 				E1E453651F70412E00236249 /* SOThing.swift in Sources */,
 				E1E453731F70412E00236249 /* SONewsArticle.swift in Sources */,
+				E1F1F0511F959BEE001B5CEC /* SOServiceChannel.swift in Sources */,
 				E1E453A41F70412E00236249 /* Identifier+Extension.swift in Sources */,
 				E1E4534E1F70412E00236249 /* ContactPointOrPlace+Extension.swift in Sources */,
 				E1E453811F70412E00236249 /* ProductModelOrText+Extension.swift in Sources */,
