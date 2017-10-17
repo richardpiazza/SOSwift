@@ -20,11 +20,13 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOImageObject.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOImageObject.self, from: data)
-            }
+            let value = try self.decode(SOImageObject.self, forKey: key)
+            return value
+//            let value = try self.decode([String : AnyObject].self, forKey: key)
+//            if value["@type"] as? String == SOImageObject.type {
+//                let data = try JSONEncoder().encode(value)
+//                return try JSONDecoder().decode(SOImageObject.self, from: data)
+//            }
         } catch {
             print(error)
         }

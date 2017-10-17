@@ -34,7 +34,21 @@ class SOThingTests: XCTestCase {
         json.append("]")
         json.append(",\"url\":\"http://www.bobshospital.com\"")
         json.append("}")
-        let thing = SOThing(json: json)
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        var thing: SOThing
+        
+        do {
+            thing = try JSONDecoder().decode(SOThing.self, from: data)
+        } catch {
+            print(error)
+            XCTFail()
+            return
+        }
         
         XCTAssertNotNil(thing.additionalType)
         XCTAssertTrue(thing.additionalType == URL(string: "http://schema.org/MedicalEntity"))

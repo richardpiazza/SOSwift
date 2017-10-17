@@ -20,10 +20,12 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOCreativeWork.type {
-                
-            }
+            let value = try self.decode(SOCreativeWork.self, forKey: key)
+            return value
+//            let value = try self.decode([String : AnyObject].self, forKey: key)
+//            if value["@type"] as? String == SOCreativeWork.type {
+//
+//            }
         } catch {
             print(error)
         }
