@@ -5,7 +5,7 @@ import SOSwiftVocabulary
 /// An educational course is a sequence of one or more educational events and/or creative works which aims to build knowledge, competence or ability of learners.
 public class SOCourse: SOCreativeWork, Course {
 
-    override public class var type: String {
+    public override class var type: String {
         return "Course"
     }
     

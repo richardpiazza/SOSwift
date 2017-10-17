@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// An audio file.
 public class SOAudioObject: SOMediaObject, AudioObject {
 
-    override public class var type: String {
+    public override class var type: String {
         return "AudioObject"
     }
     

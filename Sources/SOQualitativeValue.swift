@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// A predefined value for a product characteristic, e.g. the power cord plug type 'US' or the garment sizes 'S', 'M', 'L', and 'XL'.
 public class SOQualitativeValue: SOEnumeration, QualitativeValue {
     
-    override public class var type: String {
+    public override class var type: String {
         return "QualitativeValue"
     }
     

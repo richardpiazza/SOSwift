@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// An image file.
 public class SOImageObject: SOMediaObject, ImageObject {
 
-    override public class var type: String {
+    public override class var type: String {
         return "ImageObject"
     }
     

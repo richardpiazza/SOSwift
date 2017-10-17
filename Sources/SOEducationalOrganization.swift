@@ -3,7 +3,9 @@ import SOSwiftVocabulary
 
 /// An educational organization.
 public class SOEducationalOrganization: SOOrganization, EducationalOrganization {
-    override public class var type: String {
+    
+    public override class var type: String {
         return "EducationalOrganization"
     }
+    
 }

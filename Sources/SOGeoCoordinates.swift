@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// The geographic coordinates of a place or event.
 public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
     
-    override public class var type: String {
+    public override class var type: String {
         return "GeoCoordinates"
     }
     

@@ -5,7 +5,7 @@ import SOSwiftVocabulary
 /// - note: that a creative work may have many media objects associated with it on the same web page. For example, a page about a single song (MusicRecording) may have a music video (VideoObject), and a high and low bandwidth audio stream (2 AudioObject's).
 public class SOMediaObject: SOCreativeWork, MediaObject {
 
-    override public class var type: String {
+    public override class var type: String {
         return "MediaObject"
     }
     

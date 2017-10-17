@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// A person (alive, dead, undead, or fictional).
 public class SOPerson: SOThing, Person {
 
-    override public class var type: String {
+    public override class var type: String {
         return "Person"
     }
     

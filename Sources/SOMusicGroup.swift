@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// A musical group, such as a band, an orchestra, or a choir. Can also be a solo musician.
 public class SOMusicGroup: SOPerformingGroup, MusicGroup {
 
-    override public class var type: String {
+    public override class var type: String {
         return "MusicGroup"
     }
     

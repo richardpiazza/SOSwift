@@ -6,7 +6,7 @@ import SOSwiftVocabulary
 /// Always use specific schema.org properties when a) they exist and b) you can populate them. Using PropertyValue as a substitute will typically not trigger the same effect as using the original, specific property.
 public class SOPropertyValue: SOStructuredValue, PropertyValue {
     
-    override public class var type: String {
+    public override class var type: String {
         return "PropertyValue"
     }
     

@@ -5,7 +5,7 @@ import SOSwiftVocabulary
 /// Newspapers and magazines have articles of many different types and this is intended to cover them all.
 public class SOArticle: SOCreativeWork, Article {
 
-    override public class var type: String {
+    public override class var type: String {
         return "Article"
     }
     

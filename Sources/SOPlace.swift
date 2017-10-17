@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// Entities that have a somewhat fixed, physical extension.
 public class SOPlace: SOThing, Place {
 
-    override public class var type: String {
+    public override class var type: String {
         return "Place"
     }
     

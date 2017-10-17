@@ -7,4 +7,5 @@ public class SOQuantity: SOIntangible, Quantity {
     public override class var type: String {
         return "Quantity"
     }
+    
 }

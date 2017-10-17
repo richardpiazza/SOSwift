@@ -3,7 +3,7 @@ import SOSwiftVocabulary
 
 public class SOLanguage: SOIntangible, Language {
     
-    override public class var type: String {
+    public override class var type: String {
         return "Language"
     }
     

@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// Used to describe membership in a loyalty programs (e.g. "StarAliance"), traveler clubs (e.g. "AAA"), purchase clubs ("Safeway Club"), etc.
 public class SOProgramMembership: SOIntangible, ProgramMembership {
     
-    override public class var type: String {
+    public override class var type: String {
         return "ProgramMembership"
     }
     

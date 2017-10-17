@@ -6,7 +6,7 @@ import SOSwiftVocabulary
 /// Repeated events may be structured as separate Event objects.
 public class SOEvent: SOThing, Event {
 
-    override public class var type: String {
+    public override class var type: String {
         return "Event"
     }
     

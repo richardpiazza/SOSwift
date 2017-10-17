@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// A datasheet or vendor specification of a product (in the sense of a prototypical description).
 public class SOProductModel: SOProduct, ProductModel {
     
-    override public class var type: String {
+    public override class var type: String {
         return "ProductModel"
     }
     

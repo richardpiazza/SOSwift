@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.
 public class SOCourseInstance: SOEvent, CourseInstance {
 
-    override public class var type: String {
+    public override class var type: String {
         return "CourseInstance"
     }
     

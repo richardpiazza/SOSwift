@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// Specifies a location feature by providing a structured value representing a feature of an accommodation as a property-value pair of varying degrees of formality.
 public class SOLocationFeatureSpecification: SOPropertyValue, LocationFeatureSpecification {
     
-    override public class var type: String {
+    public override class var type: String {
         return "LocationFeatureSpecification"
     }
     

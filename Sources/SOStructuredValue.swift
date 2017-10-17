@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// Structured values are used when the value of a property has a more complex structure than simply being a textual value or a reference to another thing.
 public class SOStructuredValue: SOIntangible, StructuredValue {
     
-    override public class var type: String {
+    public override class var type: String {
         return "StructuredValue"
     }
     

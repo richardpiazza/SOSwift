@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// A specific question - e.g. from a user seeking answers online, or collected in a Frequently Asked Questions (FAQ) document.
 public class SOQuestion: SOCreativeWork, Question {
     
-    override public class var type: String {
+    public override class var type: String {
         return "Question"
     }
     

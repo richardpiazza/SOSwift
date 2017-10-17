@@ -3,7 +3,7 @@ import SOSwiftVocabulary
 
 public class SOPostalAddress: SOContactPoint, PostalAddress {
 
-    override public class var type: String {
+    public override class var type: String {
         return "PostalAddress"
     }
     

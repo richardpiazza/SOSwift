@@ -3,7 +3,7 @@ import SOSwiftVocabulary
 
 public class SOBroadcastService: SOService, BroadcastService {
     
-    override public class var type: String {
+    public override class var type: String {
         return "BroadcastService"
     }
     

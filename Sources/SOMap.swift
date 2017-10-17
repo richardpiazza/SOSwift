@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// A map.
 public class SOMap: SOCreativeWork, Map {
 
-    override public class var type: String {
+    public override class var type: String {
         return "Map"
     }
     

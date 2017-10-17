@@ -6,7 +6,7 @@ import SOSwiftVocabulary
 /// If the value for the closes property is less than the value for the opens property then the hour range is assumed to span over the next day.
 public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecification {
     
-    override public class var type: String {
+    public override class var type: String {
         return "OpeningHoursSpecification"
     }
     

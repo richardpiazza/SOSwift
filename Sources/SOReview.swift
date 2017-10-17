@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// A review of an item - for example, of a restaurant, movie, or store.
 public class SOReview: SOCreativeWork, Review {
     
-    override public class var type: String {
+    public override class var type: String {
         return "Review"
     }
     

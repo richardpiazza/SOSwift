@@ -5,7 +5,7 @@ import SOSwiftVocabulary
 /// The comment's content is expressed via the text property, and its topic via about, properties shared with all CreativeWorks.
 public class SOComment: SOCreativeWork, Comment {
 
-    override public class var type: String {
+    public override class var type: String {
         return "Comment"
     }
     

@@ -3,7 +3,8 @@ import SOSwiftVocabulary
 
 /// An entry point, within some Web-based protocol.
 public class SOEntryPoint: SOIntangible, EntryPoint {
-    override public class var type: String {
+    
+    public override class var type: String {
         return "EntryPoint"
     }
     

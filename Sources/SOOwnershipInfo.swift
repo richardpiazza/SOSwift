@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// A structured value providing information about when a certain organization or person owned a certain product.
 public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
     
-    override public class var type: String {
+    public override class var type: String {
         return "OwnershipInfo"
     }
     

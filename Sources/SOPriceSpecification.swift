@@ -5,7 +5,7 @@ import SOSwiftVocabulary
 /// It is recommended to use `MonetaryAmount` to describe independent amounts of money such as a salary, credit card limits, etc.
 public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
     
-    override public class var type: String {
+    public override class var type: String {
         return "PriceSpecification"
     }
     

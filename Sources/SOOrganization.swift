@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 /// An organization such as a school, NGO, corporation, club, etc.
 public class SOOrganization: SOThing, Organization {
 
-    override public class var type: String {
+    public override class var type: String {
         return "Organization"
     }
     
