@@ -47,12 +47,14 @@ public extension KeyedDecodingContainer {
                 return try JSONDecoder().decode(SOCourse.self, from: data)
             }
         } catch {
+            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
+            print(error)
         }
         
         return nil
@@ -79,6 +81,7 @@ public extension KeyedDecodingContainer {
                 }
             }
         } catch {
+            print(error)
         }
         
         do {
@@ -87,6 +90,7 @@ public extension KeyedDecodingContainer {
                 elements.append(element)
             }
         } catch {
+            print(error)
         }
         
         return elements

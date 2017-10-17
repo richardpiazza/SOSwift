@@ -26,6 +26,7 @@ public extension KeyedDecodingContainer {
             }
             return value
         } catch {
+            print(error)
         }
         
         return nil

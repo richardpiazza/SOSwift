@@ -29,6 +29,7 @@ public extension KeyedDecodingContainer {
                 return try JSONDecoder().decode(SOOrganization.self, from: data)
             }
         } catch {
+            print(error)
         }
         
         return nil

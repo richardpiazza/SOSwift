@@ -26,12 +26,14 @@ public extension KeyedDecodingContainer {
                 return try JSONDecoder().decode(SOMap.self, from: data)
             }
         } catch {
+            print(error)
         }
         
         do {
             let value = try self.decode(URL.self, forKey: key)
             return value
         } catch {
+            print(error)
         }
         
         return nil

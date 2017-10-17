@@ -26,12 +26,14 @@ public extension KeyedDecodingContainer {
                 return try JSONDecoder().decode(SOProductModel.self, from: data)
             }
         } catch {
+            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
+            print(error)
         }
         
         return nil

@@ -43,6 +43,7 @@ public extension KeyedDecodingContainer {
                 return try JSONDecoder().decode(SOMusicRecording.self, from: data)
             }
         } catch {
+            print(error)
         }
         
         return nil
@@ -71,6 +72,7 @@ public extension KeyedDecodingContainer {
             
             return decodables
         } catch {
+            print(error)
         }
         
         return nil

@@ -25,12 +25,14 @@ public extension KeyedDecodingContainer {
                 
             }
         } catch {
+            print(error)
         }
         
         do {
             let value = try self.decode(URL.self, forKey: key)
             return value
         } catch {
+            print(error)
         }
         
         return nil
