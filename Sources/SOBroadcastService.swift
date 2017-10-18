@@ -51,8 +51,7 @@ public class SOBroadcastService: SOService, BroadcastService {
             self.videoFormat = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -77,7 +76,6 @@ public class SOBroadcastService: SOService, BroadcastService {
             try container.encode(value, forKey: .videoFormat)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

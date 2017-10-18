@@ -33,8 +33,7 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
             self.userInteractionCount = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -50,7 +49,6 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
             try container.encode(value, forKey: .userInteractionCount)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

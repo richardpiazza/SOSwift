@@ -34,8 +34,7 @@ public class SOBrand: SOIntangible, Brand {
             self.review = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -51,7 +50,6 @@ public class SOBrand: SOIntangible, Brand {
             try container.encode(value, forKey: .review)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

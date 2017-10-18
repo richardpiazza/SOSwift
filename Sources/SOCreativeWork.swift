@@ -457,8 +457,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
             self.workExample = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -687,7 +686,6 @@ public class SOCreativeWork: SOThing, CreativeWork {
             try container.encode(value, forKey: .workExample)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

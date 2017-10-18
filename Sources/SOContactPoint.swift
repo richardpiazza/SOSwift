@@ -69,8 +69,7 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
             self.telephone = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -104,7 +103,6 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
             try container.encode(value, forKey: .telephone)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

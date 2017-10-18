@@ -64,8 +64,7 @@ public class SOGeoShape: SOThing, GeoShape {
             self.postalCode = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -96,7 +95,6 @@ public class SOGeoShape: SOThing, GeoShape {
             try container.encode(value, forKey: .postalCode)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

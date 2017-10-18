@@ -210,8 +210,7 @@ public class SOEvent: SOThing, Event {
             self.workPerformed = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -314,7 +313,6 @@ public class SOEvent: SOThing, Event {
             try container.encode(value, forKey: .workPerformed)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

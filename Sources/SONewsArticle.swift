@@ -46,8 +46,7 @@ public class SONewsArticle: SOArticle, NewsArticle {
             self.printSection = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -69,7 +68,6 @@ public class SONewsArticle: SOArticle, NewsArticle {
             try container.encode(value, forKey: .printSection)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

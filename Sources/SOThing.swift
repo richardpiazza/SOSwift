@@ -43,7 +43,7 @@ public class SOThing: Thing, Codable {
         case additionalType
         case alternativeName
         case description
-        case disabiguatingDescription
+        case disambiguatingDescription
         case identifier
         case image
         case mainEntityOfPage
@@ -60,12 +60,12 @@ public class SOThing: Thing, Codable {
             self.additionalType = value
         }
         if let value = try container.decodeIfPresent(String.self, forKey: .alternativeName) {
-            self.name = value
+            self.alternativeName = value
         }
         if let value = try container.decodeIfPresent(String.self, forKey: .description) {
             self.description = value
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .disabiguatingDescription) {
+        if let value = try container.decodeIfPresent(String.self, forKey: .disambiguatingDescription) {
             self.disambiguatingDescription = value
         }
         if let value = try container.decodeIdentifierIfPresent(forKey: .id) {
@@ -110,7 +110,7 @@ public class SOThing: Thing, Codable {
             try container.encode(value, forKey: .description)
         }
         if let value = self.disambiguatingDescription {
-            try container.encode(value, forKey: .disabiguatingDescription)
+            try container.encode(value, forKey: .disambiguatingDescription)
         }
         if let value = self.identifier {
             try container.encodeIdentifier(value, forKey: .id)

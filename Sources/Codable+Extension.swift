@@ -69,32 +69,6 @@ extension KeyedDecodingContainer {
     }
 }
 
-extension KeyedEncodingContainer {
-    mutating func encode(_ value: Dictionary<String, Any>, forKey key: K) throws {
-        let container = self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
-        
-//        for codingKey in container.codingPath {
-//            guard value.keys.contains(codingKey.stringValue) else {
-//                continue
-//            }
-//
-//            guard let dictionaryValue = value[codingKey.stringValue] else {
-//                continue
-//            }
-//
-//            if let intValue = dictionaryValue as? Int {
-//                self.encode(intValue, forKey: codingKey)
-//            } else if let stringValue = dictionaryValue as? String {
-//                try self.encode(stringValue, forKey: codingKey)
-//            } else if let boolValue = dictionaryValue as? Bool {
-//                try self.encode(boolValue, forKey: codingKey)
-//            } else if let doubleValue = dictionaryValue as? Double {
-//                try self.encode(doubleValue, forKey: codingKey)
-//            }
-//        }
-    }
-}
-
 extension UnkeyedDecodingContainer {
     
     mutating func decode(_ type: Array<Any>.Type) throws -> Array<Any> {

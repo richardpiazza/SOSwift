@@ -130,8 +130,7 @@ public class SOService: SOIntangible, Service {
             self.serviceType = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -195,7 +194,6 @@ public class SOService: SOIntangible, Service {
             try container.encode(value, forKey: .serviceType)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

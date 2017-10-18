@@ -27,8 +27,7 @@ public class SOAudience: SOThing, Audience {
             self.geographicArea = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -41,7 +40,6 @@ public class SOAudience: SOThing, Audience {
             try container.encode(value, forKey: .geographicArea)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

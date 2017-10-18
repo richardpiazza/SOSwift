@@ -51,8 +51,7 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
             self.streetAddress = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -77,8 +76,7 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
             try container.encode(value, forKey: .streetAddress)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
     
     public var street: String? {

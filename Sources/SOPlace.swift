@@ -81,18 +81,140 @@ public class SOPlace: SOThing, Place {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        if let value = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty) {
+            self.additionalProperty = value
+        }
+        if let value = try container.decodePostalAddressOrTextIfPresent(forKey: .address) {
+            self.address = value
+        }
+        if let value = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating) {
+            self.aggregateRating = value
+        }
+        if let value = try container.decodeIfPresent(SOLocationFeatureSpecification.self, forKey: .amenityFeature) {
+            self.amenityFeature = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .branchCode) {
+            self.branchCode = value
+        }
+        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .containedInPlace) {
+            self.containedInPlace = value
+        }
+        if let value = try container.decodeIfPresent([SOPlace].self, forKey: .containsPlace) {
+            self.containsPlace = value
+        }
+        if let value = try container.decodeIfPresent([SOEvent].self, forKey: .event) {
+            self.event = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .faxNumber) {
+            self.faxNumber = value
+        }
+        if let value = try container.decodeGeoCoordinatesOrGeoShapeIfPresent(forKey: .geo) {
+            self.geo = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber) {
+            self.globalLocationNumber = value
+        }
+        if let value = try container.decodeMapOrURLIfPresent(forKey: .hasMap) {
+            self.hasMap = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .isicV4) {
+            self.isicV4 = value
+        }
+        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .logo) {
+            self.logo = value
+        }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .maximumAttendeeCapacity) {
+            self.maximumAttendeeCapacity = value
+        }
+        if let value = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .openingHoursSpecification) {
+            self.openingHoursSpecification = value
+        }
+        if let value = try container.decodeImageObjectsOrPhotographsIfPresent(forKey: .photo) {
+            self.photo = value
+        }
+        if let value = try container.decodeIfPresent([SOReview].self, forKey: .review) {
+            self.review = value
+        }
+        if let value = try container.decodeIfPresent(Bool.self, forKey: .smokingAllowed) {
+            self.smokingAllowed = value
+        }
+        if let value = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .specialOpeningHoursSpecification) {
+            self.specialOpeningHoursSpecification = value
+        }
+        if let value = try container.decodeIfPresent(String.self, forKey: .telephone) {
+            self.telephone = value
+        }
         
-        
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
+        if let value = self.additionalProperty as? SOPropertyValue {
+            try container.encode(value, forKey: .additionalProperty)
+        }
+        if let value = self.address {
+            try container.encodePostalAddressOrText(value, forKey: .address)
+        }
+        if let value = self.aggregateRating as? SOAggregateRating {
+            try container.encode(value, forKey: .aggregateRating)
+        }
+        if let value = self.amenityFeature as? SOLocationFeatureSpecification {
+            try container.encode(value, forKey: .amenityFeature)
+        }
+        if let value = self.branchCode {
+            try container.encode(value, forKey: .branchCode)
+        }
+        if let value = self.containedInPlace as? SOPlace {
+            try container.encode(value, forKey: .containedInPlace)
+        }
+        if let value = self.containsPlace as? [SOPlace] {
+            try container.encode(value, forKey: .containsPlace)
+        }
+        if let value = self.event as? [SOEvent] {
+            try container.encode(value, forKey: .event)
+        }
+        if let value = self.faxNumber {
+            try container.encode(value, forKey: .faxNumber)
+        }
+        if let value = self.geo {
+            try container.encodeGeoCoordinatesOrGeoShape(value, forKey: .geo)
+        }
+        if let value = self.globalLocationNumber {
+            try container.encode(value, forKey: .globalLocationNumber)
+        }
+        if let value = self.hasMap {
+            try container.encodeMapOrURL(value, forKey: .hasMap)
+        }
+        if let value = self.isicV4 {
+            try container.encode(value, forKey: .isicV4)
+        }
+        if let value = self.logo {
+            try container.encodeImageObjectOrURL(value, forKey: .logo)
+        }
+        if let value = self.maximumAttendeeCapacity {
+            try container.encode(value, forKey: .maximumAttendeeCapacity)
+        }
+        if let value = self.openingHoursSpecification as? [SOOpeningHoursSpecification] {
+            try container.encode(value, forKey: .openingHoursSpecification)
+        }
+        if let value = self.photo {
+            try container.encodeImageObjectsOrPhotographs(value, forKey: .photo)
+        }
+        if let value = self.review as? [SOReview] {
+            try container.encode(value, forKey: .review)
+        }
+        if let value = self.smokingAllowed {
+            try container.encode(value, forKey: .smokingAllowed)
+        }
+        if let value = self.specialOpeningHoursSpecification as? [SOOpeningHoursSpecification] {
+            try container.encode(value, forKey: .specialOpeningHoursSpecification)
+        }
+        if let value = self.telephone {
+            try container.encode(value, forKey: .telephone)
+        }
         
-        
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }

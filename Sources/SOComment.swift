@@ -35,8 +35,7 @@ public class SOComment: SOCreativeWork, Comment {
             self.upvoteCount = value
         }
         
-        let superDecoder = try container.superDecoder()
-        try super.init(from: superDecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -52,7 +51,6 @@ public class SOComment: SOCreativeWork, Comment {
             try container.encode(value, forKey: .upvoteCount)
         }
         
-        let superEncoder = container.superEncoder()
-        try super.encode(to: superEncoder)
+        try super.encode(to: encoder)
     }
 }
