@@ -94,4 +94,31 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
         let superEncoder = container.superEncoder()
         try super.encode(to: superEncoder)
     }
+    
+    public var hasData: Bool {
+        guard maxValue == nil else {
+            return true
+        }
+        guard minValue == nil else {
+            return true
+        }
+        guard propertyID == nil else {
+            return true
+        }
+        guard unitCode == nil else {
+            return true
+        }
+        guard unitText == nil else {
+            return true
+        }
+        guard value == nil else {
+            return true
+        }
+        guard valueReference == nil else {
+            return true
+        }
+        
+        return false
+    }
 }
+

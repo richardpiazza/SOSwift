@@ -22,34 +22,33 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : Any].self, forKey: key)
-            if value["@type"] as? String == SOPropertyValue.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOPropertyValue.self, from: data)
-            }
-//
-//            let value = try self.decode([String : AnyObject].self, forKey: key)
+//            let value = try self.decode([String : Any].self, forKey: key)
 //            if value["@type"] as? String == SOPropertyValue.type {
 //                let data = try JSONEncoder().encode(value)
 //                return try JSONDecoder().decode(SOPropertyValue.self, from: data)
 //            }
+            let value = try self.decode(SOPropertyValue.self, forKey: key)
+            if value.hasData {
+                return value
+            }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(URL.self, forKey: key)
-            return value
+            if value.isValid {
+                return value
+            }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `Identifier` for key: \(key.stringValue).")
         
         return nil
     }

@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - Value
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeValue(_ value: Value, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeValue(_ value: Value, forKey key: K) throws {
         if let typedValue = value as? SOStructuredValue {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? Bool {
@@ -26,42 +26,39 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
+            let value = try self.decode([String : Any].self, forKey: key)
             if value["@type"] as? String == SOStructuredValue.type {
                 let data = try JSONEncoder().encode(value)
                 return try JSONDecoder().decode(SOStructuredValue.self, from: data)
             }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(Bool.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(Float.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(Int.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `Value` for key: \(key.stringValue).")
         
         return nil
     }

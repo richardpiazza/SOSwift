@@ -1,0 +1,123 @@
+import Foundation
+
+// Inspired by https://gist.github.com/mbuchetics/c9bc6c22033014aa0c550d3b4324411a
+// From: https://gist.github.com/loudmouth/332e8d89d8de2c1eaf81875cfcd22e24
+
+struct JSONCodingKeys: CodingKey {
+    var stringValue: String
+    
+    init?(stringValue: String) {
+        self.stringValue = stringValue
+    }
+    
+    var intValue: Int?
+    
+    init?(intValue: Int) {
+        self.init(stringValue: "\(intValue)")
+        self.intValue = intValue
+    }
+}
+
+
+extension KeyedDecodingContainer {
+    
+    func decode(_ type: Dictionary<String, Any>.Type, forKey key: K) throws -> Dictionary<String, Any> {
+        let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
+        return try container.decode(type)
+    }
+    
+    func decodeIfPresent(_ type: Dictionary<String, Any>.Type, forKey key: K) throws -> Dictionary<String, Any>? {
+        guard contains(key) else {
+            return nil
+        }
+        return try decode(type, forKey: key)
+    }
+    
+    func decode(_ type: Array<Any>.Type, forKey key: K) throws -> Array<Any> {
+        var container = try self.nestedUnkeyedContainer(forKey: key)
+        return try container.decode(type)
+    }
+    
+    func decodeIfPresent(_ type: Array<Any>.Type, forKey key: K) throws -> Array<Any>? {
+        guard contains(key) else {
+            return nil
+        }
+        return try decode(type, forKey: key)
+    }
+    
+    func decode(_ type: Dictionary<String, Any>.Type) throws -> Dictionary<String, Any> {
+        var dictionary = Dictionary<String, Any>()
+        
+        for key in allKeys {
+            if let intValue = try? decode(Int.self, forKey: key) {
+                dictionary[key.stringValue] = intValue
+            } else if let stringValue = try? decode(String.self, forKey: key) {
+                dictionary[key.stringValue] = stringValue
+            } else if let boolValue = try? decode(Bool.self, forKey: key) {
+                dictionary[key.stringValue] = boolValue
+            } else if let doubleValue = try? decode(Double.self, forKey: key) {
+                dictionary[key.stringValue] = doubleValue
+            } else if let nestedDictionary = try? decode(Dictionary<String, Any>.self, forKey: key) {
+                dictionary[key.stringValue] = nestedDictionary
+            } else if let nestedArray = try? decode(Array<Any>.self, forKey: key) {
+                dictionary[key.stringValue] = nestedArray
+            } else if try decodeNil(forKey: key) {
+                dictionary[key.stringValue] = true
+            }
+        }
+        return dictionary
+    }
+}
+
+extension KeyedEncodingContainer {
+    mutating func encode(_ value: Dictionary<String, Any>, forKey key: K) throws {
+        let container = self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
+        
+//        for codingKey in container.codingPath {
+//            guard value.keys.contains(codingKey.stringValue) else {
+//                continue
+//            }
+//
+//            guard let dictionaryValue = value[codingKey.stringValue] else {
+//                continue
+//            }
+//
+//            if let intValue = dictionaryValue as? Int {
+//                self.encode(intValue, forKey: codingKey)
+//            } else if let stringValue = dictionaryValue as? String {
+//                try self.encode(stringValue, forKey: codingKey)
+//            } else if let boolValue = dictionaryValue as? Bool {
+//                try self.encode(boolValue, forKey: codingKey)
+//            } else if let doubleValue = dictionaryValue as? Double {
+//                try self.encode(doubleValue, forKey: codingKey)
+//            }
+//        }
+    }
+}
+
+extension UnkeyedDecodingContainer {
+    
+    mutating func decode(_ type: Array<Any>.Type) throws -> Array<Any> {
+        var array: [Any] = []
+        while isAtEnd == false {
+            if let value = try? decode(Bool.self) {
+                array.append(value)
+            } else if let value = try? decode(Double.self) {
+                array.append(value)
+            } else if let value = try? decode(String.self) {
+                array.append(value)
+            } else if let nestedDictionary = try? decode(Dictionary<String, Any>.self) {
+                array.append(nestedDictionary)
+            } else if let nestedArray = try? decode(Array<Any>.self) {
+                array.append(nestedArray)
+            }
+        }
+        return array
+    }
+    
+    mutating func decode(_ type: Dictionary<String, Any>.Type) throws -> Dictionary<String, Any> {
+        
+        let nestedContainer = try self.nestedContainer(keyedBy: JSONCodingKeys.self)
+        return try nestedContainer.decode(type)
+    }
+}
