@@ -7,8 +7,8 @@ public extension KeyedEncodingContainer {
     public mutating func encodeDateOnlyOrDateTime(_ value: DateOnlyOrDateTime, forKey key: KeyedEncodingContainer.Key) throws {
         if let typedValue = value as? DateTime {
             try self.encodeDateTime(typedValue, forKey: key)
-        } else if let typedValue = value as? String {
-            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? DateOnly {
+            try self.encodeDateOnly(typedValue, forKey: key)
         }
     }
 }
@@ -24,15 +24,16 @@ public extension KeyedDecodingContainer {
                 return value
             }
         } catch {
-            print(error)
         }
         
         do {
-            let value = try self.decode(String.self, forKey: key)
-            return value
+            if let value = try self.decodeDateOnlyIfPresent(forKey: key) {
+                return value
+            }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `DateOnlyOrDateTime` for key \(key.stringValue)")
         
         return nil
     }

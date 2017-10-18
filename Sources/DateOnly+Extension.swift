@@ -29,3 +29,31 @@ public extension DateOnly {
         }
     }
 }
+
+// MARK: - DateOnly
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeDateOnly(_ value: DateOnly, forKey key: K) throws {
+        if let typedValue = value as? String {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}
+
+public extension KeyedDecodingContainer {
+    public func decodeDateOnlyIfPresent(forKey key: K) throws -> DateOnly? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            let value = try self.decode(String.self, forKey: key)
+            return value
+        } catch {
+        }
+        
+        print("Failed to decode `DateOnly` for key: \(key.stringValue)")
+        
+        return nil
+    }
+}
