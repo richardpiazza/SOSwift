@@ -53,6 +53,9 @@ public class SOThing: Thing, Codable {
         case url
     }
     
+    public init() {
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

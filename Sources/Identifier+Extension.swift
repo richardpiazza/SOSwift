@@ -22,9 +22,9 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode(SOPropertyValue.self, forKey: key)
-            if value.hasData {
-                return value
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary["@type"] as? String == SOPropertyValue.type {
+                return try self.decode(SOPropertyValue.self, forKey: key)
             }
         } catch {
         }

@@ -18,6 +18,7 @@ class SOThingTests: XCTestCase {
                 "alternativeName" : "Pencil Pusher",
                 "description" : "A cog in the machine.",
                 "disambiguatingDescription" : "An administrative pencil pusher.",
+                "@id" : "0987654321",
                 "identifier" : "1234567890",
                 "image" : "https://www.google.com/images/errors/robot.png",
                 "mainEntityOfPage" : {
@@ -53,13 +54,10 @@ class SOThingTests: XCTestCase {
 
         XCTAssertNotNil(thing.additionalType)
         XCTAssertTrue(thing.additionalType == URL(string: "http://schema.org/MedicalEntity"))
-
         XCTAssertNotNil(thing.alternativeName)
         XCTAssertTrue(thing.alternativeName == "Pencil Pusher")
-
         XCTAssertNotNil(thing.description)
         XCTAssertTrue(thing.description == "A cog in the machine.")
-        
         XCTAssertNotNil(thing.disambiguatingDescription)
         XCTAssertNotNil(thing.identifier)
         XCTAssertNotNil(thing.image)
@@ -68,5 +66,37 @@ class SOThingTests: XCTestCase {
         XCTAssertNotNil(thing.potentialAction)
         XCTAssertNotNil(thing.sameAs)
         XCTAssertNotNil(thing.url)
+    }
+    
+    func testSOThingEncodeContextAndType() {
+        let thing = SOThing()
+        let data: Data
+        do {
+            data = try JSONEncoder().encode(thing)
+        } catch {
+            XCTFail()
+            return
+        }
+        
+        let dictionary: [String : Any]
+        do {
+            dictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String : Any]
+        } catch {
+            XCTFail()
+            return
+        }
+        
+        guard let type = dictionary["@type"] as? String else {
+            XCTFail()
+            return
+        }
+        
+        guard let context = dictionary["@context"] as? String else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(type, "Thing")
+        XCTAssertEqual(context, "http://www.schema.org")
     }
 }
