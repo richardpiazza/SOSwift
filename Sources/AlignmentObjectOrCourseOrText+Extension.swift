@@ -14,15 +14,15 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeAlignmentObjectsOrCoursesOrTexts(_ value: [AlignmentObjectOrCourseOrText], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeAlignmentObjectsOrCoursesOrTexts(_ values: [AlignmentObjectOrCourseOrText], forKey key: KeyedEncodingContainer.Key) throws {
         var encodables = [Encodable]()
         
-        for element in value {
-            if let typedValue = element as? SOAlignmentObject {
+        for value in values {
+            if let typedValue = value as? SOAlignmentObject {
                 encodables.append(typedValue)
-            } else if let typedValue = element as? SOCourse {
+            } else if let typedValue = value as? SOCourse {
                 encodables.append(typedValue)
-            } else if let typedValue = element as? String {
+            } else if let typedValue = value as? String {
                 encodables.append(typedValue)
             }
         }
@@ -38,24 +38,22 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOAlignmentObject.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOAlignmentObject.self, from: data)
-            } else if value["@type"] as? String == SOCourse.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOCourse.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOAlignmentObject.type {
+                return try self.decode(SOAlignmentObject.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOCourse.type {
+                return try self.decode(SOCourse.self, forKey: key)
             }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `AlignmentObjectOrCourseOrText` for key: \(key.stringValue).")
         
         return nil
     }
@@ -68,31 +66,29 @@ public extension KeyedDecodingContainer {
         var elements = [AlignmentObjectOrCourseOrText]()
         
         do {
-            let value = try self.decode([[String : AnyObject]].self, forKey: key)
-            for element in value {
-                if element["@type"] as? String == SOAlignmentObject.type {
-                    let data = try JSONEncoder().encode(element)
-                    let object = try JSONDecoder().decode(SOAlignmentObject.self, from: data)
-                    elements.append(object)
-                } else if element["@type"] as? String == SOCourse.type {
-                    let data = try JSONEncoder().encode(element)
-                    let object =  try JSONDecoder().decode(SOCourse.self, from: data)
-                    elements.append(object)
+            let array = try self.decode([Any].self, forKey: key)
+            for element in array {
+                if let dictionary = element as? [String : Any] {
+                    if dictionary[SOThing.Keywords.type] as? String == SOAlignmentObject.type {
+                        let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
+                        let object = try JSONDecoder().decode(SOAlignmentObject.self, from: data)
+                        elements.append(object)
+                    } else if dictionary[SOThing.Keywords.type] as? String == SOCourse.type {
+                        let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
+                        let object =  try JSONDecoder().decode(SOCourse.self, from: data)
+                        elements.append(object)
+                    }
+                } else if let value = element as? String {
+                    elements.append(value)
                 }
             }
+            
+            return elements
         } catch {
-            print(error)
         }
         
-        do {
-            let value = try self.decode([String].self, forKey: key)
-            for element in value {
-                elements.append(element)
-            }
-        } catch {
-            print(error)
-        }
+        print("Failed to decode `[AlignmentObjectOrCourseOrText]` for key: \(key.stringValue).")
         
-        return elements
+        return nil
     }
 }

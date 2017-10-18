@@ -20,22 +20,22 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode(SOCreativeWork.self, forKey: key)
-            return value
-//            let value = try self.decode([String : AnyObject].self, forKey: key)
-//            if value["@type"] as? String == SOCreativeWork.type {
-//
-//            }
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOCreativeWork.type {
+                return try self.decode(SOCreativeWork.self, forKey: key)
+            }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(URL.self, forKey: key)
-            return value
+            if value.isValid {
+                return value
+            }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `ImageObjectOrURL` for key: \(key.stringValue).")
         
         return nil
     }

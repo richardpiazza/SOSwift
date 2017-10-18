@@ -8,6 +8,12 @@ public class SOThing: Thing, Codable {
         return "Thing"
     }
     
+    public struct Keywords {
+        public static let id = "@id"
+        public static let context = "@context"
+        public static let type = "@type"
+    }
+    
     /// An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax.
     /// This is a relationship between something and a class that the thing is in.
     /// In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types.

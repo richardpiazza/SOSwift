@@ -73,4 +73,77 @@ class DateOnlyTests: XCTestCase {
         XCTAssertEqual(compare, .orderedSame)
     }
 
+    func testInvalidDateOnly() {
+        let json = """
+            {
+                "date" : "invalid"
+            }
+        """
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        var testable: DateOnlyContainer
+        
+        do {
+            testable = try JSONDecoder().decode(DateOnlyContainer.self, from: data)
+        } catch {
+            print(error)
+            XCTFail()
+            return
+        }
+        
+        XCTAssertNil(testable.date?.dateOnly)
+    }
+    
+    func testInvalidDateOnly2() {
+        let json = """
+            {
+                "date" : 42
+            }
+        """
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        var testable: DateOnlyContainer
+        
+        do {
+            testable = try JSONDecoder().decode(DateOnlyContainer.self, from: data)
+        } catch {
+            print(error)
+            XCTFail()
+            return
+        }
+        
+        XCTAssertNil(testable.date?.dateOnly)
+    }
+    
+    func testInvalidDateOnly3() {
+        let json = """
+            {
+            }
+        """
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        var testable: DateOnlyContainer
+        
+        do {
+            testable = try JSONDecoder().decode(DateOnlyContainer.self, from: data)
+        } catch {
+            print(error)
+            XCTFail()
+            return
+        }
+        
+        XCTAssertNil(testable.date?.dateOnly)
+    }
 }
