@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ListItemOrTextOrThing
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeListItemOrTextOrThing(_ value: ListItemOrTextOrThing, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeListItemOrTextOrThing(_ value: ListItemOrTextOrThing, forKey key: K) throws {
         if let typedValue = value as? SOListItem {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOThing {
@@ -16,7 +16,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeListItemOrTextOrThingIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> ListItemOrTextOrThing? {
+    public func decodeListItemOrTextOrThingIfPresent(forKey key: K) throws -> ListItemOrTextOrThing? {
         guard self.contains(key) else {
             return nil
         }

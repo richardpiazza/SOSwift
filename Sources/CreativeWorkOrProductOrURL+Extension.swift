@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - CreativeWorkOrProductOrURL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeCreativeWorkOrProductOrURL(_ value: CreativeWorkOrProductOrURL, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeCreativeWorkOrProductOrURL(_ value: CreativeWorkOrProductOrURL, forKey key: K) throws {
         if let typedValue = value as? SOCreativeWork {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOProduct {
@@ -16,30 +16,28 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeCreativeWorkOrProductOrURLIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> CreativeWorkOrProductOrURL? {
+    public func decodeCreativeWorkOrProductOrURLIfPresent(forKey key: K) throws -> CreativeWorkOrProductOrURL? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOCreativeWork.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOCreativeWork.self, from: data)
-            } else if value["@type"] as? String == SOProduct.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOProduct.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOCreativeWork.type {
+                return try self.decode(SOCreativeWork.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOProduct.type {
+                return try self.decode(SOProduct.self, forKey: key)
             }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(URL.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `CreativeWorkOrProductOrURL` for key: \(key.stringValue).")
         
         return nil
     }

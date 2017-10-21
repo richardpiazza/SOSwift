@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - Number
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeNumber(_ value: Number, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeNumber(_ value: Number, forKey key: K) throws {
         if let typedValue = value as? Int {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? Float {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeNumberIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> Number? {
+    public func decodeNumberIfPresent(forKey key: K) throws -> Number? {
         guard self.contains(key) else {
             return nil
         }

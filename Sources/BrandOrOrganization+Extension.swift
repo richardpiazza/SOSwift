@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - BrandOrOrganization
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeBrandOrOrganization(_ value: BrandOrOrganization, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeBrandOrOrganization(_ value: BrandOrOrganization, forKey key: K) throws {
         if let typedValue = value as? SOBrand {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOOrganization {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeBrandsOrOrganizations(_ values: [BrandOrOrganization], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeBrandsOrOrganizations(_ values: [BrandOrOrganization], forKey key: K) throws {
         var encodables = [Encodable]()
         
         for value in values {
@@ -28,28 +28,27 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeBrandOrOrganizationIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> BrandOrOrganization? {
+    public func decodeBrandOrOrganizationIfPresent(forKey key: K) throws -> BrandOrOrganization? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOBrand.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOBrand.self, from: data)
-            } else if value["@type"] as? String == SOOrganization.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOOrganization.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOBrand.type {
+                return try self.decode(SOBrand.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOOrganization.type {
+                return try self.decode(SOOrganization.self, forKey: key)
             }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `BrandOrOrganization` for key: \(key.stringValue).")
         
         return nil
     }
     
-    public func decodeBrandsOrOrganizationsIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> [BrandOrOrganization]? {
+    public func decodeBrandsOrOrganizationsIfPresent(forKey key: K) throws -> [BrandOrOrganization]? {
         guard self.contains(key) else {
             return nil
         }
@@ -57,23 +56,24 @@ public extension KeyedDecodingContainer {
         var decodables = [BrandOrOrganization]()
         
         do {
-            let values = try self.decode([[String : AnyObject]].self, forKey: key)
-            for value in values {
-                let data = try JSONEncoder().encode(value)
+            let array = try self.decode([[String : Any]].self, forKey: key)
+            for element in array {
+                let data = try JSONSerialization.data(withJSONObject: element, options: JSONSerialization.WritingOptions())
                 
-                if value["@type"] as? String == SOBrand.type {
-                    let decodable = try JSONDecoder().decode(SOBrand.self, from: data)
-                    decodables.append(decodable)
-                } else if value["@type"] as? String == SOOrganization.type {
-                    let decodable = try JSONDecoder().decode(SOOrganization.self, from: data)
-                    decodables.append(decodable)
+                if element[SOThing.Keywords.type] as? String == SOBrand.type {
+                    let object = try JSONDecoder().decode(SOBrand.self, from: data)
+                    decodables.append(object)
+                } else if element[SOThing.Keywords.type] as? String == SOOrganization.type {
+                    let object = try JSONDecoder().decode(SOOrganization.self, from: data)
+                    decodables.append(object)
                 }
             }
             
             return decodables
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `[BrandOrOrganization]` for key: \(key.stringValue).")
         
         return nil
     }

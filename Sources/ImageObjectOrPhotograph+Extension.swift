@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ImageObjectOrPhotograph
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeImageObjectOrPhotograph(_ value: ImageObjectOrPhotograph, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeImageObjectOrPhotograph(_ value: ImageObjectOrPhotograph, forKey key: K) throws {
         if let typedValue = value as? SOImageObject {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOPhotograph {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeImageObjectsOrPhotographs(_ values: [ImageObjectOrPhotograph], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeImageObjectsOrPhotographs(_ values: [ImageObjectOrPhotograph], forKey key: K) throws {
         var encodables = [Encodable]()
         
         for value in values {
@@ -28,28 +28,27 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeImageObjectOrPhotographIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> ImageObjectOrPhotograph? {
+    public func decodeImageObjectOrPhotographIfPresent(forKey key: K) throws -> ImageObjectOrPhotograph? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOImageObject.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOImageObject.self, from: data)
-            } else if value["@type"] as? String == SOPhotograph.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOPhotograph.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOImageObject.type {
+                return try self.decode(SOImageObject.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOPhotograph.type {
+                return try self.decode(SOPhotograph.self, forKey: key)
             }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `ImageObjectOrPhotograph` for key: \(key.stringValue).")
         
         return nil
     }
     
-    public func decodeImageObjectsOrPhotographsIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> [ImageObjectOrPhotograph]? {
+    public func decodeImageObjectsOrPhotographsIfPresent(forKey key: K) throws -> [ImageObjectOrPhotograph]? {
         guard self.contains(key) else {
             return nil
         }
@@ -57,14 +56,14 @@ public extension KeyedDecodingContainer {
         var decodables = [ImageObjectOrPhotograph]()
         
         do {
-            let values = try self.decode([[String : Any]].self, forKey: key)
-            for value in values {
-                let data = try JSONEncoder().encode(value)
+            let array = try self.decode([Dictionary<String, Any>].self, forKey: key)
+            for element in array {
+                let data = try JSONSerialization.data(withJSONObject: element, options: JSONSerialization.WritingOptions())
                 
-                if value["@type"] as? String == SOImageObject.type {
+                if element[SOThing.Keywords.type] as? String == SOImageObject.type {
                     let decodable = try JSONDecoder().decode(SOImageObject.self, from: data)
                     decodables.append(decodable)
-                } else if value["@type"] as? String == SOPhotograph.type {
+                } else if element[SOThing.Keywords.type] as? String == SOPhotograph.type {
                     let decodable = try JSONDecoder().decode(SOPhotograph.self, from: data)
                     decodables.append(decodable)
                 }
@@ -72,8 +71,9 @@ public extension KeyedDecodingContainer {
             
             return decodables
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `[ImageObjectOrPhotograph]` for key: \(key.stringValue).")
         
         return nil
     }

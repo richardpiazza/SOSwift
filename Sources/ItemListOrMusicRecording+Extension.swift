@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ItemListOrMusicRecording
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeItemListOrMusicRecording(_ value: ItemListOrMusicRecording, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeItemListOrMusicRecording(_ value: ItemListOrMusicRecording, forKey key: K) throws {
         if let typedValue = value as? SOItemList {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOMusicRecording {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeItemListsOrMusicRecordings(_ value: [ItemListOrMusicRecording], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeItemListsOrMusicRecordings(_ value: [ItemListOrMusicRecording], forKey key: K) throws {
         var encodables = [Encodable]()
         
         for element in value {
@@ -28,7 +28,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeItemListOrMusicRecordingIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> ItemListOrMusicRecording? {
+    public func decodeItemListOrMusicRecordingIfPresent(forKey key: K) throws -> ItemListOrMusicRecording? {
         guard self.contains(key) else {
             return nil
         }
@@ -49,7 +49,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodeItemListsOrMusicRecordingsIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> [ItemListOrMusicRecording]? {
+    public func decodeItemListsOrMusicRecordingsIfPresent(forKey key: K) throws -> [ItemListOrMusicRecording]? {
         guard self.contains(key) else {
             return nil
         }

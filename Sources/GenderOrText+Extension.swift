@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - GenderOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeGenderOrText(_ value: GenderOrText, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeGenderOrText(_ value: GenderOrText, forKey key: K) throws {
         if let typedValue = value as? Gender {
             try self.encode(typedValue.rawValue, forKey: key)
         } else if let typedValue = value as? String {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeGenderOrTextIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> GenderOrText? {
+    public func decodeGenderOrTextIfPresent(forKey key: K) throws -> GenderOrText? {
         guard self.contains(key) else {
             return nil
         }
@@ -26,8 +26,9 @@ public extension KeyedDecodingContainer {
             }
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `GenderOrText` for key: \(key.stringValue).")
         
         return nil
     }

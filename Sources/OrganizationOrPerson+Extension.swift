@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - OrganizationOrPerson
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeOrganizationOrPerson(_ value: OrganizationOrPerson, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeOrganizationOrPerson(_ value: OrganizationOrPerson, forKey key: K) throws {
         if let typedValue = value as? SOOrganization {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOPerson {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeOrganizationsOrPersons(_ value: [OrganizationOrPerson], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeOrganizationsOrPersons(_ value: [OrganizationOrPerson], forKey key: K) throws {
         var encodables = [Encodable]()
         
         for element in value {
@@ -28,7 +28,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeOrganizationOrPersonIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> OrganizationOrPerson? {
+    public func decodeOrganizationOrPersonIfPresent(forKey key: K) throws -> OrganizationOrPerson? {
         guard self.contains(key) else {
             return nil
         }
@@ -49,7 +49,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodeOrganizationsOrPersonsIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> [OrganizationOrPerson]? {
+    public func decodeOrganizationsOrPersonsIfPresent(forKey key: K) throws -> [OrganizationOrPerson]? {
         guard self.contains(key) else {
             return nil
         }

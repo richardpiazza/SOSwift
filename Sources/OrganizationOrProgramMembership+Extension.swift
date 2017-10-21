@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - OrganizationOrProgramMembership
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeOrganizationOrProgramMembership(_ value: OrganizationOrProgramMembership, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeOrganizationOrProgramMembership(_ value: OrganizationOrProgramMembership, forKey key: K) throws {
         if let typedValue = value as? SOOrganization {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOProgramMembership {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeOrganizationsOrProgramMemberships(_ values: [OrganizationOrProgramMembership], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeOrganizationsOrProgramMemberships(_ values: [OrganizationOrProgramMembership], forKey key: K) throws {
         var encodables = [Encodable]()
         
         for value in values {
@@ -28,7 +28,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeOrganizationOrProgramMembershipIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> OrganizationOrProgramMembership? {
+    public func decodeOrganizationOrProgramMembershipIfPresent(forKey key: K) throws -> OrganizationOrProgramMembership? {
         guard self.contains(key) else {
             return nil
         }
@@ -49,7 +49,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodeOrganizationsOrProgramMembershipsIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> [OrganizationOrProgramMembership]? {
+    public func decodeOrganizationsOrProgramMembershipsIfPresent(forKey key: K) throws -> [OrganizationOrProgramMembership]? {
         guard self.contains(key) else {
             return nil
         }

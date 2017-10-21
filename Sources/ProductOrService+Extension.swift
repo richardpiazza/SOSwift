@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ProductOrService
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeProductOrService(_ value: ProductOrService, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeProductOrService(_ value: ProductOrService, forKey key: K) throws {
         if let typedValue = value as? SOProduct {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOService {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeProductsOrServices(_ values: [ProductOrService], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeProductsOrServices(_ values: [ProductOrService], forKey key: K) throws {
         var encodables = [Encodable]()
         
         for value in values {
@@ -28,7 +28,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeProductOrServiceIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> ProductOrService? {
+    public func decodeProductOrServiceIfPresent(forKey key: K) throws -> ProductOrService? {
         guard self.contains(key) else {
             return nil
         }
@@ -49,7 +49,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodeProductsOrServicesIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> [ProductOrService]? {
+    public func decodeProductsOrServicesIfPresent(forKey key: K) throws -> [ProductOrService]? {
         guard self.contains(key) else {
             return nil
         }

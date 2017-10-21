@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - AlignmentObjectOrCourseOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeAlignmentObjectOrCourseOrText(_ value: AlignmentObjectOrCourseOrText, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeAlignmentObjectOrCourseOrText(_ value: AlignmentObjectOrCourseOrText, forKey key: K) throws {
         if let typedValue = value as? SOAlignmentObject {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOCourse {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeAlignmentObjectsOrCoursesOrTexts(_ values: [AlignmentObjectOrCourseOrText], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeAlignmentObjectsOrCoursesOrTexts(_ values: [AlignmentObjectOrCourseOrText], forKey key: K) throws {
         var encodables = [Encodable]()
         
         for value in values {
@@ -32,7 +32,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeAlignmentObjectOrCourseOrTextIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> AlignmentObjectOrCourseOrText? {
+    public func decodeAlignmentObjectOrCourseOrTextIfPresent(forKey key: K) throws -> AlignmentObjectOrCourseOrText? {
         guard self.contains(key) else {
             return nil
         }
@@ -58,12 +58,12 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> [AlignmentObjectOrCourseOrText]? {
+    public func decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey key: K) throws -> [AlignmentObjectOrCourseOrText]? {
         guard self.contains(key) else {
             return nil
         }
         
-        var elements = [AlignmentObjectOrCourseOrText]()
+        var decodables = [AlignmentObjectOrCourseOrText]()
         
         do {
             let array = try self.decode([Any].self, forKey: key)
@@ -71,19 +71,19 @@ public extension KeyedDecodingContainer {
                 if let dictionary = element as? [String : Any] {
                     if dictionary[SOThing.Keywords.type] as? String == SOAlignmentObject.type {
                         let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
-                        let object = try JSONDecoder().decode(SOAlignmentObject.self, from: data)
-                        elements.append(object)
+                        let decodable = try JSONDecoder().decode(SOAlignmentObject.self, from: data)
+                        decodables.append(decodable)
                     } else if dictionary[SOThing.Keywords.type] as? String == SOCourse.type {
                         let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
-                        let object =  try JSONDecoder().decode(SOCourse.self, from: data)
-                        elements.append(object)
+                        let decodable =  try JSONDecoder().decode(SOCourse.self, from: data)
+                        decodables.append(decodable)
                     }
                 } else if let value = element as? String {
-                    elements.append(value)
+                    decodables.append(value)
                 }
             }
             
-            return elements
+            return decodables
         } catch {
         }
         

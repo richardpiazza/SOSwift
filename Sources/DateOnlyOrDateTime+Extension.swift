@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - DateOnlyOrDateTime
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeDateOnlyOrDateTime(_ value: DateOnlyOrDateTime, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeDateOnlyOrDateTime(_ value: DateOnlyOrDateTime, forKey key: K) throws {
         if let typedValue = value as? DateTime {
             try self.encodeDateTime(typedValue, forKey: key)
         } else if let typedValue = value as? DateOnly {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeDateOnlyOrDateTimeIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> DateOnlyOrDateTime? {
+    public func decodeDateOnlyOrDateTimeIfPresent(forKey key: K) throws -> DateOnlyOrDateTime? {
         guard self.contains(key) else {
             return nil
         }
@@ -33,7 +33,7 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
-        print("Failed to decode `DateOnlyOrDateTime` for key \(key.stringValue)")
+        print("Failed to decode `DateOnlyOrDateTime` for key \(key.stringValue).")
         
         return nil
     }

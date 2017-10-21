@@ -20,7 +20,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeValueIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> Value? {
+    public func decodeValueIfPresent(forKey key: K) throws -> Value? {
         guard self.contains(key) else {
             return nil
         }

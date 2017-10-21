@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - EducationalOrganizationOrOrganization
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeEducationalOrganizationOrOrganization(_ value: EducationalOrganizationOrOrganization, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeEducationalOrganizationOrOrganization(_ value: EducationalOrganizationOrOrganization, forKey key: K) throws {
         if let typedValue = value as? SOEducationalOrganization {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOOrganization {
@@ -14,23 +14,22 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeEducationalOrganizationOrOrganizationIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> EducationalOrganizationOrOrganization? {
+    public func decodeEducationalOrganizationOrOrganizationIfPresent(forKey key: K) throws -> EducationalOrganizationOrOrganization? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOEducationalOrganization.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOEducationalOrganization.self, from: data)
-            } else if value["@type"] as? String == SOOrganization.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOOrganization.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOEducationalOrganization.type {
+                return try self.decode(SOEducationalOrganization.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOOrganization.type {
+                return try self.decode(SOOrganization.self, forKey: key)
             }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `EducationalOrganizationOrOrganization` for key: \(key.stringValue).")
         
         return nil
     }

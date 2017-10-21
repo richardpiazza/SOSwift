@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - OwnershipInfoOrProduct
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeOwnershipInfoOrProduct(_ value: OwnershipInfoOrProduct, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeOwnershipInfoOrProduct(_ value: OwnershipInfoOrProduct, forKey key: K) throws {
         if let typedValue = value as? SOOwnershipInfo {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOProduct {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeOwnershipInfosOrProducts(_ values: [OwnershipInfoOrProduct], forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeOwnershipInfosOrProducts(_ values: [OwnershipInfoOrProduct], forKey key: K) throws {
         var encodables = [Encodable]()
         
         for value in values {
@@ -28,7 +28,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeOwnershipInfoOrProductIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> OwnershipInfoOrProduct? {
+    public func decodeOwnershipInfoOrProductIfPresent(forKey key: K) throws -> OwnershipInfoOrProduct? {
         guard self.contains(key) else {
             return nil
         }
@@ -49,7 +49,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodeOwnershipInfosOrProductsIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> [OwnershipInfoOrProduct]? {
+    public func decodeOwnershipInfosOrProductsIfPresent(forKey key: K) throws -> [OwnershipInfoOrProduct]? {
         guard self.contains(key) else {
             return nil
         }

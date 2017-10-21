@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - CreativeWorkOrURL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeCreativeWorkOrURL(_ value: CreativeWorkOrURL, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeCreativeWorkOrURL(_ value: CreativeWorkOrURL, forKey key: K) throws {
         if let typedValue = value as? SOCreativeWork {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeCreativeWorkOrURLIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> CreativeWorkOrURL? {
+    public func decodeCreativeWorkOrURLIfPresent(forKey key: K) throws -> CreativeWorkOrURL? {
         guard self.contains(key) else {
             return nil
         }
@@ -35,7 +35,7 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
-        print("Failed to decode `ImageObjectOrURL` for key: \(key.stringValue).")
+        print("Failed to decode `CreativeWorkOrURL` for key: \(key.stringValue).")
         
         return nil
     }

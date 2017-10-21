@@ -52,7 +52,7 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
-        print("Failed to decode `DateOnly` for key: \(key.stringValue)")
+        print("Failed to decode `DateOnly` for key: \(key.stringValue).")
         
         return nil
     }

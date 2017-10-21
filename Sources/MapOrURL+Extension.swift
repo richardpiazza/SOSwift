@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - MapOrURL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeMapOrURL(_ value: MapOrURL, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeMapOrURL(_ value: MapOrURL, forKey key: K) throws {
         if let typedValue = value as? SOMap {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeMapOrURLIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> MapOrURL? {
+    public func decodeMapOrURLIfPresent(forKey key: K) throws -> MapOrURL? {
         guard self.contains(key) else {
             return nil
         }

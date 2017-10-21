@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - CreativeWorkOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeCreativeWorkOrText(_ value: CreativeWorkOrText, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeCreativeWorkOrText(_ value: CreativeWorkOrText, forKey key: K) throws {
         if let typedValue = value as? SOCreativeWork {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {
@@ -14,27 +14,26 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeCreativeWorkOrTextIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> CreativeWorkOrText? {
+    public func decodeCreativeWorkOrTextIfPresent(forKey key: K) throws -> CreativeWorkOrText? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOCreativeWork.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOCreativeWork.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOCreativeWork.type {
+                return try self.decode(SOCreativeWork.self, forKey: key)
             }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `CreativeWorkOrText` for key: \(key.stringValue).")
         
         return nil
     }

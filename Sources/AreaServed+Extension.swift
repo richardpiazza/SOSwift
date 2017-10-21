@@ -1,10 +1,10 @@
 import Foundation
 import SOSwiftVocabulary
 
-// MARK: - Encodable
+// MARK: - AreaServed
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeAreaServed(_ value: AreaServed, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeAreaServed(_ value: AreaServed, forKey key: K) throws {
         if let typedValue = value as? SOAdministrativeArea {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOGeoShape {
@@ -18,33 +18,30 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeAreaServedIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> AreaServed? {
+    public func decodeAreaServedIfPresent(forKey key: K) throws -> AreaServed? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOAdministrativeArea.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOAdministrativeArea.self, from: data)
-            } else if value["@type"] as? String == SOGeoShape.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOGeoShape.self, from: data)
-            } else if value["@type"] as? String == SOPlace.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOPlace.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOAdministrativeArea.type {
+                return try self.decode(SOAdministrativeArea.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOGeoShape.type {
+                return try self.decode(SOGeoShape.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOPlace.type {
+                return try self.decode(SOPlace.self, forKey: key)
             }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `AreaServed` for key: \(key.stringValue).")
         
         return nil
     }

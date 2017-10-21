@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ImageObjectOrURL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeImageObjectOrURL(_ value: ImageObjectOrURL, forKey key: KeyedEncodingContainer.Key) throws {
+    public mutating func encodeImageObjectOrURL(_ value: ImageObjectOrURL, forKey key: K) throws {
         if let typedValue = value as? SOImageObject {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeImageObjectOrURLIfPresent(forKey key: KeyedDecodingContainer.Key) throws -> ImageObjectOrURL? {
+    public func decodeImageObjectOrURLIfPresent(forKey key: K) throws -> ImageObjectOrURL? {
         guard self.contains(key) else {
             return nil
         }
