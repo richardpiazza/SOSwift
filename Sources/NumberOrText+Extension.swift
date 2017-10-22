@@ -24,16 +24,15 @@ public extension KeyedDecodingContainer {
                 return value
             }
         } catch {
-            print(error)
         }
         
         do {
-            if let value = try self.decodeIfPresent(String.self, forKey: key) {
-                return value
-            }
+            let value = try self.decode(String.self, forKey: key)
+            return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `NumberOrText` for key: \(key.stringValue).")
         
         return nil
     }

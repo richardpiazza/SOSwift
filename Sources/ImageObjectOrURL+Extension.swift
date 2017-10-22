@@ -21,7 +21,7 @@ public extension KeyedDecodingContainer {
         
         do {
             let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
-            if dictionary["@type"] as? String == SOImageObject.type {
+            if dictionary[SOThing.Keywords.type] as? String == SOImageObject.type {
                 return try self.decode(SOImageObject.self, forKey: key)
             }
         } catch {

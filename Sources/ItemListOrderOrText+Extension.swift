@@ -24,8 +24,9 @@ public extension KeyedDecodingContainer {
                 return ItemListOrder(rawValue: value) ?? value
             }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `ItemListOrderOrText` for key: \(key.stringValue).")
         
         return nil
     }

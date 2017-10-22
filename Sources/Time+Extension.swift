@@ -29,3 +29,31 @@ public extension Time {
         }
     }
 }
+
+// MARK: - Time
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeTime(_ value: Time, forKey key: K) throws {
+        if let typedValue = value as? String {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}
+
+public extension KeyedDecodingContainer {
+    public func decodeTimeIfPresent(forKey key: K) throws -> Time? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            let value = try self.decode(String.self, forKey: key)
+            return value
+        } catch {
+        }
+        
+        print("Failed to decode `Time` for key: \(key.stringValue).")
+        
+        return nil
+    }
+}

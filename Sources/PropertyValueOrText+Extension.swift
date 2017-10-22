@@ -20,21 +20,20 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOPropertyValue.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOPropertyValue.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOPropertyValue.type {
+                return try self.decode(SOPropertyValue.self, forKey: key)
             }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `PropertyValueOrText` for key: \(key.stringValue).")
         
         return nil
     }

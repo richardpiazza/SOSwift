@@ -34,17 +34,16 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            let data = try JSONEncoder().encode(value)
-            
-            if value["@type"] as? String == SOOrganization.type {
-                return try JSONDecoder().decode(SOOrganization.self, from: data)
-            } else if value["@type"] as? String == SOPerson.type {
-                return try JSONDecoder().decode(SOPerson.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOOrganization.type {
+                return try self.decode(SOOrganization.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOPerson.type {
+                return try self.decode(SOPerson.self, forKey: key)
             }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `OrganizationOrPerson` for key: \(key.stringValue).")
         
         return nil
     }
@@ -57,24 +56,25 @@ public extension KeyedDecodingContainer {
         var decodables = [OrganizationOrPerson]()
         
         do {
-            let values = try self.decode([[String : AnyObject]].self, forKey: key)
-            
-            for value in values {
-                let data = try JSONEncoder().encode(value)
-                
-                if value["@type"] as? String == SOOrganization.type {
-                    let decodable = try JSONDecoder().decode(SOOrganization.self, from: data)
-                    decodables.append(decodable)
-                } else if value["@type"] as? String == SOPerson.type {
-                    let decodable = try JSONDecoder().decode(SOPerson.self, from: data)
-                    decodables.append(decodable)
+            let array = try self.decode([Any].self, forKey: key)
+            for element in array {
+                if let dictionary = element as? [String : Any] {
+                    let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
+                    if dictionary[SOThing.Keywords.type] as? String == SOOrganization.type {
+                        let decodable = try JSONDecoder().decode(SOOrganization.self, from: data)
+                        decodables.append(decodable)
+                    } else if dictionary[SOThing.Keywords.type] as? String == SOPerson.type {
+                        let decodable = try JSONDecoder().decode(SOPerson.self, from: data)
+                        decodables.append(decodable)
+                    }
                 }
             }
             
             return decodables
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `[OrganizationOrPerson]` for key: \(key.stringValue).")
         
         return nil
     }

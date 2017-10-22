@@ -34,17 +34,16 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOItemList.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOItemList.self, from: data)
-            } else if value["@type"] as? String == SOMusicRecording.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOMusicRecording.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOItemList.type {
+                return try self.decode(SOItemList.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOMusicRecording.type {
+                return try self.decode(SOMusicRecording.self, forKey: key)
             }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `ItemListOrMusicRecording` for key: \(key.stringValue).")
         
         return nil
     }
@@ -57,23 +56,25 @@ public extension KeyedDecodingContainer {
         var decodables = [ItemListOrMusicRecording]()
         
         do {
-            let values = try self.decode([[String : AnyObject]].self, forKey: key)
-            for value in values {
-                let data = try JSONEncoder().encode(value)
-                
-                if value["@type"] as? String == SOItemList.type {
-                    let decodable = try JSONDecoder().decode(SOItemList.self, from: data)
-                    decodables.append(decodable)
-                } else if value["@type"] as? String == SOMusicRecording.type {
-                    let decodable = try JSONDecoder().decode(SOMusicRecording.self, from: data)
-                    decodables.append(decodable)
+            let array = try self.decode([Any].self, forKey: key)
+            for element in array {
+                if let dictionary = element as? [String : Any] {
+                    let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
+                    if dictionary[SOThing.Keywords.type] as? String == SOItemList.type {
+                        let decodable = try JSONDecoder().decode(SOItemList.self, from: data)
+                        decodables.append(decodable)
+                    } else if dictionary[SOThing.Keywords.type] as? String == SOMusicRecording.type {
+                        let decodable = try JSONDecoder().decode(SOMusicRecording.self, from: data)
+                        decodables.append(decodable)
+                    }
                 }
             }
             
             return decodables
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `[ItemListOrMusicRecording]` for key: \(key.stringValue).")
         
         return nil
     }

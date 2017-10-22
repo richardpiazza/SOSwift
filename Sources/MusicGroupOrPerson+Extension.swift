@@ -20,17 +20,16 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOMusicGroup.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOMusicGroup.self, from: data)
-            } else if value["@type"] as? String == SOPerson.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOPerson.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOMusicGroup.type {
+                return try self.decode(SOMusicGroup.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOPerson.type {
+                return try self.decode(SOPerson.self, forKey: key)
             }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `MusicGroupOrPerson` for key: \(key.stringValue).")
         
         return nil
     }

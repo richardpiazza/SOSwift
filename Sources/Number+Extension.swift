@@ -23,15 +23,15 @@ public extension KeyedDecodingContainer {
             let value = try self.decode(Int.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(Float.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `Number` for key: \(key.stringValue).")
         
         return nil
     }

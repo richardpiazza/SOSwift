@@ -34,21 +34,22 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOPerson.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOPerson.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOPerson.type {
+                return try self.decode(SOPerson.self, forKey: key)
             }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(URL.self, forKey: key)
-            return value
+            if value.isValid {
+                return value
+            }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `PersonOrURL` for key: \(key.stringValue).")
         
         return nil
     }
@@ -61,26 +62,25 @@ public extension KeyedDecodingContainer {
         var decodables = [PersonOrURL]()
         
         do {
-            let values = try self.decode([[String : AnyObject]].self, forKey: key)
-            for value in values {
-                if value["@type"] as? String == SOPerson.type {
-                    let data = try JSONEncoder().encode(value)
-                    let decodable = try JSONDecoder().decode(SOPerson.self, from: data)
-                    decodables.append(decodable)
+            let array = try self.decode([Any].self, forKey: key)
+            for element in array {
+                if let dictionary = element as? [String : Any] {
+                    if dictionary[SOThing.Keywords.type] as? String == SOPerson.type {
+                        let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
+                        let decodable = try JSONDecoder().decode(SOPerson.self, from: data)
+                        decodables.append(decodable)
+                    }
+                } else if let value = element as? String {
+                    if let data = value.data(using: .utf8) {
+                        let decodable = try JSONDecoder().decode(URL.self, from: data)
+                        decodables.append(decodable)
+                    }
                 }
             }
         } catch {
-            print(error)
         }
         
-        do {
-            let values = try self.decode([URL].self, forKey: key)
-            for value in values {
-                decodables.append(value)
-            }
-        } catch {
-            print(error)
-        }
+        print("Failed to decode `[PersonOrURL]` for key: \(key.stringValue).")
         
         return decodables
     }

@@ -20,21 +20,22 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOMap.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOMap.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOMap.type {
+                return try self.decode(SOMap.self, forKey: key)
             }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(URL.self, forKey: key)
-            return value
+            if value.isValid {
+                return value
+            }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `MapOrURL` for key: \(key.stringValue).")
         
         return nil
     }

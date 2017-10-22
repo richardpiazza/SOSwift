@@ -22,24 +22,22 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            let data = try JSONEncoder().encode(value)
-            
-            if value["@type"] as? String == SOListItem.type {
-                return try JSONDecoder().decode(SOListItem.self, from: data)
-            } else if value["@type"] as? String == SOThing.type {
-                return try JSONDecoder().decode(SOThing.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOListItem.type {
+                return try self.decode(SOListItem.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOThing.type {
+                return try self.decode(SOThing.self, forKey: key)
             }
         } catch {
-            print(error)
         }
         
         do {
-            let value = try self.decodeIfPresent(String.self, forKey: key)
+            let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `ListItemOrTextOrThing` for key: \(key.stringValue).")
         
         return nil
     }

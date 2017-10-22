@@ -26,10 +26,9 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : Any].self, forKey: key)
-            if value["@type"] as? String == SOStructuredValue.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOStructuredValue.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOStructuredValue.type {
+                return try self.decode(SOStructuredValue.self, forKey: key)
             }
         } catch {
         }
@@ -41,13 +40,13 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode(Float.self, forKey: key)
+            let value = try self.decode(Int.self, forKey: key)
             return value
         } catch {
         }
         
         do {
-            let value = try self.decode(Int.self, forKey: key)
+            let value = try self.decode(Float.self, forKey: key)
             return value
         } catch {
         }

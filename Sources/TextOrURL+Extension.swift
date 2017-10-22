@@ -21,17 +21,19 @@ public extension KeyedDecodingContainer {
         
         do {
             let value = try self.decode(URL.self, forKey: key)
-            return value
+            if value.isValid {
+                return value
+            }
         } catch {
-            print(error)
         }
         
         do {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `TextOrURL` for key: \(key.stringValue).")
         
         return nil
     }

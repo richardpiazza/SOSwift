@@ -20,17 +20,16 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode([String : AnyObject].self, forKey: key)
-            if value["@type"] as? String == SOMonetaryAmount.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOMonetaryAmount.self, from: data)
-            } else if value["@type"] as? String == SOPriceSpecification.type {
-                let data = try JSONEncoder().encode(value)
-                return try JSONDecoder().decode(SOPriceSpecification.self, from: data)
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOMonetaryAmount.type {
+                return try self.decode(SOMonetaryAmount.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOPriceSpecification.type {
+                return try self.decode(SOPriceSpecification.self, forKey: key)
             }
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `MonetaryAmountOrPriceSpecification` for key: \(key.stringValue).")
         
         return nil
     }
