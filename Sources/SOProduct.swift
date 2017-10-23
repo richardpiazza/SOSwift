@@ -227,9 +227,7 @@ public class SOProduct: SOThing, Product {
         if let value = self.award {
             try container.encode(value, forKey: .award)
         }
-        if let value = self.brand {
-            try container.encodeBrandOrOrganization(value, forKey: .brand)
-        }
+        try container.encodeIfPresent(self.brand, forKey: .brand)
         if let value = self.category {
             try container.encodeTextOrThing(value, forKey: .category)
         }

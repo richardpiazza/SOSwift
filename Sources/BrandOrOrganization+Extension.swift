@@ -12,6 +12,14 @@ public extension KeyedEncodingContainer {
         }
     }
     
+    public mutating func encodeIfPresent(_ value: BrandOrOrganization?, forKey key: K) throws {
+        if let typedValue = value as? SOBrand {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? SOOrganization {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+    
     public mutating func encodeBrandsOrOrganizations(_ values: [BrandOrOrganization], forKey key: K) throws {
         var encodables = [Encodable]()
         
@@ -56,16 +64,17 @@ public extension KeyedDecodingContainer {
         var decodables = [BrandOrOrganization]()
         
         do {
-            let array = try self.decode([[String : Any]].self, forKey: key)
+            let array = try self.decode([Any].self, forKey: key)
             for element in array {
-                let data = try JSONSerialization.data(withJSONObject: element, options: JSONSerialization.WritingOptions())
-                
-                if element[SOThing.Keywords.type] as? String == SOBrand.type {
-                    let object = try JSONDecoder().decode(SOBrand.self, from: data)
-                    decodables.append(object)
-                } else if element[SOThing.Keywords.type] as? String == SOOrganization.type {
-                    let object = try JSONDecoder().decode(SOOrganization.self, from: data)
-                    decodables.append(object)
+                if let dictionary = element as? [String : Any] {
+                    let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
+                    if dictionary[SOThing.Keywords.type] as? String == SOBrand.type {
+                        let object = try JSONDecoder().decode(SOBrand.self, from: data)
+                        decodables.append(object)
+                    } else if dictionary[SOThing.Keywords.type] as? String == SOOrganization.type {
+                        let object = try JSONDecoder().decode(SOOrganization.self, from: data)
+                        decodables.append(object)
+                    }
                 }
             }
             

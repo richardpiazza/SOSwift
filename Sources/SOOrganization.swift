@@ -138,6 +138,10 @@ public class SOOrganization: SOThing, Organization {
         case vatID
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
