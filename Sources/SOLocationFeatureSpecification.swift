@@ -43,12 +43,8 @@ public class SOLocationFeatureSpecification: SOPropertyValue, LocationFeatureSpe
         if let value = self.hoursAvailable as? [SOOpeningHoursSpecification] {
             try container.encode(value, forKey: .hoursAvailable)
         }
-        if let value = self.validFrom {
-            try container.encodeDateTime(value, forKey: .validFrom)
-        }
-        if let value = self.validThrough {
-            try container.encodeDateTime(value, forKey: .validThrough)
-        }
+        try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
+        try container.encodeIfPresent(self.validThrough, forKey: .validThrough)
         
         try super.encode(to: encoder)
     }

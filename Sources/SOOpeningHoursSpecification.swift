@@ -63,12 +63,8 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
         if let value = self.opens as? String {
             try container.encode(value, forKey: .opens)
         }
-        if let value = self.validFrom {
-            try container.encodeDateTime(value, forKey: .validFrom)
-        }
-        if let value = self.validThrough {
-            try container.encodeDateTime(value, forKey: .validThrough)
-        }
+        try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
+        try container.encodeIfPresent(self.validThrough, forKey: .validThrough)
         
         try super.encode(to: encoder)
     }

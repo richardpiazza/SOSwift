@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ValueReference
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeValueReference(_ value: ValueReference, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: ValueReference?, forKey key: K) throws {
         if let typedValue = value as? SOEnumeration {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOStructuredValue {

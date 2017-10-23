@@ -92,9 +92,7 @@ public class SOQualitativeValue: SOEnumeration, QualitativeValue {
         if let value = self.nonEqual as? SOQualitativeValue {
             try container.encode(value, forKey: .nonEqual)
         }
-        if let value = self.valueReference {
-            try container.encodeValueReference(value, forKey: .valueReference)
-        }
+        try container.encodeIfPresent(self.valueReference, forKey: .valueReference)
         
         try super.encode(to: encoder)
     }

@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ItemListOrderOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeItemListOrderOrText(_ value: ItemListOrderOrText, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: ItemListOrderOrText?, forKey key: K) throws {
         if let typedValue = value as? ItemListOrder {
             try self.encode(typedValue.rawValue, forKey: key)
         } else if let typedValue = value as? String {

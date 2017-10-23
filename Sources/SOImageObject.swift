@@ -49,9 +49,7 @@ public class SOImageObject: SOMediaObject, ImageObject {
         if let value = self.caption {
             try container.encode(value, forKey: .caption)
         }
-        if let value = self.exifData {
-            try container.encodePropertyValueOrText(value, forKey: .exifData)
-        }
+        try container.encodeIfPresent(self.exifData, forKey: .exifData)
         if let value = self.representativeOfPage {
             try container.encode(value, forKey: .representativeOfPage)
         }

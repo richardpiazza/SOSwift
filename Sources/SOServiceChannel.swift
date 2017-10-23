@@ -70,9 +70,7 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.availableLanguage {
-            try container.encodeLanguageOrText(value, forKey: .availableLanguage)
-        }
+        try container.encodeIfPresent(self.availableLanguage, forKey: .availableLanguage)
         if let value = self.processingTime as? String {
             try container.encode(value, forKey: .processingTime)
         }

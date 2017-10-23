@@ -151,12 +151,8 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.applicationCategory {
-            try container.encodeTextOrURL(value, forKey: .applicationCategory)
-        }
-        if let value = self.applicationSubCategory {
-            try container.encodeTextOrURL(value, forKey: .applicationSubCategory)
-        }
+        try container.encodeIfPresent(self.applicationCategory, forKey: .applicationCategory)
+        try container.encodeIfPresent(self.applicationSubCategory, forKey: .applicationSubCategory)
         if let value = self.applicationSuite {
             try container.encode(value, forKey: .applicationSuite)
         }
@@ -172,18 +168,14 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
         if let value = self.downloadUrl {
             try container.encode(value, forKey: .downloadUrl)
         }
-        if let value = self.featureList {
-            try container.encodeTextOrURL(value, forKey: .featureList)
-        }
+        try container.encodeIfPresent(self.featureList, forKey: .featureList)
         if let value = self.fileSize {
             try container.encode(value, forKey: .fileSize)
         }
         if let value = self.installUrl {
             try container.encode(value, forKey: .installUrl)
         }
-        if let value = self.memoryRequirements {
-            try container.encodeTextOrURL(value, forKey: .memoryRequirements)
-        }
+        try container.encodeIfPresent(self.memoryRequirements, forKey: .memoryRequirements)
         if let value = self.operatingSystem {
             try container.encode(value, forKey: .operatingSystem)
         }
@@ -193,27 +185,19 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
         if let value = self.processorRequirements {
             try container.encode(value, forKey: .processorRequirements)
         }
-        if let value = self.releaseNotes {
-            try container.encodeTextOrURL(value, forKey: .releaseNotes)
-        }
-        if let value = self.screenshot {
-            try container.encodeImageObjectOrURL(value, forKey: .screenshot)
-        }
+        try container.encodeIfPresent(self.releaseNotes, forKey: .releaseNotes)
+        try container.encodeIfPresent(self.screenshot, forKey: .screenshot)
         if let value = self.softwareAddOn as? SOSoftwareApplication {
             try container.encode(value, forKey: .softwareAddOn)
         }
         if let value = self.softwareHelp as? SOCreativeWork {
             try container.encode(value, forKey: .softwareHelp)
         }
-        if let value = self.softwareRequirements {
-            try container.encodeTextOrURL(value, forKey: .softwareRequirements)
-        }
+        try container.encodeIfPresent(self.softwareRequirements, forKey: .softwareRequirements)
         if let value = self.softwareVersion {
             try container.encode(value, forKey: .softwareVersion)
         }
-        if let value = self.storageRequirements {
-            try container.encodeTextOrURL(value, forKey: .storageRequirements)
-        }
+        try container.encodeIfPresent(self.storageRequirements, forKey: .storageRequirements)
         if let value = self.supportingData as? SODataFeed {
             try container.encode(value, forKey: .supportingData)
         }

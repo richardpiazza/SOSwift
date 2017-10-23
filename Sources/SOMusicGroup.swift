@@ -43,12 +43,8 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
         if let value = self.album  as? [SOMusicAlbum] {
             try container.encode(value, forKey: .album)
         }
-        if let value = self.genre {
-            try container.encodeTextOrURL(value, forKey: .genre)
-        }
-        if let value = self.track {
-            try container.encodeItemListsOrMusicRecordings(value, forKey: .track)
-        }
+        try container.encodeIfPresent(self.genre, forKey: .genre)
+        try container.encodeIfPresent(self.track, forKey: .track)
         
         try super.encode(to: encoder)
     }

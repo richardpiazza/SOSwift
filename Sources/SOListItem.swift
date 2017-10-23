@@ -51,9 +51,7 @@ public class SOListItem: SOIntangible, ListItem {
         if let value = self.nextItem as? SOListItem {
             try container.encode(value, forKey: .nextItem)
         }
-        if let value = self.position {
-            try container.encodeIntegerOrText(value, forKey: .position)
-        }
+        try container.encodeIfPresent(self.position, forKey: .position)
         if let value = self.previousItem as? SOListItem {
             try container.encode(value, forKey: .previousItem)
         }

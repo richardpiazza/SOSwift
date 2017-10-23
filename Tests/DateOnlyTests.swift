@@ -20,9 +20,7 @@ class DateOnlyTests: XCTestCase {
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            if let value = self.date {
-                try container.encodeDateOnly(value, forKey: .date)
-            }
+            try container.encodeIfPresent(self.date, forKey: .date)
         }
     }
     

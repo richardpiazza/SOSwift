@@ -180,9 +180,7 @@ public class SOPerson: SOThing, Person {
         if let value = try container.decodeIfPresent([String].self, forKey: .award) {
             self.award = value
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .birthDate) {
-            self.birthDate = value
-        }
+        self.birthDate = try container.decodeDateOnlyIfPresent(forKey: .birthDate)
         if let value = try container.decodeIfPresent(SOPlace.self, forKey: .birthPlace) {
             self.birthPlace = value
         }
@@ -198,9 +196,7 @@ public class SOPerson: SOThing, Person {
         if let value = try container.decodeIfPresent([SOContactPoint].self, forKey: .contactPoint) {
             self.contactPoint = value
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .deathDate) {
-            self.deathDate = value
-        }
+        self.deathDate = try container.decodeDateOnlyIfPresent(forKey: .deathDate)
         if let value = try container.decodeIfPresent(SOPlace.self, forKey: .deathPlace) {
             self.deathPlace = value
         }
@@ -325,39 +321,27 @@ public class SOPerson: SOThing, Person {
         if let value = self.additionalName {
             try container.encode(value, forKey: .additionalName)
         }
-        if let value = self.address {
-            try container.encodePostalAddressOrText(value, forKey: .address)
-        }
+        try container.encodeIfPresent(self.address, forKey: .address)
         if let value = self.affiliation as? SOOrganization {
             try container.encode(value, forKey: .affiliation)
         }
-        if let value = self.alumniOf {
-            try container.encodeEducationalOrganizationOrOrganization(value, forKey: .alumniOf)
-        }
+        try container.encodeIfPresent(self.alumniOf, forKey: .alumniOf)
         if let value = self.award {
             try container.encode(value, forKey: .award)
         }
-        if let value = self.birthDate as? String {
-            try container.encode(value, forKey: .birthDate)
-        }
+        try container.encodeIfPresent(self.birthDate, forKey: .birthDate)
         if let value = self.birthPlace as? SOPlace {
             try container.encode(value, forKey: .birthPlace)
         }
-        if let value = self.brand {
-            try container.encodeBrandsOrOrganizations(value, forKey: .brand)
-        }
+        try container.encodeIfPresent(self.brand, forKey: .brand)
         if let value = self.children as? [SOPerson] {
             try container.encode(value, forKey: .children)
         }
-        if let value = self.colleague {
-            try container.encodePersonsOrURLs(value, forKey: .colleague)
-        }
+        try container.encodeIfPresent(self.colleague, forKey: .colleague)
         if let value = self.contactPoint as? [SOContactPoint] {
             try container.encode(value, forKey: .contactPoint)
         }
-        if let value = self.deathDate as? String {
-            try container.encode(value, forKey: .deathDate)
-        }
+        try container.encodeIfPresent(self.deathDate, forKey: .deathDate)
         if let value = self.deathPlace as? SOPlace {
             try container.encode(value, forKey: .deathPlace)
         }
@@ -376,12 +360,8 @@ public class SOPerson: SOThing, Person {
         if let value = self.follows as? [SOPerson] {
             try container.encode(value, forKey: .follows)
         }
-        if let value = self.funder {
-            try container.encodeOrganizationOrPerson(value, forKey: .funder)
-        }
-        if let value = self.gender {
-            try container.encodeGenderOrText(value, forKey: .gender)
-        }
+        try container.encodeIfPresent(self.funder, forKey: .funder)
+        try container.encodeIfPresent(self.gender, forKey: .gender)
         if let value = self.givenName {
             try container.encode(value, forKey: .givenName)
         }
@@ -394,12 +374,8 @@ public class SOPerson: SOThing, Person {
         if let value = self.hasPOS as? [SOPlace] {
             try container.encode(value, forKey: .hasPOS)
         }
-        if let value = self.height {
-            try container.encodeDistanceOrQuantitativeValue(value, forKey: .height)
-        }
-        if let value = self.homeLocation {
-            try container.encodeContactPointOrPlace(value, forKey: .homeLocation)
-        }
+        try container.encodeIfPresent(self.height, forKey: .height)
+        try container.encodeIfPresent(self.homeLocation, forKey: .homeLocation)
         if let value = self.honorificPrefix {
             try container.encode(value, forKey: .honorificPrefix)
         }
@@ -418,21 +394,15 @@ public class SOPerson: SOThing, Person {
         if let value = self.makesOffer as? [SOOffer] {
             try container.encode(value, forKey: .makesOffer)
         }
-        if let value = self.memberOf {
-            try container.encodeOrganizationsOrProgramMemberships(value, forKey: .memberOf)
-        }
+        try container.encodeIfPresent(self.memberOf, forKey: .memberOf)
         if let value = self.naics {
             try container.encode(value, forKey: .naics)
         }
         if let value = self.nationality as? SOCountry {
             try container.encode(value, forKey: .nationality)
         }
-        if let value = self.netWorth {
-            try container.encodeMonetaryAmountOrPriceSpecification(value, forKey: .netWorth)
-        }
-        if let value = self.owns {
-            try container.encodeProductsOrServices(value, forKey: .owns)
-        }
+        try container.encodeIfPresent(self.netWorth, forKey: .netWorth)
+        try container.encodeIfPresent(self.owns, forKey: .owns)
         if let value = self.parent as? [SOPerson] {
             try container.encode(value, forKey: .parent)
         }
@@ -448,9 +418,7 @@ public class SOPerson: SOThing, Person {
         if let value = self.sibling as? [SOPerson] {
             try container.encode(value, forKey: .sibling)
         }
-        if let value = self.sponsor {
-            try container.encodeOrganizationOrPerson(value, forKey: .sponsor)
-        }
+        try container.encodeIfPresent(self.sponsor, forKey: .sponsor)
         if let value = self.spouse as? SOPerson {
             try container.encode(value, forKey: .spouse)
         }
@@ -466,9 +434,7 @@ public class SOPerson: SOThing, Person {
         if let value = self.weight as? SOQuantitativeValue {
             try container.encode(value, forKey: .weight)
         }
-        if let value = self.workLocation {
-            try container.encodeContactPointOrPlace(value, forKey: .workLocation)
-        }
+        try container.encodeIfPresent(self.workLocation, forKey: .workLocation)
         if let value = self.worksFor as? [SOOrganization] {
             try container.encode(value, forKey: .worksFor)
         }

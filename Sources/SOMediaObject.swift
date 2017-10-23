@@ -88,9 +88,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         if let value = try container.decodeIfPresent(String.self, forKey: .encodingFormat) {
             self.encodingFormat = value
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .expires) {
-            self.expires = value
-        }
+        self.expires = try container.decodeDateOnlyIfPresent(forKey: .expires)
         if let value = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height) {
             self.height = value
         }
@@ -106,9 +104,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         if let value = try container.decodeIfPresent(Bool.self, forKey: .requiresSubscription) {
             self.requiresSubscription = value
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .uploadDate) {
-            self.uploadDate = value
-        }
+        self.uploadDate = try container.decodeDateOnlyIfPresent(forKey: .uploadDate)
         if let value = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .width) {
             self.width = value
         }
@@ -143,12 +139,8 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         if let value = self.encodingFormat {
             try container.encode(value, forKey: .encodingFormat)
         }
-        if let value = self.expires as? String {
-            try container.encode(value, forKey: .expires)
-        }
-        if let value = self.height {
-            try container.encodeDistanceOrQuantitativeValue(value, forKey: .height)
-        }
+        try container.encodeIfPresent(self.expires, forKey: .expires)
+        try container.encodeIfPresent(self.height, forKey: .height)
         if let value = self.playerType {
             try container.encode(value, forKey: .playerType)
         }
@@ -161,12 +153,8 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         if let value = self.requiresSubscription {
             try container.encode(value, forKey: .requiresSubscription)
         }
-        if let value = self.uploadDate as? String {
-            try container.encode(value, forKey: .uploadDate)
-        }
-        if let value = self.width {
-            try container.encodeDistanceOrQuantitativeValue(value, forKey: .width)
-        }
+        try container.encodeIfPresent(self.uploadDate, forKey: .uploadDate)
+        try container.encodeIfPresent(self.width, forKey: .width)
         
         try super.encode(to: encoder)
     }

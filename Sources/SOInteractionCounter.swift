@@ -39,9 +39,7 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.interactionService {
-            try container.encodeSoftwareApplicationOrWebsite(value, forKey: .interactionService)
-        }
+        try container.encodeIfPresent(self.interactionService, forKey: .interactionService)
         if let value = self.interactionType as? SOAction {
             try container.encode(value, forKey: .interactionType)
         }

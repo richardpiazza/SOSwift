@@ -4,14 +4,6 @@ import SOSwiftVocabulary
 // MARK: - BrandOrOrganization
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeBrandOrOrganization(_ value: BrandOrOrganization, forKey key: K) throws {
-        if let typedValue = value as? SOBrand {
-            try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? SOOrganization {
-            try self.encode(typedValue, forKey: key)
-        }
-    }
-    
     public mutating func encodeIfPresent(_ value: BrandOrOrganization?, forKey key: K) throws {
         if let typedValue = value as? SOBrand {
             try self.encode(typedValue, forKey: key)
@@ -20,18 +12,20 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeBrandsOrOrganizations(_ values: [BrandOrOrganization], forKey key: K) throws {
-        var encodables = [Encodable]()
+    public mutating func encodeIfPresent(_ values: [BrandOrOrganization]?, forKey key: K) throws {
+        guard let values = values else {
+            return
+        }
+        
+        var subcontainer = self.nestedUnkeyedContainer(forKey: key)
         
         for value in values {
             if let typedValue = value as? SOBrand {
-                encodables.append(typedValue)
+                try subcontainer.encode(typedValue)
             } else if let typedValue = value as? SOOrganization {
-                encodables.append(typedValue)
+                try subcontainer.encode(typedValue)
             }
         }
-        
-        try self.encode(encodables, forKey: key)
     }
 }
 

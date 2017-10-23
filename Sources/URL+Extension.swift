@@ -9,3 +9,13 @@ public extension URL {
         return urlComponents.scheme != nil
     }
 }
+
+// MARK: - URL
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: URL?, forKey key: K) throws {
+        if let typedValue = value {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}

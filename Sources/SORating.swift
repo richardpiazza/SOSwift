@@ -46,18 +46,10 @@ public class SORating: SOIntangible, Rating {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.author {
-            try container.encodeOrganizationOrPerson(value, forKey: .author)
-        }
-        if let value = self.bestRating {
-            try container.encodeNumberOrText(value, forKey: .bestRating)
-        }
-        if let value = self.ratingValue {
-            try container.encodeNumberOrText(value, forKey: .ratingValue)
-        }
-        if let value = self.worstRating {
-            try container.encodeNumberOrText(value, forKey: .worstRating)
-        }
+        try container.encodeIfPresent(self.author, forKey: .author)
+        try container.encodeIfPresent(self.bestRating, forKey: .bestRating)
+        try container.encodeIfPresent(self.ratingValue, forKey: .ratingValue)
+        try container.encodeIfPresent(self.worstRating, forKey: .worstRating)
         
         try super.encode(to: encoder)
     }

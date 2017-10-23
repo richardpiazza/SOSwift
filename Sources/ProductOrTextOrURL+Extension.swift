@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ProductOrTextOrURL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeProductOrTextOrURL(_ value: ProductOrTextOrURL, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: ProductOrTextOrURL?, forKey key: K) throws {
         if let typedValue = value as? SOProduct {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {

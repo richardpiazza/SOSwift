@@ -19,34 +19,18 @@ class AreaServedTests: XCTestCase {
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            if let value = try container.decodeAreaServedIfPresent(forKey: .administrativeArea) {
-                self.administrativeArea = value
-            }
-            if let value = try container.decodeAreaServedIfPresent(forKey: .geoShape) {
-                self.geoShape = value
-            }
-            if let value = try container.decodeAreaServedIfPresent(forKey: .place) {
-                self.place = value
-            }
-            if let value = try container.decodeAreaServedIfPresent(forKey: .text) {
-                self.text = value
-            }
+            self.administrativeArea = try container.decodeAreaServedIfPresent(forKey: .administrativeArea)
+            self.geoShape = try container.decodeAreaServedIfPresent(forKey: .geoShape)
+            self.place = try container.decodeAreaServedIfPresent(forKey: .place)
+            self.text = try container.decodeAreaServedIfPresent(forKey: .text)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            if let value = self.administrativeArea {
-                try container.encodeAreaServed(value, forKey: .administrativeArea)
-            }
-            if let value = self.geoShape {
-                try container.encodeAreaServed(value, forKey: .geoShape)
-            }
-            if let value = self.place {
-                try container.encodeAreaServed(value, forKey: .place)
-            }
-            if let value = self.text {
-                try container.encodeAreaServed(value, forKey: .text)
-            }
+            try container.encodeIfPresent(self.administrativeArea, forKey: .administrativeArea)
+            try container.encodeIfPresent(self.geoShape, forKey: .geoShape)
+            try container.encodeIfPresent(self.place, forKey: .place)
+            try container.encodeIfPresent(self.text, forKey: .text)
         }
     }
     

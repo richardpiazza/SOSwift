@@ -4,9 +4,9 @@ import SOSwiftVocabulary
 // MARK: - DateTimeOrTextOrURL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeDateTimeOrTextOrURL(_ value: DateTimeOrTextOrURL, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: DateTimeOrTextOrURL?, forKey key: K) throws {
         if let typedValue = value as? DateTime {
-            try self.encodeDateTime(typedValue, forKey: key)
+            try self.encodeIfPresent(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {

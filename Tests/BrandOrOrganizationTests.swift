@@ -15,6 +15,10 @@ class BrandOrOrganizationTests: XCTestCase {
             case multiple
         }
         
+        internal enum Errors: Error {
+            case utf8Encoding
+        }
+        
         init() {
         }
         
@@ -27,15 +31,17 @@ class BrandOrOrganizationTests: XCTestCase {
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            if let value = self.brand {
-                try container.encodeBrandOrOrganization(value, forKey: .brand)
+            try container.encodeIfPresent(self.brand, forKey: .brand)
+            try container.encodeIfPresent(self.organization, forKey: .organization)
+            try container.encodeIfPresent(self.multiple, forKey: .multiple)
+        }
+        
+        func json() throws -> String {
+            let data = try JSONEncoder().encode(self)
+            guard let json = String(data: data, encoding: .utf8) else {
+                throw Errors.utf8Encoding
             }
-            if let value = self.organization {
-                try container.encodeBrandOrOrganization(value, forKey: .organization)
-            }
-            if let value = self.multiple {
-                try container.encodeBrandsOrOrganizations(value, forKey: .multiple)
-            }
+            return json
         }
     }
     
@@ -96,15 +102,10 @@ class BrandOrOrganizationTests: XCTestCase {
         testable.brand = SOBrand()
         testable.organization = SOOrganization()
         
-        let data: Data
+        let json: String
         do {
-            data = try JSONEncoder().encode(testable)
+            json = try testable.json()
         } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let json = String(data: data, encoding: .utf8) else {
             XCTFail()
             return
         }
@@ -162,5 +163,24 @@ class BrandOrOrganizationTests: XCTestCase {
         }
         
         XCTAssertEqual(organization.name, "Organization")
+    }
+    
+    func testMultipleEncode() {
+        let testable = Testable()
+        let brand = SOBrand()
+        brand.name = "A Brand"
+        let organization = SOOrganization()
+        organization.name = "An Organization"
+        testable.multiple = [brand, organization]
+        
+        let json: String
+        do {
+            json = try testable.json()
+        } catch {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertTrue(json.contains("\"multiple\":["))
     }
 }

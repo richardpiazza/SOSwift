@@ -70,24 +70,14 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
         if let value = self.additionalProperty as? SOPropertyValue {
             try container.encode(value, forKey: .additionalProperty)
         }
-        if let value = self.maxValue {
-            try container.encodeNumber(value, forKey: .maxValue)
-        }
-        if let value = self.minValue {
-            try container.encodeNumber(value, forKey: .minValue)
-        }
-        if let value = self.unitCode {
-            try container.encodeTextOrURL(value, forKey: .unitCode)
-        }
+        try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
+        try container.encodeIfPresent(self.minValue, forKey: .minValue)
+        try container.encodeIfPresent(self.unitCode, forKey: .unitCode)
         if let value = self.unitText {
             try container.encode(value, forKey: .unitText)
         }
-        if let value = self.value {
-            try container.encodeValue(value, forKey: .value)
-        }
-        if let value = self.valueReference {
-            try container.encodeValueReference(value, forKey: .valueReference)
-        }
+        try container.encodeIfPresent(self.value, forKey: .value)
+        try container.encodeIfPresent(self.valueReference, forKey: .valueReference)
         
         try super.encode(to: encoder)
     }

@@ -58,21 +58,11 @@ public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.address {
-            try container.encodePostalAddressOrText(value, forKey: .address)
-        }
-        if let value = self.addressCountry {
-            try container.encodeCountryOrText(value, forKey: .addressCountry)
-        }
-        if let value = self.elevation {
-            try container.encodeNumberOrText(value, forKey: .elevation)
-        }
-        if let value = self.latitude {
-            try container.encodeNumberOrText(value, forKey: .latitude)
-        }
-        if let value = self.longitude {
-            try container.encodeNumberOrText(value, forKey: .longitude)
-        }
+        try container.encodeIfPresent(self.address, forKey: .address)
+        try container.encodeIfPresent(self.addressCountry, forKey: .addressCountry)
+        try container.encodeIfPresent(self.elevation, forKey: .elevation)
+        try container.encodeIfPresent(self.latitude, forKey: .latitude)
+        try container.encodeIfPresent(self.longitude, forKey: .longitude)
         if let value = self.postalCode {
             try container.encode(value, forKey: .postalCode)
         }

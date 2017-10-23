@@ -318,15 +318,9 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .creator) {
             self.creator = value
         }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .dateCreated) {
-            self.dateCreated = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .dateModified) {
-            self.dateModified = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .datePublished) {
-            self.datePublished = value
-        }
+        self.dateCreated = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .dateCreated)
+        self.dateModified = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .dateModified)
+        self.datePublished = try container.decodeDateOnlyIfPresent(forKey: .datePublished)
         if let value = try container.decodeIfPresent(URL.self, forKey: .discussionURL) {
             self.discussionURL = value
         }
@@ -508,18 +502,14 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.audio as? SOAudioObject {
             try container.encode(value, forKey: .audio)
         }
-        if let value = self.author {
-            try container.encodeOrganizationOrPerson(value, forKey: .author)
-        }
+        try container.encodeIfPresent(self.author, forKey: .author)
         if let value = self.award {
             try container.encode(value, forKey: .award)
         }
         if let value = self.character as? SOPerson {
             try container.encode(value, forKey: .character)
         }
-        if let value = self.citation {
-            try container.encodeCreativeWorkOrText(value, forKey: .citation)
-        }
+        try container.encodeIfPresent(self.citation, forKey: .citation)
         if let value = self.comment as? SOComment {
             try container.encode(value, forKey: .comment)
         }
@@ -532,27 +522,19 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.contentRating {
             try container.encode(value, forKey: .contentRating)
         }
-        if let value = self.contributor {
-            try container.encodeOrganizationOrPerson(value, forKey: .contributor)
-        }
-        if let value = self.copyrightHolder {
-            try container.encodeOrganizationOrPerson(value, forKey: .copyrightHolder)
-        }
+        try container.encodeIfPresent(self.contributor, forKey: .contributor)
+        try container.encodeIfPresent(self.copyrightHolder, forKey: .copyrightHolder)
         if let value = self.copyrightYear {
             try container.encode(value, forKey: .copyrightYear)
         }
-        if let value = self.creator {
-            try container.encodeOrganizationOrPerson(value, forKey: .creator)
-        }
+        try container.encodeIfPresent(self.creator, forKey: .creator)
         if let value = self.dateCreated as? String {
             try container.encode(value, forKey: .dateCreated)
         }
         if let value = self.dateModified as? String {
             try container.encode(value, forKey: .dateModified)
         }
-        if let value = self.datePublished as? String {
-            try container.encode(value, forKey: .datePublished)
-        }
+        try container.encodeIfPresent(self.datePublished, forKey: .datePublished)
         if let value = self.discussionURL {
             try container.encode(value, forKey: .discussionURL)
         }
@@ -571,24 +553,16 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.exampleOfWork as? SOCreativeWork {
             try container.encode(value, forKey: .exampleOfWork)
         }
-        if let value = self.fileFormat {
-            try container.encodeTextOrURL(value, forKey: .fileFormat)
-        }
-        if let value = self.funder {
-            try container.encodeOrganizationOrPerson(value, forKey: .funder)
-        }
-        if let value = self.genre {
-            try container.encodeTextOrURL(value, forKey: .genre)
-        }
+        try container.encodeIfPresent(self.fileFormat, forKey: .fileFormat)
+        try container.encodeIfPresent(self.funder, forKey: .funder)
+        try container.encodeIfPresent(self.genre, forKey: .genre)
         if let value = self.hasPart as? SOCreativeWork {
             try container.encode(value, forKey: .hasPart)
         }
         if let value = self.headline {
             try container.encode(value, forKey: .headline)
         }
-        if let value = self.inLanguage {
-            try container.encodeLanguageOrText(value, forKey: .inLanguage)
-        }
+        try container.encodeIfPresent(self.inLanguage, forKey: .inLanguage)
         if let value = self.interactionStatistic as? SOInteractionCounter {
             try container.encode(value, forKey: .interactionStatistic)
         }
@@ -598,9 +572,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.isAccessibleForFree {
             try container.encode(value, forKey: .isAccessibleForFree)
         }
-        if let value = self.isBasedOn {
-            try container.encodeCreativeWorkOrProductOrURL(value, forKey: .isBasedOn)
-        }
+        try container.encodeIfPresent(self.isBasedOn, forKey: .isBasedOn)
         if let value = self.isFamilyFriendly {
             try container.encode(value, forKey: .isFamilyFriendly)
         }
@@ -613,54 +585,38 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.learningResourceType {
             try container.encode(value, forKey: .learningResourceType)
         }
-        if let value = self.license {
-            try container.encodeCreativeWorkOrURL(value, forKey: .license)
-        }
+        try container.encodeIfPresent(self.license, forKey: .license)
         if let value = self.locationCreated as? SOPlace {
             try container.encode(value, forKey: .locationCreated)
         }
         if let value = self.mainEntity as? SOThing {
             try container.encode(value, forKey: .mainEntity)
         }
-        if let value = self.material {
-            try container.encodeProductOrTextOrURL(value, forKey: .material)
-        }
+        try container.encodeIfPresent(self.material, forKey: .material)
         if let value = self.mentions as? SOThing {
             try container.encode(value, forKey: .mentions)
         }
         if let value = self.offers as? [SOOffer] {
             try container.encode(value, forKey: .offers)
         }
-        if let value = self.position {
-            try container.encodeIntegerOrText(value, forKey: .position)
-        }
-        if let value = self.producer {
-            try container.encodeOrganizationOrPerson(value, forKey: .producer)
-        }
-        if let value = self.provider {
-            try container.encodeOrganizationOrPerson(value, forKey: .provider)
-        }
+        try container.encodeIfPresent(self.position, forKey: .position)
+        try container.encodeIfPresent(self.producer, forKey: .producer)
+        try container.encodeIfPresent(self.provider, forKey: .provider)
         if let value = self.releasedEvent as? SOPublicationEvent {
             try container.encode(value, forKey: .releasedEvent)
         }
         if let value = self.review as? SOReview {
             try container.encode(value, forKey: .review)
         }
-        if let value = self.schemaVersion {
-            try container.encodeTextOrURL(value, forKey: .schemaVersion)
-        }
+        try container.encodeIfPresent(self.schemaVersion, forKey: .schemaVersion)
         if let value = self.sourceOrganization as? SOOrganization {
             try container.encode(value, forKey: .sourceOrganization)
         }
         if let value = self.spatialCoverage as? SOPlace {
             try container.encode(value, forKey: .spatialCoverage)
         }
-        if let value = self.sponsor {
-            try container.encodeOrganizationOrPerson(value, forKey: .sponsor)
-        }
-        if let value = self.temporalCoverage {
-            try container.encodeDateTimeOrTextOrURL(value, forKey: .temporalCoverage)
-        }
+        try container.encodeIfPresent(self.sponsor, forKey: .sponsor)
+        try container.encodeIfPresent(self.temporalCoverage, forKey: .temporalCoverage)
         if let value = self.text {
             try container.encode(value, forKey: .text)
         }
@@ -670,15 +626,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = self.timeRequired as? String {
             try container.encode(value, forKey: .timeRequired)
         }
-        if let value = self.translator {
-            try container.encodeOrganizationOrPerson(value, forKey: .translator)
-        }
+        try container.encodeIfPresent(self.translator, forKey: .translator)
         if let value = self.typicalAgeRange {
             try container.encode(value, forKey: .typicalAgeRange)
         }
-        if let value = self.version {
-            try container.encodeIntegerOrText(value, forKey: .version)
-        }
+        try container.encodeIfPresent(self.version, forKey: .version)
         if let value = self.video as? SOVideoObject {
             try container.encode(value, forKey: .video)
         }

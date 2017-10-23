@@ -65,42 +65,21 @@ public class SOThing: Thing, Codable {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(URL.self, forKey: .additionalType) {
-            self.additionalType = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .alternativeName) {
-            self.alternativeName = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .description) {
-            self.description = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .disambiguatingDescription) {
-            self.disambiguatingDescription = value
-        }
-        if let value = try container.decodeIdentifierIfPresent(forKey: .id) {
-            self.identifier = value
-        }
+        self.additionalType = try container.decodeIfPresent(URL.self, forKey: .additionalType)
+        self.alternativeName = try container.decodeIfPresent(String.self, forKey: .alternativeName)
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
+        self.disambiguatingDescription = try container.decodeIfPresent(String.self, forKey: .disambiguatingDescription)
         if let value = try container.decodeIdentifierIfPresent(forKey: .identifier) {
             self.identifier = value
+        } else if let value = try container.decodeIdentifierIfPresent(forKey: .id) {
+            self.identifier = value
         }
-        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .image) {
-            self.image = value
-        }
-        if let value = try container.decodeCreativeWorkOrURLIfPresent(forKey: .mainEntityOfPage) {
-            self.mainEntityOfPage = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .name) {
-            self.name = value
-        }
-        if let value = try container.decodeIfPresent(SOAction.self, forKey: .potentialAction) {
-            self.potentialAction = value
-        }
-        if let value = try container.decodeIfPresent([URL].self, forKey: .sameAs) {
-            self.sameAs = value
-        }
-        if let value = try container.decodeIfPresent(URL.self, forKey: .url) {
-            self.url = value
-        }
+        self.image = try container.decodeImageObjectOrURLIfPresent(forKey: .image)
+        self.mainEntityOfPage = try container.decodeCreativeWorkOrURLIfPresent(forKey: .mainEntityOfPage)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.potentialAction = try container.decodeIfPresent(SOAction.self, forKey: .potentialAction)
+        self.sameAs = try container.decodeIfPresent([URL].self, forKey: .sameAs)
+        self.url = try container.decodeIfPresent(URL.self, forKey: .url)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -109,38 +88,18 @@ public class SOThing: Thing, Codable {
         try container.encode(Swift.type(of: self).context, forKey: .context)
         try container.encode(Swift.type(of: self).type, forKey: .type)
         
-        if let value = self.additionalType {
-            try container.encode(value, forKey: .additionalType)
-        }
-        if let value = self.alternativeName {
-            try container.encode(value, forKey: .alternativeName)
-        }
-        if let value = self.description {
-            try container.encode(value, forKey: .description)
-        }
-        if let value = self.disambiguatingDescription {
-            try container.encode(value, forKey: .disambiguatingDescription)
-        }
-        if let value = self.identifier {
-            try container.encodeIdentifier(value, forKey: .id)
-        }
-        if let value = self.image {
-            try container.encodeImageObjectOrURL(value, forKey: .image)
-        }
-        if let value = self.mainEntityOfPage {
-            try container.encodeCreativeWorkOrURL(value, forKey: .mainEntityOfPage)
-        }
-        if let value = self.name {
-            try container.encode(value, forKey: .name)
-        }
+        try container.encodeIfPresent(self.additionalType, forKey: .additionalType)
+        try container.encodeIfPresent(self.alternativeName, forKey: .alternativeName)
+        try container.encodeIfPresent(self.description, forKey: .description)
+        try container.encodeIfPresent(self.disambiguatingDescription, forKey: .disambiguatingDescription)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.image, forKey: .image)
+        try container.encodeIfPresent(self.mainEntityOfPage, forKey: .mainEntityOfPage)
+        try container.encodeIfPresent(self.name, forKey: .name)
         if let value = self.potentialAction as? SOAction {
             try container.encode(value, forKey: .potentialAction)
         }
-        if let value = self.sameAs {
-            try container.encode(value, forKey: .sameAs)
-        }
-        if let value = self.url {
-            try container.encode(value, forKey: .url)
-        }
+        try container.encodeIfPresent(self.sameAs, forKey: .sameAs)
+        try container.encodeIfPresent(self.url, forKey: .url)
     }
 }

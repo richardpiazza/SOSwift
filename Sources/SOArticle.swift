@@ -65,12 +65,8 @@ public class SOArticle: SOCreativeWork, Article {
         if let value = self.articleSection {
             try container.encode(value, forKey: .articleSection)
         }
-        if let value = self.pageEnd {
-            try container.encodeIntegerOrText(value, forKey: .pageEnd)
-        }
-        if let value = self.pageStart {
-            try container.encodeIntegerOrText(value, forKey: .pageStart)
-        }
+        try container.encodeIfPresent(self.pageEnd, forKey: .pageEnd)
+        try container.encodeIfPresent(self.pageStart, forKey: .pageStart)
         if let value = self.pagination {
             try container.encode(value, forKey: .pagination)
         }

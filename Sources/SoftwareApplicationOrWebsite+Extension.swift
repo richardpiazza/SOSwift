@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - SoftwareApplicationOrWebsite
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeSoftwareApplicationOrWebsite(_ value: SoftwareApplicationOrWebsite, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: SoftwareApplicationOrWebsite?, forKey key: K) throws {
         if let typedValue = value as? SOSoftwareApplication {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOWebsite {

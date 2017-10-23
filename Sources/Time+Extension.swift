@@ -33,7 +33,7 @@ public extension Time {
 // MARK: - Time
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeTime(_ value: Time, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: Time?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }

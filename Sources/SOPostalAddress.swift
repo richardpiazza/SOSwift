@@ -57,9 +57,7 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.addressCountry {
-            try container.encodeCountryOrText(value, forKey: .addressCountry)
-        }
+        try container.encodeIfPresent(self.addressCountry, forKey: .addressCountry)
         if let value = self.addressLocality {
             try container.encode(value, forKey: .addressLocality)
         }

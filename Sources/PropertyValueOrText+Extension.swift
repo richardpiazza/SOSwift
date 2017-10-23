@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - PropertyValueOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodePropertyValueOrText(_ value: PropertyValueOrText, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: PropertyValueOrText?, forKey key: K) throws {
         if let typedValue = value as? SOPropertyValue {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {

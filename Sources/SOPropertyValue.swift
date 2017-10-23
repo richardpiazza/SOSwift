@@ -68,27 +68,15 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.maxValue {
-            try container.encodeNumber(value, forKey: .maxValue)
-        }
-        if let value = self.minValue {
-            try container.encodeNumber(value, forKey: .minValue)
-        }
-        if let value = self.propertyID {
-            try container.encodeTextOrURL(value, forKey: .propertyID)
-        }
-        if let value = self.unitCode {
-            try container.encodeTextOrURL(value, forKey: .unitCode)
-        }
+        try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
+        try container.encodeIfPresent(self.minValue, forKey: .minValue)
+        try container.encodeIfPresent(self.propertyID, forKey: .propertyID)
+        try container.encodeIfPresent(self.unitCode, forKey: .unitCode)
         if let value = self.unitText {
             try container.encode(value, forKey: .unitText)
         }
-        if let value = self.value {
-            try container.encodeValue(value, forKey: .value)
-        }
-        if let value = self.valueReference {
-            try container.encodeValueReference(value, forKey: .valueReference)
-        }
+        try container.encodeIfPresent(self.value, forKey: .value)
+        try container.encodeIfPresent(self.valueReference, forKey: .valueReference)
         
         try super.encode(to: encoder)
     }

@@ -33,7 +33,7 @@ public extension DateOnly {
 // MARK: - DateOnly
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeDateOnly(_ value: DateOnly, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: DateOnly?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }

@@ -46,18 +46,10 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.acquiredFrom {
-            try container.encodeOrganizationOrPerson(value, forKey: .acquiredFrom)
-        }
-        if let value = self.ownedFrom {
-            try container.encodeDateTime(value, forKey: .ownedFrom)
-        }
-        if let value = self.ownedThrough {
-            try container.encodeDateTime(value, forKey: .ownedThrough)
-        }
-        if let value = self.typeOfGood {
-            try container.encodeProductOrService(value, forKey: .typeOfGood)
-        }
+        try container.encodeIfPresent(self.acquiredFrom, forKey: .acquiredFrom)
+        try container.encodeIfPresent(self.ownedFrom, forKey: .ownedFrom)
+        try container.encodeIfPresent(self.ownedThrough, forKey: .ownedThrough)
+        try container.encodeIfPresent(self.typeOfGood, forKey: .typeOfGood)
         
         try super.encode(to: encoder)
     }

@@ -4,9 +4,9 @@ import SOSwiftVocabulary
 // MARK: - NumberOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeNumberOrText(_ value: NumberOrText, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: NumberOrText?, forKey key: K) throws {
         if let typedValue = value as? Number {
-            try self.encodeNumber(typedValue, forKey: key)
+            try self.encodeIfPresent(typedValue, forKey: key)
         } else if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }

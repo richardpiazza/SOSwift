@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ItemListOrMusicRecording
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeItemListOrMusicRecording(_ value: ItemListOrMusicRecording, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: ItemListOrMusicRecording?, forKey key: K) throws {
         if let typedValue = value as? SOItemList {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOMusicRecording {
@@ -12,18 +12,20 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeItemListsOrMusicRecordings(_ value: [ItemListOrMusicRecording], forKey key: K) throws {
-        var encodables = [Encodable]()
-        
-        for element in value {
-            if let typedValue = element as? SOItemList {
-                encodables.append(typedValue)
-            } else if let typedValue = element as? SOMusicRecording {
-                encodables.append(typedValue)
-            }
+    public mutating func encodeIfPresent(_ values: [ItemListOrMusicRecording]?, forKey key: K) throws {
+        guard let values = values else {
+            return
         }
         
-        try self.encode(encodables, forKey: key)
+        var subcontainer = self.nestedUnkeyedContainer(forKey: key)
+        
+        for value in values {
+            if let typedValue = value as? SOItemList {
+                try subcontainer.encode(typedValue)
+            } else if let typedValue = value as? SOMusicRecording {
+                try subcontainer.encode(typedValue)
+            }
+        }
     }
 }
 

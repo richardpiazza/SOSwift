@@ -61,9 +61,7 @@ public class SOEntryPoint: SOIntangible, EntryPoint {
         if let value = self.actionApplication as? SOSoftwareApplication {
             try container.encode(value, forKey: .actionApplication)
         }
-        if let value = self.actionPlatform {
-            try container.encodeTextOrURL(value, forKey: .actionPlatform)
-        }
+        try container.encodeIfPresent(self.actionPlatform, forKey: .actionPlatform)
         if let value = self.contentType {
             try container.encode(value, forKey: .contentType)
         }

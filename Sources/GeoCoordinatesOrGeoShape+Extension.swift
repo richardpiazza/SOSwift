@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - GeoCoordinatesOrGeoShape
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeGeoCoordinatesOrGeoShape(_ value: GeoCoordinatesOrGeoShape, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: GeoCoordinatesOrGeoShape?, forKey key: K) throws {
         if let typedValue = value as? SOGeoCoordinates {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOGeoShape {

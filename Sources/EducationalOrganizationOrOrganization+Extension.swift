@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - EducationalOrganizationOrOrganization
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeEducationalOrganizationOrOrganization(_ value: EducationalOrganizationOrOrganization, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: EducationalOrganizationOrOrganization?, forKey key: K) throws {
         if let typedValue = value as? SOEducationalOrganization {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOOrganization {

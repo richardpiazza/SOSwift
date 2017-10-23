@@ -151,36 +151,22 @@ public class SOService: SOIntangible, Service {
         if let value = self.award {
             try container.encode(value, forKey: .award)
         }
-        if let value = self.brand {
-            try container.encodeBrandsOrOrganizations(value, forKey: .brand)
-        }
-        if let value = self.broker {
-            try container.encodeOrganizationOrPerson(value, forKey: .broker)
-        }
-        if let value = self.category {
-            try container.encodeTextOrThing(value, forKey: .category)
-        }
+        try container.encodeIfPresent(self.brand, forKey: .brand)
+        try container.encodeIfPresent(self.broker, forKey: .broker)
+        try container.encodeIfPresent(self.category, forKey: .category)
         if let value = self.hasOfferCatalog as? SOOfferCatalog {
             try container.encode(value, forKey: .hasOfferCatalog)
         }
         if let value = self.hoursAvailable as? [SOOpeningHoursSpecification] {
             try container.encode(value, forKey: .hoursAvailable)
         }
-        if let value = self.isRelatedTo {
-            try container.encodeProductsOrServices(value, forKey: .isRelatedTo)
-        }
-        if let value = self.isSimilarTo {
-            try container.encodeProductsOrServices(value, forKey: .isSimilarTo)
-        }
-        if let value = self.logo {
-            try container.encodeImageObjectOrURL(value, forKey: .logo)
-        }
+        try container.encodeIfPresent(self.isRelatedTo, forKey: .isRelatedTo)
+        try container.encodeIfPresent(self.isSimilarTo, forKey: .isSimilarTo)
+        try container.encodeIfPresent(self.logo, forKey: .logo)
         if let value = self.offers as? [SOOffer] {
             try container.encode(value, forKey: .offers)
         }
-        if let value = self.provider {
-            try container.encodeOrganizationOrPerson(value, forKey: .provider)
-        }
+        try container.encodeIfPresent(self.provider, forKey: .provider)
         if let value = self.providerMobility {
             try container.encode(value, forKey: .providerMobility)
         }

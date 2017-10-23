@@ -42,12 +42,8 @@ public class SOItemList: SOIntangible, ItemList {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.itemListElement {
-            try container.encodeListItemOrTextOrThing(value, forKey: .itemListElement)
-        }
-        if let value = self.itemListOrder {
-            try container.encodeItemListOrderOrText(value, forKey: .itemListOrder)
-        }
+        try container.encodeIfPresent(self.itemListElement, forKey: .itemListElement)
+        try container.encodeIfPresent(self.itemListOrder, forKey: .itemListOrder)
         if let value = self.numberOfItems {
             try container.encode(value, forKey: .numberOfItems)
         }

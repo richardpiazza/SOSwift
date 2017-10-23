@@ -47,9 +47,7 @@ public class SOBrand: SOIntangible, Brand {
         if let value = self.aggregateRating as? SOAggregateRating {
             try container.encode(value, forKey: .aggregateRating)
         }
-        if let value = self.logo {
-            try container.encodeImageObjectOrURL(value, forKey: .logo)
-        }
+        try container.encodeIfPresent(self.logo, forKey: .logo)
         if let value = self.review as? [SOReview] {
             try container.encode(value, forKey: .review)
         }

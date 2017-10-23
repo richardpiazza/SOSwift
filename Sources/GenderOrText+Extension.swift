@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - GenderOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeGenderOrText(_ value: GenderOrText, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: GenderOrText?, forKey key: K) throws {
         if let typedValue = value as? Gender {
             try self.encode(typedValue.rawValue, forKey: key)
         } else if let typedValue = value as? String {

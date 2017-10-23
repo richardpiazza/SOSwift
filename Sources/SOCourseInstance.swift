@@ -34,9 +34,7 @@ public class SOCourseInstance: SOEvent, CourseInstance {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.courseMode {
-            try container.encodeTextOrURL(value, forKey: .courseMode)
-        }
+        try container.encodeIfPresent(self.courseMode, forKey: .courseMode)
         if let value = self.instructor as? SOPerson {
             try container.encode(value, forKey: .instructor)
         }

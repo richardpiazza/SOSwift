@@ -75,12 +75,8 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.areaServed {
-            try container.encodeAreaServed(value, forKey: .areaServed)
-        }
-        if let value = self.availableLanguage {
-            try container.encodeLanguageOrText(value, forKey: .availableLanguage)
-        }
+        try container.encodeIfPresent(self.areaServed, forKey: .areaServed)
+        try container.encodeIfPresent(self.availableLanguage, forKey: .availableLanguage)
         if let value = self.contactOption {
             try container.encode(value.rawValue, forKey: .contactOption)
         }
@@ -96,9 +92,7 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
         if let value = self.hoursAvailable as? [SOOpeningHoursSpecification] {
             try container.encode(value, forKey: .hoursAvailable)
         }
-        if let value = self.productSupported {
-            try container.encodeProductOrText(value, forKey: .productSupported)
-        }
+        try container.encodeIfPresent(self.productSupported, forKey: .productSupported)
         if let value = self.telephone {
             try container.encode(value, forKey: .telephone)
         }

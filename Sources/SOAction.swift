@@ -93,33 +93,23 @@ public class SOAction: SOThing, Action {
         if let value = self.actionStatus {
             try container.encode(value.rawValue, forKey: .actionStatus)
         }
-        if let value = self.agent {
-            try container.encodeOrganizationOrPerson(value, forKey: .agent)
-        }
-        if let value = self.endTime {
-            try container.encodeDateTime(value, forKey: .endTime)
-        }
+        try container.encodeIfPresent(self.agent, forKey: .agent)
+        try container.encodeIfPresent(self.endTime, forKey: .endTime)
         if let value = self.error as? SOThing {
             try container.encode(value, forKey: .error)
         }
         if let value = self.instrument as? SOThing {
             try container.encode(value, forKey: .instrument)
         }
-        if let value = self.location {
-            try container.encodePlaceOrPostalAddressOrText(value, forKey: .location)
-        }
+        try container.encodeIfPresent(self.location, forKey: .location)
         if let value = self.object as? SOThing {
             try container.encode(value, forKey: .object)
         }
-        if let value = self.participant {
-            try container.encodeOrganizationOrPerson(value, forKey: .participant)
-        }
+        try container.encodeIfPresent(self.participant, forKey: .participant)
         if let value = self.result as? SOThing {
             try container.encode(value, forKey: .result)
         }
-        if let value = self.startTime {
-            try container.encodeDateTime(value, forKey: .startTime)
-        }
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
         if let value = self.target as? SOEntryPoint {
             try container.encode(value, forKey: .target)
         }

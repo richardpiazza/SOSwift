@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - MusicGroupOrPerson
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeMusicGroupOrPerson(_ value: MusicGroupOrPerson, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: MusicGroupOrPerson?, forKey key: K) throws {
         if let typedValue = value as? SOMusicGroup {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOPerson {

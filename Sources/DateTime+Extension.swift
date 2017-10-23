@@ -33,7 +33,7 @@ public extension DateTime {
 // MARK: - DateTime
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeDateTime(_ value: DateTime, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: DateTime?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }
@@ -50,8 +50,9 @@ public extension KeyedDecodingContainer {
             let value = try self.decode(String.self, forKey: key)
             return value
         } catch {
-            print(error)
         }
+        
+        print("Failed to decode `DateTime` for key \(key.stringValue).")
         
         return nil
     }

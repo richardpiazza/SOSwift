@@ -63,21 +63,11 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
         if let value = self.currency {
             try container.encode(value, forKey: .currency)
         }
-        if let value = self.maxValue {
-            try container.encodeNumber(value, forKey: .maxValue)
-        }
-        if let value = self.minValue {
-            try container.encodeNumber(value, forKey: .minValue)
-        }
-        if let value = self.validFrom {
-            try container.encodeDateTime(value, forKey: .validFrom)
-        }
-        if let value = self.validThrough {
-            try container.encodeDateTime(value, forKey: .validThrough)
-        }
-        if let value = self.value {
-            try container.encodeValue(value, forKey: .value)
-        }
+        try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
+        try container.encodeIfPresent(self.minValue, forKey: .minValue)
+        try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
+        try container.encodeIfPresent(self.validThrough, forKey: .validThrough)
+        try container.encodeIfPresent(self.value, forKey: .value)
         
         try super.encode(to: encoder)
     }

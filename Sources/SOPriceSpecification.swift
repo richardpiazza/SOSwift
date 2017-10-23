@@ -87,24 +87,14 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
         if let value = self.eligibleTransactionVolume as? SOPriceSpecification {
             try container.encode(value, forKey: .eligibleTransactionVolume)
         }
-        if let value = self.maxPrice {
-            try container.encodeNumber(value, forKey: .maxPrice)
-        }
-        if let value = self.minPrice {
-            try container.encodeNumber(value, forKey: .minPrice)
-        }
-        if let value = self.price {
-            try container.encodeNumberOrText(value, forKey: .price)
-        }
+        try container.encodeIfPresent(self.maxPrice, forKey: .maxPrice)
+        try container.encodeIfPresent(self.minPrice, forKey: .minPrice)
+        try container.encodeIfPresent(self.price, forKey: .price)
         if let value = self.priceCurrency {
             try container.encode(value, forKey: .priceCurrency)
         }
-        if let value = self.validFrom {
-            try container.encodeDateTime(value, forKey: .validFrom)
-        }
-        if let value = self.validThrough {
-            try container.encodeDateTime(value, forKey: .validThrough)
-        }
+        try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
+        try container.encodeIfPresent(self.validThrough, forKey: .validThrough)
         if let value = self.valueAddedTaxIncluded {
             try container.encode(value, forKey: .valueAddedTaxIncluded)
         }

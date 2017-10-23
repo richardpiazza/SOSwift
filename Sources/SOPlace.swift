@@ -154,9 +154,7 @@ public class SOPlace: SOThing, Place {
         if let value = self.additionalProperty as? SOPropertyValue {
             try container.encode(value, forKey: .additionalProperty)
         }
-        if let value = self.address {
-            try container.encodePostalAddressOrText(value, forKey: .address)
-        }
+        try container.encodeIfPresent(self.address, forKey: .address)
         if let value = self.aggregateRating as? SOAggregateRating {
             try container.encode(value, forKey: .aggregateRating)
         }
@@ -178,30 +176,22 @@ public class SOPlace: SOThing, Place {
         if let value = self.faxNumber {
             try container.encode(value, forKey: .faxNumber)
         }
-        if let value = self.geo {
-            try container.encodeGeoCoordinatesOrGeoShape(value, forKey: .geo)
-        }
+        try container.encodeIfPresent(self.geo, forKey: .geo)
         if let value = self.globalLocationNumber {
             try container.encode(value, forKey: .globalLocationNumber)
         }
-        if let value = self.hasMap {
-            try container.encodeMapOrURL(value, forKey: .hasMap)
-        }
+        try container.encodeIfPresent(self.hasMap, forKey: .hasMap)
         if let value = self.isicV4 {
             try container.encode(value, forKey: .isicV4)
         }
-        if let value = self.logo {
-            try container.encodeImageObjectOrURL(value, forKey: .logo)
-        }
+        try container.encodeIfPresent(self.logo, forKey: .logo)
         if let value = self.maximumAttendeeCapacity {
             try container.encode(value, forKey: .maximumAttendeeCapacity)
         }
         if let value = self.openingHoursSpecification as? [SOOpeningHoursSpecification] {
             try container.encode(value, forKey: .openingHoursSpecification)
         }
-        if let value = self.photo {
-            try container.encodeImageObjectsOrPhotographs(value, forKey: .photo)
-        }
+        try container.encodeIfPresent(self.photo, forKey: .photo)
         if let value = self.review as? [SOReview] {
             try container.encode(value, forKey: .review)
         }

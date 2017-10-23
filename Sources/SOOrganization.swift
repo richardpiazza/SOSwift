@@ -169,9 +169,7 @@ public class SOOrganization: SOThing, Organization {
         if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .department) {
             self.department = value
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .dissolutionDate) {
-            self.dissolutionDate = value
-        }
+        self.dissolutionDate = try container.decodeDateOnlyIfPresent(forKey: .dissolutionDate)
         if let value = try container.decodeIfPresent(String.self, forKey: .duns) {
             self.duns = value
         }
@@ -190,9 +188,7 @@ public class SOOrganization: SOThing, Organization {
         if let value = try container.decodeIfPresent([SOPerson].self, forKey: .founder) {
             self.founder = value
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .foundingDate) {
-            self.foundingDate = value
-        }
+        self.foundingDate = try container.decodeDateOnlyIfPresent(forKey: .foundingDate)
         if let value = try container.decodeIfPresent(SOPlace.self, forKey: .foundingLocation) {
             self.foundingLocation = value
         }
@@ -272,9 +268,7 @@ public class SOOrganization: SOThing, Organization {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.address {
-            try container.encodePostalAddressOrText(value, forKey: .address)
-        }
+        try container.encodeIfPresent(self.address, forKey: .address)
         if let value = self.aggregateRating as? SOAggregateRating {
             try container.encode(value, forKey: .aggregateRating)
         }
@@ -287,18 +281,14 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.award {
             try container.encode(value, forKey: .award)
         }
-        if let value = self.brand {
-            try container.encodeBrandsOrOrganizations(value, forKey: .brand)
-        }
+        try container.encodeIfPresent(self.brand, forKey: .brand)
         if let value = self.contactPoint as? [SOContactPoint] {
             try container.encode(value, forKey: .contactPoint)
         }
         if let value = self.department as? SOOrganization {
             try container.encode(value, forKey: .department)
         }
-        if let value = self.dissolutionDate as? String {
-            try container.encode(value, forKey: .dissolutionDate)
-        }
+        try container.encodeIfPresent(self.dissolutionDate, forKey: .dissolutionDate)
         if let value = self.duns {
             try container.encode(value, forKey: .duns)
         }
@@ -317,15 +307,11 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.founder as? [SOPerson] {
             try container.encode(value, forKey: .founder)
         }
-        if let value = self.foundingDate as? String {
-            try container.encode(value, forKey: .foundingDate)
-        }
+        try container.encodeIfPresent(self.foundingDate, forKey: .foundingDate)
         if let value = self.foundingLocation as? SOPlace {
             try container.encode(value, forKey: .foundingLocation)
         }
-        if let value = self.funder {
-            try container.encodeOrganizationOrPerson(value, forKey: .funder)
-        }
+        try container.encodeIfPresent(self.funder, forKey: .funder)
         if let value = self.globalLocationNumber {
             try container.encode(value, forKey: .globalLocationNumber)
         }
@@ -344,30 +330,20 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.leiCode {
             try container.encode(value, forKey: .leiCode)
         }
-        if let value = self.location {
-            try container.encodePlaceOrPostalAddressOrText(value, forKey: .location)
-        }
-        if let value = self.logo {
-            try container.encodeImageObjectOrURL(value, forKey: .logo)
-        }
+        try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encodeIfPresent(self.logo, forKey: .logo)
         if let value = self.makesOffers as? [SOOffer] {
             try container.encode(value, forKey: .makesOffers)
         }
-        if let value = self.member {
-            try container.encodeOrganizationsOrPersons(value, forKey: .member)
-        }
-        if let value = self.memberOf {
-            try container.encodeOrganizationOrProgramMembership(value, forKey: .memberOf)
-        }
+        try container.encodeIfPresent(self.member, forKey: .member)
+        try container.encodeIfPresent(self.memberOf, forKey: .memberOf)
         if let value = self.naics {
             try container.encode(value, forKey: .naics)
         }
         if let value = self.numberOfEmployees as? SOQuantitativeValue {
             try container.encode(value, forKey: .numberOfEmployees)
         }
-        if let value = self.owns {
-            try container.encodeOwnershipInfosOrProducts(value, forKey: .owns)
-        }
+        try container.encodeIfPresent(self.owns, forKey: .owns)
         if let value = self.parentOrganization as? SOOrganization {
             try container.encode(value, forKey: .parentOrganization)
         }
@@ -377,9 +353,7 @@ public class SOOrganization: SOThing, Organization {
         if let value = self.seeks as? [SODemand] {
             try container.encode(value, forKey: .seeks)
         }
-        if let value = self.sponsor {
-            try container.encodeOrganizationOrPerson(value, forKey: .sponsor)
-        }
+        try container.encodeIfPresent(self.sponsor, forKey: .sponsor)
         if let value = self.subOrganization as? SOOrganization {
             try container.encode(value, forKey: .subOrganization)
         }

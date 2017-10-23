@@ -79,9 +79,7 @@ public class SOVideoObject: SOMediaObject, VideoObject {
         if let value = self.director as? [SOPerson] {
             try container.encode(value, forKey: .director)
         }
-        if let value = self.musicBy {
-            try container.encodeMusicGroupOrPerson(value, forKey: .musicBy)
-        }
+        try container.encodeIfPresent(self.musicBy, forKey: .musicBy)
         if let value = self.thumbnail as? SOImageObject {
             try container.encode(value, forKey: .thumbnail)
         }

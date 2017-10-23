@@ -49,9 +49,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
         if let value = self.hostingOrganization as? SOOrganization {
             try container.encode(value, forKey: .hostingOrganization)
         }
-        if let value = self.member {
-            try container.encodeOrganizationsOrPersons(value, forKey: .member)
-        }
+        try container.encodeIfPresent(self.member, forKey: .member)
         if let value = self.membershipNumber {
             try container.encode(value, forKey: .membershipNumber)
         }

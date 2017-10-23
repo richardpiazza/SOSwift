@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ImageObjectOrPhotograph
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeImageObjectOrPhotograph(_ value: ImageObjectOrPhotograph, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: ImageObjectOrPhotograph?, forKey key: K) throws {
         if let typedValue = value as? SOImageObject {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOPhotograph {
@@ -12,18 +12,20 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeImageObjectsOrPhotographs(_ values: [ImageObjectOrPhotograph], forKey key: K) throws {
-        var encodables = [Encodable]()
+    public mutating func encodeIfPresent(_ values: [ImageObjectOrPhotograph]?, forKey key: K) throws {
+        guard let values = values else {
+            return
+        }
+        
+        var subcontainer = self.nestedUnkeyedContainer(forKey: key)
         
         for value in values {
             if let typedValue = value as? SOImageObject {
-                encodables.append(typedValue)
+                try subcontainer.encode(typedValue)
             } else if let typedValue = value as? SOPhotograph {
-                encodables.append(typedValue)
+                try subcontainer.encode(typedValue)
             }
         }
-        
-        try self.encode(encodables, forKey: key)
     }
 }
 

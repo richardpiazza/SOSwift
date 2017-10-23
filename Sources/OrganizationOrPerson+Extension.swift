@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - OrganizationOrPerson
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeOrganizationOrPerson(_ value: OrganizationOrPerson, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: OrganizationOrPerson?, forKey key: K) throws {
         if let typedValue = value as? SOOrganization {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOPerson {
@@ -12,18 +12,20 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeOrganizationsOrPersons(_ value: [OrganizationOrPerson], forKey key: K) throws {
-        var encodables = [Encodable]()
-        
-        for element in value {
-            if let typedValue = element as? SOOrganization {
-                encodables.append(typedValue)
-            } else if let typedValue = element as? SOPerson {
-                encodables.append(typedValue)
-            }
+    public mutating func encodeIfPresent(_ values: [OrganizationOrPerson]?, forKey key: K) throws {
+        guard let values = values else {
+            return
         }
         
-        try self.encode(encodables, forKey: key)
+        var subcontainer = self.nestedUnkeyedContainer(forKey: key)
+        
+        for value in values {
+            if let typedValue = value as? SOOrganization {
+                try subcontainer.encode(typedValue)
+            } else if let typedValue = value as? SOPerson {
+                try subcontainer.encode(typedValue)
+            }
+        }
     }
 }
 

@@ -44,9 +44,7 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
             if let value = self.text as? String {
                 try container.encode(value, forKey: .text)
             }
-            if let value = self.multiple {
-                try container.encodeAlignmentObjectsOrCoursesOrTexts(value, forKey: .multiple)
-            }
+            try container.encodeIfPresent(self.multiple, forKey: .multiple)
         }
     }
     

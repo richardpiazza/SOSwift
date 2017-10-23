@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - Identifier
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIdentifier(_ value: Identifier, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: Identifier?, forKey key: K) throws {
         if let typedValue = value as? SOPropertyValue {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {

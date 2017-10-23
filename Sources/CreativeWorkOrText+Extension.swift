@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - CreativeWorkOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeCreativeWorkOrText(_ value: CreativeWorkOrText, forKey key: K) throws {
+    public mutating func encodeIfPresent(_ value: CreativeWorkOrText?, forKey key: K) throws {
         if let typedValue = value as? SOCreativeWork {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {

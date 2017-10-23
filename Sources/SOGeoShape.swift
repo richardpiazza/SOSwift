@@ -70,21 +70,15 @@ public class SOGeoShape: SOThing, GeoShape {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.address {
-            try container.encodePostalAddressOrText(value, forKey: .address)
-        }
-        if let value = self.addressCountry {
-            try container.encodeCountryOrText(value, forKey: .addressCountry)
-        }
+        try container.encodeIfPresent(self.address, forKey: .address)
+        try container.encodeIfPresent(self.addressCountry, forKey: .addressCountry)
         if let value = self.box {
             try container.encode(value, forKey: .box)
         }
         if let value = self.circle {
             try container.encode(value, forKey: .circle)
         }
-        if let value = self.elevation {
-            try container.encodeNumberOrText(value, forKey: .elevation)
-        }
+        try container.encodeIfPresent(self.elevation, forKey: .elevation)
         if let value = self.line {
             try container.encode(value, forKey: .line)
         }

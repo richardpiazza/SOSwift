@@ -44,9 +44,7 @@ public class SOCourse: SOCreativeWork, Course {
         if let value = self.courseCode {
             try container.encode(value, forKey: .courseCode)
         }
-        if let value = self.coursePrerequisites {
-            try container.encodeAlignmentObjectsOrCoursesOrTexts(value, forKey: .coursePrerequisites)
-        }
+        try container.encodeIfPresent(self.coursePrerequisites, forKey: .coursePrerequisites)
         if let value = self.hasCourseInstance as? SOCourseInstance {
             try container.encode(value, forKey: .hasCourseInstance)
         }

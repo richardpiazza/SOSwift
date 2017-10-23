@@ -187,15 +187,9 @@ public class SOProduct: SOThing, Product {
         if let value = try container.decodeIfPresent(String.self, forKey: .productID) {
             self.productID = value
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .productionDate) {
-            self.productionDate = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .purchaseDate) {
-            self.purchaseDate = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .releaseDate) {
-            self.releaseDate = value
-        }
+        self.productionDate = try container.decodeDateOnlyIfPresent(forKey: .productionDate)
+        self.purchaseDate = try container.decodeDateOnlyIfPresent(forKey: .purchaseDate)
+        self.releaseDate = try container.decodeDateOnlyIfPresent(forKey: .releaseDate)
         if let value = try container.decodeIfPresent(SOReview.self, forKey: .review) {
             self.review = value
         }
@@ -228,15 +222,11 @@ public class SOProduct: SOThing, Product {
             try container.encode(value, forKey: .award)
         }
         try container.encodeIfPresent(self.brand, forKey: .brand)
-        if let value = self.category {
-            try container.encodeTextOrThing(value, forKey: .category)
-        }
+        try container.encodeIfPresent(self.category, forKey: .category)
         if let value = self.color {
             try container.encode(value, forKey: .color)
         }
-        if let value = self.depth {
-            try container.encodeDistanceOrQuantitativeValue(value, forKey: .depth)
-        }
+        try container.encodeIfPresent(self.depth, forKey: .depth)
         if let value = self.gtin12 {
             try container.encode(value, forKey: .gtin12)
         }
@@ -249,36 +239,24 @@ public class SOProduct: SOThing, Product {
         if let value = self.gtin8 {
             try container.encode(value, forKey: .gtin8)
         }
-        if let value = self.height {
-            try container.encodeDistanceOrQuantitativeValue(value, forKey: .height)
-        }
+        try container.encodeIfPresent(self.height, forKey: .height)
         if let value = self.isAccessoryOrSparePartFor as? SOProduct {
             try container.encode(value, forKey: .isAccessoryOrSparePartFor)
         }
         if let value = self.isConsumableFor as? SOProduct {
             try container.encode(value, forKey: .isConsumableFor)
         }
-        if let value = self.isRelatedTo {
-            try container.encodeProductOrService(value, forKey: .isRelatedTo)
-        }
-        if let value = self.isSimilarTo {
-            try container.encodeProductOrService(value, forKey: .isSimilarTo)
-        }
+        try container.encodeIfPresent(self.isRelatedTo, forKey: .isRelatedTo)
+        try container.encodeIfPresent(self.isSimilarTo, forKey: .isSimilarTo)
         if let value = self.itemCondition {
             try container.encode(value.rawValue, forKey: .itemCondition)
         }
-        if let value = self.logo {
-            try container.encodeImageObjectOrURL(value, forKey: .logo)
-        }
+        try container.encodeIfPresent(self.logo, forKey: .logo)
         if let value = self.manufacturer as? SOOrganization {
             try container.encode(value, forKey: .manufacturer)
         }
-        if let value = self.material {
-            try container.encodeProductOrTextOrURL(value, forKey: .material)
-        }
-        if let value = self.model {
-            try container.encodeProductModelOrText(value, forKey: .model)
-        }
+        try container.encodeIfPresent(self.material, forKey: .material)
+        try container.encodeIfPresent(self.model, forKey: .model)
         if let value = self.mpn {
             try container.encode(value, forKey: .mpn)
         }
@@ -288,15 +266,9 @@ public class SOProduct: SOThing, Product {
         if let value = self.productID {
             try container.encode(value, forKey: .productID)
         }
-        if let value = self.productionDate as? String {
-            try container.encode(value, forKey: .productionDate)
-        }
-        if let value = self.purchaseDate as? String {
-            try container.encode(value, forKey: .purchaseDate)
-        }
-        if let value = self.releaseDate as? String {
-            try container.encode(value, forKey: .releaseDate)
-        }
+        try container.encodeIfPresent(self.productionDate, forKey: .productionDate)
+        try container.encodeIfPresent(self.purchaseDate, forKey: .purchaseDate)
+        try container.encodeIfPresent(self.releaseDate, forKey: .releaseDate)
         if let value = self.review as? SOReview {
             try container.encode(value, forKey: .review)
         }
@@ -306,9 +278,7 @@ public class SOProduct: SOThing, Product {
         if let value = self.weight as? SOQuantitativeValue {
             try container.encode(value, forKey: .weight)
         }
-        if let value = self.width {
-            try container.encodeDistanceOrQuantitativeValue(value, forKey: .width)
-        }
+        try container.encodeIfPresent(self.width, forKey: .width)
         
         try super.encode(to: encoder)
     }
