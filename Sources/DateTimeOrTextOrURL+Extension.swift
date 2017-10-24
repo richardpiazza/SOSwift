@@ -31,7 +31,7 @@ public extension KeyedDecodingContainer {
         
         do {
             if let value = try self.decodeDateTimeIfPresent(forKey: key) {
-                if value.dateTime != nil {
+                if value.date != nil {
                     return value
                 }
             }
