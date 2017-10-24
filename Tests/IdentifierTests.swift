@@ -4,23 +4,29 @@ import SOSwiftVocabulary
 
 class IdentifierTests: XCTestCase {
 
-    class Identifiable: Codable {
-        var identifier: Identifier?
+    fileprivate class TestClass: Codable, Testable {
+        var propertyValue: Identifier?
+        var url: Identifier?
+        var text: Identifier?
         
         private enum CodingKeys: String, CodingKey {
-            case identifier
+            case propertyValue
+            case url
+            case text
         }
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            if let value = try container.decodeIdentifierIfPresent(forKey: .identifier) {
-                self.identifier = value
-            }
+            self.propertyValue = try container.decodeIdentifierIfPresent(forKey: .propertyValue)
+            self.url = try container.decodeIdentifierIfPresent(forKey: .url)
+            self.text = try container.decodeIdentifierIfPresent(forKey: .text)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.identifier, forKey: .identifier)
+            try container.encodeIfPresent(self.propertyValue, forKey: .propertyValue)
+            try container.encodeIfPresent(self.url, forKey: .url)
+            try container.encodeIfPresent(self.text, forKey: .text)
         }
     }
     
@@ -34,101 +40,51 @@ class IdentifierTests: XCTestCase {
         super.tearDown()
     }
 
-    func testPropertyValue() {
+    func testSingleEncode() {
         let json = """
             {
-                "identifier" : {
+                "propertyValue" : {
                     "@type" : "PropertyValue",
                     "value" : "valueText"
-                }
+                },
+                "url" : "http://www.google.com",
+                "text" : "1234567890"
             }
         """
         
-        guard let data = json.data(using: .utf8) else {
-            XCTFail()
-            return
-        }
-        
-        var identifiable: Identifiable
-        
+        let testable: TestClass
         do {
-            identifiable = try JSONDecoder().decode(Identifiable.self, from: data)
+            testable = try TestClass.make(with: json)
         } catch {
             print(error)
             XCTFail()
             return
         }
         
-        guard let value = identifiable.identifier as? PropertyValue else {
+        guard let propertyValue = testable.propertyValue as? PropertyValue else {
             XCTFail()
             return
         }
         
-        guard let equatable = value.value as? String else {
+        guard let value = propertyValue.value as? String else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(equatable, "valueText")
-    }
-
-    func testURL() {
-        let json = """
-            {
-                "identifier" : "http://www.google.com"
-            }
-        """
+        XCTAssertEqual(value, "valueText")
         
-        guard let data = json.data(using: .utf8) else {
+        guard let url = testable.url as? URL else {
             XCTFail()
             return
         }
         
-        var identifiable: Identifiable
+        XCTAssertEqual(url.host, "www.google.com")
         
-        do {
-            identifiable = try JSONDecoder().decode(Identifiable.self, from: data)
-        } catch {
-            print(error)
+        guard let text = testable.text as? String else {
             XCTFail()
             return
         }
         
-        guard let value = identifiable.identifier as? URL else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(value.host, "www.google.com")
-    }
-    
-    func testString() {
-        let json = """
-            {
-                "identifier" : "1234567890"
-            }
-        """
-        
-        guard let data = json.data(using: .utf8) else {
-            XCTFail()
-            return
-        }
-        
-        var identifiable: Identifiable
-        
-        do {
-            identifiable = try JSONDecoder().decode(Identifiable.self, from: data)
-        } catch {
-            print(error)
-            XCTFail()
-            return
-        }
-        
-        guard let value = identifiable.identifier as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(value, "1234567890")
+        XCTAssertEqual(text, "1234567890")
     }
 }

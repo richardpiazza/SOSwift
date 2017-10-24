@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 
 class AlignmentObjectOrCourseOrTextTests: XCTestCase {
 
-    fileprivate class Testable: Codable {
+    fileprivate class TestClass: Codable, Testable {
         var alignmentObject: AlignmentObjectOrCourseOrText?
         var course: AlignmentObjectOrCourseOrText?
         var text: AlignmentObjectOrCourseOrText?
@@ -17,33 +17,22 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
             case multiple
         }
         
+        init() {
+        }
+        
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            if let value = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .alignmentObject) {
-                self.alignmentObject = value
-            }
-            if let value = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .course) {
-                self.course = value
-            }
-            if let value = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .text) {
-                self.text = value
-            }
-            if let value = try container.decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey: .multiple) {
-                self.multiple = value
-            }
+            self.alignmentObject = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .alignmentObject)
+            self.course = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .course)
+            self.text = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .text)
+            self.multiple = try container.decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey: .multiple)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            if let value = self.alignmentObject as? SOAlignmentObject {
-                try container.encode(value, forKey: .alignmentObject)
-            }
-            if let value = self.course as? SOCourse {
-                try container.encode(value, forKey: .course)
-            }
-            if let value = self.text as? String {
-                try container.encode(value, forKey: .text)
-            }
+            try container.encodeIfPresent(self.alignmentObject, forKey: .alignmentObject)
+            try container.encodeIfPresent(self.course, forKey: .course)
+            try container.encodeIfPresent(self.text, forKey: .text)
             try container.encodeIfPresent(self.multiple, forKey: .multiple)
         }
     }
@@ -83,9 +72,9 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
             return
         }
         
-        let testable: Testable
+        let testable: TestClass
         do {
-            testable = try JSONDecoder().decode(Testable.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             XCTFail()
             return
@@ -126,9 +115,9 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
             return
         }
         
-        let testable: Testable
+        let testable: TestClass
         do {
-            testable = try JSONDecoder().decode(Testable.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             XCTFail()
             return

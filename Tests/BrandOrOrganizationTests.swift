@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 
 class BrandOrOrganizationTests: XCTestCase {
 
-    fileprivate class Testable: Codable {
+    fileprivate class TestClass: Codable, Testable {
         var brand: BrandOrOrganization?
         var organization: BrandOrOrganization?
         var multiple: [BrandOrOrganization]?
@@ -30,18 +30,6 @@ class BrandOrOrganizationTests: XCTestCase {
             try container.encodeIfPresent(self.brand, forKey: .brand)
             try container.encodeIfPresent(self.organization, forKey: .organization)
             try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
-        
-        internal enum Errors: Error {
-            case utf8Encoding
-        }
-        
-        func json() throws -> String {
-            let data = try JSONEncoder().encode(self)
-            guard let json = String(data: data, encoding: .utf8) else {
-                throw Errors.utf8Encoding
-            }
-            return json
         }
     }
     
@@ -74,9 +62,9 @@ class BrandOrOrganizationTests: XCTestCase {
             return
         }
         
-        let testable: Testable
+        let testable: TestClass
         do {
-            testable = try JSONDecoder().decode(Testable.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             XCTFail()
             return
@@ -98,7 +86,7 @@ class BrandOrOrganizationTests: XCTestCase {
     }
     
     func testSingleEncode() {
-        let testable = Testable()
+        let testable = TestClass()
         testable.brand = SOBrand()
         testable.organization = SOOrganization()
         
@@ -135,9 +123,9 @@ class BrandOrOrganizationTests: XCTestCase {
             return
         }
         
-        let testable: Testable
+        let testable: TestClass
         do {
-            testable = try JSONDecoder().decode(Testable.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             XCTFail()
             return
@@ -166,7 +154,7 @@ class BrandOrOrganizationTests: XCTestCase {
     }
     
     func testMultipleEncode() {
-        let testable = Testable()
+        let testable = TestClass()
         let brand = SOBrand()
         brand.name = "A Brand"
         let organization = SOOrganization()

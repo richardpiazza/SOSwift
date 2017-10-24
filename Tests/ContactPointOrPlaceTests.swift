@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 
 class ContactPointOrPlaceTests: XCTestCase {
 
-    fileprivate class Testable: Codable {
+    fileprivate class TestClass: Codable, Testable {
         var contactPoint: ContactPointOrPlace?
         var place: ContactPointOrPlace?
         
@@ -26,19 +26,6 @@ class ContactPointOrPlaceTests: XCTestCase {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.contactPoint, forKey: .contactPoint)
             try container.encodeIfPresent(self.place, forKey: .place)
-        }
-        
-        
-        internal enum Errors: Error {
-            case utf8Encoding
-        }
-        
-        func json() throws -> String {
-            let data = try JSONEncoder().encode(self)
-            guard let json = String(data: data, encoding: .utf8) else {
-                throw Errors.utf8Encoding
-            }
-            return json
         }
     }
     

@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 
 class AreaServedTests: XCTestCase {
     
-    fileprivate class Testable: Codable {
+    fileprivate class TestClass: Codable, Testable {
         var administrativeArea: AreaServed?
         var geoShape: AreaServed?
         var place: AreaServed?
@@ -15,6 +15,9 @@ class AreaServedTests: XCTestCase {
             case geoShape
             case place
             case text
+        }
+        
+        init() {
         }
         
         required init(from decoder: Decoder) throws {
@@ -68,9 +71,9 @@ class AreaServedTests: XCTestCase {
             return
         }
         
-        let testable: Testable
+        let testable: TestClass
         do {
-            testable = try JSONDecoder().decode(Testable.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             XCTFail()
             return

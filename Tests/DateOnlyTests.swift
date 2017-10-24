@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 
 class DateOnlyTests: XCTestCase {
 
-    class DateOnlyContainer: Codable {
+    fileprivate class TestClass: Codable, Testable {
         var date: DateOnly?
         
         private enum CodingKeys: String, CodingKey {
@@ -46,10 +46,10 @@ class DateOnlyTests: XCTestCase {
             return
         }
         
-        var testable: DateOnlyContainer
+        var testable: TestClass
         
         do {
-            testable = try JSONDecoder().decode(DateOnlyContainer.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             print(error)
             XCTFail()
@@ -83,10 +83,10 @@ class DateOnlyTests: XCTestCase {
             return
         }
         
-        var testable: DateOnlyContainer
+        var testable: TestClass
         
         do {
-            testable = try JSONDecoder().decode(DateOnlyContainer.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             print(error)
             XCTFail()
@@ -108,10 +108,10 @@ class DateOnlyTests: XCTestCase {
             return
         }
         
-        var testable: DateOnlyContainer
+        var testable: TestClass
         
         do {
-            testable = try JSONDecoder().decode(DateOnlyContainer.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             print(error)
             XCTFail()
@@ -132,10 +132,10 @@ class DateOnlyTests: XCTestCase {
             return
         }
         
-        var testable: DateOnlyContainer
+        var testable: TestClass
         
         do {
-            testable = try JSONDecoder().decode(DateOnlyContainer.self, from: data)
+            testable = try JSONDecoder().decode(TestClass.self, from: data)
         } catch {
             print(error)
             XCTFail()

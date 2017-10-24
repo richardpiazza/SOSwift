@@ -18,4 +18,12 @@ extension Testable where Self : Codable {
         }
         return json
     }
+    
+    static func make(with json: String) throws -> Self {
+        guard let data = json.data(using: .utf8) else {
+            throw TestErrors.utf8Encoding
+        }
+        
+        return try JSONDecoder().decode(self, from: data)
+    }
 }
