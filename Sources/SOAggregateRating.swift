@@ -23,15 +23,9 @@ public class SOAggregateRating: SORating, AggregateRating {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .itemReviewed) {
-            self.itemReviewed = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .ratingCount) {
-            self.ratingCount = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .reviewCount) {
-            self.reviewCount = value
-        }
+        self.itemReviewed = try container.decodeIfPresent(SOThing.self, forKey: .itemReviewed)
+        self.ratingCount = try container.decodeIfPresent(Int.self, forKey: .ratingCount)
+        self.reviewCount = try container.decodeIfPresent(Int.self, forKey: .reviewCount)
         
         try super.init(from: decoder)
     }
@@ -39,15 +33,9 @@ public class SOAggregateRating: SORating, AggregateRating {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.itemReviewed as? SOThing {
-            try container.encode(value, forKey: .itemReviewed)
-        }
-        if let value = self.ratingCount {
-            try container.encode(value, forKey: .ratingCount)
-        }
-        if let value = self.reviewCount {
-            try container.encode(value, forKey: .reviewCount)
-        }
+        try container.encodeIfPresent(self.itemReviewed, forKey: .itemReviewed)
+        try container.encodeIfPresent(self.ratingCount, forKey: .ratingCount)
+        try container.encodeIfPresent(self.reviewCount, forKey: .reviewCount)
         
         try super.encode(to: encoder)
     }

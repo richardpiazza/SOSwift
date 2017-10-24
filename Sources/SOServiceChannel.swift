@@ -39,30 +39,14 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeLanguageOrTextIfPresent(forKey: .availableLanguage) {
-            self.availableLanguage = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .processingTime) {
-            self.processingTime = value
-        }
-        if let value = try container.decodeIfPresent(SOService.self, forKey: .providesService) {
-            self.providesService = value
-        }
-        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .serviceLocation) {
-            self.serviceLocation = value
-        }
-        if let value = try container.decodeIfPresent(SOContactPoint.self, forKey: .servicePhone) {
-            self.servicePhone = value
-        }
-        if let value = try container.decodeIfPresent(SOPostalAddress.self, forKey: .servicePostalAddress) {
-            self.servicePostalAddress = value
-        }
-        if let value = try container.decodeIfPresent(SOContactPoint.self, forKey: .serviceSmsNumber) {
-            self.serviceSmsNumber = value
-        }
-        if let value = try container.decodeIfPresent(URL.self, forKey: .serviceUrl) {
-            self.serviceUrl = value
-        }
+        self.availableLanguage = try container.decodeLanguageOrTextIfPresent(forKey: .availableLanguage)
+        self.processingTime = try container.decodeIfPresent(String.self, forKey: .processingTime)
+        self.providesService = try container.decodeIfPresent(SOService.self, forKey: .providesService)
+        self.serviceLocation = try container.decodeIfPresent(SOPlace.self, forKey: .serviceLocation)
+        self.servicePhone = try container.decodeIfPresent(SOContactPoint.self, forKey: .servicePhone)
+        self.servicePostalAddress = try container.decodeIfPresent(SOPostalAddress.self, forKey: .servicePostalAddress)
+        self.serviceSmsNumber = try container.decodeIfPresent(SOContactPoint.self, forKey: .serviceSmsNumber)
+        self.serviceUrl = try container.decodeIfPresent(URL.self, forKey: .serviceUrl)
         
         try super.init(from: decoder)
     }
@@ -71,28 +55,22 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.availableLanguage, forKey: .availableLanguage)
-        if let value = self.processingTime as? String {
-            try container.encode(value, forKey: .processingTime)
-        }
-        if let value = self.providesService as? SOService {
-            try container.encode(value, forKey: .providesService)
-        }
-        if let value = self.serviceLocation as? SOPlace {
-            try container.encode(value, forKey: .serviceLocation)
-        }
-        if let value = self.servicePhone as? SOContactPoint {
-            try container.encode(value, forKey: .servicePhone)
-        }
-        if let value = self.servicePostalAddress as? SOPostalAddress {
-            try container.encode(value, forKey: .servicePostalAddress)
-        }
-        if let value = self.serviceSmsNumber as? SOContactPoint {
-            try container.encode(value, forKey: .serviceSmsNumber)
-        }
-        if let value = self.serviceUrl {
-            try container.encode(value, forKey: .serviceUrl)
-        }
+        try container.encodeIfPresent(self.processingTime, forKey: .processingTime)
+        try container.encodeIfPresent(self.providesService, forKey: .providesService)
+        try container.encodeIfPresent(self.serviceLocation, forKey: .serviceLocation)
+        try container.encodeIfPresent(self.servicePhone, forKey: .servicePhone)
+        try container.encodeIfPresent(self.servicePostalAddress, forKey: .servicePostalAddress)
+        try container.encodeIfPresent(self.serviceSmsNumber, forKey: .serviceSmsNumber)
+        try container.encodeIfPresent(self.serviceUrl, forKey: .serviceUrl)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: ServiceChannel?, forKey key: K) throws {
+        if let typedValue = value as? SOServiceChannel {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

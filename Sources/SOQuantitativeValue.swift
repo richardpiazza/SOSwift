@@ -39,27 +39,13 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty) {
-            self.additionalProperty = value
-        }
-        if let value = try container.decodeNumberIfPresent(forKey: .maxValue) {
-            self.maxValue = value
-        }
-        if let value = try container.decodeNumberIfPresent(forKey: .minValue) {
-            self.minValue = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .unitCode) {
-            self.unitCode = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .unitText) {
-            self.unitText = value
-        }
-        if let value = try container.decodeValueIfPresent(forKey: .value) {
-            self.value = value
-        }
-        if let value = try container.decodeValueReferenceIfPresent(forKey: .valueReference) {
-            self.valueReference = value
-        }
+        self.additionalProperty = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty)
+        self.maxValue = try container.decodeNumberIfPresent(forKey: .maxValue)
+        self.minValue = try container.decodeNumberIfPresent(forKey: .minValue)
+        self.unitCode = try container.decodeTextOrURLIfPresent(forKey: .unitCode)
+        self.unitText = try container.decodeIfPresent(String.self, forKey: .unitText)
+        self.value = try container.decodeValueIfPresent(forKey: .value)
+        self.valueReference = try container.decodeValueReferenceIfPresent(forKey: .valueReference)
         
         try super.init(from: decoder)
     }
@@ -67,18 +53,22 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.additionalProperty as? SOPropertyValue {
-            try container.encode(value, forKey: .additionalProperty)
-        }
+        try container.encodeIfPresent(self.additionalProperty, forKey: .additionalProperty)
         try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
         try container.encodeIfPresent(self.minValue, forKey: .minValue)
         try container.encodeIfPresent(self.unitCode, forKey: .unitCode)
-        if let value = self.unitText {
-            try container.encode(value, forKey: .unitText)
-        }
+        try container.encodeIfPresent(self.unitText, forKey: .unitText)
         try container.encodeIfPresent(self.value, forKey: .value)
         try container.encodeIfPresent(self.valueReference, forKey: .valueReference)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: QuantitativeValue?, forKey key: K) throws {
+        if let typedValue = value as? SOQuantitativeValue {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

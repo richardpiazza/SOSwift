@@ -26,15 +26,9 @@ public class SOItemList: SOIntangible, ItemList {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeListItemOrTextOrThingIfPresent(forKey: .itemListElement) {
-            self.itemListElement = value
-        }
-        if let value = try container.decodeItemListOrderOrTextIfPresent(forKey: .itemListOrder) {
-            self.itemListOrder = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .numberOfItems) {
-            self.numberOfItems = value
-        }
+        self.itemListElement = try container.decodeListItemOrTextOrThingIfPresent(forKey: .itemListElement)
+        self.itemListOrder = try container.decodeItemListOrderOrTextIfPresent(forKey: .itemListOrder)
+        self.numberOfItems = try container.decodeIfPresent(Int.self, forKey: .numberOfItems)
         
         try super.init(from: decoder)
     }
@@ -44,10 +38,16 @@ public class SOItemList: SOIntangible, ItemList {
         
         try container.encodeIfPresent(self.itemListElement, forKey: .itemListElement)
         try container.encodeIfPresent(self.itemListOrder, forKey: .itemListOrder)
-        if let value = self.numberOfItems {
-            try container.encode(value, forKey: .numberOfItems)
-        }
+        try container.encodeIfPresent(self.numberOfItems, forKey: .numberOfItems)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: ItemList?, forKey key: K) throws {
+        if let typedValue = value as? SOItemList {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

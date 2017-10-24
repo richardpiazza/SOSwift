@@ -81,69 +81,27 @@ public class SOPlace: SOThing, Place {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty) {
-            self.additionalProperty = value
-        }
-        if let value = try container.decodePostalAddressOrTextIfPresent(forKey: .address) {
-            self.address = value
-        }
-        if let value = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating) {
-            self.aggregateRating = value
-        }
-        if let value = try container.decodeIfPresent(SOLocationFeatureSpecification.self, forKey: .amenityFeature) {
-            self.amenityFeature = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .branchCode) {
-            self.branchCode = value
-        }
-        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .containedInPlace) {
-            self.containedInPlace = value
-        }
-        if let value = try container.decodeIfPresent([SOPlace].self, forKey: .containsPlace) {
-            self.containsPlace = value
-        }
-        if let value = try container.decodeIfPresent([SOEvent].self, forKey: .event) {
-            self.event = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .faxNumber) {
-            self.faxNumber = value
-        }
-        if let value = try container.decodeGeoCoordinatesOrGeoShapeIfPresent(forKey: .geo) {
-            self.geo = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber) {
-            self.globalLocationNumber = value
-        }
-        if let value = try container.decodeMapOrURLIfPresent(forKey: .hasMap) {
-            self.hasMap = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .isicV4) {
-            self.isicV4 = value
-        }
-        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .logo) {
-            self.logo = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .maximumAttendeeCapacity) {
-            self.maximumAttendeeCapacity = value
-        }
-        if let value = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .openingHoursSpecification) {
-            self.openingHoursSpecification = value
-        }
-        if let value = try container.decodeImageObjectsOrPhotographsIfPresent(forKey: .photo) {
-            self.photo = value
-        }
-        if let value = try container.decodeIfPresent([SOReview].self, forKey: .review) {
-            self.review = value
-        }
-        if let value = try container.decodeIfPresent(Bool.self, forKey: .smokingAllowed) {
-            self.smokingAllowed = value
-        }
-        if let value = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .specialOpeningHoursSpecification) {
-            self.specialOpeningHoursSpecification = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .telephone) {
-            self.telephone = value
-        }
+        self.additionalProperty = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty)
+        self.address = try container.decodePostalAddressOrTextIfPresent(forKey: .address)
+        self.aggregateRating = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating)
+        self.amenityFeature = try container.decodeIfPresent(SOLocationFeatureSpecification.self, forKey: .amenityFeature)
+        self.branchCode = try container.decodeIfPresent(String.self, forKey: .branchCode)
+        self.containedInPlace = try container.decodeIfPresent(SOPlace.self, forKey: .containedInPlace)
+        self.containsPlace = try container.decodeIfPresent([SOPlace].self, forKey: .containsPlace)
+        self.event = try container.decodeIfPresent([SOEvent].self, forKey: .event)
+        self.faxNumber = try container.decodeIfPresent(String.self, forKey: .faxNumber)
+        self.geo = try container.decodeGeoCoordinatesOrGeoShapeIfPresent(forKey: .geo)
+        self.globalLocationNumber = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber)
+        self.hasMap = try container.decodeMapOrURLIfPresent(forKey: .hasMap)
+        self.isicV4 = try container.decodeIfPresent(String.self, forKey: .isicV4)
+        self.logo = try container.decodeImageObjectOrURLIfPresent(forKey: .logo)
+        self.maximumAttendeeCapacity = try container.decodeIfPresent(Int.self, forKey: .maximumAttendeeCapacity)
+        self.openingHoursSpecification = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .openingHoursSpecification)
+        self.photo = try container.decodeImageObjectsOrPhotographsIfPresent(forKey: .photo)
+        self.review = try container.decodeIfPresent([SOReview].self, forKey: .review)
+        self.smokingAllowed = try container.decodeIfPresent(Bool.self, forKey: .smokingAllowed)
+        self.specialOpeningHoursSpecification = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .specialOpeningHoursSpecification)
+        self.telephone = try container.decodeIfPresent(String.self, forKey: .telephone)
         
         try super.init(from: decoder)
     }
@@ -151,60 +109,42 @@ public class SOPlace: SOThing, Place {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.additionalProperty as? SOPropertyValue {
-            try container.encode(value, forKey: .additionalProperty)
-        }
+        try container.encodeIfPresent(self.additionalProperty, forKey: .additionalProperty)
         try container.encodeIfPresent(self.address, forKey: .address)
-        if let value = self.aggregateRating as? SOAggregateRating {
-            try container.encode(value, forKey: .aggregateRating)
-        }
-        if let value = self.amenityFeature as? SOLocationFeatureSpecification {
-            try container.encode(value, forKey: .amenityFeature)
-        }
-        if let value = self.branchCode {
-            try container.encode(value, forKey: .branchCode)
-        }
-        if let value = self.containedInPlace as? SOPlace {
-            try container.encode(value, forKey: .containedInPlace)
-        }
-        if let value = self.containsPlace as? [SOPlace] {
-            try container.encode(value, forKey: .containsPlace)
-        }
-        if let value = self.event as? [SOEvent] {
-            try container.encode(value, forKey: .event)
-        }
-        if let value = self.faxNumber {
-            try container.encode(value, forKey: .faxNumber)
-        }
+        try container.encodeIfPresent(self.aggregateRating, forKey: .aggregateRating)
+        try container.encodeIfPresent(self.amenityFeature, forKey: .amenityFeature)
+        try container.encodeIfPresent(self.branchCode, forKey: .branchCode)
+        try container.encodeIfPresent(self.containedInPlace, forKey: .containedInPlace)
+        try container.encodeIfPresent(self.containsPlace, forKey: .containsPlace)
+        try container.encodeIfPresent(self.event, forKey: .event)
+        try container.encodeIfPresent(self.faxNumber, forKey: .faxNumber)
         try container.encodeIfPresent(self.geo, forKey: .geo)
-        if let value = self.globalLocationNumber {
-            try container.encode(value, forKey: .globalLocationNumber)
-        }
+        try container.encodeIfPresent(self.globalLocationNumber, forKey: .globalLocationNumber)
         try container.encodeIfPresent(self.hasMap, forKey: .hasMap)
-        if let value = self.isicV4 {
-            try container.encode(value, forKey: .isicV4)
-        }
+        try container.encodeIfPresent(self.isicV4, forKey: .isicV4)
         try container.encodeIfPresent(self.logo, forKey: .logo)
-        if let value = self.maximumAttendeeCapacity {
-            try container.encode(value, forKey: .maximumAttendeeCapacity)
-        }
-        if let value = self.openingHoursSpecification as? [SOOpeningHoursSpecification] {
-            try container.encode(value, forKey: .openingHoursSpecification)
-        }
+        try container.encodeIfPresent(self.maximumAttendeeCapacity, forKey: .maximumAttendeeCapacity)
+        try container.encodeIfPresent(self.openingHoursSpecification, forKey: .openingHoursSpecification)
         try container.encodeIfPresent(self.photo, forKey: .photo)
-        if let value = self.review as? [SOReview] {
-            try container.encode(value, forKey: .review)
-        }
-        if let value = self.smokingAllowed {
-            try container.encode(value, forKey: .smokingAllowed)
-        }
-        if let value = self.specialOpeningHoursSpecification as? [SOOpeningHoursSpecification] {
-            try container.encode(value, forKey: .specialOpeningHoursSpecification)
-        }
-        if let value = self.telephone {
-            try container.encode(value, forKey: .telephone)
-        }
+        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.smokingAllowed, forKey: .smokingAllowed)
+        try container.encodeIfPresent(self.specialOpeningHoursSpecification, forKey: .specialOpeningHoursSpecification)
+        try container.encodeIfPresent(self.telephone, forKey: .telephone)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Place?, forKey key: K) throws {
+        if let typedValue = value as? SOPlace {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+    
+    public mutating func encodeIfPresent(_ value: [Place]?, forKey key: K) throws {
+        if let typedValue = value as? [SOPlace] {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

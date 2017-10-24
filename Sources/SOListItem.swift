@@ -26,18 +26,10 @@ public class SOListItem: SOIntangible, ListItem {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .item) {
-            self.item = value
-        }
-        if let value = try container.decodeIfPresent(SOListItem.self, forKey: .nextItem) {
-            self.nextItem = value
-        }
-        if let value = try container.decodeIntegerOrTextIfPresent(forKey: .position) {
-            self.position = value
-        }
-        if let value = try container.decodeIfPresent(SOListItem.self, forKey: .previousItem) {
-            self.previousItem = value
-        }
+        self.item = try container.decodeIfPresent(SOThing.self, forKey: .item)
+        self.nextItem = try container.decodeIfPresent(SOListItem.self, forKey: .nextItem)
+        self.position = try container.decodeIntegerOrTextIfPresent(forKey: .position)
+        self.previousItem = try container.decodeIfPresent(SOListItem.self, forKey: .previousItem)
         
         try super.init(from: decoder)
     }
@@ -45,17 +37,19 @@ public class SOListItem: SOIntangible, ListItem {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.item as? SOThing {
-            try container.encode(value, forKey: .item)
-        }
-        if let value = self.nextItem as? SOListItem {
-            try container.encode(value, forKey: .nextItem)
-        }
+        try container.encodeIfPresent(self.item, forKey: .item)
+        try container.encodeIfPresent(self.nextItem, forKey: .nextItem)
         try container.encodeIfPresent(self.position, forKey: .position)
-        if let value = self.previousItem as? SOListItem {
-            try container.encode(value, forKey: .previousItem)
-        }
+        try container.encodeIfPresent(self.previousItem, forKey: .previousItem)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: ListItem?, forKey key: K) throws {
+        if let typedValue = value as? SOListItem {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

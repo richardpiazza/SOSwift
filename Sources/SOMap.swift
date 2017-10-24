@@ -28,10 +28,16 @@ public class SOMap: SOCreativeWork, Map {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.mapType {
-            try container.encode(value.rawValue, forKey: .mapType)
-        }
+        try container.encodeIfPresent(self.mapType?.rawValue, forKey: .mapType)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Map?, forKey key: K) throws {
+        if let typedValue = value as? SOMap {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

@@ -23,15 +23,9 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeSoftwareApplicationOrWebsiteIfPresent(forKey: .interactionService) {
-            self.interactionService = value
-        }
-        if let value = try container.decodeIfPresent(SOAction.self, forKey: .interactionType) {
-            self.interactionType = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .userInteractionCount) {
-            self.userInteractionCount = value
-        }
+        self.interactionService = try container.decodeSoftwareApplicationOrWebsiteIfPresent(forKey: .interactionService)
+        self.interactionType = try container.decodeIfPresent(SOAction.self, forKey: .interactionType)
+        self.userInteractionCount = try container.decodeIfPresent(Int.self, forKey: .userInteractionCount)
         
         try super.init(from: decoder)
     }
@@ -40,13 +34,17 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.interactionService, forKey: .interactionService)
-        if let value = self.interactionType as? SOAction {
-            try container.encode(value, forKey: .interactionType)
-        }
-        if let value = self.userInteractionCount {
-            try container.encode(value, forKey: .userInteractionCount)
-        }
+        try container.encodeIfPresent(self.interactionType, forKey: .interactionType)
+        try container.encodeIfPresent(self.userInteractionCount, forKey: .userInteractionCount)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: InteractionCounter?, forKey key: K) throws {
+        if let typedValue = value as? SOInteractionCounter {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

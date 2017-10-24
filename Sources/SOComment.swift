@@ -25,15 +25,9 @@ public class SOComment: SOCreativeWork, Comment {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(Int.self, forKey: .downvoteCount) {
-            self.downvoteCount = value
-        }
-        if let value = try container.decodeIfPresent(SOQuestion.self, forKey: .parentItem) {
-            self.parentItem = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .upvoteCount) {
-            self.upvoteCount = value
-        }
+        self.downvoteCount = try container.decodeIfPresent(Int.self, forKey: .downvoteCount)
+        self.parentItem = try container.decodeIfPresent(SOQuestion.self, forKey: .parentItem)
+        self.upvoteCount = try container.decodeIfPresent(Int.self, forKey: .upvoteCount)
         
         try super.init(from: decoder)
     }
@@ -41,16 +35,18 @@ public class SOComment: SOCreativeWork, Comment {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.downvoteCount {
-            try container.encode(value, forKey: .downvoteCount)
-        }
-        if let value = self.parentItem as? SOQuestion {
-            try container.encode(value, forKey: .parentItem)
-        }
-        if let value = self.upvoteCount {
-            try container.encode(value, forKey: .upvoteCount)
-        }
+        try container.encodeIfPresent(self.downvoteCount, forKey: .downvoteCount)
+        try container.encodeIfPresent(self.parentItem, forKey: .parentItem)
+        try container.encodeIfPresent(self.upvoteCount, forKey: .upvoteCount)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Comment?, forKey key: K) throws {
+        if let typedValue = value as? SOComment {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

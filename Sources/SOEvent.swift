@@ -113,96 +113,40 @@ public class SOEvent: SOThing, Event {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .about) {
-            self.about = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .actor) {
-            self.actor = value
-        }
-        if let value = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating) {
-            self.aggregateRating = value
-        }
-        if let value = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .attendee) {
-            self.attendee = value
-        }
-        if let value = try container.decodeIfPresent(SOAudience.self, forKey: .audience) {
-            self.audience = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .composer) {
-            self.composer = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .contributor) {
-            self.contributor = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .director) {
-            self.director = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .doorTime) {
-            self.doorTime = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .duration) {
-            self.duration = value
-        }
+        self.about = try container.decodeIfPresent(SOThing.self, forKey: .about)
+        self.actor = try container.decodeIfPresent([SOPerson].self, forKey: .actor)
+        self.aggregateRating = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating)
+        self.attendee = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .attendee)
+        self.audience = try container.decodeIfPresent(SOAudience.self, forKey: .audience)
+        self.composer = try container.decodeOrganizationOrPersonIfPresent(forKey: .composer)
+        self.contributor = try container.decodeOrganizationOrPersonIfPresent(forKey: .contributor)
+        self.director = try container.decodeIfPresent([SOPerson].self, forKey: .director)
+        self.doorTime = try container.decodeDateTimeIfPresent(forKey: .doorTime)
+        self.duration = try container.decodeIfPresent(String.self, forKey: .duration)
         self.endDate = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .endDate)
         if let value = try container.decodeIfPresent(String.self, forKey: .eventStatus) {
             self.eventStatus = EventStatus(rawValue: value)
         }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .funder) {
-            self.funder = value
-        }
-        if let value = try container.decodeLanguageOrTextIfPresent(forKey: .inLanguage) {
-            self.inLanguage = value
-        }
-        if let value = try container.decodeIfPresent(Bool.self, forKey: .isAccessibleForFree) {
-            self.isAccessibleForFree = value
-        }
-        if let value = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .location) {
-            self.location = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .maximumAttendeeCapacity) {
-            self.maximumAttendeeCapacity = value
-        }
-        if let value = try container.decodeIfPresent([SOOffer].self, forKey: .offers) {
-            self.offers = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .organizer) {
-            self.organizer = value
-        }
-        if let value = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .performer) {
-            self.performer = value
-        }
+        self.funder = try container.decodeOrganizationOrPersonIfPresent(forKey: .funder)
+        self.inLanguage = try container.decodeLanguageOrTextIfPresent(forKey: .inLanguage)
+        self.isAccessibleForFree = try container.decodeIfPresent(Bool.self, forKey: .isAccessibleForFree)
+        self.location = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .location)
+        self.maximumAttendeeCapacity = try container.decodeIfPresent(Int.self, forKey: .maximumAttendeeCapacity)
+        self.offers = try container.decodeIfPresent([SOOffer].self, forKey: .offers)
+        self.organizer = try container.decodeOrganizationOrPersonIfPresent(forKey: .organizer)
+        self.performer = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .performer)
         self.previousStartDate = try container.decodeDateOnlyIfPresent(forKey: .previousStartDate)
-        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .recordedIn) {
-            self.recordedIn = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .remainingAttendeeCapacity) {
-            self.remainingAttendeeCapacity = value
-        }
-        if let value = try container.decodeIfPresent([SOReview].self, forKey: .review) {
-            self.review = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor) {
-            self.sponsor = value
-        }
+        self.recordedIn = try container.decodeIfPresent(SOCreativeWork.self, forKey: .recordedIn)
+        self.remainingAttendeeCapacity = try container.decodeIfPresent(Int.self, forKey: .remainingAttendeeCapacity)
+        self.review = try container.decodeIfPresent([SOReview].self, forKey: .review)
+        self.sponsor = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor)
         self.startDate = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .startDate)
-        if let value = try container.decodeIfPresent([SOEvent].self, forKey: .subEvent) {
-            self.subEvent = value
-        }
-        if let value = try container.decodeIfPresent(SOEvent.self, forKey: .superEvent) {
-            self.superEvent = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .translator) {
-            self.translator = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .typicalAgeRange) {
-            self.typicalAgeRange = value
-        }
-        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .workFeatured) {
-            self.workFeatured = value
-        }
-        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .workPerformed) {
-            self.workPerformed = value
-        }
+        self.subEvent = try container.decodeIfPresent([SOEvent].self, forKey: .subEvent)
+        self.superEvent = try container.decodeIfPresent(SOEvent.self, forKey: .superEvent)
+        self.translator = try container.decodeOrganizationOrPersonIfPresent(forKey: .translator)
+        self.typicalAgeRange = try container.decodeIfPresent(String.self, forKey: .typicalAgeRange)
+        self.workFeatured = try container.decodeIfPresent(SOCreativeWork.self, forKey: .workFeatured)
+        self.workPerformed = try container.decodeIfPresent(SOCreativeWork.self, forKey: .workPerformed)
         
         try super.init(from: decoder)
     }
@@ -210,75 +154,53 @@ public class SOEvent: SOThing, Event {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.about as? SOThing {
-            try container.encode(value, forKey: .about)
-        }
-        if let value = self.actor as? [SOPerson] {
-            try container.encode(value, forKey: .actor)
-        }
-        if let value = self.aggregateRating as? SOAggregateRating {
-            try container.encode(value, forKey: .aggregateRating)
-        }
+        try container.encodeIfPresent(self.about, forKey: .about)
+        try container.encodeIfPresent(self.actor, forKey: .actor)
+        try container.encodeIfPresent(self.aggregateRating, forKey: .aggregateRating)
         try container.encodeIfPresent(self.attendee, forKey: .attendee)
-        if let value = self.audience as? SOAudience {
-            try container.encode(value, forKey: .audience)
-        }
+        try container.encodeIfPresent(self.audience, forKey: .audience)
         try container.encodeIfPresent(self.composer, forKey: .composer)
         try container.encodeIfPresent(self.contributor, forKey: .contributor)
-        if let value = self.director as? [SOPerson] {
-            try container.encode(value, forKey: .director)
-        }
+        try container.encodeIfPresent(self.director, forKey: .director)
         try container.encodeIfPresent(self.doorTime, forKey: .doorTime)
-        if let value = self.duration as? String {
-            try container.encode(value, forKey: .duration)
-        }
+        try container.encodeIfPresent(self.duration, forKey: .duration)
         try container.encodeIfPresent(self.endDate, forKey: .endDate)
-        if let value = self.eventStatus {
-            try container.encode(value.rawValue, forKey: .eventStatus)
-        }
+        try container.encodeIfPresent(self.eventStatus?.rawValue, forKey: .eventStatus)
         try container.encodeIfPresent(self.funder, forKey: .funder)
         try container.encodeIfPresent(self.inLanguage, forKey: .inLanguage)
-        if let value = self.isAccessibleForFree {
-            try container.encode(value, forKey: .isAccessibleForFree)
-        }
+        try container.encodeIfPresent(self.isAccessibleForFree, forKey: .isAccessibleForFree)
         try container.encodeIfPresent(self.location, forKey: .location)
-        if let value = self.maximumAttendeeCapacity {
-            try container.encode(value, forKey: .maximumAttendeeCapacity)
-        }
-        if let value = self.offers as? [SOOffer] {
-            try container.encode(value, forKey: .offers)
-        }
+        try container.encodeIfPresent(self.maximumAttendeeCapacity, forKey: .maximumAttendeeCapacity)
+        try container.encodeIfPresent(self.offers, forKey: .offers)
         try container.encodeIfPresent(self.organizer, forKey: .organizer)
         try container.encodeIfPresent(self.performer, forKey: .performer)
         try container.encodeIfPresent(self.previousStartDate, forKey: .previousStartDate)
-        if let value = self.recordedIn as? SOCreativeWork {
-            try container.encode(value, forKey: .recordedIn)
-        }
-        if let value = self.remainingAttendeeCapacity {
-            try container.encode(value, forKey: .remainingAttendeeCapacity)
-        }
-        if let value = self.review as? [SOReview] {
-            try container.encode(value, forKey: .review)
-        }
+        try container.encodeIfPresent(self.recordedIn, forKey: .recordedIn)
+        try container.encodeIfPresent(self.remainingAttendeeCapacity, forKey: .remainingAttendeeCapacity)
+        try container.encodeIfPresent(self.review, forKey: .review)
         try container.encodeIfPresent(self.sponsor, forKey: .sponsor)
         try container.encodeIfPresent(self.startDate, forKey: .startDate)
-        if let value = self.subEvent as? [SOEvent] {
-            try container.encode(value, forKey: .subEvent)
-        }
-        if let value = self.superEvent as? SOEvent {
-            try container.encode(value, forKey: .superEvent)
-        }
+        try container.encodeIfPresent(self.subEvent, forKey: .subEvent)
+        try container.encodeIfPresent(self.superEvent, forKey: .superEvent)
         try container.encodeIfPresent(self.translator, forKey: .translator)
-        if let value = self.typicalAgeRange {
-            try container.encode(value, forKey: .typicalAgeRange)
-        }
-        if let value = self.workFeatured as? SOCreativeWork {
-            try container.encode(value, forKey: .workFeatured)
-        }
-        if let value = self.workPerformed as? SOCreativeWork {
-            try container.encode(value, forKey: .workPerformed)
-        }
+        try container.encodeIfPresent(self.typicalAgeRange, forKey: .typicalAgeRange)
+        try container.encodeIfPresent(self.workFeatured, forKey: .workFeatured)
+        try container.encodeIfPresent(self.workPerformed, forKey: .workPerformed)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Event?, forKey key: K) throws {
+        if let typedValue = value as? SOEvent {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+    
+    public mutating func encodeIfPresent(_ value: [Event]?, forKey key: K) throws {
+        if let typedValue = value as? [SOEvent] {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

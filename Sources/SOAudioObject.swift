@@ -18,9 +18,7 @@ public class SOAudioObject: SOMediaObject, AudioObject {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .transcript) {
-            self.transcript = value
-        }
+        self.transcript = try container.decodeIfPresent(String.self, forKey: .transcript)
         
         try super.init(from: decoder)
     }
@@ -28,10 +26,16 @@ public class SOAudioObject: SOMediaObject, AudioObject {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.transcript {
-            try container.encode(value, forKey: .transcript)
-        }
+        try container.encodeIfPresent(self.transcript, forKey: .transcript)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: AudioObject?, forKey key: K) throws {
+        if let typedValue = value as? SOAudioObject {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

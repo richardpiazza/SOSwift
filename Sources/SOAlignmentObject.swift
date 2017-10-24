@@ -29,21 +29,11 @@ public class SOAlignmentObject: SOIntangible, AlignmentObject {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .alignmentType) {
-            self.alignmentType = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .educationalFramework) {
-            self.educationalFramework = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .targetDescription) {
-            self.targetDescription = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .targetName) {
-            self.targetName = value
-        }
-        if let value = try container.decodeIfPresent(URL.self, forKey: .targetUrl) {
-            self.targetUrl = value
-        }
+        self.alignmentType = try container.decodeIfPresent(String.self, forKey: .alignmentType)
+        self.educationalFramework = try container.decodeIfPresent(String.self, forKey: .educationalFramework)
+        self.targetDescription = try container.decodeIfPresent(String.self, forKey: .targetDescription)
+        self.targetName = try container.decodeIfPresent(String.self, forKey: .targetName)
+        self.targetUrl = try container.decodeIfPresent(URL.self, forKey: .targetUrl)
         
         try super.init(from: decoder)
     }
@@ -51,22 +41,20 @@ public class SOAlignmentObject: SOIntangible, AlignmentObject {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.alignmentType {
-            try container.encode(value, forKey: .alignmentType)
-        }
-        if let value = self.educationalFramework {
-            try container.encode(value, forKey: .educationalFramework)
-        }
-        if let value = self.targetDescription {
-            try container.encode(value, forKey: .targetDescription)
-        }
-        if let value = self.targetName {
-            try container.encode(value, forKey: .targetName)
-        }
-        if let value = self.targetUrl {
-            try container.encode(value, forKey: .targetUrl)
-        }
+        try container.encodeIfPresent(self.alignmentType, forKey: .alignmentType)
+        try container.encodeIfPresent(self.educationalFramework, forKey: .educationalFramework)
+        try container.encodeIfPresent(self.targetDescription, forKey: .targetDescription)
+        try container.encodeIfPresent(self.targetName, forKey: .targetName)
+        try container.encodeIfPresent(self.targetUrl, forKey: .targetUrl)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: AlignmentObject?, forKey key: K) throws {
+        if let typedValue = value as? SOAlignmentObject {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

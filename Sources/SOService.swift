@@ -72,63 +72,25 @@ public class SOService: SOIntangible, Service {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating) {
-            self.aggregateRating = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .areaServed) {
-            self.areaServed = value
-        }
-        if let value = try container.decodeIfPresent(SOAudience.self, forKey: .audience) {
-            self.audience = value
-        }
-        if let value = try container.decodeIfPresent(SOServiceChannel.self, forKey: .availableChannel) {
-            self.availableChannel = value
-        }
-        if let value = try container.decodeIfPresent([String].self, forKey: .award) {
-            self.award = value
-        }
-        if let value = try container.decodeBrandsOrOrganizationsIfPresent(forKey: .brand) {
-            self.brand = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .broker) {
-            self.broker = value
-        }
-        if let value = try container.decodeTextOrThingIfPresent(forKey: .category) {
-            self.category = value
-        }
-        if let value = try container.decodeIfPresent(SOOfferCatalog.self, forKey: .hasOfferCatalog) {
-            self.hasOfferCatalog = value
-        }
-        if let value = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .hoursAvailable) {
-            self.hoursAvailable = value
-        }
-        if let value = try container.decodeProductsOrServicesIfPresent(forKey: .isRelatedTo) {
-            self.isRelatedTo = value
-        }
-        if let value = try container.decodeProductsOrServicesIfPresent(forKey: .isSimilarTo) {
-            self.isSimilarTo = value
-        }
-        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .logo) {
-            self.logo = value
-        }
-        if let value = try container.decodeIfPresent([SOOffer].self, forKey: .offers) {
-            self.offers = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .provider) {
-            self.provider = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .providerMobility) {
-            self.providerMobility = value
-        }
-        if let value = try container.decodeIfPresent([SOReview].self, forKey: .review) {
-            self.review = value
-        }
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .serviceOutput) {
-            self.serviceOutput = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .serviceType) {
-            self.serviceType = value
-        }
+        self.aggregateRating = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating)
+        self.areaServed = try container.decodeIfPresent(String.self, forKey: .areaServed)
+        self.audience = try container.decodeIfPresent(SOAudience.self, forKey: .audience)
+        self.availableChannel = try container.decodeIfPresent(SOServiceChannel.self, forKey: .availableChannel)
+        self.award = try container.decodeIfPresent([String].self, forKey: .award)
+        self.brand = try container.decodeBrandsOrOrganizationsIfPresent(forKey: .brand)
+        self.broker = try container.decodeOrganizationOrPersonIfPresent(forKey: .broker)
+        self.category = try container.decodeTextOrThingIfPresent(forKey: .category)
+        self.hasOfferCatalog = try container.decodeIfPresent(SOOfferCatalog.self, forKey: .hasOfferCatalog)
+        self.hoursAvailable = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .hoursAvailable)
+        self.isRelatedTo = try container.decodeProductsOrServicesIfPresent(forKey: .isRelatedTo)
+        self.isSimilarTo = try container.decodeProductsOrServicesIfPresent(forKey: .isSimilarTo)
+        self.logo = try container.decodeImageObjectOrURLIfPresent(forKey: .logo)
+        self.offers = try container.decodeIfPresent([SOOffer].self, forKey: .offers)
+        self.provider = try container.decodeOrganizationOrPersonIfPresent(forKey: .provider)
+        self.providerMobility = try container.decodeIfPresent(String.self, forKey: .providerMobility)
+        self.review = try container.decodeIfPresent([SOReview].self, forKey: .review)
+        self.serviceOutput = try container.decodeIfPresent(SOThing.self, forKey: .serviceOutput)
+        self.serviceType = try container.decodeIfPresent(String.self, forKey: .serviceType)
         
         try super.init(from: decoder)
     }
@@ -136,50 +98,34 @@ public class SOService: SOIntangible, Service {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.aggregateRating as? SOAggregateRating {
-            try container.encode(value, forKey: .aggregateRating)
-        }
-        if let value = self.areaServed as? String {
-            try container.encode(value, forKey: .areaServed)
-        }
-        if let value = self.audience as? SOAudience {
-            try container.encode(value, forKey: .audience)
-        }
-        if let value = self.availableChannel as? SOServiceChannel {
-            try container.encode(value, forKey: .availableChannel)
-        }
-        if let value = self.award {
-            try container.encode(value, forKey: .award)
-        }
+        try container.encodeIfPresent(self.aggregateRating, forKey: .aggregateRating)
+        try container.encodeIfPresent(self.areaServed, forKey: .areaServed)
+        try container.encodeIfPresent(self.audience, forKey: .audience)
+        try container.encodeIfPresent(self.availableChannel, forKey: .availableChannel)
+        try container.encodeIfPresent(self.award, forKey: .award)
         try container.encodeIfPresent(self.brand, forKey: .brand)
         try container.encodeIfPresent(self.broker, forKey: .broker)
         try container.encodeIfPresent(self.category, forKey: .category)
-        if let value = self.hasOfferCatalog as? SOOfferCatalog {
-            try container.encode(value, forKey: .hasOfferCatalog)
-        }
-        if let value = self.hoursAvailable as? [SOOpeningHoursSpecification] {
-            try container.encode(value, forKey: .hoursAvailable)
-        }
+        try container.encodeIfPresent(self.hasOfferCatalog, forKey: .hasOfferCatalog)
+        try container.encodeIfPresent(self.hoursAvailable, forKey: .hoursAvailable)
         try container.encodeIfPresent(self.isRelatedTo, forKey: .isRelatedTo)
         try container.encodeIfPresent(self.isSimilarTo, forKey: .isSimilarTo)
         try container.encodeIfPresent(self.logo, forKey: .logo)
-        if let value = self.offers as? [SOOffer] {
-            try container.encode(value, forKey: .offers)
-        }
+        try container.encodeIfPresent(self.offers, forKey: .offers)
         try container.encodeIfPresent(self.provider, forKey: .provider)
-        if let value = self.providerMobility {
-            try container.encode(value, forKey: .providerMobility)
-        }
-        if let value = self.review as? [SOReview] {
-            try container.encode(value, forKey: .review)
-        }
-        if let value = self.serviceOutput as? SOThing {
-            try container.encode(value, forKey: .serviceOutput)
-        }
-        if let value = self.serviceType {
-            try container.encode(value, forKey: .serviceType)
-        }
+        try container.encodeIfPresent(self.providerMobility, forKey: .providerMobility)
+        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.serviceOutput, forKey: .serviceOutput)
+        try container.encodeIfPresent(self.serviceType, forKey: .serviceType)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Service?, forKey key: K) throws {
+        if let typedValue = value as? SOService {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

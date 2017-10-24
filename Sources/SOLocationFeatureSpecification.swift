@@ -24,15 +24,9 @@ public class SOLocationFeatureSpecification: SOPropertyValue, LocationFeatureSpe
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .hoursAvailable) {
-            self.hoursAvailable = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .validFrom) {
-            self.validFrom = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .validThrough) {
-            self.validThrough = value
-        }
+        self.hoursAvailable = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .hoursAvailable)
+        self.validFrom = try container.decodeDateTimeIfPresent(forKey: .validFrom)
+        self.validThrough = try container.decodeDateTimeIfPresent(forKey: .validThrough)
         
         try super.init(from: decoder)
     }
@@ -40,12 +34,18 @@ public class SOLocationFeatureSpecification: SOPropertyValue, LocationFeatureSpe
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.hoursAvailable as? [SOOpeningHoursSpecification] {
-            try container.encode(value, forKey: .hoursAvailable)
-        }
+        try container.encode(self.hoursAvailable, forKey: .hoursAvailable)
         try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
         try container.encodeIfPresent(self.validThrough, forKey: .validThrough)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: LocationFeatureSpecification?, forKey key: K) throws {
+        if let typedValue = value as? SOLocationFeatureSpecification {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

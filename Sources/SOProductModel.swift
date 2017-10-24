@@ -53,3 +53,11 @@ public class SOProductModel: SOProduct, ProductModel {
         try super.encode(to: encoder)
     }
 }
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: ProductModel?, forKey key: K) throws {
+        if let typedValue = value as? SOProductModel {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}

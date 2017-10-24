@@ -7,3 +7,11 @@ public class SOMusicRecording: SOCreativeWork, MusicRecording {
         return "MusicRecording"
     }
 }
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: MusicRecording?, forKey key: K) throws {
+        if let typedValue = value as? SOMusicRecording {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}

@@ -20,12 +20,8 @@ public class SOAudience: SOThing, Audience {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .audienceType) {
-            self.audienceType = value
-        }
-        if let value = try container.decodeIfPresent(SOAdministrativeArea.self, forKey: .geographicArea) {
-            self.geographicArea = value
-        }
+        self.audienceType = try container.decodeIfPresent(String.self, forKey: .audienceType)
+        self.geographicArea = try container.decodeIfPresent(SOAdministrativeArea.self, forKey: .geographicArea)
         
         try super.init(from: decoder)
     }
@@ -33,13 +29,17 @@ public class SOAudience: SOThing, Audience {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.audienceType {
-            try container.encode(value, forKey: .audienceType)
-        }
-        if let value = self.geographicArea as? SOAdministrativeArea {
-            try container.encode(value, forKey: .geographicArea)
-        }
+        try container.encodeIfPresent(self.audienceType, forKey: .audienceType)
+        try container.encodeIfPresent(self.geographicArea, forKey: .geographicArea)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Audience?, forKey key: K) throws {
+        if let typedValue = value as? SOAudience {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

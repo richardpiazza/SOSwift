@@ -47,33 +47,15 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .eligibleQuantity) {
-            self.eligibleQuantity = value
-        }
-        if let value = try container.decodeIfPresent(SOPriceSpecification.self, forKey: .eligibleTransactionVolume) {
-            self.eligibleTransactionVolume = value
-        }
-        if let value = try container.decodeNumberIfPresent(forKey: .maxPrice) {
-            self.maxPrice = value
-        }
-        if let value = try container.decodeNumberIfPresent(forKey: .minPrice) {
-            self.minPrice = value
-        }
-        if let value = try container.decodeNumberOrTextIfPresent(forKey: .price) {
-            self.price = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .priceCurrency) {
-            self.priceCurrency = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .validFrom) {
-            self.validFrom = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .validThrough) {
-            self.validThrough = value
-        }
-        if let value = try container.decodeIfPresent(Bool.self, forKey: .valueAddedTaxIncluded) {
-            self.valueAddedTaxIncluded = value
-        }
+        self.eligibleQuantity = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .eligibleQuantity)
+        self.eligibleTransactionVolume = try container.decodeIfPresent(SOPriceSpecification.self, forKey: .eligibleTransactionVolume)
+        self.maxPrice = try container.decodeNumberIfPresent(forKey: .maxPrice)
+        self.minPrice = try container.decodeNumberIfPresent(forKey: .minPrice)
+        self.price = try container.decodeNumberOrTextIfPresent(forKey: .price)
+        self.priceCurrency = try container.decodeIfPresent(String.self, forKey: .priceCurrency)
+        self.validFrom = try container.decodeDateTimeIfPresent(forKey: .validFrom)
+        self.validThrough = try container.decodeDateTimeIfPresent(forKey: .validThrough)
+        self.valueAddedTaxIncluded = try container.decodeIfPresent(Bool.self, forKey: .valueAddedTaxIncluded)
         
         try super.init(from: decoder)
     }
@@ -81,24 +63,24 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.eligibleQuantity as? SOQuantitativeValue {
-            try container.encode(value, forKey: .eligibleQuantity)
-        }
-        if let value = self.eligibleTransactionVolume as? SOPriceSpecification {
-            try container.encode(value, forKey: .eligibleTransactionVolume)
-        }
+        try container.encodeIfPresent(self.eligibleQuantity, forKey: .eligibleQuantity)
+        try container.encodeIfPresent(self.eligibleTransactionVolume, forKey: .eligibleTransactionVolume)
         try container.encodeIfPresent(self.maxPrice, forKey: .maxPrice)
         try container.encodeIfPresent(self.minPrice, forKey: .minPrice)
         try container.encodeIfPresent(self.price, forKey: .price)
-        if let value = self.priceCurrency {
-            try container.encode(value, forKey: .priceCurrency)
-        }
+        try container.encodeIfPresent(self.priceCurrency, forKey: .priceCurrency)
         try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
         try container.encodeIfPresent(self.validThrough, forKey: .validThrough)
-        if let value = self.valueAddedTaxIncluded {
-            try container.encode(value, forKey: .valueAddedTaxIncluded)
-        }
+        try container.encodeIfPresent(self.valueAddedTaxIncluded, forKey: .valueAddedTaxIncluded)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: PriceSpecification?, forKey key: K) throws {
+        if let typedValue = value as? SOPriceSpecification {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

@@ -9,3 +9,11 @@ public class SOEnumeration: SOIntangible, Enumeration {
     }
     
 }
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Enumeration?, forKey key: K) throws {
+        if let typedValue = value as? SOEnumeration {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}

@@ -8,3 +8,11 @@ public class SOAnswer: SOComment, Answer {
     }
     
 }
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Answer?, forKey key: K) throws {
+        if let typedValue = value as? SOAnswer {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}

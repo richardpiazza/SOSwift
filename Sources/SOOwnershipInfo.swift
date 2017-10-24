@@ -27,18 +27,10 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .acquiredFrom) {
-            self.acquiredFrom = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .ownedFrom) {
-            self.ownedFrom = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .ownedThrough) {
-            self.ownedThrough = value
-        }
-        if let value = try container.decodeProductOrServiceIfPresent(forKey: .typeOfGood) {
-            self.typeOfGood = value
-        }
+        self.acquiredFrom = try container.decodeOrganizationOrPersonIfPresent(forKey: .acquiredFrom)
+        self.ownedFrom = try container.decodeDateTimeIfPresent(forKey: .ownedFrom)
+        self.ownedThrough = try container.decodeDateTimeIfPresent(forKey: .ownedThrough)
+        self.typeOfGood = try container.decodeProductOrServiceIfPresent(forKey: .typeOfGood)
         
         try super.init(from: decoder)
     }
@@ -52,5 +44,13 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
         try container.encodeIfPresent(self.typeOfGood, forKey: .typeOfGood)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: OwnershipInfo?, forKey key: K) throws {
+        if let typedValue = value as? SOOwnershipInfo {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

@@ -27,18 +27,10 @@ public class SORating: SOIntangible, Rating {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .author) {
-            self.author = value
-        }
-        if let value = try container.decodeNumberOrTextIfPresent(forKey: .bestRating) {
-            self.bestRating = value
-        }
-        if let value = try container.decodeNumberOrTextIfPresent(forKey: .ratingValue) {
-            self.ratingValue = value
-        }
-        if let value = try container.decodeNumberOrTextIfPresent(forKey: .worstRating) {
-            self.worstRating = value
-        }
+        self.author = try container.decodeOrganizationOrPersonIfPresent(forKey: .author)
+        self.bestRating = try container.decodeNumberOrTextIfPresent(forKey: .bestRating)
+        self.ratingValue = try container.decodeNumberOrTextIfPresent(forKey: .ratingValue)
+        self.worstRating = try container.decodeNumberOrTextIfPresent(forKey: .worstRating)
         
         try super.init(from: decoder)
     }
@@ -52,5 +44,13 @@ public class SORating: SOIntangible, Rating {
         try container.encodeIfPresent(self.worstRating, forKey: .worstRating)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Rating?, forKey key: K) throws {
+        if let typedValue = value as? SORating {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

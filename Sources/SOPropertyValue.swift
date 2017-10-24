@@ -40,27 +40,13 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeNumberIfPresent(forKey: .maxValue) {
-            self.maxValue = value
-        }
-        if let value = try container.decodeNumberIfPresent(forKey: .minValue) {
-            self.minValue = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .propertyID) {
-            self.propertyID = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .unitCode) {
-            self.unitCode = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .unitText) {
-            self.unitText = value
-        }
-        if let value = try container.decodeValueIfPresent(forKey: .value) {
-            self.value = value
-        }
-        if let value = try container.decodeValueReferenceIfPresent(forKey: .valueReference) {
-            self.valueReference = value
-        }
+        self.maxValue = try container.decodeNumberIfPresent(forKey: .maxValue)
+        self.minValue = try container.decodeNumberIfPresent(forKey: .minValue)
+        self.propertyID = try container.decodeTextOrURLIfPresent(forKey: .propertyID)
+        self.unitCode = try container.decodeTextOrURLIfPresent(forKey: .unitCode)
+        self.unitText = try container.decodeIfPresent(String.self, forKey: .unitText)
+        self.value = try container.decodeValueIfPresent(forKey: .value)
+        self.valueReference = try container.decodeValueReferenceIfPresent(forKey: .valueReference)
         
         try super.init(from: decoder)
     }
@@ -72,9 +58,7 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
         try container.encodeIfPresent(self.minValue, forKey: .minValue)
         try container.encodeIfPresent(self.propertyID, forKey: .propertyID)
         try container.encodeIfPresent(self.unitCode, forKey: .unitCode)
-        if let value = self.unitText {
-            try container.encode(value, forKey: .unitText)
-        }
+        try container.encodeIfPresent(self.unitText, forKey: .unitText)
         try container.encodeIfPresent(self.value, forKey: .value)
         try container.encodeIfPresent(self.valueReference, forKey: .valueReference)
         
@@ -82,3 +66,10 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     }
 }
 
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: PropertyValue?, forKey key: K) throws {
+        if let typedValue = value as? SOPropertyValue {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}

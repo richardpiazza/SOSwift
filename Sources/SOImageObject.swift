@@ -27,18 +27,10 @@ public class SOImageObject: SOMediaObject, ImageObject {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .caption) {
-            self.caption = value
-        }
-        if let value = try container.decodePropertyValueOrTextIfPresent(forKey: .exifData) {
-            self.exifData = value
-        }
-        if let value = try container.decodeIfPresent(Bool.self, forKey: .representativeOfPage) {
-            self.representativeOfPage = value
-        }
-        if let value = try container.decodeIfPresent(SOImageObject.self, forKey: .thumbnail) {
-            self.thumbnail = value
-        }
+        self.caption = try container.decodeIfPresent(String.self, forKey: .caption)
+        self.exifData = try container.decodePropertyValueOrTextIfPresent(forKey: .exifData)
+        self.representativeOfPage = try container.decodeIfPresent(Bool.self, forKey: .representativeOfPage)
+        self.thumbnail = try container.decodeIfPresent(SOImageObject.self, forKey: .thumbnail)
         
         try super.init(from: decoder)
     }
@@ -46,17 +38,19 @@ public class SOImageObject: SOMediaObject, ImageObject {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.caption {
-            try container.encode(value, forKey: .caption)
-        }
+        try container.encodeIfPresent(self.caption, forKey: .caption)
         try container.encodeIfPresent(self.exifData, forKey: .exifData)
-        if let value = self.representativeOfPage {
-            try container.encode(value, forKey: .representativeOfPage)
-        }
-        if let value = self.thumbnail as? SOImageObject {
-            try container.encode(value, forKey: .thumbnail)
-        }
+        try container.encodeIfPresent(self.representativeOfPage, forKey: .representativeOfPage)
+        try container.encodeIfPresent(self.thumbnail, forKey: .thumbnail)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: ImageObject?, forKey key: K) throws {
+        if let typedValue = value as? SOImageObject {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

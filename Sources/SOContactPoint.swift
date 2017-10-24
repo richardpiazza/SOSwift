@@ -41,33 +41,17 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeAreaServedIfPresent(forKey: .areaServed) {
-            self.areaServed = value
-        }
-        if let value = try container.decodeLanguageOrTextIfPresent(forKey: .availableLanguage) {
-            self.availableLanguage = value
-        }
+        self.areaServed = try container.decodeAreaServedIfPresent(forKey: .areaServed)
+        self.availableLanguage = try container.decodeLanguageOrTextIfPresent(forKey: .availableLanguage)
         if let value = try container.decodeIfPresent(String.self, forKey: .contactOption) {
             self.contactOption = ContactPointOption(rawValue: value)
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .contactType) {
-            self.contactType = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .email) {
-            self.email = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .faxNumber) {
-            self.faxNumber = value
-        }
-        if let value = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .hoursAvailable) {
-            self.hoursAvailable = value
-        }
-        if let value = try container.decodeProductOrTextIfPresent(forKey: .productSupported) {
-            self.productSupported = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .telephone) {
-            self.telephone = value
-        }
+        self.contactType = try container.decodeIfPresent(String.self, forKey: .contactType)
+        self.email = try container.decodeIfPresent(String.self, forKey: .email)
+        self.faxNumber = try container.decodeIfPresent(String.self, forKey: .faxNumber)
+        self.hoursAvailable = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .hoursAvailable)
+        self.productSupported = try container.decodeProductOrTextIfPresent(forKey: .productSupported)
+        self.telephone = try container.decodeIfPresent(String.self, forKey: .telephone)
         
         try super.init(from: decoder)
     }
@@ -77,26 +61,28 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
         
         try container.encodeIfPresent(self.areaServed, forKey: .areaServed)
         try container.encodeIfPresent(self.availableLanguage, forKey: .availableLanguage)
-        if let value = self.contactOption {
-            try container.encode(value.rawValue, forKey: .contactOption)
-        }
-        if let value = self.contactType {
-            try container.encode(value, forKey: .contactType)
-        }
-        if let value = self.email {
-            try container.encode(value, forKey: .email)
-        }
-        if let value = self.faxNumber {
-            try container.encode(value, forKey: .faxNumber)
-        }
-        if let value = self.hoursAvailable as? [SOOpeningHoursSpecification] {
-            try container.encode(value, forKey: .hoursAvailable)
-        }
+        try container.encodeIfPresent(self.contactOption?.rawValue, forKey: .contactOption)
+        try container.encodeIfPresent(self.contactType, forKey: .contactType)
+        try container.encodeIfPresent(self.email, forKey: .email)
+        try container.encodeIfPresent(self.faxNumber, forKey: .faxNumber)
+        try container.encodeIfPresent(self.hoursAvailable, forKey: .hoursAvailable)
         try container.encodeIfPresent(self.productSupported, forKey: .productSupported)
-        if let value = self.telephone {
-            try container.encode(value, forKey: .telephone)
-        }
+        try container.encodeIfPresent(self.telephone, forKey: .telephone)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: ContactPoint?, forKey key: K) throws {
+        if let typedValue = value as? SOContactPoint {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+    
+    public mutating func encodeIfPresent(_ value: [ContactPoint]?, forKey key: K) throws {
+        if let typedValue = value as? [SOContactPoint] {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

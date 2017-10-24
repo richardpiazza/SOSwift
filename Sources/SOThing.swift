@@ -96,10 +96,16 @@ public class SOThing: Thing, Codable {
         try container.encodeIfPresent(self.image, forKey: .image)
         try container.encodeIfPresent(self.mainEntityOfPage, forKey: .mainEntityOfPage)
         try container.encodeIfPresent(self.name, forKey: .name)
-        if let value = self.potentialAction as? SOAction {
-            try container.encode(value, forKey: .potentialAction)
-        }
+        try container.encodeIfPresent(self.potentialAction, forKey: .potentialAction)
         try container.encodeIfPresent(self.sameAs, forKey: .sameAs)
         try container.encodeIfPresent(self.url, forKey: .url)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Thing?, forKey key: K) throws {
+        if let typedValue = value as? SOThing {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

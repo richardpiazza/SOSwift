@@ -9,3 +9,11 @@ public class SOOfferCatalog: SOItemList, OfferCatalog {
     }
     
 }
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: OfferCatalog?, forKey key: K) throws {
+        if let typedValue = value as? SOOfferCatalog {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+}

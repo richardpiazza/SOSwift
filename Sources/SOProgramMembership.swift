@@ -27,18 +27,10 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .hostingOrganization) {
-            self.hostingOrganization = value
-        }
-        if let value = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .member) {
-            self.member = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .membershipNumber) {
-            self.membershipNumber = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .programName) {
-            self.programName = value
-        }
+        self.hostingOrganization = try container.decodeIfPresent(SOOrganization.self, forKey: .hostingOrganization)
+        self.member = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .member)
+        self.membershipNumber = try container.decodeIfPresent(String.self, forKey: .membershipNumber)
+        self.programName = try container.decodeIfPresent(String.self, forKey: .programName)
         
         try super.init(from: decoder)
     }
@@ -46,17 +38,19 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.hostingOrganization as? SOOrganization {
-            try container.encode(value, forKey: .hostingOrganization)
-        }
+        try container.encodeIfPresent(self.hostingOrganization, forKey: .hostingOrganization)
         try container.encodeIfPresent(self.member, forKey: .member)
-        if let value = self.membershipNumber {
-            try container.encode(value, forKey: .membershipNumber)
-        }
-        if let value = self.programName {
-            try container.encode(value, forKey: .programName)
-        }
+        try container.encodeIfPresent(self.membershipNumber, forKey: .membershipNumber)
+        try container.encodeIfPresent(self.programName, forKey: .programName)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: ProgramMembership?, forKey key: K) throws {
+        if let typedValue = value as? SOProgramMembership {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

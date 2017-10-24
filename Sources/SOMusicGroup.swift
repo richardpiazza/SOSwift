@@ -24,15 +24,9 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent([SOMusicAlbum].self, forKey: .album) {
-            self.album = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .genre) {
-            self.genre = value
-        }
-        if let value = try container.decodeItemListsOrMusicRecordingsIfPresent(forKey: .track) {
-            self.track = value
-        }
+        self.album = try container.decodeIfPresent([SOMusicAlbum].self, forKey: .album)
+        self.genre = try container.decodeTextOrURLIfPresent(forKey: .genre)
+        self.track = try container.decodeItemListsOrMusicRecordingsIfPresent(forKey: .track)
         
         try super.init(from: decoder)
     }
@@ -40,12 +34,18 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.album  as? [SOMusicAlbum] {
-            try container.encode(value, forKey: .album)
-        }
+        try container.encodeIfPresent(self.album, forKey: .album)
         try container.encodeIfPresent(self.genre, forKey: .genre)
         try container.encodeIfPresent(self.track, forKey: .track)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: MusicGroup?, forKey key: K) throws {
+        if let typedValue = value as? SOMusicGroup {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

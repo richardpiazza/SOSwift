@@ -30,21 +30,11 @@ public class SOQuestion: SOCreativeWork, Question {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOAnswer.self, forKey: .acceptedAnswer) {
-            self.acceptedAnswer = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .answerCount) {
-            self.answerCount = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .downvoteCount) {
-            self.downvoteCount = value
-        }
-        if let value = try container.decodeIfPresent(SOAnswer.self, forKey: .suggestedAnswer) {
-            self.suggestedAnswer = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .upvoteCount) {
-            self.upvoteCount = value
-        }
+        self.acceptedAnswer = try container.decodeIfPresent(SOAnswer.self, forKey: .acceptedAnswer)
+        self.answerCount = try container.decodeIfPresent(Int.self, forKey: .answerCount)
+        self.downvoteCount = try container.decodeIfPresent(Int.self, forKey: .downvoteCount)
+        self.suggestedAnswer = try container.decodeIfPresent(SOAnswer.self, forKey: .suggestedAnswer)
+        self.upvoteCount = try container.decodeIfPresent(Int.self, forKey: .upvoteCount)
         
         try super.init(from: decoder)
     }
@@ -52,22 +42,20 @@ public class SOQuestion: SOCreativeWork, Question {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.acceptedAnswer as? SOAnswer {
-            try container.encode(value, forKey: .acceptedAnswer)
-        }
-        if let value = self.answerCount {
-            try container.encode(value, forKey: .answerCount)
-        }
-        if let value = self.downvoteCount {
-            try container.encode(value, forKey: .downvoteCount)
-        }
-        if let value = self.suggestedAnswer as? SOAnswer {
-            try container.encode(value, forKey: .suggestedAnswer)
-        }
-        if let value = self.upvoteCount {
-            try container.encode(value, forKey: .upvoteCount)
-        }
+        try container.encodeIfPresent(self.acceptedAnswer, forKey: .acceptedAnswer)
+        try container.encodeIfPresent(self.answerCount, forKey: .answerCount)
+        try container.encodeIfPresent(self.downvoteCount, forKey: .downvoteCount)
+        try container.encodeIfPresent(self.suggestedAnswer, forKey: .suggestedAnswer)
+        try container.encodeIfPresent(self.upvoteCount, forKey: .upvoteCount)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Question?, forKey key: K) throws {
+        if let typedValue = value as? SOQuestion {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

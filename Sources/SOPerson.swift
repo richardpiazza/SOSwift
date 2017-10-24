@@ -165,152 +165,56 @@ public class SOPerson: SOThing, Person {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .additionalName) {
-            self.additionalName = value
-        }
-        if let value = try container.decodePostalAddressOrTextIfPresent(forKey: .address) {
-            self.address = value
-        }
-        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .affiliation) {
-            self.affiliation = value
-        }
-        if let value = try container.decodeEducationalOrganizationOrOrganizationIfPresent(forKey: .alumniOf) {
-            self.alumniOf = value
-        }
-        if let value = try container.decodeIfPresent([String].self, forKey: .award) {
-            self.award = value
-        }
+        self.additionalName = try container.decodeIfPresent(String.self, forKey: .additionalName)
+        self.address = try container.decodePostalAddressOrTextIfPresent(forKey: .address)
+        self.affiliation = try container.decodeIfPresent(SOOrganization.self, forKey: .affiliation)
+        self.alumniOf = try container.decodeEducationalOrganizationOrOrganizationIfPresent(forKey: .alumniOf)
+        self.award = try container.decodeIfPresent([String].self, forKey: .award)
         self.birthDate = try container.decodeDateOnlyIfPresent(forKey: .birthDate)
-        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .birthPlace) {
-            self.birthPlace = value
-        }
-        if let value = try container.decodeBrandsOrOrganizationsIfPresent(forKey: .brand) {
-            self.brand = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .children) {
-            self.children = value
-        }
-        if let value = try container.decodePersonsOrURLsIfPresent(forKey: .colleague) {
-            self.colleague = value
-        }
-        if let value = try container.decodeIfPresent([SOContactPoint].self, forKey: .contactPoint) {
-            self.contactPoint = value
-        }
+        self.birthPlace = try container.decodeIfPresent(SOPlace.self, forKey: .birthPlace)
+        self.brand = try container.decodeBrandsOrOrganizationsIfPresent(forKey: .brand)
+        self.children = try container.decodeIfPresent([SOPerson].self, forKey: .children)
+        self.colleague = try container.decodePersonsOrURLsIfPresent(forKey: .colleague)
+        self.contactPoint = try container.decodeIfPresent([SOContactPoint].self, forKey: .contactPoint)
         self.deathDate = try container.decodeDateOnlyIfPresent(forKey: .deathDate)
-        if let value = try container.decodeIfPresent(SOPlace.self, forKey: .deathPlace) {
-            self.deathPlace = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .duns) {
-            self.duns = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .email) {
-            self.email = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .familyName) {
-            self.familyName = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .faxNumber) {
-            self.faxNumber = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .follows) {
-            self.follows = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .funder) {
-            self.funder = value
-        }
-        if let value = try container.decodeGenderOrTextIfPresent(forKey: .gender) {
-            self.gender = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .givenName) {
-            self.givenName = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber) {
-            self.globalLocationNumber = value
-        }
-        if let value = try container.decodeIfPresent(SOOfferCatalog.self, forKey: .hasOfferCatalog) {
-            self.hasOfferCatalog = value
-        }
-        if let value = try container.decodeIfPresent([SOPlace].self, forKey: .hasPOS) {
-            self.hasPOS = value
-        }
-        if let value = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height) {
-            self.height = value
-        }
-        if let value = try container.decodeContactPointOrPlaceIfPresent(forKey: .homeLocation) {
-            self.homeLocation = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .honorificPrefix) {
-            self.honorificPrefix = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .honorificSuffix) {
-            self.honorificSuffix = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .isicV4) {
-            self.isicV4 = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .jobTitle) {
-            self.jobTitle = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .knows) {
-            self.knows = value
-        }
-        if let value = try container.decodeIfPresent([SOOffer].self, forKey: .makesOffer) {
-            self.makesOffer = value
-        }
-        if let value = try container.decodeOrganizationsOrProgramMembershipsIfPresent(forKey: .memberOf) {
-            self.memberOf = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .naics) {
-            self.naics = value
-        }
-        if let value = try container.decodeIfPresent(SOCountry.self, forKey: .nationality) {
-            self.nationality = value
-        }
-        if let value = try container.decodeMonetaryAmountOrPriceSpecificationIfPresent(forKey: .netWorth) {
-            self.netWorth = value
-        }
-        if let value = try container.decodeProductsOrServicesIfPresent(forKey: .owns) {
-            self.owns = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .parent) {
-            self.parent = value
-        }
-        if let value = try container.decodeIfPresent(SOEvent.self, forKey: .performerIn) {
-            self.performerIn = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .relatedTo) {
-            self.relatedTo = value
-        }
-        if let value = try container.decodeIfPresent([SODemand].self, forKey: .seeks) {
-            self.seeks = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .sibling) {
-            self.sibling = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor) {
-            self.sponsor = value
-        }
-        if let value = try container.decodeIfPresent(SOPerson.self, forKey: .spouse) {
-            self.spouse = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .taxID) {
-            self.taxID = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .telephone) {
-            self.telephone = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .vatID) {
-            self.vatID = value
-        }
-        if let value = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .weight) {
-            self.weight = value
-        }
-        if let value = try container.decodeContactPointOrPlaceIfPresent(forKey: .workLocation) {
-            self.workLocation = value
-        }
-        if let value = try container.decodeIfPresent([SOOrganization].self, forKey: .worksFor) {
-            self.worksFor = value
-        }
+        self.deathPlace = try container.decodeIfPresent(SOPlace.self, forKey: .deathPlace)
+        self.duns = try container.decodeIfPresent(String.self, forKey: .duns)
+        self.email = try container.decodeIfPresent(String.self, forKey: .email)
+        self.familyName = try container.decodeIfPresent(String.self, forKey: .familyName)
+        self.faxNumber = try container.decodeIfPresent(String.self, forKey: .faxNumber)
+        self.follows = try container.decodeIfPresent([SOPerson].self, forKey: .follows)
+        self.funder = try container.decodeOrganizationOrPersonIfPresent(forKey: .funder)
+        self.gender = try container.decodeGenderOrTextIfPresent(forKey: .gender)
+        self.givenName = try container.decodeIfPresent(String.self, forKey: .givenName)
+        self.globalLocationNumber = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber)
+        self.hasOfferCatalog = try container.decodeIfPresent(SOOfferCatalog.self, forKey: .hasOfferCatalog)
+        self.hasPOS = try container.decodeIfPresent([SOPlace].self, forKey: .hasPOS)
+        self.height = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height)
+        self.homeLocation = try container.decodeContactPointOrPlaceIfPresent(forKey: .homeLocation)
+        self.honorificPrefix = try container.decodeIfPresent(String.self, forKey: .honorificPrefix)
+        self.honorificSuffix = try container.decodeIfPresent(String.self, forKey: .honorificSuffix)
+        self.isicV4 = try container.decodeIfPresent(String.self, forKey: .isicV4)
+        self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
+        self.knows = try container.decodeIfPresent([SOPerson].self, forKey: .knows)
+        self.makesOffer = try container.decodeIfPresent([SOOffer].self, forKey: .makesOffer)
+        self.memberOf = try container.decodeOrganizationsOrProgramMembershipsIfPresent(forKey: .memberOf)
+        self.naics = try container.decodeIfPresent(String.self, forKey: .naics)
+        self.nationality = try container.decodeIfPresent(SOCountry.self, forKey: .nationality)
+        self.netWorth = try container.decodeMonetaryAmountOrPriceSpecificationIfPresent(forKey: .netWorth)
+        self.owns = try container.decodeProductsOrServicesIfPresent(forKey: .owns)
+        self.parent = try container.decodeIfPresent([SOPerson].self, forKey: .parent)
+        self.performerIn = try container.decodeIfPresent(SOEvent.self, forKey: .performerIn)
+        self.relatedTo = try container.decodeIfPresent([SOPerson].self, forKey: .relatedTo)
+        self.seeks = try container.decodeIfPresent([SODemand].self, forKey: .seeks)
+        self.sibling = try container.decodeIfPresent([SOPerson].self, forKey: .sibling)
+        self.sponsor = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor)
+        self.spouse = try container.decodeIfPresent(SOPerson.self, forKey: .spouse)
+        self.taxID = try container.decodeIfPresent(String.self, forKey: .taxID)
+        self.telephone = try container.decodeIfPresent(String.self, forKey: .telephone)
+        self.vatID = try container.decodeIfPresent(String.self, forKey: .vatID)
+        self.weight = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .weight)
+        self.workLocation = try container.decodeContactPointOrPlaceIfPresent(forKey: .workLocation)
+        self.worksFor = try container.decodeIfPresent([SOOrganization].self, forKey: .worksFor)
         
         try super.init(from: decoder)
     }
@@ -318,127 +222,71 @@ public class SOPerson: SOThing, Person {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.additionalName {
-            try container.encode(value, forKey: .additionalName)
-        }
+        try container.encodeIfPresent(self.additionalName, forKey: .additionalName)
         try container.encodeIfPresent(self.address, forKey: .address)
-        if let value = self.affiliation as? SOOrganization {
-            try container.encode(value, forKey: .affiliation)
-        }
+        try container.encodeIfPresent(self.affiliation, forKey: .affiliation)
         try container.encodeIfPresent(self.alumniOf, forKey: .alumniOf)
-        if let value = self.award {
-            try container.encode(value, forKey: .award)
-        }
+        try container.encodeIfPresent(self.award, forKey: .award)
         try container.encodeIfPresent(self.birthDate, forKey: .birthDate)
-        if let value = self.birthPlace as? SOPlace {
-            try container.encode(value, forKey: .birthPlace)
-        }
+        try container.encodeIfPresent(self.birthPlace, forKey: .birthPlace)
         try container.encodeIfPresent(self.brand, forKey: .brand)
-        if let value = self.children as? [SOPerson] {
-            try container.encode(value, forKey: .children)
-        }
+        try container.encodeIfPresent(self.children, forKey: .children)
         try container.encodeIfPresent(self.colleague, forKey: .colleague)
-        if let value = self.contactPoint as? [SOContactPoint] {
-            try container.encode(value, forKey: .contactPoint)
-        }
+        try container.encodeIfPresent(self.contactPoint, forKey: .contactPoint)
         try container.encodeIfPresent(self.deathDate, forKey: .deathDate)
-        if let value = self.deathPlace as? SOPlace {
-            try container.encode(value, forKey: .deathPlace)
-        }
-        if let value = self.duns {
-            try container.encode(value, forKey: .duns)
-        }
-        if let value = self.email {
-            try container.encode(value, forKey: .email)
-        }
-        if let value = self.familyName {
-            try container.encode(value, forKey: .familyName)
-        }
-        if let value = self.faxNumber {
-            try container.encode(value, forKey: .faxNumber)
-        }
-        if let value = self.follows as? [SOPerson] {
-            try container.encode(value, forKey: .follows)
-        }
+        try container.encodeIfPresent(self.deathPlace, forKey: .deathPlace)
+        try container.encodeIfPresent(self.duns, forKey: .duns)
+        try container.encodeIfPresent(self.email, forKey: .email)
+        try container.encodeIfPresent(self.familyName, forKey: .familyName)
+        try container.encodeIfPresent(self.faxNumber, forKey: .faxNumber)
+        try container.encodeIfPresent(self.follows, forKey: .follows)
         try container.encodeIfPresent(self.funder, forKey: .funder)
         try container.encodeIfPresent(self.gender, forKey: .gender)
-        if let value = self.givenName {
-            try container.encode(value, forKey: .givenName)
-        }
-        if let value = self.globalLocationNumber {
-            try container.encode(value, forKey: .globalLocationNumber)
-        }
-        if let value = self.hasOfferCatalog as? SOOfferCatalog {
-            try container.encode(value, forKey: .hasOfferCatalog)
-        }
-        if let value = self.hasPOS as? [SOPlace] {
-            try container.encode(value, forKey: .hasPOS)
-        }
+        try container.encodeIfPresent(self.givenName, forKey: .givenName)
+        try container.encodeIfPresent(self.globalLocationNumber, forKey: .globalLocationNumber)
+        try container.encodeIfPresent(self.hasOfferCatalog, forKey: .hasOfferCatalog)
+        try container.encodeIfPresent(self.hasPOS, forKey: .hasPOS)
         try container.encodeIfPresent(self.height, forKey: .height)
         try container.encodeIfPresent(self.homeLocation, forKey: .homeLocation)
-        if let value = self.honorificPrefix {
-            try container.encode(value, forKey: .honorificPrefix)
-        }
-        if let value = self.honorificSuffix {
-            try container.encode(value, forKey: .honorificSuffix)
-        }
-        if let value = self.isicV4 {
-            try container.encode(value, forKey: .isicV4)
-        }
-        if let value = self.jobTitle {
-            try container.encode(value, forKey: .jobTitle)
-        }
-        if let value = self.knows as? [SOPerson] {
-            try container.encode(value, forKey: .knows)
-        }
-        if let value = self.makesOffer as? [SOOffer] {
-            try container.encode(value, forKey: .makesOffer)
-        }
+        try container.encodeIfPresent(self.honorificPrefix, forKey: .honorificPrefix)
+        try container.encodeIfPresent(self.honorificSuffix, forKey: .honorificSuffix)
+        try container.encodeIfPresent(self.isicV4, forKey: .isicV4)
+        try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
+        try container.encodeIfPresent(self.knows, forKey: .knows)
+        try container.encodeIfPresent(self.makesOffer, forKey: .makesOffer)
         try container.encodeIfPresent(self.memberOf, forKey: .memberOf)
-        if let value = self.naics {
-            try container.encode(value, forKey: .naics)
-        }
-        if let value = self.nationality as? SOCountry {
-            try container.encode(value, forKey: .nationality)
-        }
+        try container.encodeIfPresent(self.naics, forKey: .naics)
+        try container.encodeIfPresent(self.nationality, forKey: .nationality)
         try container.encodeIfPresent(self.netWorth, forKey: .netWorth)
         try container.encodeIfPresent(self.owns, forKey: .owns)
-        if let value = self.parent as? [SOPerson] {
-            try container.encode(value, forKey: .parent)
-        }
-        if let value = self.performerIn as? SOEvent {
-            try container.encode(value, forKey: .performerIn)
-        }
-        if let value = self.relatedTo as? [SOPerson] {
-            try container.encode(value, forKey: .relatedTo)
-        }
-        if let value = self.seeks as? [SODemand] {
-            try container.encode(value, forKey: .seeks)
-        }
-        if let value = self.sibling as? [SOPerson] {
-            try container.encode(value, forKey: .sibling)
-        }
+        try container.encodeIfPresent(self.parent, forKey: .parent)
+        try container.encodeIfPresent(self.performerIn, forKey: .performerIn)
+        try container.encodeIfPresent(self.relatedTo, forKey: .relatedTo)
+        try container.encodeIfPresent(self.seeks, forKey: .seeks)
+        try container.encodeIfPresent(self.sibling, forKey: .sibling)
         try container.encodeIfPresent(self.sponsor, forKey: .sponsor)
-        if let value = self.spouse as? SOPerson {
-            try container.encode(value, forKey: .spouse)
-        }
-        if let value = self.taxID {
-            try container.encode(value, forKey: .taxID)
-        }
-        if let value = self.telephone {
-            try container.encode(value, forKey: .telephone)
-        }
-        if let value = self.vatID {
-            try container.encode(value, forKey: .vatID)
-        }
-        if let value = self.weight as? SOQuantitativeValue {
-            try container.encode(value, forKey: .weight)
-        }
+        try container.encodeIfPresent(self.spouse, forKey: .spouse)
+        try container.encodeIfPresent(self.taxID, forKey: .taxID)
+        try container.encodeIfPresent(self.telephone, forKey: .telephone)
+        try container.encodeIfPresent(self.vatID, forKey: .vatID)
+        try container.encodeIfPresent(self.weight, forKey: .weight)
         try container.encodeIfPresent(self.workLocation, forKey: .workLocation)
-        if let value = self.worksFor as? [SOOrganization] {
-            try container.encode(value, forKey: .worksFor)
-        }
+        try container.encodeIfPresent(self.worksFor, forKey: .worksFor)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Person?, forKey key: K) throws {
+        if let typedValue = value as? SOPerson {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+    
+    public mutating func encodeIfPresent(_ value: [Person]?, forKey key: K) throws {
+        if let typedValue = value as? [SOPerson] {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

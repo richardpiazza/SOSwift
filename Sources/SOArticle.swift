@@ -34,24 +34,12 @@ public class SOArticle: SOCreativeWork, Article {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .articleBody) {
-            self.articleBody = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .articleSection) {
-            self.articleSection = value
-        }
-        if let value = try container.decodeIntegerOrTextIfPresent(forKey: .pageEnd) {
-            self.pageEnd = value
-        }
-        if let value = try container.decodeIntegerOrTextIfPresent(forKey: .pageStart) {
-            self.pageStart = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .pagination) {
-            self.pagination = value
-        }
-        if let value = try container.decodeIfPresent(Int.self, forKey: .wordCount) {
-            self.wordCount = value
-        }
+        self.articleBody = try container.decodeIfPresent(String.self, forKey: .articleBody)
+        self.articleSection = try container.decodeIfPresent(String.self, forKey: .articleSection)
+        self.pageEnd = try container.decodeIntegerOrTextIfPresent(forKey: .pageEnd)
+        self.pageStart = try container.decodeIntegerOrTextIfPresent(forKey: .pageStart)
+        self.pagination = try container.decodeIfPresent(String.self, forKey: .pagination)
+        self.wordCount = try container.decodeIfPresent(Int.self, forKey: .wordCount)
         
         try super.init(from: decoder)
     }
@@ -59,21 +47,21 @@ public class SOArticle: SOCreativeWork, Article {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.articleBody {
-            try container.encode(value, forKey: .articleBody)
-        }
-        if let value = self.articleSection {
-            try container.encode(value, forKey: .articleSection)
-        }
+        try container.encodeIfPresent(self.articleBody, forKey: .articleBody)
+        try container.encodeIfPresent(self.articleSection, forKey: .articleSection)
         try container.encodeIfPresent(self.pageEnd, forKey: .pageEnd)
         try container.encodeIfPresent(self.pageStart, forKey: .pageStart)
-        if let value = self.pagination {
-            try container.encode(value, forKey: .pagination)
-        }
-        if let value = self.wordCount {
-            try container.encode(value, forKey: .wordCount)
-        }
+        try container.encodeIfPresent(self.pagination, forKey: .pagination)
+        try container.encodeIfPresent(self.wordCount, forKey: .wordCount)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Article?, forKey key: K) throws {
+        if let typedValue = value as? SOArticle {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

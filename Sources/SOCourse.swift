@@ -25,15 +25,9 @@ public class SOCourse: SOCreativeWork, Course {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .courseCode) {
-            self.courseCode = value
-        }
-        if let value = try container.decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey: .coursePrerequisites) {
-            self.coursePrerequisites = value
-        }
-        if let value = try container.decodeIfPresent(SOCourseInstance.self, forKey: .hasCourseInstance) {
-            self.hasCourseInstance = value
-        }
+        self.courseCode = try container.decodeIfPresent(String.self, forKey: .courseCode)
+        self.coursePrerequisites = try container.decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey: .coursePrerequisites)
+        self.hasCourseInstance = try container.decodeIfPresent(SOCourseInstance.self, forKey: .hasCourseInstance)
         
         try super.init(from: decoder)
     }
@@ -41,14 +35,18 @@ public class SOCourse: SOCreativeWork, Course {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.courseCode {
-            try container.encode(value, forKey: .courseCode)
-        }
+        try container.encodeIfPresent(self.courseCode, forKey: .courseCode)
         try container.encodeIfPresent(self.coursePrerequisites, forKey: .coursePrerequisites)
-        if let value = self.hasCourseInstance as? SOCourseInstance {
-            try container.encode(value, forKey: .hasCourseInstance)
-        }
+        try container.encodeIfPresent(self.hasCourseInstance, forKey: .hasCourseInstance)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Course?, forKey key: K) throws {
+        if let typedValue = value as? SOCourse {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

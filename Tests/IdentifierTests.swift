@@ -20,9 +20,7 @@ class IdentifierTests: XCTestCase {
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            if let value = self.identifier {
-                try container.encodeIdentifier(value, forKey: .identifier)
-            }
+            try container.encodeIfPresent(self.identifier, forKey: .identifier)
         }
     }
     

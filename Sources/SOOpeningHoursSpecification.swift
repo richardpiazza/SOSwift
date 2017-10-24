@@ -32,21 +32,13 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .closes) {
-            self.closes = value
-        }
+        self.closes = try container.decodeIfPresent(String.self, forKey: .closes)
         if let value = try container.decodeIfPresent(String.self, forKey: .dayOfWeek) {
             self.dayOfWeek = DayOfWeek(rawValue: value)
         }
-        if let value = try container.decodeIfPresent(String.self, forKey: .opens) {
-            self.opens = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .validFrom) {
-            self.validFrom = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .validThrough) {
-            self.validThrough = value
-        }
+        self.opens = try container.decodeIfPresent(String.self, forKey: .opens)
+        self.validFrom = try container.decodeDateTimeIfPresent(forKey: .validFrom)
+        self.validThrough = try container.decodeDateTimeIfPresent(forKey: .validThrough)
         
         try super.init(from: decoder)
     }
@@ -54,18 +46,26 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.closes as? String {
-            try container.encode(value, forKey: .closes)
-        }
-        if let value = self.dayOfWeek {
-            try container.encode(value.rawValue, forKey: .dayOfWeek)
-        }
-        if let value = self.opens as? String {
-            try container.encode(value, forKey: .opens)
-        }
+        try container.encodeIfPresent(self.closes, forKey: .closes)
+        try container.encodeIfPresent(self.dayOfWeek?.rawValue, forKey: .dayOfWeek)
+        try container.encodeIfPresent(self.opens, forKey: .opens)
         try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
         try container.encodeIfPresent(self.validThrough, forKey: .validThrough)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: OpeningHoursSpecification?, forKey key: K) throws {
+        if let typedValue = value as? SOOpeningHoursSpecification {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+    
+    public mutating func encodeIfPresent(_ value: [OpeningHoursSpecification]?, forKey key: K) throws {
+        if let typedValue = value as? [SOOpeningHoursSpecification] {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

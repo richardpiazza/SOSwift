@@ -39,30 +39,14 @@ public class SOVideoObject: SOMediaObject, VideoObject {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .actor) {
-            self.actor = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .caption) {
-            self.caption = value
-        }
-        if let value = try container.decodeIfPresent([SOPerson].self, forKey: .director) {
-            self.director = value
-        }
-        if let value = try container.decodeMusicGroupOrPersonIfPresent(forKey: .musicBy) {
-            self.musicBy = value
-        }
-        if let value = try container.decodeIfPresent(SOImageObject.self, forKey: .thumbnail) {
-            self.thumbnail = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .transcript) {
-            self.transcript = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .videoFrameSize) {
-            self.videoFrameSize = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .videoQuality) {
-            self.videoQuality = value
-        }
+        self.actor = try container.decodeIfPresent([SOPerson].self, forKey: .actor)
+        self.caption = try container.decodeIfPresent(String.self, forKey: .caption)
+        self.director = try container.decodeIfPresent([SOPerson].self, forKey: .director)
+        self.musicBy = try container.decodeMusicGroupOrPersonIfPresent(forKey: .musicBy)
+        self.thumbnail = try container.decodeIfPresent(SOImageObject.self, forKey: .thumbnail)
+        self.transcript = try container.decodeIfPresent(String.self, forKey: .transcript)
+        self.videoFrameSize = try container.decodeIfPresent(String.self, forKey: .videoFrameSize)
+        self.videoQuality = try container.decodeIfPresent(String.self, forKey: .videoQuality)
         
         try super.init(from: decoder)
     }
@@ -70,29 +54,23 @@ public class SOVideoObject: SOMediaObject, VideoObject {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.actor as? [SOPerson] {
-            try container.encode(value, forKey: .actor)
-        }
-        if let value = self.caption {
-            try container.encode(value, forKey: .caption)
-        }
-        if let value = self.director as? [SOPerson] {
-            try container.encode(value, forKey: .director)
-        }
+        try container.encodeIfPresent(self.actor, forKey: .actor)
+        try container.encodeIfPresent(self.caption, forKey: .caption)
+        try container.encodeIfPresent(self.director, forKey: .director)
         try container.encodeIfPresent(self.musicBy, forKey: .musicBy)
-        if let value = self.thumbnail as? SOImageObject {
-            try container.encode(value, forKey: .thumbnail)
-        }
-        if let value = self.transcript {
-            try container.encode(value, forKey: .transcript)
-        }
-        if let value = self.videoFrameSize {
-            try container.encode(value, forKey: .videoFrameSize)
-        }
-        if let value = self.videoQuality {
-            try container.encode(value, forKey: .videoQuality)
-        }
+        try container.encodeIfPresent(self.thumbnail, forKey: .thumbnail)
+        try container.encodeIfPresent(self.transcript, forKey: .transcript)
+        try container.encodeIfPresent(self.videoFrameSize, forKey: .videoFrameSize)
+        try container.encodeIfPresent(self.videoQuality, forKey: .videoQuality)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: VideoObject?, forKey key: K) throws {
+        if let typedValue = value as? SOVideoObject {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

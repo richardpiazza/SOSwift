@@ -30,21 +30,11 @@ public class SONewsArticle: SOArticle, NewsArticle {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .dateline) {
-            self.dateline = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .printColumn) {
-            self.printColumn = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .printEdition) {
-            self.printEdition = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .printPage) {
-            self.printPage = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .printSection) {
-            self.printSection = value
-        }
+        self.dateline = try container.decodeIfPresent(String.self, forKey: .dateline)
+        self.printColumn = try container.decodeIfPresent(String.self, forKey: .printColumn)
+        self.printEdition = try container.decodeIfPresent(String.self, forKey: .printEdition)
+        self.printPage = try container.decodeIfPresent(String.self, forKey: .printPage)
+        self.printSection = try container.decodeIfPresent(String.self, forKey: .printSection)
         
         try super.init(from: decoder)
     }
@@ -52,22 +42,20 @@ public class SONewsArticle: SOArticle, NewsArticle {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.dateline {
-            try container.encode(value, forKey: .dateline)
-        }
-        if let value = self.printColumn {
-            try container.encode(value, forKey: .printColumn)
-        }
-        if let value = self.printEdition {
-            try container.encode(value, forKey: .printEdition)
-        }
-        if let value = self.printPage {
-            try container.encode(value, forKey: .printPage)
-        }
-        if let value = self.printSection {
-            try container.encode(value, forKey: .printSection)
-        }
+        try container.encodeIfPresent(self.dateline, forKey: .dateline)
+        try container.encodeIfPresent(self.printColumn, forKey: .printColumn)
+        try container.encodeIfPresent(self.printEdition, forKey: .printEdition)
+        try container.encodeIfPresent(self.printPage, forKey: .printPage)
+        try container.encodeIfPresent(self.printSection, forKey: .printSection)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: NewsArticle?, forKey key: K) throws {
+        if let typedValue = value as? SONewsArticle {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

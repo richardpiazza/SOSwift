@@ -33,24 +33,12 @@ public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodePostalAddressOrTextIfPresent(forKey: .address) {
-            self.address = value
-        }
-        if let value = try container.decodeCountryOrTextIfPresent(forKey: .addressCountry) {
-            self.addressCountry = value
-        }
-        if let value = try container.decodeNumberOrTextIfPresent(forKey: .elevation) {
-            self.elevation = value
-        }
-        if let value = try container.decodeNumberOrTextIfPresent(forKey: .latitude) {
-            self.latitude = value
-        }
-        if let value = try container.decodeNumberOrTextIfPresent(forKey: .longitude) {
-            self.longitude = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .postalCode) {
-            self.postalCode = value
-        }
+        self.address = try container.decodePostalAddressOrTextIfPresent(forKey: .address)
+        self.addressCountry = try container.decodeCountryOrTextIfPresent(forKey: .addressCountry)
+        self.elevation = try container.decodeNumberOrTextIfPresent(forKey: .elevation)
+        self.latitude = try container.decodeNumberOrTextIfPresent(forKey: .latitude)
+        self.longitude = try container.decodeNumberOrTextIfPresent(forKey: .longitude)
+        self.postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
         
         try super.init(from: decoder)
     }
@@ -63,10 +51,16 @@ public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
         try container.encodeIfPresent(self.elevation, forKey: .elevation)
         try container.encodeIfPresent(self.latitude, forKey: .latitude)
         try container.encodeIfPresent(self.longitude, forKey: .longitude)
-        if let value = self.postalCode {
-            try container.encode(value, forKey: .postalCode)
-        }
+        try container.encodeIfPresent(self.postalCode, forKey: .postalCode)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: GeoCoordinates?, forKey key: K) throws {
+        if let typedValue = value as? SOGeoCoordinates {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

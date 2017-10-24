@@ -28,15 +28,9 @@ public class SOBrand: SOIntangible, Brand {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating) {
-            self.aggregateRating = value
-        }
-        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .logo) {
-            self.logo = value
-        }
-        if let value = try container.decodeIfPresent([SOReview].self, forKey: .review) {
-            self.review = value
-        }
+        self.aggregateRating = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating)
+        self.logo = try container.decodeImageObjectOrURLIfPresent(forKey: .logo)
+        self.review = try container.decodeIfPresent([SOReview].self, forKey: .review)
         
         try super.init(from: decoder)
     }
@@ -44,14 +38,18 @@ public class SOBrand: SOIntangible, Brand {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.aggregateRating as? SOAggregateRating {
-            try container.encode(value, forKey: .aggregateRating)
-        }
+        try container.encodeIfPresent(self.aggregateRating, forKey: .aggregateRating)
         try container.encodeIfPresent(self.logo, forKey: .logo)
-        if let value = self.review as? [SOReview] {
-            try container.encode(value, forKey: .review)
-        }
+        try container.encodeIfPresent(self.review, forKey: .review)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Brand?, forKey key: K) throws {
+        if let typedValue = value as? SOBrand {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

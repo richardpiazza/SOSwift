@@ -40,30 +40,14 @@ public class SOQualitativeValue: SOEnumeration, QualitativeValue {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty) {
-            self.additionalProperty = value
-        }
-        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .equal) {
-            self.equal = value
-        }
-        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .greater) {
-            self.greater = value
-        }
-        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .greaterOrEqual) {
-            self.greaterOrEqual = value
-        }
-        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .lesser) {
-            self.lesser = value
-        }
-        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .lesserOrEqual) {
-            self.lesserOrEqual = value
-        }
-        if let value = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .nonEqual) {
-            self.nonEqual = value
-        }
-        if let value = try container.decodeValueReferenceIfPresent(forKey: .valueReference) {
-            self.valueReference = value
-        }
+        self.additionalProperty = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty)
+        self.equal = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .equal)
+        self.greater = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .greater)
+        self.greaterOrEqual = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .greaterOrEqual)
+        self.lesser = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .lesser)
+        self.lesserOrEqual = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .lesserOrEqual)
+        self.nonEqual = try container.decodeIfPresent(SOQualitativeValue.self, forKey: .nonEqual)
+        self.valueReference = try container.decodeValueReferenceIfPresent(forKey: .valueReference)
         
         try super.init(from: decoder)
     }
@@ -71,29 +55,23 @@ public class SOQualitativeValue: SOEnumeration, QualitativeValue {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.additionalProperty as? SOPropertyValue {
-            try container.encode(value, forKey: .additionalProperty)
-        }
-        if let value = self.equal as? SOQualitativeValue {
-            try container.encode(value, forKey: .equal)
-        }
-        if let value = self.greater as? SOQualitativeValue {
-            try container.encode(value, forKey: .greater)
-        }
-        if let value = self.greaterOrEqual as? SOQualitativeValue {
-            try container.encode(value, forKey: .greaterOrEqual)
-        }
-        if let value = self.lesser as? SOQualitativeValue {
-            try container.encode(value, forKey: .lesser)
-        }
-        if let value = self.lesserOrEqual as? SOQualitativeValue {
-            try container.encode(value, forKey: .lesserOrEqual)
-        }
-        if let value = self.nonEqual as? SOQualitativeValue {
-            try container.encode(value, forKey: .nonEqual)
-        }
+        try container.encodeIfPresent(self.additionalProperty, forKey: .additionalProperty)
+        try container.encodeIfPresent(self.equal, forKey: .equal)
+        try container.encodeIfPresent(self.greater, forKey: .greater)
+        try container.encodeIfPresent(self.greaterOrEqual, forKey: .greaterOrEqual)
+        try container.encodeIfPresent(self.lesser, forKey: .lesser)
+        try container.encodeIfPresent(self.lesserOrEqual, forKey: .lesserOrEqual)
+        try container.encodeIfPresent(self.nonEqual, forKey: .nonEqual)
         try container.encodeIfPresent(self.valueReference, forKey: .valueReference)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: QualitativeValue?, forKey key: K) throws {
+        if let typedValue = value as? SOQualitativeValue {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

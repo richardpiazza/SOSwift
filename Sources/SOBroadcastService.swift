@@ -32,24 +32,12 @@ public class SOBroadcastService: SOService, BroadcastService {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .broadcastAffiliateOf) {
-            self.broadcastAffiliateOf = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .broadcastDisplayName) {
-            self.broadcastDisplayName = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .broadcastTimezone) {
-            self.broadcastTimezone = value
-        }
-        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .broadcaster) {
-            self.broadcaster = value
-        }
-        if let value = try container.decodeIfPresent(SOBroadcastService.self, forKey: .parentService) {
-            self.parentService = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .videoFormat) {
-            self.videoFormat = value
-        }
+        self.broadcastAffiliateOf = try container.decodeIfPresent(SOOrganization.self, forKey: .broadcastAffiliateOf)
+        self.broadcastDisplayName = try container.decodeIfPresent(String.self, forKey: .broadcastDisplayName)
+        self.broadcastTimezone = try container.decodeIfPresent(String.self, forKey: .broadcastTimezone)
+        self.broadcaster = try container.decodeIfPresent(SOOrganization.self, forKey: .broadcaster)
+        self.parentService = try container.decodeIfPresent(SOBroadcastService.self, forKey: .parentService)
+        self.videoFormat = try container.decodeIfPresent(String.self, forKey: .videoFormat)
         
         try super.init(from: decoder)
     }
@@ -57,25 +45,21 @@ public class SOBroadcastService: SOService, BroadcastService {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.broadcastAffiliateOf as? SOOrganization {
-            try container.encode(value, forKey: .broadcastAffiliateOf)
-        }
-        if let value = self.broadcastDisplayName {
-            try container.encode(value, forKey: .broadcastDisplayName)
-        }
-        if let value = self.broadcastTimezone {
-            try container.encode(value, forKey: .broadcastTimezone)
-        }
-        if let value = self.broadcaster as? SOOrganization {
-            try container.encode(value, forKey: .broadcaster)
-        }
-        if let value = self.parentService as? SOBroadcastService {
-            try container.encode(value, forKey: .parentService)
-        }
-        if let value = self.videoFormat {
-            try container.encode(value, forKey: .videoFormat)
-        }
+        try container.encodeIfPresent(self.broadcastAffiliateOf, forKey: .broadcastAffiliateOf)
+        try container.encodeIfPresent(self.broadcastDisplayName, forKey: .broadcastDisplayName)
+        try container.encodeIfPresent(self.broadcastTimezone, forKey: .broadcastTimezone)
+        try container.encodeIfPresent(self.broadcaster, forKey: .broadcaster)
+        try container.encodeIfPresent(self.parentService, forKey: .parentService)
+        try container.encodeIfPresent(self.videoFormat, forKey: .videoFormat)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: BroadcastService?, forKey key: K) throws {
+        if let typedValue = value as? SOBroadcastService {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

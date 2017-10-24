@@ -35,24 +35,12 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(String.self, forKey: .currency) {
-            self.currency = value
-        }
-        if let value = try container.decodeNumberIfPresent(forKey: .maxValue) {
-            self.maxValue = value
-        }
-        if let value = try container.decodeNumberIfPresent(forKey: .minValue) {
-            self.minValue = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .validFrom) {
-            self.validFrom = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .validThrough) {
-            self.validThrough = value
-        }
-        if let value = try container.decodeValueIfPresent(forKey: .value) {
-            self.value = value
-        }
+        self.currency = try container.decodeIfPresent(String.self, forKey: .currency)
+        self.maxValue = try container.decodeNumberIfPresent(forKey: .maxValue)
+        self.minValue = try container.decodeNumberIfPresent(forKey: .minValue)
+        self.validFrom = try container.decodeDateTimeIfPresent(forKey: .validFrom)
+        self.validThrough = try container.decodeDateTimeIfPresent(forKey: .validThrough)
+        self.value = try container.decodeValueIfPresent(forKey: .value)
         
         try super.init(from: decoder)
     }
@@ -60,9 +48,7 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.currency {
-            try container.encode(value, forKey: .currency)
-        }
+        try container.encodeIfPresent(self.currency, forKey: .currency)
         try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
         try container.encodeIfPresent(self.minValue, forKey: .minValue)
         try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
@@ -70,5 +56,13 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
         try container.encodeIfPresent(self.value, forKey: .value)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: MonetaryAmount?, forKey key: K) throws {
+        if let typedValue = value as? SOMonetaryAmount {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

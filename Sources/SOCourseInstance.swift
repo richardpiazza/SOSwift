@@ -21,12 +21,8 @@ public class SOCourseInstance: SOEvent, CourseInstance {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .courseMode) {
-            self.courseMode = value
-        }
-        if let value = try container.decodeIfPresent(SOPerson.self, forKey: .instructor) {
-            self.instructor = value
-        }
+        self.courseMode = try container.decodeTextOrURLIfPresent(forKey: .courseMode)
+        self.instructor = try container.decodeIfPresent(SOPerson.self, forKey: .instructor)
         
         try super.init(from: decoder)
     }
@@ -35,11 +31,17 @@ public class SOCourseInstance: SOEvent, CourseInstance {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.courseMode, forKey: .courseMode)
-        if let value = self.instructor as? SOPerson {
-            try container.encode(value, forKey: .instructor)
-        }
+        try container.encodeIfPresent(self.instructor, forKey: .instructor)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: CourseInstance?, forKey key: K) throws {
+        if let typedValue = value as? SOCourseInstance {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }
 

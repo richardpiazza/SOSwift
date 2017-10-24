@@ -81,69 +81,27 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .applicationCategory) {
-            self.applicationCategory = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .applicationSubCategory) {
-            self.applicationSubCategory = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .applicationSuite) {
-            self.applicationSuite = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .availableOnDevice) {
-            self.availableOnDevice = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .countriesNotSupported) {
-            self.countriesNotSupported = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .countriesSupported) {
-            self.countriesSupported = value
-        }
-        if let value = try container.decodeIfPresent(URL.self, forKey: .downloadUrl) {
-            self.downloadUrl = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .featureList) {
-            self.featureList = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .fileSize) {
-            self.fileSize = value
-        }
-        if let value = try container.decodeIfPresent(URL.self, forKey: .installUrl) {
-            self.installUrl = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .memoryRequirements) {
-            self.memoryRequirements = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .operatingSystem) {
-            self.operatingSystem = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .permissions) {
-            self.permissions = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .processorRequirements) {
-            self.processorRequirements = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .releaseNotes) {
-            self.releaseNotes = value
-        }
-        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .screenshot) {
-            self.screenshot = value
-        }
-        if let value = try container.decodeIfPresent(SOSoftwareApplication.self, forKey: .softwareAddOn) {
-            self.softwareAddOn = value
-        }
-        if let value = try container.decodeIfPresent(SOCreativeWork.self, forKey: .softwareHelp) {
-            self.softwareHelp = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .softwareVersion) {
-            self.softwareVersion = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .softwareRequirements) {
-            self.softwareRequirements = value
-        }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .storageRequirements) {
-            self.storageRequirements = value
-        }
+        self.applicationCategory = try container.decodeTextOrURLIfPresent(forKey: .applicationCategory)
+        self.applicationSubCategory = try container.decodeTextOrURLIfPresent(forKey: .applicationSubCategory)
+        self.applicationSuite = try container.decodeIfPresent(String.self, forKey: .applicationSuite)
+        self.availableOnDevice = try container.decodeIfPresent(String.self, forKey: .availableOnDevice)
+        self.countriesNotSupported = try container.decodeIfPresent(String.self, forKey: .countriesNotSupported)
+        self.countriesSupported = try container.decodeIfPresent(String.self, forKey: .countriesSupported)
+        self.downloadUrl = try container.decodeIfPresent(URL.self, forKey: .downloadUrl)
+        self.featureList = try container.decodeTextOrURLIfPresent(forKey: .featureList)
+        self.fileSize = try container.decodeIfPresent(String.self, forKey: .fileSize)
+        self.installUrl = try container.decodeIfPresent(URL.self, forKey: .installUrl)
+        self.memoryRequirements = try container.decodeTextOrURLIfPresent(forKey: .memoryRequirements)
+        self.operatingSystem = try container.decodeIfPresent(String.self, forKey: .operatingSystem)
+        self.permissions = try container.decodeIfPresent(String.self, forKey: .permissions)
+        self.processorRequirements = try container.decodeIfPresent(String.self, forKey: .processorRequirements)
+        self.releaseNotes = try container.decodeTextOrURLIfPresent(forKey: .releaseNotes)
+        self.screenshot = try container.decodeImageObjectOrURLIfPresent(forKey: .screenshot)
+        self.softwareAddOn = try container.decodeIfPresent(SOSoftwareApplication.self, forKey: .softwareAddOn)
+        self.softwareHelp = try container.decodeIfPresent(SOCreativeWork.self, forKey: .softwareHelp)
+        self.softwareVersion = try container.decodeIfPresent(String.self, forKey: .softwareVersion)
+        self.softwareRequirements = try container.decodeTextOrURLIfPresent(forKey: .softwareRequirements)
+        self.storageRequirements = try container.decodeTextOrURLIfPresent(forKey: .storageRequirements)
         
         try super.init(from: decoder)
     }
@@ -153,55 +111,35 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
         
         try container.encodeIfPresent(self.applicationCategory, forKey: .applicationCategory)
         try container.encodeIfPresent(self.applicationSubCategory, forKey: .applicationSubCategory)
-        if let value = self.applicationSuite {
-            try container.encode(value, forKey: .applicationSuite)
-        }
-        if let value = self.availableOnDevice {
-            try container.encode(value, forKey: .availableOnDevice)
-        }
-        if let value = self.countriesNotSupported {
-            try container.encode(value, forKey: .countriesNotSupported)
-        }
-        if let value = self.countriesSupported {
-            try container.encode(value, forKey: .countriesSupported)
-        }
-        if let value = self.downloadUrl {
-            try container.encode(value, forKey: .downloadUrl)
-        }
+        try container.encodeIfPresent(self.applicationSuite, forKey: .applicationSuite)
+        try container.encodeIfPresent(self.availableOnDevice, forKey: .availableOnDevice)
+        try container.encodeIfPresent(self.countriesNotSupported, forKey: .countriesNotSupported)
+        try container.encodeIfPresent(self.countriesSupported, forKey: .countriesSupported)
+        try container.encodeIfPresent(self.downloadUrl, forKey: .downloadUrl)
         try container.encodeIfPresent(self.featureList, forKey: .featureList)
-        if let value = self.fileSize {
-            try container.encode(value, forKey: .fileSize)
-        }
-        if let value = self.installUrl {
-            try container.encode(value, forKey: .installUrl)
-        }
+        try container.encodeIfPresent(self.fileSize, forKey: .fileSize)
+        try container.encodeIfPresent(self.installUrl, forKey: .installUrl)
         try container.encodeIfPresent(self.memoryRequirements, forKey: .memoryRequirements)
-        if let value = self.operatingSystem {
-            try container.encode(value, forKey: .operatingSystem)
-        }
-        if let value = self.permissions {
-            try container.encode(value, forKey: .permissions)
-        }
-        if let value = self.processorRequirements {
-            try container.encode(value, forKey: .processorRequirements)
-        }
+        try container.encodeIfPresent(self.operatingSystem, forKey: .operatingSystem)
+        try container.encodeIfPresent(self.permissions, forKey: .permissions)
+        try container.encodeIfPresent(self.processorRequirements, forKey: .processorRequirements)
         try container.encodeIfPresent(self.releaseNotes, forKey: .releaseNotes)
         try container.encodeIfPresent(self.screenshot, forKey: .screenshot)
-        if let value = self.softwareAddOn as? SOSoftwareApplication {
-            try container.encode(value, forKey: .softwareAddOn)
-        }
-        if let value = self.softwareHelp as? SOCreativeWork {
-            try container.encode(value, forKey: .softwareHelp)
-        }
+        try container.encodeIfPresent(self.softwareAddOn, forKey: .softwareAddOn)
+        try container.encodeIfPresent(self.softwareHelp, forKey: .softwareHelp)
         try container.encodeIfPresent(self.softwareRequirements, forKey: .softwareRequirements)
-        if let value = self.softwareVersion {
-            try container.encode(value, forKey: .softwareVersion)
-        }
+        try container.encodeIfPresent(self.softwareVersion, forKey: .softwareVersion)
         try container.encodeIfPresent(self.storageRequirements, forKey: .storageRequirements)
-        if let value = self.supportingData as? SODataFeed {
-            try container.encode(value, forKey: .supportingData)
-        }
+        try container.encodeIfPresent(self.supportingData, forKey: .supportingData)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: SoftwareApplication?, forKey key: K) throws {
+        if let typedValue = value as? SOSoftwareApplication {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

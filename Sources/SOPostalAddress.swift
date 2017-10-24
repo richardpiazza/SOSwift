@@ -32,24 +32,12 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeCountryOrTextIfPresent(forKey: .addressCountry) {
-            self.addressCountry = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .addressLocality) {
-            self.addressLocality = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .addressRegion) {
-            self.addressRegion = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .postOfficeBoxNumber) {
-            self.postOfficeBoxNumber = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .postalCode) {
-            self.postalCode = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .streetAddress) {
-            self.streetAddress = value
-        }
+        self.addressCountry = try container.decodeCountryOrTextIfPresent(forKey: .addressCountry)
+        self.addressLocality = try container.decodeIfPresent(String.self, forKey: .addressLocality)
+        self.addressRegion = try container.decodeIfPresent(String.self, forKey: .addressRegion)
+        self.postOfficeBoxNumber = try container.decodeIfPresent(String.self, forKey: .postOfficeBoxNumber)
+        self.postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
+        self.streetAddress = try container.decodeIfPresent(String.self, forKey: .streetAddress)
         
         try super.init(from: decoder)
     }
@@ -58,21 +46,11 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.addressCountry, forKey: .addressCountry)
-        if let value = self.addressLocality {
-            try container.encode(value, forKey: .addressLocality)
-        }
-        if let value = self.addressRegion {
-            try container.encode(value, forKey: .addressRegion)
-        }
-        if let value = self.postOfficeBoxNumber {
-            try container.encode(value, forKey: .postOfficeBoxNumber)
-        }
-        if let value = self.postalCode {
-            try container.encode(value, forKey: .postalCode)
-        }
-        if let value = self.streetAddress {
-            try container.encode(value, forKey: .streetAddress)
-        }
+        try container.encodeIfPresent(self.addressLocality, forKey: .addressLocality)
+        try container.encodeIfPresent(self.addressRegion, forKey: .addressRegion)
+        try container.encodeIfPresent(self.postOfficeBoxNumber, forKey: .postOfficeBoxNumber)
+        try container.encodeIfPresent(self.postalCode, forKey: .postalCode)
+        try container.encodeIfPresent(self.streetAddress, forKey: .streetAddress)
         
         try super.encode(to: encoder)
     }
@@ -95,5 +73,13 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
     
     public var poBox: String? {
         return postOfficeBoxNumber
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: PostalAddress?, forKey key: K) throws {
+        if let typedValue = value as? SOPostalAddress {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

@@ -18,9 +18,7 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOBroadcastService.self, forKey: .publishedOn) {
-            self.publishedOn = value
-        }
+        self.publishedOn = try container.decodeIfPresent(SOBroadcastService.self, forKey: .publishedOn)
         
         try super.init(from: decoder)
     }
@@ -28,10 +26,16 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.publishedOn as? SOBroadcastService {
-            try container.encode(value, forKey: .publishedOn)
-        }
+        try container.encodeIfPresent(self.publishedOn, forKey: .publishedOn)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: PublicationEvent?, forKey key: K) throws {
+        if let typedValue = value as? SOPublicationEvent {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

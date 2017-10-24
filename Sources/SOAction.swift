@@ -53,36 +53,16 @@ public class SOAction: SOThing, Action {
         if let value = try container.decodeIfPresent(String.self, forKey: .actionStatus) {
             self.actionStatus = ActionStatus(rawValue: value)
         }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .agent) {
-            self.agent = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .endTime) {
-            self.endTime = value
-        }
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .error) {
-            self.error = value
-        }
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .instrument) {
-            self.instrument = value
-        }
-        if let value = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .location) {
-            self.location = value
-        }
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .object) {
-            self.object = value
-        }
-        if let value = try container.decodeOrganizationOrPersonIfPresent(forKey: .participant) {
-            self.participant = value
-        }
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .result) {
-            self.result = value
-        }
-        if let value = try container.decodeDateTimeIfPresent(forKey: .startTime) {
-            self.startTime = value
-        }
-        if let value = try container.decodeIfPresent(SOEntryPoint.self, forKey: .target) {
-            self.target = value
-        }
+        self.agent = try container.decodeOrganizationOrPersonIfPresent(forKey: .agent)
+        self.endTime = try container.decodeDateTimeIfPresent(forKey: .endTime)
+        self.error = try container.decodeIfPresent(SOThing.self, forKey: .error)
+        self.instrument = try container.decodeIfPresent(SOThing.self, forKey: .instrument)
+        self.location = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .location)
+        self.object = try container.decodeIfPresent(SOThing.self, forKey: .object)
+        self.participant = try container.decodeOrganizationOrPersonIfPresent(forKey: .participant)
+        self.result = try container.decodeIfPresent(SOThing.self, forKey: .result)
+        self.startTime = try container.decodeDateTimeIfPresent(forKey: .startTime)
+        self.target = try container.decodeIfPresent(SOEntryPoint.self, forKey: .target)
         
         try super.init(from: decoder)
     }
@@ -90,30 +70,26 @@ public class SOAction: SOThing, Action {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.actionStatus {
-            try container.encode(value.rawValue, forKey: .actionStatus)
-        }
+        try container.encodeIfPresent(self.actionStatus?.rawValue, forKey: .actionStatus)
         try container.encodeIfPresent(self.agent, forKey: .agent)
         try container.encodeIfPresent(self.endTime, forKey: .endTime)
-        if let value = self.error as? SOThing {
-            try container.encode(value, forKey: .error)
-        }
-        if let value = self.instrument as? SOThing {
-            try container.encode(value, forKey: .instrument)
-        }
+        try container.encodeIfPresent(self.error, forKey: .error)
+        try container.encodeIfPresent(self.instrument, forKey: .instrument)
         try container.encodeIfPresent(self.location, forKey: .location)
-        if let value = self.object as? SOThing {
-            try container.encode(value, forKey: .object)
-        }
+        try container.encodeIfPresent(self.object, forKey: .object)
         try container.encodeIfPresent(self.participant, forKey: .participant)
-        if let value = self.result as? SOThing {
-            try container.encode(value, forKey: .result)
-        }
+        try container.encodeIfPresent(self.result, forKey: .result)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
-        if let value = self.target as? SOEntryPoint {
-            try container.encode(value, forKey: .target)
-        }
+        try container.encodeIfPresent(self.target, forKey: .target)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Action?, forKey key: K) throws {
+        if let typedValue = value as? SOAction {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

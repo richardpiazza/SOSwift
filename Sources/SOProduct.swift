@@ -112,96 +112,40 @@ public class SOProduct: SOThing, Product {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty) {
-            self.additionalProperty = value
-        }
-        if let value = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating) {
-            self.aggregateRating = value
-        }
-        if let value = try container.decodeIfPresent(SOAudience.self, forKey: .audience) {
-            self.audience = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .award) {
-            self.award = value
-        }
-        if let value = try container.decodeBrandOrOrganizationIfPresent(forKey: .brand) {
-            self.brand = value
-        }
-        if let value = try container.decodeTextOrThingIfPresent(forKey: .category) {
-            self.category = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .color) {
-            self.color = value
-        }
-        if let value = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .depth) {
-            self.depth = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .gtin12) {
-            self.gtin12 = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .gtin13) {
-            self.gtin13 = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .gtin14) {
-            self.gtin14 = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .gtin8) {
-            self.gtin8 = value
-        }
-        if let value = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height) {
-            self.height = value
-        }
-        if let value = try container.decodeIfPresent(SOProduct.self, forKey: .isAccessoryOrSparePartFor) {
-            self.isAccessoryOrSparePartFor = value
-        }
-        if let value = try container.decodeIfPresent(SOProduct.self, forKey: .isConsumableFor) {
-            self.isConsumableFor = value
-        }
-        if let value = try container.decodeProductOrServiceIfPresent(forKey: .isRelatedTo) {
-            self.isRelatedTo = value
-        }
-        if let value = try container.decodeProductOrServiceIfPresent(forKey: .isSimilarTo) {
-            self.isSimilarTo = value
-        }
+        self.additionalProperty = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty)
+        self.aggregateRating = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating)
+        self.audience = try container.decodeIfPresent(SOAudience.self, forKey: .audience)
+        self.award = try container.decodeIfPresent(String.self, forKey: .award)
+        self.brand = try container.decodeBrandOrOrganizationIfPresent(forKey: .brand)
+        self.category = try container.decodeTextOrThingIfPresent(forKey: .category)
+        self.color = try container.decodeIfPresent(String.self, forKey: .color)
+        self.depth = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .depth)
+        self.gtin12 = try container.decodeIfPresent(String.self, forKey: .gtin12)
+        self.gtin13 = try container.decodeIfPresent(String.self, forKey: .gtin13)
+        self.gtin14 = try container.decodeIfPresent(String.self, forKey: .gtin14)
+        self.gtin8 = try container.decodeIfPresent(String.self, forKey: .gtin8)
+        self.height = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height)
+        self.isAccessoryOrSparePartFor = try container.decodeIfPresent(SOProduct.self, forKey: .isAccessoryOrSparePartFor)
+        self.isConsumableFor = try container.decodeIfPresent(SOProduct.self, forKey: .isConsumableFor)
+        self.isRelatedTo = try container.decodeProductOrServiceIfPresent(forKey: .isRelatedTo)
+        self.isSimilarTo = try container.decodeProductOrServiceIfPresent(forKey: .isSimilarTo)
         if let value = try container.decodeIfPresent(String.self, forKey: .itemCondition) {
             self.itemCondition = OfferItemCondition(rawValue: value)
         }
-        if let value = try container.decodeImageObjectOrURLIfPresent(forKey: .logo) {
-            self.logo = value
-        }
-        if let value = try container.decodeIfPresent(SOOrganization.self, forKey: .manufacturer) {
-            self.manufacturer = value
-        }
-        if let value = try container.decodeProductOrTextOrURLIfPresent(forKey: .material) {
-            self.material = value
-        }
-        if let value = try container.decodeProductModelOrTextIfPresent(forKey: .model) {
-            self.model = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .mpn) {
-            self.mpn = value
-        }
-        if let value = try container.decodeIfPresent([SOOffer].self, forKey: .offers) {
-            self.offers = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .productID) {
-            self.productID = value
-        }
+        self.logo = try container.decodeImageObjectOrURLIfPresent(forKey: .logo)
+        self.manufacturer = try container.decodeIfPresent(SOOrganization.self, forKey: .manufacturer)
+        self.material = try container.decodeProductOrTextOrURLIfPresent(forKey: .material)
+        self.model = try container.decodeProductModelOrTextIfPresent(forKey: .model)
+        self.mpn = try container.decodeIfPresent(String.self, forKey: .mpn)
+        self.offers = try container.decodeIfPresent([SOOffer].self, forKey: .offers)
+        self.productID = try container.decodeIfPresent(String.self, forKey: .productID)
         self.productionDate = try container.decodeDateOnlyIfPresent(forKey: .productionDate)
         self.purchaseDate = try container.decodeDateOnlyIfPresent(forKey: .purchaseDate)
         self.releaseDate = try container.decodeDateOnlyIfPresent(forKey: .releaseDate)
-        if let value = try container.decodeIfPresent(SOReview.self, forKey: .review) {
-            self.review = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .sku) {
-            self.sku = value
-        }
-        if let value = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .weight) {
-            self.weight = value
-        }
-        if let value = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .width) {
-            self.width = value
-        }
+        self.review = try container.decodeIfPresent(SOReview.self, forKey: .review)
+        self.sku = try container.decodeIfPresent(String.self, forKey: .sku)
+        self.weight = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .weight)
+        self.width = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .width)
         
         try super.init(from: decoder)
     }
@@ -209,77 +153,47 @@ public class SOProduct: SOThing, Product {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.additionalProperty as? SOPropertyValue {
-            try container.encode(value, forKey: .additionalProperty)
-        }
-        if let value = self.aggregateRating as? SOAggregateRating {
-            try container.encode(value, forKey: .aggregateRating)
-        }
-        if let value = self.audience as? SOAudience {
-            try container.encode(value, forKey: .audience)
-        }
-        if let value = self.award {
-            try container.encode(value, forKey: .award)
-        }
+        try container.encodeIfPresent(self.additionalProperty, forKey: .additionalProperty)
+        try container.encodeIfPresent(self.aggregateRating, forKey: .aggregateRating)
+        try container.encodeIfPresent(self.audience, forKey: .audience)
+        try container.encodeIfPresent(self.award, forKey: .award)
         try container.encodeIfPresent(self.brand, forKey: .brand)
         try container.encodeIfPresent(self.category, forKey: .category)
-        if let value = self.color {
-            try container.encode(value, forKey: .color)
-        }
+        try container.encodeIfPresent(self.color, forKey: .color)
         try container.encodeIfPresent(self.depth, forKey: .depth)
-        if let value = self.gtin12 {
-            try container.encode(value, forKey: .gtin12)
-        }
-        if let value = self.gtin13 {
-            try container.encode(value, forKey: .gtin13)
-        }
-        if let value = self.gtin14 {
-            try container.encode(value, forKey: .gtin14)
-        }
-        if let value = self.gtin8 {
-            try container.encode(value, forKey: .gtin8)
-        }
+        try container.encodeIfPresent(self.gtin12, forKey: .gtin12)
+        try container.encodeIfPresent(self.gtin13, forKey: .gtin13)
+        try container.encodeIfPresent(self.gtin14, forKey: .gtin14)
+        try container.encodeIfPresent(self.gtin8, forKey: .gtin8)
         try container.encodeIfPresent(self.height, forKey: .height)
-        if let value = self.isAccessoryOrSparePartFor as? SOProduct {
-            try container.encode(value, forKey: .isAccessoryOrSparePartFor)
-        }
-        if let value = self.isConsumableFor as? SOProduct {
-            try container.encode(value, forKey: .isConsumableFor)
-        }
+        try container.encodeIfPresent(self.isAccessoryOrSparePartFor, forKey: .isAccessoryOrSparePartFor)
+        try container.encodeIfPresent(self.isConsumableFor, forKey: .isConsumableFor)
         try container.encodeIfPresent(self.isRelatedTo, forKey: .isRelatedTo)
         try container.encodeIfPresent(self.isSimilarTo, forKey: .isSimilarTo)
-        if let value = self.itemCondition {
-            try container.encode(value.rawValue, forKey: .itemCondition)
-        }
+        try container.encodeIfPresent(self.itemCondition?.rawValue, forKey: .itemCondition)
         try container.encodeIfPresent(self.logo, forKey: .logo)
-        if let value = self.manufacturer as? SOOrganization {
-            try container.encode(value, forKey: .manufacturer)
-        }
+        try container.encodeIfPresent(self.manufacturer, forKey: .manufacturer)
         try container.encodeIfPresent(self.material, forKey: .material)
         try container.encodeIfPresent(self.model, forKey: .model)
-        if let value = self.mpn {
-            try container.encode(value, forKey: .mpn)
-        }
-        if let value = self.offers as? [SOOffer] {
-            try container.encode(value, forKey: .offers)
-        }
-        if let value = self.productID {
-            try container.encode(value, forKey: .productID)
-        }
+        try container.encodeIfPresent(self.mpn, forKey: .mpn)
+        try container.encodeIfPresent(self.offers, forKey: .offers)
+        try container.encodeIfPresent(self.productID, forKey: .productID)
         try container.encodeIfPresent(self.productionDate, forKey: .productionDate)
         try container.encodeIfPresent(self.purchaseDate, forKey: .purchaseDate)
         try container.encodeIfPresent(self.releaseDate, forKey: .releaseDate)
-        if let value = self.review as? SOReview {
-            try container.encode(value, forKey: .review)
-        }
-        if let value = self.sku {
-            try container.encode(value, forKey: .sku)
-        }
-        if let value = self.weight as? SOQuantitativeValue {
-            try container.encode(value, forKey: .weight)
-        }
+        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.sku, forKey: .sku)
+        try container.encodeIfPresent(self.weight, forKey: .weight)
         try container.encodeIfPresent(self.width, forKey: .width)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Product?, forKey key: K) throws {
+        if let typedValue = value as? SOProduct {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

@@ -25,15 +25,9 @@ public class SOReview: SOCreativeWork, Review {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodeIfPresent(SOThing.self, forKey: .itemReviewed) {
-            self.itemReviewed = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .reviewBody) {
-            self.reviewBody = value
-        }
-        if let value = try container.decodeIfPresent(SORating.self, forKey: .reviewRating) {
-            self.reviewRating = value
-        }
+        self.itemReviewed = try container.decodeIfPresent(SOThing.self, forKey: .itemReviewed)
+        self.reviewBody = try container.decodeIfPresent(String.self, forKey: .reviewBody)
+        self.reviewRating = try container.decodeIfPresent(SORating.self, forKey: .reviewRating)
         
         try super.init(from: decoder)
     }
@@ -41,16 +35,24 @@ public class SOReview: SOCreativeWork, Review {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        if let value = self.itemReviewed as? SOThing {
-            try container.encode(value, forKey: .itemReviewed)
-        }
-        if let value = self.reviewBody {
-            try container.encode(value, forKey: .reviewBody)
-        }
-        if let value = self.reviewRating as? SORating {
-            try container.encode(value, forKey: .reviewRating)
-        }
+        try container.encodeIfPresent(self.itemReviewed, forKey: .itemReviewed)
+        try container.encodeIfPresent(self.reviewBody, forKey: .reviewBody)
+        try container.encodeIfPresent(self.reviewRating, forKey: .reviewRating)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: Review?, forKey key: K) throws {
+        if let typedValue = value as? SOReview {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
+    
+    public mutating func encodeIfPresent(_ value: [Review]?, forKey key: K) throws {
+        if let typedValue = value as? [SOReview] {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }

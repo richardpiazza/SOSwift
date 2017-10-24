@@ -39,30 +39,14 @@ public class SOGeoShape: SOThing, GeoShape {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let value = try container.decodePostalAddressOrTextIfPresent(forKey: .address) {
-            self.address = value
-        }
-        if let value = try container.decodeCountryOrTextIfPresent(forKey: .addressCountry) {
-            self.addressCountry = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .box) {
-            self.box = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .circle) {
-            self.circle = value
-        }
-        if let value = try container.decodeNumberOrTextIfPresent(forKey: .elevation) {
-            self.elevation = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .line) {
-            self.line = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .polygon) {
-            self.polygon = value
-        }
-        if let value = try container.decodeIfPresent(String.self, forKey: .postalCode) {
-            self.postalCode = value
-        }
+        self.address = try container.decodePostalAddressOrTextIfPresent(forKey: .address)
+        self.addressCountry = try container.decodeCountryOrTextIfPresent(forKey: .addressCountry)
+        self.box = try container.decodeIfPresent(String.self, forKey: .box)
+        self.circle = try container.decodeIfPresent(String.self, forKey: .circle)
+        self.elevation = try container.decodeNumberOrTextIfPresent(forKey: .elevation)
+        self.line = try container.decodeIfPresent(String.self, forKey: .line)
+        self.polygon = try container.decodeIfPresent(String.self, forKey: .polygon)
+        self.postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
         
         try super.init(from: decoder)
     }
@@ -72,23 +56,21 @@ public class SOGeoShape: SOThing, GeoShape {
         
         try container.encodeIfPresent(self.address, forKey: .address)
         try container.encodeIfPresent(self.addressCountry, forKey: .addressCountry)
-        if let value = self.box {
-            try container.encode(value, forKey: .box)
-        }
-        if let value = self.circle {
-            try container.encode(value, forKey: .circle)
-        }
+        try container.encodeIfPresent(self.box, forKey: .box)
+        try container.encodeIfPresent(self.circle, forKey: .circle)
         try container.encodeIfPresent(self.elevation, forKey: .elevation)
-        if let value = self.line {
-            try container.encode(value, forKey: .line)
-        }
-        if let value = self.polygon {
-            try container.encode(value, forKey: .polygon)
-        }
-        if let value = self.postalCode {
-            try container.encode(value, forKey: .postalCode)
-        }
+        try container.encodeIfPresent(self.line, forKey: .line)
+        try container.encodeIfPresent(self.polygon, forKey: .polygon)
+        try container.encodeIfPresent(self.postalCode, forKey: .postalCode)
         
         try super.encode(to: encoder)
+    }
+}
+
+public extension KeyedEncodingContainer {
+    public mutating func encodeIfPresent(_ value: GeoShape?, forKey key: K) throws {
+        if let typedValue = value as? SOGeoShape {
+            try self.encode(typedValue, forKey: key)
+        }
     }
 }
