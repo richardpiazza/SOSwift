@@ -23,6 +23,10 @@ public class SOListItem: SOIntangible, ListItem {
         case previousItem
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

@@ -8,6 +8,13 @@ public class SODistance: SOQuantity, Distance {
         return "Distance"
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
 }
 
 public extension KeyedEncodingContainer {

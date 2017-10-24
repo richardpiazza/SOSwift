@@ -39,6 +39,93 @@ class ContactPointOrPlaceTests: XCTestCase {
         super.tearDown()
     }
 
+    func testSingleDecodes() {
+        let json = """
+            {
+                "contactPoint" : {
+                    "@type" : "ContactPoint",
+                    "name" : "Contact Point"
+                },
+                "place" : {
+                    "@type" : "Place",
+                    "name" : "A Place"
+                }
+            }
+        """
+        
+        let testObject: TestClass
+        do {
+            testObject = try TestClass.make(with: json)
+        } catch {
+            XCTFail()
+            return
+        }
+        
+        guard let contactPoint = testObject.contactPoint as? ContactPoint else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(contactPoint.name, "Contact Point")
+        
+        guard let place = testObject.place as? Place else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(place.name, "A Place")
+    }
     
-
+    func testSingleEncodes() {
+        let testObject = TestClass()
+        
+        let contactPoint = SOContactPoint()
+        contactPoint.name = "Alpha"
+        
+        let place = SOPlace()
+        place.name = "Beta"
+        
+        testObject.contactPoint = contactPoint
+        testObject.place = place
+        
+        let json: String
+        do {
+            json = try testObject.json()
+        } catch {
+            XCTFail()
+            return
+        }
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        let dictionary: [String : Any]
+        do {
+            guard let dict = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? [String : Any] else {
+                XCTFail()
+                return
+            }
+            
+            dictionary = dict
+        } catch {
+            XCTFail()
+            return
+        }
+        
+        guard let cp = dictionary["contactPoint"] as? [String : Any], let alpha = cp["name"] as? String else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(alpha, "Alpha")
+        
+        guard let p = dictionary["place"] as? [String : Any], let beta = p["name"] as? String else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(beta, "Beta")
+    }
 }

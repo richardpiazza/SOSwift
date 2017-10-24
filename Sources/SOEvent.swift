@@ -110,6 +110,10 @@ public class SOEvent: SOThing, Event {
         case workPerformed
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -122,7 +126,7 @@ public class SOEvent: SOThing, Event {
         self.contributor = try container.decodeOrganizationOrPersonIfPresent(forKey: .contributor)
         self.director = try container.decodeIfPresent([SOPerson].self, forKey: .director)
         self.doorTime = try container.decodeDateTimeIfPresent(forKey: .doorTime)
-        self.duration = try container.decodeIfPresent(String.self, forKey: .duration)
+        self.duration = try container.decodeDurationIfPresent(forKey: .duration)
         self.endDate = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .endDate)
         if let value = try container.decodeIfPresent(String.self, forKey: .eventStatus) {
             self.eventStatus = EventStatus(rawValue: value)

@@ -18,6 +18,10 @@ public class SOCourseInstance: SOEvent, CourseInstance {
         case instructor
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

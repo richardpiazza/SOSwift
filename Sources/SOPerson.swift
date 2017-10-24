@@ -162,6 +162,10 @@ public class SOPerson: SOThing, Person {
         case worksFor
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

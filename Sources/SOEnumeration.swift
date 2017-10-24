@@ -8,6 +8,13 @@ public class SOEnumeration: SOIntangible, Enumeration {
         return "Enumeration"
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
 }
 
 public extension KeyedEncodingContainer {

@@ -22,6 +22,9 @@
 		E16812491F950B1100C3A0FC /* DateTimeOrTextOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16812481F950B1100C3A0FC /* DateTimeOrTextOrURL+Extension.swift */; };
 		E16DB82C1EC753F700E73447 /* SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16DB8221EC753F700E73447 /* SOSwift.framework */; };
 		E16DB8331EC753F700E73447 /* SOSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E16DB8251EC753F700E73447 /* SOSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E18A66141F9FEC77009693F4 /* CountryOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A66131F9FEC77009693F4 /* CountryOrTextTests.swift */; };
+		E18A66161F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A66151F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift */; };
+		E18A66181F9FF2DC009693F4 /* Duration+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A66171F9FF2DC009693F4 /* Duration+Extension.swift */; };
 		E18FAE6E1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18FAE6D1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift */; };
 		E1938DC11F9D475600AE393B /* AreaServedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC01F9D475600AE393B /* AreaServedTests.swift */; };
 		E1938DC31F9E2D6900AE393B /* BrandOrOrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC21F9E2D6900AE393B /* BrandOrOrganizationTests.swift */; };
@@ -171,6 +174,9 @@
 		E16DB8261EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E16DB82B1EC753F700E73447 /* SOSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SOSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16DB8321EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E18A66131F9FEC77009693F4 /* CountryOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryOrTextTests.swift; sourceTree = "<group>"; };
+		E18A66151F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrProductOrURLTests.swift; sourceTree = "<group>"; };
+		E18A66171F9FF2DC009693F4 /* Duration+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Duration+Extension.swift"; sourceTree = "<group>"; };
 		E18FAE6D1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentObjectOrCourseOrTextTests.swift; sourceTree = "<group>"; };
 		E1938DC01F9D475600AE393B /* AreaServedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaServedTests.swift; sourceTree = "<group>"; };
 		E1938DC21F9E2D6900AE393B /* BrandOrOrganizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandOrOrganizationTests.swift; sourceTree = "<group>"; };
@@ -338,6 +344,8 @@
 				E1938DC01F9D475600AE393B /* AreaServedTests.swift */,
 				E1938DC21F9E2D6900AE393B /* BrandOrOrganizationTests.swift */,
 				E1938DC41F9F75C900AE393B /* ContactPointOrPlaceTests.swift */,
+				E18A66131F9FEC77009693F4 /* CountryOrTextTests.swift */,
+				E18A66151F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift */,
 				E1944D651F97C34E00F2696C /* DateOnlyTests.swift */,
 				E14356741F969F3A0032E302 /* IdentifierTests.swift */,
 				E149A5D41F8E942F008C8C39 /* SOThingTests.swift */,
@@ -361,6 +369,7 @@
 				E1E453201F70412700236249 /* DateTime+Extension.swift */,
 				E16812481F950B1100C3A0FC /* DateTimeOrTextOrURL+Extension.swift */,
 				E1E453101F70412400236249 /* DistanceOrQuantitativeValue+Extension.swift */,
+				E18A66171F9FF2DC009693F4 /* Duration+Extension.swift */,
 				E1E453261F70412800236249 /* EducationalOrganizationOrOrganization+Extension.swift */,
 				E1E452EF1F70411F00236249 /* GenderOrText+Extension.swift */,
 				E1E453311F70412A00236249 /* GeoCoordinatesOrGeoShape+Extension.swift */,
@@ -835,6 +844,7 @@
 				E1E453891F70412E00236249 /* DateTime+Extension.swift in Sources */,
 				E1E4538F1F70412E00236249 /* EducationalOrganizationOrOrganization+Extension.swift in Sources */,
 				E1E453A31F70412E00236249 /* CreativeWorkOrText+Extension.swift in Sources */,
+				E18A66181F9FF2DC009693F4 /* Duration+Extension.swift in Sources */,
 				E1E4535B1F70412E00236249 /* TextOrThing+Extension.swift in Sources */,
 				E1F1F04F1F9595D3001B5CEC /* SODataFeed.swift in Sources */,
 				E1E4534C1F70412E00236249 /* SOGeoCoordinates.swift in Sources */,
@@ -846,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E18A66141F9FEC77009693F4 /* CountryOrTextTests.swift in Sources */,
 				E1938DC11F9D475600AE393B /* AreaServedTests.swift in Sources */,
 				E1938DC31F9E2D6900AE393B /* BrandOrOrganizationTests.swift in Sources */,
 				E18FAE6E1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift in Sources */,
@@ -854,6 +865,7 @@
 				E1938DC81F9F776500AE393B /* _Testable.swift in Sources */,
 				E14356751F969F3A0032E302 /* IdentifierTests.swift in Sources */,
 				E149A5DE1F8E943C008C8C39 /* SOThingTests.swift in Sources */,
+				E18A66161F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

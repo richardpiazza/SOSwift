@@ -29,6 +29,10 @@ public class SOBroadcastService: SOService, BroadcastService {
         case videoFormat
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

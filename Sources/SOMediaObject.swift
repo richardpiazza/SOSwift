@@ -61,6 +61,10 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         case width
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -68,7 +72,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         self.bitrate = try container.decodeIfPresent(String.self, forKey: .bitrate)
         self.contentSize = try container.decodeIfPresent(String.self, forKey: .contentSize)
         self.contentUrl = try container.decodeIfPresent(URL.self, forKey: .contentUrl)
-        self.duration = try container.decodeIfPresent(String.self, forKey: .duration)
+        self.duration = try container.decodeDurationIfPresent(forKey: .duration)
         self.embedUrl = try container.decodeIfPresent(URL.self, forKey: .embedUrl)
         self.encodesCreativeWork = try container.decodeIfPresent(SOCreativeWork.self, forKey: .encodesCreativeWork)
         self.encodingFormat = try container.decodeIfPresent(String.self, forKey: .encodingFormat)

@@ -4,6 +4,7 @@ import SOSwiftVocabulary
 
 enum TestErrors: Error {
     case utf8Encoding
+    case serialization
 }
 
 protocol Testable {
@@ -17,6 +18,20 @@ extension Testable where Self : Codable {
             throw TestErrors.utf8Encoding
         }
         return json
+    }
+    
+    func dictionary() throws -> [String : Any] {
+        let json = try self.json()
+        
+        guard let data = json.data(using: .utf8) else {
+            throw TestErrors.utf8Encoding
+        }
+        
+        guard let dictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? [String : Any] else {
+            throw TestErrors.serialization
+        }
+        
+        return dictionary
     }
     
     static func make(with json: String) throws -> Self {

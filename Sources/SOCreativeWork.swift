@@ -231,6 +231,10 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case workExample
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -320,7 +324,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         self.sponsor = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor)
         self.temporalCoverage = try container.decodeDateTimeOrTextOrURLIfPresent(forKey: .temporalCoverage)
         self.text = try container.decodeIfPresent(String.self, forKey: .text)
-        self.timeRequired = try container.decodeIfPresent(String.self, forKey: .timeRequired)
+        self.timeRequired = try container.decodeDurationIfPresent(forKey: .timeRequired)
         self.translator = try container.decodeOrganizationOrPersonIfPresent(forKey: .translator)
         self.typicalAgeRange = try container.decodeIfPresent(String.self, forKey: .typicalAgeRange)
         self.version = try container.decodeIntegerOrTextIfPresent(forKey: .version)

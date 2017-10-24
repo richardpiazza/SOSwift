@@ -7,6 +7,14 @@ public class SOPerformingGroup: SOOrganization, PerformingGroup {
     public override class var type: String {
         return "PerformingGroup"
     }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
 }
 
 public extension KeyedEncodingContainer {

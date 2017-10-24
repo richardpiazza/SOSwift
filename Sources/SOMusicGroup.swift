@@ -21,6 +21,10 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
         case track
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

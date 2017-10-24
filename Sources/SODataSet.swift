@@ -7,6 +7,13 @@ public class SODataset: SOCreativeWork, Dataset {
         return "Dataset"
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
 }
 
 public extension KeyedEncodingContainer {

@@ -36,11 +36,15 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
         case serviceUrl
     }
     
+    public override init() {
+        super.init()
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.availableLanguage = try container.decodeLanguageOrTextIfPresent(forKey: .availableLanguage)
-        self.processingTime = try container.decodeIfPresent(String.self, forKey: .processingTime)
+        self.processingTime = try container.decodeDurationIfPresent(forKey: .processingTime)
         self.providesService = try container.decodeIfPresent(SOService.self, forKey: .providesService)
         self.serviceLocation = try container.decodeIfPresent(SOPlace.self, forKey: .serviceLocation)
         self.servicePhone = try container.decodeIfPresent(SOContactPoint.self, forKey: .servicePhone)
