@@ -25,6 +25,8 @@
 		E18FAE6E1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18FAE6D1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift */; };
 		E1938DC11F9D475600AE393B /* AreaServedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC01F9D475600AE393B /* AreaServedTests.swift */; };
 		E1938DC31F9E2D6900AE393B /* BrandOrOrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC21F9E2D6900AE393B /* BrandOrOrganizationTests.swift */; };
+		E1938DC51F9F75C900AE393B /* ContactPointOrPlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC41F9F75C900AE393B /* ContactPointOrPlaceTests.swift */; };
+		E1938DC81F9F776500AE393B /* _Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC61F9F775000AE393B /* _Testable.swift */; };
 		E1944D641F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */; };
 		E1944D661F97C34E00F2696C /* DateOnlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1944D651F97C34E00F2696C /* DateOnlyTests.swift */; };
 		E1E453401F70412E00236249 /* BrandOrOrganization+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E452D71F70411D00236249 /* BrandOrOrganization+Extension.swift */; };
@@ -172,6 +174,8 @@
 		E18FAE6D1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentObjectOrCourseOrTextTests.swift; sourceTree = "<group>"; };
 		E1938DC01F9D475600AE393B /* AreaServedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaServedTests.swift; sourceTree = "<group>"; };
 		E1938DC21F9E2D6900AE393B /* BrandOrOrganizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandOrOrganizationTests.swift; sourceTree = "<group>"; };
+		E1938DC41F9F75C900AE393B /* ContactPointOrPlaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPointOrPlaceTests.swift; sourceTree = "<group>"; };
+		E1938DC61F9F775000AE393B /* _Testable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Testable.swift; sourceTree = "<group>"; };
 		E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateOnlyOrDateTime+Extension.swift"; sourceTree = "<group>"; };
 		E1944D651F97C34E00F2696C /* DateOnlyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOnlyTests.swift; sourceTree = "<group>"; };
 		E1E452D71F70411D00236249 /* BrandOrOrganization+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BrandOrOrganization+Extension.swift"; sourceTree = "<group>"; };
@@ -329,9 +333,11 @@
 		E149A5CF1F8E942F008C8C39 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E1938DC61F9F775000AE393B /* _Testable.swift */,
 				E18FAE6D1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift */,
 				E1938DC01F9D475600AE393B /* AreaServedTests.swift */,
 				E1938DC21F9E2D6900AE393B /* BrandOrOrganizationTests.swift */,
+				E1938DC41F9F75C900AE393B /* ContactPointOrPlaceTests.swift */,
 				E1944D651F97C34E00F2696C /* DateOnlyTests.swift */,
 				E14356741F969F3A0032E302 /* IdentifierTests.swift */,
 				E149A5D41F8E942F008C8C39 /* SOThingTests.swift */,
@@ -843,7 +849,9 @@
 				E1938DC11F9D475600AE393B /* AreaServedTests.swift in Sources */,
 				E1938DC31F9E2D6900AE393B /* BrandOrOrganizationTests.swift in Sources */,
 				E18FAE6E1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift in Sources */,
+				E1938DC51F9F75C900AE393B /* ContactPointOrPlaceTests.swift in Sources */,
 				E1944D661F97C34E00F2696C /* DateOnlyTests.swift in Sources */,
+				E1938DC81F9F776500AE393B /* _Testable.swift in Sources */,
 				E14356751F969F3A0032E302 /* IdentifierTests.swift in Sources */,
 				E149A5DE1F8E943C008C8C39 /* SOThingTests.swift in Sources */,
 			);

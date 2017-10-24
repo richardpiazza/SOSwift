@@ -15,10 +15,6 @@ class BrandOrOrganizationTests: XCTestCase {
             case multiple
         }
         
-        internal enum Errors: Error {
-            case utf8Encoding
-        }
-        
         init() {
         }
         
@@ -34,6 +30,10 @@ class BrandOrOrganizationTests: XCTestCase {
             try container.encodeIfPresent(self.brand, forKey: .brand)
             try container.encodeIfPresent(self.organization, forKey: .organization)
             try container.encodeIfPresent(self.multiple, forKey: .multiple)
+        }
+        
+        internal enum Errors: Error {
+            case utf8Encoding
         }
         
         func json() throws -> String {
