@@ -9,19 +9,59 @@ fileprivate struct DurationFormatter {
         self.duration = duration
     }
     
-    private let dateUnitMappings: [Character : Calendar.Component] = ["Y": .year, "M": .month, "W": .weekOfYear, "D": .day]
-    private let timeUnitMappings: [Character : Calendar.Component] = ["H": .hour, "M": .minute, "S": .second]
+    private static let dateUnitMappings: [Character : Calendar.Component] = ["Y": .year, "M": .month, "D": .day]
+    private static let weekUnitMappings: [Character : Calendar.Component] = ["W" : .weekOfYear]
+    private static let timeUnitMappings: [Character : Calendar.Component] = ["H": .hour, "M": .minute, "S": .second]
     
-    var dateComponents: DateComponents {
+    static func duration(from dateComponents: DateComponents) -> Duration {
+        var duration: String = "P"
+        if let weeks = dateComponents.weekOfYear {
+            duration.append("\(weeks)W")
+            return duration
+        }
+        
+        if let value = dateComponents.year {
+            duration.append("\(value)Y")
+        }
+        if let value = dateComponents.month {
+            duration.append("\(value)M")
+        }
+        if let value = dateComponents.day {
+            duration.append("\(value)D")
+        }
+        duration.append("T")
+        if let value = dateComponents.hour {
+            duration.append("\(value)H")
+        }
+        if let value = dateComponents.minute {
+            duration.append("\(value)M")
+        }
+        if let value = dateComponents.second {
+            duration.append("\(value)S")
+        }
+        
+        return duration
+    }
+    
+    static func dateComponents(from duration: Duration) -> DateComponents {
         var components = DateComponents()
         
-        guard let value = self.duration as? String, value.hasPrefix("P") else {
+        guard let value = duration as? String, value.hasPrefix("P") else {
             return components
         }
         
         let durationString = String(value.dropFirst())
         var dateUnits: [(Calendar.Component, Int)]
         var timeUnits: [(Calendar.Component, Int)]?
+        
+        if let _ = durationString.range(of: "W") {
+            let weekUnits = self.units(for: durationString, mappings: weekUnitMappings)
+            for (component, value) in weekUnits {
+                components.setValue(value, for: component)
+            }
+            
+            return components
+        }
         
         if let separatorRange = durationString.range(of: "T") {
             let date = String(durationString[..<separatorRange.lowerBound])
@@ -45,7 +85,7 @@ fileprivate struct DurationFormatter {
         return components
     }
     
-    func units(for durationString: String, mappings: [Character : Calendar.Component]) -> [(Calendar.Component, Int)] {
+    static func units(for durationString: String, mappings: [Character : Calendar.Component]) -> [(Calendar.Component, Int)] {
         guard !durationString.isEmpty else {
             return []
         }
@@ -80,7 +120,13 @@ fileprivate struct DurationFormatter {
 
 public extension Duration {
     var dateComponents: DateComponents {
-        return DurationFormatter(self).dateComponents
+        return DurationFormatter.dateComponents(from: self)
+    }
+}
+
+public extension DateComponents {
+    var duration: Duration {
+        return DurationFormatter.duration(from: self)
     }
 }
 

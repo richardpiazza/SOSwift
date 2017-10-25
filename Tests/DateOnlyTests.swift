@@ -73,7 +73,7 @@ class DateOnlyTests: XCTestCase {
             return
         }
         
-        guard let validDateDate = validDateString.dateOnly else {
+        guard let validDateDate = validDateString.date else {
             XCTFail()
             return
         }
@@ -91,7 +91,7 @@ class DateOnlyTests: XCTestCase {
             return
         }
         
-        XCTAssertNil(invalidString.dateOnly)
+        XCTAssertNil(invalidString.date)
         XCTAssertNil(testObject.invalidDataType)
         XCTAssertNil(testObject.nilValue)
     }
