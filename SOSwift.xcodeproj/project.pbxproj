@@ -33,6 +33,9 @@
 		E1938DC51F9F75C900AE393B /* ContactPointOrPlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC41F9F75C900AE393B /* ContactPointOrPlaceTests.swift */; };
 		E1938DC81F9F776500AE393B /* _Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC61F9F775000AE393B /* _Testable.swift */; };
 		E1938DCA1FA1263800AE393B /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DC91FA1263800AE393B /* DurationTests.swift */; };
+		E1938DCC1FA2129D00AE393B /* DateOnlyOrDateTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DCB1FA2129D00AE393B /* DateOnlyOrDateTimeTests.swift */; };
+		E1938DCE1FA2165000AE393B /* DateTimeOrTextOrURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DCD1FA2165000AE393B /* DateTimeOrTextOrURLTests.swift */; };
+		E1938DD01FA21E5000AE393B /* DistanceOrQuantitativeValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DCF1FA21E5000AE393B /* DistanceOrQuantitativeValueTests.swift */; };
 		E1944D641F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */; };
 		E1944D661F97C34E00F2696C /* DateOnlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1944D651F97C34E00F2696C /* DateOnlyTests.swift */; };
 		E1E453401F70412E00236249 /* BrandOrOrganization+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E452D71F70411D00236249 /* BrandOrOrganization+Extension.swift */; };
@@ -188,6 +191,9 @@
 		E1938DC41F9F75C900AE393B /* ContactPointOrPlaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPointOrPlaceTests.swift; sourceTree = "<group>"; };
 		E1938DC61F9F775000AE393B /* _Testable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Testable.swift; sourceTree = "<group>"; };
 		E1938DC91FA1263800AE393B /* DurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
+		E1938DCB1FA2129D00AE393B /* DateOnlyOrDateTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOnlyOrDateTimeTests.swift; sourceTree = "<group>"; };
+		E1938DCD1FA2165000AE393B /* DateTimeOrTextOrURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeOrTextOrURLTests.swift; sourceTree = "<group>"; };
+		E1938DCF1FA21E5000AE393B /* DistanceOrQuantitativeValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceOrQuantitativeValueTests.swift; sourceTree = "<group>"; };
 		E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateOnlyOrDateTime+Extension.swift"; sourceTree = "<group>"; };
 		E1944D651F97C34E00F2696C /* DateOnlyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOnlyTests.swift; sourceTree = "<group>"; };
 		E1E452D71F70411D00236249 /* BrandOrOrganization+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BrandOrOrganization+Extension.swift"; sourceTree = "<group>"; };
@@ -355,6 +361,9 @@
 				E18A66191F9FF5A8009693F4 /* CreativeWorkOrTextTests.swift */,
 				E18A661B1F9FF68A009693F4 /* CreativeWorkOrURLTests.swift */,
 				E1944D651F97C34E00F2696C /* DateOnlyTests.swift */,
+				E1938DCB1FA2129D00AE393B /* DateOnlyOrDateTimeTests.swift */,
+				E1938DCD1FA2165000AE393B /* DateTimeOrTextOrURLTests.swift */,
+				E1938DCF1FA21E5000AE393B /* DistanceOrQuantitativeValueTests.swift */,
 				E1938DC91FA1263800AE393B /* DurationTests.swift */,
 				E14356741F969F3A0032E302 /* IdentifierTests.swift */,
 				E149A5D41F8E942F008C8C39 /* SOThingTests.swift */,
@@ -874,7 +883,10 @@
 				E1944D661F97C34E00F2696C /* DateOnlyTests.swift in Sources */,
 				E1938DC81F9F776500AE393B /* _Testable.swift in Sources */,
 				E1938DCA1FA1263800AE393B /* DurationTests.swift in Sources */,
+				E1938DCC1FA2129D00AE393B /* DateOnlyOrDateTimeTests.swift in Sources */,
+				E1938DCE1FA2165000AE393B /* DateTimeOrTextOrURLTests.swift in Sources */,
 				E18A661C1F9FF68A009693F4 /* CreativeWorkOrURLTests.swift in Sources */,
+				E1938DD01FA21E5000AE393B /* DistanceOrQuantitativeValueTests.swift in Sources */,
 				E14356751F969F3A0032E302 /* IdentifierTests.swift in Sources */,
 				E149A5DE1F8E943C008C8C39 /* SOThingTests.swift in Sources */,
 				E18A66161F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift in Sources */,

@@ -22,19 +22,17 @@ public extension KeyedDecodingContainer {
         }
         
         do {
+            if let value = try self.decodeDateTimeIfPresent(forKey: key) {
+                return value
+            }
+        }
+        
+        do {
             let value = try self.decode(URL.self, forKey: key)
             if value.isValid {
                 return value
             }
         } catch {
-        }
-        
-        do {
-            if let value = try self.decodeDateTimeIfPresent(forKey: key) {
-                if value.date != nil {
-                    return value
-                }
-            }
         }
         
         do {

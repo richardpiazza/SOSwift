@@ -86,12 +86,7 @@ class DateOnlyTests: XCTestCase {
         let compare = Calendar.current.compare(validDateDate, to: componentsDate, toGranularity: .day)
         XCTAssertEqual(compare, .orderedSame)
         
-        guard let invalidString = testObject.invalidString else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertNil(invalidString.date)
+        XCTAssertNil(testObject.invalidString)
         XCTAssertNil(testObject.invalidDataType)
         XCTAssertNil(testObject.nilValue)
     }

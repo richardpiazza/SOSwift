@@ -57,8 +57,10 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode(String.self, forKey: key)
-            return value
+            let value = try self.decode(String.self, forKey: key) as DateTime
+            if value.date != nil {
+                return value
+            }
         } catch {
         }
         
