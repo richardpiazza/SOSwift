@@ -39,6 +39,9 @@
 		E1938DD21FA2256400AE393B /* EducationalOrganizationOrOrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DD11FA2256400AE393B /* EducationalOrganizationOrOrganizationTests.swift */; };
 		E1938DD41FA2280E00AE393B /* GenderOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DD31FA2280E00AE393B /* GenderOrTextTests.swift */; };
 		E1938DD61FA22E6100AE393B /* GeoCoordinatesOrGeoShapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DD51FA22E6100AE393B /* GeoCoordinatesOrGeoShapeTests.swift */; };
+		E1938DD81FA24F7C00AE393B /* ImageObjectOrPhotographTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DD71FA24F7C00AE393B /* ImageObjectOrPhotographTests.swift */; };
+		E1938DDA1FA2848200AE393B /* ImageObjectOrURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DD91FA2848200AE393B /* ImageObjectOrURLTests.swift */; };
+		E1938DDC1FA2862200AE393B /* IntegerOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1938DDB1FA2862200AE393B /* IntegerOrTextTests.swift */; };
 		E1944D641F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */; };
 		E1944D661F97C34E00F2696C /* DateOnlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1944D651F97C34E00F2696C /* DateOnlyTests.swift */; };
 		E1E453401F70412E00236249 /* BrandOrOrganization+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E452D71F70411D00236249 /* BrandOrOrganization+Extension.swift */; };
@@ -200,6 +203,9 @@
 		E1938DD11FA2256400AE393B /* EducationalOrganizationOrOrganizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationalOrganizationOrOrganizationTests.swift; sourceTree = "<group>"; };
 		E1938DD31FA2280E00AE393B /* GenderOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderOrTextTests.swift; sourceTree = "<group>"; };
 		E1938DD51FA22E6100AE393B /* GeoCoordinatesOrGeoShapeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCoordinatesOrGeoShapeTests.swift; sourceTree = "<group>"; };
+		E1938DD71FA24F7C00AE393B /* ImageObjectOrPhotographTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageObjectOrPhotographTests.swift; sourceTree = "<group>"; };
+		E1938DD91FA2848200AE393B /* ImageObjectOrURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageObjectOrURLTests.swift; sourceTree = "<group>"; };
+		E1938DDB1FA2862200AE393B /* IntegerOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerOrTextTests.swift; sourceTree = "<group>"; };
 		E1944D631F9664B600F2696C /* DateOnlyOrDateTime+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateOnlyOrDateTime+Extension.swift"; sourceTree = "<group>"; };
 		E1944D651F97C34E00F2696C /* DateOnlyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOnlyTests.swift; sourceTree = "<group>"; };
 		E1E452D71F70411D00236249 /* BrandOrOrganization+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BrandOrOrganization+Extension.swift"; sourceTree = "<group>"; };
@@ -375,6 +381,9 @@
 				E1938DD31FA2280E00AE393B /* GenderOrTextTests.swift */,
 				E1938DD51FA22E6100AE393B /* GeoCoordinatesOrGeoShapeTests.swift */,
 				E14356741F969F3A0032E302 /* IdentifierTests.swift */,
+				E1938DD71FA24F7C00AE393B /* ImageObjectOrPhotographTests.swift */,
+				E1938DD91FA2848200AE393B /* ImageObjectOrURLTests.swift */,
+				E1938DDB1FA2862200AE393B /* IntegerOrTextTests.swift */,
 				E149A5D41F8E942F008C8C39 /* SOThingTests.swift */,
 			);
 			path = Tests;
@@ -890,11 +899,14 @@
 				E1938DD41FA2280E00AE393B /* GenderOrTextTests.swift in Sources */,
 				E18A661A1F9FF5A8009693F4 /* CreativeWorkOrTextTests.swift in Sources */,
 				E1938DC51F9F75C900AE393B /* ContactPointOrPlaceTests.swift in Sources */,
+				E1938DD81FA24F7C00AE393B /* ImageObjectOrPhotographTests.swift in Sources */,
 				E1944D661F97C34E00F2696C /* DateOnlyTests.swift in Sources */,
 				E1938DD61FA22E6100AE393B /* GeoCoordinatesOrGeoShapeTests.swift in Sources */,
+				E1938DDC1FA2862200AE393B /* IntegerOrTextTests.swift in Sources */,
 				E1938DC81F9F776500AE393B /* _Testable.swift in Sources */,
 				E1938DCA1FA1263800AE393B /* DurationTests.swift in Sources */,
 				E1938DCC1FA2129D00AE393B /* DateOnlyOrDateTimeTests.swift in Sources */,
+				E1938DDA1FA2848200AE393B /* ImageObjectOrURLTests.swift in Sources */,
 				E1938DCE1FA2165000AE393B /* DateTimeOrTextOrURLTests.swift in Sources */,
 				E18A661C1F9FF68A009693F4 /* CreativeWorkOrURLTests.swift in Sources */,
 				E1938DD21FA2256400AE393B /* EducationalOrganizationOrOrganizationTests.swift in Sources */,
