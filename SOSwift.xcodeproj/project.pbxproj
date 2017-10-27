@@ -14,6 +14,8 @@
 		E12D878E1FA34B9C0086ED12 /* LanguageOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D878D1FA34B9C0086ED12 /* LanguageOrTextTests.swift */; };
 		E12D87901FA34DC90086ED12 /* ListItemOrTextOrThingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D878F1FA34DC90086ED12 /* ListItemOrTextOrThingTests.swift */; };
 		E12D87921FA351A80086ED12 /* MapOrURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D87911FA351A80086ED12 /* MapOrURLTests.swift */; };
+		E12D87941FA3539E0086ED12 /* MonetaryAmountOrPriceSpecificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D87931FA3539E0086ED12 /* MonetaryAmountOrPriceSpecificationTests.swift */; };
+		E12D87961FA355110086ED12 /* MusicGroupOrPersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D87951FA355110086ED12 /* MusicGroupOrPersonTests.swift */; };
 		E13DFC931F9514FC00CAF2B2 /* SOSoftwareApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13DFC921F9514FC00CAF2B2 /* SOSoftwareApplication.swift */; };
 		E13DFC951F95184E00CAF2B2 /* CountryOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13DFC941F95184E00CAF2B2 /* CountryOrText+Extension.swift */; };
 		E13DFC971F951B4000CAF2B2 /* NumberOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13DFC961F951B4000CAF2B2 /* NumberOrText+Extension.swift */; };
@@ -180,6 +182,8 @@
 		E12D878D1FA34B9C0086ED12 /* LanguageOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageOrTextTests.swift; sourceTree = "<group>"; };
 		E12D878F1FA34DC90086ED12 /* ListItemOrTextOrThingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemOrTextOrThingTests.swift; sourceTree = "<group>"; };
 		E12D87911FA351A80086ED12 /* MapOrURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOrURLTests.swift; sourceTree = "<group>"; };
+		E12D87931FA3539E0086ED12 /* MonetaryAmountOrPriceSpecificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetaryAmountOrPriceSpecificationTests.swift; sourceTree = "<group>"; };
+		E12D87951FA355110086ED12 /* MusicGroupOrPersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGroupOrPersonTests.swift; sourceTree = "<group>"; };
 		E13DFC921F9514FC00CAF2B2 /* SOSoftwareApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSoftwareApplication.swift; sourceTree = "<group>"; };
 		E13DFC941F95184E00CAF2B2 /* CountryOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryOrText+Extension.swift"; sourceTree = "<group>"; };
 		E13DFC961F951B4000CAF2B2 /* NumberOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberOrText+Extension.swift"; sourceTree = "<group>"; };
@@ -399,6 +403,8 @@
 				E12D878D1FA34B9C0086ED12 /* LanguageOrTextTests.swift */,
 				E12D878F1FA34DC90086ED12 /* ListItemOrTextOrThingTests.swift */,
 				E12D87911FA351A80086ED12 /* MapOrURLTests.swift */,
+				E12D87931FA3539E0086ED12 /* MonetaryAmountOrPriceSpecificationTests.swift */,
+				E12D87951FA355110086ED12 /* MusicGroupOrPersonTests.swift */,
 				E149A5D41F8E942F008C8C39 /* SOThingTests.swift */,
 			);
 			path = Tests;
@@ -914,11 +920,13 @@
 				E18FAE6E1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift in Sources */,
 				E1938DD41FA2280E00AE393B /* GenderOrTextTests.swift in Sources */,
 				E18A661A1F9FF5A8009693F4 /* CreativeWorkOrTextTests.swift in Sources */,
+				E12D87941FA3539E0086ED12 /* MonetaryAmountOrPriceSpecificationTests.swift in Sources */,
 				E1938DC51F9F75C900AE393B /* ContactPointOrPlaceTests.swift in Sources */,
 				E1938DD81FA24F7C00AE393B /* ImageObjectOrPhotographTests.swift in Sources */,
 				E1944D661F97C34E00F2696C /* DateOnlyTests.swift in Sources */,
 				E1938DD61FA22E6100AE393B /* GeoCoordinatesOrGeoShapeTests.swift in Sources */,
 				E1938DDC1FA2862200AE393B /* IntegerOrTextTests.swift in Sources */,
+				E12D87961FA355110086ED12 /* MusicGroupOrPersonTests.swift in Sources */,
 				E12D87901FA34DC90086ED12 /* ListItemOrTextOrThingTests.swift in Sources */,
 				E12D878E1FA34B9C0086ED12 /* LanguageOrTextTests.swift in Sources */,
 				E12D878A1FA346550086ED12 /* ItemListOrderOrTextTests.swift in Sources */,
