@@ -73,9 +73,8 @@ public extension KeyedDecodingContainer {
                         decodables.append(decodable)
                     }
                 } else if let value = element as? String {
-                    if let data = value.data(using: .utf8) {
-                        let decodable = try JSONDecoder().decode(URL.self, from: data)
-                        decodables.append(decodable)
+                    if let url = URL(string: value), url.isValid {
+                        decodables.append(url)
                     }
                 }
             }
