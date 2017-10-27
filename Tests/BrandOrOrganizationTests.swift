@@ -43,7 +43,7 @@ class BrandOrOrganizationTests: XCTestCase {
         super.tearDown()
     }
 
-    func testSingleDecode() {
+    func testSingleDecodes() {
         let json = """
             {
                 "brand" : {
@@ -85,7 +85,7 @@ class BrandOrOrganizationTests: XCTestCase {
         XCTAssertEqual(organization.name, "Organization")
     }
     
-    func testSingleEncode() {
+    func testSingleEncodes() {
         let testable = TestClass()
         testable.brand = SOBrand()
         testable.organization = SOOrganization()
@@ -102,7 +102,7 @@ class BrandOrOrganizationTests: XCTestCase {
         XCTAssertTrue(json.contains("\"organization\":{\"@context\":\"http:\\/\\/www.schema.org\",\"@type\":\"Organization\"}"))
     }
     
-    func testMultipleDecode() {
+    func testMultipleDecodes() {
         let json = """
             {
                 "multiple" : [
@@ -153,7 +153,7 @@ class BrandOrOrganizationTests: XCTestCase {
         XCTAssertEqual(organization.name, "Organization")
     }
     
-    func testMultipleEncode() {
+    func testMultipleEncodes() {
         let testable = TestClass()
         let brand = SOBrand()
         brand.name = "A Brand"

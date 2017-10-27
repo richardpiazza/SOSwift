@@ -47,7 +47,7 @@ class AreaServedTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSingleDecode() {
+    func testSingleDecodes() {
         let json = """
             {
                 "administrativeArea" : {
@@ -87,5 +87,59 @@ class AreaServedTests: XCTestCase {
         XCTAssertTrue(testable.place! is SOPlace)
         XCTAssertNotNil(testable.text)
         XCTAssertTrue(testable.text! is String)
+    }
+    
+    func testSingleEncodes() {
+        let testObject = TestClass()
+        
+        let administrativeArea = SOAdministrativeArea()
+        administrativeArea.name = "Area 1"
+        testObject.administrativeArea = administrativeArea
+        
+        let geoShape = SOGeoShape()
+        geoShape.name = "Area 2"
+        testObject.geoShape = geoShape
+        
+        let place = SOPlace()
+        place.name = "Area 3"
+        testObject.place = place
+        
+        testObject.text = "Area 4"
+        
+        let dictionary: [String : Any]
+        do {
+            dictionary = try testObject.dictionary()
+        } catch {
+            XCTFail()
+            return
+        }
+        
+        guard let aa = dictionary["administrativeArea"] as? [String : Any], let aaName = aa["name"] as? String else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(aaName, "Area 1")
+        
+        guard let gs = dictionary["geoShape"] as? [String : Any], let gsName = gs["name"] as? String else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(gsName, "Area 2")
+        
+        guard let p = dictionary["place"] as? [String : Any], let pName = p["name"] as? String else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(pName, "Area 3")
+        
+        guard let t = dictionary["text"] as? String else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(t, "Area 4")
     }
 }

@@ -47,7 +47,7 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         super.tearDown()
     }
 
-    func testSingleDecode() {
+    func testSingleDecodes() {
         let json = """
             {
                 "alignmentObject" : {
@@ -88,7 +88,7 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         XCTAssertTrue(testable.text! is String)
     }
 
-    func testMultipleDecode() {
+    func testMultipleDecodes() {
         let json = """
             {
                 "multiple" : [
