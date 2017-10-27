@@ -29,6 +29,11 @@
 		E16812491F950B1100C3A0FC /* DateTimeOrTextOrURL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16812481F950B1100C3A0FC /* DateTimeOrTextOrURL+Extension.swift */; };
 		E16DB82C1EC753F700E73447 /* SOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16DB8221EC753F700E73447 /* SOSwift.framework */; };
 		E16DB8331EC753F700E73447 /* SOSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E16DB8251EC753F700E73447 /* SOSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E188F2031FA3898400AB14D8 /* NumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188F2021FA3898400AB14D8 /* NumberTests.swift */; };
+		E188F2051FA38B7000AB14D8 /* NumberOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188F2041FA38B7000AB14D8 /* NumberOrTextTests.swift */; };
+		E188F2071FA38C9B00AB14D8 /* OrganizationOrPersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188F2061FA38C9B00AB14D8 /* OrganizationOrPersonTests.swift */; };
+		E188F2091FA38EAE00AB14D8 /* OrganizationOrProgramMembershipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188F2081FA38EAE00AB14D8 /* OrganizationOrProgramMembershipTests.swift */; };
+		E188F20B1FA3929A00AB14D8 /* OwnershipInfoOrProductTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188F20A1FA3929A00AB14D8 /* OwnershipInfoOrProductTests.swift */; };
 		E18A66141F9FEC77009693F4 /* CountryOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A66131F9FEC77009693F4 /* CountryOrTextTests.swift */; };
 		E18A66161F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A66151F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift */; };
 		E18A66181F9FF2DC009693F4 /* Duration+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A66171F9FF2DC009693F4 /* Duration+Extension.swift */; };
@@ -200,6 +205,11 @@
 		E16DB8261EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E16DB82B1EC753F700E73447 /* SOSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SOSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16DB8321EC753F700E73447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E188F2021FA3898400AB14D8 /* NumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTests.swift; sourceTree = "<group>"; };
+		E188F2041FA38B7000AB14D8 /* NumberOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOrTextTests.swift; sourceTree = "<group>"; };
+		E188F2061FA38C9B00AB14D8 /* OrganizationOrPersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationOrPersonTests.swift; sourceTree = "<group>"; };
+		E188F2081FA38EAE00AB14D8 /* OrganizationOrProgramMembershipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationOrProgramMembershipTests.swift; sourceTree = "<group>"; };
+		E188F20A1FA3929A00AB14D8 /* OwnershipInfoOrProductTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnershipInfoOrProductTests.swift; sourceTree = "<group>"; };
 		E18A66131F9FEC77009693F4 /* CountryOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryOrTextTests.swift; sourceTree = "<group>"; };
 		E18A66151F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrProductOrURLTests.swift; sourceTree = "<group>"; };
 		E18A66171F9FF2DC009693F4 /* Duration+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Duration+Extension.swift"; sourceTree = "<group>"; };
@@ -405,6 +415,11 @@
 				E12D87911FA351A80086ED12 /* MapOrURLTests.swift */,
 				E12D87931FA3539E0086ED12 /* MonetaryAmountOrPriceSpecificationTests.swift */,
 				E12D87951FA355110086ED12 /* MusicGroupOrPersonTests.swift */,
+				E188F2021FA3898400AB14D8 /* NumberTests.swift */,
+				E188F2041FA38B7000AB14D8 /* NumberOrTextTests.swift */,
+				E188F2061FA38C9B00AB14D8 /* OrganizationOrPersonTests.swift */,
+				E188F2081FA38EAE00AB14D8 /* OrganizationOrProgramMembershipTests.swift */,
+				E188F20A1FA3929A00AB14D8 /* OwnershipInfoOrProductTests.swift */,
 				E149A5D41F8E942F008C8C39 /* SOThingTests.swift */,
 			);
 			path = Tests;
@@ -915,6 +930,7 @@
 			files = (
 				E18A66141F9FEC77009693F4 /* CountryOrTextTests.swift in Sources */,
 				E1938DC11F9D475600AE393B /* AreaServedTests.swift in Sources */,
+				E188F20B1FA3929A00AB14D8 /* OwnershipInfoOrProductTests.swift in Sources */,
 				E1938DC31F9E2D6900AE393B /* BrandOrOrganizationTests.swift in Sources */,
 				E12D878C1FA3484F0086ED12 /* ItemListOrMusicRecordingTests.swift in Sources */,
 				E18FAE6E1F97DF4A00731C84 /* AlignmentObjectOrCourseOrTextTests.swift in Sources */,
@@ -925,6 +941,7 @@
 				E1938DD81FA24F7C00AE393B /* ImageObjectOrPhotographTests.swift in Sources */,
 				E1944D661F97C34E00F2696C /* DateOnlyTests.swift in Sources */,
 				E1938DD61FA22E6100AE393B /* GeoCoordinatesOrGeoShapeTests.swift in Sources */,
+				E188F2031FA3898400AB14D8 /* NumberTests.swift in Sources */,
 				E1938DDC1FA2862200AE393B /* IntegerOrTextTests.swift in Sources */,
 				E12D87961FA355110086ED12 /* MusicGroupOrPersonTests.swift in Sources */,
 				E12D87901FA34DC90086ED12 /* ListItemOrTextOrThingTests.swift in Sources */,
@@ -938,7 +955,10 @@
 				E18A661C1F9FF68A009693F4 /* CreativeWorkOrURLTests.swift in Sources */,
 				E1938DD21FA2256400AE393B /* EducationalOrganizationOrOrganizationTests.swift in Sources */,
 				E1938DD01FA21E5000AE393B /* DistanceOrQuantitativeValueTests.swift in Sources */,
+				E188F2071FA38C9B00AB14D8 /* OrganizationOrPersonTests.swift in Sources */,
+				E188F2091FA38EAE00AB14D8 /* OrganizationOrProgramMembershipTests.swift in Sources */,
 				E14356751F969F3A0032E302 /* IdentifierTests.swift in Sources */,
+				E188F2051FA38B7000AB14D8 /* NumberOrTextTests.swift in Sources */,
 				E149A5DE1F8E943C008C8C39 /* SOThingTests.swift in Sources */,
 				E18A66161F9FF094009693F4 /* CreativeWorkOrProductOrURLTests.swift in Sources */,
 				E12D87921FA351A80086ED12 /* MapOrURLTests.swift in Sources */,
