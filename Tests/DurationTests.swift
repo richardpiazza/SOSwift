@@ -18,34 +18,38 @@ class DurationTests: XCTestCase {
     }
 
     func testDurationToDateComponents() {
-        let fullDateComponents = fullDuration.dateComponents
-        XCTAssertEqual(fullDateComponents.year, 1)
-        XCTAssertEqual(fullDateComponents.month, 5)
-        XCTAssertEqual(fullDateComponents.day, 3)
-        XCTAssertEqual(fullDateComponents.hour, 10)
-        XCTAssertEqual(fullDateComponents.minute, 20)
-        XCTAssertEqual(fullDateComponents.second, 8)
+        if #available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
+            let fullDateComponents = fullDuration.dateComponents
+            XCTAssertEqual(fullDateComponents.year, 1)
+            XCTAssertEqual(fullDateComponents.month, 5)
+            XCTAssertEqual(fullDateComponents.day, 3)
+            XCTAssertEqual(fullDateComponents.hour, 10)
+            XCTAssertEqual(fullDateComponents.minute, 20)
+            XCTAssertEqual(fullDateComponents.second, 8)
         
-        let weekDateComponents = weekDuration.dateComponents
-        XCTAssertEqual(weekDateComponents.weekOfYear, 24)
+            let weekDateComponents = weekDuration.dateComponents
+            XCTAssertEqual(weekDateComponents.weekOfYear, 24)
+        }
     }
 
     func testDateComponentsToDuration() {
-        var fullDateComponents = DateComponents()
-        fullDateComponents.year = 3
-        fullDateComponents.month = 4
-        fullDateComponents.day = 5
-        fullDateComponents.hour = 6
-        fullDateComponents.minute = 7
-        fullDateComponents.second = 8
+        if #available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
+            var fullDateComponents = DateComponents()
+            fullDateComponents.year = 3
+            fullDateComponents.month = 4
+            fullDateComponents.day = 5
+            fullDateComponents.hour = 6
+            fullDateComponents.minute = 7
+            fullDateComponents.second = 8
         
-        let fullDateDuration = fullDateComponents.duration as? String
-        XCTAssertEqual(fullDateDuration, "P3Y4M5DT6H7M8S")
+            let fullDateDuration = fullDateComponents.duration as? String
+            XCTAssertEqual(fullDateDuration, "P3Y4M5DT6H7M8S")
         
-        var weekDateComponents = DateComponents()
-        weekDateComponents.weekOfYear = 44
+            var weekDateComponents = DateComponents()
+            weekDateComponents.weekOfYear = 44
         
-        let weekDateDuration = weekDateComponents.duration as? String
-        XCTAssertEqual(weekDateDuration, "P44W")
+            let weekDateDuration = weekDateComponents.duration as? String
+            XCTAssertEqual(weekDateDuration, "P44W")
+        }
     }
 }

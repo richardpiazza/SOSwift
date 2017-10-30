@@ -2,6 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 // Inspired From: https://github.com/Igor-Palaguta/YoutubeEngine/blob/master/Source/YoutubeEngine/Parser/NSDateComponents%2BISO8601.swift
+@available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *)
 fileprivate struct DurationFormatter {
     var duration: Duration
     
@@ -120,13 +121,21 @@ fileprivate struct DurationFormatter {
 
 public extension Duration {
     var dateComponents: DateComponents {
-        return DurationFormatter.dateComponents(from: self)
+        if #available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
+            return DurationFormatter.dateComponents(from: self)
+        } else {
+            return DateComponents()
+        }
     }
 }
 
 public extension DateComponents {
     var duration: Duration {
-        return DurationFormatter.duration(from: self)
+        if #available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
+            return DurationFormatter.duration(from: self)
+        } else {
+            return ""
+        }
     }
 }
 
