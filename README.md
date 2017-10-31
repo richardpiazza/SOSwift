@@ -6,22 +6,17 @@ A swift implementation of Schema.org structured data vocabulary.
 
 Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet, on web pages, in email messages, and beyond. This library implements some of the core vocabulary in the Swift language.
 
-### Source Directories
+## How to Use
 
-_Sources/Schema.org/*_
+__CocoaPods__
 
-    pod 'SOSwift/SchemaOnly', '~> 0.1'
-
-This tree contains all of the protocol implementations of the primary structures and data types.
+    pod 'SOSwift', '~> 1.0'
 
 
-_Sources/Implementation/*_
+__Swift Package Manager__
 
-    pod 'SOSwift/Implementation', '~> 0.1'
-    pod 'SOSwift', '~> 0.1' (default subspec)
-
-This tree contains a basic implementation of the Schema classes along with De/Serialization.
+    .package(url: "https://github.com/richardpiazza/SOSwift", .upToNextMajor(from: "1.0.0"))
 
 ### Schema.org
 
-This work is based on the 3.2 version of the Schema.org vocabulary, and currently implements only the top level core `Thing` subclasses.
+This work is based on the 3.4 version of the Schema.org vocabulary, and currently implements only the top level core `Thing` subclasses.
