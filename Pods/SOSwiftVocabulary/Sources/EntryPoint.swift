@@ -5,7 +5,7 @@ public protocol EntryPoint: Intangible {
     /// An application that can complete the request.
     var actionApplication: SoftwareApplication? { get set }
     /// The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.
-    var actionPlatform: TextOrURL? { get set }
+    var actionPlatform: URLOrText? { get set }
     /// The supported content type(s) for an EntryPoint response.
     var contentType: String? { get set }
     /// The supported encoding type(s) for an EntryPoint request.

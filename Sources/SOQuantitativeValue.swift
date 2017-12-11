@@ -16,7 +16,7 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
     /// The lower value of some characteristic or property.
     public var minValue: Number?
     /// The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
-    public var unitCode: TextOrURL?
+    public var unitCode: URLOrText?
     /// A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for unitCode.
     public var unitText: String?
     /// The value of the quantitative value or property value node.
@@ -46,7 +46,7 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
         self.additionalProperty = try container.decodeIfPresent(SOPropertyValue.self, forKey: .additionalProperty)
         self.maxValue = try container.decodeNumberIfPresent(forKey: .maxValue)
         self.minValue = try container.decodeNumberIfPresent(forKey: .minValue)
-        self.unitCode = try container.decodeTextOrURLIfPresent(forKey: .unitCode)
+        self.unitCode = try container.decodeURLOrTextIfPresent(forKey: .unitCode)
         self.unitText = try container.decodeIfPresent(String.self, forKey: .unitText)
         self.value = try container.decodeValueIfPresent(forKey: .value)
         self.valueReference = try container.decodeValueReferenceIfPresent(forKey: .valueReference)

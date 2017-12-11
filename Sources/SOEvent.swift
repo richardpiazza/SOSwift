@@ -5,7 +5,7 @@ import SOSwiftVocabulary
 /// Ticketing information may be added via the offers property. 
 /// Repeated events may be structured as separate Event objects.
 public class SOEvent: SOThing, Event {
-
+    
     public override class var type: String {
         return "Event"
     }
@@ -13,11 +13,11 @@ public class SOEvent: SOThing, Event {
     /// The subject matter of the content.
     public var about: Thing?
     /// An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-    public var actor: [Person]?
+    public var actors: [Person]?
     /// The overall rating, based on a collection of reviews or ratings, of the item.
     public var aggregateRating: AggregateRating?
     /// A person or organization attending the event.
-    public var attendee: [OrganizationOrPerson]?
+    public var attendees: [OrganizationOrPerson]?
     /// An intended audience, i.e. a group for whom something was created. Supersedes serviceAudience.
     public var audience: Audience?
     /// The person or organization who wrote a composition, or who is the composer of a work performed at some event.
@@ -25,7 +25,7 @@ public class SOEvent: SOThing, Event {
     /// A secondary contributor to the CreativeWork or Event.
     public var contributor: OrganizationOrPerson?
     /// A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
-    public var director: [Person]?
+    public var directors: [Person]?
     /// The time admission will commence.
     public var doorTime: DateTime?
     /// The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.
@@ -49,7 +49,7 @@ public class SOEvent: SOThing, Event {
     /// An organizer of an Event.
     public var organizer: OrganizationOrPerson?
     /// A performer at the event—for example, a presenter, musician, musical group or actor.
-    public var performer: [OrganizationOrPerson]?
+    public var performers: [OrganizationOrPerson]?
     /// Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated.
     public var previousStartDate: DateOnly?
     /// The CreativeWork that captured all or part of this Event. Inverse property: recordedAt.
@@ -57,13 +57,13 @@ public class SOEvent: SOThing, Event {
     /// The number of attendee places for an event that remain unallocated.
     public var remainingAttendeeCapacity: Int?
     /// A review of the item. Supersedes reviews.
-    public var review: [Review]?
+    public var reviews: [Review]?
     /// A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
     public var sponsor: OrganizationOrPerson?
     /// The start date and time of the item (in ISO 8601 date format).
     public var startDate: DateOnlyOrDateTime?
     /// An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference. Supersedes subEvents. Inverse property: superEvent.
-    public var subEvent: [Event]?
+    public var subEvents: [Event]?
     /// An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent. Inverse property: subEvent.
     public var superEvent: Event?
     /// Organization or person who adapts a creative work to different languages, regional  differences and technical requirements of a target market, or that translates during some event.
@@ -77,13 +77,13 @@ public class SOEvent: SOThing, Event {
     
     private enum CodingKeys: String, CodingKey {
         case about
-        case actor
+        case actors = "actor"
         case aggregateRating
-        case attendee
+        case attendees = "attendee"
         case audience
         case composer
         case contributor
-        case director
+        case directors = "director"
         case doorTime
         case duration
         case endDate
@@ -95,14 +95,14 @@ public class SOEvent: SOThing, Event {
         case maximumAttendeeCapacity
         case offers
         case organizer
-        case performer
+        case performers = "performer"
         case previousStartDate
         case recordedIn
         case remainingAttendeeCapacity
-        case review
+        case reviews = "review"
         case sponsor
         case startDate
-        case subEvent
+        case subEvents = "subEvent"
         case superEvent
         case translator
         case typicalAgeRange
@@ -118,13 +118,13 @@ public class SOEvent: SOThing, Event {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.about = try container.decodeIfPresent(SOThing.self, forKey: .about)
-        self.actor = try container.decodeIfPresent([SOPerson].self, forKey: .actor)
+        self.actors = try container.decodeIfPresent([SOPerson].self, forKey: .actors)
         self.aggregateRating = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating)
-        self.attendee = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .attendee)
+        self.attendees = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .attendees)
         self.audience = try container.decodeIfPresent(SOAudience.self, forKey: .audience)
         self.composer = try container.decodeOrganizationOrPersonIfPresent(forKey: .composer)
         self.contributor = try container.decodeOrganizationOrPersonIfPresent(forKey: .contributor)
-        self.director = try container.decodeIfPresent([SOPerson].self, forKey: .director)
+        self.directors = try container.decodeIfPresent([SOPerson].self, forKey: .directors)
         self.doorTime = try container.decodeDateTimeIfPresent(forKey: .doorTime)
         self.duration = try container.decodeDurationIfPresent(forKey: .duration)
         self.endDate = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .endDate)
@@ -138,14 +138,14 @@ public class SOEvent: SOThing, Event {
         self.maximumAttendeeCapacity = try container.decodeIfPresent(Int.self, forKey: .maximumAttendeeCapacity)
         self.offers = try container.decodeIfPresent([SOOffer].self, forKey: .offers)
         self.organizer = try container.decodeOrganizationOrPersonIfPresent(forKey: .organizer)
-        self.performer = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .performer)
+        self.performers = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .performers)
         self.previousStartDate = try container.decodeDateOnlyIfPresent(forKey: .previousStartDate)
         self.recordedIn = try container.decodeIfPresent(SOCreativeWork.self, forKey: .recordedIn)
         self.remainingAttendeeCapacity = try container.decodeIfPresent(Int.self, forKey: .remainingAttendeeCapacity)
-        self.review = try container.decodeIfPresent([SOReview].self, forKey: .review)
+        self.reviews = try container.decodeIfPresent([SOReview].self, forKey: .reviews)
         self.sponsor = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor)
         self.startDate = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .startDate)
-        self.subEvent = try container.decodeIfPresent([SOEvent].self, forKey: .subEvent)
+        self.subEvents = try container.decodeIfPresent([SOEvent].self, forKey: .subEvents)
         self.superEvent = try container.decodeIfPresent(SOEvent.self, forKey: .superEvent)
         self.translator = try container.decodeOrganizationOrPersonIfPresent(forKey: .translator)
         self.typicalAgeRange = try container.decodeIfPresent(String.self, forKey: .typicalAgeRange)
@@ -159,13 +159,13 @@ public class SOEvent: SOThing, Event {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.about, forKey: .about)
-        try container.encodeIfPresent(self.actor, forKey: .actor)
+        try container.encodeIfPresent(self.actors, forKey: .actors)
         try container.encodeIfPresent(self.aggregateRating, forKey: .aggregateRating)
-        try container.encodeIfPresent(self.attendee, forKey: .attendee)
+        try container.encodeIfPresent(self.attendees, forKey: .attendees)
         try container.encodeIfPresent(self.audience, forKey: .audience)
         try container.encodeIfPresent(self.composer, forKey: .composer)
         try container.encodeIfPresent(self.contributor, forKey: .contributor)
-        try container.encodeIfPresent(self.director, forKey: .director)
+        try container.encodeIfPresent(self.directors, forKey: .directors)
         try container.encodeIfPresent(self.doorTime, forKey: .doorTime)
         try container.encodeIfPresent(self.duration, forKey: .duration)
         try container.encodeIfPresent(self.endDate, forKey: .endDate)
@@ -177,14 +177,14 @@ public class SOEvent: SOThing, Event {
         try container.encodeIfPresent(self.maximumAttendeeCapacity, forKey: .maximumAttendeeCapacity)
         try container.encodeIfPresent(self.offers, forKey: .offers)
         try container.encodeIfPresent(self.organizer, forKey: .organizer)
-        try container.encodeIfPresent(self.performer, forKey: .performer)
+        try container.encodeIfPresent(self.performers, forKey: .performers)
         try container.encodeIfPresent(self.previousStartDate, forKey: .previousStartDate)
         try container.encodeIfPresent(self.recordedIn, forKey: .recordedIn)
         try container.encodeIfPresent(self.remainingAttendeeCapacity, forKey: .remainingAttendeeCapacity)
-        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.reviews, forKey: .reviews)
         try container.encodeIfPresent(self.sponsor, forKey: .sponsor)
         try container.encodeIfPresent(self.startDate, forKey: .startDate)
-        try container.encodeIfPresent(self.subEvent, forKey: .subEvent)
+        try container.encodeIfPresent(self.subEvents, forKey: .subEvents)
         try container.encodeIfPresent(self.superEvent, forKey: .superEvent)
         try container.encodeIfPresent(self.translator, forKey: .translator)
         try container.encodeIfPresent(self.typicalAgeRange, forKey: .typicalAgeRange)

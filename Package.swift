@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "SOSwift", targets: ["SOSwift"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMajor(from: "0.1.2")),
+        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMajor(from: "1.0.2")),
     ],
     targets: [
         .target(name: "SOSwift", dependencies: ["SOSwiftVocabulary"], path: "Sources"),

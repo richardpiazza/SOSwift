@@ -1,17 +1,23 @@
 import Foundation
 
+public protocol EventConformance:
+                    CreativeWorkOrEvent
+                {}
+
 /// An event happening at a certain time and location, such as a concert, lecture, or festival.
 /// Ticketing information may be added via the offers property.
 /// Repeated events may be structured as separate Event objects.
-public protocol Event: Thing {
+public protocol Event: Thing, EventConformance {
     /// The subject matter of the content.
     var about: Thing? { get set }
     /// An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-    var actor: [Person]? { get set }
+    /// - schema.org property name: actor
+    var actors: [Person]? { get set }
     /// The overall rating, based on a collection of reviews or ratings, of the item.
     var aggregateRating: AggregateRating? { get set }
     /// A person or organization attending the event.
-    var attendee: [OrganizationOrPerson]? { get set }
+    /// - schema.org property name: attendee
+    var attendees: [OrganizationOrPerson]? { get set }
     /// An intended audience, i.e. a group for whom something was created.
     var audience: Audience? { get set }
     /// The person or organization who wrote a composition, or who is the composer of a work performed at some event.
@@ -19,7 +25,8 @@ public protocol Event: Thing {
     /// A secondary contributor to the CreativeWork or Event.
     var contributor: OrganizationOrPerson? { get set }
     /// A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
-    var director: [Person]? { get set }
+    /// - schema.org property name: director
+    var directors: [Person]? { get set }
     /// The time admission will commence.
     var doorTime: DateTime? { get set }
     /// The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.
@@ -43,7 +50,8 @@ public protocol Event: Thing {
     /// An organizer of an Event.
     var organizer: OrganizationOrPerson? { get set }
     /// A performer at the event—for example, a presenter, musician, musical group or actor.
-    var performer: [OrganizationOrPerson]? { get set }
+    /// - schema.org property name: performer
+    var performers: [OrganizationOrPerson]? { get set }
     /// Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated.
     var previousStartDate: DateOnly? { get set }
     /// The CreativeWork that captured all or part of this Event.
@@ -52,14 +60,16 @@ public protocol Event: Thing {
     /// The number of attendee places for an event that remain unallocated.
     var remainingAttendeeCapacity: Int? { get set }
     /// A review of the item.
-    var review: [Review]? { get set }
+    /// - schema.org property name: review
+    var reviews: [Review]? { get set }
     /// A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
     var sponsor: OrganizationOrPerson? { get set }
     /// The start date and time of the item (in ISO 8601 date format).
     var startDate: DateOnlyOrDateTime? { get set }
     /// An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference.
     /// Inverse property: superEvent.
-    var subEvent: [Event]? { get set }
+    /// - schema.org property name: subEvent
+    var subEvents: [Event]? { get set }
     /// An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent.
     /// Inverse property: subEvent.
     var superEvent: Event? { get set }

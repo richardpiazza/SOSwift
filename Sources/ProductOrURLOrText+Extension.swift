@@ -1,12 +1,12 @@
 import Foundation
 import SOSwiftVocabulary
 
-// MARK: - DateTimeOrTextOrURL
+// MARK: - ProductOrURLOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: DateTimeOrTextOrURL?, forKey key: K) throws {
-        if let typedValue = value as? DateTime {
-            try self.encodeIfPresent(typedValue, forKey: key)
+    public mutating func encodeIfPresent(_ value: ProductOrURLOrText?, forKey key: K) throws {
+        if let typedValue = value as? SOProduct {
+            try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {
@@ -16,15 +16,17 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeDateTimeOrTextOrURLIfPresent(forKey key: K) throws -> DateTimeOrTextOrURL? {
+    public func decodeProductOrURLOrTextIfPresent(forKey key: K) throws -> ProductOrURLOrText? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            if let value = try self.decodeDateTimeIfPresent(forKey: key) {
-                return value
+            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
+            if dictionary[SOThing.Keywords.type] as? String == SOProduct.type {
+                return try self.decode(SOProduct.self, forKey: key)
             }
+        } catch {
         }
         
         do {
@@ -41,7 +43,7 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
-        print("Failed to decode `DateTimeOrTextOrURL` for key: \(key.stringValue).")
+        print("Failed to decode `ProductOrTextOrURL` for key: \(key.stringValue).")
         
         return nil
     }

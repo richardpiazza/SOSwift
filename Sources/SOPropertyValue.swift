@@ -12,12 +12,17 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     
     /// The upper value of some characteristic or property.
     public var maxValue: Number?
+    /// A technique or technology used in a Dataset (or DataDownload, DataCatalog), corresponding to the method used for measuring the corresponding variable(s) (described using variableMeasured). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
+    /// For example, if variableMeasured is: molecule concentration, measurementTechnique could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
+    /// If the variableMeasured is "depression rating", the measurementTechnique could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
+    ///If there are several variableMeasured properties recorded for some given data object, use a PropertyValue for each variableMeasured and attach the corresponding measurementTechnique.
+    public var measurementTechnique: URLOrText?
     /// The lower value of some characteristic or property.
     public var minValue: Number?
     /// A commonly used identifier for the characteristic represented by the property, e.g. a manufacturer or a standard code for a property. propertyID can be (1) a prefixed string, mainly meant to be used with standards for product properties; (2) a site-specific, non-prefixed string (e.g. the primary key of the property or the vendor-specific id of the property), or (3) a URL indicating the type of the property, either pointing to an external vocabulary, or a Web resource that describes the property (e.g. a glossary entry). Standards bodies should promote a standard prefix for the identifiers of properties from their standards.
-    public var propertyID: TextOrURL?
+    public var propertyID: URLOrText?
     /// The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
-    public var unitCode: TextOrURL?
+    public var unitCode: URLOrText?
     /// A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for unitCode.
     public var unitText: String?
     /// The value of the quantitative value or property value node.
@@ -29,6 +34,7 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     
     private enum CodingKeys: String, CodingKey {
         case maxValue
+        case measurementTechnique
         case minValue
         case propertyID
         case unitCode
@@ -45,9 +51,10 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.maxValue = try container.decodeNumberIfPresent(forKey: .maxValue)
+        self.measurementTechnique = try container.decodeURLOrTextIfPresent(forKey: .measurementTechnique)
         self.minValue = try container.decodeNumberIfPresent(forKey: .minValue)
-        self.propertyID = try container.decodeTextOrURLIfPresent(forKey: .propertyID)
-        self.unitCode = try container.decodeTextOrURLIfPresent(forKey: .unitCode)
+        self.propertyID = try container.decodeURLOrTextIfPresent(forKey: .propertyID)
+        self.unitCode = try container.decodeURLOrTextIfPresent(forKey: .unitCode)
         self.unitText = try container.decodeIfPresent(String.self, forKey: .unitText)
         self.value = try container.decodeValueIfPresent(forKey: .value)
         self.valueReference = try container.decodeValueReferenceIfPresent(forKey: .valueReference)
@@ -59,6 +66,7 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
+        try container.encodeIfPresent(self.measurementTechnique, forKey: .measurementTechnique)
         try container.encodeIfPresent(self.minValue, forKey: .minValue)
         try container.encodeIfPresent(self.propertyID, forKey: .propertyID)
         try container.encodeIfPresent(self.unitCode, forKey: .unitCode)

@@ -3,11 +3,13 @@ import Foundation
 /// A video file.
 public protocol VideoObject: MediaObject {
     /// An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-    var actor: [Person]? { get set }
+    /// - schema.org property name: actor
+    var actors: [Person]? { get set }
     /// The caption for this object.
     var caption: String? { get set }
     /// A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
-    var director: [Person]? { get set }
+    /// - schema.org property name: director
+    var directors: [Person]? { get set }
     /// The composer of the soundtrack.
     var musicBy: MusicGroupOrPerson? { get set }
     /// Thumbnail image for an image or video.

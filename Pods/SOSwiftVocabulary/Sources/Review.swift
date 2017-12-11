@@ -4,6 +4,8 @@ import Foundation
 public protocol Review: CreativeWork {
     /// The item that is being reviewed/rated.
     var itemReviewed: Thing? { get set }
+    /// This Review or Rating is relevant to this part or facet of the itemReviewed.
+    var reviewAspect: String? { get set }
     /// The actual body of the review.
     var reviewBody: String? { get set }
     /// The rating given in this review.

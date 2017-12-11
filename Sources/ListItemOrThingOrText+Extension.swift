@@ -1,13 +1,13 @@
 import Foundation
 import SOSwiftVocabulary
 
-// MARK: - ProductOrTextOrURL
+// MARK: - ListItemOrThingOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ProductOrTextOrURL?, forKey key: K) throws {
-        if let typedValue = value as? SOProduct {
+    public mutating func encodeIfPresent(_ value: ListItemOrThingOrText?, forKey key: K) throws {
+        if let typedValue = value as? SOListItem {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? URL {
+        } else if let typedValue = value as? SOThing {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
@@ -16,23 +16,17 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeProductOrTextOrURLIfPresent(forKey key: K) throws -> ProductOrTextOrURL? {
+    public func decodeListItemOrThingOrTextIfPresent(forKey key: K) throws -> ListItemOrThingOrText? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
             let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
-            if dictionary[SOThing.Keywords.type] as? String == SOProduct.type {
-                return try self.decode(SOProduct.self, forKey: key)
-            }
-        } catch {
-        }
-        
-        do {
-            let value = try self.decode(URL.self, forKey: key)
-            if value.isValid {
-                return value
+            if dictionary[SOThing.Keywords.type] as? String == SOListItem.type {
+                return try self.decode(SOListItem.self, forKey: key)
+            } else if dictionary[SOThing.Keywords.type] as? String == SOThing.type {
+                return try self.decode(SOThing.self, forKey: key)
             }
         } catch {
         }
@@ -43,7 +37,7 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
-        print("Failed to decode `ProductOrTextOrURL` for key: \(key.stringValue).")
+        print("Failed to decode `ListItemOrTextOrThing` for key: \(key.stringValue).")
         
         return nil
     }

@@ -14,12 +14,12 @@ public class SOCourse: SOCreativeWork, Course {
     /// Requirements for taking the Course. May be completion of another Course or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using AlignmentObject.
     public var coursePrerequisites: [AlignmentObjectOrCourseOrText]?
     /// An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.
-    public var hasCourseInstance: CourseInstance?
+    public var courseInstance: CourseInstance?
     
     private enum CodingKeys: String, CodingKey {
         case courseCode
         case coursePrerequisites
-        case hasCourseInstance
+        case courseInstance = "hasCourseInstance"
     }
     
     public override init() {
@@ -31,7 +31,7 @@ public class SOCourse: SOCreativeWork, Course {
         
         self.courseCode = try container.decodeIfPresent(String.self, forKey: .courseCode)
         self.coursePrerequisites = try container.decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey: .coursePrerequisites)
-        self.hasCourseInstance = try container.decodeIfPresent(SOCourseInstance.self, forKey: .hasCourseInstance)
+        self.courseInstance = try container.decodeIfPresent(SOCourseInstance.self, forKey: .courseInstance)
         
         try super.init(from: decoder)
     }
@@ -41,7 +41,7 @@ public class SOCourse: SOCreativeWork, Course {
         
         try container.encodeIfPresent(self.courseCode, forKey: .courseCode)
         try container.encodeIfPresent(self.coursePrerequisites, forKey: .coursePrerequisites)
-        try container.encodeIfPresent(self.hasCourseInstance, forKey: .hasCourseInstance)
+        try container.encodeIfPresent(self.courseInstance, forKey: .courseInstance)
         
         try super.encode(to: encoder)
     }

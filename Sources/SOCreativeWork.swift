@@ -13,7 +13,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// The human sensory perceptual system or cognitive faculty through which a person may process or perceive information.
     public var accessMode: AccessMode?
     /// A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource.
-    public var accessModeSufficient: [AccessModeSufficient]?
+    public var accessModeSufficients: [AccessModeSufficient]?
     /// Indicates that the resource is compatible with the referenced accessibility API
     public var accessibilityAPI: AccessibilityAPI?
     /// Identifies input methods that are sufficient to fully control the described resource
@@ -52,6 +52,8 @@ public class SOCreativeWork: SOThing, CreativeWork {
     public var contentLocation: Place?
     /// Official rating of a piece of content—for example,'MPAA PG-13'.
     public var contentRating: String?
+    ///
+    public var contentReferenceTime: DateTime?
     /// A secondary contributor to the CreativeWork or Event.
     public var contributor: OrganizationOrPerson?
     /// The party holding the legal copyright to the CreativeWork.
@@ -79,13 +81,13 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// A creative work that this work is an example/instance/realization/derivation of. Inverse property: workExample.
     public var exampleOfWork: CreativeWork?
     /// Media type, typically MIME format (see IANA site) of the content e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, 'encoding' can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry.
-    public var fileFormat: TextOrURL?
+    public var fileFormat: URLOrText?
     /// A person or organization that supports (sponsors) something through some kind of financial contribution.
     public var funder: OrganizationOrPerson?
     /// Genre of the creative work, broadcast channel or group.
-    public var genre: TextOrURL?
+    public var genre: URLOrText?
     /// Indicates a CreativeWork that is (in some sense) a part of this CreativeWork. Inverse property: isPartOf.
-    public var hasPart: CreativeWork?
+    public var part: CreativeWork?
     /// Headline of the article.
     public var headline: String?
     /// The language of the content or performance or used in an action. Please use one of the language codes from the IETF BCP 47 standard.
@@ -97,11 +99,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// A flag to signal that the publication is accessible for free.
     public var isAccessibleForFree: Bool?
     /// A resource that was used in the creation of this resource. This term can be repeated for multiple sources. 
-    public var isBasedOn: CreativeWorkOrProductOrURL?
+    public var basedOn: CreativeWorkOrProductOrURL?
     /// Indicates whether this content is family friendly.
     public var isFamilyFriendly: Bool?
     /// Indicates a CreativeWork that this CreativeWork is (in some sense) part of. Inverse property: hasPart.
-    public var isPartOf: CreativeWork?
+    public var partOf: CreativeWork?
     /// Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas.
     public var keywords: String?
     /// The predominant type or kind characterizing the learning resource. For example, 'presentation', 'handout'
@@ -113,7 +115,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// Indicates the primary entity described in some page or other CreativeWork. Inverse property: mainEntityOfPage.
     public var mainEntity: Thing?
     /// A material that something is made from, e.g. leather, wool, cotton, paper.
-    public var material: ProductOrTextOrURL?
+    public var material: ProductOrURLOrText?
     /// Indicates that the CreativeWork contains a reference to, but is not necessarily about a concept.
     public var mentions: Thing?
     /// An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
@@ -124,12 +126,24 @@ public class SOCreativeWork: SOThing, CreativeWork {
     public var producer: OrganizationOrPerson?
     /// The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. 
     public var provider: OrganizationOrPerson?
+    /// A publication event associated with the item.
+    public var publication: PublicationEvent?
+    /// The publisher of the creative work.
+    public var publisher: OrganizationOrPerson?
+    /// The publishing division which published the comic.
+    public var publisherImprint: Organization?
+    /// The publishingPrinciples property indicates (typically via URL) a document describing the editorial principles of an Organization (or individual e.g. a Person writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a CreativeWork (e.g. NewsArticle) the principles are those of the party primarily responsible for the creation of the CreativeWork.
+    /// While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a funder) can be expressed using schema.org terminology.
+    public var publishingPrinciples: CreativeWorkOrURL?
+    /// The Event where the CreativeWork was recorded. The CreativeWork may capture all or part of the event.
+    /// - Inverse property: recordedIn.
+    public var recordedAt: Event?
     /// The place and time the release was issued, expressed as a PublicationEvent.
     public var releasedEvent: PublicationEvent?
     /// A review of the item.
     public var review: Review?
     /// Indicates (by URL or string) a particular version of a schema used in some CreativeWork. For example, a document could declare a schemaVersion using an URL such as http://schema.org/version/2.0/ if precise indication of schema version was required by some application.
-    public var schemaVersion: TextOrURL?
+    public var schemaVersion: URLOrText?
     /// The Organization on whose behalf the creator was working.
     public var sourceOrganization: Organization?
     /// The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.
@@ -137,13 +151,16 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
     public var sponsor: OrganizationOrPerson?
     /// The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. In the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content e.g. ScholarlyArticle, Book, TVSeries or TVEpisode may indicate their temporalCoverage in broader terms - textually or via well-known URL. Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945".
-    public var temporalCoverage: DateTimeOrTextOrURL?
+    public var temporalCoverage: DateTimeOrURLOrText?
     /// The textual content of this CreativeWork.
     public var text: String?
     /// A thumbnail image relevant to the Thing.
     public var thumbnailUrl: URL?
     /// Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'P30M', 'P1H25M'.
     public var timeRequired: Duration?
+    /// The work that this work has been translated from. e.g. 物种起源 is a translationOf “On the Origin of Species”
+    /// - Inverse property: workTranslation.
+    public var translationOfWork: CreativeWork?
     /// Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market, or that translates during some event.
     public var translator: OrganizationOrPerson?
     /// The typical expected age range, e.g. '7-9', '11-'.
@@ -154,11 +171,14 @@ public class SOCreativeWork: SOThing, CreativeWork {
     public var video: VideoObject?
     /// Example/instance/realization/derivation of the concept of this creative work. eg. The paperback edition, first edition, or eBook. Inverse property: exampleOfWork.
     public var workExample: CreativeWork?
+    /// A work that is a translation of the content of this work. e.g. 西遊記 has an English workTranslation “Journey to the West”,a German workTranslation “Monkeys Pilgerfahrt” and a Vietnamese translation Tây du ký bình khảo.
+    /// - Inverse property: translationOfWork.
+    public var workTranslation: CreativeWork?
     
     private enum CodingKeys: String, CodingKey {
         case about
         case accessMode
-        case accessModeSufficient
+        case accessModeSufficients = "accessModeSufficient"
         case accessibilityAPI
         case accessibilityControl
         case accessibilityFeature
@@ -178,6 +198,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case commentCount
         case contentLocation
         case contentRating
+        case contentReferenceTime
         case contributor
         case copyrightHolder
         case copyrightYear
@@ -194,15 +215,15 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case fileFormat
         case funder
         case genre
-        case hasPart
+        case part = "hasPart"
         case headline
         case inLanguage
         case interactionStatistic
         case interactivityType
         case isAccessibleForFree
-        case isBasedOn
+        case basedOn = "isBasedOn"
         case isFamilyFriendly
-        case isPartOf
+        case partOf = "isPartOf"
         case keywords
         case learningResourceType
         case license
@@ -214,6 +235,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case position
         case producer
         case provider
+        case publication
+        case publisher
+        case publisherImprint
+        case publishingPrinciples
+        case recorededAt
         case releasedEvent
         case review
         case schemaVersion
@@ -224,11 +250,13 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case text
         case thumbnailUrl
         case timeRequired
+        case translationOfWork
         case translator
         case typicalAgeRange
         case version
         case video
         case workExample
+        case workTranslation
     }
     
     public override init() {
@@ -242,14 +270,14 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = try container.decodeIfPresent(String.self, forKey: .accessMode) {
             self.accessMode = AccessMode(rawValue: value)
         }
-        if let value = try container.decodeIfPresent([String].self, forKey: .accessModeSufficient) {
+        if let value = try container.decodeIfPresent([String].self, forKey: .accessModeSufficients) {
             var accessModeSufficients = [AccessModeSufficient]()
             value.forEach({ (v) in
                 if let ams = AccessModeSufficient(rawValue: v) {
                     accessModeSufficients.append(ams)
                 }
             })
-            self.accessModeSufficient = accessModeSufficients
+            self.accessModeSufficients = accessModeSufficients
         }
         if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityAPI) {
             self.accessibilityAPI = AccessibilityAPI(rawValue: value)
@@ -278,6 +306,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         self.commentCount = try container.decodeIfPresent(Int.self, forKey: .commentCount)
         self.contentLocation = try container.decodeIfPresent(SOPlace.self, forKey: .contentLocation)
         self.contentRating = try container.decodeIfPresent(String.self, forKey: .contentRating)
+        self.contentReferenceTime = try container.decodeDateTimeIfPresent(forKey: .contentReferenceTime)
         self.contributor = try container.decodeOrganizationOrPersonIfPresent(forKey: .contributor)
         self.copyrightHolder = try container.decodeOrganizationOrPersonIfPresent(forKey: .copyrightHolder)
         self.copyrightYear = try container.decodeIfPresent(Int.self, forKey: .copyrightYear)
@@ -291,10 +320,10 @@ public class SOCreativeWork: SOThing, CreativeWork {
         self.educationalUse = try container.decodeIfPresent(String.self, forKey: .educationalUse)
         self.encoding = try container.decodeIfPresent(SOMediaObject.self, forKey: .encoding)
         self.workExample = try container.decodeIfPresent(SOCreativeWork.self, forKey: .exampleOfWork)
-        self.fileFormat = try container.decodeTextOrURLIfPresent(forKey: .fileFormat)
+        self.fileFormat = try container.decodeURLOrTextIfPresent(forKey: .fileFormat)
         self.funder = try container.decodeOrganizationOrPersonIfPresent(forKey: .funder)
-        self.genre = try container.decodeTextOrURLIfPresent(forKey: .genre)
-        self.hasPart = try container.decodeIfPresent(SOCreativeWork.self, forKey: .hasPart)
+        self.genre = try container.decodeURLOrTextIfPresent(forKey: .genre)
+        self.part = try container.decodeIfPresent(SOCreativeWork.self, forKey: .part)
         self.headline = try container.decodeIfPresent(String.self, forKey: .headline)
         self.inLanguage = try container.decodeLanguageOrTextIfPresent(forKey: .inLanguage)
         self.interactionStatistic = try container.decodeIfPresent(SOInteractionCounter.self, forKey: .interactionStatistic)
@@ -302,34 +331,41 @@ public class SOCreativeWork: SOThing, CreativeWork {
             self.interactivityType = Interactivity(rawValue: value)
         }
         self.isAccessibleForFree = try container.decodeIfPresent(Bool.self, forKey: .isAccessibleForFree)
-        self.isBasedOn = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .isBasedOn)
+        self.basedOn = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .basedOn)
         self.isFamilyFriendly = try container.decodeIfPresent(Bool.self, forKey: .isFamilyFriendly)
-        self.isPartOf = try container.decodeIfPresent(SOCreativeWork.self, forKey: .isPartOf)
+        self.partOf = try container.decodeIfPresent(SOCreativeWork.self, forKey: .partOf)
         self.keywords = try container.decodeIfPresent(String.self, forKey: .keywords)
         self.learningResourceType = try container.decodeIfPresent(String.self, forKey: .learningResourceType)
         self.license = try container.decodeCreativeWorkOrURLIfPresent(forKey: .license)
         self.locationCreated = try container.decodeIfPresent(SOPlace.self, forKey: .locationCreated)
         self.mainEntity = try container.decodeIfPresent(SOThing.self, forKey: .mainEntity)
-        self.material = try container.decodeProductOrTextOrURLIfPresent(forKey: .material)
+        self.material = try container.decodeProductOrURLOrTextIfPresent(forKey: .material)
         self.mentions = try container.decodeIfPresent(SOThing.self, forKey: .mentions)
         self.offers = try container.decodeIfPresent([SOOffer].self, forKey: .offers)
         self.position = try container.decodeIntegerOrTextIfPresent(forKey: .position)
         self.producer = try container.decodeOrganizationOrPersonIfPresent(forKey: .producer)
         self.provider = try container.decodeOrganizationOrPersonIfPresent(forKey: .provider)
+        self.publication = try container.decodeIfPresent(SOPublicationEvent.self, forKey: .publication)
+        self.publisher = try container.decodeOrganizationOrPersonIfPresent(forKey: .publisher)
+        self.publisherImprint = try container.decodeIfPresent(SOOrganization.self, forKey: .publisherImprint)
+        self.publishingPrinciples = try container.decodeCreativeWorkOrURLIfPresent(forKey: .publishingPrinciples)
+        self.recordedAt = try container.decodeIfPresent(SOEvent.self, forKey: .recorededAt)
         self.releasedEvent = try container.decodeIfPresent(SOPublicationEvent.self, forKey: .releasedEvent)
         self.review = try container.decodeIfPresent(SOReview.self, forKey: .review)
-        self.schemaVersion = try container.decodeTextOrURLIfPresent(forKey: .schemaVersion)
+        self.schemaVersion = try container.decodeURLOrTextIfPresent(forKey: .schemaVersion)
         self.sourceOrganization = try container.decodeIfPresent(SOOrganization.self, forKey: .sourceOrganization)
         self.spatialCoverage = try container.decodeIfPresent(SOPlace.self, forKey: .spatialCoverage)
         self.sponsor = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor)
-        self.temporalCoverage = try container.decodeDateTimeOrTextOrURLIfPresent(forKey: .temporalCoverage)
+        self.temporalCoverage = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .temporalCoverage)
         self.text = try container.decodeIfPresent(String.self, forKey: .text)
         self.timeRequired = try container.decodeDurationIfPresent(forKey: .timeRequired)
+        self.translationOfWork = try container.decodeIfPresent(SOCreativeWork.self, forKey: .translationOfWork)
         self.translator = try container.decodeOrganizationOrPersonIfPresent(forKey: .translator)
         self.typicalAgeRange = try container.decodeIfPresent(String.self, forKey: .typicalAgeRange)
         self.version = try container.decodeIntegerOrTextIfPresent(forKey: .version)
         self.video = try container.decodeIfPresent(SOVideoObject.self, forKey: .video)
         self.workExample = try container.decodeIfPresent(SOCreativeWork.self, forKey: .workExample)
+        self.workTranslation = try container.decodeIfPresent(SOCreativeWork.self, forKey: .workTranslation)
         
         try super.init(from: decoder)
     }
@@ -339,11 +375,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
         
         try container.encodeIfPresent(self.about, forKey: .about)
         try container.encodeIfPresent(self.accessMode?.rawValue, forKey: .accessMode)
-        if let value = self.accessModeSufficient {
+        if let value = self.accessModeSufficients {
             let values = value.map({ (ams) -> String in
                 return ams.rawValue
             })
-            try container.encode(values, forKey: .accessModeSufficient)
+            try container.encode(values, forKey: .accessModeSufficients)
         }
         try container.encodeIfPresent(self.accessibilityAPI?.rawValue, forKey: .accessibilityAPI)
         try container.encodeIfPresent(self.accessibilityControl?.rawValue, forKey: .accessibilityControl)
@@ -364,6 +400,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         try container.encodeIfPresent(self.commentCount, forKey: .commentCount)
         try container.encodeIfPresent(self.contentLocation, forKey: .contentLocation)
         try container.encodeIfPresent(self.contentRating, forKey: .contentRating)
+        try container.encodeIfPresent(self.contentReferenceTime, forKey: .contentReferenceTime)
         try container.encodeIfPresent(self.contributor, forKey: .contributor)
         try container.encodeIfPresent(self.copyrightHolder, forKey: .copyrightHolder)
         try container.encodeIfPresent(self.copyrightYear, forKey: .copyrightYear)
@@ -380,15 +417,15 @@ public class SOCreativeWork: SOThing, CreativeWork {
         try container.encodeIfPresent(self.fileFormat, forKey: .fileFormat)
         try container.encodeIfPresent(self.funder, forKey: .funder)
         try container.encodeIfPresent(self.genre, forKey: .genre)
-        try container.encodeIfPresent(self.hasPart, forKey: .hasPart)
+        try container.encodeIfPresent(self.part, forKey: .part)
         try container.encodeIfPresent(self.headline, forKey: .headline)
         try container.encodeIfPresent(self.inLanguage, forKey: .inLanguage)
         try container.encodeIfPresent(self.interactionStatistic, forKey: .interactionStatistic)
         try container.encodeIfPresent(self.interactivityType?.rawValue, forKey: .interactivityType)
         try container.encodeIfPresent(self.isAccessibleForFree, forKey: .isAccessibleForFree)
-        try container.encodeIfPresent(self.isBasedOn, forKey: .isBasedOn)
+        try container.encodeIfPresent(self.basedOn, forKey: .basedOn)
         try container.encodeIfPresent(self.isFamilyFriendly, forKey: .isFamilyFriendly)
-        try container.encodeIfPresent(self.isPartOf, forKey: .isPartOf)
+        try container.encodeIfPresent(self.partOf, forKey: .partOf)
         try container.encodeIfPresent(self.keywords, forKey: .keywords)
         try container.encodeIfPresent(self.learningResourceType, forKey: .learningResourceType)
         try container.encodeIfPresent(self.license, forKey: .license)
@@ -400,6 +437,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
         try container.encodeIfPresent(self.position, forKey: .position)
         try container.encodeIfPresent(self.producer, forKey: .producer)
         try container.encodeIfPresent(self.provider, forKey: .provider)
+        try container.encodeIfPresent(self.publication, forKey: .publication)
+        try container.encodeIfPresent(self.publisher, forKey: .publisher)
+        try container.encodeIfPresent(self.publisherImprint, forKey: .publisherImprint)
+        try container.encodeIfPresent(self.publishingPrinciples, forKey: .publishingPrinciples)
+        try container.encodeIfPresent(self.recordedAt, forKey: .recorededAt)
         try container.encodeIfPresent(self.releasedEvent, forKey: .releasedEvent)
         try container.encodeIfPresent(self.review, forKey: .review)
         try container.encodeIfPresent(self.schemaVersion, forKey: .schemaVersion)
@@ -410,11 +452,13 @@ public class SOCreativeWork: SOThing, CreativeWork {
         try container.encodeIfPresent(self.text, forKey: .text)
         try container.encodeIfPresent(self.thumbnailUrl, forKey: .thumbnailUrl)
         try container.encodeIfPresent(self.timeRequired, forKey: .timeRequired)
+        try container.encodeIfPresent(self.translationOfWork, forKey: .translationOfWork)
         try container.encodeIfPresent(self.translator, forKey: .translator)
         try container.encodeIfPresent(self.typicalAgeRange, forKey: .typicalAgeRange)
         try container.encodeIfPresent(self.version, forKey: .version)
         try container.encodeIfPresent(self.video, forKey: .video)
         try container.encodeIfPresent(self.workExample, forKey: .workExample)
+        try container.encodeIfPresent(self.workTranslation, forKey: .workTranslation)
         
         try super.encode(to: encoder)
     }

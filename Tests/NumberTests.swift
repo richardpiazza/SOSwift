@@ -6,11 +6,11 @@ class NumberTests: XCTestCase {
     
     fileprivate class TestClass: Codable, Testable {
         var int: Number?
-        var float: Number?
+        var double: Number?
         
         private enum CodingKeys: String, CodingKey {
             case int
-            case float
+            case double
         }
         
         init() {
@@ -19,13 +19,13 @@ class NumberTests: XCTestCase {
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.int = try container.decodeNumberIfPresent(forKey: .int)
-            self.float = try container.decodeNumberIfPresent(forKey: .float)
+            self.double = try container.decodeNumberIfPresent(forKey: .double)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.int, forKey: .int)
-            try container.encodeIfPresent(self.float, forKey: .float)
+            try container.encodeIfPresent(self.double, forKey: .double)
         }
     }
     
@@ -43,7 +43,7 @@ class NumberTests: XCTestCase {
         let json = """
             {
                 "int" : 47,
-                "float" : 42.42
+                "double" : 42.42
             }
         """
         
@@ -62,22 +62,22 @@ class NumberTests: XCTestCase {
         
         XCTAssertEqual(int, 47)
         
-        guard let float = testObject.float as? Float else {
+        guard let double = testObject.double as? Double else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(float, Float(42.42))
+        XCTAssertEqual(double, 42.42)
         
-        XCTAssertNil(testObject.int as? Float)
-        XCTAssertNil(testObject.float as? Int)
+        XCTAssertNil(testObject.int as? Double)
+        XCTAssertNil(testObject.double as? Int)
     }
     
     func testSingleEncodes() {
         let testObject = TestClass()
         
         testObject.int = 12345
-        testObject.float = Float(12.345)
+        testObject.double = 12.345
         
         let dictionary: [String : Any]
         do {
@@ -94,12 +94,12 @@ class NumberTests: XCTestCase {
         
         XCTAssertEqual(i, 12345)
         
-        guard let f = dictionary["float"] as? Float else {
+        guard let f = dictionary["double"] as? Double else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(f, Float(12.345))
+        XCTAssertEqual(f, 12.345)
     }
 }
 

@@ -5,9 +5,9 @@ public protocol NumberConformance:
                     NumberOrText
                 {}
 
-/// Integer (Int), Float
+/// Integer (Int), Float (Double)
 public protocol Number: NumberConformance {}
 
 extension Int: Number {}
 
-extension Float: Number {}
+extension Double: Number {}

@@ -12,6 +12,7 @@ public protocol Course: CreativeWork, CourseConformance {
     /// Requirements for taking the Course. May be completion of another Course or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using AlignmentObject.
     var coursePrerequisites: [AlignmentObjectOrCourseOrText]? { get set }
     /// An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.
-    var hasCourseInstance: CourseInstance? { get set }
+    /// - schema.org property name: hasCourseInstance
+    var courseInstance: CourseInstance? { get set }
 }
 

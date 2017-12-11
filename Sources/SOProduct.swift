@@ -3,7 +3,7 @@ import SOSwiftVocabulary
 
 /// Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online.
 public class SOProduct: SOThing, Product {
-
+    
     public override class var type: String {
         return "Product"
     }
@@ -20,7 +20,7 @@ public class SOProduct: SOThing, Product {
     /// The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
     public var brand: BrandOrOrganization?
     /// A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
-    public var category: TextOrThing?
+    public var category: ThingOrText?
     /// The color of the product.
     public var color: String?
     /// The depth of the item.
@@ -36,13 +36,13 @@ public class SOProduct: SOThing, Product {
     /// The height of the item.
     public var height: DistanceOrQuantitativeValue?
     /// A pointer to another product (or multiple products) for which this product is an accessory or spare part.
-    public var isAccessoryOrSparePartFor: Product?
+    public var accessoryOrSparePartFor: Product?
     /// A pointer to another product (or multiple products) for which this product is a consumable.
-    public var isConsumableFor: Product?
+    public var consumableFor: Product?
     /// A pointer to another, somehow related product (or multiple products).
-    public var isRelatedTo: ProductOrService?
+    public var relatedTo: ProductOrService?
     /// A pointer to another, functionally similar product (or multiple products).
-    public var isSimilarTo: ProductOrService?
+    public var similarTo: ProductOrService?
     /// A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
     public var itemCondition: OfferItemCondition?
     /// An associated logo.
@@ -50,7 +50,7 @@ public class SOProduct: SOThing, Product {
     /// The manufacturer of the product.
     public var manufacturer: Organization?
     /// A material that something is made from, e.g. leather, wool, cotton, paper.
-    public var material: ProductOrTextOrURL?
+    public var material: ProductOrURLOrText?
     /// The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.
     public var model: ProductModelOrText?
     /// The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
@@ -88,10 +88,10 @@ public class SOProduct: SOThing, Product {
         case gtin14
         case gtin8
         case height
-        case isAccessoryOrSparePartFor
-        case isConsumableFor
-        case isRelatedTo
-        case isSimilarTo
+        case accessoryOrSparePartFor = "isAccessoryOrSparePartFor"
+        case consumableFor = "isConsumableFor"
+        case relatedTo = "isRelatedTo"
+        case similarTo = "isSimilarTo"
         case itemCondition
         case logo
         case manufacturer
@@ -121,7 +121,7 @@ public class SOProduct: SOThing, Product {
         self.audience = try container.decodeIfPresent(SOAudience.self, forKey: .audience)
         self.award = try container.decodeIfPresent(String.self, forKey: .award)
         self.brand = try container.decodeBrandOrOrganizationIfPresent(forKey: .brand)
-        self.category = try container.decodeTextOrThingIfPresent(forKey: .category)
+        self.category = try container.decodeThingOrTextIfPresent(forKey: .category)
         self.color = try container.decodeIfPresent(String.self, forKey: .color)
         self.depth = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .depth)
         self.gtin12 = try container.decodeIfPresent(String.self, forKey: .gtin12)
@@ -129,16 +129,16 @@ public class SOProduct: SOThing, Product {
         self.gtin14 = try container.decodeIfPresent(String.self, forKey: .gtin14)
         self.gtin8 = try container.decodeIfPresent(String.self, forKey: .gtin8)
         self.height = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height)
-        self.isAccessoryOrSparePartFor = try container.decodeIfPresent(SOProduct.self, forKey: .isAccessoryOrSparePartFor)
-        self.isConsumableFor = try container.decodeIfPresent(SOProduct.self, forKey: .isConsumableFor)
-        self.isRelatedTo = try container.decodeProductOrServiceIfPresent(forKey: .isRelatedTo)
-        self.isSimilarTo = try container.decodeProductOrServiceIfPresent(forKey: .isSimilarTo)
+        self.accessoryOrSparePartFor = try container.decodeIfPresent(SOProduct.self, forKey: .accessoryOrSparePartFor)
+        self.consumableFor = try container.decodeIfPresent(SOProduct.self, forKey: .consumableFor)
+        self.relatedTo = try container.decodeProductOrServiceIfPresent(forKey: .relatedTo)
+        self.similarTo = try container.decodeProductOrServiceIfPresent(forKey: .similarTo)
         if let value = try container.decodeIfPresent(String.self, forKey: .itemCondition) {
             self.itemCondition = OfferItemCondition(rawValue: value)
         }
         self.logo = try container.decodeImageObjectOrURLIfPresent(forKey: .logo)
         self.manufacturer = try container.decodeIfPresent(SOOrganization.self, forKey: .manufacturer)
-        self.material = try container.decodeProductOrTextOrURLIfPresent(forKey: .material)
+        self.material = try container.decodeProductOrURLOrTextIfPresent(forKey: .material)
         self.model = try container.decodeProductModelOrTextIfPresent(forKey: .model)
         self.mpn = try container.decodeIfPresent(String.self, forKey: .mpn)
         self.offers = try container.decodeIfPresent([SOOffer].self, forKey: .offers)
@@ -170,10 +170,10 @@ public class SOProduct: SOThing, Product {
         try container.encodeIfPresent(self.gtin14, forKey: .gtin14)
         try container.encodeIfPresent(self.gtin8, forKey: .gtin8)
         try container.encodeIfPresent(self.height, forKey: .height)
-        try container.encodeIfPresent(self.isAccessoryOrSparePartFor, forKey: .isAccessoryOrSparePartFor)
-        try container.encodeIfPresent(self.isConsumableFor, forKey: .isConsumableFor)
-        try container.encodeIfPresent(self.isRelatedTo, forKey: .isRelatedTo)
-        try container.encodeIfPresent(self.isSimilarTo, forKey: .isSimilarTo)
+        try container.encodeIfPresent(self.accessoryOrSparePartFor, forKey: .accessoryOrSparePartFor)
+        try container.encodeIfPresent(self.consumableFor, forKey: .consumableFor)
+        try container.encodeIfPresent(self.relatedTo, forKey: .relatedTo)
+        try container.encodeIfPresent(self.similarTo, forKey: .similarTo)
         try container.encodeIfPresent(self.itemCondition?.rawValue, forKey: .itemCondition)
         try container.encodeIfPresent(self.logo, forKey: .logo)
         try container.encodeIfPresent(self.manufacturer, forKey: .manufacturer)

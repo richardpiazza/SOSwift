@@ -9,9 +9,9 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
     }
     
     /// Type of software application, e.g. 'Game, Multimedia'.
-    public var applicationCategory: TextOrURL?
+    public var applicationCategory: URLOrText?
     /// Subcategory of the application, e.g. 'Arcade Game'.
-    public var applicationSubCategory: TextOrURL?
+    public var applicationSubCategory: URLOrText?
     /// The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
     public var applicationSuite: String?
     /// Device required to run the application. Used in cases where a specific make/model is required to run the application.
@@ -23,13 +23,13 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
     /// If the file can be downloaded, URL to download the binary.
     public var downloadUrl: URL?
     /// Features or modules provided by this application (and possibly required by other applications).
-    public var featureList: TextOrURL?
+    public var featureList: URLOrText?
     /// Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed.
     public var fileSize: String?
     /// URL at which the app may be installed, if different from the URL of the item.
     public var installUrl: URL?
     /// Minimum memory requirements.
-    public var memoryRequirements: TextOrURL?
+    public var memoryRequirements: URLOrText?
     /// Operating systems supported (Windows 7, OSX 10.6, Android 1.6).
     public var operatingSystem: String?
     /// Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi).
@@ -37,7 +37,7 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
     /// Processor architecture required to run the application (e.g. IA64).
     public var processorRequirements: String?
     /// Description of what changed in this version.
-    public var releaseNotes: TextOrURL?
+    public var releaseNotes: URLOrText?
     /// A link to a screenshot image of the app.
     public var screenshot: ImageObjectOrURL?
     /// Additional content for a software application.
@@ -45,11 +45,11 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
     /// Software application help.
     public var softwareHelp: CreativeWork?
     /// Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime).
-    public var softwareRequirements: TextOrURL?
+    public var softwareRequirements: URLOrText?
     /// Version of the software instance.
     public var softwareVersion: String?
     /// Storage requirements (free space required).
-    public var storageRequirements: TextOrURL?
+    public var storageRequirements: URLOrText?
     /// Supporting data for a SoftwareApplication.
     public var supportingData: DataFeed?
     
@@ -85,27 +85,27 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.applicationCategory = try container.decodeTextOrURLIfPresent(forKey: .applicationCategory)
-        self.applicationSubCategory = try container.decodeTextOrURLIfPresent(forKey: .applicationSubCategory)
+        self.applicationCategory = try container.decodeURLOrTextIfPresent(forKey: .applicationCategory)
+        self.applicationSubCategory = try container.decodeURLOrTextIfPresent(forKey: .applicationSubCategory)
         self.applicationSuite = try container.decodeIfPresent(String.self, forKey: .applicationSuite)
         self.availableOnDevice = try container.decodeIfPresent(String.self, forKey: .availableOnDevice)
         self.countriesNotSupported = try container.decodeIfPresent(String.self, forKey: .countriesNotSupported)
         self.countriesSupported = try container.decodeIfPresent(String.self, forKey: .countriesSupported)
         self.downloadUrl = try container.decodeIfPresent(URL.self, forKey: .downloadUrl)
-        self.featureList = try container.decodeTextOrURLIfPresent(forKey: .featureList)
+        self.featureList = try container.decodeURLOrTextIfPresent(forKey: .featureList)
         self.fileSize = try container.decodeIfPresent(String.self, forKey: .fileSize)
         self.installUrl = try container.decodeIfPresent(URL.self, forKey: .installUrl)
-        self.memoryRequirements = try container.decodeTextOrURLIfPresent(forKey: .memoryRequirements)
+        self.memoryRequirements = try container.decodeURLOrTextIfPresent(forKey: .memoryRequirements)
         self.operatingSystem = try container.decodeIfPresent(String.self, forKey: .operatingSystem)
         self.permissions = try container.decodeIfPresent(String.self, forKey: .permissions)
         self.processorRequirements = try container.decodeIfPresent(String.self, forKey: .processorRequirements)
-        self.releaseNotes = try container.decodeTextOrURLIfPresent(forKey: .releaseNotes)
+        self.releaseNotes = try container.decodeURLOrTextIfPresent(forKey: .releaseNotes)
         self.screenshot = try container.decodeImageObjectOrURLIfPresent(forKey: .screenshot)
         self.softwareAddOn = try container.decodeIfPresent(SOSoftwareApplication.self, forKey: .softwareAddOn)
         self.softwareHelp = try container.decodeIfPresent(SOCreativeWork.self, forKey: .softwareHelp)
         self.softwareVersion = try container.decodeIfPresent(String.self, forKey: .softwareVersion)
-        self.softwareRequirements = try container.decodeTextOrURLIfPresent(forKey: .softwareRequirements)
-        self.storageRequirements = try container.decodeTextOrURLIfPresent(forKey: .storageRequirements)
+        self.softwareRequirements = try container.decodeURLOrTextIfPresent(forKey: .softwareRequirements)
+        self.storageRequirements = try container.decodeURLOrTextIfPresent(forKey: .storageRequirements)
         
         try super.init(from: decoder)
     }

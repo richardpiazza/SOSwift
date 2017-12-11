@@ -73,7 +73,7 @@ class NumberOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        testObject.number = Float(4.7)
+        testObject.number = 4.7
         testObject.text = "Almost Five"
         
         let dictionary: [String : Any]
@@ -84,12 +84,12 @@ class NumberOrTextTests: XCTestCase {
             return
         }
         
-        guard let n = dictionary["number"] as? Float else {
+        guard let n = dictionary["number"] as? Double else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(n, Float(4.7))
+        XCTAssertEqual(n, 4.7)
         
         guard let t = dictionary["text"] as? String else {
             XCTFail()

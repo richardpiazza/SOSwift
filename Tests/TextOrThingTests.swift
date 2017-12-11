@@ -5,8 +5,8 @@ import SOSwiftVocabulary
 class TextOrThingTests: XCTestCase {
     
     fileprivate class TestClass: Codable, Testable {
-        var text: TextOrThing?
-        var thing: TextOrThing?
+        var text: ThingOrText?
+        var thing: ThingOrText?
         
         private enum CodingKeys: String, CodingKey {
             case text
@@ -18,8 +18,8 @@ class TextOrThingTests: XCTestCase {
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.text = try container.decodeTextOrThingIfPresent(forKey: .text)
-            self.thing = try container.decodeTextOrThingIfPresent(forKey: .thing)
+            self.text = try container.decodeThingOrTextIfPresent(forKey: .text)
+            self.thing = try container.decodeThingOrTextIfPresent(forKey: .thing)
         }
         
         func encode(to encoder: Encoder) throws {

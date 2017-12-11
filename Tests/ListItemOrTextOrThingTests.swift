@@ -5,9 +5,9 @@ import SOSwiftVocabulary
 class ListItemOrTextOrThingTests: XCTestCase {
     
     fileprivate class TestClass: Codable, Testable {
-        var listItem: ListItemOrTextOrThing?
-        var text: ListItemOrTextOrThing?
-        var thing: ListItemOrTextOrThing?
+        var listItem: ListItemOrThingOrText?
+        var text: ListItemOrThingOrText?
+        var thing: ListItemOrThingOrText?
         
         private enum CodingKeys: String, CodingKey {
             case listItem
@@ -20,9 +20,9 @@ class ListItemOrTextOrThingTests: XCTestCase {
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.listItem = try container.decodeListItemOrTextOrThingIfPresent(forKey: .listItem)
-            self.text = try container.decodeListItemOrTextOrThingIfPresent(forKey: .text)
-            self.thing = try container.decodeListItemOrTextOrThingIfPresent(forKey: .thing)
+            self.listItem = try container.decodeListItemOrThingOrTextIfPresent(forKey: .listItem)
+            self.text = try container.decodeListItemOrThingOrTextIfPresent(forKey: .text)
+            self.thing = try container.decodeListItemOrThingOrTextIfPresent(forKey: .thing)
         }
         
         func encode(to encoder: Encoder) throws {

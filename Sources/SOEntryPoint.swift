@@ -11,7 +11,7 @@ public class SOEntryPoint: SOIntangible, EntryPoint {
     /// An application that can complete the request.
     public var actionApplication: SoftwareApplication?
     /// The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.
-    public var actionPlatform: TextOrURL?
+    public var actionPlatform: URLOrText?
     /// The supported content type(s) for an EntryPoint response.
     public var contentType: String?
     /// The supported encoding type(s) for an EntryPoint request.
@@ -40,7 +40,7 @@ public class SOEntryPoint: SOIntangible, EntryPoint {
         if let value = try container.decodeIfPresent(SOSoftwareApplication.self, forKey: .actionApplication) {
             self.actionApplication = value
         }
-        if let value = try container.decodeTextOrURLIfPresent(forKey: .actionPlatform) {
+        if let value = try container.decodeURLOrTextIfPresent(forKey: .actionPlatform) {
             self.actionPlatform = value
         }
         if let value = try container.decodeIfPresent(String.self, forKey: .contentType) {

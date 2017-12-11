@@ -7,14 +7,14 @@ class ValueTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var structuredValue: Value?
         var bool: Value?
-        var float: Value?
+        var double: Value?
         var int: Value?
         var string: Value?
         
         private enum CodingKeys: String, CodingKey {
             case structuredValue
             case bool
-            case float
+            case double
             case int
             case string
         }
@@ -26,7 +26,7 @@ class ValueTests: XCTestCase {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.structuredValue = try container.decodeValueIfPresent(forKey: .structuredValue)
             self.bool = try container.decodeValueIfPresent(forKey: .bool)
-            self.float = try container.decodeValueIfPresent(forKey: .float)
+            self.double = try container.decodeValueIfPresent(forKey: .double)
             self.int = try container.decodeValueIfPresent(forKey: .int)
             self.string = try container.decodeValueIfPresent(forKey: .string)
         }
@@ -35,7 +35,7 @@ class ValueTests: XCTestCase {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.structuredValue, forKey: .structuredValue)
             try container.encodeIfPresent(self.bool, forKey: .bool)
-            try container.encodeIfPresent(self.float, forKey: .float)
+            try container.encodeIfPresent(self.double, forKey: .double)
             try container.encodeIfPresent(self.int, forKey: .int)
             try container.encodeIfPresent(self.string, forKey: .string)
         }
@@ -59,7 +59,7 @@ class ValueTests: XCTestCase {
                     "name" : "Zero"
                 },
                 "bool" : true,
-                "float" : 2.01,
+                "double" : 2.01,
                 "int" : 3,
                 "string" : "four"
             }
@@ -87,12 +87,12 @@ class ValueTests: XCTestCase {
         
         XCTAssertEqual(bool, true)
         
-        guard let float = testObject.float as? Float else {
+        guard let double = testObject.double as? Double else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(float, Float(2.01))
+        XCTAssertEqual(double, 2.01)
         
         guard let int = testObject.int as? Int else {
             XCTFail()
@@ -117,7 +117,7 @@ class ValueTests: XCTestCase {
         testObject.structuredValue = structuredValue
         
         testObject.bool = false
-        testObject.float = Float(39.1)
+        testObject.double = 39.1
         testObject.int = 100
         testObject.string = "🔟"
         
@@ -143,12 +143,12 @@ class ValueTests: XCTestCase {
         
         XCTAssertEqual(b, false)
         
-        guard let f = dictionary["float"] as? Float else {
+        guard let f = dictionary["double"] as? Double else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(f, Float(39.1))
+        XCTAssertEqual(f, 39.1)
         
         guard let i = dictionary["int"] as? Int else {
             XCTFail()

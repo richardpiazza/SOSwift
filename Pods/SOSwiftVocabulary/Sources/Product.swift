@@ -2,7 +2,7 @@ import Foundation
 
 public protocol ProductConformance:
                     CreativeWorkOrProductOrURL,
-                    ProductOrTextOrURL,
+                    ProductOrURLOrText,
                     ProductOrService,
                     OwnershipInfoOrProduct,
                     ProductOrText
@@ -23,7 +23,7 @@ public protocol Product: Thing, ProductConformance {
     /// The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
     var brand: BrandOrOrganization? { get set }
     /// A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
-    var category: TextOrThing? { get set }
+    var category: ThingOrText? { get set }
     /// The color of the product.
     var color: String? { get set }
     /// The depth of the item.
@@ -41,13 +41,17 @@ public protocol Product: Thing, ProductConformance {
     /// The height of the item.
     var height: DistanceOrQuantitativeValue? { get set }
     /// A pointer to another product (or multiple products) for which this product is an accessory or spare part.
-    var isAccessoryOrSparePartFor: Product? { get set }
+    /// - schema.org property name: isAccessoryOrSpacePartFor
+    var accessoryOrSparePartFor: Product? { get set }
     /// A pointer to another product (or multiple products) for which this product is a consumable.
-    var isConsumableFor: Product? { get set }
+    /// - schema.org property name: isConsumableFor
+    var consumableFor: Product? { get set }
     /// A pointer to another, somehow related product (or multiple products).
-    var isRelatedTo: ProductOrService? { get set }
+    /// - schema.org property name: isRelatedTo
+    var relatedTo: ProductOrService? { get set }
     /// A pointer to another, functionally similar product (or multiple products).
-    var isSimilarTo: ProductOrService? { get set }
+    /// - schema.org property name: isSimilarTo
+    var similarTo: ProductOrService? { get set }
     /// A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
     var itemCondition: OfferItemCondition? { get set }
     /// An associated logo.
@@ -55,7 +59,7 @@ public protocol Product: Thing, ProductConformance {
     /// The manufacturer of the product.
     var manufacturer: Organization? { get set }
     /// A material that something is made from, e.g. leather, wool, cotton, paper.
-    var material: ProductOrTextOrURL? { get set }
+    var material: ProductOrURLOrText? { get set }
     /// The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.
     var model: ProductModelOrText? { get set }
     /// The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.

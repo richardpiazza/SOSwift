@@ -14,7 +14,7 @@ public protocol QuantitativeValue: StructuredValue, QuantitativeValueConformance
     /// The lower value of some characteristic or property.
     var minValue: Number? { get set }
     /// The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
-    var unitCode: TextOrURL? { get set }
+    var unitCode: URLOrText? { get set }
     /// A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for unitCode.
     var unitText: String? { get set }
     /// The value of the quantitative value or property value node.

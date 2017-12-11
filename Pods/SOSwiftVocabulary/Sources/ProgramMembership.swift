@@ -10,7 +10,8 @@ public protocol ProgramMembership: Intangible, ProgramMembershipConformance {
     var hostingOrganization: Organization? { get set }
     /// A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals.
     /// Inverse property: memberOf.
-    var member: [OrganizationOrPerson]? { get set }
+    /// - schema.org property name: member
+    var members: [OrganizationOrPerson]? { get set }
     /// A unique identifier for the membership.
     var membershipNumber: String? { get set }
     /// The program providing the membership.

@@ -7,7 +7,7 @@ public extension KeyedEncodingContainer {
     public mutating func encodeIfPresent(_ value: Number?, forKey key: K) throws {
         if let typedValue = value as? Int {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? Float {
+        } else if let typedValue = value as? Double {
             try self.encode(typedValue, forKey: key)
         }
     }
@@ -26,7 +26,7 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode(Float.self, forKey: key)
+            let value = try self.decode(Double.self, forKey: key)
             return value
         } catch {
         }

@@ -5,8 +5,8 @@ import SOSwiftVocabulary
 class TextOrURLTests: XCTestCase {
     
     fileprivate class TestClass: Codable, Testable {
-        var text: TextOrURL?
-        var url: TextOrURL?
+        var text: URLOrText?
+        var url: URLOrText?
         
         private enum CodingKeys: String, CodingKey {
             case text
@@ -18,8 +18,8 @@ class TextOrURLTests: XCTestCase {
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.text = try container.decodeTextOrURLIfPresent(forKey: .text)
-            self.url = try container.decodeTextOrURLIfPresent(forKey: .url)
+            self.text = try container.decodeURLOrTextIfPresent(forKey: .text)
+            self.url = try container.decodeURLOrTextIfPresent(forKey: .url)
         }
         
         func encode(to encoder: Encoder) throws {

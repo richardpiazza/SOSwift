@@ -2,6 +2,7 @@ import Foundation
 
 public protocol GeoShapeConformance:
                     GeoCoordinatesOrGeoShape,
+                    GeoShapeOrPlaceOrText,
                     AreaServed {}
 
 /// The geographic shape of a place.

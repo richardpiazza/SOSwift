@@ -5,9 +5,9 @@ import SOSwiftVocabulary
 class DateTimeOrTextOrURLTests: XCTestCase {
     
     fileprivate class TestClass: Codable, Testable {
-        var dateTime: DateTimeOrTextOrURL?
-        var text: DateTimeOrTextOrURL?
-        var url: DateTimeOrTextOrURL?
+        var dateTime: DateTimeOrURLOrText?
+        var text: DateTimeOrURLOrText?
+        var url: DateTimeOrURLOrText?
         
         private enum CodingKeys: String, CodingKey {
             case dateTime
@@ -20,9 +20,9 @@ class DateTimeOrTextOrURLTests: XCTestCase {
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.dateTime = try container.decodeDateTimeOrTextOrURLIfPresent(forKey: .dateTime)
-            self.text = try container.decodeDateTimeOrTextOrURLIfPresent(forKey: .text)
-            self.url = try container.decodeDateTimeOrTextOrURLIfPresent(forKey: .url)
+            self.dateTime = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .dateTime)
+            self.text = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .text)
+            self.url = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .url)
         }
         
         func encode(to encoder: Encoder) throws {

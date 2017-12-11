@@ -3,7 +3,7 @@ import SOSwiftVocabulary
 
 /// A person (alive, dead, undead, or fictional).
 public class SOPerson: SOThing, Person {
-
+    
     public override class var type: String {
         return "Person"
     }
@@ -17,19 +17,19 @@ public class SOPerson: SOThing, Person {
     /// An organization that the person is an alumni of. Inverse property: alumni.
     public var alumniOf: EducationalOrganizationOrOrganization?
     /// An award won by or for this item.
-    public var award: [String]?
+    public var awards: [String]?
     /// Date of birth.
     public var birthDate: DateOnly?
     /// The place where the person was born.
     public var birthPlace: Place?
     /// The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
-    public var brand: [BrandOrOrganization]?
+    public var brands: [BrandOrOrganization]?
     /// A child of the person.
     public var children: [Person]?
     /// A colleague of the person.
-    public var colleague: [PersonOrURL]?
+    public var colleagues: [PersonOrURL]?
     /// A contact point for a person or organization.
-    public var contactPoint: [ContactPoint]?
+    public var contactPoints: [ContactPoint]?
     /// Date of death.
     public var deathDate: DateOnly?
     /// The place where the person died.
@@ -53,9 +53,9 @@ public class SOPerson: SOThing, Person {
     /// The Global Location Number (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.
     public var globalLocationNumber: String?
     /// Indicates an OfferCatalog listing for this Organization, Person, or Service.
-    public var hasOfferCatalog: OfferCatalog?
+    public var offerCatalog: OfferCatalog?
     /// Points-of-Sales operated by the organization or person.
-    public var hasPOS: [Place]?
+    public var pointsOfSales: [Place]?
     /// The height of the item.
     public var height: DistanceOrQuantitativeValue?
     /// A contact location for a person's residence.
@@ -80,18 +80,23 @@ public class SOPerson: SOThing, Person {
     public var nationality: Country?
     /// The total financial value of the person as calculated by subtracting assets from liabilities.
     public var netWorth: MonetaryAmountOrPriceSpecification?
+    /// The Person's occupation. For past professions, use Role for expressing dates.
+    public var occupation: Occupation?
     /// Products owned by the organization or person.
     public var owns: [ProductOrService]?
     /// A parent of this person.
-    public var parent: [Person]?
+    public var parents: [Person]?
     /// Event that this person is a performer or participant in.
     public var performerIn: Event?
+    /// The publishingPrinciples property indicates (typically via URL) a document describing the editorial principles of an Organization (or individual e.g. a Person writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a CreativeWork (e.g. NewsArticle) the principles are those of the party primarily responsible for the creation of the CreativeWork.
+    /// While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a funder) can be expressed using schema.org terminology.
+    public var publishingPrinciples: CreativeWorkOrURL?
     /// The most generic familial relation.
     public var relatedTo: [Person]?
     /// A pointer to products or services sought by the organization or person (demand).
     public var seeks: [Demand]?
     /// A sibling of the person.
-    public var sibling: [Person]?
+    public var siblings: [Person]?
     /// A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
     public var sponsor: OrganizationOrPerson?
     /// The person's spouse.
@@ -114,13 +119,13 @@ public class SOPerson: SOThing, Person {
         case address
         case affiliation
         case alumniOf
-        case award
+        case awards = "award"
         case birthDate
         case birthPlace
-        case brand
+        case brands = "brand"
         case children
-        case colleague
-        case contactPoint
+        case colleagues = "colleague"
+        case contactPoints = "contactPoint"
         case deathDate
         case deathPlace
         case duns
@@ -132,8 +137,8 @@ public class SOPerson: SOThing, Person {
         case gender
         case givenName
         case globalLocationNumber
-        case hasOfferCatalog
-        case hasPOS
+        case offerCatalog = "hasOfferCatalog"
+        case pointsOfSales = "hasPOS"
         case height
         case homeLocation
         case honorificPrefix
@@ -146,12 +151,14 @@ public class SOPerson: SOThing, Person {
         case naics
         case nationality
         case netWorth
+        case occupation = "hasOccupation"
         case owns
-        case parent
+        case parents = "parent"
         case performerIn
+        case publishingPrinciples
         case relatedTo
         case seeks
-        case sibling
+        case siblings = "sibling"
         case sponsor
         case spouse
         case taxID
@@ -173,13 +180,13 @@ public class SOPerson: SOThing, Person {
         self.address = try container.decodePostalAddressOrTextIfPresent(forKey: .address)
         self.affiliation = try container.decodeIfPresent(SOOrganization.self, forKey: .affiliation)
         self.alumniOf = try container.decodeEducationalOrganizationOrOrganizationIfPresent(forKey: .alumniOf)
-        self.award = try container.decodeIfPresent([String].self, forKey: .award)
+        self.awards = try container.decodeIfPresent([String].self, forKey: .awards)
         self.birthDate = try container.decodeDateOnlyIfPresent(forKey: .birthDate)
         self.birthPlace = try container.decodeIfPresent(SOPlace.self, forKey: .birthPlace)
-        self.brand = try container.decodeBrandsOrOrganizationsIfPresent(forKey: .brand)
+        self.brands = try container.decodeBrandsOrOrganizationsIfPresent(forKey: .brands)
         self.children = try container.decodeIfPresent([SOPerson].self, forKey: .children)
-        self.colleague = try container.decodePersonsOrURLsIfPresent(forKey: .colleague)
-        self.contactPoint = try container.decodeIfPresent([SOContactPoint].self, forKey: .contactPoint)
+        self.colleagues = try container.decodePersonsOrURLsIfPresent(forKey: .colleagues)
+        self.contactPoints = try container.decodeIfPresent([SOContactPoint].self, forKey: .contactPoints)
         self.deathDate = try container.decodeDateOnlyIfPresent(forKey: .deathDate)
         self.deathPlace = try container.decodeIfPresent(SOPlace.self, forKey: .deathPlace)
         self.duns = try container.decodeIfPresent(String.self, forKey: .duns)
@@ -191,8 +198,8 @@ public class SOPerson: SOThing, Person {
         self.gender = try container.decodeGenderOrTextIfPresent(forKey: .gender)
         self.givenName = try container.decodeIfPresent(String.self, forKey: .givenName)
         self.globalLocationNumber = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber)
-        self.hasOfferCatalog = try container.decodeIfPresent(SOOfferCatalog.self, forKey: .hasOfferCatalog)
-        self.hasPOS = try container.decodeIfPresent([SOPlace].self, forKey: .hasPOS)
+        self.offerCatalog = try container.decodeIfPresent(SOOfferCatalog.self, forKey: .offerCatalog)
+        self.pointsOfSales = try container.decodeIfPresent([SOPlace].self, forKey: .pointsOfSales)
         self.height = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height)
         self.homeLocation = try container.decodeContactPointOrPlaceIfPresent(forKey: .homeLocation)
         self.honorificPrefix = try container.decodeIfPresent(String.self, forKey: .honorificPrefix)
@@ -205,12 +212,14 @@ public class SOPerson: SOThing, Person {
         self.naics = try container.decodeIfPresent(String.self, forKey: .naics)
         self.nationality = try container.decodeIfPresent(SOCountry.self, forKey: .nationality)
         self.netWorth = try container.decodeMonetaryAmountOrPriceSpecificationIfPresent(forKey: .netWorth)
+        self.occupation = try container.decodeIfPresent(SOOccupation.self, forKey: .occupation)
         self.owns = try container.decodeProductsOrServicesIfPresent(forKey: .owns)
-        self.parent = try container.decodeIfPresent([SOPerson].self, forKey: .parent)
+        self.parents = try container.decodeIfPresent([SOPerson].self, forKey: .parents)
         self.performerIn = try container.decodeIfPresent(SOEvent.self, forKey: .performerIn)
+        self.publishingPrinciples = try container.decodeCreativeWorkOrURLIfPresent(forKey: .publishingPrinciples)
         self.relatedTo = try container.decodeIfPresent([SOPerson].self, forKey: .relatedTo)
         self.seeks = try container.decodeIfPresent([SODemand].self, forKey: .seeks)
-        self.sibling = try container.decodeIfPresent([SOPerson].self, forKey: .sibling)
+        self.siblings = try container.decodeIfPresent([SOPerson].self, forKey: .siblings)
         self.sponsor = try container.decodeOrganizationOrPersonIfPresent(forKey: .sponsor)
         self.spouse = try container.decodeIfPresent(SOPerson.self, forKey: .spouse)
         self.taxID = try container.decodeIfPresent(String.self, forKey: .taxID)
@@ -230,13 +239,13 @@ public class SOPerson: SOThing, Person {
         try container.encodeIfPresent(self.address, forKey: .address)
         try container.encodeIfPresent(self.affiliation, forKey: .affiliation)
         try container.encodeIfPresent(self.alumniOf, forKey: .alumniOf)
-        try container.encodeIfPresent(self.award, forKey: .award)
+        try container.encodeIfPresent(self.awards, forKey: .awards)
         try container.encodeIfPresent(self.birthDate, forKey: .birthDate)
         try container.encodeIfPresent(self.birthPlace, forKey: .birthPlace)
-        try container.encodeIfPresent(self.brand, forKey: .brand)
+        try container.encodeIfPresent(self.brands, forKey: .brands)
         try container.encodeIfPresent(self.children, forKey: .children)
-        try container.encodeIfPresent(self.colleague, forKey: .colleague)
-        try container.encodeIfPresent(self.contactPoint, forKey: .contactPoint)
+        try container.encodeIfPresent(self.colleagues, forKey: .colleagues)
+        try container.encodeIfPresent(self.contactPoints, forKey: .contactPoints)
         try container.encodeIfPresent(self.deathDate, forKey: .deathDate)
         try container.encodeIfPresent(self.deathPlace, forKey: .deathPlace)
         try container.encodeIfPresent(self.duns, forKey: .duns)
@@ -248,8 +257,8 @@ public class SOPerson: SOThing, Person {
         try container.encodeIfPresent(self.gender, forKey: .gender)
         try container.encodeIfPresent(self.givenName, forKey: .givenName)
         try container.encodeIfPresent(self.globalLocationNumber, forKey: .globalLocationNumber)
-        try container.encodeIfPresent(self.hasOfferCatalog, forKey: .hasOfferCatalog)
-        try container.encodeIfPresent(self.hasPOS, forKey: .hasPOS)
+        try container.encodeIfPresent(self.offerCatalog, forKey: .offerCatalog)
+        try container.encodeIfPresent(self.pointsOfSales, forKey: .pointsOfSales)
         try container.encodeIfPresent(self.height, forKey: .height)
         try container.encodeIfPresent(self.homeLocation, forKey: .homeLocation)
         try container.encodeIfPresent(self.honorificPrefix, forKey: .honorificPrefix)
@@ -262,12 +271,14 @@ public class SOPerson: SOThing, Person {
         try container.encodeIfPresent(self.naics, forKey: .naics)
         try container.encodeIfPresent(self.nationality, forKey: .nationality)
         try container.encodeIfPresent(self.netWorth, forKey: .netWorth)
+        try container.encodeIfPresent(self.occupation, forKey: .occupation)
         try container.encodeIfPresent(self.owns, forKey: .owns)
-        try container.encodeIfPresent(self.parent, forKey: .parent)
+        try container.encodeIfPresent(self.parents, forKey: .parents)
         try container.encodeIfPresent(self.performerIn, forKey: .performerIn)
+        try container.encodeIfPresent(self.publishingPrinciples, forKey: .publishingPrinciples)
         try container.encodeIfPresent(self.relatedTo, forKey: .relatedTo)
         try container.encodeIfPresent(self.seeks, forKey: .seeks)
-        try container.encodeIfPresent(self.sibling, forKey: .sibling)
+        try container.encodeIfPresent(self.siblings, forKey: .siblings)
         try container.encodeIfPresent(self.sponsor, forKey: .sponsor)
         try container.encodeIfPresent(self.spouse, forKey: .spouse)
         try container.encodeIfPresent(self.taxID, forKey: .taxID)

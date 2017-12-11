@@ -8,10 +8,13 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
         return "PublicationEvent"
     }
     
+    /// An agent associated with the publication event.
+    public var publishedBy: OrganizationOrPerson?
     /// A broadcast service associated with the publication event.
     public var publishedOn: BroadcastService?
     
     private enum CodingKeys: String, CodingKey {
+        case publishedBy
         case publishedOn
     }
     
@@ -22,6 +25,7 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        self.publishedBy = try container.decodeOrganizationOrPersonIfPresent(forKey: .publishedBy)
         self.publishedOn = try container.decodeIfPresent(SOBroadcastService.self, forKey: .publishedOn)
         
         try super.init(from: decoder)
@@ -30,6 +34,7 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
+        try container.encodeIfPresent(self.publishedBy, forKey: .publishedBy)
         try container.encodeIfPresent(self.publishedOn, forKey: .publishedOn)
         
         try super.encode(to: encoder)

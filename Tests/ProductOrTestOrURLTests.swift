@@ -5,9 +5,9 @@ import SOSwiftVocabulary
 class ProductOrTextOrURLTests: XCTestCase {
     
     fileprivate class TestClass: Codable, Testable {
-        var product: ProductOrTextOrURL?
-        var text: ProductOrTextOrURL?
-        var url: ProductOrTextOrURL?
+        var product: ProductOrURLOrText?
+        var text: ProductOrURLOrText?
+        var url: ProductOrURLOrText?
         
         private enum CodingKeys: String, CodingKey {
             case product
@@ -20,9 +20,9 @@ class ProductOrTextOrURLTests: XCTestCase {
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.product = try container.decodeProductOrTextOrURLIfPresent(forKey: .product)
-            self.text = try container.decodeProductOrTextOrURLIfPresent(forKey: .text)
-            self.url = try container.decodeProductOrTextOrURLIfPresent(forKey: .url)
+            self.product = try container.decodeProductOrURLOrTextIfPresent(forKey: .product)
+            self.text = try container.decodeProductOrURLOrTextIfPresent(forKey: .text)
+            self.url = try container.decodeProductOrURLOrTextIfPresent(forKey: .url)
         }
         
         func encode(to encoder: Encoder) throws {

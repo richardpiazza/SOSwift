@@ -3,7 +3,8 @@ import Foundation
 public protocol PlaceConformance:
                     PlaceOrPostalAddressOrText,
                     ContactPointOrPlace,
-                    AreaServed
+                    AreaServed,
+                    GeoShapeOrPlaceOrText
                 {}
 
 /// Entities that have a somewhat fixed, physical extension.
@@ -25,9 +26,11 @@ public protocol Place: Thing, PlaceConformance {
     var containedInPlace: Place? { get set }
     /// The basic containment relation between a place and another that it contains.
     /// Inverse property: containedInPlace.
-    var containsPlace: [Place]? { get set }
+    /// - schema.org property name: containesPlace
+    var containsPlaces: [Place]? { get set }
     /// Upcoming or past event associated with this place, organization, or action.
-    var event: [Event]? { get set }
+    /// - schema.org property name: event
+    var events: [Event]? { get set }
     /// The fax number.
     var faxNumber: String? { get set }
     /// The geo coordinates of the place.
@@ -35,7 +38,8 @@ public protocol Place: Thing, PlaceConformance {
     /// The Global Location Number (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.
     var globalLocationNumber: String? { get set }
     /// A URL to a map of the place.
-    var hasMap: MapOrURL? { get set }
+    /// - schema.org property name: hasMap
+    var map: MapOrURL? { get set }
     /// The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.
     var isicV4: String? { get set }
     /// An associated logo.
@@ -45,9 +49,11 @@ public protocol Place: Thing, PlaceConformance {
     /// The opening hours of a certain place.
     var openingHoursSpecification: [OpeningHoursSpecification]? { get set }
     /// A photograph of this place.
-    var photo: [ImageObjectOrPhotograph]? { get set }
+    /// - schema.org property name: photo
+    var photos: [ImageObjectOrPhotograph]? { get set }
     /// A review of the item.
-    var review: [Review]? { get set }
+    /// - schema.org property name: review
+    var reviews: [Review]? { get set }
     /// Indicates whether it is allowed to smoke in the place, e.g. in the restaurant, hotel or hotel room.
     var smokingAllowed: Bool? { get set }
     /// The special opening hours of a certain place.

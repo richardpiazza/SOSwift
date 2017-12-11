@@ -84,7 +84,7 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
         
         XCTAssertEqual(maxValue, 6)
         
-        guard let minValue = quantitativeValue.minValue as? Float else {
+        guard let minValue = quantitativeValue.minValue as? Double else {
             XCTFail()
             return
         }
@@ -101,8 +101,8 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
         
         let quantitativeValue = SOQuantitativeValue()
         quantitativeValue.name = "Range"
-        quantitativeValue.minValue = Float(0.0)
-        quantitativeValue.maxValue = Float(1.0)
+        quantitativeValue.minValue = 0.0
+        quantitativeValue.maxValue = 1.0
         testObject.quantitativeValue = quantitativeValue
         
         let dictionary: [String : Any]
@@ -137,14 +137,14 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
         
         XCTAssertEqual(qvName, "Range")
         
-        guard let qvMin = qv["minValue"] as? Float else {
+        guard let qvMin = qv["minValue"] as? Double else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(qvMin, 0.0)
         
-        guard let qvMax = qv["maxValue"] as? Float else {
+        guard let qvMax = qv["maxValue"] as? Double else {
             XCTFail()
             return
         }

@@ -39,6 +39,9 @@ public class SOThing: Thing, Codable {
     public var potentialAction: Action?
     /// URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.
     public var sameAs: [URL]?
+    /// A CreativeWork or Event about this Thing..
+    /// - Inverse property: about
+    public var subjectOf: CreativeWorkOrEvent?
     /// URL of the item.
     public var url: URL?
     
@@ -56,6 +59,7 @@ public class SOThing: Thing, Codable {
         case name
         case potentialAction
         case sameAs
+        case subjectOf
         case url
     }
     
@@ -79,6 +83,7 @@ public class SOThing: Thing, Codable {
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
         self.potentialAction = try container.decodeIfPresent(SOAction.self, forKey: .potentialAction)
         self.sameAs = try container.decodeIfPresent([URL].self, forKey: .sameAs)
+        self.subjectOf = try container.decodeCreativeWorkOrEventIfPresent(forKey: .subjectOf)
         self.url = try container.decodeIfPresent(URL.self, forKey: .url)
     }
     
@@ -98,6 +103,7 @@ public class SOThing: Thing, Codable {
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.potentialAction, forKey: .potentialAction)
         try container.encodeIfPresent(self.sameAs, forKey: .sameAs)
+        try container.encodeIfPresent(self.subjectOf, forKey: .subjectOf)
         try container.encodeIfPresent(self.url, forKey: .url)
     }
 }

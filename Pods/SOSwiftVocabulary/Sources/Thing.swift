@@ -1,8 +1,10 @@
 import Foundation
 
 public protocol ThingConformance:
-                    ListItemOrTextOrThing,
-                    TextOrThing
+                    DataFeedItemOrThingOrText,
+                    ListItemOrThingOrText,
+                    ThingOrText,
+                    PhysicalActivityCategoryOrThingOrText
                 {}
 
 /// The most generic type of item.
@@ -36,6 +38,9 @@ public protocol Thing: ThingConformance {
     var potentialAction: Action? { get set }
     /// URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.
     var sameAs: [URL]? { get set }
+    /// A CreativeWork or Event about this Thing..
+    /// - Inverse property: about
+    var subjectOf: CreativeWorkOrEvent? { get set }
     /// URL of the item.
     var url: URL? { get set }
 }

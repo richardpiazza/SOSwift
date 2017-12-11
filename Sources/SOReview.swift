@@ -10,6 +10,8 @@ public class SOReview: SOCreativeWork, Review {
     
     /// The item that is being reviewed/rated.
     public var itemReviewed: Thing?
+    /// This Review or Rating is relevant to this part or facet of the itemReviewed.
+    public var reviewAspect: String?
     /// The actual body of the review.
     public var reviewBody: String?
     /// The rating given in this review.
@@ -18,6 +20,7 @@ public class SOReview: SOCreativeWork, Review {
     
     private enum CodingKeys: String, CodingKey {
         case itemReviewed
+        case reviewAspect
         case reviewBody
         case reviewRating
     }
@@ -30,6 +33,7 @@ public class SOReview: SOCreativeWork, Review {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.itemReviewed = try container.decodeIfPresent(SOThing.self, forKey: .itemReviewed)
+        self.reviewAspect = try container.decodeIfPresent(String.self, forKey: .reviewAspect)
         self.reviewBody = try container.decodeIfPresent(String.self, forKey: .reviewBody)
         self.reviewRating = try container.decodeIfPresent(SORating.self, forKey: .reviewRating)
         
@@ -40,6 +44,7 @@ public class SOReview: SOCreativeWork, Review {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.itemReviewed, forKey: .itemReviewed)
+        try container.encodeIfPresent(self.reviewAspect, forKey: .reviewAspect)
         try container.encodeIfPresent(self.reviewBody, forKey: .reviewBody)
         try container.encodeIfPresent(self.reviewRating, forKey: .reviewRating)
         

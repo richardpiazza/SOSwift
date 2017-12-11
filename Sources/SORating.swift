@@ -14,6 +14,8 @@ public class SORating: SOIntangible, Rating {
     public var bestRating: NumberOrText?
     /// The rating for the content.
     public var ratingValue: NumberOrText?
+    /// This Review or Rating is relevant to this part or facet of the itemReviewed.
+    public var reviewAspect: String?
     /// The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
     public var worstRating: NumberOrText?
     
@@ -21,6 +23,7 @@ public class SORating: SOIntangible, Rating {
         case author
         case bestRating
         case ratingValue
+        case reviewAspect
         case worstRating
     }
     
@@ -34,6 +37,7 @@ public class SORating: SOIntangible, Rating {
         self.author = try container.decodeOrganizationOrPersonIfPresent(forKey: .author)
         self.bestRating = try container.decodeNumberOrTextIfPresent(forKey: .bestRating)
         self.ratingValue = try container.decodeNumberOrTextIfPresent(forKey: .ratingValue)
+        self.reviewAspect = try container.decodeIfPresent(String.self, forKey: .reviewAspect)
         self.worstRating = try container.decodeNumberOrTextIfPresent(forKey: .worstRating)
         
         try super.init(from: decoder)
@@ -45,6 +49,7 @@ public class SORating: SOIntangible, Rating {
         try container.encodeIfPresent(self.author, forKey: .author)
         try container.encodeIfPresent(self.bestRating, forKey: .bestRating)
         try container.encodeIfPresent(self.ratingValue, forKey: .ratingValue)
+        try container.encodeIfPresent(self.reviewAspect, forKey: .reviewAspect)
         try container.encodeIfPresent(self.worstRating, forKey: .worstRating)
         
         try super.encode(to: encoder)

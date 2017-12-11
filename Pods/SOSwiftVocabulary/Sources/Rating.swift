@@ -9,6 +9,8 @@ public protocol Rating: Intangible {
     var bestRating: NumberOrText? { get set }
     /// The rating for the content.
     var ratingValue: NumberOrText? { get set }
+    /// This Review or Rating is relevant to this part or facet of the itemReviewed.
+    var reviewAspect: String? { get set }
     /// The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
     var worstRating: NumberOrText? { get set }
 }

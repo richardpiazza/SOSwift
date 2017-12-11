@@ -11,7 +11,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
     /// The organization (airline, travelers' club, etc.) the membership is made with.
     public var hostingOrganization: Organization?
     /// A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals. Supersedes members, musicGroupMember. Inverse property: memberOf.
-    public var member: [OrganizationOrPerson]?
+    public var members: [OrganizationOrPerson]?
     /// A unique identifier for the membership.
     public var membershipNumber: String?
     /// The program providing the membership.
@@ -19,7 +19,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
     
     private enum CodingKeys: String, CodingKey {
         case hostingOrganization
-        case member
+        case members = "member"
         case membershipNumber
         case programName
     }
@@ -32,7 +32,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.hostingOrganization = try container.decodeIfPresent(SOOrganization.self, forKey: .hostingOrganization)
-        self.member = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .member)
+        self.members = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .members)
         self.membershipNumber = try container.decodeIfPresent(String.self, forKey: .membershipNumber)
         self.programName = try container.decodeIfPresent(String.self, forKey: .programName)
         
@@ -43,7 +43,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.hostingOrganization, forKey: .hostingOrganization)
-        try container.encodeIfPresent(self.member, forKey: .member)
+        try container.encodeIfPresent(self.members, forKey: .members)
         try container.encodeIfPresent(self.membershipNumber, forKey: .membershipNumber)
         try container.encodeIfPresent(self.programName, forKey: .programName)
         

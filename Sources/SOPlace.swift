@@ -23,9 +23,9 @@ public class SOPlace: SOThing, Place {
     /// The basic containment relation between a place and one that contains it. Inverse property: containsPlace.
     public var containedInPlace: Place?
     /// The basic containment relation between a place and another that it contains. Inverse property: containedInPlace.
-    public var containsPlace: [Place]?
+    public var containsPlaces: [Place]?
     /// Upcoming or past event associated with this place, organization, or action.
-    public var event: [Event]?
+    public var events: [Event]?
     /// The fax number.
     public var faxNumber: String?
     /// The geo coordinates of the place.
@@ -33,7 +33,7 @@ public class SOPlace: SOThing, Place {
     /// The Global Location Number (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.
     public var globalLocationNumber: String?
     /// A URL to a map of the place.
-    public var hasMap: MapOrURL?
+    public var map: MapOrURL?
     /// The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.
     public var isicV4: String?
     /// An associated logo.
@@ -43,9 +43,9 @@ public class SOPlace: SOThing, Place {
     /// The opening hours of a certain place.
     public var openingHoursSpecification: [OpeningHoursSpecification]?
     /// A photograph of this place.
-    public var photo: [ImageObjectOrPhotograph]?
+    public var photos: [ImageObjectOrPhotograph]?
     /// A review of the item.
-    public var review: [Review]?
+    public var reviews: [Review]?
     /// Indicates whether it is allowed to smoke in the place, e.g. in the restaurant, hotel or hotel room.
     public var smokingAllowed: Bool?
     /// The special opening hours of a certain place.
@@ -61,18 +61,18 @@ public class SOPlace: SOThing, Place {
         case amenityFeature
         case branchCode
         case containedInPlace
-        case containsPlace
-        case event
+        case containsPlaces = "containsPlace"
+        case events = "event"
         case faxNumber
         case geo
         case globalLocationNumber
-        case hasMap
+        case map = "hasMap"
         case isicV4
         case logo
         case maximumAttendeeCapacity
         case openingHoursSpecification
-        case photo
-        case review
+        case photos = "photo"
+        case reviews = "review"
         case smokingAllowed
         case specialOpeningHoursSpecification
         case telephone
@@ -91,18 +91,18 @@ public class SOPlace: SOThing, Place {
         self.amenityFeature = try container.decodeIfPresent(SOLocationFeatureSpecification.self, forKey: .amenityFeature)
         self.branchCode = try container.decodeIfPresent(String.self, forKey: .branchCode)
         self.containedInPlace = try container.decodeIfPresent(SOPlace.self, forKey: .containedInPlace)
-        self.containsPlace = try container.decodeIfPresent([SOPlace].self, forKey: .containsPlace)
-        self.event = try container.decodeIfPresent([SOEvent].self, forKey: .event)
+        self.containsPlaces = try container.decodeIfPresent([SOPlace].self, forKey: .containsPlaces)
+        self.events = try container.decodeIfPresent([SOEvent].self, forKey: .events)
         self.faxNumber = try container.decodeIfPresent(String.self, forKey: .faxNumber)
         self.geo = try container.decodeGeoCoordinatesOrGeoShapeIfPresent(forKey: .geo)
         self.globalLocationNumber = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber)
-        self.hasMap = try container.decodeMapOrURLIfPresent(forKey: .hasMap)
+        self.map = try container.decodeMapOrURLIfPresent(forKey: .map)
         self.isicV4 = try container.decodeIfPresent(String.self, forKey: .isicV4)
         self.logo = try container.decodeImageObjectOrURLIfPresent(forKey: .logo)
         self.maximumAttendeeCapacity = try container.decodeIfPresent(Int.self, forKey: .maximumAttendeeCapacity)
         self.openingHoursSpecification = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .openingHoursSpecification)
-        self.photo = try container.decodeImageObjectsOrPhotographsIfPresent(forKey: .photo)
-        self.review = try container.decodeIfPresent([SOReview].self, forKey: .review)
+        self.photos = try container.decodeImageObjectsOrPhotographsIfPresent(forKey: .photos)
+        self.reviews = try container.decodeIfPresent([SOReview].self, forKey: .reviews)
         self.smokingAllowed = try container.decodeIfPresent(Bool.self, forKey: .smokingAllowed)
         self.specialOpeningHoursSpecification = try container.decodeIfPresent([SOOpeningHoursSpecification].self, forKey: .specialOpeningHoursSpecification)
         self.telephone = try container.decodeIfPresent(String.self, forKey: .telephone)
@@ -119,18 +119,18 @@ public class SOPlace: SOThing, Place {
         try container.encodeIfPresent(self.amenityFeature, forKey: .amenityFeature)
         try container.encodeIfPresent(self.branchCode, forKey: .branchCode)
         try container.encodeIfPresent(self.containedInPlace, forKey: .containedInPlace)
-        try container.encodeIfPresent(self.containsPlace, forKey: .containsPlace)
-        try container.encodeIfPresent(self.event, forKey: .event)
+        try container.encodeIfPresent(self.containsPlaces, forKey: .containsPlaces)
+        try container.encodeIfPresent(self.events, forKey: .events)
         try container.encodeIfPresent(self.faxNumber, forKey: .faxNumber)
         try container.encodeIfPresent(self.geo, forKey: .geo)
         try container.encodeIfPresent(self.globalLocationNumber, forKey: .globalLocationNumber)
-        try container.encodeIfPresent(self.hasMap, forKey: .hasMap)
+        try container.encodeIfPresent(self.map, forKey: .map)
         try container.encodeIfPresent(self.isicV4, forKey: .isicV4)
         try container.encodeIfPresent(self.logo, forKey: .logo)
         try container.encodeIfPresent(self.maximumAttendeeCapacity, forKey: .maximumAttendeeCapacity)
         try container.encodeIfPresent(self.openingHoursSpecification, forKey: .openingHoursSpecification)
-        try container.encodeIfPresent(self.photo, forKey: .photo)
-        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.photos, forKey: .photos)
+        try container.encodeIfPresent(self.reviews, forKey: .reviews)
         try container.encodeIfPresent(self.smokingAllowed, forKey: .smokingAllowed)
         try container.encodeIfPresent(self.specialOpeningHoursSpecification, forKey: .specialOpeningHoursSpecification)
         try container.encodeIfPresent(self.telephone, forKey: .telephone)

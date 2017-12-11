@@ -9,7 +9,7 @@ public extension KeyedEncodingContainer {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? Bool {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? Float {
+        } else if let typedValue = value as? Double {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? Int {
             try self.encode(typedValue, forKey: key)
@@ -46,7 +46,7 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let value = try self.decode(Float.self, forKey: key)
+            let value = try self.decode(Double.self, forKey: key)
             return value
         } catch {
         }

@@ -1,6 +1,7 @@
 import Foundation
 
 public protocol CreativeWorkConformance:
+                    CreativeWorkOrEvent,
                     CreativeWorkOrURL,
                     CreativeWorkOrText,
                     CreativeWorkOrProductOrURL
@@ -13,7 +14,8 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     /// The human sensory perceptual system or cognitive faculty through which a person may process or perceive information.
     var accessMode: AccessMode? { get set }
     /// A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource.
-    var accessModeSufficient: [AccessModeSufficient]? { get set }
+    /// - schema.org property name: accessModeSufficient
+    var accessModeSufficients: [AccessModeSufficient]? { get set }
     /// Indicates that the resource is compatible with the referenced accessibility API
     var accessibilityAPI: AccessibilityAPI? { get set }
     /// Identifies input methods that are sufficient to fully control the described resource
@@ -53,6 +55,8 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     var contentLocation: Place? { get set }
     /// Official rating of a piece of content—for example,'MPAA PG-13'.
     var contentRating: String? { get set }
+    /// The specific time described by a creative work, for works (e.g. articles, video objects etc.) that emphasise a particular moment within an Event.
+    var contentReferenceTime: DateTime? { get set }
     /// A secondary contributor to the CreativeWork or Event.
     var contributor: OrganizationOrPerson? { get set }
     /// The party holding the legal copyright to the CreativeWork.
@@ -80,13 +84,14 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     /// A creative work that this work is an example/instance/realization/derivation of. Inverse property: workExample.
     var exampleOfWork: CreativeWork? { get set }
     /// Media type, typically MIME format (see IANA site) of the content e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, 'encoding' can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry.
-    var fileFormat: TextOrURL?  { get set }
+    var fileFormat: URLOrText?  { get set }
     /// A person or organization that supports (sponsors) something through some kind of financial contribution.
     var funder: OrganizationOrPerson?  { get set }
     /// Genre of the creative work, broadcast channel or group.
-    var genre: TextOrURL?  { get set }
+    var genre: URLOrText?  { get set }
     /// Indicates a CreativeWork that is (in some sense) a part of this CreativeWork. Inverse property: isPartOf.
-    var hasPart: CreativeWork?  { get set }
+    /// - schema.org property name: hasPart
+    var part: CreativeWork?  { get set }
     /// Headline of the article.
     var headline: String?  { get set }
     /// The language of the content or performance or used in an action. Please use one of the language codes from the IETF BCP 47 standard.
@@ -98,11 +103,13 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     /// A flag to signal that the publication is accessible for free.
     var isAccessibleForFree: Bool?  { get set }
     /// A resource that was used in the creation of this resource. This term can be repeated for multiple sources.
-    var isBasedOn: CreativeWorkOrProductOrURL?  { get set }
+    /// - schema.org property name: isBasedOn
+    var basedOn: CreativeWorkOrProductOrURL?  { get set }
     /// Indicates whether this content is family friendly.
     var isFamilyFriendly: Bool?  { get set }
     /// Indicates a CreativeWork that this CreativeWork is (in some sense) part of. Inverse property: hasPart.
-    var isPartOf: CreativeWork?  { get set }
+    /// - schema.org property name: isPartOf
+    var partOf: CreativeWork?  { get set }
     /// Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas.
     var keywords: String?  { get set }
     /// The predominant type or kind characterizing the learning resource. For example, 'presentation', 'handout'
@@ -114,7 +121,7 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     /// Indicates the primary entity described in some page or other CreativeWork. Inverse property: mainEntityOfPage.
     var mainEntity: Thing?  { get set }
     /// A material that something is made from, e.g. leather, wool, cotton, paper.
-    var material: ProductOrTextOrURL?  { get set }
+    var material: ProductOrURLOrText?  { get set }
     /// Indicates that the CreativeWork contains a reference to, but is not necessarily about a concept.
     var mentions: Thing?  { get set }
     /// An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
@@ -125,12 +132,24 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     var producer: OrganizationOrPerson?  { get set }
     /// The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
     var provider: OrganizationOrPerson?  { get set }
+    /// A publication event associated with the item.
+    var publication: PublicationEvent? { get set }
+    /// The publisher of the creative work.
+    var publisher: OrganizationOrPerson? { get set }
+    /// The publishing division which published the comic.
+    var publisherImprint: Organization? { get set }
+    /// The publishingPrinciples property indicates (typically via URL) a document describing the editorial principles of an Organization (or individual e.g. a Person writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a CreativeWork (e.g. NewsArticle) the principles are those of the party primarily responsible for the creation of the CreativeWork.
+    /// While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a funder) can be expressed using schema.org terminology.
+    var publishingPrinciples: CreativeWorkOrURL? { get set }
+    /// The Event where the CreativeWork was recorded. The CreativeWork may capture all or part of the event.
+    /// - Inverse property: recordedIn.
+    var recordedAt: Event? { get set }
     /// The place and time the release was issued, expressed as a PublicationEvent.
     var releasedEvent: PublicationEvent?  { get set }
     /// A review of the item.
     var review: Review?  { get set }
     /// Indicates (by URL or string) a particular version of a schema used in some CreativeWork. For example, a document could declare a schemaVersion using an URL such as http://schema.org/version/2.0/ if precise indication of schema version was required by some application.
-    var schemaVersion: TextOrURL?  { get set }
+    var schemaVersion: URLOrText?  { get set }
     /// The Organization on whose behalf the creator was working.
     var sourceOrganization: Organization?  { get set }
     /// The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.
@@ -138,13 +157,16 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     /// A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
     var sponsor: OrganizationOrPerson?  { get set }
     /// The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. In the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content e.g. ScholarlyArticle, Book, TVSeries or TVEpisode may indicate their temporalCoverage in broader terms - textually or via well-known URL. Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945".
-    var temporalCoverage: DateTimeOrTextOrURL?  { get set }
+    var temporalCoverage: DateTimeOrURLOrText?  { get set }
     /// The textual content of this CreativeWork.
     var text: String?  { get set }
     /// A thumbnail image relevant to the Thing.
     var thumbnailUrl: URL?  { get set }
     /// Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'P30M', 'P1H25M'.
     var timeRequired: Duration?  { get set }
+    /// The work that this work has been translated from. e.g. 物种起源 is a translationOf “On the Origin of Species”
+    /// - Inverse property: workTranslation.
+    var translationOfWork: CreativeWork? { get set }
     /// Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market, or that translates during some event.
     var translator: OrganizationOrPerson?  { get set }
     /// The typical expected age range, e.g. '7-9', '11-'.
@@ -155,5 +177,8 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     var video: VideoObject?  { get set }
     /// Example/instance/realization/derivation of the concept of this creative work. eg. The paperback edition, first edition, or eBook. Inverse property: exampleOfWork.
     var workExample: CreativeWork?  { get set }
+    /// A work that is a translation of the content of this work. e.g. 西遊記 has an English workTranslation “Journey to the West”,a German workTranslation “Monkeys Pilgerfahrt” and a Vietnamese translation Tây du ký bình khảo.
+    /// - Inverse property: translationOfWork.
+    var workTranslation: CreativeWork? { get set }
 }
 

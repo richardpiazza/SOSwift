@@ -9,7 +9,7 @@ public class SOCourseInstance: SOEvent, CourseInstance {
     }
     
     /// The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary
-    public var courseMode: TextOrURL?
+    public var courseMode: URLOrText?
     /// A person assigned to instruct or provide instructional assistance for the CourseInstance.
     public var instructor: Person?
     
@@ -25,7 +25,7 @@ public class SOCourseInstance: SOEvent, CourseInstance {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.courseMode = try container.decodeTextOrURLIfPresent(forKey: .courseMode)
+        self.courseMode = try container.decodeURLOrTextIfPresent(forKey: .courseMode)
         self.instructor = try container.decodeIfPresent(SOPerson.self, forKey: .instructor)
         
         try super.init(from: decoder)

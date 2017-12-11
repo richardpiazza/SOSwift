@@ -10,12 +10,12 @@ Schema.org is a collaborative, community activity with a mission to create, main
 
 __CocoaPods__
 
-    pod 'SOSwift', '~> 1.0'
+    pod 'SOSwift', '~> 2.0'
 
 
 __Swift Package Manager__
 
-    .package(url: "https://github.com/richardpiazza/SOSwift", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/richardpiazza/SOSwift", .upToNextMajor(from: "2.0.0"))
 
 ### Schema.org
 
