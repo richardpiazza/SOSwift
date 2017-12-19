@@ -3,6 +3,10 @@ import XCTest
 
 class SOThingTests: XCTestCase {
     
+    static var allTests = [
+        ("testSOThingEncodeContextAndType", testSOThingEncodeContextAndType)
+    ]
+    
     override func setUp() {
         super.setUp()
     }

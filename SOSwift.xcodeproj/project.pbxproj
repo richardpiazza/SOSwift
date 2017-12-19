@@ -230,6 +230,7 @@
 		E16079B51FA62AF00095DD07 /* TestOrURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOrURLTests.swift; sourceTree = "<group>"; };
 		E16079B71FA645530095DD07 /* TimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTests.swift; sourceTree = "<group>"; };
 		E16079B91FA6496B0095DD07 /* ValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTests.swift; sourceTree = "<group>"; };
+		E1659C9D1FE9BBE700ADEAD7 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		E16812451F90288900C3A0FC /* ProductOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductOrText+Extension.swift"; sourceTree = "<group>"; };
 		E16812481F950B1100C3A0FC /* DateTimeOrURLOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateTimeOrURLOrText+Extension.swift"; sourceTree = "<group>"; };
 		E16DB8221EC753F700E73447 /* SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -480,6 +481,7 @@
 				E16079B71FA645530095DD07 /* TimeTests.swift */,
 				E16079B91FA6496B0095DD07 /* ValueTests.swift */,
 				E149A5D41F8E942F008C8C39 /* SOThingTests.swift */,
+				E1659C9D1FE9BBE700ADEAD7 /* LinuxMain.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
