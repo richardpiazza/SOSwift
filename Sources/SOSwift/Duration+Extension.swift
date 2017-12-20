@@ -105,14 +105,26 @@ fileprivate struct DurationFormatter {
             if !scanner.scanInt(&value) {
                 return components
             }
-            var identifier: NSString?
-            if !scanner.scanCharacters(from: identifiersSet, into: &identifier) || identifier?.length != 1 {
-                return components
-            }
             
-            let unit = mappings[Character(identifier! as String)]!
+            #if os(Linux)
+                var identifier: String?
+                if !scanner.scanUpToCharacters(from: identifiersSet, into: &identifier) || identifier?.count != 1 {
+                    return components
+                }
+
+                let unit = mappings[Character(identifier!)]!
             
-            components.append((unit, value))
+                components.append((unit, value))
+            #else
+                var identifier: NSString?
+                if !scanner.scanCharacters(from: identifiersSet, into: &identifier) || identifier?.length != 1 {
+                    return components
+                }
+
+                let unit = mappings[Character(identifier! as String)]!
+            
+                components.append((unit, value))
+            #endif
         }
         
         return components
