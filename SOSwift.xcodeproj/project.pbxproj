@@ -21,7 +21,7 @@
 		E13DFC971F951B4000CAF2B2 /* NumberOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13DFC961F951B4000CAF2B2 /* NumberOrText+Extension.swift */; };
 		E13DFC991F9520FA00CAF2B2 /* ListItemOrThingOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13DFC981F9520FA00CAF2B2 /* ListItemOrThingOrText+Extension.swift */; };
 		E13DFC9B1F95218E00CAF2B2 /* ItemListOrderOrText+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13DFC9A1F95218E00CAF2B2 /* ItemListOrderOrText+Extension.swift */; };
-		E14356711F969A120032E302 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14356701F969A120032E302 /* Codable+Extension.swift */; };
+		E14356711F969A120032E302 /* Codable+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14356701F969A120032E302 /* Codable+SOSwift.swift */; };
 		E14356731F969E6D0032E302 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14356721F969E6D0032E302 /* URL+Extension.swift */; };
 		E14356751F969F3A0032E302 /* IdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14356741F969F3A0032E302 /* IdentifierTests.swift */; };
 		E149A5DE1F8E943C008C8C39 /* SOThingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149A5D41F8E942F008C8C39 /* SOThingTests.swift */; };
@@ -217,7 +217,12 @@
 		E13DFC961F951B4000CAF2B2 /* NumberOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberOrText+Extension.swift"; sourceTree = "<group>"; };
 		E13DFC981F9520FA00CAF2B2 /* ListItemOrThingOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItemOrThingOrText+Extension.swift"; sourceTree = "<group>"; };
 		E13DFC9A1F95218E00CAF2B2 /* ItemListOrderOrText+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemListOrderOrText+Extension.swift"; sourceTree = "<group>"; };
-		E14356701F969A120032E302 /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
+		E13FC1351FEAAAC7005EE3AD /* SOSwift.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SOSwift.podspec; sourceTree = "<group>"; };
+		E13FC1361FEAAAC7005EE3AD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		E13FC1371FEAAAC8005EE3AD /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		E13FC1381FEAAAC8005EE3AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E13FC1391FEAAAC8005EE3AD /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		E14356701F969A120032E302 /* Codable+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+SOSwift.swift"; sourceTree = "<group>"; };
 		E14356721F969E6D0032E302 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		E14356741F969F3A0032E302 /* IdentifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierTests.swift; sourceTree = "<group>"; };
 		E149A5D41F8E942F008C8C39 /* SOThingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOThingTests.swift; sourceTree = "<group>"; };
@@ -431,7 +436,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E149A5CF1F8E942F008C8C39 /* Tests */ = {
+		E13FC1401FEAAAEB005EE3AD /* SOSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
 				E1938DC61F9F775000AE393B /* _Testable.swift */,
@@ -481,12 +486,11 @@
 				E16079B71FA645530095DD07 /* TimeTests.swift */,
 				E16079B91FA6496B0095DD07 /* ValueTests.swift */,
 				E149A5D41F8E942F008C8C39 /* SOThingTests.swift */,
-				E1659C9D1FE9BBE700ADEAD7 /* LinuxMain.swift */,
 			);
-			path = Tests;
+			path = SOSwiftTests;
 			sourceTree = "<group>";
 		};
-		E16812471F94EB0A00C3A0FC /* Extensions */ = {
+		E13FC1411FEAAB48005EE3AD /* SOSwift */ = {
 			isa = PBXGroup;
 			children = (
 				E1E452DA1F70411D00236249 /* AlignmentObjectOrCourseOrText+Extension.swift */,
@@ -540,54 +544,7 @@
 				E1E4532B1F70412900236249 /* URLOrText+Extension.swift */,
 				E1E452E21F70411E00236249 /* Value+Extension.swift */,
 				E1E4531F1F70412700236249 /* ValueReference+Extension.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
-		E16DB8181EC753F700E73447 = {
-			isa = PBXGroup;
-			children = (
-				E16DB8491EC7562E00E73447 /* Sources */,
-				E149A5CF1F8E942F008C8C39 /* Tests */,
-				E16DB8241EC753F700E73447 /* SOSwift */,
-				E16DB82F1EC753F700E73447 /* SOSwiftTests */,
-				E16DB8231EC753F700E73447 /* Products */,
-				B93D8B32AD2BC82D8ACF3EF0 /* Pods */,
-				90DAF66FFBE397E8C3C5CC7A /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		E16DB8231EC753F700E73447 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E16DB8221EC753F700E73447 /* SOSwift.framework */,
-				E16DB82B1EC753F700E73447 /* SOSwiftTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E16DB8241EC753F700E73447 /* SOSwift */ = {
-			isa = PBXGroup;
-			children = (
-				E16DB8251EC753F700E73447 /* SOSwift.h */,
-				E16DB8261EC753F700E73447 /* Info.plist */,
-			);
-			path = SOSwift;
-			sourceTree = "<group>";
-		};
-		E16DB82F1EC753F700E73447 /* SOSwiftTests */ = {
-			isa = PBXGroup;
-			children = (
-				E16DB8321EC753F700E73447 /* Info.plist */,
-			);
-			path = SOSwiftTests;
-			sourceTree = "<group>";
-		};
-		E16DB8491EC7562E00E73447 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				E16812471F94EB0A00C3A0FC /* Extensions */,
-				E14356701F969A120032E302 /* Codable+Extension.swift */,
+				E14356701F969A120032E302 /* Codable+SOSwift.swift */,
 				E1E453221F70412700236249 /* SOAction.swift */,
 				E1E452F51F70411F00236249 /* SOAdministrativeArea.swift */,
 				E1E453291F70412900236249 /* SOAggregateRating.swift */,
@@ -665,6 +622,67 @@
 				E1E4530C1F70412300236249 /* SOVideoObject.swift */,
 				E1EA1D681FDD9EF700DABEA9 /* SOWarrantyPromise.swift */,
 				E1F1F04A1F954E03001B5CEC /* SOWebsite.swift */,
+			);
+			path = SOSwift;
+			sourceTree = "<group>";
+		};
+		E149A5CF1F8E942F008C8C39 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E13FC1401FEAAAEB005EE3AD /* SOSwiftTests */,
+				E1659C9D1FE9BBE700ADEAD7 /* LinuxMain.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		E16DB8181EC753F700E73447 = {
+			isa = PBXGroup;
+			children = (
+				E13FC1371FEAAAC8005EE3AD /* LICENSE */,
+				E13FC1391FEAAAC8005EE3AD /* Package.swift */,
+				E13FC1361FEAAAC7005EE3AD /* Podfile */,
+				E13FC1381FEAAAC8005EE3AD /* README.md */,
+				E13FC1351FEAAAC7005EE3AD /* SOSwift.podspec */,
+				E16DB8491EC7562E00E73447 /* Sources */,
+				E149A5CF1F8E942F008C8C39 /* Tests */,
+				E16DB8241EC753F700E73447 /* SOSwift */,
+				E16DB82F1EC753F700E73447 /* SOSwiftTests */,
+				E16DB8231EC753F700E73447 /* Products */,
+				B93D8B32AD2BC82D8ACF3EF0 /* Pods */,
+				90DAF66FFBE397E8C3C5CC7A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E16DB8231EC753F700E73447 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E16DB8221EC753F700E73447 /* SOSwift.framework */,
+				E16DB82B1EC753F700E73447 /* SOSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E16DB8241EC753F700E73447 /* SOSwift */ = {
+			isa = PBXGroup;
+			children = (
+				E16DB8251EC753F700E73447 /* SOSwift.h */,
+				E16DB8261EC753F700E73447 /* Info.plist */,
+			);
+			path = SOSwift;
+			sourceTree = "<group>";
+		};
+		E16DB82F1EC753F700E73447 /* SOSwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				E16DB8321EC753F700E73447 /* Info.plist */,
+			);
+			path = SOSwiftTests;
+			sourceTree = "<group>";
+		};
+		E16DB8491EC7562E00E73447 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E13FC1411FEAAB48005EE3AD /* SOSwift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -953,7 +971,7 @@
 				E1E453A51F70412E00236249 /* SOProgramMembership.swift in Sources */,
 				E1E453861F70412E00236249 /* OrganizationOrPerson+Extension.swift in Sources */,
 				E1E453701F70412E00236249 /* SOOwnershipInfo.swift in Sources */,
-				E14356711F969A120032E302 /* Codable+Extension.swift in Sources */,
+				E14356711F969A120032E302 /* Codable+SOSwift.swift in Sources */,
 				E1E453541F70412E00236249 /* SOMusicPlaylist.swift in Sources */,
 				E1E453451F70412E00236249 /* DateOnly+Extension.swift in Sources */,
 				E1E4539A1F70412E00236249 /* GeoCoordinatesOrGeoShape+Extension.swift in Sources */,

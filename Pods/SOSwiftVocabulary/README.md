@@ -12,11 +12,11 @@ This work is based on the 3.4 version of the Schema.org vocabulary.
 
 __CocoaPods__
 
-    pod 'SOSwift', '~> 1.0'
+    pod 'SOSwiftVocabulary', '~> 1.0'
     
 __Swift Package Manager__
 
-    .package(url: "https://github.com/richardpiazza/SOSwift", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMajor(from: "1.0.0"))
 
 
 ### Significant Differences

@@ -2,5 +2,5 @@ import XCTest
 @testable import SOSwiftTests
 
 XCTMain([
-    testCase(SOThingTests.allTests
+    testCase(SOThingTests.allTests)
 ])

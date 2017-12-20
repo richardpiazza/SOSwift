@@ -9,10 +9,10 @@ let package = Package(
         .library(name: "SOSwift", targets: ["SOSwift"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMajor(from: "1.0.3")),
+        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMajor(from: "1.0.4")),
     ],
     targets: [
-        .target(name: "SOSwift", dependencies: ["SOSwiftVocabulary"], path: "Sources"),
-        .testTarget(name: "SOSwiftTests", dependencies: ["SOSwift"], path: "Tests")
+        .target(name: "SOSwift", dependencies: ["SOSwiftVocabulary"], path: "Sources/SOSwift"),
+        .testTarget(name: "SOSwiftTests", dependencies: ["SOSwift"], path: "Tests/SOSwiftTests")
     ]
 )
