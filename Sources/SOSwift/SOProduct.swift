@@ -36,13 +36,13 @@ public class SOProduct: SOThing, Product {
     /// The height of the item.
     public var height: DistanceOrQuantitativeValue?
     /// A pointer to another product (or multiple products) for which this product is an accessory or spare part.
-    public var accessoryOrSparePartFor: Product?
+    public var accessoryOrSparePartFor: [Product]?
     /// A pointer to another product (or multiple products) for which this product is a consumable.
-    public var consumableFor: Product?
+    public var consumableFor: [Product]?
     /// A pointer to another, somehow related product (or multiple products).
-    public var relatedTo: ProductOrService?
+    public var relatedTo: [ProductOrService]?
     /// A pointer to another, functionally similar product (or multiple products).
-    public var similarTo: ProductOrService?
+    public var similarTo: [ProductOrService]?
     /// A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
     public var itemCondition: OfferItemCondition?
     /// An associated logo.
@@ -66,7 +66,7 @@ public class SOProduct: SOThing, Product {
     /// The release date of a product or product model. This can be used to distinguish the exact variant of a product.
     public var releaseDate: DateOnly?
     /// A review of the item.
-    public var review: Review?
+    public var reviews: [Review]?
     /// The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
     public var sku: String?
     /// The weight of the product or person.
@@ -103,7 +103,7 @@ public class SOProduct: SOThing, Product {
         case productionDate
         case purchaseDate
         case releaseDate
-        case review
+        case reviews = "review"
         case sku
         case weight
         case width
@@ -129,10 +129,10 @@ public class SOProduct: SOThing, Product {
         self.gtin14 = try container.decodeIfPresent(String.self, forKey: .gtin14)
         self.gtin8 = try container.decodeIfPresent(String.self, forKey: .gtin8)
         self.height = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .height)
-        self.accessoryOrSparePartFor = try container.decodeIfPresent(SOProduct.self, forKey: .accessoryOrSparePartFor)
-        self.consumableFor = try container.decodeIfPresent(SOProduct.self, forKey: .consumableFor)
-        self.relatedTo = try container.decodeProductOrServiceIfPresent(forKey: .relatedTo)
-        self.similarTo = try container.decodeProductOrServiceIfPresent(forKey: .similarTo)
+        self.accessoryOrSparePartFor = try container.decodeArrayOrElementIfPresent(SOProduct.self, forKey: .accessoryOrSparePartFor)
+        self.consumableFor = try container.decodeArrayOrElementIfPresent(SOProduct.self, forKey: .consumableFor)
+        self.relatedTo = try container.decodeProductsOrServicesIfPresent(forKey: .relatedTo)
+        self.similarTo = try container.decodeProductsOrServicesIfPresent(forKey: .similarTo)
         if let value = try container.decodeIfPresent(String.self, forKey: .itemCondition) {
             self.itemCondition = OfferItemCondition(rawValue: value)
         }
@@ -146,7 +146,7 @@ public class SOProduct: SOThing, Product {
         self.productionDate = try container.decodeDateOnlyIfPresent(forKey: .productionDate)
         self.purchaseDate = try container.decodeDateOnlyIfPresent(forKey: .purchaseDate)
         self.releaseDate = try container.decodeDateOnlyIfPresent(forKey: .releaseDate)
-        self.review = try container.decodeIfPresent(SOReview.self, forKey: .review)
+        self.reviews = try container.decodeArrayOrElementIfPresent(SOReview.self, forKey: .reviews)
         self.sku = try container.decodeIfPresent(String.self, forKey: .sku)
         self.weight = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .weight)
         self.width = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .width)
@@ -185,7 +185,7 @@ public class SOProduct: SOThing, Product {
         try container.encodeIfPresent(self.productionDate, forKey: .productionDate)
         try container.encodeIfPresent(self.purchaseDate, forKey: .purchaseDate)
         try container.encodeIfPresent(self.releaseDate, forKey: .releaseDate)
-        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.reviews, forKey: .reviews)
         try container.encodeIfPresent(self.sku, forKey: .sku)
         try container.encodeIfPresent(self.weight, forKey: .weight)
         try container.encodeIfPresent(self.width, forKey: .width)

@@ -75,6 +75,13 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
+        do {
+            if let element = try self.decodeImageObjectOrPhotographIfPresent(forKey: key) {
+                return [element]
+            }
+        } catch {
+        }
+        
         print("Failed to decode `[ImageObjectOrPhotograph]` for key: \(key.stringValue).")
         
         return nil

@@ -67,6 +67,28 @@ extension KeyedDecodingContainer {
         }
         return dictionary
     }
+    
+    func decodeArrayOrElementIfPresent<T>(_ type: T.Type, forKey key: K) throws -> Array<T>? where T : Decodable {
+        guard contains(key) else {
+            return nil
+        }
+        
+        do {
+            if let array = try self.decodeIfPresent([T].self, forKey: key) {
+                return array
+            }
+        } catch {
+        }
+        
+        do {
+            if let element = try self.decodeIfPresent(T.self, forKey: key) {
+                return [element]
+            }
+        } catch {
+        }
+        
+        return nil
+    }
 }
 
 extension UnkeyedDecodingContainer {

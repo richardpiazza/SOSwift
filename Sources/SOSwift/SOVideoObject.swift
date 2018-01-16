@@ -43,9 +43,9 @@ public class SOVideoObject: SOMediaObject, VideoObject {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.actors = try container.decodeIfPresent([SOPerson].self, forKey: .actors)
+        self.actors = try container.decodeArrayOrElementIfPresent(SOPerson.self, forKey: .actors)
         self.caption = try container.decodeIfPresent(String.self, forKey: .caption)
-        self.directors = try container.decodeIfPresent([SOPerson].self, forKey: .directors)
+        self.directors = try container.decodeArrayOrElementIfPresent(SOPerson.self, forKey: .directors)
         self.musicBy = try container.decodeMusicGroupOrPersonIfPresent(forKey: .musicBy)
         self.thumbnail = try container.decodeIfPresent(SOImageObject.self, forKey: .thumbnail)
         self.transcript = try container.decodeIfPresent(String.self, forKey: .transcript)

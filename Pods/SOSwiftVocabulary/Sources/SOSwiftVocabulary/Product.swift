@@ -1,12 +1,12 @@
 import Foundation
 
 public protocol ProductConformance:
-                    CreativeWorkOrProductOrURL,
-                    ProductOrURLOrText,
-                    ProductOrService,
-                    OwnershipInfoOrProduct,
-                    ProductOrText
-                {}
+    CreativeWorkOrProductOrURL,
+    ProductOrURLOrText,
+    ProductOrService,
+    OwnershipInfoOrProduct,
+    ProductOrText
+{}
 
 /// Any offered product or service.
 /// - For Example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online.
@@ -42,16 +42,16 @@ public protocol Product: Thing, ProductConformance {
     var height: DistanceOrQuantitativeValue? { get set }
     /// A pointer to another product (or multiple products) for which this product is an accessory or spare part.
     /// - schema.org property name: isAccessoryOrSpacePartFor
-    var accessoryOrSparePartFor: Product? { get set }
+    var accessoryOrSparePartFor: [Product]? { get set }
     /// A pointer to another product (or multiple products) for which this product is a consumable.
     /// - schema.org property name: isConsumableFor
-    var consumableFor: Product? { get set }
+    var consumableFor: [Product]? { get set }
     /// A pointer to another, somehow related product (or multiple products).
     /// - schema.org property name: isRelatedTo
-    var relatedTo: ProductOrService? { get set }
+    var relatedTo: [ProductOrService]? { get set }
     /// A pointer to another, functionally similar product (or multiple products).
     /// - schema.org property name: isSimilarTo
-    var similarTo: ProductOrService? { get set }
+    var similarTo: [ProductOrService]? { get set }
     /// A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
     var itemCondition: OfferItemCondition? { get set }
     /// An associated logo.
@@ -75,7 +75,8 @@ public protocol Product: Thing, ProductConformance {
     /// The release date of a product or product model. This can be used to distinguish the exact variant of a product.
     var releaseDate: DateOnly? { get set }
     /// A review of the item.
-    var review: Review? { get set }
+    /// - schema.org property name: review
+    var reviews: [Review]? { get set }
     /// The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
     var sku: String? { get set }
     /// The weight of the product or person.

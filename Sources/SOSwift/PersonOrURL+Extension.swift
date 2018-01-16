@@ -81,6 +81,13 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
+        do {
+            if let element = try self.decodePersonOrURLIfPresent(forKey: key) {
+                return [element]
+            }
+        } catch {
+        }
+        
         print("Failed to decode `[PersonOrURL]` for key: \(key.stringValue).")
         
         return decodables

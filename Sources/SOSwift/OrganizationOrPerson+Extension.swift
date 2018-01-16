@@ -76,6 +76,13 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
+        do {
+            if let element = try self.decodeOrganizationOrPersonIfPresent(forKey: key) {
+                return [element]
+            }
+        } catch {
+        }
+        
         print("Failed to decode `[OrganizationOrPerson]` for key: \(key.stringValue).")
         
         return nil

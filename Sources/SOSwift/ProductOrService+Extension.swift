@@ -76,6 +76,13 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
+        do {
+            if let element = try self.decodeProductOrServiceIfPresent(forKey: key) {
+                return [element]
+            }
+        } catch {
+        }
+        
         print("Failed to decode `[ProductOrService]` for key: \(key.stringValue).")
         
         return nil
