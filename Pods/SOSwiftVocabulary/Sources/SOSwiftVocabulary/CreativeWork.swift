@@ -147,7 +147,8 @@ public protocol CreativeWork: Thing, CreativeWorkConformance {
     /// The place and time the release was issued, expressed as a PublicationEvent.
     var releasedEvent: PublicationEvent?  { get set }
     /// A review of the item.
-    var review: Review?  { get set }
+    /// - schema.org property name: review
+    var reviews: [Review]?  { get set }
     /// Indicates (by URL or string) a particular version of a schema used in some CreativeWork. For example, a document could declare a schemaVersion using an URL such as http://schema.org/version/2.0/ if precise indication of schema version was required by some application.
     var schemaVersion: URLOrText?  { get set }
     /// The Organization on whose behalf the creator was working.

@@ -13,12 +13,13 @@ public class SOBrand: SOIntangible, Brand {
     /// An associated logo.
     public var logo: ImageObjectOrURL?
     /// A review of the item.
-    public var review: [Review]?
+    /// - schema.org property name: review
+    public var reviews: [Review]?
     
     private enum CodingKeys: String, CodingKey {
         case aggregateRating
         case logo
-        case review
+        case reviews = "review"
     }
     
     public override init() {
@@ -30,7 +31,7 @@ public class SOBrand: SOIntangible, Brand {
         
         self.aggregateRating = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating)
         self.logo = try container.decodeImageObjectOrURLIfPresent(forKey: .logo)
-        self.review = try container.decodeIfPresent([SOReview].self, forKey: .review)
+        self.reviews = try container.decodeArrayOrElementIfPresent(SOReview.self, forKey: .reviews)
         
         try super.init(from: decoder)
     }
@@ -40,7 +41,7 @@ public class SOBrand: SOIntangible, Brand {
         
         try container.encodeIfPresent(self.aggregateRating, forKey: .aggregateRating)
         try container.encodeIfPresent(self.logo, forKey: .logo)
-        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.reviews, forKey: .reviews)
         
         try super.encode(to: encoder)
     }

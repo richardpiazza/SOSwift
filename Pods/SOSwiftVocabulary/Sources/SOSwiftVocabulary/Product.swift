@@ -1,12 +1,12 @@
 import Foundation
 
 public protocol ProductConformance:
-    CreativeWorkOrProductOrURL,
-    ProductOrURLOrText,
-    ProductOrService,
-    OwnershipInfoOrProduct,
-    ProductOrText
-{}
+                    CreativeWorkOrProductOrURL,
+                    ProductOrURLOrText,
+                    ProductOrService,
+                    OwnershipInfoOrProduct,
+                    ProductOrText
+                {}
 
 /// Any offered product or service.
 /// - For Example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online.

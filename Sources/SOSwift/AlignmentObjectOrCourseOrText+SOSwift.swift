@@ -89,6 +89,13 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
+        do {
+            if let element = try self.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: key) {
+                return [element]
+            }
+        } catch {
+        }
+        
         print("Failed to decode `[AlignmentObjectOrCourseOrText]` for key: \(key.stringValue).")
         
         return nil

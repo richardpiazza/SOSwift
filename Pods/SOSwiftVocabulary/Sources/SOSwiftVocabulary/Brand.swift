@@ -11,5 +11,6 @@ public protocol Brand: Intangible, BrandConformance {
     /// An associated logo.
     var logo: ImageObjectOrURL? { get set }
     /// A review of the item.
-    var review: [Review]? { get set }
+    /// - schema.org property name: review
+    var reviews: [Review]? { get set }
 }

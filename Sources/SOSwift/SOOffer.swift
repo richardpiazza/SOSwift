@@ -80,7 +80,8 @@ public class SOOffer: SOIntangible, Offer {
     /// The date after which the price is no longer available.
     public var priceValidUntil: DateOnly?
     /// A review of the item. Supersedes reviews.
-    public var review: Review?
+    /// - schema.org property name: review
+    public var reviews: [Review]?
     /// An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
     public var seller: OrganizationOrPerson?
     /// The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer.
@@ -128,7 +129,7 @@ public class SOOffer: SOIntangible, Offer {
         case priceCurrency
         case priceSpecification
         case priceValidUntil
-        case review
+        case reviews = "review"
         case seller
         case serialNumber
         case sku
@@ -184,7 +185,7 @@ public class SOOffer: SOIntangible, Offer {
         self.priceCurrency = try container.decodeIfPresent(String.self, forKey: .priceCurrency)
         self.priceSpecification = try container.decodeIfPresent(SOPriceSpecification.self, forKey: .priceSpecification)
         self.priceValidUntil = try container.decodeDateOnlyIfPresent(forKey: .priceValidUntil)
-        self.review = try container.decodeIfPresent(SOReview.self, forKey: .review)
+        self.reviews = try container.decodeArrayOrElementIfPresent(SOReview.self, forKey: .reviews)
         self.seller = try container.decodeOrganizationOrPersonIfPresent(forKey: .seller)
         self.serialNumber = try container.decodeIfPresent(String.self, forKey: .serialNumber)
         self.sku = try container.decodeIfPresent(String.self, forKey: .sku)
@@ -230,7 +231,7 @@ public class SOOffer: SOIntangible, Offer {
         try container.encodeIfPresent(self.priceCurrency, forKey: .priceCurrency)
         try container.encodeIfPresent(self.priceSpecification, forKey: .priceSpecification)
         try container.encodeIfPresent(self.priceValidUntil, forKey: .priceValidUntil)
-        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.reviews, forKey: .reviews)
         try container.encodeIfPresent(self.seller, forKey: .seller)
         try container.encodeIfPresent(self.serialNumber, forKey: .serialNumber)
         try container.encodeIfPresent(self.sku, forKey: .sku)

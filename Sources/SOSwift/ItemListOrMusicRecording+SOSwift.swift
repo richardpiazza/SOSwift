@@ -76,6 +76,13 @@ public extension KeyedDecodingContainer {
         } catch {
         }
         
+        do {
+            if let element = try self.decodeItemListOrMusicRecordingIfPresent(forKey: key) {
+                return [element]
+            }
+        } catch {
+        }
+        
         print("Failed to decode `[ItemListOrMusicRecording]` for key: \(key.stringValue).")
         
         return nil

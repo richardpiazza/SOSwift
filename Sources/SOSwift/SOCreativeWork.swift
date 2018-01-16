@@ -141,7 +141,8 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// The place and time the release was issued, expressed as a PublicationEvent.
     public var releasedEvent: PublicationEvent?
     /// A review of the item.
-    public var review: Review?
+    /// - schema.org property name: review
+    public var reviews: [Review]?
     /// Indicates (by URL or string) a particular version of a schema used in some CreativeWork. For example, a document could declare a schemaVersion using an URL such as http://schema.org/version/2.0/ if precise indication of schema version was required by some application.
     public var schemaVersion: URLOrText?
     /// The Organization on whose behalf the creator was working.
@@ -241,7 +242,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case publishingPrinciples
         case recorededAt
         case releasedEvent
-        case review
+        case reviews = "review"
         case schemaVersion
         case sourceOrganization
         case spatialCoverage
@@ -270,7 +271,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         if let value = try container.decodeIfPresent(String.self, forKey: .accessMode) {
             self.accessMode = AccessMode(rawValue: value)
         }
-        if let value = try container.decodeIfPresent([String].self, forKey: .accessModeSufficients) {
+        if let value = try container.decodeArrayOrElementIfPresent(String.self, forKey: .accessModeSufficients) {
             var accessModeSufficients = [AccessModeSufficient]()
             value.forEach({ (v) in
                 if let ams = AccessModeSufficient(rawValue: v) {
@@ -351,7 +352,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         self.publishingPrinciples = try container.decodeCreativeWorkOrURLIfPresent(forKey: .publishingPrinciples)
         self.recordedAt = try container.decodeIfPresent(SOEvent.self, forKey: .recorededAt)
         self.releasedEvent = try container.decodeIfPresent(SOPublicationEvent.self, forKey: .releasedEvent)
-        self.review = try container.decodeIfPresent(SOReview.self, forKey: .review)
+        self.reviews = try container.decodeArrayOrElementIfPresent(SOReview.self, forKey: .reviews)
         self.schemaVersion = try container.decodeURLOrTextIfPresent(forKey: .schemaVersion)
         self.sourceOrganization = try container.decodeIfPresent(SOOrganization.self, forKey: .sourceOrganization)
         self.spatialCoverage = try container.decodeIfPresent(SOPlace.self, forKey: .spatialCoverage)
@@ -443,7 +444,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         try container.encodeIfPresent(self.publishingPrinciples, forKey: .publishingPrinciples)
         try container.encodeIfPresent(self.recordedAt, forKey: .recorededAt)
         try container.encodeIfPresent(self.releasedEvent, forKey: .releasedEvent)
-        try container.encodeIfPresent(self.review, forKey: .review)
+        try container.encodeIfPresent(self.reviews, forKey: .reviews)
         try container.encodeIfPresent(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.sourceOrganization, forKey: .sourceOrganization)
         try container.encodeIfPresent(self.spatialCoverage, forKey: .spatialCoverage)
