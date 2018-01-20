@@ -6,7 +6,7 @@ target 'SOSwift' do
   use_frameworks!
 
   # Pods for SOSwift
-  pod 'SOSwiftVocabulary', '~> 1.0'
+  pod 'SOSwiftVocabulary', '~> 1.1'
 
   target 'SOSwiftTests' do
     inherit! :search_paths

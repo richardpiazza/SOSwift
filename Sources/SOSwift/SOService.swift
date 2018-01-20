@@ -8,6 +8,12 @@ public class SOService: SOIntangible, Service {
         return "Service"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOBroadcastService.self
+        ]
+    }
+    
     /// The overall rating, based on a collection of reviews or ratings, of the item.
     public var aggregateRating: AggregateRating?
     /// The geographic area where a service or offered item is provided.

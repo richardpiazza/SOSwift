@@ -8,6 +8,10 @@ public class SOMusicComposition: SOCreativeWork, MusicComposition {
         return "MusicComposition"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The person or organization who wrote a composition, or who is the composer of a work performed at some event.
     public var composer: OrganizationOrPerson?
     /// The date and place the work was first performed.

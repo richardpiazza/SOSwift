@@ -7,6 +7,10 @@ public class SODataFeed: SODataset, DataFeed {
         return "DataFeed"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// An item within in a data feed. Data feeds may have many elements.
     public var dataFeedElement: DataFeedItemOrThingOrText?
     

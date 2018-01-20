@@ -8,6 +8,10 @@ public class SOMusicAlbum: SOMusicPlaylist, MusicAlbum {
         return "MusicAlbum"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// Classification of the album by it's type of content: soundtrack, live album, studio album, etc.
     public var albumProductionType: MusicAlbumProduction?
     /// A release of this album.

@@ -8,6 +8,10 @@ public class SOMusicRelease: SOMusicPlaylist, MusicRelease {
         return "MusicRelease"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The catalog number for the release.
     public var catalogNumber: String?
     /// The group the release is credited to if different than the byArtist. For example, Red and Blue is credited to "Stefani Germanotta Band", but by Lady Gaga.

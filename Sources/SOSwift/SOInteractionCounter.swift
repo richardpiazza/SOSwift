@@ -7,6 +7,10 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
         return "InteractionCounter"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The WebSite or SoftwareApplication where the interactions took place.
     public var interactionService: SoftwareApplicationOrWebsite?
     /// The Action representing the type of interaction. For up votes, +1s, etc. use LikeAction. For down votes use DislikeAction. Otherwise, use the most specific Action.

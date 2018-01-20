@@ -8,6 +8,23 @@ public class SOThing: Thing, Codable {
         return "Thing"
     }
     
+    public class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOAction.self,
+            SOAudience.self,
+            SOCreativeWork.self,
+            SOEvent.self,
+            SOGeoShape.self,
+            SOIntangible.self,
+            SOMonetaryAmount.self,
+            SOOrganization.self,
+            SOPerson.self,
+            SOPlace.self,
+            SOProduct.self,
+            SOWarrantyPromise.self
+        ]
+    }
+    
     public struct Keywords {
         public static let id = "@id"
         public static let context = "@context"

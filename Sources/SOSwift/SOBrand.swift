@@ -8,6 +8,10 @@ public class SOBrand: SOIntangible, Brand {
         return "Brand"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The overall rating, based on a collection of reviews or ratings, of the item.
     public var aggregateRating: AggregateRating?
     /// An associated logo.

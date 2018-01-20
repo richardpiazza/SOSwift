@@ -10,6 +10,10 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
         return "OpeningHoursSpecification"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The closing hour of the place or service on the given day(s) of the week.
     public var closes: Time?
     /// The day of the week for which these opening hours are valid.

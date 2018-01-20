@@ -8,6 +8,10 @@ public class SOReview: SOCreativeWork, Review {
         return "Review"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The item that is being reviewed/rated.
     public var itemReviewed: Thing?
     /// This Review or Rating is relevant to this part or facet of the itemReviewed.

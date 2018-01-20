@@ -8,6 +8,10 @@ public class SOMap: SOCreativeWork, Map {
         return "Map"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// Indicates the kind of Map, from the MapCategoryType Enumeration.
     public var mapType: MapType?
     

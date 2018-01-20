@@ -8,6 +8,10 @@ public class SOAction: SOThing, Action {
         return "Action"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// Indicates the current disposition of the Action.
     public var actionStatus: ActionStatus?
     /// The direct performer or driver of the action (animate or inanimate). e.g. John wrote a book.

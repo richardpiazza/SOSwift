@@ -7,6 +7,10 @@ public class SOWarrantyPromise: SOThing, WarrantyPromise {
         return "WarrantyPromise"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days.
     public var durationOfWarranty: QuantitativeValue?
     /// The scope of the warranty promise.

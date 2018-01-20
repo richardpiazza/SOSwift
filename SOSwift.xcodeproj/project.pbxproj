@@ -218,7 +218,7 @@
 		E13DFC981F9520FA00CAF2B2 /* ListItemOrThingOrText+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItemOrThingOrText+SOSwift.swift"; sourceTree = "<group>"; };
 		E13DFC9A1F95218E00CAF2B2 /* ItemListOrderOrText+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemListOrderOrText+SOSwift.swift"; sourceTree = "<group>"; };
 		E13FC1351FEAAAC7005EE3AD /* SOSwift.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SOSwift.podspec; sourceTree = "<group>"; };
-		E13FC1361FEAAAC7005EE3AD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		E13FC1361FEAAAC7005EE3AD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E13FC1371FEAAAC8005EE3AD /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E13FC1381FEAAAC8005EE3AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E13FC1391FEAAAC8005EE3AD /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };

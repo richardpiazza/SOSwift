@@ -8,6 +8,10 @@ public class SOQuestion: SOCreativeWork, Question {
         return "Question"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The answer that has been accepted as best, typically on a Question/Answer site. Sites vary in their selection mechanisms, e.g. drawing on community opinion and/or the view of the Question author.
     public var acceptedAnswer: Answer?
     /// The number of answers this question has received.

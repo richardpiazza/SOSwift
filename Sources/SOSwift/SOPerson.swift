@@ -8,6 +8,10 @@ public class SOPerson: SOThing, Person {
         return "Person"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// An additional name for a Person, can be used for a middle name.
     public var additionalName: String?
     /// Physical address of the item.

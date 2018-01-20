@@ -10,6 +10,13 @@ public class SOEvent: SOThing, Event {
         return "Event"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOCourseInstance.self,
+            SOPublicationEvent.self
+        ]
+    }
+    
     /// The subject matter of the content.
     public var about: Thing?
     /// An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.

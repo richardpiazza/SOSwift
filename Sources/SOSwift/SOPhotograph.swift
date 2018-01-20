@@ -8,6 +8,10 @@ public class SOPhotograph: SOCreativeWork, Photograph {
         return "Photograph"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     public override init() {
         super.init()
     }

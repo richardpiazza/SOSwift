@@ -7,6 +7,10 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
         return "ContactPoint"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [SOPostalAddress.self]
+    }
+    
     /// The geographic area where a service or offered item is provided.
     public var areaServed: AreaServed?
     /// A language someone may use with the item. Please use one of the language codes from the IETF BCP 47 standard.

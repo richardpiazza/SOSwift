@@ -8,6 +8,10 @@ public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
         return "GeoCoordinates"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// Physical address of the item.
     public var address: PostalAddressOrText?
     /// The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code.

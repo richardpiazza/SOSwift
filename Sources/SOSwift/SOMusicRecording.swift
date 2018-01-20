@@ -8,6 +8,10 @@ public class SOMusicRecording: SOCreativeWork, MusicRecording {
         return "MusicRecording"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The artist that performed this album or recording.
     public var byArtist: MusicGroup?
     /// The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.

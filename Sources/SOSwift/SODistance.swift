@@ -8,6 +8,10 @@ public class SODistance: SOQuantity, Distance {
         return "Distance"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     public override init() {
         super.init()
     }

@@ -8,6 +8,10 @@ public class SODemand: SOIntangible, Demand {
         return "Demand"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The payment method(s) accepted by seller for this offer.
     public var acceptedPaymentMethod: Any?
     /// The amount of time that is required between accepting the offer and the actual usage of the resource or service.

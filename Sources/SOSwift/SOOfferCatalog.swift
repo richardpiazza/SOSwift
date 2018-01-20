@@ -8,6 +8,10 @@ public class SOOfferCatalog: SOItemList, OfferCatalog {
         return "OfferCatalog"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     public override init() {
         super.init()
     }

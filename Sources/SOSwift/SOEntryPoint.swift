@@ -8,6 +8,10 @@ public class SOEntryPoint: SOIntangible, EntryPoint {
         return "EntryPoint"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// An application that can complete the request.
     public var actionApplication: SoftwareApplication?
     /// The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.

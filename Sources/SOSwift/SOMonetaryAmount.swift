@@ -8,6 +8,10 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
         return "MonetaryAmount"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The currency in which the monetary amount is expressed (in 3-letter ISO 4217 format).
     public var currency: String?
     /// The upper value of some characteristic or property.

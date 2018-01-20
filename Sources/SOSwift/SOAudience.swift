@@ -7,6 +7,10 @@ public class SOAudience: SOThing, Audience {
         return "Audience"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The target group associated with a given audience (e.g. veterans, car owners, musicians, etc.).
     public var audienceType: String?
     /// The geographic area associated with the audience.

@@ -9,6 +9,15 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         return "MediaObject"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOAudioObject.self,
+            SODataDownload.self,
+            SOImageObject.self,
+            SOVideoObject.self
+        ]
+    }
+    
     /// A NewsArticle associated with the Media Object.
     public var associatedArticle: NewsArticle?
     /// The bitrate of the media object.

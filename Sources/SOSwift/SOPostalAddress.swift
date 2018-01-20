@@ -7,6 +7,10 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
         return "PostalAddress"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
     public var addressCountry: CountryOrText?
     /// The locality. For example, Mountain View.

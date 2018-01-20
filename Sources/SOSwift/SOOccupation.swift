@@ -8,6 +8,10 @@ public class SOOccupation: SOIntangible, Occupation {
         return "Occupation"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     public override init() {
         super.init()
     }

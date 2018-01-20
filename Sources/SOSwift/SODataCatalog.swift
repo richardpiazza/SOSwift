@@ -8,6 +8,10 @@ public class SODataCatalog: SOCreativeWork, DataCatalog {
         return "DataCatalog"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// A dataset contained in this catalog.
     /// - Inverse property: includedInDataCatalog.
     public var dataset: Dataset?

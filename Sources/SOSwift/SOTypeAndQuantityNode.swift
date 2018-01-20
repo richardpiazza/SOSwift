@@ -8,6 +8,10 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
         return "TypeAndQuantityNode"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The quantity of the goods included in the offer.
     public var amountOfThisGood: Number?
     /// The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.

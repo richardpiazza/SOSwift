@@ -8,6 +8,13 @@ public class SOOrganization: SOThing, Organization {
         return "Organization"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOEducationalOrganization.self,
+            SOOrganization.self
+        ]
+    }
+    
     /// For a NewsMediaOrganization or other news-related Organization, a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication.
     public var actionableFeedbackPolicy: CreativeWorkOrURL?
     /// Physical address of the item.

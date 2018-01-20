@@ -7,6 +7,10 @@ public class SOAlignmentObject: SOIntangible, AlignmentObject {
         return "AlignmentObject"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// A category of alignment between the learning resource and the framework node. Recommended values include: 'assesses', 'teaches', 'requires', 'textComplexity', 'readingLevel', 'educationalSubject', and 'educationalLevel'.
     public var alignmentType: String?
     /// The framework to which the resource being described is aligned.

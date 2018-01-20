@@ -8,6 +8,10 @@ public class SOCountry: SOAdministrativeArea, Country {
         return "Country"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     public override init() {
         super.init()
     }

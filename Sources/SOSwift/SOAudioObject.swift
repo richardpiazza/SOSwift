@@ -8,6 +8,10 @@ public class SOAudioObject: SOMediaObject, AudioObject {
         return "AudioObject"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// If this MediaObject is an AudioObject or VideoObject, the transcript of that object.
     public var transcript: String?
     

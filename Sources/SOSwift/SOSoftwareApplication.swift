@@ -8,6 +8,10 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
         return "SoftwareApplication"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// Type of software application, e.g. 'Game, Multimedia'.
     public var applicationCategory: URLOrText?
     /// Subcategory of the application, e.g. 'Arcade Game'.

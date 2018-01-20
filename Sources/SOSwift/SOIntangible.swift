@@ -8,6 +8,27 @@ public class SOIntangible: SOThing, Intangible {
         return "Intangible"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOAlignmentObject.self,
+            SOBrand.self,
+            SODemand.self,
+            SOEntryPoint.self,
+            SOEnumeration.self,
+            SOItemList.self,
+            SOLanguage.self,
+            SOListItem.self,
+            SOOccupation.self,
+            SOOffer.self,
+            SOProgramMembership.self,
+            SOQuantity.self,
+            SORating.self,
+            SOService.self,
+            SOServiceChannel.self,
+            SOStructuredValue.self
+        ]
+    }
+    
     public override init() {
         super.init()
     }

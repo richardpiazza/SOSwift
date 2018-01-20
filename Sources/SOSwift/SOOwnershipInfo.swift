@@ -8,6 +8,10 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
         return "OwnershipInfo"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The organization or person from which the product was acquired.
     public var acquiredFrom: OrganizationOrPerson?
     /// The date and time of obtaining the product.

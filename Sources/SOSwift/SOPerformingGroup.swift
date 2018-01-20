@@ -8,6 +8,12 @@ public class SOPerformingGroup: SOOrganization, PerformingGroup {
         return "PerformingGroup"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOMusicGroup.self
+        ]
+    }
+    
     public override init() {
         super.init()
     }

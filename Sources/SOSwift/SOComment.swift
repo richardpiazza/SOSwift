@@ -9,6 +9,10 @@ public class SOComment: SOCreativeWork, Comment {
         return "Comment"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [SOAnswer.self]
+    }
+    
     /// The number of downvotes this question, answer or comment has received from the community.
     public var downvoteCount: Int?
     /// The parent of a question, answer or item in general.

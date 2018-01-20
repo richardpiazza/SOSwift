@@ -8,6 +8,10 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
         return "PublicationEvent"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// An agent associated with the publication event.
     public var publishedBy: OrganizationOrPerson?
     /// A broadcast service associated with the publication event.

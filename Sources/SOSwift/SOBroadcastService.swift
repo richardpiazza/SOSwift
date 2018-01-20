@@ -7,6 +7,10 @@ public class SOBroadcastService: SOService, BroadcastService {
         return "BroadcastService"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The media network(s) whose content is broadcast on this station.
     public var broadcastAffiliateOf: Organization?
     /// The name displayed in the channel guide. For many US affiliates, it is the network name.

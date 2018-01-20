@@ -7,6 +7,10 @@ public class SOOffer: SOIntangible, Offer {
         return "Offer"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The payment method(s) accepted by seller for this offer.
     public var acceptedPaymentMethod: Any?
     /// An additional offer that can only be obtained in combination with the first base offer (e.g. supplements and extensions that are available for a surcharge).

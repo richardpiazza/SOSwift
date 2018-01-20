@@ -7,6 +7,12 @@ public class SORating: SOIntangible, Rating {
         return "Rating"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOAggregateRating.self
+        ]
+    }
+    
     /// The author of this content or rating.
     /// - note: The author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
     public var author: OrganizationOrPerson?

@@ -8,6 +8,10 @@ public class SOVideoObject: SOMediaObject, VideoObject {
         return "VideoObject"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
     public var actors: [Person]?
     /// The caption for this object.

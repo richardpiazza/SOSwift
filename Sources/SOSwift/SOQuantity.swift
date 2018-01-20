@@ -8,6 +8,12 @@ public class SOQuantity: SOIntangible, Quantity {
         return "Quantity"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SODistance.self
+        ]
+    }
+    
     public override init() {
         super.init()
     }

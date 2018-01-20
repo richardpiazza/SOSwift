@@ -7,6 +7,10 @@ public class SOAnswer: SOComment, Answer {
         return "Answer"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     public override init() {
         super.init()
     }

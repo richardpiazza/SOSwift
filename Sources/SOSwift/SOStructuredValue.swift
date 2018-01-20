@@ -8,6 +8,20 @@ public class SOStructuredValue: SOIntangible, StructuredValue {
         return "StructuredValue"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOContactPoint.self,
+            SOGeoCoordinates.self,
+            SOInteractionCounter.self,
+            SOOpeningHoursSpecification.self,
+            SOOwnershipInfo.self,
+            SOPriceSpecification.self,
+            SOPropertyValue.self,
+            SOQuantitativeValue.self,
+            SOTypeAndQuantityNode.self
+        ]
+    }
+    
     public override init() {
         super.init()
     }

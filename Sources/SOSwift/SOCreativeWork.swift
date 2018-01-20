@@ -8,6 +8,26 @@ public class SOCreativeWork: SOThing, CreativeWork {
         return "CreativeWork"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOArticle.self,
+            SOComment.self,
+            SOCourse.self,
+            SODataCatalog.self,
+            SODataset.self,
+            SOMap.self,
+            SOMediaObject.self,
+            SOMusicComposition.self,
+            SOMusicPlaylist.self,
+            SOMusicRecording.self,
+            SOPhotograph.self,
+            SOQuestion.self,
+            SOReview.self,
+            SOSoftwareApplication.self,
+            SOWebsite.self
+        ]
+    }
+    
     /// The subject matter of the content.
     public var about: Thing?
     /// The human sensory perceptual system or cognitive faculty through which a person may process or perceive information.

@@ -7,6 +7,10 @@ public class SOListItem: SOIntangible, ListItem {
         return "ListItem"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
     public var item: Thing?
     /// A link to the ListItem that follows the current one.

@@ -8,6 +8,10 @@ public class SOEducationalOrganization: SOOrganization, EducationalOrganization 
         return "EducationalOrganization"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     public override init() {
         super.init()
     }

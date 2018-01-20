@@ -8,6 +8,10 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
         return "MusicGroup"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// A music album.
     public var album: [MusicAlbum]?
     /// Genre of the creative work, broadcast channel or group.

@@ -8,6 +8,10 @@ public class SOImageObject: SOMediaObject, ImageObject {
         return "ImageObject"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The caption for this object.
     public var caption: String?
     /// exif data for this object.

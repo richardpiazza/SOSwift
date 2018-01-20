@@ -8,6 +8,10 @@ public class SOLocationFeatureSpecification: SOPropertyValue, LocationFeatureSpe
         return "LocationFeatureSpecification"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The hours during which this service or contact is available.
     public var hoursAvailable: [OpeningHoursSpecification]?
     /// The date when the item becomes valid.

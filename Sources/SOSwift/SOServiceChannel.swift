@@ -8,6 +8,10 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
         return "ServiceChannel"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// A language someone may use with the item. Please use one of the language codes from the IETF BCP 47 standard.
     public var availableLanguage: LanguageOrText?
     /// Estimated processing time for the service using this channel.

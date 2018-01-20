@@ -8,6 +8,12 @@ public class SODataset: SOCreativeWork, Dataset {
         return "Dataset"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SODataFeed.self
+        ]
+    }
+    
     /// A downloadable form of this dataset, at a specific location, in a specific format.
     public var distribution: DataDownload?
     /// A data catalog which contains this dataset. Supersedes catalog, includedDataCatalog.

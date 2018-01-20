@@ -9,6 +9,10 @@ public class SOCourse: SOCreativeWork, Course {
         return "Course"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The identifier for the Course used by the course provider (e.g. CS101 or 6.001).
     public var courseCode: String?
     /// Requirements for taking the Course. May be completion of another Course or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using AlignmentObject.

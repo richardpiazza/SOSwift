@@ -9,6 +9,10 @@ public class SOArticle: SOCreativeWork, Article {
         return "Article"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [SONewsArticle.self]
+    }
+    
     /// The actual body of the article.
     public var articleBody: String?
     /// Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc.

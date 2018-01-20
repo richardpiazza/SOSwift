@@ -8,6 +8,12 @@ public class SOEnumeration: SOIntangible, Enumeration {
         return "Enumeration"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return [
+            SOQualitativeValue.self
+        ]
+    }
+    
     public override init() {
         super.init()
     }

@@ -11,6 +11,9 @@ public protocol ThingConformance:
 public protocol Thing: ThingConformance {
     /// The canonical name of this type
     static var type: String { get }
+    /// Provides a list of types for which this is the root/parent protocol/class
+    /// - for example: if `Thing` than [`Action.self`, `CreativeWork.self`...]
+    static var explicitSubtypes: [Thing.Type] { get }
     
     /// An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax.
     /// This is a relationship between something and a class that the thing is in.

@@ -8,6 +8,10 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
         return "ProgramMembership"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The organization (airline, travelers' club, etc.) the membership is made with.
     public var hostingOrganization: Organization?
     /// A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals. Supersedes members, musicGroupMember. Inverse property: memberOf.

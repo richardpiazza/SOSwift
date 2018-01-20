@@ -7,6 +7,10 @@ public class SOAggregateRating: SORating, AggregateRating {
         return "AggregateRating"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The item that is being reviewed/rated.
     public var itemReviewed: Thing?
     /// The count of total number of ratings.

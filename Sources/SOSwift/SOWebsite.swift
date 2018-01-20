@@ -8,6 +8,10 @@ public class SOWebsite: SOCreativeWork, Website {
         return "Website"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication.
     public var issn: String?
     

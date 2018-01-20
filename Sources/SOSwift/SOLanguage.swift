@@ -7,6 +7,10 @@ public class SOLanguage: SOIntangible, Language {
         return "Language"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     public override init() {
         super.init()
     }

@@ -8,6 +8,10 @@ public class SONewsArticle: SOArticle, NewsArticle {
         return "NewsArticle"
     }
     
+    public override class var explicitSubtypes: [Thing.Type] {
+        return []
+    }
+    
     /// The location where the NewsArticle was produced.
     public var dateline: String?
     /// The number of the column in which the NewsArticle appears in the print edition.
