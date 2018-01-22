@@ -11,7 +11,7 @@ public class SOOrganization: SOThing, Organization {
     public override class var explicitSubtypes: [Thing.Type] {
         return [
             SOEducationalOrganization.self,
-            SOOrganization.self
+            SOPerformingGroup.self
         ]
     }
     
