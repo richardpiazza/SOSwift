@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name = "SOSwift"
+  s.name = "SOSwift-ObjC"
   s.version = "2.2.0"
   s.summary = "A swift implementation of Schema.org structured data vocabulary."
   s.description = <<-DESC
@@ -13,10 +13,10 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/richardpiazza'
 
   s.source = { :git => "https://github.com/richardpiazza/SOSwift.git", :tag => s.version.to_s }
-  s.source_files = 'Sources/SOSwift/*'
+  s.source_files = 'Sources/SOSwift-ObjC/*'
   s.frameworks = 'Foundation'
   s.requires_arc = true
-  s.dependency 'SOSwiftVocabulary', '~> 1.3.0'
+  s.dependency 'SOSwiftVocabulary-ObjC', '~> 1.3.0'
 
   s.osx.deployment_target = "10.13"
   s.ios.deployment_target = "11.0"
