@@ -5,8 +5,8 @@ import SOSwiftVocabulary_ObjC
 
 public extension KeyedEncodingContainer {
     public mutating func encodeIfPresent(_ value: ItemListOrderOrText?, forKey key: K) throws {
-        if let typedValue = value as? ItemListOrder {
-            try self.encode(typedValue.rawValue, forKey: key)
+        if let typedValue = value as? Int {
+            try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }

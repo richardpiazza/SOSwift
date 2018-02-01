@@ -5,9 +5,9 @@ import SOSwiftVocabulary_ObjC
 
 public extension KeyedEncodingContainer {
     public mutating func encodeIfPresent(_ value: PhysicalActivityCategoryOrThingOrText?, forKey key: K) throws {
-        if let typedValue = value as? PhysicalActivityCategory {
-            try self.encode(typedValue.rawValue, forKey: key)
-        } else if let typedValue = value as? SOThing {
+        if let typedValue = value as? SOThing {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? Int {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)

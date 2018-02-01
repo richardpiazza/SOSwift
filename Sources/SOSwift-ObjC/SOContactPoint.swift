@@ -69,7 +69,7 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
         
         try container.encodeIfPresent(self.areaServed, forKey: .areaServed)
         try container.encodeIfPresent(self.availableLanguage, forKey: .availableLanguage)
-        try container.encodeIfPresent(self.contactOption?.rawValue, forKey: .contactOption)
+        try container.encodeIfPresent(self.contactOption?.stringValue, forKey: .contactOption)
         try container.encodeIfPresent(self.contactType, forKey: .contactType)
         try container.encodeIfPresent(self.email, forKey: .email)
         try container.encodeIfPresent(self.faxNumber, forKey: .faxNumber)

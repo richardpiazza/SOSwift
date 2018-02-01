@@ -396,7 +396,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.about, forKey: .about)
-        try container.encodeIfPresent(self.accessMode?.rawValue, forKey: .accessMode)
+        try container.encodeIfPresent(self.accessMode?.stringValue, forKey: .accessMode)
         if let value = self.accessModeSufficients {
             let values = value.map({ (ams) -> String in
                 return ams.stringValue
