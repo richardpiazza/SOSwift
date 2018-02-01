@@ -8,7 +8,7 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
         return "QuantitativeValue"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

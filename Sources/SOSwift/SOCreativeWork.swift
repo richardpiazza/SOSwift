@@ -8,7 +8,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         return "CreativeWork"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOArticle.self,
             SOComment.self,

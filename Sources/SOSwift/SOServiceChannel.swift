@@ -8,7 +8,7 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
         return "ServiceChannel"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

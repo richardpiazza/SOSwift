@@ -8,7 +8,7 @@ public class SOImageObject: SOMediaObject, ImageObject {
         return "ImageObject"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

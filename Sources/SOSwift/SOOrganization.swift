@@ -8,7 +8,7 @@ public class SOOrganization: SOThing, Organization {
         return "Organization"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOEducationalOrganization.self,
             SOPerformingGroup.self

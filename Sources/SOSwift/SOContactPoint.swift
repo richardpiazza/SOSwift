@@ -7,7 +7,7 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
         return "ContactPoint"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [SOPostalAddress.self]
     }
     

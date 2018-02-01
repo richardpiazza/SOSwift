@@ -7,7 +7,7 @@ public class SORating: SOIntangible, Rating {
         return "Rating"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOAggregateRating.self
         ]

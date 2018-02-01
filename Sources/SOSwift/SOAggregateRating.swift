@@ -7,7 +7,7 @@ public class SOAggregateRating: SORating, AggregateRating {
         return "AggregateRating"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

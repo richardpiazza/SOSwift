@@ -8,7 +8,7 @@ public class SOOccupation: SOIntangible, Occupation {
         return "Occupation"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

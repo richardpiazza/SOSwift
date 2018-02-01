@@ -8,7 +8,7 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
         return "PublicationEvent"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     
