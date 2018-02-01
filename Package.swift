@@ -7,12 +7,15 @@ let package = Package(
     name: "SOSwift",
     products: [
         .library(name: "SOSwift", targets: ["SOSwift"]),
+        .library(name: "SOSwift-ObjC", targets: ["SOSwift-ObjC"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMinor(from: "1.1.0")),
+//        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMinor(from: "1.1.0")),
+        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .branch("objc")),
     ],
     targets: [
         .target(name: "SOSwift", dependencies: ["SOSwiftVocabulary"], path: "Sources/SOSwift"),
-        .testTarget(name: "SOSwiftTests", dependencies: ["SOSwift"], path: "Tests/SOSwiftTests")
+        .testTarget(name: "SOSwiftTests", dependencies: ["SOSwift"], path: "Tests/SOSwiftTests"),
+        .target(name: "SOSwift-ObjC", dependencies: ["SOSwiftVocabulary-ObjC"], path: "Sources/SOSwift-ObjC"),
     ]
 )
