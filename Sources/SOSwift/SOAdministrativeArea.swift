@@ -8,7 +8,7 @@ public class SOAdministrativeArea: SOPlace, AdministrativeArea {
         return "AdministrativeArea"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [SOCountry.self]
     }
     

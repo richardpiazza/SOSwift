@@ -10,8 +10,7 @@ let package = Package(
         .library(name: "SOSwift-ObjC", targets: ["SOSwift-ObjC"]),
     ],
     dependencies: [
-//        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMinor(from: "1.1.0")),
-        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .branch("objc")),
+        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .branch("objc"))
     ],
     targets: [
         .target(name: "SOSwift", dependencies: ["SOSwiftVocabulary"], path: "Sources/SOSwift"),

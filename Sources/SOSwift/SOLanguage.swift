@@ -7,7 +7,7 @@ public class SOLanguage: SOIntangible, Language {
         return "Language"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

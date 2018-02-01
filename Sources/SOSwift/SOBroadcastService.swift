@@ -7,7 +7,7 @@ public class SOBroadcastService: SOService, BroadcastService {
         return "BroadcastService"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

@@ -8,7 +8,7 @@ public class SODataset: SOCreativeWork, Dataset {
         return "Dataset"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SODataFeed.self
         ]

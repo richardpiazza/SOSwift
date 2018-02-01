@@ -8,7 +8,7 @@ public class SODataCatalog: SOCreativeWork, DataCatalog {
         return "DataCatalog"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

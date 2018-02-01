@@ -8,7 +8,7 @@ public class SOGeoShape: SOThing, GeoShape {
         return "GeoShape"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

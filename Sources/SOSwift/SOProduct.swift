@@ -8,7 +8,7 @@ public class SOProduct: SOThing, Product {
         return "Product"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOProductModel.self
         ]

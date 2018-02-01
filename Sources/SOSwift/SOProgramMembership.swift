@@ -8,7 +8,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
         return "ProgramMembership"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

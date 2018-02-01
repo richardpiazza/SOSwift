@@ -8,7 +8,7 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
         return "OwnershipInfo"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     
