@@ -8,7 +8,7 @@ public class SOPerformingGroup: SOOrganization, PerformingGroup {
         return "PerformingGroup"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOMusicGroup.self
         ]

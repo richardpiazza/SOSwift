@@ -7,7 +7,7 @@ public class SODataFeed: SODataset, DataFeed {
         return "DataFeed"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

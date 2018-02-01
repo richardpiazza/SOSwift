@@ -9,7 +9,7 @@ public class SOCourse: SOCreativeWork, Course {
         return "Course"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

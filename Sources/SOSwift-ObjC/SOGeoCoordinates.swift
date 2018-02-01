@@ -8,7 +8,7 @@ public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
         return "GeoCoordinates"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

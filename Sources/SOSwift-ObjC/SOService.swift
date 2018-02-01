@@ -8,7 +8,7 @@ public class SOService: SOIntangible, Service {
         return "Service"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOBroadcastService.self
         ]

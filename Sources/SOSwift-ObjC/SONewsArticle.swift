@@ -8,7 +8,7 @@ public class SONewsArticle: SOArticle, NewsArticle {
         return "NewsArticle"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

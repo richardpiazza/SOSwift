@@ -7,7 +7,7 @@ public class SOAlignmentObject: SOIntangible, AlignmentObject {
         return "AlignmentObject"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

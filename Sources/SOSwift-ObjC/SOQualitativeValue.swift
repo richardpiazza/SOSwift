@@ -8,7 +8,7 @@ public class SOQualitativeValue: SOEnumeration, QualitativeValue {
         return "QualitativeValue"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

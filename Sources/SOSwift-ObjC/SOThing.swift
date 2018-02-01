@@ -2,13 +2,13 @@ import Foundation
 import SOSwiftVocabulary_ObjC
 
 /// The most generic type of item.
-public class SOThing: NSObject, Thing, Codable {
+public class SOThing: NSObject, Thing, Codable, Dynamic {
     
     public class var type: String {
         return "Thing"
     }
     
-    public class var explicitSubtypes: [Thing.Type] {
+    public class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOAction.self,
             SOAudience.self,

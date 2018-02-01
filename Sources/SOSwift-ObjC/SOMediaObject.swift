@@ -9,7 +9,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         return "MediaObject"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOAudioObject.self,
             SODataDownload.self,

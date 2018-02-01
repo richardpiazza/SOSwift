@@ -7,7 +7,7 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
         return "InteractionCounter"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

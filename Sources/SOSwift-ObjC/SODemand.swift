@@ -8,7 +8,7 @@ public class SODemand: SOIntangible, Demand {
         return "Demand"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

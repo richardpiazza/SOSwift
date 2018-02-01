@@ -10,7 +10,7 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
         return "OpeningHoursSpecification"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return []
     }
     

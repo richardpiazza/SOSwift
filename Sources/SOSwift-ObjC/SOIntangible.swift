@@ -8,7 +8,7 @@ public class SOIntangible: SOThing, Intangible {
         return "Intangible"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOAlignmentObject.self,
             SOBrand.self,

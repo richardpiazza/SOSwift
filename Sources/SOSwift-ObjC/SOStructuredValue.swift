@@ -8,7 +8,7 @@ public class SOStructuredValue: SOIntangible, StructuredValue {
         return "StructuredValue"
     }
     
-    public override class var explicitSubtypes: [Thing.Type] {
+    public override class var dynamicSubtypes: [Dynamic.Type] {
         return [
             SOContactPoint.self,
             SOGeoCoordinates.self,
