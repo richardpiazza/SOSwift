@@ -1297,7 +1297,7 @@
 		OBJ_98 /* SOMusicRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMusicRelease.swift; sourceTree = "<group>"; };
 		OBJ_99 /* SONewsArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SONewsArticle.swift; sourceTree = "<group>"; };
 		"SOSwift::SOSwift-ObjC::Product" /* SOSwift_ObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SOSwift_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"SOSwift::SOSwift::Product" /* SOSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SOSwift::SOSwift::Product" /* SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SOSwift::SOSwiftTests::Product" /* SOSwiftTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SOSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SOSwiftVocabulary::SOSwiftVocabulary-ObjC::Product" /* SOSwiftVocabulary_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SOSwiftVocabulary_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SOSwiftVocabulary::SOSwiftVocabulary::Product" /* SOSwiftVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SOSwiftVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1887,7 +1887,7 @@
 			path = ".build/checkouts/SOSwiftVocabulary--2968763908581452961/Sources/SOSwiftVocabulary-ObjC";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1896,7 +1896,6 @@
 				OBJ_319 /* Dependencies */,
 				OBJ_630 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_630 /* Products */ = {
@@ -2188,7 +2187,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_630 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

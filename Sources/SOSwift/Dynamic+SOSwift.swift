@@ -12,10 +12,6 @@ public protocol Dynamic: Encodable, Decodable {
 }
 
 public extension Dynamic {
-    internal static var TypeKey: String {
-        return "type"
-    }
-    
     static func getDynamicType(with type: String) throws -> Dynamic.Type {
         if self.type == type {
             return self
@@ -34,11 +30,17 @@ public extension Dynamic {
     }
     
     static func makeDynamic(with dictionary: Dictionary<String, Any>) throws -> Dynamic {
-        guard dictionary.keys.contains(self.TypeKey) else {
+        guard dictionary.keys.contains(SOThing.Keywords.type) else {
+            do {
+                let dynamic = try self.make()
+                return dynamic
+            } catch {
+            }
+            
             throw DynamicError.invalidTypeKey
         }
         
-        guard let dynamicTypeKey = dictionary[self.TypeKey] as? String else {
+        guard let dynamicTypeKey = dictionary[SOThing.Keywords.type] as? String else {
             throw DynamicError.invalidTypeKey
         }
         
