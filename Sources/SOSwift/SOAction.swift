@@ -92,6 +92,120 @@ public class SOAction: SOThing, Action {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.actionStatus.rawValue:
+            return "Indicates the current disposition of the Action."
+        case CodingKeys.agent.rawValue:
+            return "The direct performer or driver of the action (animate or inanimate)."
+        case CodingKeys.endTime.rawValue:
+            return "The End Time of something."
+        case CodingKeys.error.rawValue:
+            return "For failed actions, more information on the cause of the failure."
+        case CodingKeys.instrument.rawValue:
+            return "The object that helped the agent perform the action."
+        case CodingKeys.location.rawValue:
+            return "The location of for example where the event is happening, an organization is located, or where an action takes place."
+        case CodingKeys.object.rawValue:
+            return "The object upon which the action is carried out, whose state is kept intact or changed."
+        case CodingKeys.participant.rawValue:
+            return "Other co-agents that participated in the action indirectly."
+        case CodingKeys.result.rawValue:
+            return "The result produced in the action."
+        case CodingKeys.startTime.rawValue:
+            return "The Start Time of something."
+        case CodingKeys.target.rawValue:
+            return "Indicates a target EntryPoint for an Action."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.actionStatus.rawValue:
+            setActionStatus(value)
+        case CodingKeys.agent.rawValue:
+            setAgent(value)
+        case CodingKeys.endTime.rawValue:
+            setEndTime(value)
+        case CodingKeys.error.rawValue:
+            setError(value)
+        case CodingKeys.instrument.rawValue:
+            setInstrument(value)
+        case CodingKeys.location.rawValue:
+            setLocation(value)
+        case CodingKeys.object.rawValue:
+            setObject(value)
+        case CodingKeys.participant.rawValue:
+            setParticipant(value)
+        case CodingKeys.result.rawValue:
+            setResult(value)
+        case CodingKeys.startTime.rawValue:
+            setStartTime(value)
+        case CodingKeys.target.rawValue:
+            setTarget(value)
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
+}
+
+public extension SOAction {
+    func setActionStatus(_ value: Any?) {
+        guard let nonNil = value else {
+            self.actionStatus = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? ActionStatus else {
+            return
+        }
+        
+        self.actionStatus = typedValue
+    }
+    
+    func setAgent(_ value: Any?) {
+        
+    }
+    
+    func setEndTime(_ value: Any?) {
+        
+    }
+    
+    func setError(_ value: Any?) {
+        
+    }
+    
+    func setInstrument(_ value: Any?) {
+        
+    }
+    
+    func setLocation(_ value: Any?) {
+        
+    }
+    
+    func setObject(_ value: Any?) {
+        
+    }
+    
+    func setParticipant(_ value: Any?) {
+        
+    }
+    
+    func setResult(_ value: Any?) {
+        
+    }
+    
+    func setStartTime(_ value: Any?) {
+        
+    }
+    
+    func setTarget(_ value: Any?) {
+        
+    }
 }
 
 public extension KeyedEncodingContainer {

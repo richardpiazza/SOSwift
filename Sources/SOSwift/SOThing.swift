@@ -2,7 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 /// The most generic type of item.
-public class SOThing: Thing, Codable, Dynamic {
+public class SOThing: Thing, Dynamic, Attributed {
     
     public class var type: String {
         return "Thing"
@@ -56,7 +56,7 @@ public class SOThing: Thing, Codable, Dynamic {
     public var potentialAction: Action?
     /// URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.
     public var sameAs: [URL]?
-    /// A CreativeWork or Event about this Thing..
+    /// A CreativeWork or Event about this Thing.
     /// - Inverse property: about
     public var subjectOf: CreativeWorkOrEvent?
     /// URL of the item.
@@ -122,6 +122,234 @@ public class SOThing: Thing, Codable, Dynamic {
         try container.encodeIfPresent(self.sameAs, forKey: .sameAs)
         try container.encodeIfPresent(self.subjectOf, forKey: .subjectOf)
         try container.encodeIfPresent(self.url, forKey: .url)
+    }
+    
+    // MARK: - Attributed
+    public func displayName(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        default:
+            return attributeName.spaceSeparatedWords.capitalized
+        }
+    }
+    
+    public func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.additionalType.rawValue:
+            return "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax."
+        case CodingKeys.alternativeName.rawValue:
+            return "An alias for the item."
+        case CodingKeys.description.rawValue:
+            return "A description of the item."
+        case CodingKeys.disambiguatingDescription.rawValue:
+            return "A short description of the item used to disambiguate from other, similar items."
+        case CodingKeys.identifier.rawValue:
+            return "Represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc."
+        case CodingKeys.image.rawValue:
+            return "An image of the item."
+        case CodingKeys.mainEntityOfPage.rawValue:
+            return "Indicates a page (or other CreativeWork) for which this thing is the main entity being described."
+        case CodingKeys.name.rawValue:
+            return "The name of the item."
+        case CodingKeys.potentialAction.rawValue:
+            return "Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."
+        case CodingKeys.sameAs.rawValue:
+            return "Reference Webpages that unambiguously indicates the item's identity."
+        case CodingKeys.subjectOf.rawValue:
+            return "A CreativeWork or Event about this Thing."
+        case CodingKeys.url.rawValue:
+            return "URL of the item."
+        default:
+            return nil
+        }
+    }
+    
+    public func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.additionalType.rawValue:
+            setAdditionalType(value)
+        case CodingKeys.alternativeName.rawValue:
+            setAlternativeName(value)
+        case CodingKeys.description.rawValue:
+            setDescription(value)
+        case CodingKeys.disambiguatingDescription.rawValue:
+            setDisambiguatingDescription(value)
+        case CodingKeys.identifier.rawValue:
+            setIdentifier(value)
+        case CodingKeys.image.rawValue:
+            setImage(value)
+        case CodingKeys.mainEntityOfPage.rawValue:
+            setMainEntityOfPage(value)
+        case CodingKeys.name.rawValue:
+            setName(value)
+        case CodingKeys.potentialAction.rawValue:
+            setPotentialAction(value)
+        case CodingKeys.sameAs.rawValue:
+            setSameAs(value)
+        case CodingKeys.subjectOf.rawValue:
+            setSubjectOf(value)
+        case CodingKeys.url.rawValue:
+            setURL(value)
+        default:
+            break
+        }
+    }
+}
+
+public extension SOThing {
+    func setAdditionalType(_ value: Any?) {
+        guard let nonNil = value else {
+            self.additionalType = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? URL else {
+            return
+        }
+        
+        self.additionalType = typedValue
+    }
+    
+    func setAlternativeName(_ value: Any?) {
+        guard let nonNil = value else {
+            self.alternativeName = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.alternativeName = typedValue
+    }
+    
+    func setDescription(_ value: Any?) {
+        guard let nonNil = value else {
+            self.description = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.description = typedValue
+    }
+    
+    func setDisambiguatingDescription(_ value: Any?) {
+        guard let nonNil = value else {
+            self.disambiguatingDescription = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.disambiguatingDescription = typedValue
+    }
+    
+    func setIdentifier(_ value: Any?) {
+        guard let nonNil = value else {
+            self.identifier = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? Identifier else {
+            return
+        }
+        
+        self.identifier = typedValue
+    }
+    
+    func setImage(_ value: Any?) {
+        guard let nonNil = value else {
+            self.image = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? ImageObjectOrURL else {
+            return
+        }
+        
+        self.image = typedValue
+    }
+    
+    func setMainEntityOfPage(_ value: Any?) {
+        guard let nonNil = value else {
+            self.mainEntityOfPage = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? CreativeWorkOrURL else {
+            return
+        }
+        
+        self.mainEntityOfPage = typedValue
+    }
+    
+    func setName(_ value: Any?) {
+        guard let nonNil = value else {
+            self.name = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.name = typedValue
+    }
+    
+    func setPotentialAction(_ value: Any?) {
+        guard let nonNil = value else {
+            self.potentialAction = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? Action else {
+            return
+        }
+        
+        self.potentialAction = typedValue
+    }
+    
+    func setSameAs(_ value: Any?) {
+        guard let nonNil = value else {
+            self.sameAs = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? [URL] else {
+            return
+        }
+        
+        self.sameAs = typedValue
+    }
+    
+    func setSubjectOf(_ value: Any?) {
+        guard let nonNil = value else {
+            self.subjectOf = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? CreativeWorkOrEvent else {
+            return
+        }
+        
+        self.subjectOf = typedValue
+    }
+    
+    func setURL(_ value: Any?) {
+        guard let nonNil = value else {
+            self.url = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? URL else {
+            return
+        }
+        
+        self.url = typedValue
     }
 }
 

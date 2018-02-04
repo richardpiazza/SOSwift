@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E13BBDF620279ABE00617685 /* Attributed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13BBDF520279ABE00617685 /* Attributed.swift */; };
+		E13BBDF820279B5000617685 /* Mirror+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13BBDF720279B5000617685 /* Mirror+SOSwift.swift */; };
+		E13BBDFA2027A00600617685 /* String+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13BBDF92027A00600617685 /* String+SOSwift.swift */; };
 		OBJ_1000 /* WarrantyPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_626 /* WarrantyPromise.swift */; };
 		OBJ_1001 /* WarrantyScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_627 /* WarrantyScope.swift */; };
 		OBJ_1002 /* Website.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_628 /* Website.swift */; };
@@ -41,7 +44,7 @@
 		OBJ_1022 /* DateTimeOrURLOrText+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* DateTimeOrURLOrText+SOSwift.swift */; };
 		OBJ_1023 /* DistanceOrQuantitativeValue+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* DistanceOrQuantitativeValue+SOSwift.swift */; };
 		OBJ_1024 /* Duration+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Duration+SOSwift.swift */; };
-		OBJ_1025 /* Dynamic+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Dynamic+SOSwift.swift */; };
+		OBJ_1025 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Dynamic.swift */; };
 		OBJ_1026 /* EducationalOrganizationOrOrganization+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* EducationalOrganizationOrOrganization+SOSwift.swift */; };
 		OBJ_1027 /* GenderOrText+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* GenderOrText+SOSwift.swift */; };
 		OBJ_1028 /* GeoCoordinatesOrGeoShape+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* GeoCoordinatesOrGeoShape+SOSwift.swift */; };
@@ -681,6 +684,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E13BBDF520279ABE00617685 /* Attributed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attributed.swift; sourceTree = "<group>"; };
+		E13BBDF720279B5000617685 /* Mirror+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mirror+SOSwift.swift"; sourceTree = "<group>"; };
+		E13BBDF92027A00600617685 /* String+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* AreaServed+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AreaServed+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* SOOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOOccupation.swift; sourceTree = "<group>"; };
 		OBJ_101 /* SOOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOOffer.swift; sourceTree = "<group>"; };
@@ -856,7 +862,7 @@
 		OBJ_257 /* SOStructuredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOStructuredValue.swift; sourceTree = "<group>"; };
 		OBJ_258 /* SOThing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOThing.swift; sourceTree = "<group>"; };
 		OBJ_259 /* SOTypeAndQuantityNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOTypeAndQuantityNode.swift; sourceTree = "<group>"; };
-		OBJ_26 /* Dynamic+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dynamic+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_26 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		OBJ_260 /* SOVideoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOVideoObject.swift; sourceTree = "<group>"; };
 		OBJ_261 /* SOWarrantyPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOWarrantyPromise.swift; sourceTree = "<group>"; };
 		OBJ_262 /* SOWebsite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOWebsite.swift; sourceTree = "<group>"; };
@@ -1924,6 +1930,7 @@
 			children = (
 				OBJ_9 /* AlignmentObjectOrCourseOrText+SOSwift.swift */,
 				OBJ_10 /* AreaServed+SOSwift.swift */,
+				E13BBDF520279ABE00617685 /* Attributed.swift */,
 				OBJ_11 /* BrandOrOrganization+SOSwift.swift */,
 				OBJ_12 /* Codable+SOSwift.swift */,
 				OBJ_13 /* ContactPointOrPlace+SOSwift.swift */,
@@ -1939,7 +1946,7 @@
 				OBJ_23 /* DateTimeOrURLOrText+SOSwift.swift */,
 				OBJ_24 /* DistanceOrQuantitativeValue+SOSwift.swift */,
 				OBJ_25 /* Duration+SOSwift.swift */,
-				OBJ_26 /* Dynamic+SOSwift.swift */,
+				OBJ_26 /* Dynamic.swift */,
 				OBJ_27 /* EducationalOrganizationOrOrganization+SOSwift.swift */,
 				OBJ_28 /* GenderOrText+SOSwift.swift */,
 				OBJ_29 /* GeoCoordinatesOrGeoShape+SOSwift.swift */,
@@ -1952,6 +1959,7 @@
 				OBJ_36 /* LanguageOrText+SOSwift.swift */,
 				OBJ_37 /* ListItemOrThingOrText+SOSwift.swift */,
 				OBJ_38 /* MapOrURL+SOSwift.swift */,
+				E13BBDF720279B5000617685 /* Mirror+SOSwift.swift */,
 				OBJ_39 /* MonetaryAmountOrPriceSpecification+SOSwift.swift */,
 				OBJ_40 /* MusicGroupOrPerson+SOSwift.swift */,
 				OBJ_41 /* Number+SOSwift.swift */,
@@ -2046,6 +2054,7 @@
 				OBJ_130 /* SOWarrantyPromise.swift */,
 				OBJ_131 /* SOWebsite.swift */,
 				OBJ_132 /* SoftwareApplicationOrWebsite+SOSwift.swift */,
+				E13BBDF92027A00600617685 /* String+SOSwift.swift */,
 				OBJ_133 /* ThingOrText+SOSwift.swift */,
 				OBJ_134 /* Time+SOSwift.swift */,
 				OBJ_135 /* URL+SOSwift.swift */,
@@ -2226,7 +2235,7 @@
 				OBJ_1022 /* DateTimeOrURLOrText+SOSwift.swift in Sources */,
 				OBJ_1023 /* DistanceOrQuantitativeValue+SOSwift.swift in Sources */,
 				OBJ_1024 /* Duration+SOSwift.swift in Sources */,
-				OBJ_1025 /* Dynamic+SOSwift.swift in Sources */,
+				OBJ_1025 /* Dynamic.swift in Sources */,
 				OBJ_1026 /* EducationalOrganizationOrOrganization+SOSwift.swift in Sources */,
 				OBJ_1027 /* GenderOrText+SOSwift.swift in Sources */,
 				OBJ_1028 /* GeoCoordinatesOrGeoShape+SOSwift.swift in Sources */,
@@ -2261,6 +2270,7 @@
 				OBJ_1057 /* SOAlignmentObject.swift in Sources */,
 				OBJ_1058 /* SOAnswer.swift in Sources */,
 				OBJ_1059 /* SOArticle.swift in Sources */,
+				E13BBDFA2027A00600617685 /* String+SOSwift.swift in Sources */,
 				OBJ_1060 /* SOAudience.swift in Sources */,
 				OBJ_1061 /* SOAudioObject.swift in Sources */,
 				OBJ_1062 /* SOBrand.swift in Sources */,
@@ -2313,11 +2323,13 @@
 				OBJ_1109 /* SOPostalAddress.swift in Sources */,
 				OBJ_1110 /* SOPriceSpecification.swift in Sources */,
 				OBJ_1111 /* SOProduct.swift in Sources */,
+				E13BBDF820279B5000617685 /* Mirror+SOSwift.swift in Sources */,
 				OBJ_1112 /* SOProductModel.swift in Sources */,
 				OBJ_1113 /* SOProgramMembership.swift in Sources */,
 				OBJ_1114 /* SOPropertyValue.swift in Sources */,
 				OBJ_1115 /* SOPublicationEvent.swift in Sources */,
 				OBJ_1116 /* SOQualitativeValue.swift in Sources */,
+				E13BBDF620279ABE00617685 /* Attributed.swift in Sources */,
 				OBJ_1117 /* SOQuantitativeValue.swift in Sources */,
 				OBJ_1118 /* SOQuantity.swift in Sources */,
 				OBJ_1119 /* SOQuestion.swift in Sources */,
