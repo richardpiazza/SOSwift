@@ -64,6 +64,125 @@ public class SOArticle: SOCreativeWork, Article {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.articleBody.rawValue:
+            return "The actual body of the article."
+        case CodingKeys.articleSection.rawValue:
+            return "Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc."
+        case CodingKeys.pageEnd.rawValue:
+            return "The page on which the work ends."
+        case CodingKeys.pageStart.rawValue:
+            return "The page on which the work starts."
+        case CodingKeys.pagination.rawValue:
+            return "Any description of pages that is not separated into Page Start and Page End."
+        case CodingKeys.wordCount.rawValue:
+            return "The number of words in the text of the Article."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.articleBody.rawValue:
+            setArticleBody(value)
+        case CodingKeys.articleSection.rawValue:
+            setArticleSection(value)
+        case CodingKeys.pageEnd.rawValue:
+            setPageEnd(value)
+        case CodingKeys.pageStart.rawValue:
+            setPageStart(value)
+        case CodingKeys.pagination.rawValue:
+            setPagination(value)
+        case CodingKeys.wordCount.rawValue:
+            setWordCount(value)
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
+}
+
+public extension SOArticle {
+    func setArticleBody(_ value: Any?) {
+        guard let nonNil = value else {
+            self.articleBody = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.articleBody = typedValue
+    }
+    
+    func setArticleSection(_ value: Any?) {
+        guard let nonNil = value else {
+            self.articleSection = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.articleSection = typedValue
+    }
+    
+    func setPageEnd(_ value: Any?) {
+        guard let nonNil = value else {
+            self.pageEnd = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? IntegerOrText else {
+            return
+        }
+        
+        self.pageEnd = typedValue
+    }
+    
+    func setPageStart(_ value: Any?) {
+        guard let nonNil = value else {
+            self.pageStart = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? IntegerOrText else {
+            return
+        }
+        
+        self.pageStart = typedValue
+    }
+    
+    func setPagination(_ value: Any?) {
+        guard let nonNil = value else {
+            self.pagination = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.pagination = typedValue
+    }
+    
+    func setWordCount(_ value: Any?) {
+        guard let nonNil = value else {
+            self.wordCount = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? Int else {
+            return
+        }
+        
+        self.wordCount = typedValue
+    }
 }
 
 public extension KeyedEncodingContainer {

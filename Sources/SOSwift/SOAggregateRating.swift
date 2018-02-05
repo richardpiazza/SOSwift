@@ -47,4 +47,72 @@ public class SOAggregateRating: SORating, AggregateRating {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.itemReviewed.rawValue:
+            return "The item that is being reviewed/rated."
+        case CodingKeys.ratingCount.rawValue:
+            return "The count of total number of ratings."
+        case CodingKeys.reviewCount.rawValue:
+            return "The count of total number of reviews."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.itemReviewed.rawValue:
+            setItemReviewed(value)
+        case CodingKeys.ratingCount.rawValue:
+            setRatingCount(value)
+        case CodingKeys.reviewCount.rawValue:
+            setReviewCount(value)
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
+}
+
+public extension SOAggregateRating {
+    func setItemReviewed(_ value: Any?) {
+        guard let nonNil = value else {
+            self.itemReviewed = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? Thing else {
+            return
+        }
+        
+        self.itemReviewed = typedValue
+    }
+    
+    func setRatingCount(_ value: Any?) {
+        guard let nonNil = value else {
+            self.ratingCount = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? Int else {
+            return
+        }
+        
+        self.ratingCount = typedValue
+    }
+    
+    func setReviewCount(_ value: Any?) {
+        guard let nonNil = value else {
+            self.reviewCount = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? Int else {
+            return
+        }
+        
+        self.reviewCount = typedValue
+    }
 }

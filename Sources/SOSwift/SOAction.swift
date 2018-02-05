@@ -168,43 +168,133 @@ public extension SOAction {
     }
     
     func setAgent(_ value: Any?) {
+        guard let nonNil = value else {
+            self.agent = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? OrganizationOrPerson else {
+            return
+        }
+        
+        self.agent = typedValue
     }
     
     func setEndTime(_ value: Any?) {
+        guard let nonNil = value else {
+            self.endTime = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? DateTime else {
+            return
+        }
+        
+        self.endTime = typedValue
     }
     
     func setError(_ value: Any?) {
+        guard let nonNil = value else {
+            self.error = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? Thing else {
+            return
+        }
+        
+        self.error = typedValue
     }
     
     func setInstrument(_ value: Any?) {
+        guard let nonNil = value else {
+            self.instrument = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? Thing else {
+            return
+        }
+        
+        self.instrument = typedValue
     }
     
     func setLocation(_ value: Any?) {
+        guard let nonNil = value else {
+            self.location = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? PlaceOrPostalAddressOrText else {
+            return
+        }
+        
+        self.location = typedValue
     }
     
     func setObject(_ value: Any?) {
+        guard let nonNil = value else {
+            self.object = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? Thing else {
+            return
+        }
+        
+        self.object = typedValue
     }
     
     func setParticipant(_ value: Any?) {
+        guard let nonNil = value else {
+            self.participant = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? OrganizationOrPerson else {
+            return
+        }
+        
+        self.participant = typedValue
     }
     
     func setResult(_ value: Any?) {
+        guard let nonNil = value else {
+            self.result = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? Thing else {
+            return
+        }
+        
+        self.result = typedValue
     }
     
     func setStartTime(_ value: Any?) {
+        guard let nonNil = value else {
+            self.startTime = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? DateTime else {
+            return
+        }
+        
+        self.startTime = typedValue
     }
     
     func setTarget(_ value: Any?) {
+        guard let nonNil = value else {
+            self.target = nil
+            return
+        }
         
+        guard let typedValue = nonNil as? EntryPoint else {
+            return
+        }
+        
+        self.target = typedValue
     }
 }
 

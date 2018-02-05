@@ -57,6 +57,108 @@ public class SOAlignmentObject: SOIntangible, AlignmentObject {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.alignmentType.rawValue:
+            return "A category of alignment between the learning resource and the framework node."
+        case CodingKeys.educationalFramework.rawValue:
+            return "The framework to which the resource being described is aligned."
+        case CodingKeys.targetDescription.rawValue:
+            return "The description of a node in an established educational framework."
+        case CodingKeys.targetName.rawValue:
+            return "The name of a node in an established educational framework."
+        case CodingKeys.targetUrl.rawValue:
+            return "The URL of a node in an established educational framework."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.alignmentType.rawValue:
+            setAlignmentType(value)
+        case CodingKeys.educationalFramework.rawValue:
+            setEducationalFramework(value)
+        case CodingKeys.targetDescription.rawValue:
+            setTargetDescription(value)
+        case CodingKeys.targetName.rawValue:
+            setTargetName(value)
+        case CodingKeys.targetUrl.rawValue:
+            setTargetURL(value)
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
+}
+
+public extension SOAlignmentObject {
+    public func setAlignmentType(_ value: Any?) {
+        guard let nonNil = value else {
+            self.alignmentType = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.alignmentType = typedValue
+    }
+    
+    public func setEducationalFramework(_ value: Any?) {
+        guard let nonNil = value else {
+            self.educationalFramework = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.educationalFramework = typedValue
+    }
+    
+    public func setTargetDescription(_ value: Any?) {
+        guard let nonNil = value else {
+            self.targetDescription = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.targetDescription = typedValue
+    }
+    
+    public func setTargetName(_ value: Any?) {
+        guard let nonNil = value else {
+            self.targetName = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.targetName = typedValue
+    }
+    
+    public func setTargetURL(_ value: Any?) {
+        guard let nonNil = value else {
+            self.targetUrl = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? URL else {
+            return
+        }
+        
+        self.targetUrl = typedValue
+    }
 }
 
 public extension KeyedEncodingContainer {

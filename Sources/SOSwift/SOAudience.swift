@@ -42,6 +42,57 @@ public class SOAudience: SOThing, Audience {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.audienceType.rawValue:
+            return "The target group associated with a given audience."
+        case CodingKeys.geographicArea.rawValue:
+            return "The geographic area associated with the audience."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.audienceType.rawValue:
+            setAudienceType(value)
+        case CodingKeys.geographicArea.rawValue:
+            setGeographicArea(value)
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
+}
+
+public extension SOAudience {
+    func setAudienceType(_ value: Any?) {
+        guard let nonNil = value else {
+            self.audienceType = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.audienceType = typedValue
+    }
+    
+    func setGeographicArea(_ value: Any?) {
+        guard let nonNil = value else {
+            self.geographicArea = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? AdministrativeArea else {
+            return
+        }
+        
+        self.geographicArea = typedValue
+    }
 }
 
 public extension KeyedEncodingContainer {

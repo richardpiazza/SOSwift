@@ -49,6 +49,74 @@ public class SOBrand: SOIntangible, Brand {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.aggregateRating.rawValue:
+            return " The overall rating, based on a collection of reviews or ratings, of the item."
+        case CodingKeys.logo.rawValue:
+            return "An associated logo."
+        case String(describing: CodingKeys.reviews):
+            return "A review of the item."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.aggregateRating.rawValue:
+            setAggregateRating(value)
+        case CodingKeys.logo.rawValue:
+            setLogo(value)
+        case "reviews":
+            setReviews(value)
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
+}
+
+public extension SOBrand {
+    func setAggregateRating(_ value: Any?) {
+        guard let nonNil = value else {
+            self.aggregateRating = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? AggregateRating else {
+            return
+        }
+        
+        self.aggregateRating = typedValue
+    }
+    
+    func setLogo(_ value: Any?) {
+        guard let nonNil = value else {
+            self.logo = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? ImageObjectOrURL else {
+            return
+        }
+        
+        self.logo = typedValue
+    }
+    
+    func setReviews(_ value: Any?) {
+        guard let nonNil = value else {
+            self.reviews = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? [Review] else {
+            return
+        }
+        
+        self.reviews = typedValue
+    }
 }
 
 public extension KeyedEncodingContainer {

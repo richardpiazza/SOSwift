@@ -38,6 +38,40 @@ public class SOAudioObject: SOMediaObject, AudioObject {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.transcript.rawValue:
+            return "The transcript of an Audio Object or Viedo Object."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.transcript.rawValue:
+            setTranscript(value)
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
+}
+
+public extension SOAudioObject {
+    func setTranscript(_ value: Any?) {
+        guard let nonNil = value else {
+            self.transcript = nil
+            return
+        }
+        
+        guard let typedValue = nonNil as? String else {
+            return
+        }
+        
+        self.transcript = typedValue
+    }
 }
 
 public extension KeyedEncodingContainer {
