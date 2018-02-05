@@ -79,6 +79,57 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.areaServed.rawValue:
+            return "The geographic area where a service or offered item is provided."
+        case CodingKeys.availableLanguage.rawValue:
+            return "A language someone may use with the item."
+        case CodingKeys.contactOption.rawValue:
+            return "An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers)."
+        case CodingKeys.contactType.rawValue:
+            return "A person or organization can have different contact points, for different purposes."
+        case CodingKeys.email.rawValue:
+            return "The email address."
+        case CodingKeys.faxNumber.rawValue:
+            return "The fax number."
+        case CodingKeys.hoursAvailable.rawValue:
+            return "The hours during which this service or contact is available."
+        case CodingKeys.productSupported.rawValue:
+            return "The product or service this support contact point is related to (such as product support for a particular product line)."
+        case CodingKeys.telephone.rawValue:
+            return "The telephone number."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.areaServed.rawValue:
+            self.areaServed = value as? AreaServed
+        case CodingKeys.availableLanguage.rawValue:
+            self.availableLanguage = value as? LanguageOrText
+        case CodingKeys.contactOption.rawValue:
+            self.contactOption = value as? ContactPointOption
+        case CodingKeys.contactType.rawValue:
+            self.contactType = value as? String
+        case CodingKeys.email.rawValue:
+            self.email = value as? String
+        case CodingKeys.faxNumber.rawValue:
+            self.faxNumber = value as? String
+        case CodingKeys.hoursAvailable.rawValue:
+            self.hoursAvailable = value as? [OpeningHoursSpecification]
+        case CodingKeys.productSupported.rawValue:
+            self.productSupported = value as? ProductOrText
+        case CodingKeys.telephone.rawValue:
+            self.telephone = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

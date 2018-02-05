@@ -64,6 +64,41 @@ public class SODataset: SOCreativeWork, Dataset {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.distribution.rawValue:
+            return "A downloadable form of this dataset, at a specific location, in a specific format."
+        case CodingKeys.includedInDataCatalog.rawValue:
+            return "A data catalog which contains this dataset."
+        case CodingKeys.issn.rawValue:
+            return "The International Standard Serial Number that identifies this serial publication."
+        case CodingKeys.measurementTechnique.rawValue:
+            return "A technique or technology used in a Dataset."
+        case CodingKeys.variableMeasured.rawValue:
+            return "Indicates the variables that are measured in some dataset."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.distribution.rawValue:
+            self.distribution = value as? DataDownload
+        case CodingKeys.includedInDataCatalog.rawValue:
+            self.includedInDataCatalog = value as? DataCatalog
+        case CodingKeys.issn.rawValue:
+            self.issn = value as? String
+        case CodingKeys.measurementTechnique.rawValue:
+            self.measurementTechnique = value as? URLOrText
+        case CodingKeys.variableMeasured.rawValue:
+            self.variableMeasured = value as? PropertyValueOrText
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

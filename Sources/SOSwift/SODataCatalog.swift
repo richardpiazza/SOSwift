@@ -47,6 +47,29 @@ public class SODataCatalog: SOCreativeWork, DataCatalog {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.dataset.rawValue:
+            return "A dataset contained in this catalog."
+        case CodingKeys.measurementTechnique.rawValue:
+            return "A technique or technology used in a Dataset."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.dataset.rawValue:
+            self.dataset = value as? Dataset
+        case CodingKeys.measurementTechnique.rawValue:
+            self.measurementTechnique = value as? URLOrText
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

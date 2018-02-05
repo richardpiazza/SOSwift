@@ -58,40 +58,12 @@ public class SOAudience: SOThing, Audience {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.audienceType.rawValue:
-            setAudienceType(value)
+            self.audienceType = value as? String
         case CodingKeys.geographicArea.rawValue:
-            setGeographicArea(value)
+            self.geographicArea = value as? AdministrativeArea
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }
-    }
-}
-
-public extension SOAudience {
-    func setAudienceType(_ value: Any?) {
-        guard let nonNil = value else {
-            self.audienceType = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.audienceType = typedValue
-    }
-    
-    func setGeographicArea(_ value: Any?) {
-        guard let nonNil = value else {
-            self.geographicArea = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? AdministrativeArea else {
-            return
-        }
-        
-        self.geographicArea = typedValue
     }
 }
 

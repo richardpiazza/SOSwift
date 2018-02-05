@@ -72,7 +72,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     public var contentLocation: Place?
     /// Official rating of a piece of content—for example,'MPAA PG-13'.
     public var contentRating: String?
-    ///
+    /// The specific time described by a creative work, for works (e.g. articles, video objects etc.) that emphasise a particular moment within an Event.
     public var contentReferenceTime: DateTime?
     /// A secondary contributor to the CreativeWork or Event.
     public var contributor: OrganizationOrPerson?
@@ -482,6 +482,345 @@ public class SOCreativeWork: SOThing, CreativeWork {
         try container.encodeIfPresent(self.workTranslation, forKey: .workTranslation)
         
         try super.encode(to: encoder)
+    }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.about.rawValue:
+            return "The subject matter of the content."
+        case CodingKeys.accessMode.rawValue:
+            return "The human sensory perceptual system or cognitive faculty through which a person may process or perceive information."
+        case String(describing: CodingKeys.accessModeSufficients):
+            return "A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource."
+        case CodingKeys.accessibilityAPI.rawValue:
+            return "Indicates that the resource is compatible with the referenced accessibility API."
+        case CodingKeys.accessibilityControl.rawValue:
+            return "Identifies input methods that are sufficient to fully control the described resource."
+        case CodingKeys.accessibilityFeature.rawValue:
+            return "Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility."
+        case CodingKeys.accessibilityHazard.rawValue:
+            return "A characteristic of the described resource that is physiologically dangerous to some users."
+        case CodingKeys.accessibilitySummary.rawValue:
+            return "A human-readable summary of specific accessibility features or deficiencies, consistent with the other accessibility metadata."
+        case CodingKeys.accountablePerson.rawValue:
+            return "Specifies the Person that is legally accountable for the Creative Work."
+        case CodingKeys.aggregateRating.rawValue:
+            return "The overall rating, based on a collection of reviews or ratings, of the item."
+        case CodingKeys.alternativeHeadline.rawValue:
+            return "A secondary title of the Creative Work."
+        case CodingKeys.associatedMedia.rawValue:
+            return "A media object that encodes this Creative Work."
+        case CodingKeys.audience.rawValue:
+            return "An intended audience, i.e. a group for whom something was created."
+        case CodingKeys.audio.rawValue:
+            return "An embedded audio object."
+        case CodingKeys.author.rawValue:
+            return "The author of this content or rating."
+        case CodingKeys.award.rawValue:
+            return "An award won by or for this item."
+        case CodingKeys.character.rawValue:
+            return "Fictional person connected with a Creative Work."
+        case CodingKeys.citation.rawValue:
+            return "A citation or reference to another creative work, such as another publication, web page, scholarly article, etc."
+        case CodingKeys.comment.rawValue:
+            return "Comments, typically from users."
+        case CodingKeys.commentCount.rawValue:
+            return "The number of comments this Creative Work."
+        case CodingKeys.contentLocation.rawValue:
+            return "The location depicted or described in the content."
+        case CodingKeys.contentRating.rawValue:
+            return "Official rating of a piece of content—for example,'MPAA PG-13'."
+        case CodingKeys.contentReferenceTime.rawValue:
+            return "The specific time described by a creative work."
+        case CodingKeys.contributor.rawValue:
+            return "A secondary contributor to the Creative Work or Event."
+        case CodingKeys.copyrightHolder.rawValue:
+            return "The party holding the legal copyright to the CreativeWork."
+        case CodingKeys.copyrightYear.rawValue:
+            return "The year during which the claimed copyright for the CreativeWork was first asserted."
+        case CodingKeys.creator.rawValue:
+            return "The creator/author of this Creative Work."
+        case CodingKeys.dateCreated.rawValue:
+            return "The date on which the CreativeWork was created."
+        case CodingKeys.dateModified.rawValue:
+            return "The date on which the CreativeWork was most recently modified."
+        case CodingKeys.datePublished.rawValue:
+            return "Date of first broadcast/publication."
+        case CodingKeys.discussionURL.rawValue:
+            return "A link to the page containing the comments of the Creative Work."
+        case CodingKeys.editor.rawValue:
+            return "Specifies the Person who edited the Creative Work."
+        case CodingKeys.educationalAlignment.rawValue:
+            return "An alignment to an established educational framework."
+        case CodingKeys.educationalUse.rawValue:
+            return "The purpose of a work in the context of education; for example, 'assignment', 'group work'."
+        case CodingKeys.encoding.rawValue:
+            return "A media object that encodes this CreativeWork."
+        case CodingKeys.exampleOfWork.rawValue:
+            return "A creative work that this work is an example/instance/realization/derivation of."
+        case CodingKeys.fileFormat.rawValue:
+            return "Media type, typically MIME format."
+        case CodingKeys.funder.rawValue:
+            return "A person or organization that supports (sponsors) something through some kind of financial contribution."
+        case CodingKeys.genre.rawValue:
+            return "Genre of the creative work, broadcast channel or group."
+        case String(describing: CodingKeys.part):
+            return "Indicates a CreativeWork that is (in some sense) a part of this CreativeWork."
+        case CodingKeys.headline.rawValue:
+            return "Headline of the article."
+        case CodingKeys.inLanguage.rawValue:
+            return "The language of the content or performance or used in an action."
+        case CodingKeys.interactionStatistic.rawValue:
+            return "The number of interactions for the Creative Work using the WebSite or SoftwareApplication."
+        case CodingKeys.interactivityType.rawValue:
+            return "The predominant mode of learning supported by the learning resource."
+        case CodingKeys.isAccessibleForFree.rawValue:
+            return "A flag to signal that the publication is accessible for free."
+        case String(describing: CodingKeys.basedOn):
+            return "A resource that was used in the creation of this resource."
+        case CodingKeys.isFamilyFriendly.rawValue:
+            return "Indicates whether this content is family friendly."
+        case String(describing: CodingKeys.partOf):
+            return "Indicates a CreativeWork that this CreativeWork is (in some sense) part of."
+        case CodingKeys.keywords.rawValue:
+            return "Keywords or tags used to describe this content."
+        case CodingKeys.learningResourceType.rawValue:
+            return "The predominant type or kind characterizing the learning resource."
+        case CodingKeys.license.rawValue:
+            return "A license document that applies to this content, typically indicated by URL."
+        case CodingKeys.locationCreated.rawValue:
+            return "The location where the Creative Work was created."
+        case CodingKeys.mainEntity.rawValue:
+            return "Indicates the primary entity described in some page or other Creative Work."
+        case CodingKeys.material.rawValue:
+            return "A material that something is made from."
+        case CodingKeys.mentions.rawValue:
+            return "Indicates that the Creative Work contains a reference to, but is not necessarily about a concept."
+        case CodingKeys.offers.rawValue:
+            return "An offer to provide this item."
+        case CodingKeys.position.rawValue:
+            return "The position of an item in a series or sequence of items."
+        case CodingKeys.producer.rawValue:
+            return "The person or organization who produced the work."
+        case CodingKeys.provider.rawValue:
+            return "The service provider, service operator, or service performer."
+        case CodingKeys.publication.rawValue:
+            return "A publication event associated with the item."
+        case CodingKeys.publisher.rawValue:
+            return "The publisher of the creative work."
+        case CodingKeys.publisherImprint.rawValue:
+            return "The publishing division which published the comic."
+        case CodingKeys.publishingPrinciples.rawValue:
+            return "A document describing the editorial principles of an Organization that relate to their activities as a publisher."
+        case CodingKeys.recorededAt.rawValue:
+            return "The Event where the Creative Work was recorded."
+        case CodingKeys.releasedEvent.rawValue:
+            return "The place and time the release was issued."
+        case String(describing: CodingKeys.reviews):
+            return "A review of the item."
+        case CodingKeys.schemaVersion.rawValue:
+            return "Indicates a particular version of a schema used in some Creative Work."
+        case CodingKeys.sourceOrganization.rawValue:
+            return "The Organization on whose behalf the creator was working."
+        case CodingKeys.spatialCoverage.rawValue:
+            return "The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content."
+        case CodingKeys.sponsor.rawValue:
+            return "A person or organization that supports a thing through a pledge, promise, or financial contribution."
+        case CodingKeys.temporalCoverage.rawValue:
+            return "The temporalCoverage of a Creative Work indicates the period that the content applies to."
+        case CodingKeys.text.rawValue:
+            return "The textual content of this CreativeWork."
+        case CodingKeys.thumbnailUrl.rawValue:
+            return "A thumbnail image relevant to the Thing."
+        case CodingKeys.timeRequired.rawValue:
+            return "Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience."
+        case CodingKeys.translationOfWork.rawValue:
+            return "The work that this work has been translated from."
+        case CodingKeys.translator.rawValue:
+            return "Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market."
+        case CodingKeys.typicalAgeRange.rawValue:
+            return "The typical expected age range."
+        case CodingKeys.version.rawValue:
+            return "The version of the CreativeWork embodied by a specified resource."
+        case CodingKeys.video.rawValue:
+            return "An embedded video object."
+        case CodingKeys.workExample.rawValue:
+            return "Example/instance/realization/derivation of the concept of this creative work."
+        case CodingKeys.workTranslation.rawValue:
+            return "A work that is a translation of the content of this work."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.about.rawValue:
+            self.about = value as? Thing
+        case CodingKeys.accessMode.rawValue:
+            self.accessMode = value as? AccessMode
+        case String(describing: CodingKeys.accessModeSufficients):
+            self.accessModeSufficients = value as? [AccessModeSufficient]
+        case CodingKeys.accessibilityAPI.rawValue:
+            self.accessibilityAPI = value as? AccessibilityAPI
+        case CodingKeys.accessibilityControl.rawValue:
+            self.accessibilityControl = value as? AccessibilityControl
+        case CodingKeys.accessibilityFeature.rawValue:
+            self.accessibilityFeature = value as? AccessibilityFeature
+        case CodingKeys.accessibilityHazard.rawValue:
+            self.accessibilityHazard = value as? AccessibilityHazard
+        case CodingKeys.accessibilitySummary.rawValue:
+            self.accessibilitySummary = value as? String
+        case CodingKeys.accountablePerson.rawValue:
+            self.accountablePerson = value as? Person
+        case CodingKeys.aggregateRating.rawValue:
+            self.aggregateRating = value as? AggregateRating
+        case CodingKeys.alternativeHeadline.rawValue:
+            self.alternativeHeadline = value as? String
+        case CodingKeys.associatedMedia.rawValue:
+            self.associatedMedia = value as? MediaObject
+        case CodingKeys.audience.rawValue:
+            self.audience = value as? Audience
+        case CodingKeys.audio.rawValue:
+            self.audio = value as? AudioObject
+        case CodingKeys.author.rawValue:
+            self.author = value as? OrganizationOrPerson
+        case CodingKeys.award.rawValue:
+            self.award = value as? String
+        case CodingKeys.character.rawValue:
+            self.character = value as? Person
+        case CodingKeys.citation.rawValue:
+            self.citation = value as? CreativeWorkOrText
+        case CodingKeys.comment.rawValue:
+            self.comment = value as? Comment
+        case CodingKeys.commentCount.rawValue:
+            self.commentCount = value as? Int
+        case CodingKeys.contentLocation.rawValue:
+            self.contentLocation = value as? Place
+        case CodingKeys.contentRating.rawValue:
+            self.contentRating = value as? String
+        case CodingKeys.contentReferenceTime.rawValue:
+            self.contentReferenceTime = value as? DateTime
+        case CodingKeys.contributor.rawValue:
+            self.contributor = value as? OrganizationOrPerson
+        case CodingKeys.copyrightHolder.rawValue:
+            self.copyrightHolder = value as? OrganizationOrPerson
+        case CodingKeys.copyrightYear.rawValue:
+            self.copyrightYear = value as? Int
+        case CodingKeys.creator.rawValue:
+            self.creator = value as? OrganizationOrPerson
+        case CodingKeys.dateCreated.rawValue:
+            self.dateCreated = value as? DateOnlyOrDateTime
+        case CodingKeys.dateModified.rawValue:
+            self.dateModified = value as? DateOnlyOrDateTime
+        case CodingKeys.datePublished.rawValue:
+            self.datePublished = value as? DateOnly
+        case CodingKeys.discussionURL.rawValue:
+            self.discussionURL = value as? URL
+        case CodingKeys.editor.rawValue:
+            self.editor = value as? Person
+        case CodingKeys.educationalAlignment.rawValue:
+            self.educationalAlignment = value as? AlignmentObject
+        case CodingKeys.educationalUse.rawValue:
+            self.educationalUse = value as? String
+        case CodingKeys.encoding.rawValue:
+            self.encoding = value as? MediaObject
+        case CodingKeys.exampleOfWork.rawValue:
+            self.exampleOfWork = value as? CreativeWork
+        case CodingKeys.fileFormat.rawValue:
+            self.fileFormat = value as? URLOrText
+        case CodingKeys.funder.rawValue:
+            self.funder = value as? OrganizationOrPerson
+        case CodingKeys.genre.rawValue:
+            self.genre = value as? URLOrText
+        case String(describing: CodingKeys.part):
+            self.part = value as? CreativeWork
+        case CodingKeys.headline.rawValue:
+            self.headline = value as? String
+        case CodingKeys.inLanguage.rawValue:
+            self.inLanguage = value as? LanguageOrText
+        case CodingKeys.interactionStatistic.rawValue:
+            self.interactionStatistic = value as? InteractionCounter
+        case CodingKeys.interactivityType.rawValue:
+            self.interactivityType = value as? Interactivity
+        case CodingKeys.isAccessibleForFree.rawValue:
+            self.isAccessibleForFree = value as? Bool
+        case String(describing: CodingKeys.basedOn):
+            self.basedOn = value as? CreativeWorkOrProductOrURL
+        case CodingKeys.isFamilyFriendly.rawValue:
+            self.isFamilyFriendly = value as? Bool
+        case String(describing: CodingKeys.partOf):
+            self.partOf = value as? CreativeWork
+        case CodingKeys.keywords.rawValue:
+            self.keywords = value as? String
+        case CodingKeys.learningResourceType.rawValue:
+            self.learningResourceType = value as? String
+        case CodingKeys.license.rawValue:
+            self.license = value as? CreativeWorkOrURL
+        case CodingKeys.locationCreated.rawValue:
+            self.locationCreated = value as? Place
+        case CodingKeys.mainEntity.rawValue:
+            self.mainEntity = value as? Thing
+        case CodingKeys.material.rawValue:
+            self.material = value as? ProductOrURLOrText
+        case CodingKeys.mentions.rawValue:
+            self.mentions = value as? Thing
+        case CodingKeys.offers.rawValue:
+            self.offers = value as? [Offer]
+        case CodingKeys.position.rawValue:
+            self.position = value as? IntegerOrText
+        case CodingKeys.producer.rawValue:
+            self.producer = value as? OrganizationOrPerson
+        case CodingKeys.provider.rawValue:
+            self.provider = value as? OrganizationOrPerson
+        case CodingKeys.publication.rawValue:
+            self.publication = value as? PublicationEvent
+        case CodingKeys.publisher.rawValue:
+            self.publisher = value as? OrganizationOrPerson
+        case CodingKeys.publisherImprint.rawValue:
+            self.publisherImprint = value as? Organization
+        case CodingKeys.publishingPrinciples.rawValue:
+            self.publishingPrinciples = value as? CreativeWorkOrURL
+        case CodingKeys.recorededAt.rawValue:
+            self.recordedAt = value as? Event
+        case CodingKeys.releasedEvent.rawValue:
+            self.releasedEvent = value as? PublicationEvent
+        case String(describing: CodingKeys.reviews):
+            self.reviews = value as? [Review]
+        case CodingKeys.schemaVersion.rawValue:
+            self.schemaVersion = value as? URLOrText
+        case CodingKeys.sourceOrganization.rawValue:
+            self.sourceOrganization = value as? Organization
+        case CodingKeys.spatialCoverage.rawValue:
+            self.spatialCoverage = value as? Place
+        case CodingKeys.sponsor.rawValue:
+            self.sponsor = value as? OrganizationOrPerson
+        case CodingKeys.temporalCoverage.rawValue:
+            self.temporalCoverage = value as? DateTimeOrURLOrText
+        case CodingKeys.text.rawValue:
+            self.text = value as? String
+        case CodingKeys.thumbnailUrl.rawValue:
+            self.thumbnailUrl = value as? URL
+        case CodingKeys.timeRequired.rawValue:
+            self.timeRequired = value as? Duration
+        case CodingKeys.translationOfWork.rawValue:
+            self.translationOfWork = value as? CreativeWork
+        case CodingKeys.translator.rawValue:
+            self.translator = value as? OrganizationOrPerson
+        case CodingKeys.typicalAgeRange.rawValue:
+            self.typicalAgeRange = value as? String
+        case CodingKeys.version.rawValue:
+            self.version = value as? IntegerOrText
+        case CodingKeys.video.rawValue:
+            self.video = value as? VideoObject
+        case CodingKeys.workExample.rawValue:
+            self.workExample = value as? CreativeWork
+        case CodingKeys.workTranslation.rawValue:
+            self.workTranslation = value as? CreativeWork
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
     }
 }
 

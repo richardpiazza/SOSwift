@@ -49,6 +49,33 @@ public class SOComment: SOCreativeWork, Comment {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.downvoteCount.rawValue:
+            return "The number of downvotes this question, answer or comment has received from the community."
+        case CodingKeys.parentItem.rawValue:
+            return "The parent of a question, answer or item in general."
+        case CodingKeys.upvoteCount.rawValue:
+            return "The number of upvotes this question, answer or comment has received from the community."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.downvoteCount.rawValue:
+            self.downvoteCount = value as? Int
+        case CodingKeys.parentItem.rawValue:
+            self.parentItem = value as? Question
+        case CodingKeys.upvoteCount.rawValue:
+            self.upvoteCount = value as? Int
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

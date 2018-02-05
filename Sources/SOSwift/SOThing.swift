@@ -166,190 +166,32 @@ public class SOThing: Thing, Dynamic, Attributed {
     public func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.additionalType.rawValue:
-            setAdditionalType(value)
+            self.additionalType = value as? URL
         case CodingKeys.alternativeName.rawValue:
-            setAlternativeName(value)
+            self.alternativeName = value as? String
         case CodingKeys.description.rawValue:
-            setDescription(value)
+            self.description = value as? String
         case CodingKeys.disambiguatingDescription.rawValue:
-            setDisambiguatingDescription(value)
+            self.disambiguatingDescription = value as? String
         case CodingKeys.identifier.rawValue:
-            setIdentifier(value)
+            self.identifier = value as? Identifier
         case CodingKeys.image.rawValue:
-            setImage(value)
+            self.image = value as? ImageObjectOrURL
         case CodingKeys.mainEntityOfPage.rawValue:
-            setMainEntityOfPage(value)
+            self.mainEntityOfPage = value as? CreativeWorkOrURL
         case CodingKeys.name.rawValue:
-            setName(value)
+            self.name = value as? String
         case CodingKeys.potentialAction.rawValue:
-            setPotentialAction(value)
+            self.potentialAction = value as? Action
         case CodingKeys.sameAs.rawValue:
-            setSameAs(value)
+            self.sameAs = value as? [URL]
         case CodingKeys.subjectOf.rawValue:
-            setSubjectOf(value)
+            self.subjectOf = value as? CreativeWorkOrEvent
         case CodingKeys.url.rawValue:
-            setURL(value)
+            self.url = value as? URL
         default:
             break
         }
-    }
-}
-
-public extension SOThing {
-    func setAdditionalType(_ value: Any?) {
-        guard let nonNil = value else {
-            self.additionalType = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? URL else {
-            return
-        }
-        
-        self.additionalType = typedValue
-    }
-    
-    func setAlternativeName(_ value: Any?) {
-        guard let nonNil = value else {
-            self.alternativeName = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.alternativeName = typedValue
-    }
-    
-    func setDescription(_ value: Any?) {
-        guard let nonNil = value else {
-            self.description = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.description = typedValue
-    }
-    
-    func setDisambiguatingDescription(_ value: Any?) {
-        guard let nonNil = value else {
-            self.disambiguatingDescription = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.disambiguatingDescription = typedValue
-    }
-    
-    func setIdentifier(_ value: Any?) {
-        guard let nonNil = value else {
-            self.identifier = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Identifier else {
-            return
-        }
-        
-        self.identifier = typedValue
-    }
-    
-    func setImage(_ value: Any?) {
-        guard let nonNil = value else {
-            self.image = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? ImageObjectOrURL else {
-            return
-        }
-        
-        self.image = typedValue
-    }
-    
-    func setMainEntityOfPage(_ value: Any?) {
-        guard let nonNil = value else {
-            self.mainEntityOfPage = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? CreativeWorkOrURL else {
-            return
-        }
-        
-        self.mainEntityOfPage = typedValue
-    }
-    
-    func setName(_ value: Any?) {
-        guard let nonNil = value else {
-            self.name = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.name = typedValue
-    }
-    
-    func setPotentialAction(_ value: Any?) {
-        guard let nonNil = value else {
-            self.potentialAction = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Action else {
-            return
-        }
-        
-        self.potentialAction = typedValue
-    }
-    
-    func setSameAs(_ value: Any?) {
-        guard let nonNil = value else {
-            self.sameAs = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? [URL] else {
-            return
-        }
-        
-        self.sameAs = typedValue
-    }
-    
-    func setSubjectOf(_ value: Any?) {
-        guard let nonNil = value else {
-            self.subjectOf = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? CreativeWorkOrEvent else {
-            return
-        }
-        
-        self.subjectOf = typedValue
-    }
-    
-    func setURL(_ value: Any?) {
-        guard let nonNil = value else {
-            self.url = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? URL else {
-            return
-        }
-        
-        self.url = typedValue
     }
 }
 

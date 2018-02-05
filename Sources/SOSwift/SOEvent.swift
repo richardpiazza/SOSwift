@@ -200,6 +200,149 @@ public class SOEvent: SOThing, Event {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.about.rawValue:
+            return "The subject matter of the content."
+        case String(describing: CodingKeys.actors):
+            return "An actor."
+        case CodingKeys.aggregateRating.rawValue:
+            return "The overall rating, based on a collection of reviews or ratings, of the item."
+        case String(describing: CodingKeys.attendees):
+            return "A person or organization attending the event."
+        case CodingKeys.audience.rawValue:
+            return "An intended grouyp for whom something was created."
+        case CodingKeys.composer.rawValue:
+            return "The person or organization who wrote a composition, or who is the composer of a work performed at some event."
+        case CodingKeys.contributor.rawValue:
+            return "A secondary contributor to the CreativeWork or Event."
+        case String(describing: CodingKeys.directors):
+            return "A director."
+        case CodingKeys.doorTime.rawValue:
+            return "The time admission will commence."
+        case CodingKeys.duration.rawValue:
+            return "The duration of the item."
+        case CodingKeys.endDate.rawValue:
+            return "The end date and time of the item."
+        case CodingKeys.eventStatus.rawValue:
+            return "An eventStatus of an event represents its status."
+        case CodingKeys.funder.rawValue:
+            return "A person or organization that supports (sponsors) something through some kind of financial contribution."
+        case CodingKeys.inLanguage.rawValue:
+            return "The language of the content or performance or used in an action."
+        case CodingKeys.isAccessibleForFree.rawValue:
+            return "A flag to signal that the publication is accessible for free."
+        case CodingKeys.location.rawValue:
+            return "The location of for example where the event is happening, an organization is located, or where an action takes place."
+        case CodingKeys.maximumAttendeeCapacity.rawValue:
+            return "The total number of individuals that may attend an event or venue."
+        case CodingKeys.offers.rawValue:
+            return "An offer to provide this item."
+        case CodingKeys.organizer.rawValue:
+            return "An organizer of an Event."
+        case String(describing: CodingKeys.performers):
+            return "A performer at the event—for example, a presenter, musician, musical group or actor."
+        case CodingKeys.previousStartDate.rawValue:
+            return "Used in conjunction with eventStatus for rescheduled or cancelled events."
+        case CodingKeys.recordedIn.rawValue:
+            return "The CreativeWork that captured all or part of this Event."
+        case CodingKeys.remainingAttendeeCapacity.rawValue:
+            return "The number of attendee places for an event that remain unallocated."
+        case String(describing: CodingKeys.reviews):
+            return "A review of the item."
+        case CodingKeys.sponsor.rawValue:
+            return "A person or organization that supports a thing through a pledge, promise, or financial contribution."
+        case CodingKeys.startDate.rawValue:
+            return "The start date and time of the item."
+        case String(describing: CodingKeys.subEvents):
+            return "An Event that is part of this event."
+        case CodingKeys.superEvent.rawValue:
+            return "An event that this event is a part of."
+        case CodingKeys.translator.rawValue:
+            return "Organization or person who adapts a creative work to different languages, regional  differences and technical requirements of a target market, or that translates during some event."
+        case CodingKeys.typicalAgeRange.rawValue:
+            return "The typical expected age range."
+        case CodingKeys.workFeatured.rawValue:
+            return "A work featured in some event."
+        case CodingKeys.workPerformed.rawValue:
+            return "A work performed in some event."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.about.rawValue:
+            self.about = value as? Thing
+        case String(describing: CodingKeys.actors):
+            self.actors = value as? [Person]
+        case CodingKeys.aggregateRating.rawValue:
+            self.aggregateRating = value as? AggregateRating
+        case String(describing: CodingKeys.attendees):
+            self.attendees = value as? [OrganizationOrPerson]
+        case CodingKeys.audience.rawValue:
+            self.audience = value as? Audience
+        case CodingKeys.composer.rawValue:
+            self.composer = value as? OrganizationOrPerson
+        case CodingKeys.contributor.rawValue:
+            self.contributor = value as? OrganizationOrPerson
+        case String(describing: CodingKeys.directors):
+            self.directors = value as? [Person]
+        case CodingKeys.doorTime.rawValue:
+            self.doorTime = value as? DateTime
+        case CodingKeys.duration.rawValue:
+            self.duration = value as? Duration
+        case CodingKeys.endDate.rawValue:
+            self.endDate = value as? DateOnlyOrDateTime
+        case CodingKeys.eventStatus.rawValue:
+            self.eventStatus = value as? EventStatus
+        case CodingKeys.funder.rawValue:
+            self.funder = value as? OrganizationOrPerson
+        case CodingKeys.inLanguage.rawValue:
+            self.inLanguage = value as? LanguageOrText
+        case CodingKeys.isAccessibleForFree.rawValue:
+            self.isAccessibleForFree = value as? Bool
+        case CodingKeys.location.rawValue:
+            self.location = value as? PlaceOrPostalAddressOrText
+        case CodingKeys.maximumAttendeeCapacity.rawValue:
+            self.maximumAttendeeCapacity = value as? Int
+        case CodingKeys.offers.rawValue:
+            self.offers = value as? [Offer]
+        case CodingKeys.organizer.rawValue:
+            self.organizer = value as? OrganizationOrPerson
+        case String(describing: CodingKeys.performers):
+            self.performers = value as? [OrganizationOrPerson]
+        case CodingKeys.previousStartDate.rawValue:
+            self.previousStartDate = value as? DateOnly
+        case CodingKeys.recordedIn.rawValue:
+            self.recordedIn = value as? CreativeWork
+        case CodingKeys.remainingAttendeeCapacity.rawValue:
+            self.remainingAttendeeCapacity = value as? Int
+        case String(describing: CodingKeys.reviews):
+            self.reviews = value as? [Review]
+        case CodingKeys.sponsor.rawValue:
+            self.sponsor = value as? OrganizationOrPerson
+        case CodingKeys.startDate.rawValue:
+            self.startDate = value as? DateOnlyOrDateTime
+        case String(describing: CodingKeys.subEvents):
+            self.subEvents = value as? [Event]
+        case CodingKeys.superEvent.rawValue:
+            self.superEvent = value as? Event
+        case CodingKeys.translator.rawValue:
+            self.translator = value as? OrganizationOrPerson
+        case CodingKeys.typicalAgeRange.rawValue:
+            self.typicalAgeRange = value as? String
+        case CodingKeys.workFeatured.rawValue:
+            self.workFeatured = value as? CreativeWork
+        case CodingKeys.workPerformed.rawValue:
+            self.workPerformed = value as? CreativeWork
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

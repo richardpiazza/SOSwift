@@ -126,175 +126,30 @@ public class SOAction: SOThing, Action {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.actionStatus.rawValue:
-            setActionStatus(value)
+            self.actionStatus = value as? ActionStatus
         case CodingKeys.agent.rawValue:
-            setAgent(value)
+            self.agent = value as? OrganizationOrPerson
         case CodingKeys.endTime.rawValue:
-            setEndTime(value)
+            self.endTime = value as? DateTime
         case CodingKeys.error.rawValue:
-            setError(value)
+            self.error = value as? Thing
         case CodingKeys.instrument.rawValue:
-            setInstrument(value)
+            self.instrument = value as? Thing
         case CodingKeys.location.rawValue:
-            setLocation(value)
+            self.location = value as? PlaceOrPostalAddressOrText
         case CodingKeys.object.rawValue:
-            setObject(value)
+            self.object = value as? Thing
         case CodingKeys.participant.rawValue:
-            setParticipant(value)
+            self.participant = value as? OrganizationOrPerson
         case CodingKeys.result.rawValue:
-            setResult(value)
+            self.result = value as? Thing
         case CodingKeys.startTime.rawValue:
-            setStartTime(value)
+            self.startTime = value as? DateTime
         case CodingKeys.target.rawValue:
-            setTarget(value)
+            self .target = value as? EntryPoint
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }
-    }
-}
-
-public extension SOAction {
-    func setActionStatus(_ value: Any?) {
-        guard let nonNil = value else {
-            self.actionStatus = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? ActionStatus else {
-            return
-        }
-        
-        self.actionStatus = typedValue
-    }
-    
-    func setAgent(_ value: Any?) {
-        guard let nonNil = value else {
-            self.agent = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? OrganizationOrPerson else {
-            return
-        }
-        
-        self.agent = typedValue
-    }
-    
-    func setEndTime(_ value: Any?) {
-        guard let nonNil = value else {
-            self.endTime = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? DateTime else {
-            return
-        }
-        
-        self.endTime = typedValue
-    }
-    
-    func setError(_ value: Any?) {
-        guard let nonNil = value else {
-            self.error = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Thing else {
-            return
-        }
-        
-        self.error = typedValue
-    }
-    
-    func setInstrument(_ value: Any?) {
-        guard let nonNil = value else {
-            self.instrument = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Thing else {
-            return
-        }
-        
-        self.instrument = typedValue
-    }
-    
-    func setLocation(_ value: Any?) {
-        guard let nonNil = value else {
-            self.location = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? PlaceOrPostalAddressOrText else {
-            return
-        }
-        
-        self.location = typedValue
-    }
-    
-    func setObject(_ value: Any?) {
-        guard let nonNil = value else {
-            self.object = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Thing else {
-            return
-        }
-        
-        self.object = typedValue
-    }
-    
-    func setParticipant(_ value: Any?) {
-        guard let nonNil = value else {
-            self.participant = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? OrganizationOrPerson else {
-            return
-        }
-        
-        self.participant = typedValue
-    }
-    
-    func setResult(_ value: Any?) {
-        guard let nonNil = value else {
-            self.result = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Thing else {
-            return
-        }
-        
-        self.result = typedValue
-    }
-    
-    func setStartTime(_ value: Any?) {
-        guard let nonNil = value else {
-            self.startTime = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? DateTime else {
-            return
-        }
-        
-        self.startTime = typedValue
-    }
-    
-    func setTarget(_ value: Any?) {
-        guard let nonNil = value else {
-            self.target = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? EntryPoint else {
-            return
-        }
-        
-        self.target = typedValue
     }
 }
 

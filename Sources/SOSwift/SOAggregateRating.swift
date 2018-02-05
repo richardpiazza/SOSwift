@@ -65,54 +65,13 @@ public class SOAggregateRating: SORating, AggregateRating {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.itemReviewed.rawValue:
-            setItemReviewed(value)
+            self.itemReviewed = value as? Thing
         case CodingKeys.ratingCount.rawValue:
-            setRatingCount(value)
+            self.ratingCount = value as? Int
         case CodingKeys.reviewCount.rawValue:
-            setReviewCount(value)
+            self.reviewCount = value as? Int
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }
-    }
-}
-
-public extension SOAggregateRating {
-    func setItemReviewed(_ value: Any?) {
-        guard let nonNil = value else {
-            self.itemReviewed = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Thing else {
-            return
-        }
-        
-        self.itemReviewed = typedValue
-    }
-    
-    func setRatingCount(_ value: Any?) {
-        guard let nonNil = value else {
-            self.ratingCount = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Int else {
-            return
-        }
-        
-        self.ratingCount = typedValue
-    }
-    
-    func setReviewCount(_ value: Any?) {
-        guard let nonNil = value else {
-            self.reviewCount = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Int else {
-            return
-        }
-        
-        self.reviewCount = typedValue
     }
 }

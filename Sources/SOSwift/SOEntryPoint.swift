@@ -85,6 +85,45 @@ public class SOEntryPoint: SOIntangible, EntryPoint {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.actionApplication.rawValue:
+            return "An application that can complete the request."
+        case CodingKeys.actionPlatform.rawValue:
+            return "The high level platform(s) where the Action can be performed for the given URL."
+        case CodingKeys.contentType.rawValue:
+            return "The supported content type(s) for an EntryPoint response."
+        case CodingKeys.encodingType.rawValue:
+            return "The supported encoding type(s) for an EntryPoint request."
+        case CodingKeys.httpMethod.rawValue:
+            return "An HTTP method that specifies the appropriate HTTP method for a request to an HTTP EntryPoint."
+        case CodingKeys.urlTemplate.rawValue:
+            return "An url template (RFC6570) that will be used to construct the target of the execution of the action."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.actionApplication.rawValue:
+            self.actionApplication = value as? SoftwareApplication
+        case CodingKeys.actionPlatform.rawValue:
+            self.actionPlatform = value as? URLOrText
+        case CodingKeys.contentType.rawValue:
+            self.contentType = value as? String
+        case CodingKeys.encodingType.rawValue:
+            self.encodingType = value as? String
+        case CodingKeys.httpMethod.rawValue:
+            self.httpMethod = value as? String
+        case CodingKeys.urlTemplate.rawValue:
+            self.urlTemplate = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

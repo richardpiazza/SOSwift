@@ -88,100 +88,20 @@ public class SOArticle: SOCreativeWork, Article {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.articleBody.rawValue:
-            setArticleBody(value)
+            self.articleBody = value as? String
         case CodingKeys.articleSection.rawValue:
-            setArticleSection(value)
+            self.articleSection = value as? String
         case CodingKeys.pageEnd.rawValue:
-            setPageEnd(value)
+            self.pageEnd = value as? IntegerOrText
         case CodingKeys.pageStart.rawValue:
-            setPageStart(value)
+            self.pageStart = value as? IntegerOrText
         case CodingKeys.pagination.rawValue:
-            setPagination(value)
+            self.pagination = value as? String
         case CodingKeys.wordCount.rawValue:
-            setWordCount(value)
+            self.wordCount = value as? Int
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }
-    }
-}
-
-public extension SOArticle {
-    func setArticleBody(_ value: Any?) {
-        guard let nonNil = value else {
-            self.articleBody = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.articleBody = typedValue
-    }
-    
-    func setArticleSection(_ value: Any?) {
-        guard let nonNil = value else {
-            self.articleSection = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.articleSection = typedValue
-    }
-    
-    func setPageEnd(_ value: Any?) {
-        guard let nonNil = value else {
-            self.pageEnd = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? IntegerOrText else {
-            return
-        }
-        
-        self.pageEnd = typedValue
-    }
-    
-    func setPageStart(_ value: Any?) {
-        guard let nonNil = value else {
-            self.pageStart = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? IntegerOrText else {
-            return
-        }
-        
-        self.pageStart = typedValue
-    }
-    
-    func setPagination(_ value: Any?) {
-        guard let nonNil = value else {
-            self.pagination = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.pagination = typedValue
-    }
-    
-    func setWordCount(_ value: Any?) {
-        guard let nonNil = value else {
-            self.wordCount = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? Int else {
-            return
-        }
-        
-        self.wordCount = typedValue
     }
 }
 

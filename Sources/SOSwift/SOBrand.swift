@@ -67,55 +67,14 @@ public class SOBrand: SOIntangible, Brand {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.aggregateRating.rawValue:
-            setAggregateRating(value)
+            self.aggregateRating = value as? AggregateRating
         case CodingKeys.logo.rawValue:
-            setLogo(value)
+            self.logo = value as? ImageObjectOrURL
         case "reviews":
-            setReviews(value)
+            self.reviews = value as? [Review]
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }
-    }
-}
-
-public extension SOBrand {
-    func setAggregateRating(_ value: Any?) {
-        guard let nonNil = value else {
-            self.aggregateRating = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? AggregateRating else {
-            return
-        }
-        
-        self.aggregateRating = typedValue
-    }
-    
-    func setLogo(_ value: Any?) {
-        guard let nonNil = value else {
-            self.logo = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? ImageObjectOrURL else {
-            return
-        }
-        
-        self.logo = typedValue
-    }
-    
-    func setReviews(_ value: Any?) {
-        guard let nonNil = value else {
-            self.reviews = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? [Review] else {
-            return
-        }
-        
-        self.reviews = typedValue
     }
 }
 

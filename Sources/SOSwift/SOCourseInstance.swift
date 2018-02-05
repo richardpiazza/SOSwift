@@ -43,6 +43,29 @@ public class SOCourseInstance: SOEvent, CourseInstance {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.courseMode.rawValue:
+            return "The medium or means of delivery of the course instance or the mode of study."
+        case CodingKeys.instructor.rawValue:
+            return "A person assigned to instruct or provide instructional assistance for the CourseInstance."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.courseMode.rawValue:
+            self.courseMode = value as? URLOrText
+        case CodingKeys.instructor.rawValue:
+            self.instructor = value as? Person
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

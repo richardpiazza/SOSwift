@@ -79,85 +79,18 @@ public class SOAlignmentObject: SOIntangible, AlignmentObject {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.alignmentType.rawValue:
-            setAlignmentType(value)
+            self.alignmentType = value as? String
         case CodingKeys.educationalFramework.rawValue:
-            setEducationalFramework(value)
+            self.educationalFramework = value as? String
         case CodingKeys.targetDescription.rawValue:
-            setTargetDescription(value)
+            self.targetDescription = value as? String
         case CodingKeys.targetName.rawValue:
-            setTargetName(value)
+            self.targetName = value as? String
         case CodingKeys.targetUrl.rawValue:
-            setTargetURL(value)
+            self.targetUrl = value as? URL
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }
-    }
-}
-
-public extension SOAlignmentObject {
-    public func setAlignmentType(_ value: Any?) {
-        guard let nonNil = value else {
-            self.alignmentType = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.alignmentType = typedValue
-    }
-    
-    public func setEducationalFramework(_ value: Any?) {
-        guard let nonNil = value else {
-            self.educationalFramework = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.educationalFramework = typedValue
-    }
-    
-    public func setTargetDescription(_ value: Any?) {
-        guard let nonNil = value else {
-            self.targetDescription = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.targetDescription = typedValue
-    }
-    
-    public func setTargetName(_ value: Any?) {
-        guard let nonNil = value else {
-            self.targetName = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.targetName = typedValue
-    }
-    
-    public func setTargetURL(_ value: Any?) {
-        guard let nonNil = value else {
-            self.targetUrl = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? URL else {
-            return
-        }
-        
-        self.targetUrl = typedValue
     }
 }
 

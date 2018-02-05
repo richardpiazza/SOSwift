@@ -52,25 +52,10 @@ public class SOAudioObject: SOMediaObject, AudioObject {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.transcript.rawValue:
-            setTranscript(value)
+            self.transcript = value as? String
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }
-    }
-}
-
-public extension SOAudioObject {
-    func setTranscript(_ value: Any?) {
-        guard let nonNil = value else {
-            self.transcript = nil
-            return
-        }
-        
-        guard let typedValue = nonNil as? String else {
-            return
-        }
-        
-        self.transcript = typedValue
     }
 }
 
