@@ -60,6 +60,41 @@ public class SORating: SOIntangible, Rating {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.author.rawValue:
+            return "The author of this content or rating."
+        case CodingKeys.bestRating.rawValue:
+            return "The highest value allowed in this rating system."
+        case CodingKeys.ratingValue.rawValue:
+            return "The rating for the content."
+        case CodingKeys.reviewAspect.rawValue:
+            return "This Review or Rating is relevant to this part or facet of the itemReviewed."
+        case CodingKeys.worstRating.rawValue:
+            return "The lowest value allowed in this rating system."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.author.rawValue:
+            self.author = value as? OrganizationOrPerson
+        case CodingKeys.bestRating.rawValue:
+            self.bestRating = value as? NumberOrText
+        case CodingKeys.ratingValue.rawValue:
+            self.ratingValue = value as? NumberOrText
+        case CodingKeys.reviewAspect.rawValue:
+            self.reviewAspect = value as? String
+        case CodingKeys.worstRating.rawValue:
+            self.worstRating = value as? NumberOrText
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

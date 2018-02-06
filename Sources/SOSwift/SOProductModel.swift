@@ -60,6 +60,33 @@ public class SOProductModel: SOProduct, ProductModel {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.isVariantOf.rawValue:
+            return "A base product from which this product is a variant."
+        case CodingKeys.predecessorOf.rawValue:
+            return "A previous, often discontinued variant of the product to its newer variant."
+        case CodingKeys.successorOf.rawValue:
+            return "A newer variant of a product to its previous, often discontinued predecessor."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.isVariantOf.rawValue:
+            self.isVariantOf = value as? ProductModel
+        case CodingKeys.predecessorOf.rawValue:
+            self.predecessorOf = value as? ProductModel
+        case CodingKeys.successorOf.rawValue:
+            self.successorOf = value as? ProductModel
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

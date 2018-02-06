@@ -142,6 +142,109 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.applicationCategory.rawValue:
+            return "ype of software application."
+        case CodingKeys.applicationSubCategory.rawValue:
+            return "Subcategory of the application."
+        case CodingKeys.applicationSuite.rawValue:
+            return "The name of the application suite to which the application belongs."
+        case CodingKeys.availableOnDevice.rawValue:
+            return "Device required to run the application."
+        case CodingKeys.countriesNotSupported.rawValue:
+            return "Countries for which the application is not supported."
+        case CodingKeys.countriesSupported.rawValue:
+            return "Countries for which the application is supported."
+        case CodingKeys.downloadUrl.rawValue:
+            return "If the file can be downloaded, URL to download the binary."
+        case CodingKeys.featureList.rawValue:
+            return "Features or modules provided by this application (and possibly required by other applications)."
+        case CodingKeys.fileSize.rawValue:
+            return "Size of the application / package (e.g. 18MB)."
+        case CodingKeys.installUrl.rawValue:
+            return "URL at which the app may be installed, if different from the URL of the item."
+        case CodingKeys.memoryRequirements.rawValue:
+            return "Minimum memory requirements."
+        case CodingKeys.operatingSystem.rawValue:
+            return "Operating systems supported (Windows 7, OSX 10.6, Android 1.6)."
+        case CodingKeys.permissions.rawValue:
+            return "Permission(s) required to run the app."
+        case CodingKeys.processorRequirements.rawValue:
+            return "Processor architecture required to run the application."
+        case CodingKeys.releaseNotes.rawValue:
+            return "Description of what changed in this version."
+        case CodingKeys.screenshot.rawValue:
+            return "A link to a screenshot image of the app."
+        case CodingKeys.softwareAddOn.rawValue:
+            return "Additional content for a software application."
+        case CodingKeys.softwareHelp.rawValue:
+            return "Software application help."
+        case CodingKeys.softwareRequirements.rawValue:
+            return "Component dependency requirements for application."
+        case CodingKeys.softwareVersion.rawValue:
+            return "Version of the software instance."
+        case CodingKeys.storageRequirements.rawValue:
+            return "Storage requirements (free space required)."
+        case CodingKeys.supportingData.rawValue:
+            return "Supporting data for a SoftwareApplication."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.applicationCategory.rawValue:
+            self.applicationCategory = value as? URLOrText
+        case CodingKeys.applicationSubCategory.rawValue:
+            self.applicationSubCategory = value as? URLOrText
+        case CodingKeys.applicationSuite.rawValue:
+            self.applicationSuite = value as? String
+        case CodingKeys.availableOnDevice.rawValue:
+            self.availableOnDevice = value as? String
+        case CodingKeys.countriesNotSupported.rawValue:
+            self.countriesNotSupported = value as? String
+        case CodingKeys.countriesSupported.rawValue:
+            self.countriesSupported = value as? String
+        case CodingKeys.downloadUrl.rawValue:
+            self.downloadUrl = value as? URL
+        case CodingKeys.featureList.rawValue:
+            self.featureList = value as? URLOrText
+        case CodingKeys.fileSize.rawValue:
+            self.fileSize = value as? String
+        case CodingKeys.installUrl.rawValue:
+            self.installUrl = value as? URL
+        case CodingKeys.memoryRequirements.rawValue:
+            self.memoryRequirements = value as? URLOrText
+        case CodingKeys.operatingSystem.rawValue:
+            self.operatingSystem = value as? String
+        case CodingKeys.permissions.rawValue:
+            self.permissions = value as? String
+        case CodingKeys.processorRequirements.rawValue:
+            self.processorRequirements = value as? String
+        case CodingKeys.releaseNotes.rawValue:
+            self.releaseNotes = value as? URLOrText
+        case CodingKeys.screenshot.rawValue:
+            self.screenshot = value as? ImageObjectOrURL
+        case CodingKeys.softwareAddOn.rawValue:
+            self.softwareAddOn = value as? SoftwareApplication
+        case CodingKeys.softwareHelp.rawValue:
+            self.softwareHelp = value as? CreativeWork
+        case CodingKeys.softwareRequirements.rawValue:
+            self.softwareRequirements = value as? URLOrText
+        case CodingKeys.softwareVersion.rawValue:
+            self.softwareVersion = value as? String
+        case CodingKeys.storageRequirements.rawValue:
+            self.storageRequirements = value as? URLOrText
+        case CodingKeys.supportingData.rawValue:
+            self.supportingData = value as? DataFeed
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

@@ -73,6 +73,53 @@ public class SOVideoObject: SOMediaObject, VideoObject {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case String(describing: CodingKeys.actors):
+            return "An actor."
+        case CodingKeys.caption.rawValue:
+            return "The caption for this object."
+        case String(describing: CodingKeys.directors):
+            return "A director."
+        case CodingKeys.musicBy.rawValue:
+            return "The composer of the soundtrack."
+        case CodingKeys.thumbnail.rawValue:
+            return "Thumbnail image for an image or video."
+        case CodingKeys.transcript.rawValue:
+            return "If this MediaObject is an AudioObject or VideoObject, the transcript of that object."
+        case CodingKeys.videoFrameSize.rawValue:
+            return "The frame size of the video."
+        case CodingKeys.videoQuality.rawValue:
+            return "The quality of the video."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case String(describing: CodingKeys.actors):
+            self.actors = value as? [Person]
+        case CodingKeys.caption.rawValue:
+            self.caption = value as? String
+        case String(describing: CodingKeys.directors):
+            self.directors = value as? [Person]
+        case CodingKeys.musicBy.rawValue:
+            self.musicBy = value as? MusicGroupOrPerson
+        case CodingKeys.thumbnail.rawValue:
+            self.thumbnail = value as? ImageObject
+        case CodingKeys.transcript.rawValue:
+            self.transcript = value as? String
+        case CodingKeys.videoFrameSize.rawValue:
+            self.videoFrameSize = value as? String
+        case CodingKeys.videoQuality.rawValue:
+            self.videoQuality = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

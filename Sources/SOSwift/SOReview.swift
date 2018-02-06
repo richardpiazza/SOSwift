@@ -54,6 +54,37 @@ public class SOReview: SOCreativeWork, Review {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.itemReviewed.rawValue:
+            return "The item that is being reviewed/rated."
+        case CodingKeys.reviewAspect.rawValue:
+            return "This Review or Rating is relevant to this part or facet of the itemReviewed."
+        case CodingKeys.reviewBody.rawValue:
+            return "The actual body of the review."
+        case CodingKeys.reviewRating.rawValue:
+            return "The rating given in this review."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.itemReviewed.rawValue:
+            self.itemReviewed = value as? Thing
+        case CodingKeys.reviewAspect.rawValue:
+            self.reviewAspect = value as? String
+        case CodingKeys.reviewBody.rawValue:
+            self.reviewBody = value as? String
+        case CodingKeys.reviewRating.rawValue:
+            self.reviewRating = value as? Rating
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

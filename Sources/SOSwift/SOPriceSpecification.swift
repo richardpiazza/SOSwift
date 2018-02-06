@@ -83,6 +83,57 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.eligibleQuantity.rawValue:
+            return "The interval and unit of measurement of ordering quantities for which the offer or price specification is valid."
+        case CodingKeys.eligibleTransactionVolume.rawValue:
+            return "The transaction volume, in a monetary unit, for which the offer or price specification is valid."
+        case CodingKeys.maxPrice.rawValue:
+            return "The highest price if the price is a range."
+        case CodingKeys.minPrice.rawValue:
+            return "The lowest price if the price is a range."
+        case CodingKeys.price.rawValue:
+            return "The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes."
+        case CodingKeys.priceCurrency.rawValue:
+            return "The currency of the price or a price component."
+        case CodingKeys.validFrom.rawValue:
+            return "The date when the item becomes valid."
+        case CodingKeys.validThrough.rawValue:
+            return "The date after when the item is not valid."
+        case CodingKeys.valueAddedTaxIncluded.rawValue:
+            return "Specifies whether the applicable value-added tax (VAT) is included in the price specification or not."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.eligibleQuantity.rawValue:
+            self.eligibleQuantity = value as? QuantitativeValue
+        case CodingKeys.eligibleTransactionVolume.rawValue:
+            self.eligibleTransactionVolume = value as? PriceSpecification
+        case CodingKeys.maxPrice.rawValue:
+            self.maxPrice = value as? Number
+        case CodingKeys.minPrice.rawValue:
+            self.minPrice = value as? Number
+        case CodingKeys.price.rawValue:
+            self.price = value as? NumberOrText
+        case CodingKeys.priceCurrency.rawValue:
+            self.priceCurrency = value as? String
+        case CodingKeys.validFrom.rawValue:
+            self.validFrom = value as? DateTime
+        case CodingKeys.validThrough.rawValue:
+            self.validThrough = value as? DateTime
+        case CodingKeys.valueAddedTaxIncluded.rawValue:
+            self.valueAddedTaxIncluded = value as? Bool
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

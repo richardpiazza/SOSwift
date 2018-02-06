@@ -198,6 +198,149 @@ public class SOProduct: SOThing, Product {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.additionalProperty.rawValue:
+            return "A property-value pair representing an additional characteristics of the entitity."
+        case CodingKeys.aggregateRating.rawValue:
+            return "The overall rating, based on a collection of reviews or ratings, of the item."
+        case CodingKeys.audience.rawValue:
+            return "An intended audience, i.e. a group for whom something was created."
+        case CodingKeys.award.rawValue:
+            return "An award won by or for this item."
+        case CodingKeys.brand.rawValue:
+            return "The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person."
+        case CodingKeys.category.rawValue:
+            return "A category for the item."
+        case CodingKeys.color.rawValue:
+            return "The color of the product."
+        case CodingKeys.depth.rawValue:
+            return "The depth of the item."
+        case CodingKeys.gtin12.rawValue:
+            return "The GTIN-12 code of the product, or the product to which the offer refers."
+        case CodingKeys.gtin13.rawValue:
+            return "The GTIN-13 code of the product, or the product to which the offer refers."
+        case CodingKeys.gtin14.rawValue:
+            return "The GTIN-14 code of the product, or the product to which the offer refers."
+        case CodingKeys.gtin8.rawValue:
+            return "The GTIN-8 code of the product, or the product to which the offer refers."
+        case CodingKeys.height.rawValue:
+            return "The height of the item."
+        case String(describing: CodingKeys.accessoryOrSparePartFor):
+            return "A pointer to another product (or multiple products) for which this product is an accessory or spare part."
+        case String(describing: CodingKeys.consumableFor):
+            return "A pointer to another product (or multiple products) for which this product is a consumable."
+        case String(describing: CodingKeys.relatedTo):
+            return "A pointer to another, somehow related product (or multiple products)."
+        case String(describing: CodingKeys.similarTo):
+            return "A pointer to another, functionally similar product (or multiple products)."
+        case CodingKeys.itemCondition.rawValue:
+            return "A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer."
+        case CodingKeys.logo.rawValue:
+            return "An associated logo."
+        case CodingKeys.manufacturer.rawValue:
+            return "The manufacturer of the product."
+        case CodingKeys.material.rawValue:
+            return "A material that something is made from, e.g. leather, wool, cotton, paper."
+        case CodingKeys.model.rawValue:
+            return "The model of the product."
+        case CodingKeys.mpn.rawValue:
+            return "The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers."
+        case CodingKeys.offers.rawValue:
+            return "An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event."
+        case CodingKeys.productID.rawValue:
+            return "The product identifier, such as ISBN."
+        case CodingKeys.productionDate.rawValue:
+            return "The date of production of the item, e.g. vehicle."
+        case CodingKeys.purchaseDate.rawValue:
+            return "The date the item e.g. vehicle was purchased by the current owner."
+        case CodingKeys.releaseDate.rawValue:
+            return "The release date of a product or product model."
+        case String(describing: CodingKeys.reviews):
+            return "A review of the item."
+        case CodingKeys.sku.rawValue:
+            return "The Stock Keeping Unit."
+        case CodingKeys.weight.rawValue:
+            return "The weight of the product or person."
+        case CodingKeys.width.rawValue:
+            return "The width of the item."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.additionalProperty.rawValue:
+            self.additionalProperty = value as? PropertyValue
+        case CodingKeys.aggregateRating.rawValue:
+            self.aggregateRating = value as? AggregateRating
+        case CodingKeys.audience.rawValue:
+            self.audience = value as? Audience
+        case CodingKeys.award.rawValue:
+            self.award = value as? String
+        case CodingKeys.brand.rawValue:
+            self.brand = value as? BrandOrOrganization
+        case CodingKeys.category.rawValue:
+            self.category = value as? ThingOrText
+        case CodingKeys.color.rawValue:
+            self.color = value as? String
+        case CodingKeys.depth.rawValue:
+            self.depth = value as? DistanceOrQuantitativeValue
+        case CodingKeys.gtin12.rawValue:
+            self.gtin12 = value as? String
+        case CodingKeys.gtin13.rawValue:
+            self.gtin13 = value as? String
+        case CodingKeys.gtin14.rawValue:
+            self.gtin14 = value as? String
+        case CodingKeys.gtin8.rawValue:
+            self.gtin8 = value as? String
+        case CodingKeys.height.rawValue:
+            self.height = value as? DistanceOrQuantitativeValue
+        case String(describing: CodingKeys.accessoryOrSparePartFor):
+            self.accessoryOrSparePartFor = value as? [Product]
+        case String(describing: CodingKeys.consumableFor):
+            self.consumableFor = value as? [Product]
+        case String(describing: CodingKeys.relatedTo):
+            self.relatedTo = value as? [ProductOrService]
+        case String(describing: CodingKeys.similarTo):
+            self.similarTo = value as? [ProductOrService]
+        case CodingKeys.itemCondition.rawValue:
+            self.itemCondition = value as? OfferItemCondition
+        case CodingKeys.logo.rawValue:
+            self.logo = value as? ImageObjectOrURL
+        case CodingKeys.manufacturer.rawValue:
+            self.manufacturer = value as? Organization
+        case CodingKeys.material.rawValue:
+            self.material = value as? ProductOrURLOrText
+        case CodingKeys.model.rawValue:
+            self.model = value as? ProductModelOrText
+        case CodingKeys.mpn.rawValue:
+            self.mpn = value as? String
+        case CodingKeys.offers.rawValue:
+            self.offers = value as? [Offer]
+        case CodingKeys.productID.rawValue:
+            self.productID = value as? String
+        case CodingKeys.productionDate.rawValue:
+            self.productionDate = value as? DateOnly
+        case CodingKeys.purchaseDate.rawValue:
+            self.purchaseDate = value as? DateOnly
+        case CodingKeys.releaseDate.rawValue:
+            self.releaseDate = value as? DateOnly
+        case String(describing: CodingKeys.reviews):
+            self.reviews = value as? [Review]
+        case CodingKeys.sku.rawValue:
+            self.sku = value as? String
+        case CodingKeys.weight.rawValue:
+            self.weight = value as? QuantitativeValue
+        case CodingKeys.width.rawValue:
+            self.width = value as? DistanceOrQuantitativeValue
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

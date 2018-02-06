@@ -43,6 +43,29 @@ public class SOPublicationEvent: SOEvent, PublicationEvent {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.publishedBy.rawValue:
+            return "An agent associated with the publication event."
+        case CodingKeys.publishedOn.rawValue:
+            return "A broadcast service associated with the publication event."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.publishedBy.rawValue:
+            self.publishedBy = value as? OrganizationOrPerson
+        case CodingKeys.publishedOn.rawValue:
+            self.publishedOn = value as? BroadcastService
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

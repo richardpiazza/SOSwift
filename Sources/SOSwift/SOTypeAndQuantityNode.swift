@@ -60,6 +60,41 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.amountOfThisGood.rawValue:
+            return "The quantity of the goods included in the offer."
+        case CodingKeys.businessFunction.rawValue:
+            return "The business function of the offer or component of a bundle."
+        case CodingKeys.typeOfGood.rawValue:
+            return "The product that this structured value is referring to."
+        case CodingKeys.unitCode.rawValue:
+            return "The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL."
+        case CodingKeys.unitText.rawValue:
+            return "A string or text indicating the unit of measurement."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.amountOfThisGood.rawValue:
+            self.amountOfThisGood = value as? Number
+        case CodingKeys.businessFunction.rawValue:
+            self.businessFunction = value as? BusinessFunction
+        case CodingKeys.typeOfGood.rawValue:
+            self.typeOfGood = value as? ProductOrService
+        case CodingKeys.unitCode.rawValue:
+            self.unitCode = value as? URLOrText
+        case CodingKeys.unitText.rawValue:
+            self.unitText = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

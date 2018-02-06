@@ -143,6 +143,105 @@ public class SOPlace: SOThing, Place {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.additionalProperty.rawValue:
+            return "A property-value pair representing an additional characteristics of the entitity."
+        case CodingKeys.address.rawValue:
+            return "Physical address of the item."
+        case CodingKeys.aggregateRating.rawValue:
+            return "The overall rating, based on a collection of reviews or ratings, of the item."
+        case CodingKeys.amenityFeature.rawValue:
+            return "An amenity feature (e.g. a characteristic or service) of the Accommodation."
+        case CodingKeys.branchCode.rawValue:
+            return "A short textual code that uniquely identifies a place of business."
+        case CodingKeys.containedInPlace.rawValue:
+            return "The basic containment relation between a place and one that contains it."
+        case String(describing: CodingKeys.containsPlaces):
+            return "The basic containment relation between a place and another that it contains."
+        case String(describing: CodingKeys.events):
+            return "Upcoming or past event associated with this place, organization, or action."
+        case CodingKeys.faxNumber.rawValue:
+            return "The fax number."
+        case CodingKeys.geo.rawValue:
+            return "The geo coordinates of the place."
+        case CodingKeys.globalLocationNumber.rawValue:
+            return "The Global Location Number."
+        case String(describing: CodingKeys.map):
+            return "A URL to a map of the place."
+        case CodingKeys.isicV4.rawValue:
+            return "The International Standard of Industrial Classification of All Economic Activities."
+        case CodingKeys.logo.rawValue:
+            return "An associated logo."
+        case CodingKeys.maximumAttendeeCapacity.rawValue:
+            return "The total number of individuals that may attend an event or venue."
+        case CodingKeys.openingHoursSpecification.rawValue:
+            return "The opening hours of a certain place."
+        case String(describing: CodingKeys.photos):
+            return "A photograph of this place."
+        case String(describing: CodingKeys.reviews):
+            return "A review of the item."
+        case CodingKeys.smokingAllowed.rawValue:
+            return "Indicates whether it is allowed to smoke in the place."
+        case CodingKeys.specialOpeningHoursSpecification.rawValue:
+            return "The special opening hours of a certain place."
+        case CodingKeys.telephone.rawValue:
+            return "The telephone number."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.additionalProperty.rawValue:
+            self.additionalProperty = value as? PropertyValue
+        case CodingKeys.address.rawValue:
+            self.address = value as? PostalAddressOrText
+        case CodingKeys.aggregateRating.rawValue:
+            self.aggregateRating = value as? AggregateRating
+        case CodingKeys.amenityFeature.rawValue:
+            self.amenityFeature = value as? LocationFeatureSpecification
+        case CodingKeys.branchCode.rawValue:
+            self.branchCode = value as? String
+        case CodingKeys.containedInPlace.rawValue:
+            self.containedInPlace = value as? Place
+        case String(describing: CodingKeys.containsPlaces):
+            self.containsPlaces = value as? [Place]
+        case String(describing: CodingKeys.events):
+            self.events = value as? [Event]
+        case CodingKeys.faxNumber.rawValue:
+            self.faxNumber = value as? String
+        case CodingKeys.geo.rawValue:
+            self.geo = value as? GeoCoordinatesOrGeoShape
+        case CodingKeys.globalLocationNumber.rawValue:
+            self.globalLocationNumber = value as? String
+        case String(describing: CodingKeys.map):
+            self.map = value as? MapOrURL
+        case CodingKeys.isicV4.rawValue:
+            self.isicV4 = value as? String
+        case CodingKeys.logo.rawValue:
+            self.logo = value as? ImageObjectOrURL
+        case CodingKeys.maximumAttendeeCapacity.rawValue:
+            self.maximumAttendeeCapacity = value as? Int
+        case CodingKeys.openingHoursSpecification.rawValue:
+            self.openingHoursSpecification = value as? [OpeningHoursSpecification]
+        case String(describing: CodingKeys.photos):
+            self.photos = value as? [ImageObjectOrPhotograph]
+        case String(describing: CodingKeys.reviews):
+            self.reviews = value as? [Review]
+        case CodingKeys.smokingAllowed.rawValue:
+            self.smokingAllowed = value as? Bool
+        case CodingKeys.specialOpeningHoursSpecification.rawValue:
+            self.specialOpeningHoursSpecification = value as? [OpeningHoursSpecification]
+        case CodingKeys.telephone.rawValue:
+            self.telephone = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

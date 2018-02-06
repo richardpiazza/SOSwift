@@ -74,6 +74,53 @@ public class SOQualitativeValue: SOEnumeration, QualitativeValue {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.additionalProperty.rawValue:
+            return "A property-value pair representing an additional characteristics of the entitity."
+        case CodingKeys.equal.rawValue:
+            return "This ordering relation for qualitative values indicates that the subject is equal to the object."
+        case CodingKeys.greater.rawValue:
+            return "This ordering relation for qualitative values indicates that the subject is greater than the object."
+        case CodingKeys.greaterOrEqual.rawValue:
+            return "This ordering relation for qualitative values indicates that the subject is greater than or equal to the object."
+        case CodingKeys.lesser.rawValue:
+            return "This ordering relation for qualitative values indicates that the subject is lesser than the object."
+        case CodingKeys.lesserOrEqual.rawValue:
+            return "This ordering relation for qualitative values indicates that the subject is lesser than or equal to the object."
+        case CodingKeys.nonEqual.rawValue:
+            return "This ordering relation for qualitative values indicates that the subject is not equal to the object."
+        case CodingKeys.valueReference.rawValue:
+            return "A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.additionalProperty.rawValue:
+            self.additionalProperty = value as? PropertyValue
+        case CodingKeys.equal.rawValue:
+            self.equal = value as? QualitativeValue
+        case CodingKeys.greater.rawValue:
+            self.greater = value as? QualitativeValue
+        case CodingKeys.greaterOrEqual.rawValue:
+            self.greaterOrEqual = value as? QualitativeValue
+        case CodingKeys.lesser.rawValue:
+            self.lesserOrEqual = value as? QualitativeValue
+        case CodingKeys.lesserOrEqual.rawValue:
+            self.lesserOrEqual = value as? QualitativeValue
+        case CodingKeys.nonEqual.rawValue:
+            self.nonEqual = value as? QualitativeValue
+        case CodingKeys.valueReference.rawValue:
+            self.valueReference = value as? ValueReference
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

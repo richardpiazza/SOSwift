@@ -294,6 +294,229 @@ public class SOPerson: SOThing, Person {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.additionalName.rawValue:
+            return "An additional name for a Person, can be used for a middle name."
+        case CodingKeys.address.rawValue:
+            return "Physical address of the item."
+        case CodingKeys.affiliation.rawValue:
+            return "An organization that this person is affiliated with."
+        case CodingKeys.alumniOf.rawValue:
+            return "An organization that the person is an alumni of."
+        case String(describing: CodingKeys.awards):
+            return "An award won by or for this item."
+        case CodingKeys.birthDate.rawValue:
+            return "Date of birth."
+        case CodingKeys.birthPlace.rawValue:
+            return "he place where the person was born."
+        case String(describing: CodingKeys.brands):
+            return "The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person."
+        case CodingKeys.children.rawValue:
+            return "A child of the person."
+        case String(describing: CodingKeys.colleagues):
+            return "A colleague of the person."
+        case String(describing: CodingKeys.contactPoints):
+            return "A contact point for a person or organization."
+        case CodingKeys.deathDate.rawValue:
+            return "Date of death."
+        case CodingKeys.deathPlace.rawValue:
+            return "The place where the person died."
+        case CodingKeys.duns.rawValue:
+            return "he Dun & Bradstreet Number for identifying an organization or business person."
+        case CodingKeys.email.rawValue:
+            return "Email address."
+        case CodingKeys.familyName.rawValue:
+            return "Family name. In the U.S., the last name of an Person."
+        case CodingKeys.faxNumber.rawValue:
+            return "The fax number."
+        case CodingKeys.follows.rawValue:
+            return "The most generic uni-directional social relation."
+        case CodingKeys.funder.rawValue:
+            return "A person or organization that supports (sponsors) something through some kind of financial contribution."
+        case CodingKeys.gender.rawValue:
+            return "Gender of the person."
+        case CodingKeys.givenName.rawValue:
+            return "Given name. In the U.S., the first name of a Person."
+        case CodingKeys.globalLocationNumber.rawValue:
+            return "The Global Location Number."
+        case String(describing: CodingKeys.offerCatalog):
+            return "Indicates an OfferCatalog listing for this Organization, Person, or Service."
+        case String(describing: CodingKeys.pointsOfSales):
+            return "Points-of-Sales operated by the organization or person."
+        case CodingKeys.height.rawValue:
+            return "The height of the item."
+        case CodingKeys.homeLocation.rawValue:
+            return "A contact location for a person's residence."
+        case CodingKeys.honorificPrefix.rawValue:
+            return "An honorific prefix preceding a Person's name such as Dr/Mrs/Mr."
+        case CodingKeys.honorificSuffix.rawValue:
+            return "An honorific suffix preceding a Person's name such as M.D. /PhD/MSCSW."
+        case CodingKeys.isicV4.rawValue:
+            return "The International Standard of Industrial Classification of All Economic Activities."
+        case CodingKeys.jobTitle.rawValue:
+            return "The job title of the person (for example, Financial Manager)."
+        case CodingKeys.knows.rawValue:
+            return "The most generic bi-directional social/work relation."
+        case CodingKeys.makesOffer.rawValue:
+            return "A pointer to products or services offered by the organization or person."
+        case CodingKeys.memberOf.rawValue:
+            return "An Organization (or ProgramMembership) to which this Person or Organization belongs."
+        case CodingKeys.naics.rawValue:
+            return "The North American Industry Classification System Code."
+        case CodingKeys.nationality.rawValue:
+            return "Nationality of the person."
+        case CodingKeys.netWorth.rawValue:
+            return "The total financial value of the person as calculated by subtracting assets from liabilities."
+        case String(describing: CodingKeys.occupation):
+            return "The Person's occupation."
+        case CodingKeys.owns.rawValue:
+            return "Products owned by the organization or person."
+        case String(describing: CodingKeys.parents):
+            return "A parent of this person."
+        case CodingKeys.performerIn.rawValue:
+            return "Event that this person is a performer or participant in."
+        case CodingKeys.publishingPrinciples.rawValue:
+            return "Indicates a document describing the editorial principles of an Organization."
+        case CodingKeys.relatedTo.rawValue:
+            return "The most generic familial relation."
+        case CodingKeys.seeks.rawValue:
+            return "A pointer to products or services sought by the organization or person (demand)."
+        case String(describing: CodingKeys.siblings):
+            return "A sibling of the person."
+        case CodingKeys.sponsor.rawValue:
+            return "A person or organization that supports a thing through a pledge, promise, or financial contribution."
+        case CodingKeys.spouse.rawValue:
+            return "The person's spouse."
+        case CodingKeys.taxID.rawValue:
+            return "The Tax / Fiscal ID of the organization or person."
+        case CodingKeys.telephone.rawValue:
+            return "The telephone number."
+        case CodingKeys.vatID.rawValue:
+            return "The Value-added Tax ID of the organization or person."
+        case CodingKeys.weight.rawValue:
+            return "The weight of the product or person."
+        case CodingKeys.workLocation.rawValue:
+            return "A contact location for a person's place of work."
+        case CodingKeys.worksFor.rawValue:
+            return "Organizations that the person works for."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.additionalName.rawValue:
+            self.additionalName = value as? String
+        case CodingKeys.address.rawValue:
+            self.address = value as? PostalAddressOrText
+        case CodingKeys.affiliation.rawValue:
+            self.affiliation = value as? Organization
+        case CodingKeys.alumniOf.rawValue:
+            self.alumniOf = value as? EducationalOrganizationOrOrganization
+        case String(describing: CodingKeys.awards):
+            self.awards = value as? [String]
+        case CodingKeys.birthDate.rawValue:
+            self.birthDate = value as? DateOnly
+        case CodingKeys.birthPlace.rawValue:
+            self.birthPlace = value as? Place
+        case String(describing: CodingKeys.brands):
+            self.brands = value as? [BrandOrOrganization]
+        case CodingKeys.children.rawValue:
+            self.children = value as? [Person]
+        case String(describing: CodingKeys.colleagues):
+            self.colleagues = value as? [PersonOrURL]
+        case String(describing: CodingKeys.contactPoints):
+            self.contactPoints = value as? [ContactPoint]
+        case CodingKeys.deathDate.rawValue:
+            self.deathDate = value as? DateOnly
+        case CodingKeys.deathPlace.rawValue:
+            self.deathPlace = value as? Place
+        case CodingKeys.duns.rawValue:
+            self.duns = value as? String
+        case CodingKeys.email.rawValue:
+            self.email = value as? String
+        case CodingKeys.familyName.rawValue:
+            self.familyName = value as? String
+        case CodingKeys.faxNumber.rawValue:
+            self.faxNumber = value as? String
+        case CodingKeys.follows.rawValue:
+            self.follows = value as? [Person]
+        case CodingKeys.funder.rawValue:
+            self.funder = value as? OrganizationOrPerson
+        case CodingKeys.gender.rawValue:
+            self.gender = value as? GenderOrText
+        case CodingKeys.givenName.rawValue:
+            self.givenName = value as? String
+        case CodingKeys.globalLocationNumber.rawValue:
+            self.globalLocationNumber = value as? String
+        case String(describing: CodingKeys.offerCatalog):
+            self.offerCatalog = value as? OfferCatalog
+        case String(describing: CodingKeys.pointsOfSales):
+            self.pointsOfSales = value as? [Place]
+        case CodingKeys.height.rawValue:
+            self.height = value as? DistanceOrQuantitativeValue
+        case CodingKeys.homeLocation.rawValue:
+            self.homeLocation = value as? ContactPointOrPlace
+        case CodingKeys.honorificPrefix.rawValue:
+            self.honorificPrefix = value as? String
+        case CodingKeys.honorificSuffix.rawValue:
+            self.honorificSuffix = value as? String
+        case CodingKeys.isicV4.rawValue:
+            self.isicV4 = value as? String
+        case CodingKeys.jobTitle.rawValue:
+            self.jobTitle = value as? String
+        case CodingKeys.knows.rawValue:
+            self.knows = value as? [Person]
+        case CodingKeys.makesOffer.rawValue:
+            self.makesOffer = value as? [Offer]
+        case CodingKeys.memberOf.rawValue:
+            self.memberOf = value as? [OrganizationOrProgramMembership]
+        case CodingKeys.naics.rawValue:
+            self.naics = value as? String
+        case CodingKeys.nationality.rawValue:
+            self.nationality = value as? Country
+        case CodingKeys.netWorth.rawValue:
+            self.netWorth = value as? MonetaryAmountOrPriceSpecification
+        case String(describing: CodingKeys.occupation):
+            self.occupation = value as? Occupation
+        case CodingKeys.owns.rawValue:
+            self.owns = value as? [ProductOrService]
+        case String(describing: CodingKeys.parents):
+            self.parents = value as? [Person]
+        case CodingKeys.performerIn.rawValue:
+            self.performerIn = value as? Event
+        case CodingKeys.publishingPrinciples.rawValue:
+            self.publishingPrinciples = value as? CreativeWorkOrURL
+        case CodingKeys.relatedTo.rawValue:
+            self.relatedTo = value as? [Person]
+        case CodingKeys.seeks.rawValue:
+            self.seeks = value as? [Demand]
+        case String(describing: CodingKeys.siblings):
+            self.siblings = value as? [Person]
+        case CodingKeys.sponsor.rawValue:
+            self.sponsor = value as? OrganizationOrPerson
+        case CodingKeys.spouse.rawValue:
+            self.spouse = value as? Person
+        case CodingKeys.taxID.rawValue:
+            self.taxID = value as? String
+        case CodingKeys.telephone.rawValue:
+            self.telephone = value as? String
+        case CodingKeys.vatID.rawValue:
+            self.vatID = value as? String
+        case CodingKeys.weight.rawValue:
+            self.weight = value as? QuantitativeValue
+        case CodingKeys.workLocation.rawValue:
+            self.workLocation = value as? ContactPointOrPlace
+        case CodingKeys.worksFor.rawValue:
+            self.worksFor = value as? [Organization]
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

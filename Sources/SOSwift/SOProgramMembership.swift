@@ -53,6 +53,37 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.hostingOrganization.rawValue:
+            return "The organization (airline, travelers' club, etc.) the membership is made with."
+        case String(describing: CodingKeys.members):
+            return "A member of an Organization or a ProgramMembership."
+        case CodingKeys.membershipNumber.rawValue:
+            return "A unique identifier for the membership."
+        case CodingKeys.programName.rawValue:
+            return "The program providing the membership."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.hostingOrganization.rawValue:
+            self.hostingOrganization = value as? Organization
+        case String(describing: CodingKeys.members):
+            self.members = value as? [OrganizationOrPerson]
+        case CodingKeys.membershipNumber.rawValue:
+            self.membershipNumber = value as? String
+        case CodingKeys.programName.rawValue:
+            self.programName = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

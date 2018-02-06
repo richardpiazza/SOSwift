@@ -82,6 +82,45 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
     public var poBox: String? {
         return postOfficeBoxNumber
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.addressCountry.rawValue:
+            return "The country. For example, USA."
+        case CodingKeys.addressLocality.rawValue:
+            return "The locality. For example, Mountain View."
+        case CodingKeys.addressRegion.rawValue:
+            return "The region. For example, CA."
+        case CodingKeys.postOfficeBoxNumber.rawValue:
+            return "The post office box number for PO box addresses."
+        case CodingKeys.postalCode.rawValue:
+            return "The postal code. For example, 94043."
+        case CodingKeys.streetAddress.rawValue:
+            return "The street address. For example, 1600 Amphitheatre Pkwy."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.addressCountry.rawValue:
+            self.addressCountry = value as? CountryOrText
+        case CodingKeys.addressLocality.rawValue:
+            self.addressLocality = value as? String
+        case CodingKeys.addressRegion.rawValue:
+            self.addressRegion = value as? String
+        case CodingKeys.postOfficeBoxNumber.rawValue:
+            self.postOfficeBoxNumber = value as? String
+        case CodingKeys.postalCode.rawValue:
+            self.postalCode = value as? String
+        case CodingKeys.streetAddress.rawValue:
+            self.streetAddress = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

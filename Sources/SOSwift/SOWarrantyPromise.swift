@@ -44,6 +44,29 @@ public class SOWarrantyPromise: SOThing, WarrantyPromise {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.durationOfWarranty.rawValue:
+            return "The duration of the warranty promise."
+        case CodingKeys.warrantyScope.rawValue:
+            return "The scope of the warranty promise."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.durationOfWarranty.rawValue:
+            self.durationOfWarranty = value as? QuantitativeValue
+        case CodingKeys.warrantyScope.rawValue:
+            self.warrantyScope = value as? WarrantyScope
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

@@ -58,6 +58,41 @@ public class SOQuestion: SOCreativeWork, Question {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.acceptedAnswer.rawValue:
+            return "The answer that has been accepted as best, typically on a Question/Answer site."
+        case CodingKeys.answerCount.rawValue:
+            return "The number of answers this question has received."
+        case CodingKeys.downvoteCount.rawValue:
+            return "The number of downvotes this question, answer or comment has received from the community."
+        case CodingKeys.suggestedAnswer.rawValue:
+            return "An answer (possibly one of several, possibly incorrect) to a Question."
+        case CodingKeys.upvoteCount.rawValue:
+            return "The number of upvotes this question, answer or comment has received from the community."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.acceptedAnswer.rawValue:
+            self.acceptedAnswer = value as? Answer
+        case CodingKeys.answerCount.rawValue:
+            self.answerCount = value as? Int
+        case CodingKeys.downvoteCount.rawValue:
+            self.downvoteCount = value as? Int
+        case CodingKeys.suggestedAnswer.rawValue:
+            self.suggestedAnswer = value as? Answer
+        case CodingKeys.upvoteCount.rawValue:
+            self.upvoteCount = value as? Int
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

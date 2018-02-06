@@ -82,6 +82,53 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.maxValue.rawValue:
+            return "The upper value of some characteristic or property."
+        case CodingKeys.measurementTechnique.rawValue:
+            return "A technique or technology used in a Dataset."
+        case CodingKeys.minValue.rawValue:
+            return "The lower value of some characteristic or property."
+        case CodingKeys.propertyID.rawValue:
+            return "A commonly used identifier for the characteristic represented by the property."
+        case CodingKeys.unitCode.rawValue:
+            return "The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL."
+        case CodingKeys.unitText.rawValue:
+            return "A string or text indicating the unit of measurement."
+        case CodingKeys.value.rawValue:
+            return "The value of the quantitative value or property value node."
+        case CodingKeys.valueReference.rawValue:
+            return "A secondary value that provides additional information on the original value."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.maxValue.rawValue:
+            self.maxValue = value as? Number
+        case CodingKeys.measurementTechnique.rawValue:
+            self.measurementTechnique = value as? URLOrText
+        case CodingKeys.minValue.rawValue:
+            self.minValue = value as? Number
+        case CodingKeys.propertyID.rawValue:
+            self.propertyID = value as? URLOrText
+        case CodingKeys.unitCode.rawValue:
+            self.unitCode = value as? URLOrText
+        case CodingKeys.unitText.rawValue:
+            self.unitText = value as? String
+        case CodingKeys.value.rawValue:
+            self.value = value as? Value
+        case CodingKeys.valueReference.rawValue:
+            self.valueReference = value as? ValueReference
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {
