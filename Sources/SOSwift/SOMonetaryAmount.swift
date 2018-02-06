@@ -65,6 +65,45 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.currency.rawValue:
+            return "The currency in which the monetary amount is expressed."
+        case CodingKeys.maxValue.rawValue:
+            return "The upper value of some characteristic or property."
+        case CodingKeys.minValue.rawValue:
+            return "The lower value of some characteristic or property."
+        case CodingKeys.validFrom.rawValue:
+            return "The date when the item becomes valid."
+        case CodingKeys.validThrough.rawValue:
+            return "The date after when the item is not valid."
+        case CodingKeys.value.rawValue:
+            return "The value of the quantitative value or property value node."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.currency.rawValue:
+            self.currency = value as? String
+        case CodingKeys.maxValue.rawValue:
+            self.maxValue = value as? Number
+        case CodingKeys.minValue.rawValue:
+            self.minValue = value as? Number
+        case CodingKeys.validFrom.rawValue:
+            self.validFrom = value as? DateTime
+        case CodingKeys.validThrough.rawValue:
+            self.validThrough = value as? DateTime
+        case CodingKeys.value.rawValue:
+            self.value = value as? Value
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

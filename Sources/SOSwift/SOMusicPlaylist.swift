@@ -46,6 +46,29 @@ public class SOMusicPlaylist: SOCreativeWork, MusicPlaylist {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.numTracks.rawValue:
+            return "The number of tracks in this album or playlist."
+        case CodingKeys.tracks.rawValue:
+            return "A music recording (track)—usually a single song."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.numTracks.rawValue:
+            self.numTracks = value as? Int
+        case CodingKeys.tracks.rawValue:
+            self.tracks = value as? [ItemListOrMusicRecording]
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

@@ -58,6 +58,41 @@ public class SONewsArticle: SOArticle, NewsArticle {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.dateline.rawValue:
+            return "The location where the NewsArticle was produced."
+        case CodingKeys.printColumn.rawValue:
+            return "The number of the column in which the NewsArticle appears in the print edition."
+        case CodingKeys.printEdition.rawValue:
+            return "The edition of the print product in which the NewsArticle appears."
+        case CodingKeys.printPage.rawValue:
+            return "If this NewsArticle appears in print, this field indicates the name of the page on which the article is found."
+        case CodingKeys.printSection.rawValue:
+            return "If this NewsArticle appears in print, this field indicates the print section in which the article appeared."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.dateline.rawValue:
+            self.dateline = value as? String
+        case CodingKeys.printColumn.rawValue:
+            self.printColumn = value as? String
+        case CodingKeys.printEdition.rawValue:
+            self.printEdition = value as? String
+        case CodingKeys.printPage.rawValue:
+            self.printPage = value as? String
+        case CodingKeys.printSection.rawValue:
+            self.printSection = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

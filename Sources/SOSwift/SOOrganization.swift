@@ -273,6 +273,205 @@ public class SOOrganization: SOThing, Organization {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.actionableFeedbackPolicy.rawValue:
+            return "For a NewsMediaOrganization or other news-related Organization, a statement about public engagement activities."
+        case CodingKeys.address.rawValue:
+            return "Physical address of the item."
+        case CodingKeys.aggregateRating.rawValue:
+            return "The overall rating, based on a collection of reviews or ratings, of the item."
+        case CodingKeys.alumni.rawValue:
+            return "Alumni of an organization."
+        case CodingKeys.areaSurved.rawValue:
+            return "The geographic area where a service or offered item is provided."
+        case String(describing: CodingKeys.awards):
+            return "An award won by or for this item."
+        case String(describing: CodingKeys.brands):
+            return "The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person."
+        case String(describing: CodingKeys.contactPoints):
+            return "A contact point for a person or organization."
+        case CodingKeys.correctionsPolicy.rawValue:
+            return "For an Organization, a statement describing disclosure and correction policy for errors."
+        case CodingKeys.department.rawValue:
+            return "A relationship between an organization and a department of that organization, also described as an organization."
+        case CodingKeys.dissolutionDate.rawValue:
+            return "The date that this organization was dissolved."
+        case CodingKeys.diversityPolicy.rawValue:
+            return "Statement on diversity policy by an Organization"
+        case CodingKeys.duns.rawValue:
+            return "The Dun & Bradstreet DUNS number for identifying an organization or business person."
+        case CodingKeys.email.rawValue:
+            return "Email address."
+        case String(describing: CodingKeys.employees):
+            return "Someone working for this organization."
+        case CodingKeys.ethicsPolicy.rawValue:
+            return "Statement about ethics policy."
+        case String(describing: CodingKeys.events):
+            return "Upcoming or past event associated with this place, organization, or action."
+        case CodingKeys.faxNumber.rawValue:
+            return "The fax number."
+        case String(describing: CodingKeys.founders):
+            return "A person who founded this organization."
+        case CodingKeys.foundingDate.rawValue:
+            return "The date that this organization was founded."
+        case CodingKeys.foundingLocation.rawValue:
+            return "The place where the Organization was founded."
+        case CodingKeys.funder.rawValue:
+            return "A person or organization that supports (sponsors) something through some kind of financial contribution."
+        case CodingKeys.globalLocationNumber.rawValue:
+            return "The Global Location Number."
+        case String(describing: CodingKeys.offerCatalog):
+            return "Indicates an OfferCatalog listing for this Organization, Person, or Service."
+        case String(describing: CodingKeys.pointsOfSales):
+            return "Points-of-Sales operated by the organization or person."
+        case CodingKeys.isicV4.rawValue:
+            return "The International Standard of Industrial Classification of All Economic Activities."
+        case CodingKeys.legalName.rawValue:
+            return "The official name of the organization, e.g. the registered company name."
+        case CodingKeys.leiCode.rawValue:
+            return "An organization identifier that uniquely identifies a legal entity."
+        case CodingKeys.location.rawValue:
+            return "The location of for example where the event is happening, an organization is located, or where an action takes place."
+        case CodingKeys.logo.rawValue:
+            return "An associated logo."
+        case CodingKeys.makesOffers.rawValue:
+            return "A pointer to products or services offered by the organization or person."
+        case CodingKeys.member.rawValue:
+            return "A member of an Organization or a ProgramMembership."
+        case CodingKeys.memberOf.rawValue:
+            return "An Organization (or ProgramMembership) to which this Person or Organization belongs."
+        case CodingKeys.naics.rawValue:
+            return "The North American Industry Classification System code."
+        case CodingKeys.numberOfEmployees.rawValue:
+            return "The number of employees in an organization e.g. business."
+        case CodingKeys.owns.rawValue:
+            return "Products owned by the organization or person."
+        case CodingKeys.parentOrganization.rawValue:
+            return "The larger organization that this organization is a subOrganization of, if any."
+        case CodingKeys.publishingPrinciples.rawValue:
+            return "The publishingPrinciples property indicates (typically via URL) a document describing the editorial principles of an Organization."
+        case String(describing: CodingKeys.reviews):
+            return "A review of the item."
+        case CodingKeys.seeks.rawValue:
+            return "A pointer to products or services sought by the organization or person (demand)."
+        case CodingKeys.sponsor.rawValue:
+            return "A person or organization that supports a thing through a pledge, promise, or financial contribution."
+        case CodingKeys.subOrganization.rawValue:
+            return "A relationship between two organizations where the first includes the second."
+        case CodingKeys.taxID.rawValue:
+            return "The Tax / Fiscal ID of the organization or person."
+        case CodingKeys.telephone.rawValue:
+            return "The telephone number."
+        case CodingKeys.unnamedSourcesPolicy.rawValue:
+            return "A statement about policy on use of unnamed sources and the decision process required."
+        case CodingKeys.vatID.rawValue:
+            return "The Value-added Tax ID of the organization or person."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.actionableFeedbackPolicy.rawValue:
+            self.actionableFeedbackPolicy = value as? CreativeWorkOrURL
+        case CodingKeys.address.rawValue:
+            self.address = value as? PostalAddressOrText
+        case CodingKeys.aggregateRating.rawValue:
+            self.aggregateRating = value as? AggregateRating
+        case CodingKeys.alumni.rawValue:
+            self.alumni = value as? [Person]
+        case CodingKeys.areaSurved.rawValue:
+            self.areaServed = value as? AreaServed
+        case String(describing: CodingKeys.awards):
+            self.awards = value as? [String]
+        case String(describing: CodingKeys.brands):
+            self.brands = value as? [BrandOrOrganization]
+        case String(describing: CodingKeys.contactPoints):
+            self.contactPoints = value as? [ContactPoint]
+        case CodingKeys.correctionsPolicy.rawValue:
+            self.correctionsPolicy = value as? CreativeWorkOrURL
+        case CodingKeys.department.rawValue:
+            self.department = value as? Organization
+        case CodingKeys.dissolutionDate.rawValue:
+            self.dissolutionDate = value as? DateOnly
+        case CodingKeys.diversityPolicy.rawValue:
+            self.diversityPolicy = value as? CreativeWorkOrURL
+        case CodingKeys.duns.rawValue:
+            self.duns = value as? String
+        case CodingKeys.email.rawValue:
+            self.email = value as? String
+        case String(describing: CodingKeys.employees):
+            self.employees = value as? [Person]
+        case CodingKeys.ethicsPolicy.rawValue:
+            self.ethicsPolicy = value as? CreativeWorkOrURL
+        case String(describing: CodingKeys.events):
+            self.events = value as? [Event]
+        case CodingKeys.faxNumber.rawValue:
+            self.faxNumber = value as? String
+        case String(describing: CodingKeys.founders):
+            self.founders = value as? [Person]
+        case CodingKeys.foundingDate.rawValue:
+            self.foundingDate = value as? DateOnly
+        case CodingKeys.foundingLocation.rawValue:
+            self.foundingLocation = value as? Place
+        case CodingKeys.funder.rawValue:
+            self.funder = value as? OrganizationOrPerson
+        case CodingKeys.globalLocationNumber.rawValue:
+            self.globalLocationNumber = value as? String
+        case String(describing: CodingKeys.offerCatalog):
+            self.offerCatalog = value as? OfferCatalog
+        case String(describing: CodingKeys.pointsOfSales):
+            self.pointsOfSales = value as? [Place]
+        case CodingKeys.isicV4.rawValue:
+            self.isicV4 = value as? String
+        case CodingKeys.legalName.rawValue:
+            self.legalName = value as? String
+        case CodingKeys.leiCode.rawValue:
+            self.leiCode = value as? String
+        case CodingKeys.location.rawValue:
+            self.location = value as? PlaceOrPostalAddressOrText
+        case CodingKeys.logo.rawValue:
+            self.logo = value as? ImageObjectOrURL
+        case CodingKeys.makesOffers.rawValue:
+            self.makesOffers = value as? [Offer]
+        case CodingKeys.member.rawValue:
+            self.member = value as? [OrganizationOrPerson]
+        case CodingKeys.memberOf.rawValue:
+            self.memberOf = value as? OrganizationOrProgramMembership
+        case CodingKeys.naics.rawValue:
+            self.naics = value as? String
+        case CodingKeys.numberOfEmployees.rawValue:
+            self.numberOfEmployees = value as? QuantitativeValue
+        case CodingKeys.owns.rawValue:
+            self.owns = value as? [OwnershipInfoOrProduct]
+        case CodingKeys.parentOrganization.rawValue:
+            self.parentOrganization = value as? Organization
+        case CodingKeys.publishingPrinciples.rawValue:
+            self.publishingPrinciples = value as? CreativeWorkOrURL
+        case String(describing: CodingKeys.reviews):
+            self.reviews = value as? [Review]
+        case CodingKeys.seeks.rawValue:
+            self.seeks = value as? [Demand]
+        case CodingKeys.sponsor.rawValue:
+            self.sponsor = value as? OrganizationOrPerson
+        case CodingKeys.subOrganization.rawValue:
+            self.subOrganization = value as? Organization
+        case CodingKeys.taxID.rawValue:
+            self.taxID = value as? String
+        case CodingKeys.telephone.rawValue:
+            self.telephone = value as? String
+        case CodingKeys.unnamedSourcesPolicy.rawValue:
+            self.unnamedSourcesPolicy = value as? CreativeWorkOrURL
+        case CodingKeys.vatID.rawValue:
+            self.vatID = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

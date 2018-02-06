@@ -63,6 +63,45 @@ public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.address.rawValue:
+            return "Physical address of the item."
+        case CodingKeys.addressCountry.rawValue:
+            return "The country. For example, USA."
+        case CodingKeys.elevation.rawValue:
+            return "The elevation of a location (WGS 84)."
+        case CodingKeys.latitude.rawValue:
+            return "The latitude of a location."
+        case CodingKeys.longitude.rawValue:
+            return "The longitude of a location."
+        case CodingKeys.postalCode.rawValue:
+            return "The postal code."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.address.rawValue:
+            self.address = value as? PostalAddressOrText
+        case CodingKeys.addressCountry.rawValue:
+            self.addressCountry = value as? CountryOrText
+        case CodingKeys.elevation.rawValue:
+            self.elevation = value as? NumberOrText
+        case CodingKeys.latitude.rawValue:
+            self.latitude = value as? NumberOrText
+        case CodingKeys.longitude.rawValue:
+            self.longitude = value as? NumberOrText
+        case CodingKeys.postalCode.rawValue:
+            self.postalCode = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

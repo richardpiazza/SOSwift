@@ -84,6 +84,61 @@ public class SOMusicComposition: SOCreativeWork, MusicComposition {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.composer.rawValue:
+            return "The person or organization who wrote a composition, or who is the composer of a work performed at some event."
+        case CodingKeys.firstPerformance.rawValue:
+            return "The date and place the work was first performed."
+        case CodingKeys.includedComposition.rawValue:
+            return "Smaller compositions included in this work."
+        case CodingKeys.iswcCode.rawValue:
+            return "The International Standard Musical Work Code for the composition."
+        case CodingKeys.lyricist.rawValue:
+            return "The person who wrote the words."
+        case CodingKeys.lyrics.rawValue:
+            return "The words in the song."
+        case CodingKeys.musicArrangement.rawValue:
+            return "An arrangement derived from the composition."
+        case CodingKeys.musicCompositionForm.rawValue:
+            return "The type of composition."
+        case CodingKeys.musicalKey.rawValue:
+            return "The key, mode, or scale this composition uses."
+        case CodingKeys.recordedAs.rawValue:
+            return "An audio recording of the work."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.composer.rawValue:
+            self.composer = value as? OrganizationOrPerson
+        case CodingKeys.firstPerformance.rawValue:
+            self.firstPerformance = value as? Event
+        case CodingKeys.includedComposition.rawValue:
+            self.includedComposition = value as? MusicComposition
+        case CodingKeys.iswcCode.rawValue:
+            self.iswcCode = value as? String
+        case CodingKeys.lyricist.rawValue:
+            self.lyricist = value as? Person
+        case CodingKeys.lyrics.rawValue:
+            self.lyrics = value as? CreativeWork
+        case CodingKeys.musicArrangement.rawValue:
+            self.musicArrangement = value as? MusicComposition
+        case CodingKeys.musicCompositionForm.rawValue:
+            self.musicCompositionForm = value as? String
+        case CodingKeys.musicalKey.rawValue:
+            self.musicalKey = value as? String
+        case CodingKeys.recordedAs.rawValue:
+            self.recordedAs = value as? MusicRecording
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

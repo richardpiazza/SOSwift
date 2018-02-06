@@ -52,6 +52,33 @@ public class SOItemList: SOIntangible, ItemList {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.itemListElement.rawValue:
+            return "The Element."
+        case CodingKeys.itemListOrder.rawValue:
+            return "Type of ordering."
+        case CodingKeys.numberOfItems.rawValue:
+            return "The number of items in an ItemList."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.itemListElement.rawValue:
+            self.itemListElement = value as? ListItemOrThingOrText
+        case CodingKeys.itemListOrder.rawValue:
+            self.itemListOrder = value as? ItemListOrderOrText
+        case CodingKeys.numberOfItems.rawValue:
+            self.numberOfItems = value as? Int
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

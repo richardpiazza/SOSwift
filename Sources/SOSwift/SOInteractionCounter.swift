@@ -47,6 +47,33 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.interactionService.rawValue:
+            return "The WebSite or SoftwareApplication where the interactions took place."
+        case CodingKeys.interactionType.rawValue:
+            return "The Action representing the type of interaction."
+        case CodingKeys.userInteractionCount.rawValue:
+            return "The number of interactions for the CreativeWork using the WebSite or SoftwareApplication."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.interactionService.rawValue:
+            self.interactionService = value as? SoftwareApplicationOrWebsite
+        case CodingKeys.interactionType.rawValue:
+            self.interactionType = value as? Action
+        case CodingKeys.userInteractionCount.rawValue:
+            self.userInteractionCount = value as? Int
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

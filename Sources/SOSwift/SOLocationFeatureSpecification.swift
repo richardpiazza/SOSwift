@@ -48,6 +48,33 @@ public class SOLocationFeatureSpecification: SOPropertyValue, LocationFeatureSpe
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.hoursAvailable.rawValue:
+            return "The hours during which this service or contact is available."
+        case CodingKeys.validFrom.rawValue:
+            return "The date when the item becomes valid."
+        case CodingKeys.validThrough.rawValue:
+            return "The date after when the item is not valid."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.hoursAvailable.rawValue:
+            self.hoursAvailable = value as? [OpeningHoursSpecification]
+        case CodingKeys.validFrom.rawValue:
+            self.validFrom = value as? DateTime
+        case CodingKeys.validThrough.rawValue:
+            self.validThrough = value as? DateTime
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

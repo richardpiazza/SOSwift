@@ -62,6 +62,41 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.closes.rawValue:
+            return "The closing hour of the place or service on the given day(s) of the week."
+        case CodingKeys.dayOfWeek.rawValue:
+            return "The day of the week for which these opening hours are valid."
+        case CodingKeys.opens.rawValue:
+            return "The opening hour of the place or service on the given day(s) of the week."
+        case CodingKeys.validFrom.rawValue:
+            return "The date when the item becomes valid."
+        case CodingKeys.validThrough.rawValue:
+            return "The date after when the item is not valid."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.closes.rawValue:
+            self.closes = value as? Time
+        case CodingKeys.dayOfWeek.rawValue:
+            self.dayOfWeek = value as? DayOfWeek
+        case CodingKeys.opens.rawValue:
+            self.opens = value as? Time
+        case CodingKeys.validFrom.rawValue:
+            self.validFrom = value as? DateTime
+        case CodingKeys.validThrough.rawValue:
+            self.validThrough = value as? DateTime
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

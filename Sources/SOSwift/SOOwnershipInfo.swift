@@ -53,6 +53,37 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.acquiredFrom.rawValue:
+            return "The organization or person from which the product was acquired."
+        case CodingKeys.ownedFrom.rawValue:
+            return "The date and time of obtaining the product."
+        case CodingKeys.ownedThrough.rawValue:
+            return "The date and time of giving up ownership on the product."
+        case CodingKeys.typeOfGood.rawValue:
+            return "The product that this structured value is referring to."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.acquiredFrom.rawValue:
+            self.acquiredFrom = value as? OrganizationOrPerson
+        case CodingKeys.ownedFrom.rawValue:
+            self.ownedFrom = value as? DateTime
+        case CodingKeys.ownedThrough.rawValue:
+            self.ownedThrough = value as? DateTime
+        case CodingKeys.typeOfGood.rawValue:
+            self.typeOfGood = value as? ProductOrService
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

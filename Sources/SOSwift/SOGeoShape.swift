@@ -73,6 +73,53 @@ public class SOGeoShape: SOThing, GeoShape {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.address.rawValue:
+            return "Physical address of the item."
+        case CodingKeys.addressCountry.rawValue:
+            return "The country."
+        case CodingKeys.box.rawValue:
+            return "A box is the area enclosed by the rectangle formed by two points."
+        case CodingKeys.circle.rawValue:
+            return "A circle is the circular region of a specified radius centered at a specified latitude and longitude."
+        case CodingKeys.elevation.rawValue:
+            return "The elevation of a location."
+        case CodingKeys.line.rawValue:
+            return "A line is a point-to-point path consisting of two or more points."
+        case CodingKeys.polygon.rawValue:
+            return "A polygon is the area enclosed by a point-to-point path for which the starting and ending points are the same."
+        case CodingKeys.postalCode.rawValue:
+            return "The postal code."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.address.rawValue:
+            self.address = value as? PostalAddressOrText
+        case CodingKeys.addressCountry.rawValue:
+            self.addressCountry = value as? CountryOrText
+        case CodingKeys.box.rawValue:
+            self.box = value as? String
+        case CodingKeys.circle.rawValue:
+            self.circle = value as? String
+        case CodingKeys.elevation.rawValue:
+            self.elevation = value as? NumberOrText
+        case CodingKeys.line.rawValue:
+            self.line = value as? String
+        case CodingKeys.polygon.rawValue:
+            self.polygon = value as? String
+        case CodingKeys.postalCode.rawValue:
+            self.postalCode = value as? String
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

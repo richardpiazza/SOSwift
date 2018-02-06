@@ -58,6 +58,37 @@ public class SOMusicAlbum: SOMusicPlaylist, MusicAlbum {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.albumProductionType.rawValue:
+            return "Classification of the album by it's type of content: soundtrack, live album, studio album, etc."
+        case CodingKeys.albumRelease.rawValue:
+            return "A release of this album."
+        case CodingKeys.albumReleaseType.rawValue:
+            return "The kind of release which this album is: single, EP or album."
+        case CodingKeys.byArtist.rawValue:
+            return "The artist that performed this album or recording."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.albumProductionType.rawValue:
+            self.albumProductionType = value as? MusicAlbumProduction
+        case CodingKeys.albumRelease.rawValue:
+            self.albumRelease = value as? MusicRelease
+        case CodingKeys.albumReleaseType.rawValue:
+            self.albumReleaseType = value as? MusicAlbumRelease
+        case CodingKeys.byArtist.rawValue:
+            self.byArtist = value as? MusicGroup
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

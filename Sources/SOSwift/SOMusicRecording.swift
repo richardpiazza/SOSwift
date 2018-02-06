@@ -64,6 +64,45 @@ public class SOMusicRecording: SOCreativeWork, MusicRecording {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.byArtist.rawValue:
+            return "The artist that performed this album or recording."
+        case CodingKeys.duration.rawValue:
+            return "The duration of the item"
+        case CodingKeys.inAlbum.rawValue:
+            return "The album to which this recording belongs."
+        case CodingKeys.inPlaylist.rawValue:
+            return "The playlist to which this recording belongs."
+        case CodingKeys.isrcCode.rawValue:
+            return "The International Standard Recording Code for the recording."
+        case CodingKeys.recordingOf.rawValue:
+            return "The composition this track is a recording of."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.byArtist.rawValue:
+            self.byArtist = value as? MusicGroup
+        case CodingKeys.duration.rawValue:
+            self.duration = value as? Duration
+        case CodingKeys.inAlbum.rawValue:
+            self.inAlbum = value as? MusicAlbum
+        case CodingKeys.inPlaylist.rawValue:
+            self.inPlaylist = value as? MusicPlaylist
+        case CodingKeys.isrcCode.rawValue:
+            self.isrcCode = value as? String
+        case CodingKeys.recordingOf.rawValue:
+            self.recordingOf = value as? MusicComposition
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

@@ -53,6 +53,37 @@ public class SOImageObject: SOMediaObject, ImageObject {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.caption.rawValue:
+            return "The caption for this object."
+        case CodingKeys.exifData.rawValue:
+            return "exif data for this object."
+        case CodingKeys.representativeOfPage.rawValue:
+            return "Indicates whether this image is representative of the content of the page."
+        case CodingKeys.thumbnail.rawValue:
+            return "Thumbnail image for an image or video."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.caption.rawValue:
+            self.caption = value as? String
+        case CodingKeys.exifData.rawValue:
+            self.exifData = value as? PropertyValueOrText
+        case CodingKeys.representativeOfPage.rawValue:
+            self.representativeOfPage = value as? Bool
+        case CodingKeys.thumbnail.rawValue:
+            self.thumbnail = value as? ImageObject
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

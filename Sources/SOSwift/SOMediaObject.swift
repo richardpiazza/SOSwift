@@ -119,6 +119,85 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.associatedArticle.rawValue:
+            return "A NewsArticle associated with the Media Object."
+        case CodingKeys.bitrate.rawValue:
+            return "The bitrate of the media object."
+        case CodingKeys.contentSize.rawValue:
+            return "File size in (mega/kilo) bytes."
+        case CodingKeys.contentUrl.rawValue:
+            return "Actual bytes of the media object, for example the image file or video file."
+        case CodingKeys.duration.rawValue:
+            return "The duration of the item."
+        case CodingKeys.embedUrl.rawValue:
+            return "A URL pointing to a player for a specific video."
+        case CodingKeys.encodesCreativeWork.rawValue:
+            return "The CreativeWork encoded by this media object."
+        case CodingKeys.encodingFormat.rawValue:
+            return "Format of encoding: mp3, mpeg4, etc."
+        case CodingKeys.expires.rawValue:
+            return "Date the content expires and is no longer useful or available. Useful for videos."
+        case CodingKeys.height.rawValue:
+            return "The height of the item."
+        case CodingKeys.playerType.rawValue:
+            return "Player type required."
+        case CodingKeys.productionCompany.rawValue:
+            return "The production company or studio responsible for the item e.g. series, video game, episode etc."
+        case CodingKeys.regionsAllowed.rawValue:
+            return "The regions where the media is allowed."
+        case CodingKeys.requiresSubscription.rawValue:
+            return "Indicates if use of the media require a subscription (either paid or free)."
+        case CodingKeys.uploadDate.rawValue:
+            return "Date when this media object was uploaded to this site."
+        case CodingKeys.width.rawValue:
+            return "The width of the item."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.associatedArticle.rawValue:
+            self.associatedArticle = value as? NewsArticle
+        case CodingKeys.bitrate.rawValue:
+            self.bitrate = value as? String
+        case CodingKeys.contentSize.rawValue:
+            self.contentSize = value as? String
+        case CodingKeys.contentUrl.rawValue:
+            self.contentUrl = value as? URL
+        case CodingKeys.duration.rawValue:
+            self.duration = value as? Duration
+        case CodingKeys.embedUrl.rawValue:
+            self.embedUrl = value as? URL
+        case CodingKeys.encodesCreativeWork.rawValue:
+            self.encodesCreativeWork = value as? CreativeWork
+        case CodingKeys.encodingFormat.rawValue:
+            self.encodingFormat = value as? String
+        case CodingKeys.expires.rawValue:
+            self.expires = value as? DateOnly
+        case CodingKeys.height.rawValue:
+            self.height = value as? DistanceOrQuantitativeValue
+        case CodingKeys.playerType.rawValue:
+            self.playerType = value as? String
+        case CodingKeys.productionCompany.rawValue:
+            self.productionCompany = value as? Organization
+        case CodingKeys.regionsAllowed.rawValue:
+            self.regionsAllowed = value as? Place
+        case CodingKeys.requiresSubscription.rawValue:
+            self.requiresSubscription = value as? Bool
+        case CodingKeys.uploadDate.rawValue:
+            self.uploadDate = value as? DateOnly
+        case CodingKeys.width.rawValue:
+            self.width = value as? DistanceOrQuantitativeValue
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {

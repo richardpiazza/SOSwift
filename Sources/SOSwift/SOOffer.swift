@@ -245,6 +245,181 @@ public class SOOffer: SOIntangible, Offer {
         
         try super.encode(to: encoder)
     }
+    
+    // MARK: - Attributed
+    public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
+        switch attributeName {
+        case CodingKeys.acceptedPaymentMethod.rawValue:
+            return "The payment method(s) accepted by seller for this offer."
+        case CodingKeys.addOn.rawValue:
+            return "An additional offer that can only be obtained in combination with the first base offer."
+        case CodingKeys.advanceBookingRequirement.rawValue:
+            return "The amount of time that is required between accepting the offer and the actual usage of the resource or service."
+        case CodingKeys.aggregateRating.rawValue:
+            return "The overall rating, based on a collection of reviews or ratings, of the item."
+        case CodingKeys.areaServed.rawValue:
+            return "The geographic area where a service or offered item is provided."
+        case CodingKeys.availability.rawValue:
+            return "The availability of this item."
+        case CodingKeys.availabilityEnds.rawValue:
+            return "The end of the availability of the product or service included in the offer."
+        case CodingKeys.availabilityStarts.rawValue:
+            return "The beginning of the availability of the product or service included in the offer."
+        case CodingKeys.availableAtOrFrom.rawValue:
+            return "The place(s) from which the offer can be obtained."
+        case CodingKeys.availableDeliveryMethod.rawValue:
+            return "The delivery method(s) available for this offer."
+        case CodingKeys.businessFunction.rawValue:
+            return "The business function of the offer or component of a bundle."
+        case CodingKeys.category.rawValue:
+            return "A category for the item."
+        case CodingKeys.deliveryLeadTime.rawValue:
+            return "The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup."
+        case CodingKeys.eligibleCustomerType.rawValue:
+            return "The type(s) of customers for which the given offer is valid."
+        case CodingKeys.eligibleDuration.rawValue:
+            return "The duration for which the given offer is valid."
+        case CodingKeys.eligibleQuantity.rawValue:
+            return "The interval and unit of measurement of ordering quantities for which the offer or price specification is valid."
+        case CodingKeys.eligibleRegion.rawValue:
+            return "The code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid."
+        case CodingKeys.eligibleTransactionVolume.rawValue:
+            return "The transaction volume, in a monetary unit, for which the offer or price specification is valid."
+        case CodingKeys.gtin12.rawValue:
+            return "The GTIN-12 code of the product, or the product to which the offer refers."
+        case CodingKeys.gtin13.rawValue:
+            return "The GTIN-13 code of the product, or the product to which the offer refers."
+        case CodingKeys.gtin14.rawValue:
+            return "The GTIN-14 code of the product, or the product to which the offer refers."
+        case CodingKeys.gtin8.rawValue:
+            return "The GTIN-8 code of the product, or the product to which the offer refers."
+        case CodingKeys.includesObject.rawValue:
+            return "This links to a node or nodes indicating the exact quantity of the products included in the offer."
+        case CodingKeys.ineligibleRegion.rawValue:
+            return "The code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid."
+        case CodingKeys.inventoryLevel.rawValue:
+            return "The current approximate inventory level for the item or items."
+        case CodingKeys.itemCondition.rawValue:
+            return "A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer."
+        case CodingKeys.itemOffered.rawValue:
+            return "The item being offered."
+        case CodingKeys.mpn.rawValue:
+            return "The Manufacturer Part Number of the product, or the product to which the offer refers."
+        case CodingKeys.offeredBy.rawValue:
+            return "A pointer to the organization or person making the offer."
+        case CodingKeys.price.rawValue:
+            return "The offer price of a product."
+        case CodingKeys.priceCurrency.rawValue:
+            return "The currency of the price or a price component."
+        case CodingKeys.priceSpecification.rawValue:
+            return "One or more detailed price specifications, indicating the unit price and delivery or payment charges."
+        case CodingKeys.priceValidUntil.rawValue:
+            return "The date after which the price is no longer available."
+        case String(describing: CodingKeys.reviews):
+            return "A review of the item."
+        case CodingKeys.seller.rawValue:
+            return " An entity which offers (sells / leases / lends / loans) the services / goods."
+        case CodingKeys.serialNumber.rawValue:
+            return "The serial number or any alphanumeric identifier of a particular product."
+        case CodingKeys.sku.rawValue:
+            return "The Stock Keeping Unit."
+        case CodingKeys.validFrom.rawValue:
+            return "The date when the item becomes valid."
+        case CodingKeys.validThrough.rawValue:
+            return "The date after when the item is not valid."
+        case CodingKeys.warranty.rawValue:
+            return "The warranty promise(s) included in the offer."
+        default:
+            return super.displayDescription(forAttributeNamed: attributeName)
+        }
+    }
+    
+    public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
+        switch attributeName {
+        case CodingKeys.acceptedPaymentMethod.rawValue:
+            self.acceptedPaymentMethod = value
+        case CodingKeys.addOn.rawValue:
+            self.addOn = value as? Offer
+        case CodingKeys.advanceBookingRequirement.rawValue:
+            self.advanceBookingRequirement = value as? QuantitativeValue
+        case CodingKeys.aggregateRating.rawValue:
+            self.aggregateRating = value as? AggregateRating
+        case CodingKeys.areaServed.rawValue:
+            self.areaServed = value as? AreaServed
+        case CodingKeys.availability.rawValue:
+            self.availability = value as? ItemAvailability
+        case CodingKeys.availabilityEnds.rawValue:
+            self.availabilityEnds = value as? DateTime
+        case CodingKeys.availabilityStarts.rawValue:
+            self.availabilityStarts = value as? DateTime
+        case CodingKeys.availableAtOrFrom.rawValue:
+            self.availableAtOrFrom = value as? Place
+        case CodingKeys.availableDeliveryMethod.rawValue:
+            self.availableDeliveryMethod = value as? DeliveryMethod
+        case CodingKeys.businessFunction.rawValue:
+            self.businessFunction = value as? BusinessFunction
+        case CodingKeys.category.rawValue:
+            self.category = value as? PhysicalActivityCategoryOrThingOrText
+        case CodingKeys.deliveryLeadTime.rawValue:
+            self.deliveryLeadTime = value as? QuantitativeValue
+        case CodingKeys.eligibleCustomerType.rawValue:
+            self.eligibleCustomerType = value as? BusinessEntityType
+        case CodingKeys.eligibleDuration.rawValue:
+            self.eligibleDuration = value as? QuantitativeValue
+        case CodingKeys.eligibleQuantity.rawValue:
+            self.eligibleQuantity = value as? QuantitativeValue
+        case CodingKeys.eligibleRegion.rawValue:
+            self.eligibleRegion = value as? GeoShapeOrPlaceOrText
+        case CodingKeys.eligibleTransactionVolume.rawValue:
+            self.eligibleTransactionVolume = value as? PriceSpecification
+        case CodingKeys.gtin12.rawValue:
+            self.gtin12 = value as? String
+        case CodingKeys.gtin13.rawValue:
+            self.gtin13 = value as? String
+        case CodingKeys.gtin14.rawValue:
+            self.gtin14 = value as? String
+        case CodingKeys.gtin8.rawValue:
+            self.gtin8 = value as? String
+        case CodingKeys.includesObject.rawValue:
+            self.includesObject = value as? TypeAndQuantityNode
+        case CodingKeys.ineligibleRegion.rawValue:
+            self.ineligibleRegion = value as? GeoShapeOrPlaceOrText
+        case CodingKeys.inventoryLevel.rawValue:
+            self.inventoryLevel = value as? QuantitativeValue
+        case CodingKeys.itemCondition.rawValue:
+            self.itemCondition = value as? OfferItemCondition
+        case CodingKeys.itemOffered.rawValue:
+            self.itemOffered = value as? ProductOrService
+        case CodingKeys.mpn.rawValue:
+            self.mpn = value as? String
+        case CodingKeys.offeredBy.rawValue:
+            self.offeredBy = value as? OrganizationOrPerson
+        case CodingKeys.price.rawValue:
+            self.price = value as? NumberOrText
+        case CodingKeys.priceCurrency.rawValue:
+            self.priceCurrency = value as? String
+        case CodingKeys.priceSpecification.rawValue:
+            self.priceSpecification = value as? PriceSpecification
+        case CodingKeys.priceValidUntil.rawValue:
+            self.priceValidUntil = value as? DateOnly
+        case String(describing: CodingKeys.reviews):
+            self.reviews = value as? [Review]
+        case CodingKeys.seller.rawValue:
+            self.seller = value as? OrganizationOrPerson
+        case CodingKeys.serialNumber.rawValue:
+            self.serialNumber = value as? String
+        case CodingKeys.sku.rawValue:
+            self.sku = value as? String
+        case CodingKeys.validFrom.rawValue:
+            self.validFrom = value as? DateTime
+        case CodingKeys.validThrough.rawValue:
+            self.validThrough = value as? DateTime
+        case CodingKeys.warranty.rawValue:
+            self.warranty = value as? WarrantyPromise
+        default:
+            super.setValue(value, forAttributeNamed: attributeName)
+        }
+    }
 }
 
 public extension KeyedEncodingContainer {
