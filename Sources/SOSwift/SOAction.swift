@@ -146,7 +146,7 @@ public class SOAction: SOThing, Action {
         case CodingKeys.startTime.rawValue:
             self.startTime = value as? DateTime
         case CodingKeys.target.rawValue:
-            self .target = value as? EntryPoint
+            self.target = value as? EntryPoint
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }

@@ -15,7 +15,7 @@ __CocoaPods__
 
 __Swift Package Manager__
 
-    .package(url: "https://github.com/richardpiazza/SOSwift", .upToNextMinor(from: "2.3.0"))
+    .package(url: "https://github.com/richardpiazza/SOSwift", .upToNextMinor(from: "2.3.1"))
 
 ### Schema.org
 

@@ -53,4 +53,19 @@ public extension Attributed {
     func setValue(_ value: Any?, forAttribute attribute: Attribute) {
         self.setValue(value, forAttributeNamed: attribute.name)
     }
+    
+    func value(forAttributeNamed attributeName: String) -> Any? {
+        let mirror = Mirror(reflecting: self)
+        for child in mirror.children {
+            if child.label! == attributeName {
+                return child.value
+            }
+        }
+        
+        return nil
+    }
+    
+    func value(forAttribute attribute: Attribute) -> Any? {
+        return self.value(forAttributeNamed: attribute.name)
+    }
 }
