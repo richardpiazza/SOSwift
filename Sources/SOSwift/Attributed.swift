@@ -56,9 +56,9 @@ public extension Attributed {
     
     func value(forAttributeNamed attributeName: String) -> Any? {
         let mirror = Mirror(reflecting: self)
-        for child in mirror.children {
-            if child.label! == attributeName {
-                return child.value
+        for variable in mirror.variables {
+            if variable.0 == attributeName {
+                return variable.2
             }
         }
         
