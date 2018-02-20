@@ -14,34 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SOSwift::SOSwift-ObjC"
-               BuildableName = "SOSwift_ObjC.framework"
-               BlueprintName = "SOSwift-ObjC"
-               ReferencedContainer = "container:SOSwift.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SOSwiftVocabulary::SOSwiftVocabulary-ObjC"
-               BuildableName = "SOSwiftVocabulary_ObjC.framework"
-               BlueprintName = "SOSwiftVocabulary-ObjC"
-               ReferencedContainer = "container:SOSwift.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "SOSwift::SOSwift"
                BuildableName = "SOSwift.framework"
                BlueprintName = "SOSwift"
@@ -99,9 +71,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SOSwift::SOSwift-ObjC"
-            BuildableName = "SOSwift_ObjC.framework"
-            BlueprintName = "SOSwift-ObjC"
+            BlueprintIdentifier = "SOSwift::SOSwift"
+            BuildableName = "SOSwift.framework"
+            BlueprintName = "SOSwift"
             ReferencedContainer = "container:SOSwift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
