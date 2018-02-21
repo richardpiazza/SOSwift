@@ -58,16 +58,18 @@ public extension KeyedDecodingContainer {
         var decodables = [ImageObjectOrPhotograph]()
         
         do {
-            let array = try self.decode([Dictionary<String, Any>].self, forKey: key)
+            let array = try self.decode([Any].self, forKey: key)
             for element in array {
-                let data = try JSONSerialization.data(withJSONObject: element, options: JSONSerialization.WritingOptions())
-                
-                if element[SOThing.Keywords.type] as? String == SOImageObject.type {
-                    let decodable = try JSONDecoder().decode(SOImageObject.self, from: data)
-                    decodables.append(decodable)
-                } else if element[SOThing.Keywords.type] as? String == SOPhotograph.type {
-                    let decodable = try JSONDecoder().decode(SOPhotograph.self, from: data)
-                    decodables.append(decodable)
+                if let dictionary = element as? [String : Any] {
+                    let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
+                    
+                    if dictionary[SOThing.Keywords.type] as? String == SOImageObject.type {
+                        let decodable = try JSONDecoder().decode(SOImageObject.self, from: data)
+                        decodables.append(decodable)
+                    } else if dictionary[SOThing.Keywords.type] as? String == SOPhotograph.type {
+                        let decodable = try JSONDecoder().decode(SOPhotograph.self, from: data)
+                        decodables.append(decodable)
+                    }
                 }
             }
             

@@ -349,4 +349,10 @@ public extension KeyedEncodingContainer {
             try self.encode(typedValue, forKey: key)
         }
     }
+    
+    public mutating func encodeIfPresent(_ value: [Product]?, forKey key: K) throws {
+        if let typedValue = value as? [SOProduct] {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
 }

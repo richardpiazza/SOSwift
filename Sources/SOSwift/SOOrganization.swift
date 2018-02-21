@@ -480,4 +480,10 @@ public extension KeyedEncodingContainer {
             try self.encode(typedValue, forKey: key)
         }
     }
+    
+    public mutating func encodeIfPresent(_ value: [Organization]?, forKey key: K) throws {
+        if let typedValue = value as? [SOOrganization] {
+            try self.encode(typedValue, forKey: key)
+        }
+    }
 }

@@ -42,7 +42,7 @@ public class SOLocationFeatureSpecification: SOPropertyValue, LocationFeatureSpe
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(self.hoursAvailable, forKey: .hoursAvailable)
+        try container.encodeIfPresent(self.hoursAvailable, forKey: .hoursAvailable)
         try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
         try container.encodeIfPresent(self.validThrough, forKey: .validThrough)
         
