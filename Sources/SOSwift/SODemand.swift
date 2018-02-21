@@ -169,11 +169,11 @@ public class SODemand: SOIntangible, Demand {
         
         try container.encodeIfPresent(self.advanceBookingRequirement, forKey: .advanceBookingRequirement)
         try container.encodeIfPresent(self.areaServed, forKey: .areaServed)
-        try container.encodeIfPresent(self.availability, forKey: .availability)
+        try container.encodeIfPresent(self.availability?.rawValue, forKey: .availability)
         try container.encodeIfPresent(self.availabilityEnds, forKey: .availabilityEnds)
         try container.encodeIfPresent(self.availabilityStarts, forKey: .availabilityStarts)
         try container.encodeIfPresent(self.availableAtOrFrom, forKey: .availableAtOrFrom)
-        try container.encodeIfPresent(self.availableDeliveryMethod, forKey: .availableDeliveryMethod)
+        try container.encodeIfPresent(self.availableDeliveryMethod?.rawValue, forKey: .availableDeliveryMethod)
         try container.encodeIfPresent(self.businessFunction?.rawValue, forKey: .businessFunction)
         try container.encodeIfPresent(self.deliveryLeadTime, forKey: .deliveryLeadTime)
         try container.encodeIfPresent(self.eligibleCustomerType?.rawValue, forKey: .eligibleCustomerType)

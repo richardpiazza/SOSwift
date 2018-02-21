@@ -53,7 +53,7 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encodeIfPresent(self.amountOfThisGood, forKey: .amountOfThisGood)
-        try container.encodeIfPresent(self.businessFunction, forKey: .businessFunction)
+        try container.encodeIfPresent(self.businessFunction?.rawValue, forKey: .businessFunction)
         try container.encodeIfPresent(self.typeOfGood, forKey: .typeOfGood)
         try container.encodeIfPresent(self.unitCode, forKey: .unitCode)
         try container.encodeIfPresent(self.unitText, forKey: .unitText)
