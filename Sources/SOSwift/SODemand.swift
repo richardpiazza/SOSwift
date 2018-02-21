@@ -138,6 +138,7 @@ public class SODemand: SOIntangible, Demand {
             self.eligibleCustomerType = BusinessEntityType(rawValue: rawValue)
         }
         self.eligibleDuration = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .eligibleDuration)
+        self.eligibleRegion = try container.decodeGeoShapeOrPlaceOrTextIfPresent(forKey: .eligibleRegion)
         self.eligibleQuantity = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .eligibleQuantity)
         self.eligibleTransactionVolume = try container.decodeIfPresent(SOPriceSpecification.self, forKey: .eligibleTransactionVolume)
         self.gtin12 = try container.decodeIfPresent(String.self, forKey: .gtin12)
@@ -145,6 +146,7 @@ public class SODemand: SOIntangible, Demand {
         self.gtin14 = try container.decodeIfPresent(String.self, forKey: .gtin14)
         self.gtin8 = try container.decodeIfPresent(String.self, forKey: .gtin8)
         self.includesObject = try container.decodeIfPresent(SOTypeAndQuantityNode.self, forKey: .includesObject)
+        self.ineligibleRegion = try container.decodeGeoShapeOrPlaceOrTextIfPresent(forKey: .ineligibleRegion)
         self.inventoryLevel = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .inventoryLevel)
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .itemCondition) {
             self.itemCondition = OfferItemCondition(rawValue: rawValue)

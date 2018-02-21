@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E1F4C4DF203DB86E00EFEF08 /* GeoShapeOrPlaceOrText+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4C4DE203DB86E00EFEF08 /* GeoShapeOrPlaceOrText+SOSwift.swift */; };
 		OBJ_357 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_363 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_347 /* Package.swift */; };
 		OBJ_369 /* AlignmentObjectOrCourseOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* AlignmentObjectOrCourseOrTextTests.swift */; };
@@ -393,6 +394,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E1F4C4DE203DB86E00EFEF08 /* GeoShapeOrPlaceOrText+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoShapeOrPlaceOrText+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* AreaServed+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AreaServed+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* SOMusicRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMusicRelease.swift; sourceTree = "<group>"; };
 		OBJ_101 /* SONewsArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SONewsArticle.swift; sourceTree = "<group>"; };
@@ -728,7 +730,7 @@
 		OBJ_97 /* SOMusicGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMusicGroup.swift; sourceTree = "<group>"; };
 		OBJ_98 /* SOMusicPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMusicPlaylist.swift; sourceTree = "<group>"; };
 		OBJ_99 /* SOMusicRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMusicRecording.swift; sourceTree = "<group>"; };
-		"SOSwift::SOSwift::Product" /* SOSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SOSwift::SOSwift::Product" /* SOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SOSwift::SOSwiftTests::Product" /* SOSwiftTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SOSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SOSwiftVocabulary::SOSwiftVocabulary::Product" /* SOSwiftVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SOSwiftVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1012,7 +1014,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1021,7 +1023,6 @@
 				OBJ_191 /* Dependencies */,
 				OBJ_348 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -1057,6 +1058,7 @@
 				OBJ_28 /* EducationalOrganizationOrOrganization+SOSwift.swift */,
 				OBJ_29 /* GenderOrText+SOSwift.swift */,
 				OBJ_30 /* GeoCoordinatesOrGeoShape+SOSwift.swift */,
+				E1F4C4DE203DB86E00EFEF08 /* GeoShapeOrPlaceOrText+SOSwift.swift */,
 				OBJ_31 /* Identifier+SOSwift.swift */,
 				OBJ_32 /* ImageObjectOrPhotograph+SOSwift.swift */,
 				OBJ_33 /* ImageObjectOrURL+SOSwift.swift */,
@@ -1270,7 +1272,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_348 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1454,6 +1456,7 @@
 				OBJ_518 /* SOMusicRelease.swift in Sources */,
 				OBJ_519 /* SONewsArticle.swift in Sources */,
 				OBJ_520 /* SOOccupation.swift in Sources */,
+				E1F4C4DF203DB86E00EFEF08 /* GeoShapeOrPlaceOrText+SOSwift.swift in Sources */,
 				OBJ_521 /* SOOffer.swift in Sources */,
 				OBJ_522 /* SOOfferCatalog.swift in Sources */,
 				OBJ_523 /* SOOpeningHoursSpecification.swift in Sources */,
