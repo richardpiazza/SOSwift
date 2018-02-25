@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Attribute {
+public struct Attribute: Equatable {
     public var name: String
     public var type: Any.Type
     public var displayName: String?
@@ -9,6 +9,18 @@ public struct Attribute {
     public init(name: String, type: Any.Type) {
         self.name = name
         self.type = type
+    }
+    
+    public static func == (lhs: Attribute, rhs: Attribute) -> Bool {
+        guard lhs.name == rhs.name else {
+            return false
+        }
+        
+        guard lhs.type == rhs.type else {
+            return false
+        }
+        
+        return true
     }
 }
 
