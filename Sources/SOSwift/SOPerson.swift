@@ -306,19 +306,19 @@ public class SOPerson: SOThing, Person {
             return "An organization that this person is affiliated with."
         case CodingKeys.alumniOf.rawValue:
             return "An organization that the person is an alumni of."
-        case String(describing: CodingKeys.awards):
+        case "awards":
             return "An award won by or for this item."
         case CodingKeys.birthDate.rawValue:
             return "Date of birth."
         case CodingKeys.birthPlace.rawValue:
             return "he place where the person was born."
-        case String(describing: CodingKeys.brands):
+        case "brands":
             return "The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person."
         case CodingKeys.children.rawValue:
             return "A child of the person."
-        case String(describing: CodingKeys.colleagues):
+        case "colleagues":
             return "A colleague of the person."
-        case String(describing: CodingKeys.contactPoints):
+        case "contactPoints":
             return "A contact point for a person or organization."
         case CodingKeys.deathDate.rawValue:
             return "Date of death."
@@ -342,9 +342,9 @@ public class SOPerson: SOThing, Person {
             return "Given name. In the U.S., the first name of a Person."
         case CodingKeys.globalLocationNumber.rawValue:
             return "The Global Location Number."
-        case String(describing: CodingKeys.offerCatalog):
+        case "offerCatalog":
             return "Indicates an OfferCatalog listing for this Organization, Person, or Service."
-        case String(describing: CodingKeys.pointsOfSales):
+        case "pointsOfSales":
             return "Points-of-Sales operated by the organization or person."
         case CodingKeys.height.rawValue:
             return "The height of the item."
@@ -370,11 +370,11 @@ public class SOPerson: SOThing, Person {
             return "Nationality of the person."
         case CodingKeys.netWorth.rawValue:
             return "The total financial value of the person as calculated by subtracting assets from liabilities."
-        case String(describing: CodingKeys.occupation):
+        case "occupation":
             return "The Person's occupation."
         case CodingKeys.owns.rawValue:
             return "Products owned by the organization or person."
-        case String(describing: CodingKeys.parents):
+        case "parents":
             return "A parent of this person."
         case CodingKeys.performerIn.rawValue:
             return "Event that this person is a performer or participant in."
@@ -384,7 +384,7 @@ public class SOPerson: SOThing, Person {
             return "The most generic familial relation."
         case CodingKeys.seeks.rawValue:
             return "A pointer to products or services sought by the organization or person (demand)."
-        case String(describing: CodingKeys.siblings):
+        case "siblings":
             return "A sibling of the person."
         case CodingKeys.sponsor.rawValue:
             return "A person or organization that supports a thing through a pledge, promise, or financial contribution."
@@ -417,19 +417,19 @@ public class SOPerson: SOThing, Person {
             self.affiliation = value as? Organization
         case CodingKeys.alumniOf.rawValue:
             self.alumniOf = value as? EducationalOrganizationOrOrganization
-        case String(describing: CodingKeys.awards):
+        case "awards":
             self.awards = value as? [String]
         case CodingKeys.birthDate.rawValue:
             self.birthDate = value as? DateOnly
         case CodingKeys.birthPlace.rawValue:
             self.birthPlace = value as? Place
-        case String(describing: CodingKeys.brands):
+        case "brands":
             self.brands = value as? [BrandOrOrganization]
         case CodingKeys.children.rawValue:
             self.children = value as? [Person]
-        case String(describing: CodingKeys.colleagues):
+        case "colleagues":
             self.colleagues = value as? [PersonOrURL]
-        case String(describing: CodingKeys.contactPoints):
+        case "contactPoints":
             self.contactPoints = value as? [ContactPoint]
         case CodingKeys.deathDate.rawValue:
             self.deathDate = value as? DateOnly
@@ -453,9 +453,9 @@ public class SOPerson: SOThing, Person {
             self.givenName = value as? String
         case CodingKeys.globalLocationNumber.rawValue:
             self.globalLocationNumber = value as? String
-        case String(describing: CodingKeys.offerCatalog):
+        case "offerCatalog":
             self.offerCatalog = value as? OfferCatalog
-        case String(describing: CodingKeys.pointsOfSales):
+        case "pointsOfSales":
             self.pointsOfSales = value as? [Place]
         case CodingKeys.height.rawValue:
             self.height = value as? DistanceOrQuantitativeValue
@@ -481,11 +481,11 @@ public class SOPerson: SOThing, Person {
             self.nationality = value as? Country
         case CodingKeys.netWorth.rawValue:
             self.netWorth = value as? MonetaryAmountOrPriceSpecification
-        case String(describing: CodingKeys.occupation):
+        case "occupation":
             self.occupation = value as? Occupation
         case CodingKeys.owns.rawValue:
             self.owns = value as? [ProductOrService]
-        case String(describing: CodingKeys.parents):
+        case "parents":
             self.parents = value as? [Person]
         case CodingKeys.performerIn.rawValue:
             self.performerIn = value as? Event
@@ -495,7 +495,7 @@ public class SOPerson: SOThing, Person {
             self.relatedTo = value as? [Person]
         case CodingKeys.seeks.rawValue:
             self.seeks = value as? [Demand]
-        case String(describing: CodingKeys.siblings):
+        case "siblings":
             self.siblings = value as? [Person]
         case CodingKeys.sponsor.rawValue:
             self.sponsor = value as? OrganizationOrPerson

@@ -317,7 +317,7 @@ public class SOOffer: SOIntangible, Offer {
             return "One or more detailed price specifications, indicating the unit price and delivery or payment charges."
         case CodingKeys.priceValidUntil.rawValue:
             return "The date after which the price is no longer available."
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             return "A review of the item."
         case CodingKeys.seller.rawValue:
             return " An entity which offers (sells / leases / lends / loans) the services / goods."
@@ -404,7 +404,7 @@ public class SOOffer: SOIntangible, Offer {
             self.priceSpecification = value as? PriceSpecification
         case CodingKeys.priceValidUntil.rawValue:
             self.priceValidUntil = value as? DateOnly
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             self.reviews = value as? [Review]
         case CodingKeys.seller.rawValue:
             self.seller = value as? OrganizationOrPerson

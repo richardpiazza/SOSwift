@@ -56,7 +56,7 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
             return "A music album."
         case CodingKeys.genre.rawValue:
             return "Genre of the creative work, broadcast channel or group."
-        case String(describing: CodingKeys.tracks):
+        case "tracks":
             return "A music recording (track) - usually a single song."
         default:
             return super.displayDescription(forAttributeNamed: attributeName)
@@ -69,7 +69,7 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
             self.album = value as? [MusicAlbum]
         case CodingKeys.genre.rawValue:
             self.genre = value as? URLOrText
-        case String(describing: CodingKeys.tracks):
+        case "tracks":
             self.tracks = value as? [ItemListOrMusicRecording]
         default:
             super.setValue(value, forAttributeNamed: attributeName)

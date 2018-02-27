@@ -206,11 +206,11 @@ public class SOEvent: SOThing, Event {
         switch attributeName {
         case CodingKeys.about.rawValue:
             return "The subject matter of the content."
-        case String(describing: CodingKeys.actors):
+        case "actors":
             return "An actor."
         case CodingKeys.aggregateRating.rawValue:
             return "The overall rating, based on a collection of reviews or ratings, of the item."
-        case String(describing: CodingKeys.attendees):
+        case "attendees":
             return "A person or organization attending the event."
         case CodingKeys.audience.rawValue:
             return "An intended grouyp for whom something was created."
@@ -218,7 +218,7 @@ public class SOEvent: SOThing, Event {
             return "The person or organization who wrote a composition, or who is the composer of a work performed at some event."
         case CodingKeys.contributor.rawValue:
             return "A secondary contributor to the CreativeWork or Event."
-        case String(describing: CodingKeys.directors):
+        case "directors":
             return "A director."
         case CodingKeys.doorTime.rawValue:
             return "The time admission will commence."
@@ -242,7 +242,7 @@ public class SOEvent: SOThing, Event {
             return "An offer to provide this item."
         case CodingKeys.organizer.rawValue:
             return "An organizer of an Event."
-        case String(describing: CodingKeys.performers):
+        case "performers":
             return "A performer at the event—for example, a presenter, musician, musical group or actor."
         case CodingKeys.previousStartDate.rawValue:
             return "Used in conjunction with eventStatus for rescheduled or cancelled events."
@@ -250,13 +250,13 @@ public class SOEvent: SOThing, Event {
             return "The CreativeWork that captured all or part of this Event."
         case CodingKeys.remainingAttendeeCapacity.rawValue:
             return "The number of attendee places for an event that remain unallocated."
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             return "A review of the item."
         case CodingKeys.sponsor.rawValue:
             return "A person or organization that supports a thing through a pledge, promise, or financial contribution."
         case CodingKeys.startDate.rawValue:
             return "The start date and time of the item."
-        case String(describing: CodingKeys.subEvents):
+        case "subEvents":
             return "An Event that is part of this event."
         case CodingKeys.superEvent.rawValue:
             return "An event that this event is a part of."
@@ -277,11 +277,11 @@ public class SOEvent: SOThing, Event {
         switch attributeName {
         case CodingKeys.about.rawValue:
             self.about = value as? Thing
-        case String(describing: CodingKeys.actors):
+        case "actors":
             self.actors = value as? [Person]
         case CodingKeys.aggregateRating.rawValue:
             self.aggregateRating = value as? AggregateRating
-        case String(describing: CodingKeys.attendees):
+        case "attendees":
             self.attendees = value as? [OrganizationOrPerson]
         case CodingKeys.audience.rawValue:
             self.audience = value as? Audience
@@ -289,7 +289,7 @@ public class SOEvent: SOThing, Event {
             self.composer = value as? OrganizationOrPerson
         case CodingKeys.contributor.rawValue:
             self.contributor = value as? OrganizationOrPerson
-        case String(describing: CodingKeys.directors):
+        case "directors":
             self.directors = value as? [Person]
         case CodingKeys.doorTime.rawValue:
             self.doorTime = value as? DateTime
@@ -313,7 +313,7 @@ public class SOEvent: SOThing, Event {
             self.offers = value as? [Offer]
         case CodingKeys.organizer.rawValue:
             self.organizer = value as? OrganizationOrPerson
-        case String(describing: CodingKeys.performers):
+        case "performers":
             self.performers = value as? [OrganizationOrPerson]
         case CodingKeys.previousStartDate.rawValue:
             self.previousStartDate = value as? DateOnly
@@ -321,13 +321,13 @@ public class SOEvent: SOThing, Event {
             self.recordedIn = value as? CreativeWork
         case CodingKeys.remainingAttendeeCapacity.rawValue:
             self.remainingAttendeeCapacity = value as? Int
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             self.reviews = value as? [Review]
         case CodingKeys.sponsor.rawValue:
             self.sponsor = value as? OrganizationOrPerson
         case CodingKeys.startDate.rawValue:
             self.startDate = value as? DateOnlyOrDateTime
-        case String(describing: CodingKeys.subEvents):
+        case "subEvents":
             self.subEvents = value as? [Event]
         case CodingKeys.superEvent.rawValue:
             self.superEvent = value as? Event

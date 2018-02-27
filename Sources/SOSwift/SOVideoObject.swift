@@ -77,11 +77,11 @@ public class SOVideoObject: SOMediaObject, VideoObject {
     // MARK: - Attributed
     public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
         switch attributeName {
-        case String(describing: CodingKeys.actors):
+        case "actors":
             return "An actor."
         case CodingKeys.caption.rawValue:
             return "The caption for this object."
-        case String(describing: CodingKeys.directors):
+        case "directors":
             return "A director."
         case CodingKeys.musicBy.rawValue:
             return "The composer of the soundtrack."
@@ -100,11 +100,11 @@ public class SOVideoObject: SOMediaObject, VideoObject {
     
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
-        case String(describing: CodingKeys.actors):
+        case "actors":
             self.actors = value as? [Person]
         case CodingKeys.caption.rawValue:
             self.caption = value as? String
-        case String(describing: CodingKeys.directors):
+        case "directors":
             self.directors = value as? [Person]
         case CodingKeys.musicBy.rawValue:
             self.musicBy = value as? MusicGroupOrPerson

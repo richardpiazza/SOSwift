@@ -57,7 +57,7 @@ public class SOCourse: SOCreativeWork, Course {
             return "The identifier for the Course used by the course provider (e.g. CS101 or 6.001)."
         case CodingKeys.coursePrerequisites.rawValue:
             return "Requirements for taking the Course."
-        case String(describing: CodingKeys.courseInstance):
+        case "courseInstance":
             return "An offering of the course at a specific time and place or through specific media."
         default:
             return super.displayDescription(forAttributeNamed: attributeName)
@@ -70,7 +70,7 @@ public class SOCourse: SOCreativeWork, Course {
             self.courseCode = value as? String
         case CodingKeys.coursePrerequisites.rawValue:
             self.coursePrerequisites = value as? [AlignmentObjectOrCourseOrText]
-        case String(describing: CodingKeys.courseInstance):
+        case "courseInstance":
             self.courseInstance = value as? CourseInstance
         default:
             super.setValue(value, forAttributeNamed: attributeName)

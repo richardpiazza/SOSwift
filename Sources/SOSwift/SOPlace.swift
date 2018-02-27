@@ -159,9 +159,9 @@ public class SOPlace: SOThing, Place {
             return "A short textual code that uniquely identifies a place of business."
         case CodingKeys.containedInPlace.rawValue:
             return "The basic containment relation between a place and one that contains it."
-        case String(describing: CodingKeys.containsPlaces):
+        case "containsPlaces":
             return "The basic containment relation between a place and another that it contains."
-        case String(describing: CodingKeys.events):
+        case "events":
             return "Upcoming or past event associated with this place, organization, or action."
         case CodingKeys.faxNumber.rawValue:
             return "The fax number."
@@ -169,7 +169,7 @@ public class SOPlace: SOThing, Place {
             return "The geo coordinates of the place."
         case CodingKeys.globalLocationNumber.rawValue:
             return "The Global Location Number."
-        case String(describing: CodingKeys.map):
+        case "map":
             return "A URL to a map of the place."
         case CodingKeys.isicV4.rawValue:
             return "The International Standard of Industrial Classification of All Economic Activities."
@@ -179,9 +179,9 @@ public class SOPlace: SOThing, Place {
             return "The total number of individuals that may attend an event or venue."
         case CodingKeys.openingHoursSpecification.rawValue:
             return "The opening hours of a certain place."
-        case String(describing: CodingKeys.photos):
+        case "photos":
             return "A photograph of this place."
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             return "A review of the item."
         case CodingKeys.smokingAllowed.rawValue:
             return "Indicates whether it is allowed to smoke in the place."
@@ -208,9 +208,9 @@ public class SOPlace: SOThing, Place {
             self.branchCode = value as? String
         case CodingKeys.containedInPlace.rawValue:
             self.containedInPlace = value as? Place
-        case String(describing: CodingKeys.containsPlaces):
+        case "containsPlaces":
             self.containsPlaces = value as? [Place]
-        case String(describing: CodingKeys.events):
+        case "events":
             self.events = value as? [Event]
         case CodingKeys.faxNumber.rawValue:
             self.faxNumber = value as? String
@@ -218,7 +218,7 @@ public class SOPlace: SOThing, Place {
             self.geo = value as? GeoCoordinatesOrGeoShape
         case CodingKeys.globalLocationNumber.rawValue:
             self.globalLocationNumber = value as? String
-        case String(describing: CodingKeys.map):
+        case "map":
             self.map = value as? MapOrURL
         case CodingKeys.isicV4.rawValue:
             self.isicV4 = value as? String
@@ -228,9 +228,9 @@ public class SOPlace: SOThing, Place {
             self.maximumAttendeeCapacity = value as? Int
         case CodingKeys.openingHoursSpecification.rawValue:
             self.openingHoursSpecification = value as? [OpeningHoursSpecification]
-        case String(describing: CodingKeys.photos):
+        case "photos":
             self.photos = value as? [ImageObjectOrPhotograph]
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             self.reviews = value as? [Review]
         case CodingKeys.smokingAllowed.rawValue:
             self.smokingAllowed = value as? Bool

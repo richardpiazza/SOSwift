@@ -491,7 +491,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
             return "The subject matter of the content."
         case CodingKeys.accessMode.rawValue:
             return "The human sensory perceptual system or cognitive faculty through which a person may process or perceive information."
-        case String(describing: CodingKeys.accessModeSufficients):
+        case "accessModeSufficients":
             return "A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource."
         case CodingKeys.accessibilityAPI.rawValue:
             return "Indicates that the resource is compatible with the referenced accessibility API."
@@ -565,7 +565,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
             return "A person or organization that supports (sponsors) something through some kind of financial contribution."
         case CodingKeys.genre.rawValue:
             return "Genre of the creative work, broadcast channel or group."
-        case String(describing: CodingKeys.part):
+        case "part":
             return "Indicates a CreativeWork that is (in some sense) a part of this CreativeWork."
         case CodingKeys.headline.rawValue:
             return "Headline of the article."
@@ -577,11 +577,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
             return "The predominant mode of learning supported by the learning resource."
         case CodingKeys.isAccessibleForFree.rawValue:
             return "A flag to signal that the publication is accessible for free."
-        case String(describing: CodingKeys.basedOn):
+        case "basedOn":
             return "A resource that was used in the creation of this resource."
         case CodingKeys.isFamilyFriendly.rawValue:
             return "Indicates whether this content is family friendly."
-        case String(describing: CodingKeys.partOf):
+        case "partOf":
             return "Indicates a CreativeWork that this CreativeWork is (in some sense) part of."
         case CodingKeys.keywords.rawValue:
             return "Keywords or tags used to describe this content."
@@ -617,7 +617,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
             return "The Event where the Creative Work was recorded."
         case CodingKeys.releasedEvent.rawValue:
             return "The place and time the release was issued."
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             return "A review of the item."
         case CodingKeys.schemaVersion.rawValue:
             return "Indicates a particular version of a schema used in some Creative Work."
@@ -660,7 +660,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
             self.about = value as? Thing
         case CodingKeys.accessMode.rawValue:
             self.accessMode = value as? AccessMode
-        case String(describing: CodingKeys.accessModeSufficients):
+        case "accessModeSufficients":
             self.accessModeSufficients = value as? [AccessModeSufficient]
         case CodingKeys.accessibilityAPI.rawValue:
             self.accessibilityAPI = value as? AccessibilityAPI
@@ -734,7 +734,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
             self.funder = value as? OrganizationOrPerson
         case CodingKeys.genre.rawValue:
             self.genre = value as? URLOrText
-        case String(describing: CodingKeys.part):
+        case "part":
             self.part = value as? CreativeWork
         case CodingKeys.headline.rawValue:
             self.headline = value as? String
@@ -746,11 +746,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
             self.interactivityType = value as? Interactivity
         case CodingKeys.isAccessibleForFree.rawValue:
             self.isAccessibleForFree = value as? Bool
-        case String(describing: CodingKeys.basedOn):
+        case "basedOn":
             self.basedOn = value as? CreativeWorkOrProductOrURL
         case CodingKeys.isFamilyFriendly.rawValue:
             self.isFamilyFriendly = value as? Bool
-        case String(describing: CodingKeys.partOf):
+        case "partOf":
             self.partOf = value as? CreativeWork
         case CodingKeys.keywords.rawValue:
             self.keywords = value as? String
@@ -786,7 +786,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
             self.recordedAt = value as? Event
         case CodingKeys.releasedEvent.rawValue:
             self.releasedEvent = value as? PublicationEvent
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             self.reviews = value as? [Review]
         case CodingKeys.schemaVersion.rawValue:
             self.schemaVersion = value as? URLOrText

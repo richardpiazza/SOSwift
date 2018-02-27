@@ -59,7 +59,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
         switch attributeName {
         case CodingKeys.hostingOrganization.rawValue:
             return "The organization (airline, travelers' club, etc.) the membership is made with."
-        case String(describing: CodingKeys.members):
+        case "members":
             return "A member of an Organization or a ProgramMembership."
         case CodingKeys.membershipNumber.rawValue:
             return "A unique identifier for the membership."
@@ -74,7 +74,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
         switch attributeName {
         case CodingKeys.hostingOrganization.rawValue:
             self.hostingOrganization = value as? Organization
-        case String(describing: CodingKeys.members):
+        case "members":
             self.members = value as? [OrganizationOrPerson]
         case CodingKeys.membershipNumber.rawValue:
             self.membershipNumber = value as? String

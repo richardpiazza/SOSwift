@@ -287,11 +287,11 @@ public class SOOrganization: SOThing, Organization {
             return "Alumni of an organization."
         case CodingKeys.areaSurved.rawValue:
             return "The geographic area where a service or offered item is provided."
-        case String(describing: CodingKeys.awards):
+        case "awards":
             return "An award won by or for this item."
-        case String(describing: CodingKeys.brands):
+        case "brands":
             return "The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person."
-        case String(describing: CodingKeys.contactPoints):
+        case "contactPoints":
             return "A contact point for a person or organization."
         case CodingKeys.correctionsPolicy.rawValue:
             return "For an Organization, a statement describing disclosure and correction policy for errors."
@@ -305,15 +305,15 @@ public class SOOrganization: SOThing, Organization {
             return "The Dun & Bradstreet DUNS number for identifying an organization or business person."
         case CodingKeys.email.rawValue:
             return "Email address."
-        case String(describing: CodingKeys.employees):
+        case "employees":
             return "Someone working for this organization."
         case CodingKeys.ethicsPolicy.rawValue:
             return "Statement about ethics policy."
-        case String(describing: CodingKeys.events):
+        case "events":
             return "Upcoming or past event associated with this place, organization, or action."
         case CodingKeys.faxNumber.rawValue:
             return "The fax number."
-        case String(describing: CodingKeys.founders):
+        case "founders":
             return "A person who founded this organization."
         case CodingKeys.foundingDate.rawValue:
             return "The date that this organization was founded."
@@ -323,9 +323,9 @@ public class SOOrganization: SOThing, Organization {
             return "A person or organization that supports (sponsors) something through some kind of financial contribution."
         case CodingKeys.globalLocationNumber.rawValue:
             return "The Global Location Number."
-        case String(describing: CodingKeys.offerCatalog):
+        case "offerCatalog":
             return "Indicates an OfferCatalog listing for this Organization, Person, or Service."
-        case String(describing: CodingKeys.pointsOfSales):
+        case "pointsOfSales":
             return "Points-of-Sales operated by the organization or person."
         case CodingKeys.isicV4.rawValue:
             return "The International Standard of Industrial Classification of All Economic Activities."
@@ -353,7 +353,7 @@ public class SOOrganization: SOThing, Organization {
             return "The larger organization that this organization is a subOrganization of, if any."
         case CodingKeys.publishingPrinciples.rawValue:
             return "The publishingPrinciples property indicates (typically via URL) a document describing the editorial principles of an Organization."
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             return "A review of the item."
         case CodingKeys.seeks.rawValue:
             return "A pointer to products or services sought by the organization or person (demand)."
@@ -386,11 +386,11 @@ public class SOOrganization: SOThing, Organization {
             self.alumni = value as? [Person]
         case CodingKeys.areaSurved.rawValue:
             self.areaServed = value as? AreaServed
-        case String(describing: CodingKeys.awards):
+        case "awards":
             self.awards = value as? [String]
-        case String(describing: CodingKeys.brands):
+        case "brands":
             self.brands = value as? [BrandOrOrganization]
-        case String(describing: CodingKeys.contactPoints):
+        case "contactPoints":
             self.contactPoints = value as? [ContactPoint]
         case CodingKeys.correctionsPolicy.rawValue:
             self.correctionsPolicy = value as? CreativeWorkOrURL
@@ -404,15 +404,15 @@ public class SOOrganization: SOThing, Organization {
             self.duns = value as? String
         case CodingKeys.email.rawValue:
             self.email = value as? String
-        case String(describing: CodingKeys.employees):
+        case "employees":
             self.employees = value as? [Person]
         case CodingKeys.ethicsPolicy.rawValue:
             self.ethicsPolicy = value as? CreativeWorkOrURL
-        case String(describing: CodingKeys.events):
+        case "events":
             self.events = value as? [Event]
         case CodingKeys.faxNumber.rawValue:
             self.faxNumber = value as? String
-        case String(describing: CodingKeys.founders):
+        case "founders":
             self.founders = value as? [Person]
         case CodingKeys.foundingDate.rawValue:
             self.foundingDate = value as? DateOnly
@@ -422,9 +422,9 @@ public class SOOrganization: SOThing, Organization {
             self.funder = value as? OrganizationOrPerson
         case CodingKeys.globalLocationNumber.rawValue:
             self.globalLocationNumber = value as? String
-        case String(describing: CodingKeys.offerCatalog):
+        case "offerCatalog":
             self.offerCatalog = value as? OfferCatalog
-        case String(describing: CodingKeys.pointsOfSales):
+        case "pointsOfSales":
             self.pointsOfSales = value as? [Place]
         case CodingKeys.isicV4.rawValue:
             self.isicV4 = value as? String
@@ -452,7 +452,7 @@ public class SOOrganization: SOThing, Organization {
             self.parentOrganization = value as? Organization
         case CodingKeys.publishingPrinciples.rawValue:
             self.publishingPrinciples = value as? CreativeWorkOrURL
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             self.reviews = value as? [Review]
         case CodingKeys.seeks.rawValue:
             self.seeks = value as? [Demand]

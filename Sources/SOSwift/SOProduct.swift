@@ -228,13 +228,13 @@ public class SOProduct: SOThing, Product {
             return "The GTIN-8 code of the product, or the product to which the offer refers."
         case CodingKeys.height.rawValue:
             return "The height of the item."
-        case String(describing: CodingKeys.accessoryOrSparePartFor):
+        case "accessoryOrSparePartFor":
             return "A pointer to another product (or multiple products) for which this product is an accessory or spare part."
-        case String(describing: CodingKeys.consumableFor):
+        case "consumableFor":
             return "A pointer to another product (or multiple products) for which this product is a consumable."
-        case String(describing: CodingKeys.relatedTo):
+        case "relatedTo":
             return "A pointer to another, somehow related product (or multiple products)."
-        case String(describing: CodingKeys.similarTo):
+        case "similarTo":
             return "A pointer to another, functionally similar product (or multiple products)."
         case CodingKeys.itemCondition.rawValue:
             return "A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer."
@@ -258,7 +258,7 @@ public class SOProduct: SOThing, Product {
             return "The date the item e.g. vehicle was purchased by the current owner."
         case CodingKeys.releaseDate.rawValue:
             return "The release date of a product or product model."
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             return "A review of the item."
         case CodingKeys.sku.rawValue:
             return "The Stock Keeping Unit."
@@ -299,13 +299,13 @@ public class SOProduct: SOThing, Product {
             self.gtin8 = value as? String
         case CodingKeys.height.rawValue:
             self.height = value as? DistanceOrQuantitativeValue
-        case String(describing: CodingKeys.accessoryOrSparePartFor):
+        case "accessoryOrSparePartFor":
             self.accessoryOrSparePartFor = value as? [Product]
-        case String(describing: CodingKeys.consumableFor):
+        case "consumableFor":
             self.consumableFor = value as? [Product]
-        case String(describing: CodingKeys.relatedTo):
+        case "relatedTo":
             self.relatedTo = value as? [ProductOrService]
-        case String(describing: CodingKeys.similarTo):
+        case "similarTo":
             self.similarTo = value as? [ProductOrService]
         case CodingKeys.itemCondition.rawValue:
             self.itemCondition = value as? OfferItemCondition
@@ -329,7 +329,7 @@ public class SOProduct: SOThing, Product {
             self.purchaseDate = value as? DateOnly
         case CodingKeys.releaseDate.rawValue:
             self.releaseDate = value as? DateOnly
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             self.reviews = value as? [Review]
         case CodingKeys.sku.rawValue:
             self.sku = value as? String

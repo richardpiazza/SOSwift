@@ -57,7 +57,7 @@ public class SOBrand: SOIntangible, Brand {
             return " The overall rating, based on a collection of reviews or ratings, of the item."
         case CodingKeys.logo.rawValue:
             return "An associated logo."
-        case String(describing: CodingKeys.reviews):
+        case "reviews":
             return "A review of the item."
         default:
             return super.displayDescription(forAttributeNamed: attributeName)
