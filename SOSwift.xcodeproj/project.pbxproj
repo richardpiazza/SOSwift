@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E165A849204609E00055D19F /* Optional+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165A848204609E00055D19F /* Optional+SOSwift.swift */; };
 		E1F4C4DF203DB86E00EFEF08 /* GeoShapeOrPlaceOrText+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4C4DE203DB86E00EFEF08 /* GeoShapeOrPlaceOrText+SOSwift.swift */; };
 		OBJ_357 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_363 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_347 /* Package.swift */; };
@@ -394,6 +395,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E165A848204609E00055D19F /* Optional+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+SOSwift.swift"; sourceTree = "<group>"; };
 		E1F4C4DE203DB86E00EFEF08 /* GeoShapeOrPlaceOrText+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoShapeOrPlaceOrText+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* AreaServed+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AreaServed+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* SOMusicRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMusicRelease.swift; sourceTree = "<group>"; };
@@ -1073,6 +1075,7 @@
 				OBJ_42 /* MusicGroupOrPerson+SOSwift.swift */,
 				OBJ_43 /* Number+SOSwift.swift */,
 				OBJ_44 /* NumberOrText+SOSwift.swift */,
+				E165A848204609E00055D19F /* Optional+SOSwift.swift */,
 				OBJ_45 /* OrganizationOrPerson+SOSwift.swift */,
 				OBJ_46 /* OrganizationOrProgramMembership+SOSwift.swift */,
 				OBJ_47 /* OwnershipInfoOrProduct+SOSwift.swift */,
@@ -1472,6 +1475,7 @@
 				OBJ_533 /* SOProductModel.swift in Sources */,
 				OBJ_534 /* SOProgramMembership.swift in Sources */,
 				OBJ_535 /* SOPropertyValue.swift in Sources */,
+				E165A849204609E00055D19F /* Optional+SOSwift.swift in Sources */,
 				OBJ_536 /* SOPublicationEvent.swift in Sources */,
 				OBJ_537 /* SOQualitativeValue.swift in Sources */,
 				OBJ_538 /* SOQuantitativeValue.swift in Sources */,

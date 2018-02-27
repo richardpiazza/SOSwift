@@ -1,11 +1,19 @@
 import Foundation
 
+public typealias Variable = (String, Any.Type, Bool, Any)
+
 public extension Mirror {
-    var variables: [(String, Any.Type, Any)] {
-        var variables = [(String, Any.Type, Any)]()
+    var variables: [Variable] {
+        var variables = [Variable]()
         
         for child in children {
-            variables.append((child.label!, Swift.type(of: child.value), child.value))
+            var type = Swift.type(of: child.value)
+            var isOptional = false
+            if let optional = child.value as? OptionalProtocol {
+                type = optional.wrappedType
+                isOptional = true
+            }
+            variables.append((child.label!, type, isOptional, child.value))
         }
         
         if let superclassMirror = self.superclassMirror {

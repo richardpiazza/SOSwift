@@ -3,12 +3,14 @@ import Foundation
 public struct Attribute: Equatable {
     public var name: String
     public var type: Any.Type
+    public var isOptional: Bool = false
     public var displayName: String?
     public var displayDescription: String?
     
-    public init(name: String, type: Any.Type) {
+    public init(name: String, type: Any.Type, isOptional: Bool = false) {
         self.name = name
         self.type = type
+        self.isOptional = isOptional
     }
     
     public static func == (lhs: Attribute, rhs: Attribute) -> Bool {
@@ -36,7 +38,7 @@ public extension Attributed {
         
         let mirror = Mirror(reflecting: self)
         for variable in mirror.variables {
-            var attribute = Attribute(name: variable.0, type: variable.1)
+            var attribute = Attribute(name: variable.0, type: variable.1, isOptional: variable.2)
             attribute.displayName = self.displayName(forAttributeNamed: variable.0)
             attribute.displayDescription = self.displayDescription(forAttributeNamed: variable.0)
             
