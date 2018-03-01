@@ -24,8 +24,8 @@ class DateOnlyOrDateTimeTests: XCTestCase {
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(self.dateOnly, forKey: .dateOnly)
-            try container.encode(self.dateTime, forKey: .dateTime)
+            try container.encodeIfPresent(dateOnly, forKey: CodingKeys.dateOnly)
+            try container.encodeIfPresent(dateTime, forKey: CodingKeys.dateTime)
         }
     }
     

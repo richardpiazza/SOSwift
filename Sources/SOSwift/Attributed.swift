@@ -4,13 +4,15 @@ public struct Attribute: Equatable {
     public var name: String
     public var type: Any.Type
     public var isOptional: Bool = false
+    public var isCollection: Bool = false
     public var displayName: String?
     public var displayDescription: String?
     
-    public init(name: String, type: Any.Type, isOptional: Bool = false) {
+    public init(name: String, type: Any.Type, isOptional: Bool = false, isCollection: Bool = false) {
         self.name = name
         self.type = type
         self.isOptional = isOptional
+        self.isCollection = isCollection
     }
     
     public static func == (lhs: Attribute, rhs: Attribute) -> Bool {
@@ -38,7 +40,7 @@ public extension Attributed {
         
         let mirror = Mirror(reflecting: self)
         for variable in mirror.variables {
-            var attribute = Attribute(name: variable.0, type: variable.1, isOptional: variable.2)
+            var attribute = Attribute(name: variable.0, type: variable.1, isOptional: variable.2, isCollection: variable.3)
             attribute.displayName = self.displayName(forAttributeNamed: variable.0)
             attribute.displayDescription = self.displayDescription(forAttributeNamed: variable.0)
             
@@ -72,7 +74,7 @@ public extension Attributed {
         let mirror = Mirror(reflecting: self)
         for variable in mirror.variables {
             if variable.0 == attributeName {
-                return variable.2
+                return variable.4
             }
         }
         
