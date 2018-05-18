@@ -38,7 +38,7 @@ class DateOnlyTests: XCTestCase {
     }
     
     var dateComponents: DateComponents {
-        return DateComponents(calendar: Calendar.current, timeZone: TimeZone(secondsFromGMT: 0), era: nil, year: 2017, month: 10, day: 18, hour: 0, minute: 0, second: 0, nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+        return DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, era: nil, year: 2017, month: 10, day: 18, hour: 0, minute: 0, second: 0, nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
     }
     
     override func setUp() {
