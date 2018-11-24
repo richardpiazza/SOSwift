@@ -1,5 +1,4 @@
-// swift-tools-version:4.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:4.2
 
 import PackageDescription
 
@@ -9,7 +8,7 @@ let package = Package(
         .library(name: "SOSwift", targets: ["SOSwift"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMinor(from: "1.4.1"))
+        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMinor(from: "1.5.0"))
     ],
     targets: [
         .target(name: "SOSwift", dependencies: ["SOSwiftVocabulary"], path: "Sources/SOSwift"),
