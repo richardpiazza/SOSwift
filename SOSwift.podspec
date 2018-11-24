@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'Foundation'
   s.swift_version = '4.2'
   s.requires_arc = true
-  s.dependency 'SOSwiftVocabulary', '~> 1.5.1'
+  s.dependency 'SOSwiftVocabulary', '~> 1.5.0'
 
   s.osx.deployment_target = "10.13"
   s.ios.deployment_target = "11.0"
