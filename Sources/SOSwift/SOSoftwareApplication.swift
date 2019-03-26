@@ -248,7 +248,7 @@ public class SOSoftwareApplication: SOCreativeWork, SoftwareApplication {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: SoftwareApplication?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: SoftwareApplication?, forKey key: K) throws {
         if let typedValue = value as? SOSoftwareApplication {
             try self.encode(typedValue, forKey: key)
         }

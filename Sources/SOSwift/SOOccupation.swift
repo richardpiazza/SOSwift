@@ -22,7 +22,7 @@ public class SOOccupation: SOIntangible, Occupation {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Occupation?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Occupation?, forKey key: K) throws {
         if let typedValue = value as? SOOccupation {
             try self.encode(typedValue, forKey: key)
         }

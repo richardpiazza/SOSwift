@@ -87,7 +87,7 @@ public class SOProgramMembership: SOIntangible, ProgramMembership {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ProgramMembership?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: ProgramMembership?, forKey key: K) throws {
         if let typedValue = value as? SOProgramMembership {
             try self.encode(typedValue, forKey: key)
         }

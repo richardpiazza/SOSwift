@@ -100,13 +100,13 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: OpeningHoursSpecification?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: OpeningHoursSpecification?, forKey key: K) throws {
         if let typedValue = value as? SOOpeningHoursSpecification {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    public mutating func encodeIfPresent(_ value: [OpeningHoursSpecification]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [OpeningHoursSpecification]?, forKey key: K) throws {
         if let typedValue = value as? [SOOpeningHoursSpecification] {
             try self.encode(typedValue, forKey: key)
         }

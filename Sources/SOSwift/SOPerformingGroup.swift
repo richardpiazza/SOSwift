@@ -24,7 +24,7 @@ public class SOPerformingGroup: SOOrganization, PerformingGroup {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: PerformingGroup?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: PerformingGroup?, forKey key: K) throws {
         if let typedValue = value as? SOPerformingGroup {
             try self.encode(typedValue, forKey: key)
         }

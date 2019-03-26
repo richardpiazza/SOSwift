@@ -154,7 +154,7 @@ public class SOAction: SOThing, Action {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Action?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Action?, forKey key: K) throws {
         if let typedValue = value as? SOAction {
             try self.encode(typedValue, forKey: key)
         }

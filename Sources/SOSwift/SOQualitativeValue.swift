@@ -124,7 +124,7 @@ public class SOQualitativeValue: SOEnumeration, QualitativeValue {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: QualitativeValue?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: QualitativeValue?, forKey key: K) throws {
         if let typedValue = value as? SOQualitativeValue {
             try self.encode(typedValue, forKey: key)
         }

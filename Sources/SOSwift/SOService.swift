@@ -233,7 +233,7 @@ public class SOService: SOIntangible, Service {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Service?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Service?, forKey key: K) throws {
         if let typedValue = value as? SOService {
             try self.encode(typedValue, forKey: key)
         }

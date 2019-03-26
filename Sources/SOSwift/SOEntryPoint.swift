@@ -127,7 +127,7 @@ public class SOEntryPoint: SOIntangible, EntryPoint {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: EntryPoint?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: EntryPoint?, forKey key: K) throws {
         if let typedValue = value as? SOEntryPoint {
             try self.encode(typedValue, forKey: key)
         }

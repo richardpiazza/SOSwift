@@ -132,7 +132,7 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: PropertyValue?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: PropertyValue?, forKey key: K) throws {
         if let typedValue = value as? SOPropertyValue {
             try self.encode(typedValue, forKey: key)
         }

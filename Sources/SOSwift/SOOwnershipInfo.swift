@@ -87,7 +87,7 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: OwnershipInfo?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: OwnershipInfo?, forKey key: K) throws {
         if let typedValue = value as? SOOwnershipInfo {
             try self.encode(typedValue, forKey: key)
         }

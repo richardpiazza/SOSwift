@@ -22,7 +22,7 @@ public class SOPhotograph: SOCreativeWork, Photograph {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Photograph?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Photograph?, forKey key: K) throws {
         if let typedValue = value as? SOPhotograph {
             try self.encode(typedValue, forKey: key)
         }

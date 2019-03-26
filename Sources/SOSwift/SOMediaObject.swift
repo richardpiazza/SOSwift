@@ -201,7 +201,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: MediaObject?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: MediaObject?, forKey key: K) throws {
         if let typedValue = value as? SOMediaObject {
             try self.encode(typedValue, forKey: key)
         }

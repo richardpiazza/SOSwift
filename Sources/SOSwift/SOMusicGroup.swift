@@ -78,7 +78,7 @@ public class SOMusicGroup: SOPerformingGroup, MusicGroup {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: MusicGroup?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: MusicGroup?, forKey key: K) throws {
         if let typedValue = value as? SOMusicGroup {
             try self.encode(typedValue, forKey: key)
         }

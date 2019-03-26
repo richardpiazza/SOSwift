@@ -96,7 +96,7 @@ public class SONewsArticle: SOArticle, NewsArticle {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: NewsArticle?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: NewsArticle?, forKey key: K) throws {
         if let typedValue = value as? SONewsArticle {
             try self.encode(typedValue, forKey: key)
         }

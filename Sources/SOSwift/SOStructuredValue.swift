@@ -32,7 +32,7 @@ public class SOStructuredValue: SOIntangible, StructuredValue {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: StructuredValue?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: StructuredValue?, forKey key: K) throws {
         if let typedValue = value as? SOStructuredValue {
             try self.encode(typedValue, forKey: key)
         }

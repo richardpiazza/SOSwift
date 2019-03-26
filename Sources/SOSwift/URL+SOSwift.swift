@@ -13,7 +13,7 @@ public extension URL {
 // MARK: - URL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: URL?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: URL?, forKey key: K) throws {
         if let typedValue = value {
             try self.encode(typedValue, forKey: key)
         }

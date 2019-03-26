@@ -98,7 +98,7 @@ public class SORating: SOIntangible, Rating {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Rating?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Rating?, forKey key: K) throws {
         if let typedValue = value as? SORating {
             try self.encode(typedValue, forKey: key)
         }

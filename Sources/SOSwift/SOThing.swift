@@ -196,7 +196,7 @@ public class SOThing: Thing, Dynamic, Attributed {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Thing?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Thing?, forKey key: K) throws {
         if let typedValue = value as? SOThing {
             try self.encode(typedValue, forKey: key)
         }

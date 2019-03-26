@@ -107,7 +107,7 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: MonetaryAmount?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: MonetaryAmount?, forKey key: K) throws {
         if let typedValue = value as? SOMonetaryAmount {
             try self.encode(typedValue, forKey: key)
         }

@@ -79,7 +79,7 @@ public class SOComment: SOCreativeWork, Comment {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Comment?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Comment?, forKey key: K) throws {
         if let typedValue = value as? SOComment {
             try self.encode(typedValue, forKey: key)
         }

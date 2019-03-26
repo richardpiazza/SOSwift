@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - AreaServed
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: AreaServed?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: AreaServed?, forKey key: K) throws {
         if let typedValue = value as? SOAdministrativeArea {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOGeoShape {
@@ -18,7 +18,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeAreaServedIfPresent(forKey key: K) throws -> AreaServed? {
+    func decodeAreaServedIfPresent(forKey key: K) throws -> AreaServed? {
         guard self.contains(key) else {
             return nil
         }

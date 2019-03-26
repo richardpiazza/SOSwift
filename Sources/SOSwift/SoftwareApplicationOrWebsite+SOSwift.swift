@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - SoftwareApplicationOrWebsite
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: SoftwareApplicationOrWebsite?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: SoftwareApplicationOrWebsite?, forKey key: K) throws {
         if let typedValue = value as? SOSoftwareApplication {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOWebsite {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeSoftwareApplicationOrWebsiteIfPresent(forKey key: K) throws -> SoftwareApplicationOrWebsite? {
+    func decodeSoftwareApplicationOrWebsiteIfPresent(forKey key: K) throws -> SoftwareApplicationOrWebsite? {
         guard self.contains(key) else {
             return nil
         }

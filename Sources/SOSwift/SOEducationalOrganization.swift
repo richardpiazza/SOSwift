@@ -22,7 +22,7 @@ public class SOEducationalOrganization: SOOrganization, EducationalOrganization 
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: EducationalOrganization?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: EducationalOrganization?, forKey key: K) throws {
         if let typedValue = value as? SOEducationalOrganization {
             try self.encode(typedValue, forKey: key)
         }

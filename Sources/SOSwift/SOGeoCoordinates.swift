@@ -105,7 +105,7 @@ public class SOGeoCoordinates: SOStructuredValue, GeoCoordinates {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: GeoCoordinates?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: GeoCoordinates?, forKey key: K) throws {
         if let typedValue = value as? SOGeoCoordinates {
             try self.encode(typedValue, forKey: key)
         }

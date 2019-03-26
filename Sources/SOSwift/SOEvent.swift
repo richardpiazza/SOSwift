@@ -346,13 +346,13 @@ public class SOEvent: SOThing, Event {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Event?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Event?, forKey key: K) throws {
         if let typedValue = value as? SOEvent {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    public mutating func encodeIfPresent(_ value: [Event]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [Event]?, forKey key: K) throws {
         if let typedValue = value as? [SOEvent] {
             try self.encode(typedValue, forKey: key)
         }

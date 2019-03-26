@@ -60,7 +60,7 @@ public extension Date {
 // MARK: - DateOnly
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: DateOnly?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: DateOnly?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }
@@ -68,7 +68,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeDateOnlyIfPresent(forKey key: K) throws -> DateOnly? {
+    func decodeDateOnlyIfPresent(forKey key: K) throws -> DateOnly? {
         guard self.contains(key) else {
             return nil
         }

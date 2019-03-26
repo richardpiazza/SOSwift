@@ -79,7 +79,7 @@ public class SOBrand: SOIntangible, Brand {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Brand?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Brand?, forKey key: K) throws {
         if let typedValue = value as? SOBrand {
             try self.encode(typedValue, forKey: key)
         }

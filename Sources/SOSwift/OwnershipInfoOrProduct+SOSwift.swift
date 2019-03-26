@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - OwnershipInfoOrProduct
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: OwnershipInfoOrProduct?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: OwnershipInfoOrProduct?, forKey key: K) throws {
         if let typedValue = value as? SOOwnershipInfo {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOProduct {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeIfPresent(_ values: [OwnershipInfoOrProduct]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ values: [OwnershipInfoOrProduct]?, forKey key: K) throws {
         guard let values = values else {
             return
         }
@@ -30,7 +30,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeOwnershipInfoOrProductIfPresent(forKey key: K) throws -> OwnershipInfoOrProduct? {
+    func decodeOwnershipInfoOrProductIfPresent(forKey key: K) throws -> OwnershipInfoOrProduct? {
         guard self.contains(key) else {
             return nil
         }
@@ -50,7 +50,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodeOwnershipInfosOrProductsIfPresent(forKey key: K) throws -> [OwnershipInfoOrProduct]? {
+    func decodeOwnershipInfosOrProductsIfPresent(forKey key: K) throws -> [OwnershipInfoOrProduct]? {
         guard self.contains(key) else {
             return nil
         }

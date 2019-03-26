@@ -104,7 +104,7 @@ public class SOBroadcastService: SOService, BroadcastService {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: BroadcastService?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: BroadcastService?, forKey key: K) throws {
         if let typedValue = value as? SOBroadcastService {
             try self.encode(typedValue, forKey: key)
         }

@@ -2,7 +2,7 @@ import Foundation
 
 public extension String {
     /// Determines if a character at a given index is a member of the provided character set.
-    public func character(atIndex index: Int, isInCharacterSet characterSet: CharacterSet) -> Bool {
+    func character(atIndex index: Int, isInCharacterSet characterSet: CharacterSet) -> Bool {
         guard index >= 0 && index < self.count else {
             return false
         }
@@ -12,7 +12,7 @@ public extension String {
         return characterSet.contains(UnicodeScalar(c)!)
     }
     
-    public var spaceSeparatedWords: String {
+    var spaceSeparatedWords: String {
         let characterSet = CharacterSet.uppercaseLetters
         
         var result = self

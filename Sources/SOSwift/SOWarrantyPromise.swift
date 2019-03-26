@@ -70,7 +70,7 @@ public class SOWarrantyPromise: SOThing, WarrantyPromise {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: WarrantyPromise?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: WarrantyPromise?, forKey key: K) throws {
         if let typedValue = value as? SOWarrantyPromise {
             try self.encode(typedValue, forKey: key)
         }

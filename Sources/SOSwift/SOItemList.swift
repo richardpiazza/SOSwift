@@ -82,7 +82,7 @@ public class SOItemList: SOIntangible, ItemList {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ItemList?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: ItemList?, forKey key: K) throws {
         if let typedValue = value as? SOItemList {
             try self.encode(typedValue, forKey: key)
         }

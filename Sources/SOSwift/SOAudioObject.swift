@@ -60,7 +60,7 @@ public class SOAudioObject: SOMediaObject, AudioObject {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: AudioObject?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: AudioObject?, forKey key: K) throws {
         if let typedValue = value as? SOAudioObject {
             try self.encode(typedValue, forKey: key)
         }

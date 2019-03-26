@@ -39,7 +39,7 @@ public class SOIntangible: SOThing, Intangible {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Intangible?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Intangible?, forKey key: K) throws {
         if let typedValue = value as? SOIntangible {
             try self.encode(typedValue, forKey: key)
         }

@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - Value
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Value?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Value?, forKey key: K) throws {
         if let typedValue = value as? SOStructuredValue {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? Bool {
@@ -20,7 +20,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeValueIfPresent(forKey key: K) throws -> Value? {
+    func decodeValueIfPresent(forKey key: K) throws -> Value? {
         guard self.contains(key) else {
             return nil
         }

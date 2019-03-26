@@ -245,13 +245,13 @@ public class SOPlace: SOThing, Place {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Place?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Place?, forKey key: K) throws {
         if let typedValue = value as? SOPlace {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    public mutating func encodeIfPresent(_ value: [Place]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [Place]?, forKey key: K) throws {
         if let typedValue = value as? [SOPlace] {
             try self.encode(typedValue, forKey: key)
         }

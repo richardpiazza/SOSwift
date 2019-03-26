@@ -137,7 +137,7 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: PriceSpecification?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: PriceSpecification?, forKey key: K) throws {
         if let typedValue = value as? SOPriceSpecification {
             try self.encode(typedValue, forKey: key)
         }

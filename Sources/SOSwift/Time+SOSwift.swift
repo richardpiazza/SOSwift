@@ -43,7 +43,7 @@ public extension Date {
 // MARK: - Time
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Time?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Time?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }
@@ -51,7 +51,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeTimeIfPresent(forKey key: K) throws -> Time? {
+    func decodeTimeIfPresent(forKey key: K) throws -> Time? {
         guard self.contains(key) else {
             return nil
         }

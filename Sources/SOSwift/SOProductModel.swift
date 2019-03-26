@@ -90,7 +90,7 @@ public class SOProductModel: SOProduct, ProductModel {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ProductModel?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: ProductModel?, forKey key: K) throws {
         if let typedValue = value as? SOProductModel {
             try self.encode(typedValue, forKey: key)
         }

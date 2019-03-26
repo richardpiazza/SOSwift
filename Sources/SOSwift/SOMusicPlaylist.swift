@@ -72,7 +72,7 @@ public class SOMusicPlaylist: SOCreativeWork, MusicPlaylist {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: MusicPlaylist?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: MusicPlaylist?, forKey key: K) throws {
         if let typedValue = value as? SOMusicPlaylist {
             try self.encode(typedValue, forKey: key)
         }

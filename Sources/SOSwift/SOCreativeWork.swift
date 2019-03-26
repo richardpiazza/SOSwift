@@ -825,7 +825,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: CreativeWork?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: CreativeWork?, forKey key: K) throws {
         if let typedValue = value as? SOCreativeWork {
             try self.encode(typedValue, forKey: key)
         }

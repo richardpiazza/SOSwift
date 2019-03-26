@@ -22,7 +22,7 @@ public class SOCountry: SOAdministrativeArea, Country {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Country?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Country?, forKey key: K) throws {
         if let typedValue = value as? SOCountry {
             try self.encode(typedValue, forKey: key)
         }

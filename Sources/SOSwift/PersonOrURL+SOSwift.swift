@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - PersonOrURL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: PersonOrURL?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: PersonOrURL?, forKey key: K) throws {
         if let typedValue = value as? SOPerson {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
@@ -12,7 +12,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeIfPresent(_ values: [PersonOrURL]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ values: [PersonOrURL]?, forKey key: K) throws {
         guard let values = values else {
             return
         }
@@ -30,7 +30,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodePersonOrURLIfPresent(forKey key: K) throws -> PersonOrURL? {
+    func decodePersonOrURLIfPresent(forKey key: K) throws -> PersonOrURL? {
         guard self.contains(key) else {
             return nil
         }
@@ -56,7 +56,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodePersonsOrURLsIfPresent(forKey key: K) throws -> [PersonOrURL]? {
+    func decodePersonsOrURLsIfPresent(forKey key: K) throws -> [PersonOrURL]? {
         guard self.contains(key) else {
             return nil
         }

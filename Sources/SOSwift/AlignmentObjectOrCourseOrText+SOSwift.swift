@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - AlignmentObjectOrCourseOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: AlignmentObjectOrCourseOrText?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: AlignmentObjectOrCourseOrText?, forKey key: K) throws {
         if let typedValue = value as? SOAlignmentObject {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOCourse {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
         }
     }
     
-    public mutating func encodeIfPresent(_ values: [AlignmentObjectOrCourseOrText]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ values: [AlignmentObjectOrCourseOrText]?, forKey key: K) throws {
         guard let values = values else {
             return
         }
@@ -34,7 +34,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeAlignmentObjectOrCourseOrTextIfPresent(forKey key: K) throws -> AlignmentObjectOrCourseOrText? {
+    func decodeAlignmentObjectOrCourseOrTextIfPresent(forKey key: K) throws -> AlignmentObjectOrCourseOrText? {
         guard self.contains(key) else {
             return nil
         }
@@ -60,7 +60,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    public func decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey key: K) throws -> [AlignmentObjectOrCourseOrText]? {
+    func decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey key: K) throws -> [AlignmentObjectOrCourseOrText]? {
         guard self.contains(key) else {
             return nil
         }

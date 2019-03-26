@@ -124,7 +124,7 @@ public class SOPostalAddress: SOContactPoint, PostalAddress {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: PostalAddress?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: PostalAddress?, forKey key: K) throws {
         if let typedValue = value as? SOPostalAddress {
             try self.encode(typedValue, forKey: key)
         }

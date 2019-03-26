@@ -95,7 +95,7 @@ public class SOAlignmentObject: SOIntangible, AlignmentObject {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: AlignmentObject?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: AlignmentObject?, forKey key: K) throws {
         if let typedValue = value as? SOAlignmentObject {
             try self.encode(typedValue, forKey: key)
         }

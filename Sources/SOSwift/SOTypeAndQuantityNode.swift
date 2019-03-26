@@ -98,7 +98,7 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: TypeAndQuantityNode?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: TypeAndQuantityNode?, forKey key: K) throws {
         if let typedValue = value as? SOTypeAndQuantityNode {
             try self.encode(typedValue, forKey: key)
         }

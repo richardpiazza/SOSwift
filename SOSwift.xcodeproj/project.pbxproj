@@ -6,6 +6,7 @@
       "OBJ_1" = {
          isa = "PBXProject";
          attributes = {
+            LastSwiftMigration = "9999";
             LastUpgradeCheck = "9999";
          };
          buildConfigurationList = "OBJ_2";
@@ -725,7 +726,7 @@
             "OBJ_214",
             "OBJ_368"
          );
-         name = "SOSwiftVocabulary 1.5.0";
+         name = "SOSwiftVocabulary 1.6.0";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -887,7 +888,7 @@
             "OBJ_367"
          );
          name = "SOSwiftVocabulary";
-         path = ".build/checkouts/SOSwiftVocabulary-7475310445252353023/Sources/SOSwiftVocabulary";
+         path = ".build/checkouts/SOSwiftVocabulary--2968763908581452961/Sources/SOSwiftVocabulary";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_215" = {
@@ -1366,8 +1367,9 @@
             ENABLE_NS_ASSERTIONS = "YES";
             GCC_OPTIMIZATION_LEVEL = "0";
             GCC_PREPROCESSOR_DEFINITIONS = (
-               "DEBUG=1",
-               "$(inherited)"
+               "$(inherited)",
+               "SWIFT_PACKAGE=1",
+               "DEBUG=1"
             );
             MACOSX_DEPLOYMENT_TARGET = "10.10";
             ONLY_ACTIVE_ARCH = "YES";
@@ -1386,6 +1388,7 @@
                "watchsimulator"
             );
             SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
                "SWIFT_PACKAGE",
                "DEBUG"
             );
@@ -1773,15 +1776,15 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/rpiazza/Projects/Open Source/SOSwift/.build/checkouts/SOSwiftVocabulary-7475310445252353023/Package.swift";
+         path = "/Users/richardpiazza/Documents/Open Source/SOSwift/.build/checkouts/SOSwiftVocabulary--2968763908581452961/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_369" = {
          isa = "PBXGroup";
          children = (
-            "SOSwift::SOSwift::Product",
+            "SOSwiftVocabulary::SOSwiftVocabulary::Product",
             "SOSwift::SOSwiftTests::Product",
-            "SOSwiftVocabulary::SOSwiftVocabulary::Product"
+            "SOSwift::SOSwift::Product"
          );
          name = "Products";
          path = "";
@@ -1792,16 +1795,31 @@
          path = "Duration+SOSwift.swift";
          sourceTree = "<group>";
       };
+      "OBJ_373" = {
+         isa = "PBXFileReference";
+         path = "SOSwift.podspec";
+         sourceTree = "<group>";
+      };
       "OBJ_374" = {
+         isa = "PBXFileReference";
+         path = "LICENSE";
+         sourceTree = "<group>";
+      };
+      "OBJ_375" = {
+         isa = "PBXFileReference";
+         path = "README.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_377" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_375",
-            "OBJ_376"
+            "OBJ_378",
+            "OBJ_379"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_375" = {
+      "OBJ_378" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -1813,10 +1831,12 @@
                "$(inherited)"
             );
             INFOPLIST_FILE = "SOSwift.xcodeproj/SOSwift_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
             );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
             OTHER_CFLAGS = (
                "$(inherited)"
             );
@@ -1833,12 +1853,14 @@
             SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
                "$(inherited)"
             );
-            SWIFT_VERSION = "4.2";
+            SWIFT_VERSION = "5.0";
             TARGET_NAME = "SOSwift";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
          };
          name = "Debug";
       };
-      "OBJ_376" = {
+      "OBJ_379" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -1850,10 +1872,12 @@
                "$(inherited)"
             );
             INFOPLIST_FILE = "SOSwift.xcodeproj/SOSwift_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
             );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
             OTHER_CFLAGS = (
                "$(inherited)"
             );
@@ -1870,17 +1894,21 @@
             SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
                "$(inherited)"
             );
-            SWIFT_VERSION = "4.2";
+            SWIFT_VERSION = "5.0";
             TARGET_NAME = "SOSwift";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
          };
          name = "Release";
       };
-      "OBJ_377" = {
+      "OBJ_38" = {
+         isa = "PBXFileReference";
+         path = "Dynamic.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_380" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_378",
-            "OBJ_379",
-            "OBJ_380",
             "OBJ_381",
             "OBJ_382",
             "OBJ_383",
@@ -2031,61 +2059,47 @@
             "OBJ_528",
             "OBJ_529",
             "OBJ_530",
-            "OBJ_531"
+            "OBJ_531",
+            "OBJ_532",
+            "OBJ_533",
+            "OBJ_534"
          );
-      };
-      "OBJ_378" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_9";
-      };
-      "OBJ_379" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_10";
-      };
-      "OBJ_38" = {
-         isa = "PBXFileReference";
-         path = "Dynamic.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_380" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_11";
       };
       "OBJ_381" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_12";
+         fileRef = "OBJ_9";
       };
       "OBJ_382" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_13";
+         fileRef = "OBJ_10";
       };
       "OBJ_383" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_14";
+         fileRef = "OBJ_11";
       };
       "OBJ_384" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_15";
+         fileRef = "OBJ_12";
       };
       "OBJ_385" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_16";
+         fileRef = "OBJ_13";
       };
       "OBJ_386" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_17";
+         fileRef = "OBJ_14";
       };
       "OBJ_387" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_18";
+         fileRef = "OBJ_15";
       };
       "OBJ_388" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_19";
+         fileRef = "OBJ_16";
       };
       "OBJ_389" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_20";
+         fileRef = "OBJ_17";
       };
       "OBJ_39" = {
          isa = "PBXFileReference";
@@ -2094,43 +2108,43 @@
       };
       "OBJ_390" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_21";
+         fileRef = "OBJ_18";
       };
       "OBJ_391" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_22";
+         fileRef = "OBJ_19";
       };
       "OBJ_392" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_23";
+         fileRef = "OBJ_20";
       };
       "OBJ_393" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_24";
+         fileRef = "OBJ_21";
       };
       "OBJ_394" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_25";
+         fileRef = "OBJ_22";
       };
       "OBJ_395" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_26";
+         fileRef = "OBJ_23";
       };
       "OBJ_396" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_27";
+         fileRef = "OBJ_24";
       };
       "OBJ_397" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_28";
+         fileRef = "OBJ_25";
       };
       "OBJ_398" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_29";
+         fileRef = "OBJ_26";
       };
       "OBJ_399" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_30";
+         fileRef = "OBJ_27";
       };
       "OBJ_4" = {
          isa = "XCBuildConfiguration";
@@ -2141,6 +2155,10 @@
             DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
             DYLIB_INSTALL_NAME_BASE = "@rpath";
             GCC_OPTIMIZATION_LEVEL = "s";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1"
+            );
             MACOSX_DEPLOYMENT_TARGET = "10.10";
             OTHER_SWIFT_FLAGS = (
                "-DXcode"
@@ -2157,6 +2175,7 @@
                "watchsimulator"
             );
             SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
                "SWIFT_PACKAGE"
             );
             SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2171,43 +2190,43 @@
       };
       "OBJ_400" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_31";
+         fileRef = "OBJ_28";
       };
       "OBJ_401" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_32";
+         fileRef = "OBJ_29";
       };
       "OBJ_402" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_33";
+         fileRef = "OBJ_30";
       };
       "OBJ_403" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_34";
+         fileRef = "OBJ_31";
       };
       "OBJ_404" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_35";
+         fileRef = "OBJ_32";
       };
       "OBJ_405" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_36";
+         fileRef = "OBJ_33";
       };
       "OBJ_406" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_37";
+         fileRef = "OBJ_34";
       };
       "OBJ_407" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_38";
+         fileRef = "OBJ_35";
       };
       "OBJ_408" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_39";
+         fileRef = "OBJ_36";
       };
       "OBJ_409" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_40";
+         fileRef = "OBJ_37";
       };
       "OBJ_41" = {
          isa = "PBXFileReference";
@@ -2216,43 +2235,43 @@
       };
       "OBJ_410" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_41";
+         fileRef = "OBJ_38";
       };
       "OBJ_411" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_42";
+         fileRef = "OBJ_39";
       };
       "OBJ_412" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_43";
+         fileRef = "OBJ_40";
       };
       "OBJ_413" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_44";
+         fileRef = "OBJ_41";
       };
       "OBJ_414" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_45";
+         fileRef = "OBJ_42";
       };
       "OBJ_415" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_46";
+         fileRef = "OBJ_43";
       };
       "OBJ_416" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_47";
+         fileRef = "OBJ_44";
       };
       "OBJ_417" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_48";
+         fileRef = "OBJ_45";
       };
       "OBJ_418" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_49";
+         fileRef = "OBJ_46";
       };
       "OBJ_419" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_50";
+         fileRef = "OBJ_47";
       };
       "OBJ_42" = {
          isa = "PBXFileReference";
@@ -2261,43 +2280,43 @@
       };
       "OBJ_420" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_51";
+         fileRef = "OBJ_48";
       };
       "OBJ_421" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_52";
+         fileRef = "OBJ_49";
       };
       "OBJ_422" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_53";
+         fileRef = "OBJ_50";
       };
       "OBJ_423" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_54";
+         fileRef = "OBJ_51";
       };
       "OBJ_424" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_55";
+         fileRef = "OBJ_52";
       };
       "OBJ_425" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_56";
+         fileRef = "OBJ_53";
       };
       "OBJ_426" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_57";
+         fileRef = "OBJ_54";
       };
       "OBJ_427" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_58";
+         fileRef = "OBJ_55";
       };
       "OBJ_428" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_59";
+         fileRef = "OBJ_56";
       };
       "OBJ_429" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_60";
+         fileRef = "OBJ_57";
       };
       "OBJ_43" = {
          isa = "PBXFileReference";
@@ -2306,43 +2325,43 @@
       };
       "OBJ_430" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_61";
+         fileRef = "OBJ_58";
       };
       "OBJ_431" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_62";
+         fileRef = "OBJ_59";
       };
       "OBJ_432" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_63";
+         fileRef = "OBJ_60";
       };
       "OBJ_433" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_64";
+         fileRef = "OBJ_61";
       };
       "OBJ_434" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_65";
+         fileRef = "OBJ_62";
       };
       "OBJ_435" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_66";
+         fileRef = "OBJ_63";
       };
       "OBJ_436" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_67";
+         fileRef = "OBJ_64";
       };
       "OBJ_437" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_68";
+         fileRef = "OBJ_65";
       };
       "OBJ_438" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_69";
+         fileRef = "OBJ_66";
       };
       "OBJ_439" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_70";
+         fileRef = "OBJ_67";
       };
       "OBJ_44" = {
          isa = "PBXFileReference";
@@ -2351,43 +2370,43 @@
       };
       "OBJ_440" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_71";
+         fileRef = "OBJ_68";
       };
       "OBJ_441" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_72";
+         fileRef = "OBJ_69";
       };
       "OBJ_442" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_73";
+         fileRef = "OBJ_70";
       };
       "OBJ_443" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_74";
+         fileRef = "OBJ_71";
       };
       "OBJ_444" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_75";
+         fileRef = "OBJ_72";
       };
       "OBJ_445" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_76";
+         fileRef = "OBJ_73";
       };
       "OBJ_446" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_77";
+         fileRef = "OBJ_74";
       };
       "OBJ_447" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_78";
+         fileRef = "OBJ_75";
       };
       "OBJ_448" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_79";
+         fileRef = "OBJ_76";
       };
       "OBJ_449" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_80";
+         fileRef = "OBJ_77";
       };
       "OBJ_45" = {
          isa = "PBXFileReference";
@@ -2396,43 +2415,43 @@
       };
       "OBJ_450" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_81";
+         fileRef = "OBJ_78";
       };
       "OBJ_451" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_82";
+         fileRef = "OBJ_79";
       };
       "OBJ_452" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_83";
+         fileRef = "OBJ_80";
       };
       "OBJ_453" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_84";
+         fileRef = "OBJ_81";
       };
       "OBJ_454" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_85";
+         fileRef = "OBJ_82";
       };
       "OBJ_455" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_86";
+         fileRef = "OBJ_83";
       };
       "OBJ_456" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_87";
+         fileRef = "OBJ_84";
       };
       "OBJ_457" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_88";
+         fileRef = "OBJ_85";
       };
       "OBJ_458" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_89";
+         fileRef = "OBJ_86";
       };
       "OBJ_459" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_90";
+         fileRef = "OBJ_87";
       };
       "OBJ_46" = {
          isa = "PBXFileReference";
@@ -2441,43 +2460,43 @@
       };
       "OBJ_460" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_91";
+         fileRef = "OBJ_88";
       };
       "OBJ_461" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_92";
+         fileRef = "OBJ_89";
       };
       "OBJ_462" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_93";
+         fileRef = "OBJ_90";
       };
       "OBJ_463" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_94";
+         fileRef = "OBJ_91";
       };
       "OBJ_464" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_95";
+         fileRef = "OBJ_92";
       };
       "OBJ_465" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_96";
+         fileRef = "OBJ_93";
       };
       "OBJ_466" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_97";
+         fileRef = "OBJ_94";
       };
       "OBJ_467" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_98";
+         fileRef = "OBJ_95";
       };
       "OBJ_468" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_99";
+         fileRef = "OBJ_96";
       };
       "OBJ_469" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_100";
+         fileRef = "OBJ_97";
       };
       "OBJ_47" = {
          isa = "PBXFileReference";
@@ -2486,43 +2505,43 @@
       };
       "OBJ_470" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_101";
+         fileRef = "OBJ_98";
       };
       "OBJ_471" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_102";
+         fileRef = "OBJ_99";
       };
       "OBJ_472" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_103";
+         fileRef = "OBJ_100";
       };
       "OBJ_473" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_104";
+         fileRef = "OBJ_101";
       };
       "OBJ_474" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_105";
+         fileRef = "OBJ_102";
       };
       "OBJ_475" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_106";
+         fileRef = "OBJ_103";
       };
       "OBJ_476" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_107";
+         fileRef = "OBJ_104";
       };
       "OBJ_477" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_108";
+         fileRef = "OBJ_105";
       };
       "OBJ_478" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_109";
+         fileRef = "OBJ_106";
       };
       "OBJ_479" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_110";
+         fileRef = "OBJ_107";
       };
       "OBJ_48" = {
          isa = "PBXFileReference";
@@ -2531,43 +2550,43 @@
       };
       "OBJ_480" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_111";
+         fileRef = "OBJ_108";
       };
       "OBJ_481" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_112";
+         fileRef = "OBJ_109";
       };
       "OBJ_482" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_113";
+         fileRef = "OBJ_110";
       };
       "OBJ_483" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_114";
+         fileRef = "OBJ_111";
       };
       "OBJ_484" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_115";
+         fileRef = "OBJ_112";
       };
       "OBJ_485" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_116";
+         fileRef = "OBJ_113";
       };
       "OBJ_486" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_117";
+         fileRef = "OBJ_114";
       };
       "OBJ_487" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_118";
+         fileRef = "OBJ_115";
       };
       "OBJ_488" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_119";
+         fileRef = "OBJ_116";
       };
       "OBJ_489" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_120";
+         fileRef = "OBJ_117";
       };
       "OBJ_49" = {
          isa = "PBXFileReference";
@@ -2576,43 +2595,43 @@
       };
       "OBJ_490" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_121";
+         fileRef = "OBJ_118";
       };
       "OBJ_491" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_122";
+         fileRef = "OBJ_119";
       };
       "OBJ_492" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_123";
+         fileRef = "OBJ_120";
       };
       "OBJ_493" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_124";
+         fileRef = "OBJ_121";
       };
       "OBJ_494" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_125";
+         fileRef = "OBJ_122";
       };
       "OBJ_495" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_126";
+         fileRef = "OBJ_123";
       };
       "OBJ_496" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_127";
+         fileRef = "OBJ_124";
       };
       "OBJ_497" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_128";
+         fileRef = "OBJ_125";
       };
       "OBJ_498" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_129";
+         fileRef = "OBJ_126";
       };
       "OBJ_499" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_130";
+         fileRef = "OBJ_127";
       };
       "OBJ_5" = {
          isa = "PBXGroup";
@@ -2621,7 +2640,10 @@
             "OBJ_7",
             "OBJ_163",
             "OBJ_212",
-            "OBJ_369"
+            "OBJ_369",
+            "OBJ_373",
+            "OBJ_374",
+            "OBJ_375"
          );
          path = "";
          sourceTree = "<group>";
@@ -2633,43 +2655,43 @@
       };
       "OBJ_500" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_131";
+         fileRef = "OBJ_128";
       };
       "OBJ_501" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_132";
+         fileRef = "OBJ_129";
       };
       "OBJ_502" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_133";
+         fileRef = "OBJ_130";
       };
       "OBJ_503" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_134";
+         fileRef = "OBJ_131";
       };
       "OBJ_504" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_135";
+         fileRef = "OBJ_132";
       };
       "OBJ_505" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_136";
+         fileRef = "OBJ_133";
       };
       "OBJ_506" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_137";
+         fileRef = "OBJ_134";
       };
       "OBJ_507" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_138";
+         fileRef = "OBJ_135";
       };
       "OBJ_508" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_139";
+         fileRef = "OBJ_136";
       };
       "OBJ_509" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_140";
+         fileRef = "OBJ_137";
       };
       "OBJ_51" = {
          isa = "PBXFileReference";
@@ -2678,43 +2700,43 @@
       };
       "OBJ_510" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_141";
+         fileRef = "OBJ_138";
       };
       "OBJ_511" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_142";
+         fileRef = "OBJ_139";
       };
       "OBJ_512" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_143";
+         fileRef = "OBJ_140";
       };
       "OBJ_513" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_144";
+         fileRef = "OBJ_141";
       };
       "OBJ_514" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_145";
+         fileRef = "OBJ_142";
       };
       "OBJ_515" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_146";
+         fileRef = "OBJ_143";
       };
       "OBJ_516" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_147";
+         fileRef = "OBJ_144";
       };
       "OBJ_517" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_148";
+         fileRef = "OBJ_145";
       };
       "OBJ_518" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_149";
+         fileRef = "OBJ_146";
       };
       "OBJ_519" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_150";
+         fileRef = "OBJ_147";
       };
       "OBJ_52" = {
          isa = "PBXFileReference";
@@ -2723,43 +2745,43 @@
       };
       "OBJ_520" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_151";
+         fileRef = "OBJ_148";
       };
       "OBJ_521" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_152";
+         fileRef = "OBJ_149";
       };
       "OBJ_522" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_153";
+         fileRef = "OBJ_150";
       };
       "OBJ_523" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_154";
+         fileRef = "OBJ_151";
       };
       "OBJ_524" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_155";
+         fileRef = "OBJ_152";
       };
       "OBJ_525" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_156";
+         fileRef = "OBJ_153";
       };
       "OBJ_526" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_157";
+         fileRef = "OBJ_154";
       };
       "OBJ_527" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_158";
+         fileRef = "OBJ_155";
       };
       "OBJ_528" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_159";
+         fileRef = "OBJ_156";
       };
       "OBJ_529" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_160";
+         fileRef = "OBJ_157";
       };
       "OBJ_53" = {
          isa = "PBXFileReference";
@@ -2768,70 +2790,37 @@
       };
       "OBJ_530" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_161";
+         fileRef = "OBJ_158";
       };
       "OBJ_531" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_162";
+         fileRef = "OBJ_159";
       };
       "OBJ_532" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_533"
-         );
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_160";
       };
       "OBJ_533" = {
          isa = "PBXBuildFile";
-         fileRef = "SOSwiftVocabulary::SOSwiftVocabulary::Product";
+         fileRef = "OBJ_161";
       };
       "OBJ_534" = {
-         isa = "PBXTargetDependency";
-         target = "SOSwiftVocabulary::SOSwiftVocabulary";
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_162";
+      };
+      "OBJ_535" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_536"
+         );
+      };
+      "OBJ_536" = {
+         isa = "PBXBuildFile";
+         fileRef = "SOSwiftVocabulary::SOSwiftVocabulary::Product";
       };
       "OBJ_537" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_538",
-            "OBJ_539"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_538" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Debug";
-      };
-      "OBJ_539" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Release";
+         isa = "PBXTargetDependency";
+         target = "SOSwiftVocabulary::SOSwiftVocabulary";
       };
       "OBJ_54" = {
          isa = "PBXFileReference";
@@ -2839,90 +2828,100 @@
          sourceTree = "<group>";
       };
       "OBJ_540" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_541"
-         );
-      };
-      "OBJ_541" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_6";
-      };
-      "OBJ_543" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_544",
-            "OBJ_545"
+            "OBJ_541",
+            "OBJ_542"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
+      "OBJ_541" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_542" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Release";
+      };
+      "OBJ_543" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_544"
+         );
+      };
       "OBJ_544" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_546" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_547",
+            "OBJ_548"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_547" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
          };
          name = "Debug";
       };
-      "OBJ_545" = {
+      "OBJ_548" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
          };
          name = "Release";
       };
-      "OBJ_546" = {
+      "OBJ_549" = {
          isa = "PBXTargetDependency";
          target = "SOSwift::SOSwiftTests";
-      };
-      "OBJ_548" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_549",
-            "OBJ_550"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_549" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "SOSwift.xcodeproj/SOSwiftTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "SOSwiftTests";
-         };
-         name = "Debug";
       };
       "OBJ_55" = {
          isa = "PBXFileReference";
          path = "MapOrURL+SOSwift.swift";
          sourceTree = "<group>";
       };
-      "OBJ_550" = {
+      "OBJ_551" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_552",
+            "OBJ_553"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_552" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             CLANG_ENABLE_MODULES = "YES";
@@ -2935,11 +2934,13 @@
                "$(inherited)"
             );
             INFOPLIST_FILE = "SOSwift.xcodeproj/SOSwiftTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "@loader_path/../Frameworks",
                "@loader_path/Frameworks"
             );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
             OTHER_CFLAGS = (
                "$(inherited)"
             );
@@ -2952,17 +2953,55 @@
             SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
                "$(inherited)"
             );
-            SWIFT_VERSION = "4.2";
+            SWIFT_VERSION = "5.0";
             TARGET_NAME = "SOSwiftTests";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_553" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SOSwift.xcodeproj/SOSwiftTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SOSwiftTests";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
          };
          name = "Release";
       };
-      "OBJ_551" = {
+      "OBJ_554" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_552",
-            "OBJ_553",
-            "OBJ_554",
             "OBJ_555",
             "OBJ_556",
             "OBJ_557",
@@ -3006,40 +3045,31 @@
             "OBJ_595",
             "OBJ_596",
             "OBJ_597",
-            "OBJ_598"
+            "OBJ_598",
+            "OBJ_599",
+            "OBJ_600",
+            "OBJ_601"
          );
-      };
-      "OBJ_552" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_165";
-      };
-      "OBJ_553" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_166";
-      };
-      "OBJ_554" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_167";
       };
       "OBJ_555" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_168";
+         fileRef = "OBJ_165";
       };
       "OBJ_556" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_169";
+         fileRef = "OBJ_166";
       };
       "OBJ_557" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_170";
+         fileRef = "OBJ_167";
       };
       "OBJ_558" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_171";
+         fileRef = "OBJ_168";
       };
       "OBJ_559" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_172";
+         fileRef = "OBJ_169";
       };
       "OBJ_56" = {
          isa = "PBXFileReference";
@@ -3048,43 +3078,43 @@
       };
       "OBJ_560" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_173";
+         fileRef = "OBJ_170";
       };
       "OBJ_561" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_174";
+         fileRef = "OBJ_171";
       };
       "OBJ_562" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_175";
+         fileRef = "OBJ_172";
       };
       "OBJ_563" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_176";
+         fileRef = "OBJ_173";
       };
       "OBJ_564" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_177";
+         fileRef = "OBJ_174";
       };
       "OBJ_565" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_178";
+         fileRef = "OBJ_175";
       };
       "OBJ_566" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_179";
+         fileRef = "OBJ_176";
       };
       "OBJ_567" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_180";
+         fileRef = "OBJ_177";
       };
       "OBJ_568" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_181";
+         fileRef = "OBJ_178";
       };
       "OBJ_569" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_182";
+         fileRef = "OBJ_179";
       };
       "OBJ_57" = {
          isa = "PBXFileReference";
@@ -3093,43 +3123,43 @@
       };
       "OBJ_570" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_183";
+         fileRef = "OBJ_180";
       };
       "OBJ_571" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_184";
+         fileRef = "OBJ_181";
       };
       "OBJ_572" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_185";
+         fileRef = "OBJ_182";
       };
       "OBJ_573" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_186";
+         fileRef = "OBJ_183";
       };
       "OBJ_574" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_187";
+         fileRef = "OBJ_184";
       };
       "OBJ_575" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_188";
+         fileRef = "OBJ_185";
       };
       "OBJ_576" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_189";
+         fileRef = "OBJ_186";
       };
       "OBJ_577" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_190";
+         fileRef = "OBJ_187";
       };
       "OBJ_578" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_191";
+         fileRef = "OBJ_188";
       };
       "OBJ_579" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_192";
+         fileRef = "OBJ_189";
       };
       "OBJ_58" = {
          isa = "PBXFileReference";
@@ -3138,43 +3168,43 @@
       };
       "OBJ_580" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_193";
+         fileRef = "OBJ_190";
       };
       "OBJ_581" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_194";
+         fileRef = "OBJ_191";
       };
       "OBJ_582" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_195";
+         fileRef = "OBJ_192";
       };
       "OBJ_583" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_196";
+         fileRef = "OBJ_193";
       };
       "OBJ_584" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_197";
+         fileRef = "OBJ_194";
       };
       "OBJ_585" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_198";
+         fileRef = "OBJ_195";
       };
       "OBJ_586" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_199";
+         fileRef = "OBJ_196";
       };
       "OBJ_587" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_200";
+         fileRef = "OBJ_197";
       };
       "OBJ_588" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_201";
+         fileRef = "OBJ_198";
       };
       "OBJ_589" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_202";
+         fileRef = "OBJ_199";
       };
       "OBJ_59" = {
          isa = "PBXFileReference";
@@ -3183,46 +3213,43 @@
       };
       "OBJ_590" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_203";
+         fileRef = "OBJ_200";
       };
       "OBJ_591" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_204";
+         fileRef = "OBJ_201";
       };
       "OBJ_592" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_205";
+         fileRef = "OBJ_202";
       };
       "OBJ_593" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_206";
+         fileRef = "OBJ_203";
       };
       "OBJ_594" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_207";
+         fileRef = "OBJ_204";
       };
       "OBJ_595" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_208";
+         fileRef = "OBJ_205";
       };
       "OBJ_596" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_209";
+         fileRef = "OBJ_206";
       };
       "OBJ_597" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_210";
+         fileRef = "OBJ_207";
       };
       "OBJ_598" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_211";
+         fileRef = "OBJ_208";
       };
       "OBJ_599" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_600",
-            "OBJ_601"
-         );
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_209";
       };
       "OBJ_6" = {
          isa = "PBXFileReference";
@@ -3237,30 +3264,45 @@
       };
       "OBJ_600" = {
          isa = "PBXBuildFile";
-         fileRef = "SOSwift::SOSwift::Product";
+         fileRef = "OBJ_210";
       };
       "OBJ_601" = {
          isa = "PBXBuildFile";
-         fileRef = "SOSwiftVocabulary::SOSwiftVocabulary::Product";
+         fileRef = "OBJ_211";
       };
       "OBJ_602" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_603",
+            "OBJ_604"
+         );
+      };
+      "OBJ_603" = {
+         isa = "PBXBuildFile";
+         fileRef = "SOSwift::SOSwift::Product";
+      };
+      "OBJ_604" = {
+         isa = "PBXBuildFile";
+         fileRef = "SOSwiftVocabulary::SOSwiftVocabulary::Product";
+      };
+      "OBJ_605" = {
          isa = "PBXTargetDependency";
          target = "SOSwift::SOSwift";
       };
-      "OBJ_603" = {
+      "OBJ_606" = {
          isa = "PBXTargetDependency";
          target = "SOSwiftVocabulary::SOSwiftVocabulary";
       };
-      "OBJ_604" = {
+      "OBJ_607" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_605",
-            "OBJ_606"
+            "OBJ_608",
+            "OBJ_609"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_605" = {
+      "OBJ_608" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -3272,10 +3314,12 @@
                "$(inherited)"
             );
             INFOPLIST_FILE = "SOSwift.xcodeproj/SOSwiftVocabulary_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
             );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
             OTHER_CFLAGS = (
                "$(inherited)"
             );
@@ -3292,12 +3336,14 @@
             SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
                "$(inherited)"
             );
-            SWIFT_VERSION = "4.2";
+            SWIFT_VERSION = "5.0";
             TARGET_NAME = "SOSwiftVocabulary";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
          };
          name = "Debug";
       };
-      "OBJ_606" = {
+      "OBJ_609" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -3309,10 +3355,12 @@
                "$(inherited)"
             );
             INFOPLIST_FILE = "SOSwift.xcodeproj/SOSwiftVocabulary_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
             );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
             OTHER_CFLAGS = (
                "$(inherited)"
             );
@@ -3329,17 +3377,21 @@
             SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
                "$(inherited)"
             );
-            SWIFT_VERSION = "4.2";
+            SWIFT_VERSION = "5.0";
             TARGET_NAME = "SOSwiftVocabulary";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
          };
          name = "Release";
       };
-      "OBJ_607" = {
+      "OBJ_61" = {
+         isa = "PBXFileReference";
+         path = "Number+SOSwift.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_610" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_608",
-            "OBJ_609",
-            "OBJ_610",
             "OBJ_611",
             "OBJ_612",
             "OBJ_613",
@@ -3489,61 +3541,47 @@
             "OBJ_757",
             "OBJ_758",
             "OBJ_759",
-            "OBJ_760"
+            "OBJ_760",
+            "OBJ_761",
+            "OBJ_762",
+            "OBJ_763"
          );
-      };
-      "OBJ_608" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_215";
-      };
-      "OBJ_609" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_216";
-      };
-      "OBJ_61" = {
-         isa = "PBXFileReference";
-         path = "Number+SOSwift.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_610" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_217";
       };
       "OBJ_611" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_218";
+         fileRef = "OBJ_215";
       };
       "OBJ_612" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_219";
+         fileRef = "OBJ_216";
       };
       "OBJ_613" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_220";
+         fileRef = "OBJ_217";
       };
       "OBJ_614" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_221";
+         fileRef = "OBJ_218";
       };
       "OBJ_615" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_222";
+         fileRef = "OBJ_219";
       };
       "OBJ_616" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_223";
+         fileRef = "OBJ_220";
       };
       "OBJ_617" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_224";
+         fileRef = "OBJ_221";
       };
       "OBJ_618" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_225";
+         fileRef = "OBJ_222";
       };
       "OBJ_619" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_226";
+         fileRef = "OBJ_223";
       };
       "OBJ_62" = {
          isa = "PBXFileReference";
@@ -3552,43 +3590,43 @@
       };
       "OBJ_620" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_227";
+         fileRef = "OBJ_224";
       };
       "OBJ_621" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_228";
+         fileRef = "OBJ_225";
       };
       "OBJ_622" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_229";
+         fileRef = "OBJ_226";
       };
       "OBJ_623" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_230";
+         fileRef = "OBJ_227";
       };
       "OBJ_624" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_231";
+         fileRef = "OBJ_228";
       };
       "OBJ_625" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_232";
+         fileRef = "OBJ_229";
       };
       "OBJ_626" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_233";
+         fileRef = "OBJ_230";
       };
       "OBJ_627" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_234";
+         fileRef = "OBJ_231";
       };
       "OBJ_628" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_235";
+         fileRef = "OBJ_232";
       };
       "OBJ_629" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_236";
+         fileRef = "OBJ_233";
       };
       "OBJ_63" = {
          isa = "PBXFileReference";
@@ -3597,43 +3635,43 @@
       };
       "OBJ_630" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_237";
+         fileRef = "OBJ_234";
       };
       "OBJ_631" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_238";
+         fileRef = "OBJ_235";
       };
       "OBJ_632" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_239";
+         fileRef = "OBJ_236";
       };
       "OBJ_633" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_240";
+         fileRef = "OBJ_237";
       };
       "OBJ_634" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_241";
+         fileRef = "OBJ_238";
       };
       "OBJ_635" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_242";
+         fileRef = "OBJ_239";
       };
       "OBJ_636" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_243";
+         fileRef = "OBJ_240";
       };
       "OBJ_637" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_244";
+         fileRef = "OBJ_241";
       };
       "OBJ_638" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_245";
+         fileRef = "OBJ_242";
       };
       "OBJ_639" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_246";
+         fileRef = "OBJ_243";
       };
       "OBJ_64" = {
          isa = "PBXFileReference";
@@ -3642,43 +3680,43 @@
       };
       "OBJ_640" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_247";
+         fileRef = "OBJ_244";
       };
       "OBJ_641" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_248";
+         fileRef = "OBJ_245";
       };
       "OBJ_642" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_249";
+         fileRef = "OBJ_246";
       };
       "OBJ_643" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_250";
+         fileRef = "OBJ_247";
       };
       "OBJ_644" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_251";
+         fileRef = "OBJ_248";
       };
       "OBJ_645" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_252";
+         fileRef = "OBJ_249";
       };
       "OBJ_646" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_253";
+         fileRef = "OBJ_250";
       };
       "OBJ_647" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_254";
+         fileRef = "OBJ_251";
       };
       "OBJ_648" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_255";
+         fileRef = "OBJ_252";
       };
       "OBJ_649" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_256";
+         fileRef = "OBJ_253";
       };
       "OBJ_65" = {
          isa = "PBXFileReference";
@@ -3687,43 +3725,43 @@
       };
       "OBJ_650" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_257";
+         fileRef = "OBJ_254";
       };
       "OBJ_651" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_258";
+         fileRef = "OBJ_255";
       };
       "OBJ_652" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_259";
+         fileRef = "OBJ_256";
       };
       "OBJ_653" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_260";
+         fileRef = "OBJ_257";
       };
       "OBJ_654" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_261";
+         fileRef = "OBJ_258";
       };
       "OBJ_655" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_262";
+         fileRef = "OBJ_259";
       };
       "OBJ_656" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_263";
+         fileRef = "OBJ_260";
       };
       "OBJ_657" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_264";
+         fileRef = "OBJ_261";
       };
       "OBJ_658" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_265";
+         fileRef = "OBJ_262";
       };
       "OBJ_659" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_266";
+         fileRef = "OBJ_263";
       };
       "OBJ_66" = {
          isa = "PBXFileReference";
@@ -3732,43 +3770,43 @@
       };
       "OBJ_660" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_267";
+         fileRef = "OBJ_264";
       };
       "OBJ_661" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_268";
+         fileRef = "OBJ_265";
       };
       "OBJ_662" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_269";
+         fileRef = "OBJ_266";
       };
       "OBJ_663" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_270";
+         fileRef = "OBJ_267";
       };
       "OBJ_664" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_271";
+         fileRef = "OBJ_268";
       };
       "OBJ_665" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_272";
+         fileRef = "OBJ_269";
       };
       "OBJ_666" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_273";
+         fileRef = "OBJ_270";
       };
       "OBJ_667" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_274";
+         fileRef = "OBJ_271";
       };
       "OBJ_668" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_275";
+         fileRef = "OBJ_272";
       };
       "OBJ_669" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_276";
+         fileRef = "OBJ_273";
       };
       "OBJ_67" = {
          isa = "PBXFileReference";
@@ -3777,43 +3815,43 @@
       };
       "OBJ_670" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_277";
+         fileRef = "OBJ_274";
       };
       "OBJ_671" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_278";
+         fileRef = "OBJ_275";
       };
       "OBJ_672" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_279";
+         fileRef = "OBJ_276";
       };
       "OBJ_673" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_280";
+         fileRef = "OBJ_277";
       };
       "OBJ_674" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_281";
+         fileRef = "OBJ_278";
       };
       "OBJ_675" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_282";
+         fileRef = "OBJ_279";
       };
       "OBJ_676" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_283";
+         fileRef = "OBJ_280";
       };
       "OBJ_677" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_284";
+         fileRef = "OBJ_281";
       };
       "OBJ_678" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_285";
+         fileRef = "OBJ_282";
       };
       "OBJ_679" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_286";
+         fileRef = "OBJ_283";
       };
       "OBJ_68" = {
          isa = "PBXFileReference";
@@ -3822,43 +3860,43 @@
       };
       "OBJ_680" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_287";
+         fileRef = "OBJ_284";
       };
       "OBJ_681" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_288";
+         fileRef = "OBJ_285";
       };
       "OBJ_682" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_289";
+         fileRef = "OBJ_286";
       };
       "OBJ_683" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_290";
+         fileRef = "OBJ_287";
       };
       "OBJ_684" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_291";
+         fileRef = "OBJ_288";
       };
       "OBJ_685" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_292";
+         fileRef = "OBJ_289";
       };
       "OBJ_686" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_293";
+         fileRef = "OBJ_290";
       };
       "OBJ_687" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_294";
+         fileRef = "OBJ_291";
       };
       "OBJ_688" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_295";
+         fileRef = "OBJ_292";
       };
       "OBJ_689" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_296";
+         fileRef = "OBJ_293";
       };
       "OBJ_69" = {
          isa = "PBXFileReference";
@@ -3867,43 +3905,43 @@
       };
       "OBJ_690" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_297";
+         fileRef = "OBJ_294";
       };
       "OBJ_691" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_298";
+         fileRef = "OBJ_295";
       };
       "OBJ_692" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_299";
+         fileRef = "OBJ_296";
       };
       "OBJ_693" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_300";
+         fileRef = "OBJ_297";
       };
       "OBJ_694" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_301";
+         fileRef = "OBJ_298";
       };
       "OBJ_695" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_302";
+         fileRef = "OBJ_299";
       };
       "OBJ_696" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_303";
+         fileRef = "OBJ_300";
       };
       "OBJ_697" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_304";
+         fileRef = "OBJ_301";
       };
       "OBJ_698" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_305";
+         fileRef = "OBJ_302";
       };
       "OBJ_699" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_306";
+         fileRef = "OBJ_303";
       };
       "OBJ_7" = {
          isa = "PBXGroup";
@@ -3921,43 +3959,43 @@
       };
       "OBJ_700" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_307";
+         fileRef = "OBJ_304";
       };
       "OBJ_701" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_308";
+         fileRef = "OBJ_305";
       };
       "OBJ_702" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_309";
+         fileRef = "OBJ_306";
       };
       "OBJ_703" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_310";
+         fileRef = "OBJ_307";
       };
       "OBJ_704" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_311";
+         fileRef = "OBJ_308";
       };
       "OBJ_705" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_312";
+         fileRef = "OBJ_309";
       };
       "OBJ_706" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_313";
+         fileRef = "OBJ_310";
       };
       "OBJ_707" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_314";
+         fileRef = "OBJ_311";
       };
       "OBJ_708" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_315";
+         fileRef = "OBJ_312";
       };
       "OBJ_709" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_316";
+         fileRef = "OBJ_313";
       };
       "OBJ_71" = {
          isa = "PBXFileReference";
@@ -3966,43 +4004,43 @@
       };
       "OBJ_710" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_317";
+         fileRef = "OBJ_314";
       };
       "OBJ_711" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_318";
+         fileRef = "OBJ_315";
       };
       "OBJ_712" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_319";
+         fileRef = "OBJ_316";
       };
       "OBJ_713" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_320";
+         fileRef = "OBJ_317";
       };
       "OBJ_714" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_321";
+         fileRef = "OBJ_318";
       };
       "OBJ_715" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_322";
+         fileRef = "OBJ_319";
       };
       "OBJ_716" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_323";
+         fileRef = "OBJ_320";
       };
       "OBJ_717" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_324";
+         fileRef = "OBJ_321";
       };
       "OBJ_718" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_325";
+         fileRef = "OBJ_322";
       };
       "OBJ_719" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_326";
+         fileRef = "OBJ_323";
       };
       "OBJ_72" = {
          isa = "PBXFileReference";
@@ -4011,43 +4049,43 @@
       };
       "OBJ_720" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_327";
+         fileRef = "OBJ_324";
       };
       "OBJ_721" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_328";
+         fileRef = "OBJ_325";
       };
       "OBJ_722" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_329";
+         fileRef = "OBJ_326";
       };
       "OBJ_723" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_330";
+         fileRef = "OBJ_327";
       };
       "OBJ_724" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_331";
+         fileRef = "OBJ_328";
       };
       "OBJ_725" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_332";
+         fileRef = "OBJ_329";
       };
       "OBJ_726" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_333";
+         fileRef = "OBJ_330";
       };
       "OBJ_727" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_334";
+         fileRef = "OBJ_331";
       };
       "OBJ_728" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_335";
+         fileRef = "OBJ_332";
       };
       "OBJ_729" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_336";
+         fileRef = "OBJ_333";
       };
       "OBJ_73" = {
          isa = "PBXFileReference";
@@ -4056,43 +4094,43 @@
       };
       "OBJ_730" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_337";
+         fileRef = "OBJ_334";
       };
       "OBJ_731" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_338";
+         fileRef = "OBJ_335";
       };
       "OBJ_732" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_339";
+         fileRef = "OBJ_336";
       };
       "OBJ_733" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_340";
+         fileRef = "OBJ_337";
       };
       "OBJ_734" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_341";
+         fileRef = "OBJ_338";
       };
       "OBJ_735" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_342";
+         fileRef = "OBJ_339";
       };
       "OBJ_736" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_343";
+         fileRef = "OBJ_340";
       };
       "OBJ_737" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_344";
+         fileRef = "OBJ_341";
       };
       "OBJ_738" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_345";
+         fileRef = "OBJ_342";
       };
       "OBJ_739" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_346";
+         fileRef = "OBJ_343";
       };
       "OBJ_74" = {
          isa = "PBXFileReference";
@@ -4101,43 +4139,43 @@
       };
       "OBJ_740" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_347";
+         fileRef = "OBJ_344";
       };
       "OBJ_741" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_348";
+         fileRef = "OBJ_345";
       };
       "OBJ_742" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_349";
+         fileRef = "OBJ_346";
       };
       "OBJ_743" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_350";
+         fileRef = "OBJ_347";
       };
       "OBJ_744" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_351";
+         fileRef = "OBJ_348";
       };
       "OBJ_745" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_352";
+         fileRef = "OBJ_349";
       };
       "OBJ_746" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_353";
+         fileRef = "OBJ_350";
       };
       "OBJ_747" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_354";
+         fileRef = "OBJ_351";
       };
       "OBJ_748" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_355";
+         fileRef = "OBJ_352";
       };
       "OBJ_749" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_356";
+         fileRef = "OBJ_353";
       };
       "OBJ_75" = {
          isa = "PBXFileReference";
@@ -4146,43 +4184,43 @@
       };
       "OBJ_750" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_357";
+         fileRef = "OBJ_354";
       };
       "OBJ_751" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_358";
+         fileRef = "OBJ_355";
       };
       "OBJ_752" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_359";
+         fileRef = "OBJ_356";
       };
       "OBJ_753" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_360";
+         fileRef = "OBJ_357";
       };
       "OBJ_754" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_361";
+         fileRef = "OBJ_358";
       };
       "OBJ_755" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_362";
+         fileRef = "OBJ_359";
       };
       "OBJ_756" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_363";
+         fileRef = "OBJ_360";
       };
       "OBJ_757" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_364";
+         fileRef = "OBJ_361";
       };
       "OBJ_758" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_365";
+         fileRef = "OBJ_362";
       };
       "OBJ_759" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_366";
+         fileRef = "OBJ_363";
       };
       "OBJ_76" = {
          isa = "PBXFileReference";
@@ -4191,29 +4229,41 @@
       };
       "OBJ_760" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_367";
+         fileRef = "OBJ_364";
       };
       "OBJ_761" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_365";
+      };
+      "OBJ_762" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_366";
+      };
+      "OBJ_763" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_367";
+      };
+      "OBJ_764" = {
          isa = "PBXFrameworksBuildPhase";
          files = (
          );
       };
-      "OBJ_763" = {
+      "OBJ_766" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_764",
-            "OBJ_765"
+            "OBJ_767",
+            "OBJ_768"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_764" = {
+      "OBJ_767" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             LD = "/usr/bin/true";
             OTHER_SWIFT_FLAGS = (
                "-swift-version",
-               "4.2",
+               "5",
                "-I",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
                "-target",
@@ -4221,17 +4271,17 @@
                "-sdk",
                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
-            SWIFT_VERSION = "4.2";
+            SWIFT_VERSION = "5.0";
          };
          name = "Debug";
       };
-      "OBJ_765" = {
+      "OBJ_768" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             LD = "/usr/bin/true";
             OTHER_SWIFT_FLAGS = (
                "-swift-version",
-               "4.2",
+               "5",
                "-I",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
                "-target",
@@ -4239,24 +4289,24 @@
                "-sdk",
                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
-            SWIFT_VERSION = "4.2";
+            SWIFT_VERSION = "5.0";
          };
          name = "Release";
       };
-      "OBJ_766" = {
+      "OBJ_769" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_767"
+            "OBJ_770"
          );
-      };
-      "OBJ_767" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_368";
       };
       "OBJ_77" = {
          isa = "PBXFileReference";
          path = "SOAction.swift";
          sourceTree = "<group>";
+      };
+      "OBJ_770" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_368";
       };
       "OBJ_78" = {
          isa = "PBXFileReference";
@@ -4537,13 +4587,13 @@
       };
       "SOSwift::SOSwift" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_374";
+         buildConfigurationList = "OBJ_377";
          buildPhases = (
-            "OBJ_377",
-            "OBJ_532"
+            "OBJ_380",
+            "OBJ_535"
          );
          dependencies = (
-            "OBJ_534"
+            "OBJ_537"
          );
          name = "SOSwift";
          productName = "SOSwift";
@@ -4557,25 +4607,25 @@
       };
       "SOSwift::SOSwiftPackageTests::ProductTarget" = {
          isa = "PBXAggregateTarget";
-         buildConfigurationList = "OBJ_543";
+         buildConfigurationList = "OBJ_546";
          buildPhases = (
          );
          dependencies = (
-            "OBJ_546"
+            "OBJ_549"
          );
          name = "SOSwiftPackageTests";
          productName = "SOSwiftPackageTests";
       };
       "SOSwift::SOSwiftTests" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_548";
+         buildConfigurationList = "OBJ_551";
          buildPhases = (
-            "OBJ_551",
-            "OBJ_599"
+            "OBJ_554",
+            "OBJ_602"
          );
          dependencies = (
-            "OBJ_602",
-            "OBJ_603"
+            "OBJ_605",
+            "OBJ_606"
          );
          name = "SOSwiftTests";
          productName = "SOSwiftTests";
@@ -4589,9 +4639,9 @@
       };
       "SOSwift::SwiftPMPackageDescription" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_537";
+         buildConfigurationList = "OBJ_540";
          buildPhases = (
-            "OBJ_540"
+            "OBJ_543"
          );
          dependencies = (
          );
@@ -4601,10 +4651,10 @@
       };
       "SOSwiftVocabulary::SOSwiftVocabulary" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_604";
+         buildConfigurationList = "OBJ_607";
          buildPhases = (
-            "OBJ_607",
-            "OBJ_761"
+            "OBJ_610",
+            "OBJ_764"
          );
          dependencies = (
          );
@@ -4620,9 +4670,9 @@
       };
       "SOSwiftVocabulary::SwiftPMPackageDescription" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_763";
+         buildConfigurationList = "OBJ_766";
          buildPhases = (
-            "OBJ_766"
+            "OBJ_769"
          );
          dependencies = (
          );

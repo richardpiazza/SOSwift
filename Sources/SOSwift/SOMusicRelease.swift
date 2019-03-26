@@ -108,7 +108,7 @@ public class SOMusicRelease: SOMusicPlaylist, MusicRelease {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: MusicRelease?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: MusicRelease?, forKey key: K) throws {
         if let typedValue = value as? SOMusicRelease {
             try self.encode(typedValue, forKey: key)
         }

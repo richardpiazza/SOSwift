@@ -62,7 +62,7 @@ public class SOMap: SOCreativeWork, Map {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Map?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Map?, forKey key: K) throws {
         if let typedValue = value as? SOMap {
             try self.encode(typedValue, forKey: key)
         }

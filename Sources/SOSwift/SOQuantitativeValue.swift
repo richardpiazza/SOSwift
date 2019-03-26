@@ -117,7 +117,7 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: QuantitativeValue?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: QuantitativeValue?, forKey key: K) throws {
         if let typedValue = value as? SOQuantitativeValue {
             try self.encode(typedValue, forKey: key)
         }

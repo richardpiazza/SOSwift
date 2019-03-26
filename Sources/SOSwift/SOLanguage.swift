@@ -21,7 +21,7 @@ public class SOLanguage: SOIntangible, Language {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Language?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Language?, forKey key: K) throws {
         if let typedValue = value as? SOLanguage {
             try self.encode(typedValue, forKey: key)
         }

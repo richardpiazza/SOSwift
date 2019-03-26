@@ -79,7 +79,7 @@ public class SOCourse: SOCreativeWork, Course {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Course?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Course?, forKey key: K) throws {
         if let typedValue = value as? SOCourse {
             try self.encode(typedValue, forKey: key)
         }

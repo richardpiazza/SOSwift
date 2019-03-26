@@ -86,7 +86,7 @@ public class SOListItem: SOIntangible, ListItem {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ListItem?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: ListItem?, forKey key: K) throws {
         if let typedValue = value as? SOListItem {
             try self.encode(typedValue, forKey: key)
         }

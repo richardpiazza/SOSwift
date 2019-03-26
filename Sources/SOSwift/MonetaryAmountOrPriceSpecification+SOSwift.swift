@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - MonetaryAmountOrPriceSpecification
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: MonetaryAmountOrPriceSpecification?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: MonetaryAmountOrPriceSpecification?, forKey key: K) throws {
         if let typedValue = value as? SOMonetaryAmount {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOPriceSpecification {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeMonetaryAmountOrPriceSpecificationIfPresent(forKey key: K) throws -> MonetaryAmountOrPriceSpecification? {
+    func decodeMonetaryAmountOrPriceSpecificationIfPresent(forKey key: K) throws -> MonetaryAmountOrPriceSpecification? {
         guard self.contains(key) else {
             return nil
         }

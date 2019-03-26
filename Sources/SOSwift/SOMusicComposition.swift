@@ -142,7 +142,7 @@ public class SOMusicComposition: SOCreativeWork, MusicComposition {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: MusicComposition?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: MusicComposition?, forKey key: K) throws {
         if let typedValue = value as? SOMusicComposition {
             try self.encode(typedValue, forKey: key)
         }

@@ -63,7 +63,7 @@ public class SODataDownload: SOMediaObject, DataDownload {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: DataDownload?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: DataDownload?, forKey key: K) throws {
         if let typedValue = value as? SODataDownload {
             try self.encode(typedValue, forKey: key)
         }

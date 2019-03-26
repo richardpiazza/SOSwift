@@ -133,13 +133,13 @@ public class SOContactPoint: SOStructuredValue, ContactPoint {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ContactPoint?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: ContactPoint?, forKey key: K) throws {
         if let typedValue = value as? SOContactPoint {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    public mutating func encodeIfPresent(_ value: [ContactPoint]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [ContactPoint]?, forKey key: K) throws {
         if let typedValue = value as? [SOContactPoint] {
             try self.encode(typedValue, forKey: key)
         }

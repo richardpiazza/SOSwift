@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - PostalAddressOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: PostalAddressOrText?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: PostalAddressOrText?, forKey key: K) throws {
         if let typedValue = value as? SOPostalAddress {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? String {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodePostalAddressOrTextIfPresent(forKey key: K) throws -> PostalAddressOrText? {
+    func decodePostalAddressOrTextIfPresent(forKey key: K) throws -> PostalAddressOrText? {
         guard self.contains(key) else {
             return nil
         }

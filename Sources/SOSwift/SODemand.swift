@@ -347,13 +347,13 @@ public class SODemand: SOIntangible, Demand {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Demand?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Demand?, forKey key: K) throws {
         if let typedValue = value as? SODemand {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    public mutating func encodeIfPresent(_ value: [Demand]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [Demand]?, forKey key: K) throws {
         if let typedValue = value as? [SODemand] {
             try self.encode(typedValue, forKey: key)
         }

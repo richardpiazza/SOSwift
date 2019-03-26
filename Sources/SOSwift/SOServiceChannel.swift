@@ -123,7 +123,7 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ServiceChannel?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: ServiceChannel?, forKey key: K) throws {
         if let typedValue = value as? SOServiceChannel {
             try self.encode(typedValue, forKey: key)
         }

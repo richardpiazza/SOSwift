@@ -8,7 +8,7 @@ public protocol AttributedEnum {
 }
 
 public extension AttributedEnum {
-    public static func attributedEnumType(displayName: String) -> Self? {
+    static func attributedEnumType(displayName: String) -> Self? {
         guard let type = self.init(displayName: displayName) else {
             return nil
         }
@@ -16,11 +16,11 @@ public extension AttributedEnum {
         return type
     }
     
-    public static var displayNames: [String] {
+    static var displayNames: [String] {
         return allCases.map({ return $0.displayName })
     }
     
-    public init?(displayName: String) {
+    init?(displayName: String) {
         let match = Self.allCases.first { (`case`) -> Bool in
             return `case`.displayName == displayName
         }

@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - PhysicalActivityCategoryOrThingOrText
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: PhysicalActivityCategoryOrThingOrText?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: PhysicalActivityCategoryOrThingOrText?, forKey key: K) throws {
         if let typedValue = value as? PhysicalActivityCategory {
             try self.encode(typedValue.rawValue, forKey: key)
         } else if let typedValue = value as? SOThing {
@@ -16,7 +16,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodePhysicalActivityCategoryOrThingOrTextIfPresent(forKey key: K) throws -> PhysicalActivityCategoryOrThingOrText? {
+    func decodePhysicalActivityCategoryOrThingOrTextIfPresent(forKey key: K) throws -> PhysicalActivityCategoryOrThingOrText? {
         guard self.contains(key) else {
             return nil
         }

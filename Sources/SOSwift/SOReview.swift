@@ -88,13 +88,13 @@ public class SOReview: SOCreativeWork, Review {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Review?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Review?, forKey key: K) throws {
         if let typedValue = value as? SOReview {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    public mutating func encodeIfPresent(_ value: [Review]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [Review]?, forKey key: K) throws {
         if let typedValue = value as? [SOReview] {
             try self.encode(typedValue, forKey: key)
         }

@@ -22,7 +22,7 @@ public class SOAdministrativeArea: SOPlace, AdministrativeArea {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: AdministrativeArea?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: AdministrativeArea?, forKey key: K) throws {
         if let typedValue = value as? SOAdministrativeArea {
             try self.encode(typedValue, forKey: key)
         }

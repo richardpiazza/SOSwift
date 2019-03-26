@@ -87,7 +87,7 @@ public class SOImageObject: SOMediaObject, ImageObject {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ImageObject?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: ImageObject?, forKey key: K) throws {
         if let typedValue = value as? SOImageObject {
             try self.encode(typedValue, forKey: key)
         }

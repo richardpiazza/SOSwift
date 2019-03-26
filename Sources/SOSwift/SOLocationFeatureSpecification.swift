@@ -78,7 +78,7 @@ public class SOLocationFeatureSpecification: SOPropertyValue, LocationFeatureSpe
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: LocationFeatureSpecification?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: LocationFeatureSpecification?, forKey key: K) throws {
         if let typedValue = value as? SOLocationFeatureSpecification {
             try self.encode(typedValue, forKey: key)
         }

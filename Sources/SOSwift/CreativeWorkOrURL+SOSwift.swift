@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - CreativeWorkOrURL
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: CreativeWorkOrURL?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: CreativeWorkOrURL?, forKey key: K) throws {
         if let typedValue = value as? SOCreativeWork {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeCreativeWorkOrURLIfPresent(forKey key: K) throws -> CreativeWorkOrURL? {
+    func decodeCreativeWorkOrURLIfPresent(forKey key: K) throws -> CreativeWorkOrURL? {
         guard self.contains(key) else {
             return nil
         }

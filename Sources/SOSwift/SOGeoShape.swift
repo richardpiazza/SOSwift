@@ -123,7 +123,7 @@ public class SOGeoShape: SOThing, GeoShape {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: GeoShape?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: GeoShape?, forKey key: K) throws {
         if let typedValue = value as? SOGeoShape {
             try self.encode(typedValue, forKey: key)
         }

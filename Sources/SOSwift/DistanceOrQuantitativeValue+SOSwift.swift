@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - DistanceOrQuantitativeValue
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: DistanceOrQuantitativeValue?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: DistanceOrQuantitativeValue?, forKey key: K) throws {
         if let typedValue = value as? SODistance {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOQuantitativeValue {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeDistanceOrQuantitativeValueIfPresent(forKey key: K) throws -> DistanceOrQuantitativeValue? {
+    func decodeDistanceOrQuantitativeValueIfPresent(forKey key: K) throws -> DistanceOrQuantitativeValue? {
         guard self.contains(key) else {
             return nil
         }

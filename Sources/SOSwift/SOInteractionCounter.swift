@@ -77,7 +77,7 @@ public class SOInteractionCounter: SOStructuredValue, InteractionCounter {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: InteractionCounter?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: InteractionCounter?, forKey key: K) throws {
         if let typedValue = value as? SOInteractionCounter {
             try self.encode(typedValue, forKey: key)
         }

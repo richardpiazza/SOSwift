@@ -123,7 +123,7 @@ public class SOVideoObject: SOMediaObject, VideoObject {
 }
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: VideoObject?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: VideoObject?, forKey key: K) throws {
         if let typedValue = value as? SOVideoObject {
             try self.encode(typedValue, forKey: key)
         }

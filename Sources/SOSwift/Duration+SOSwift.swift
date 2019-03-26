@@ -154,7 +154,7 @@ public extension DateComponents {
 // MARK: - Duration
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: Duration?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: Duration?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }
@@ -162,7 +162,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeDurationIfPresent(forKey key: K) throws -> Duration? {
+    func decodeDurationIfPresent(forKey key: K) throws -> Duration? {
         guard self.contains(key) else {
             return nil
         }

@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - ContactPointOrPlace
 
 public extension KeyedEncodingContainer {
-    public mutating func encodeIfPresent(_ value: ContactPointOrPlace?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: ContactPointOrPlace?, forKey key: K) throws {
         if let typedValue = value as? SOContactPoint {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOPlace {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    public func decodeContactPointOrPlaceIfPresent(forKey key: K) throws -> ContactPointOrPlace? {
+    func decodeContactPointOrPlaceIfPresent(forKey key: K) throws -> ContactPointOrPlace? {
         guard self.contains(key) else {
             return nil
         }
