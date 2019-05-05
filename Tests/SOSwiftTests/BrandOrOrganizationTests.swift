@@ -70,25 +70,35 @@ class BrandOrOrganizationTests: XCTestCase {
             return
         }
         
-        guard let brand = testable.brand as? SOBrand else {
+        guard let brand = testable.brand as? SOBrandOrOrganization else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(brand.name, "Brand")
+        switch brand {
+        case .organization:
+            XCTFail()
+        case .brand(let value):
+            XCTAssertEqual(value.name, "Brand")
+        }
         
-        guard let organization = testable.organization as? SOOrganization else {
+        guard let organization = testable.organization as? SOBrandOrOrganization else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(organization.name, "Organization")
+        switch organization {
+        case .brand:
+            XCTFail()
+        case .organization(let value):
+            XCTAssertEqual(value.name, "Organization")
+        }
     }
     
     func testSingleEncodes() {
         let testable = TestClass()
-        testable.brand = SOBrand()
-        testable.organization = SOOrganization()
+        testable.brand = SOBrandOrOrganization.brand(value: SOBrand())
+        testable.organization = SOBrandOrOrganization.organization(value: SOOrganization())
         
         let json: String
         do {
@@ -138,19 +148,29 @@ class BrandOrOrganizationTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard let brand = multiple[0] as? SOBrand else {
+        guard let brand = multiple[0] as? SOBrandOrOrganization else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(brand.name, "Brand")
+        switch brand {
+        case .organization:
+            XCTFail()
+        case .brand(let value):
+            XCTAssertEqual(value.name, "Brand")
+        }
         
-        guard let organization = multiple[1] as? SOOrganization else {
+        guard let organization = multiple[1] as? SOBrandOrOrganization else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(organization.name, "Organization")
+        switch organization {
+        case .brand:
+            XCTFail()
+        case .organization(let value):
+            XCTAssertEqual(value.name, "Organization")
+        }
     }
     
     func testMultipleEncodes() {

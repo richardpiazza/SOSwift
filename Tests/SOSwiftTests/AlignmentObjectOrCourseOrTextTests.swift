@@ -81,11 +81,31 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         }
         
         XCTAssertNotNil(testable.alignmentObject)
-        XCTAssertTrue(testable.alignmentObject! is SOAlignmentObject)
+        XCTAssertTrue(testable.alignmentObject! is SOAlignmentObjectOrCourseOrText)
+        switch testable.alignmentObject! as! SOAlignmentObjectOrCourseOrText {
+        case .alignmentObject:
+            break
+        default:
+            XCTFail()
+        }
+        
         XCTAssertNotNil(testable.course)
-        XCTAssertTrue(testable.course! is SOCourse)
+        XCTAssertTrue(testable.course! is SOAlignmentObjectOrCourseOrText)
+        switch testable.course! as! SOAlignmentObjectOrCourseOrText {
+        case .course:
+            break
+        default:
+            XCTFail()
+        }
+        
         XCTAssertNotNil(testable.text)
-        XCTAssertTrue(testable.text! is String)
+        XCTAssertTrue(testable.text! is SOAlignmentObjectOrCourseOrText)
+        switch testable.text! as! SOAlignmentObjectOrCourseOrText {
+        case .text:
+            break
+        default:
+            XCTFail()
+        }
     }
 
     func testMultipleDecodes() {
@@ -130,19 +150,40 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 3)
         
-        guard let _ = multiple[0] as? SOAlignmentObject else {
+        guard let alignmentObject = multiple[0] as? SOAlignmentObjectOrCourseOrText else {
             XCTFail()
             return
         }
         
-        guard let _ = multiple[1] as? SOCourse else {
+        switch alignmentObject {
+        case .course, .text:
+            XCTFail()
+        default:
+            break
+        }
+        
+        guard let course = multiple[1] as? SOAlignmentObjectOrCourseOrText else {
             XCTFail()
             return
         }
         
-        guard let _ = multiple[2] as? String else {
+        switch course {
+        case .alignmentObject, .text:
+            XCTFail()
+        default:
+            break
+        }
+        
+        guard let text = multiple[2] as? SOAlignmentObjectOrCourseOrText else {
             XCTFail()
             return
+        }
+        
+        switch text {
+        case .alignmentObject, .course:
+            XCTFail()
+        default:
+            break
         }
     }
 }

@@ -54,7 +54,7 @@ public class SOBrand: SOIntangible, Brand {
     public override func displayDescription(forAttributeNamed attributeName: String) -> String? {
         switch attributeName {
         case CodingKeys.aggregateRating.rawValue:
-            return " The overall rating, based on a collection of reviews or ratings, of the item."
+            return "The overall rating, based on a collection of reviews or ratings, of the item."
         case CodingKeys.logo.rawValue:
             return "An associated logo."
         case "reviews":
