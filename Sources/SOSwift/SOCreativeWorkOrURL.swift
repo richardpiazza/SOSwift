@@ -1,9 +1,8 @@
 import Foundation
 import SOSwiftVocabulary
 
-public enum SOCreativeWorkOrProductOrURL: CreativeWorkOrProductOrURL, Codable {
+public enum SOCreativeWorkOrURL: CreativeWorkOrURL, Codable {
     case creativeWork(value: SOCreativeWork)
-    case product(value: SOProduct)
     case url(value: URL)
     
     public init(from decoder: Decoder) throws {
@@ -33,9 +32,6 @@ public enum SOCreativeWorkOrProductOrURL: CreativeWorkOrProductOrURL, Codable {
         case SOCreativeWork.type:
             let value = try container.decode(SOCreativeWork.self)
             self = .creativeWork(value: value)
-        case SOProduct.type:
-            let value = try container.decode(SOProduct.self)
-            self = .product(value: value)
         default:
             throw DynamicError.invalidTypeKey
         }
@@ -47,8 +43,6 @@ public enum SOCreativeWorkOrProductOrURL: CreativeWorkOrProductOrURL, Codable {
         switch self {
         case .creativeWork(let value):
             try container.encode(value)
-        case .product(let value):
-            try container.encode(value)
         case .url(let value):
             try container.encode(value)
         }
@@ -57,15 +51,6 @@ public enum SOCreativeWorkOrProductOrURL: CreativeWorkOrProductOrURL, Codable {
     public var creativeWork: CreativeWork? {
         switch self {
         case .creativeWork(let value):
-            return value
-        default:
-            return nil
-        }
-    }
-    
-    public var product: Product? {
-        switch self {
-        case .product(let value):
             return value
         default:
             return nil
@@ -83,25 +68,25 @@ public enum SOCreativeWorkOrProductOrURL: CreativeWorkOrProductOrURL, Codable {
 }
 
 public extension KeyedDecodingContainer {
-    func decodeCreativeWorkOrProductOrURLIfPresent(forKey key: K) throws -> CreativeWorkOrProductOrURL? {
+    func decodeCreativeWorkOrURLIfPresent(forKey key: K) throws -> CreativeWorkOrURL? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            return try self.decodeIfPresent(SOCreativeWorkOrProductOrURL.self, forKey: key)
+            return try self.decodeIfPresent(SOCreativeWorkOrURL.self, forKey: key)
         } catch {
             return nil
         }
     }
     
-    func decodeCreativeWorksOrProductsOrURLsIfPresent(forKey key: K) throws -> [CreativeWorkOrProductOrURL]? {
+    func decodeCreativeWorksOrURLsifPresent(forKey key: K) throws -> [CreativeWorkOrURL]? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            return try self.decodeIfPresent([SOCreativeWorkOrProductOrURL].self, forKey: key)
+            return try self.decodeIfPresent([SOCreativeWorkOrURL].self, forKey: key)
         } catch {
             return nil
         }
@@ -109,24 +94,22 @@ public extension KeyedDecodingContainer {
 }
 
 public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: CreativeWorkOrProductOrURL?, forKey key: K) throws {
-        if let typedValue = value as? SOCreativeWorkOrProductOrURL {
+    mutating func encodeIfPresent(_ value: CreativeWorkOrURL?, forKey key: K) throws {
+        if let typedValue = value as? SOCreativeWorkOrURL {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOCreativeWork {
-            try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? SOProduct {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    mutating func encodeIfPresent(_ value: [CreativeWorkOrProductOrURL]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [CreativeWorkOrURL]?, forKey key: K) throws {
         guard value != nil else {
             return
         }
         
-        if let typedValue = value as? [SOCreativeWorkOrProductOrURL] {
+        if let typedValue = value as? [SOCreativeWorkOrURL] {
             try self.encode(typedValue, forKey: key)
             return
         }
@@ -135,8 +118,6 @@ public extension KeyedEncodingContainer {
         
         try value?.forEach({ (object) in
             if let typedValue = object as? SOCreativeWork {
-                try container.encode(typedValue)
-            } else if let typedValue = object as? SOProduct {
                 try container.encode(typedValue)
             } else if let typedValue = object as? URL {
                 try container.encode(typedValue)
