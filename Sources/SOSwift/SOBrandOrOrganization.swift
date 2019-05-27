@@ -37,6 +37,24 @@ public enum SOBrandOrOrganization: BrandOrOrganization, Codable {
             try container.encode(value)
         }
     }
+    
+    public var brand: Brand? {
+        switch self {
+        case .brand(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+    
+    public var organization: Organization? {
+        switch self {
+        case .organization(let value):
+            return value
+        default:
+            return nil
+        }
+    }
 }
 
 public extension KeyedDecodingContainer {

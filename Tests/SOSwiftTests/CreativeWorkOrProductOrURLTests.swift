@@ -8,11 +8,13 @@ class CreativeWorkOrProductOrURLTests: XCTestCase {
         var creativeWork: CreativeWorkOrProductOrURL?
         var product: CreativeWorkOrProductOrURL?
         var url: CreativeWorkOrProductOrURL?
+        var multiple: [CreativeWorkOrProductOrURL]?
         
         private enum CodingKeys: String, CodingKey {
             case creativeWork
             case product
             case url
+            case multiple
         }
         
         init() {
@@ -20,16 +22,18 @@ class CreativeWorkOrProductOrURLTests: XCTestCase {
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.creativeWork = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .creativeWork)
-            self.product = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .product)
-            self.url = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .url)
+            creativeWork = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .creativeWork)
+            product = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .product)
+            url = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .url)
+            multiple = try container.decodeCreativeWorksOrProductsOrURLsIfPresent(forKey: .multiple)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.creativeWork, forKey: .creativeWork)
-            try container.encodeIfPresent(self.product, forKey: .product)
-            try container.encodeIfPresent(self.url, forKey: .url)
+            try container.encodeIfPresent(creativeWork, forKey: .creativeWork)
+            try container.encodeIfPresent(product, forKey: .product)
+            try container.encodeIfPresent(url, forKey: .url)
+            try container.encodeIfPresent(multiple, forKey: .multiple)
         }
     }
     
@@ -43,92 +47,120 @@ class CreativeWorkOrProductOrURLTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSingleDecodes() {
+    func testSingleDecodes() throws {
         let json = """
-            {
-                "creativeWork" : {
-                    "@type" : "CreativeWork",
-                    "name" : "Futurama"
-                },
-                "product" : {
-                    "@type" : "Product",
-                    "name" : "Beans"
-                },
-                "url" : "https://www.google.com"
-            }
+        {
+            "creativeWork" : {
+                "@type" : "CreativeWork",
+                "name" : "Futurama"
+            },
+            "product" : {
+                "@type" : "Product",
+                "name" : "Beans"
+            },
+            "url" : "https://www.google.com"
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
+        let testable = try TestClass.make(with: json)
+        
+        guard
+            let creativeWork = testable.creativeWork as? SOCreativeWorkOrProductOrURL,
+            let product = testable.product as? SOCreativeWorkOrProductOrURL,
+            let url = testable.url as? SOCreativeWorkOrProductOrURL
+            else {
+                XCTFail()
+                return
         }
         
-        guard let creativeWork = testObject.creativeWork as? CreativeWork else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(creativeWork.name, "Futurama")
-        
-        guard let product = testObject.product as? Product else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(product.name, "Beans")
-        
-        guard let url = testObject.url as? URL else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(url.host, "www.google.com")
+        XCTAssertEqual(creativeWork.creativeWork?.name, "Futurama")
+        XCTAssertEqual(product.product?.name, "Beans")
+        XCTAssertEqual(url.url?.host, "www.google.com")
     }
     
-    func testSingleEncodes() {
-        let testObject = TestClass()
+    func testSingleEncodes() throws {
+        let testable = TestClass()
         
         let creativeWork = SOCreativeWork()
         creativeWork.name = "Futurama"
-        testObject.creativeWork = creativeWork
+        testable.creativeWork = creativeWork
         
         let product = SOProduct()
         product.name = "Beans"
-        testObject.product = product
+        testable.product = product
         
-        testObject.url = URL(string: "https://www.google.com")
+        testable.url = URL(string: "https://www.google.com")
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
+        let dictionary = try testable.dictionary()
+        
+        guard
+            let cw = dictionary["creativeWork"] as? [String : Any],
+            let p = dictionary["product"] as? [String : Any],
+            let path = dictionary["url"] as? String, let url = URL(string: path)
+            else {
+                XCTFail()
+                return
         }
         
-        guard let cw = dictionary["creativeWork"] as? [String : Any], let futurama = cw["name"] as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(futurama, "Futurama")
-        
-        guard let p = dictionary["product"] as? [String : Any], let beans = p["name"] as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(beans, "Beans")
-        
-        guard let path = dictionary["url"] as? String, let url = URL(string: path) else {
-            XCTFail()
-            return
-        }
-        
+        XCTAssertEqual(cw["name"] as? String, "Futurama")
+        XCTAssertEqual(p["name"] as? String, "Beans")
         XCTAssertEqual(url.host, "www.google.com")
+    }
+    
+    func testMultipleDecodes() throws {
+        let json = """
+        {
+            "multiple": [
+                {
+                    "@type" : "CreativeWork",
+                    "name" : "Futurama"
+                },
+                {
+                    "@type" : "Product",
+                    "name" : "Beans"
+                },
+                "https://www.google.com"
+            ]
+        }
+        """
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        let testable = try JSONDecoder().decode(TestClass.self, from: data)
+        
+        guard let multiple = testable.multiple else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(multiple.count, 3)
+        
+        guard
+            let creativeWork = multiple[0] as? SOCreativeWorkOrProductOrURL,
+            let product = multiple[1] as? SOCreativeWorkOrProductOrURL,
+            let url = multiple[2] as? SOCreativeWorkOrProductOrURL
+            else {
+                XCTFail()
+                return
+        }
+        
+        XCTAssertEqual(creativeWork.creativeWork?.name, "Futurama")
+        XCTAssertEqual(product.product?.name, "Beans")
+        XCTAssertEqual(url.url?.host, "www.google.com")
+    }
+    
+    func testMultipeEncodes() throws {
+        let testable = TestClass()
+        let creativeWork = SOCreativeWork()
+        let product = SOProduct()
+        let url = URL(string: "www.google.com")!
+        testable.multiple = [SOCreativeWorkOrProductOrURL.creativeWork(value: creativeWork), SOCreativeWorkOrProductOrURL.product(value: product), SOCreativeWorkOrProductOrURL.url(value: url)]
+        
+        let json = try testable.json()
+        XCTAssertTrue(json.contains("\"multiple\":["))
     }
 }
 

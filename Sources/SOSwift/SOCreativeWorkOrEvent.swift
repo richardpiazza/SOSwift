@@ -1,9 +1,9 @@
 import Foundation
 import SOSwiftVocabulary
 
-public enum SOContactPointOrPlace: ContactPointOrPlace, Codable {
-    case contactPoint(value: SOContactPoint)
-    case place(value: SOPlace)
+public enum SOCreativeWorkOrEvent: CreativeWorkOrEvent, Codable {
+    case creativeWork(value: SOCreativeWork)
+    case event(value: SOEvent)
     
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
@@ -16,12 +16,12 @@ public enum SOContactPointOrPlace: ContactPointOrPlace, Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case SOContactPoint.type:
-            let value = try container.decode(SOContactPoint.self)
-            self = .contactPoint(value: value)
-        case SOPlace.type:
-            let value = try container.decode(SOPlace.self)
-            self = .place(value: value)
+        case SOCreativeWork.type:
+            let value = try container.decode(SOCreativeWork.self)
+            self = .creativeWork(value: value)
+        case SOEvent.type:
+            let value = try container.decode(SOEvent.self)
+            self = .event(value: value)
         default:
             throw DynamicError.invalidTypeKey
         }
@@ -29,26 +29,27 @@ public enum SOContactPointOrPlace: ContactPointOrPlace, Codable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
+        
         switch self {
-        case .contactPoint(let value):
+        case .creativeWork(let value):
             try container.encode(value)
-        case .place(let value):
+        case .event(let value):
             try container.encode(value)
         }
     }
     
-    public var contactPoint: ContactPoint? {
+    public var creativeWork: CreativeWork? {
         switch self {
-        case .contactPoint(let value):
+        case .creativeWork(let value):
             return value
         default:
             return nil
         }
     }
     
-    public var place: Place? {
+    public var event: Event? {
         switch self {
-        case .place(let value):
+        case .event(let value):
             return value
         default:
             return nil
@@ -57,25 +58,25 @@ public enum SOContactPointOrPlace: ContactPointOrPlace, Codable {
 }
 
 public extension KeyedDecodingContainer {
-    func decodeContactPointOrPlaceIfPresent(forKey key: K) throws -> ContactPointOrPlace? {
+    func decodeCreativeWorkOrEventIfPresent(forKey key: K) throws -> CreativeWorkOrEvent? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            return try self.decodeIfPresent(SOContactPointOrPlace.self, forKey: key)
+            return try self.decodeIfPresent(SOCreativeWorkOrEvent.self, forKey: key)
         } catch {
             return nil
         }
     }
     
-    func decodeContactPointsOrPlacesIfPresent(forKey key: K) throws -> [ContactPointOrPlace]? {
+    func decodeCreativeWorksOrEventsIfPresent(forKey key: K) throws -> [CreativeWorkOrEvent]? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            return try self.decodeIfPresent([SOContactPointOrPlace].self, forKey: key)
+            return try self.decodeIfPresent([SOCreativeWorkOrEvent].self, forKey: key)
         } catch {
             return nil
         }
@@ -83,26 +84,26 @@ public extension KeyedDecodingContainer {
 }
 
 public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: ContactPointOrPlace?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: CreativeWorkOrEvent?, forKey key: K) throws {
         guard value != nil else {
             return
         }
         
-        if let typedValue = value as? SOContactPointOrPlace {
+        if let typedValue = value as? SOCreativeWorkOrEvent {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? SOContactPoint {
+        } else if let typedValue = value as? SOCreativeWork {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? SOPlace {
+        } else if let typedValue = value as? SOEvent {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    mutating func encodeIfPresent(_ value: [ContactPointOrPlace]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [CreativeWorkOrEvent]?, forKey key: K) throws {
         guard value != nil else {
             return
         }
         
-        if let typedValue = value as? [SOContactPointOrPlace] {
+        if let typedValue = value as? [SOCreativeWorkOrEvent] {
             try self.encode(typedValue, forKey: key)
             return
         }
@@ -110,11 +111,12 @@ public extension KeyedEncodingContainer {
         var container = nestedUnkeyedContainer(forKey: key)
         
         try value?.forEach({ (object) in
-            if let typedValue = object as? SOContactPoint {
+            if let typedValue = object as? SOCreativeWork {
                 try container.encode(typedValue)
-            } else if let typedValue = object as? SOPlace {
+            } else if let typedValue = object as? SOEvent {
                 try container.encode(typedValue)
             }
         })
     }
 }
+

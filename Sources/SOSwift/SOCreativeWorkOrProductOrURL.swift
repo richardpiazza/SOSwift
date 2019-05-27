@@ -1,10 +1,10 @@
 import Foundation
 import SOSwiftVocabulary
 
-public enum SOAlignmentObjectOrCourseOrText: AlignmentObjectOrCourseOrText, Codable {
-    case alignmentObject(value: SOAlignmentObject)
-    case course(value: SOCourse)
-    case text(value: String)
+public enum SOCreativeWorkOrProductOrURL: CreativeWorkOrProductOrURL, Codable {
+    case creativeWork(value: SOCreativeWork)
+    case product(value: SOProduct)
+    case url(value: URL)
     
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
@@ -18,8 +18,8 @@ public enum SOAlignmentObjectOrCourseOrText: AlignmentObjectOrCourseOrText, Coda
         
         guard let jsonDictionary = dictionary else {
             let container = try decoder.singleValueContainer()
-            let value = try container.decode(String.self)
-            self = .text(value: value)
+            let value = try container.decode(URL.self)
+            self = .url(value: value)
             return
         }
         
@@ -30,12 +30,12 @@ public enum SOAlignmentObjectOrCourseOrText: AlignmentObjectOrCourseOrText, Coda
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case SOAlignmentObject.type:
-            let value = try container.decode(SOAlignmentObject.self)
-            self = .alignmentObject(value: value)
-        case SOCourse.type:
-            let value = try container.decode(SOCourse.self)
-            self = .course(value: value)
+        case SOCreativeWork.type:
+            let value = try container.decode(SOCreativeWork.self)
+            self = .creativeWork(value: value)
+        case SOProduct.type:
+            let value = try container.decode(SOProduct.self)
+            self = .product(value: value)
         default:
             throw DynamicError.invalidTypeKey
         }
@@ -43,37 +43,38 @@ public enum SOAlignmentObjectOrCourseOrText: AlignmentObjectOrCourseOrText, Coda
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
+        
         switch self {
-        case .alignmentObject(let value):
+        case .creativeWork(let value):
             try container.encode(value)
-        case .course(let value):
+        case .product(let value):
             try container.encode(value)
-        case .text(let value):
+        case .url(let value):
             try container.encode(value)
         }
     }
     
-    public var alignmentObject: AlignmentObject? {
+    public var creativeWork: CreativeWork? {
         switch self {
-        case .alignmentObject(let value):
+        case .creativeWork(let value):
             return value
         default:
             return nil
         }
     }
     
-    public var course: Course? {
+    public var product: Product? {
         switch self {
-        case .course(let value):
+        case .product(let value):
             return value
         default:
             return nil
         }
     }
     
-    public var text: String? {
+    public var url: URL? {
         switch self {
-        case .text(let value):
+        case .url(let value):
             return value
         default:
             return nil
@@ -82,25 +83,25 @@ public enum SOAlignmentObjectOrCourseOrText: AlignmentObjectOrCourseOrText, Coda
 }
 
 public extension KeyedDecodingContainer {
-    func decodeAlignmentObjectOrCourseOrTextIfPresent(forKey key: K) throws -> AlignmentObjectOrCourseOrText? {
+    func decodeCreativeWorkOrProductOrURLIfPresent(forKey key: K) throws -> CreativeWorkOrProductOrURL? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            return try self.decodeIfPresent(SOAlignmentObjectOrCourseOrText.self, forKey: key)
+            return try self.decodeIfPresent(SOCreativeWorkOrProductOrURL.self, forKey: key)
         } catch {
             return nil
         }
     }
     
-    func decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey key: K) throws -> [AlignmentObjectOrCourseOrText]? {
+    func decodeCreativeWorksOrProductsOrURLsIfPresent(forKey key: K) throws -> [CreativeWorkOrProductOrURL]? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            return try self.decodeIfPresent([SOAlignmentObjectOrCourseOrText].self, forKey: key)
+            return try self.decodeIfPresent([SOCreativeWorkOrProductOrURL].self, forKey: key)
         } catch {
             return nil
         }
@@ -108,36 +109,36 @@ public extension KeyedDecodingContainer {
 }
 
 public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: AlignmentObjectOrCourseOrText?, forKey key: K) throws {
-        if let typedValue = value as? SOAlignmentObjectOrCourseOrText {
+    mutating func encodeIfPresent(_ value: CreativeWorkOrProductOrURL?, forKey key: K) throws {
+        if let typedValue = value as? SOCreativeWorkOrProductOrURL {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? SOAlignmentObject {
+        } else if let typedValue = value as? SOCreativeWork {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? SOCourse {
+        } else if let typedValue = value as? SOProduct {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? String {
+        } else if let typedValue = value as? URL {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    mutating func encodeIfPresent(_ value: [AlignmentObjectOrCourseOrText]?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: [CreativeWorkOrProductOrURL]?, forKey key: K) throws {
         guard value != nil else {
             return
         }
         
-        if let typedValue = value as? [SOAlignmentObjectOrCourseOrText] {
-            try self.encode(typedValue, forKey: key)
+        if let typedValue = value as? [SOCreativeWorkOrProductOrURL] {
+            try self.encodeIfPresent(typedValue, forKey: key)
             return
         }
         
         var container = nestedUnkeyedContainer(forKey: key)
         
         try value?.forEach({ (object) in
-            if let typedValue = object as? SOAlignmentObject {
+            if let typedValue = object as? SOCreativeWork {
                 try container.encode(typedValue)
-            } else if let typedValue = object as? SOCourse {
+            } else if let typedValue = object as? SOProduct {
                 try container.encode(typedValue)
-            } else if let typedValue = object as? String {
+            } else if let typedValue = object as? URL {
                 try container.encode(typedValue)
             }
         })

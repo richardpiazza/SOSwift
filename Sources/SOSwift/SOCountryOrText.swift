@@ -46,6 +46,24 @@ public enum SOCountryOrText: CountryOrText, Codable {
             try container.encode(value)
         }
     }
+    
+    public var country: Country? {
+        switch self {
+        case .country(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+    
+    public var text: String? {
+        switch self {
+        case .text(let value):
+            return value
+        default:
+            return nil
+        }
+    }
 }
 
 public extension KeyedDecodingContainer {

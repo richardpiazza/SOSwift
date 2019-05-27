@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E17EA3EB229C2816003F1CCC /* CreativeWorkOrEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EA3EA229C2816003F1CCC /* CreativeWorkOrEventTests.swift */; };
 		OBJ_381 /* AccessMode+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AccessMode+SOSwift.swift */; };
 		OBJ_382 /* AccessModeSufficient+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* AccessModeSufficient+SOSwift.swift */; };
 		OBJ_383 /* AccessibilityAPI+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AccessibilityAPI+SOSwift.swift */; };
@@ -38,8 +39,8 @@
 		OBJ_395 /* Codable+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Codable+SOSwift.swift */; };
 		OBJ_396 /* SOContactPointOrPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* SOContactPointOrPlace.swift */; };
 		OBJ_397 /* SOCountryOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* SOCountryOrText.swift */; };
-		OBJ_398 /* CreativeWorkOrEvent+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* CreativeWorkOrEvent+SOSwift.swift */; };
-		OBJ_399 /* CreativeWorkOrProductOrURL+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* CreativeWorkOrProductOrURL+SOSwift.swift */; };
+		OBJ_398 /* SOCreativeWorkOrEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* SOCreativeWorkOrEvent.swift */; };
+		OBJ_399 /* SOCreativeWorkOrProductOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* SOCreativeWorkOrProductOrURL.swift */; };
 		OBJ_400 /* CreativeWorkOrText+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* CreativeWorkOrText+SOSwift.swift */; };
 		OBJ_401 /* CreativeWorkOrURL+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* CreativeWorkOrURL+SOSwift.swift */; };
 		OBJ_402 /* DataFeedItemOrThingOrText+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* DataFeedItemOrThingOrText+SOSwift.swift */; };
@@ -414,6 +415,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E17EA3EA229C2816003F1CCC /* CreativeWorkOrEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrEventTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* AccessModeSufficient+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccessModeSufficient+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* SOEntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOEntryPoint.swift; sourceTree = "<group>"; };
 		OBJ_101 /* SOEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOEnumeration.swift; sourceTree = "<group>"; };
@@ -585,7 +587,7 @@
 		OBJ_257 /* DateOnlyOrDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOnlyOrDateTime.swift; sourceTree = "<group>"; };
 		OBJ_258 /* DateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		OBJ_259 /* DateTimeOrURLOrText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeOrURLOrText.swift; sourceTree = "<group>"; };
-		OBJ_26 /* CreativeWorkOrEvent+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreativeWorkOrEvent+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_26 /* SOCreativeWorkOrEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOCreativeWorkOrEvent.swift; sourceTree = "<group>"; };
 		OBJ_260 /* DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
 		OBJ_261 /* DeliveryMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMethod.swift; sourceTree = "<group>"; };
 		OBJ_262 /* Demand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demand.swift; sourceTree = "<group>"; };
@@ -596,7 +598,7 @@
 		OBJ_267 /* EducationalOrganizationOrOrganization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationalOrganizationOrOrganization.swift; sourceTree = "<group>"; };
 		OBJ_268 /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
 		OBJ_269 /* Enumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
-		OBJ_27 /* CreativeWorkOrProductOrURL+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreativeWorkOrProductOrURL+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_27 /* SOCreativeWorkOrProductOrURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOCreativeWorkOrProductOrURL.swift; sourceTree = "<group>"; };
 		OBJ_270 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		OBJ_271 /* EventStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatus.swift; sourceTree = "<group>"; };
 		OBJ_272 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -822,6 +824,7 @@
 				OBJ_167 /* BrandOrOrganizationTests.swift */,
 				OBJ_168 /* ContactPointOrPlaceTests.swift */,
 				OBJ_169 /* CountryOrTextTests.swift */,
+				E17EA3EA229C2816003F1CCC /* CreativeWorkOrEventTests.swift */,
 				OBJ_170 /* CreativeWorkOrProductOrURLTests.swift */,
 				OBJ_171 /* CreativeWorkOrTextTests.swift */,
 				OBJ_172 /* CreativeWorkOrURLTests.swift */,
@@ -1095,8 +1098,6 @@
 				OBJ_21 /* BusinessEntityType+SOSwift.swift */,
 				OBJ_22 /* BusinessFunction+SOSwift.swift */,
 				OBJ_23 /* Codable+SOSwift.swift */,
-				OBJ_26 /* CreativeWorkOrEvent+SOSwift.swift */,
-				OBJ_27 /* CreativeWorkOrProductOrURL+SOSwift.swift */,
 				OBJ_28 /* CreativeWorkOrText+SOSwift.swift */,
 				OBJ_29 /* CreativeWorkOrURL+SOSwift.swift */,
 				OBJ_30 /* DataFeedItemOrThingOrText+SOSwift.swift */,
@@ -1166,6 +1167,8 @@
 				OBJ_90 /* SOCourse.swift */,
 				OBJ_91 /* SOCourseInstance.swift */,
 				OBJ_92 /* SOCreativeWork.swift */,
+				OBJ_26 /* SOCreativeWorkOrEvent.swift */,
+				OBJ_27 /* SOCreativeWorkOrProductOrURL.swift */,
 				OBJ_93 /* SODataCatalog.swift */,
 				OBJ_94 /* SODataDownload.swift */,
 				OBJ_95 /* SODataFeed.swift */,
@@ -1377,8 +1380,8 @@
 				OBJ_395 /* Codable+SOSwift.swift in Sources */,
 				OBJ_396 /* SOContactPointOrPlace.swift in Sources */,
 				OBJ_397 /* SOCountryOrText.swift in Sources */,
-				OBJ_398 /* CreativeWorkOrEvent+SOSwift.swift in Sources */,
-				OBJ_399 /* CreativeWorkOrProductOrURL+SOSwift.swift in Sources */,
+				OBJ_398 /* SOCreativeWorkOrEvent.swift in Sources */,
+				OBJ_399 /* SOCreativeWorkOrProductOrURL.swift in Sources */,
 				OBJ_400 /* CreativeWorkOrText+SOSwift.swift in Sources */,
 				OBJ_401 /* CreativeWorkOrURL+SOSwift.swift in Sources */,
 				OBJ_402 /* DataFeedItemOrThingOrText+SOSwift.swift in Sources */,
@@ -1542,6 +1545,7 @@
 				OBJ_565 /* DateTimeOrTextOrURLTests.swift in Sources */,
 				OBJ_566 /* DistanceOrQuantitativeValueTests.swift in Sources */,
 				OBJ_567 /* DurationTests.swift in Sources */,
+				E17EA3EB229C2816003F1CCC /* CreativeWorkOrEventTests.swift in Sources */,
 				OBJ_568 /* EducationalOrganizationOrOrganizationTests.swift in Sources */,
 				OBJ_569 /* GenderOrTextTests.swift in Sources */,
 				OBJ_570 /* GeoCoordinatesOrGeoShapeTests.swift in Sources */,
