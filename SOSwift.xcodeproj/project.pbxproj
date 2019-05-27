@@ -36,8 +36,8 @@
 		OBJ_393 /* BusinessEntityType+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* BusinessEntityType+SOSwift.swift */; };
 		OBJ_394 /* BusinessFunction+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* BusinessFunction+SOSwift.swift */; };
 		OBJ_395 /* Codable+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Codable+SOSwift.swift */; };
-		OBJ_396 /* ContactPointOrPlace+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* ContactPointOrPlace+SOSwift.swift */; };
-		OBJ_397 /* CountryOrText+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* CountryOrText+SOSwift.swift */; };
+		OBJ_396 /* SOContactPointOrPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* SOContactPointOrPlace.swift */; };
+		OBJ_397 /* SOCountryOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* SOCountryOrText.swift */; };
 		OBJ_398 /* CreativeWorkOrEvent+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* CreativeWorkOrEvent+SOSwift.swift */; };
 		OBJ_399 /* CreativeWorkOrProductOrURL+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* CreativeWorkOrProductOrURL+SOSwift.swift */; };
 		OBJ_400 /* CreativeWorkOrText+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* CreativeWorkOrText+SOSwift.swift */; };
@@ -563,7 +563,7 @@
 		OBJ_237 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		OBJ_238 /* ContactPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPoint.swift; sourceTree = "<group>"; };
 		OBJ_239 /* ContactPointOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPointOption.swift; sourceTree = "<group>"; };
-		OBJ_24 /* ContactPointOrPlace+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactPointOrPlace+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_24 /* SOContactPointOrPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOContactPointOrPlace.swift; sourceTree = "<group>"; };
 		OBJ_240 /* ContactPointOrPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPointOrPlace.swift; sourceTree = "<group>"; };
 		OBJ_241 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		OBJ_242 /* CountryOrText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryOrText.swift; sourceTree = "<group>"; };
@@ -574,7 +574,7 @@
 		OBJ_247 /* CreativeWorkOrProductOrURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrProductOrURL.swift; sourceTree = "<group>"; };
 		OBJ_248 /* CreativeWorkOrText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrText.swift; sourceTree = "<group>"; };
 		OBJ_249 /* CreativeWorkOrURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrURL.swift; sourceTree = "<group>"; };
-		OBJ_25 /* CountryOrText+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryOrText+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_25 /* SOCountryOrText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOCountryOrText.swift; sourceTree = "<group>"; };
 		OBJ_250 /* DataCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCatalog.swift; sourceTree = "<group>"; };
 		OBJ_251 /* DataDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownload.swift; sourceTree = "<group>"; };
 		OBJ_252 /* DataFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFeed.swift; sourceTree = "<group>"; };
@@ -1057,7 +1057,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1069,7 +1069,6 @@
 				OBJ_374 /* LICENSE */,
 				OBJ_375 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -1096,8 +1095,6 @@
 				OBJ_21 /* BusinessEntityType+SOSwift.swift */,
 				OBJ_22 /* BusinessFunction+SOSwift.swift */,
 				OBJ_23 /* Codable+SOSwift.swift */,
-				OBJ_24 /* ContactPointOrPlace+SOSwift.swift */,
-				OBJ_25 /* CountryOrText+SOSwift.swift */,
 				OBJ_26 /* CreativeWorkOrEvent+SOSwift.swift */,
 				OBJ_27 /* CreativeWorkOrProductOrURL+SOSwift.swift */,
 				OBJ_28 /* CreativeWorkOrText+SOSwift.swift */,
@@ -1163,7 +1160,9 @@
 				OBJ_86 /* SOBroadcastService.swift */,
 				OBJ_87 /* SOComment.swift */,
 				OBJ_88 /* SOContactPoint.swift */,
+				OBJ_24 /* SOContactPointOrPlace.swift */,
 				OBJ_89 /* SOCountry.swift */,
+				OBJ_25 /* SOCountryOrText.swift */,
 				OBJ_90 /* SOCourse.swift */,
 				OBJ_91 /* SOCourseInstance.swift */,
 				OBJ_92 /* SOCreativeWork.swift */,
@@ -1341,7 +1340,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_369 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1376,8 +1375,8 @@
 				OBJ_393 /* BusinessEntityType+SOSwift.swift in Sources */,
 				OBJ_394 /* BusinessFunction+SOSwift.swift in Sources */,
 				OBJ_395 /* Codable+SOSwift.swift in Sources */,
-				OBJ_396 /* ContactPointOrPlace+SOSwift.swift in Sources */,
-				OBJ_397 /* CountryOrText+SOSwift.swift in Sources */,
+				OBJ_396 /* SOContactPointOrPlace.swift in Sources */,
+				OBJ_397 /* SOCountryOrText.swift in Sources */,
 				OBJ_398 /* CreativeWorkOrEvent+SOSwift.swift in Sources */,
 				OBJ_399 /* CreativeWorkOrProductOrURL+SOSwift.swift in Sources */,
 				OBJ_400 /* CreativeWorkOrText+SOSwift.swift in Sources */,

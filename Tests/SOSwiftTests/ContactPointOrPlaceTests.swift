@@ -7,10 +7,12 @@ class ContactPointOrPlaceTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var contactPoint: ContactPointOrPlace?
         var place: ContactPointOrPlace?
+        var multiple: [ContactPointOrPlace]?
         
         private enum CodingKeys: String, CodingKey {
             case contactPoint
             case place
+            case multiple
         }
         
         init() {
@@ -20,12 +22,14 @@ class ContactPointOrPlaceTests: XCTestCase {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.contactPoint = try container.decodeContactPointOrPlaceIfPresent(forKey: .contactPoint)
             self.place = try container.decodeContactPointOrPlaceIfPresent(forKey: .place)
+            self.multiple = try container.decodeContactPointsOrPlacesIfPresent(forKey: .multiple)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.contactPoint, forKey: .contactPoint)
             try container.encodeIfPresent(self.place, forKey: .place)
+            try container.encodeIfPresent(self.multiple, forKey: .multiple)
         }
     }
     
@@ -61,19 +65,29 @@ class ContactPointOrPlaceTests: XCTestCase {
             return
         }
         
-        guard let contactPoint = testObject.contactPoint as? ContactPoint else {
+        guard let contactPoint = testObject.contactPoint as? SOContactPointOrPlace else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(contactPoint.name, "Contact Point")
+        switch contactPoint {
+        case .place:
+            XCTFail()
+        case .contactPoint(let value):
+            XCTAssertEqual(value.name, "Contact Point")
+        }
         
-        guard let place = testObject.place as? Place else {
+        guard let place = testObject.place as? SOContactPointOrPlace else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(place.name, "A Place")
+        switch place {
+        case .contactPoint:
+            XCTFail()
+        case .place(let value):
+            XCTAssertEqual(value.name, "A Place")
+        }
     }
     
     func testSingleEncodes() {
@@ -127,5 +141,68 @@ class ContactPointOrPlaceTests: XCTestCase {
         }
         
         XCTAssertEqual(beta, "Beta")
+    }
+    
+    func testMultipleDecodes() throws {
+        let json = """
+        {
+            "multiple": [
+                {
+                    "@type": "ContactPoint",
+                    "name": "CP Item"
+                },
+                {
+                    "@type": "Place",
+                    "name": "P Item"
+                }
+            ]
+        }
+        """
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        let testable: TestClass = try JSONDecoder().decode(TestClass.self, from: data)
+        
+        guard let multiple = testable.multiple else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(multiple.count, 2)
+        
+        guard let contactPoint = multiple[0] as? SOContactPointOrPlace else {
+            XCTFail()
+            return
+        }
+        
+        switch contactPoint {
+        case .contactPoint(let value):
+            XCTAssertEqual(value.name, "CP Item")
+        default:
+            XCTFail()
+        }
+        
+        guard let place = multiple[1] as? SOContactPointOrPlace else {
+            XCTFail()
+            return
+        }
+        
+        switch place {
+        case .place(let value):
+            XCTAssertEqual(value.name, "P Item")
+        default:
+            XCTFail()
+        }
+    }
+    
+    func testMultipleEncodes() throws {
+        let testable = TestClass()
+        testable.multiple = [SOContactPoint(), SOPlace()]
+        
+        let json = try testable.json()
+        XCTAssertTrue(json.contains("\"multiple\":["))
     }
 }

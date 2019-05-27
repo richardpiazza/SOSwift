@@ -7,10 +7,12 @@ class CountryOrTextTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var country: CountryOrText?
         var text: CountryOrText?
+        var multiple: [CountryOrText]?
         
         private enum CodingKeys: String, CodingKey {
             case country
             case text
+            case multiple
         }
         
         init() {
@@ -20,12 +22,14 @@ class CountryOrTextTests: XCTestCase {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.country = try container.decodeCountryOrTextIfPresent(forKey: .country)
             self.text = try container.decodeCountryOrTextIfPresent(forKey: .text)
+            self.multiple = try container.decodeCountriesOrTextsIfPresent(forKey: .multiple)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.country, forKey: .country)
             try container.encodeIfPresent(self.text, forKey: .text)
+            try container.encodeIfPresent(self.multiple, forKey: .multiple)
         }
     }
     
@@ -41,13 +45,13 @@ class CountryOrTextTests: XCTestCase {
 
     func testSingleDecodes() {
         let json = """
-            {
-                "country" : {
-                    "@type" : "Country",
-                    "name" : "Poland"
-                },
-                "text" : "United States"
-            }
+        {
+            "country" : {
+                "@type" : "Country",
+                "name" : "Poland"
+            },
+            "text" : "United States"
+        }
         """
         
         let testObject: TestClass
@@ -58,19 +62,29 @@ class CountryOrTextTests: XCTestCase {
             return
         }
         
-        guard let country = testObject.country as? Country else {
+        guard let country = testObject.country as? SOCountryOrText else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(country.name, "Poland")
+        switch country {
+        case .country(let value):
+            XCTAssertEqual(value.name, "Poland")
+        default:
+            XCTFail()
+        }
         
-        guard let text = testObject.text as? String else {
+        guard let text = testObject.text as? SOCountryOrText else {
             XCTFail()
             return
         }
         
-        XCTAssertEqual(text, "United States")
+        switch text {
+        case .text(let value):
+            XCTAssertEqual(value, "United States")
+        default:
+            XCTFail()
+        }
     }
     
     func testSingleEncodes() {
@@ -103,5 +117,65 @@ class CountryOrTextTests: XCTestCase {
         }
         
         XCTAssertEqual(sa, "South America")
+    }
+    
+    func testMultipleDecodes() throws {
+        let json = """
+        {
+            "multiple": [
+                {
+                    "@type" : "Country",
+                    "name" : "Poland"
+                },
+                "United States"
+            ]
+        }
+        """
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        let testable: TestClass = try JSONDecoder().decode(TestClass.self, from: data)
+        
+        guard let multiple = testable.multiple else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(multiple.count, 2)
+        
+        guard let country = multiple[0] as? SOCountryOrText else {
+            XCTFail()
+            return
+        }
+        
+        switch country {
+        case .country(let value):
+            XCTAssertEqual(value.name, "Poland")
+        default:
+            XCTFail()
+        }
+        
+        guard let text = multiple[1] as? SOCountryOrText else {
+            XCTFail()
+            return
+        }
+        
+        switch text {
+        case .text(let value):
+            XCTAssertEqual(value, "United States")
+        default:
+            XCTFail()
+        }
+    }
+    
+    func testMultipleEncodes() throws {
+        let testable = TestClass()
+        testable.multiple = [SOCountry(), "Hero"]
+        
+        let json = try testable.json()
+        XCTAssertTrue(json.contains("\"multiple\":["))
     }
 }
