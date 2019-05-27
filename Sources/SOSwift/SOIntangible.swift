@@ -12,6 +12,7 @@ public class SOIntangible: SOThing, Intangible {
         return [
             SOAlignmentObject.self,
             SOBrand.self,
+            SODataFeedItem.self,
             SODemand.self,
             SOEntryPoint.self,
             SOEnumeration.self,

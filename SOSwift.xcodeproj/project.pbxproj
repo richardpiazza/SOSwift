@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		E17EA3EB229C2816003F1CCC /* CreativeWorkOrEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EA3EA229C2816003F1CCC /* CreativeWorkOrEventTests.swift */; };
+		E17EA3ED229C4A22003F1CCC /* SODataFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EA3EC229C4A22003F1CCC /* SODataFeedItem.swift */; };
 		OBJ_381 /* AccessMode+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AccessMode+SOSwift.swift */; };
 		OBJ_382 /* AccessModeSufficient+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* AccessModeSufficient+SOSwift.swift */; };
 		OBJ_383 /* AccessibilityAPI+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AccessibilityAPI+SOSwift.swift */; };
@@ -416,6 +417,7 @@
 
 /* Begin PBXFileReference section */
 		E17EA3EA229C2816003F1CCC /* CreativeWorkOrEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrEventTests.swift; sourceTree = "<group>"; };
+		E17EA3EC229C4A22003F1CCC /* SODataFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SODataFeedItem.swift; sourceTree = "<group>"; };
 		OBJ_10 /* AccessModeSufficient+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccessModeSufficient+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* SOEntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOEntryPoint.swift; sourceTree = "<group>"; };
 		OBJ_101 /* SOEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOEnumeration.swift; sourceTree = "<group>"; };
@@ -1141,6 +1143,7 @@
 				OBJ_93 /* SODataCatalog.swift */,
 				OBJ_94 /* SODataDownload.swift */,
 				OBJ_95 /* SODataFeed.swift */,
+				E17EA3EC229C4A22003F1CCC /* SODataFeedItem.swift */,
 				OBJ_30 /* SODataFeedItemOrThingOrText.swift */,
 				OBJ_96 /* SODataset.swift */,
 				OBJ_32 /* SODateOnlyOrDateTime.swift */,
@@ -1485,6 +1488,7 @@
 				OBJ_500 /* SOPerformingGroup.swift in Sources */,
 				OBJ_501 /* SOPerson.swift in Sources */,
 				OBJ_502 /* SOPhotograph.swift in Sources */,
+				E17EA3ED229C4A22003F1CCC /* SODataFeedItem.swift in Sources */,
 				OBJ_503 /* SOPlace.swift in Sources */,
 				OBJ_504 /* SOPostalAddress.swift in Sources */,
 				OBJ_505 /* SOPriceSpecification.swift in Sources */,
