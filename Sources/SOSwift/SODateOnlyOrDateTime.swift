@@ -29,6 +29,24 @@ public enum SODateOnlyOrDateTime: DateOnlyOrDateTime, Codable {
             try container.encodeDateTime(value)
         }
     }
+    
+    public var dateOnly: DateOnly? {
+        switch self {
+        case .dateOnly(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+    
+    public var dateTime: DateTime? {
+        switch self {
+        case .dateTime(let value):
+            return value
+        default:
+            return nil
+        }
+    }
 }
 
 // MARK: - Encoding

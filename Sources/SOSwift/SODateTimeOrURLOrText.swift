@@ -43,6 +43,33 @@ public enum SODateTimeOrURLOrText: DateTimeOrURLOrText, Codable {
             try container.encode(value)
         }
     }
+    
+    public var dateTime: DateTime? {
+        switch self {
+        case .dateTime(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+    
+    public var url: URL? {
+        switch self {
+        case .url(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+    
+    public var text: String? {
+        switch self {
+        case .text(let value):
+            return value
+        default:
+            return nil
+        }
+    }
 }
 
 // MARK: - Encoding
