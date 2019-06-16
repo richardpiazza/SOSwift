@@ -4,15 +4,24 @@ import SOSwiftVocabulary
 
 class DateTimeOrTextOrURLTests: XCTestCase {
     
+    static var allTests = [
+        ("testSingleDecodes", testSingleDecodes),
+        ("testSingleEncodes", testSingleEncodes),
+        ("testMultipleDecodes", testMultipleDecodes),
+        ("testMultipleEncodes", testMultipleEncodes),
+    ]
+    
     fileprivate class TestClass: Codable, Testable {
         var dateTime: DateTimeOrURLOrText?
         var text: DateTimeOrURLOrText?
         var url: DateTimeOrURLOrText?
+        var multiple: [DateTimeOrURLOrText]?
         
         private enum CodingKeys: String, CodingKey {
             case dateTime
             case text
             case url
+            case multiple
         }
         
         init() {
@@ -23,13 +32,15 @@ class DateTimeOrTextOrURLTests: XCTestCase {
             self.dateTime = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .dateTime)
             self.text = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .text)
             self.url = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .url)
+            self.multiple = try container.decodeDateTimesOrURLsOrTextsIfPresent(forKey: .multiple)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.dateTime, forKey: .dateTime)
-            try container.encodeIfPresent(self.text, forKey: .text)
-            try container.encodeIfPresent(self.url, forKey: .url)
+            try container.encodeIfPresent(dateTime, forKey: .dateTime)
+            try container.encodeIfPresent(text, forKey: .text)
+            try container.encodeIfPresent(url, forKey: .url)
+            try container.encodeIfPresent(multiple, forKey: .multiple)
         }
     }
     
@@ -127,5 +138,89 @@ class DateTimeOrTextOrURLTests: XCTestCase {
         }
         
         XCTAssertEqual(url.host, "www.apple.com")
+    }
+    
+    func testMultipleDecodes() throws {
+        let json = """
+        {
+            "multiple": [
+                "2019-06-16T08:14:00-5000",
+                "https://www.google.com",
+                "Hello World",
+            ]
+        }
+        """
+        
+        guard let data = json.data(using: .utf8) else {
+            XCTFail()
+            return
+        }
+        
+        let testable = try JSONDecoder().decode(TestClass.self, from: data)
+        
+        guard let multiple = testable.multiple else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(multiple.count, 3)
+        
+        guard
+            let dateTime = multiple[0] as? SODateTimeOrURLOrText,
+            let url = multiple[1] as? SODateTimeOrURLOrText,
+            let text = multiple[2] as? SODateTimeOrURLOrText
+            else {
+                XCTFail()
+                return
+        }
+        
+        switch dateTime {
+        case .dateTime(let value):
+            let components = DateComponents(calendar: .gregorian, timeZone: .gmt, era: nil, year: 2019, month: 6, day: 16, hour: 13, minute: 14, second: 0, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+            guard let date = value.date, let compare = components.date else {
+                XCTFail()
+                return
+            }
+            
+            XCTAssertEqual(Calendar.gregorian.compare(date, to: compare, toGranularity: .second), .orderedSame)
+        default:
+            XCTFail()
+        }
+        
+        switch url {
+        case .url(let value):
+            XCTAssertEqual(value.scheme, "https")
+            XCTAssertEqual(value.host, "www.google.com")
+        default:
+            XCTFail()
+        }
+        
+        switch text {
+        case .text(let value):
+            XCTAssertEqual(value, "Hello World")
+        default:
+            XCTFail()
+        }
+    }
+    
+    func testMultipleEncodes() throws {
+        let dateTime = SODateTimeOrURLOrText.dateTime(value: "2019-06-16T08:14:00-5000")
+        let url = SODateTimeOrURLOrText.url(value: URL(string: "https://www.google.com")!)
+        let text = SODateTimeOrURLOrText.text(value: "Hello World")
+        
+        let testObject = TestClass()
+        testObject.multiple = [dateTime, url, text]
+        
+        let dictionary = try testObject.dictionary()
+        XCTAssertEqual(dictionary.keys.count, 1)
+        
+        guard let multiple = dictionary["multiple"] as? [String] else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(multiple[0], "2019-06-16T13:14:00Z")
+        XCTAssertEqual(multiple[1], "https://www.google.com")
+        XCTAssertEqual(multiple[2], "Hello World")
     }
 }

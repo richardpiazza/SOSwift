@@ -5,7 +5,7 @@ fileprivate struct DateTimeFormatter {
     @available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *)
     static var iso8601: ISO8601DateFormatter {
         let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withInternetDateTime, .withDashSeparatorInDate, .withColonSeparatorInTime, .withColonSeparatorInTimeZone]
+        formatter.formatOptions = .withInternetDateTime
         return formatter
     }
     
@@ -40,7 +40,9 @@ public extension Date {
     }
 }
 
-// MARK: - DateTime
+// MARK: - Encoding
+
+fileprivate let encodingContext = EncodingError.Context(codingPath: [], debugDescription: "Failed to encode DateTime")
 
 public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: DateTime?, forKey key: K) throws {
@@ -48,7 +50,47 @@ public extension KeyedEncodingContainer {
             try self.encode(typedValue, forKey: key)
         }
     }
+    
+    mutating func encode(_ value: DateTime, forKey key: K) throws {
+        guard let typedValue = value as? String else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        try self.encode(typedValue, forKey: key)
+    }
 }
+
+public extension SingleValueEncodingContainer {
+    mutating func encodeDateTime(_ value: DateTime) throws {
+        guard let date = value.date else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        guard let typedValue = date.dateTime as? String else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        try self.encode(typedValue)
+    }
+}
+
+public extension UnkeyedEncodingContainer {
+    mutating func encodeDateTime(_ value: DateTime) throws {
+        guard let date = value.date else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        guard let typedValue = date.dateTime as? String else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        try self.encode(typedValue)
+    }
+}
+
+// MARK: - Decoding
+
+fileprivate let decodingContext = DecodingError.Context(codingPath: [], debugDescription: "Failed to decode DateTime")
 
 public extension KeyedDecodingContainer {
     func decodeDateTimeIfPresent(forKey key: K) throws -> DateTime? {
@@ -67,5 +109,16 @@ public extension KeyedDecodingContainer {
         print("Failed to decode `DateTime` for key \(key.stringValue).")
         
         return nil
+    }
+}
+
+public extension SingleValueDecodingContainer {
+    func decodeDateTime() throws -> DateTime {
+        let value = try self.decode(String.self)
+        guard let date = (value as DateTime).date else {
+            throw DecodingError.typeMismatch(DateTime.self, decodingContext)
+        }
+        
+        return date.dateTime
     }
 }

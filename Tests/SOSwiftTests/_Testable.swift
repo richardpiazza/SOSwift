@@ -42,3 +42,15 @@ extension Testable where Self : Codable {
         return try JSONDecoder().decode(self, from: data)
     }
 }
+
+extension Calendar {
+    static var gregorian: Calendar {
+        return Calendar(identifier: .gregorian)
+    }
+}
+
+extension TimeZone {
+    static var gmt: TimeZone {
+        return TimeZone(secondsFromGMT: 0)!
+    }
+}

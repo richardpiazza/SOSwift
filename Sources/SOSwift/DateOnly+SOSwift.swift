@@ -6,14 +6,14 @@ fileprivate struct DateOnlyFormatter {
     static var iso8601: ISO8601DateFormatter {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withDashSeparatorInDate, .withYear, .withMonth, .withDay]
-        formatter.timeZone = TimeZone(abbreviation: "GMT")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter
     }
     
     static var iso8601Simple: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = TimeZone(abbreviation: "GMT")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter
     }
     
@@ -57,15 +57,57 @@ public extension Date {
     }
 }
 
-// MARK: - DateOnly
+// MARK: - Encoding
+
+fileprivate let encodingContext = EncodingError.Context(codingPath: [], debugDescription: "Failed to encode DateOnly")
 
 public extension KeyedEncodingContainer {
+    mutating func encode(_ value: DateOnly, forKey key: K) throws {
+        guard let typedValue = value as? String else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        try self.encode(typedValue, forKey: key)
+    }
+    
     mutating func encodeIfPresent(_ value: DateOnly?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }
     }
 }
+
+public extension SingleValueEncodingContainer {
+    mutating func encodeDateOnly(_ value: DateOnly) throws {
+        guard let date = value.date else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        guard let typedValue = date.dateOnly as? String else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        try self.encode(typedValue)
+    }
+}
+
+public extension UnkeyedEncodingContainer {
+    mutating func encodeDateOnly(_ value: DateOnly) throws {
+        guard let date = value.date else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        guard let typedValue = date.dateOnly as? String else {
+            throw EncodingError.invalidValue(value, encodingContext)
+        }
+        
+        try self.encode(typedValue)
+    }
+}
+
+// MARK: - Decoding
+
+fileprivate let decodingContext = DecodingError.Context(codingPath: [], debugDescription: "Failed to decode DateOnly")
 
 public extension KeyedDecodingContainer {
     func decodeDateOnlyIfPresent(forKey key: K) throws -> DateOnly? {
@@ -84,5 +126,16 @@ public extension KeyedDecodingContainer {
         print("Failed to decode `DateOnly` for key: \(key.stringValue).")
         
         return nil
+    }
+}
+
+public extension SingleValueDecodingContainer {
+    func decodeDateOnly() throws -> DateOnly {
+        let value = try self.decode(String.self)
+        guard let date = (value as DateOnly).date else {
+            throw DecodingError.typeMismatch(DateOnly.self, decodingContext)
+        }
+        
+        return date.dateOnly
     }
 }
