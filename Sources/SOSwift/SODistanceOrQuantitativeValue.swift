@@ -61,6 +61,15 @@ public enum SODistanceOrQuantitativeValue: DistanceOrQuantitativeValue, Codable 
 
 public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: DistanceOrQuantitativeValue?, forKey key: K) throws {
+        guard value != nil else {
+            return
+        }
+        
+        if let typedValue = value as? SODistanceOrQuantitativeValue {
+            try self.encode(typedValue, forKey: key)
+            return
+        }
+        
         if let typedValue = value as? SODistance {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOQuantitativeValue {
