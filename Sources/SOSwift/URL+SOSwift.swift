@@ -6,7 +6,16 @@ public extension URL {
             return false
         }
         
-        return urlComponents.scheme != nil
+        guard urlComponents.scheme != nil else {
+            return false
+        }
+        
+        switch urlComponents.scheme!.lowercased() {
+        case "http", "https":
+            return true
+        default:
+            return false
+        }
     }
 }
 

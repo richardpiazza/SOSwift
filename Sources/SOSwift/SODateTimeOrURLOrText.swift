@@ -76,6 +76,15 @@ public enum SODateTimeOrURLOrText: DateTimeOrURLOrText, Codable {
 
 public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: DateTimeOrURLOrText?, forKey key: K) throws {
+        guard value != nil else {
+            return
+        }
+        
+        if let typedValue = value as? SODateTimeOrURLOrText {
+            try self.encode(typedValue, forKey: key)
+            return
+        }
+        
         if let typedValue = value as? DateTime {
             try self.encodeIfPresent(typedValue, forKey: key)
         } else if let typedValue = value as? URL {

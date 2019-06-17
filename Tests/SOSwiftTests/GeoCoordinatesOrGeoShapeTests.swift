@@ -4,13 +4,22 @@ import SOSwiftVocabulary
 
 class GeoCoordinatesOrGeoShapeTests: XCTestCase {
     
+    static var allTests = [
+        ("testSingleDecodes", testSingleDecodes),
+        ("testSingleEncodes", testSingleEncodes),
+        ("testMultipleDecodes", testMultipleDecodes),
+        ("testMultipleEncodes", testMultipleEncodes),
+    ]
+    
     fileprivate class TestClass: Codable, Testable {
         var geoCoordinates: GeoCoordinatesOrGeoShape?
         var geoShape: GeoCoordinatesOrGeoShape?
+        var multiple: [GeoCoordinatesOrGeoShape]?
         
         private enum CodingKeys: String, CodingKey {
             case geoCoordinates
             case geoShape
+            case multiple
         }
         
         init() {
@@ -20,26 +29,18 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.geoCoordinates = try container.decodeGeoCoordinatesOrGeoShapeIfPresent(forKey: .geoCoordinates)
             self.geoShape = try container.decodeGeoCoordinatesOrGeoShapeIfPresent(forKey: .geoShape)
+            self.multiple = try container.decodeGeoCoordinatesOrGeoShapesIfPresent(forKey: .multiple)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.geoCoordinates, forKey: .geoCoordinates)
             try container.encodeIfPresent(self.geoShape, forKey: .geoShape)
+            try container.encodeIfPresent(multiple, forKey: .multiple)
         }
     }
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testSingleDecodes() {
+    func testSingleDecodes() throws {
         let json = """
             {
                 "geoCoordinates" : {
@@ -53,27 +54,12 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
             }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
+        let testObject = try TestClass.make(with: json)
         
-        guard let geoCoordinates = testObject.geoCoordinates as? GeoCoordinates else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(geoCoordinates.name, "Here")
-        
-        guard let geoShape = testObject.geoShape as? GeoShape else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(geoShape.name, "There")
+        let geoCoordinates = (testObject.geoCoordinates as? SOGeoCoordinatesOrGeoShape)?.geoCoordinates
+        XCTAssertEqual(geoCoordinates?.name, "Here")
+        let geoShape = (testObject.geoShape as? SOGeoCoordinatesOrGeoShape)?.geoShape
+        XCTAssertEqual(geoShape?.name, "There")
     }
     
     func testSingleEncodes() {
@@ -108,6 +94,64 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
         }
         
         XCTAssertEqual(gsName, "Work")
+    }
+    
+    func testMultipleDecodes() throws {
+        let json = """
+        {
+            "multiple": [
+                {
+                    "@type" : "GeoCoordinates",
+                    "name" : "Here"
+                },
+                {
+                    "@type" : "GeoShape",
+                    "name" : "There"
+                }
+            ]
+        }
+        """
+        
+        let testObject = try TestClass.make(with: json)
+        
+        guard let multiple = testObject.multiple else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(multiple.count, 2)
+        
+        let coordinates = (multiple[0] as? SOGeoCoordinatesOrGeoShape)?.geoCoordinates
+        let shape = (multiple[1] as? SOGeoCoordinatesOrGeoShape)?.geoShape
+        
+        XCTAssertEqual(coordinates?.name, "Here")
+        XCTAssertEqual(shape?.name, "There")
+    }
+    
+    func testMultipleEncodes() throws {
+        let coordinates = SOGeoCoordinates()
+        coordinates.postalCode = "12345"
+        
+        let shape = SOGeoShape()
+        shape.postalCode = "54321"
+        
+        var multiple = [SOGeoCoordinatesOrGeoShape]()
+        multiple.append(.geoCoordinates(value: coordinates))
+        multiple.append(.geoShape(value: shape))
+        
+        let testObject = TestClass()
+        testObject.multiple = multiple
+        
+        let dictionary = try testObject.dictionary()
+        XCTAssertEqual(dictionary.keys.count, 1)
+        
+        guard let value = dictionary["multiple"] as? [[String : Any]] else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(value[0]["postalCode"] as? String, "12345")
+        XCTAssertEqual(value[1]["postalCode"] as? String, "54321")
     }
 }
 
