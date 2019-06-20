@@ -107,6 +107,10 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testSingleEncodes() throws {
+        
+    }
 
     func testMultipleDecodes() {
         let json = """
@@ -185,5 +189,9 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         default:
             break
         }
+    }
+    
+    func testMultipleEncodes() throws {
+        
     }
 }

@@ -109,4 +109,12 @@ class SoftwareApplicationOrWebsiteTests: XCTestCase {
         
         XCTAssertEqual(url.path, "/ios")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }

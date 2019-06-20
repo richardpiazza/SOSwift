@@ -104,5 +104,13 @@ class MapOrURLTests: XCTestCase {
         
         XCTAssertEqual(url.host, "commons.wikimedia.org")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }
 

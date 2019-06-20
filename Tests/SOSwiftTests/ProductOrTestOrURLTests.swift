@@ -124,4 +124,12 @@ class ProductOrTextOrURLTests: XCTestCase {
         
         XCTAssertEqual(url.host, "www.apple.com")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }

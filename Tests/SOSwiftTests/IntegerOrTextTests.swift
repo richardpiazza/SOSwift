@@ -97,5 +97,13 @@ class IntegerOrTextTests: XCTestCase {
         
         XCTAssertEqual(t, "One Hundred")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }
 

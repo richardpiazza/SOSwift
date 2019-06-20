@@ -104,4 +104,12 @@ class ProductOrTextTests: XCTestCase {
         
         XCTAssertEqual(t, "Laptop")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }

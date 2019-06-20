@@ -104,5 +104,13 @@ class LanguageOrTextTests: XCTestCase {
         
         XCTAssertEqual(t, "Google Translate")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }
 

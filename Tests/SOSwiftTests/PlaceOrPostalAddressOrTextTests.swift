@@ -130,4 +130,12 @@ class PlaceOrPostalAddressOrTextTests: XCTestCase {
         
         XCTAssertEqual(t, "The Googleplex")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }

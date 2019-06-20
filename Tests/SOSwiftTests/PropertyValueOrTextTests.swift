@@ -104,4 +104,12 @@ class PropertyValueOrTextTests: XCTestCase {
         
         XCTAssertEqual(t, "Measure")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }

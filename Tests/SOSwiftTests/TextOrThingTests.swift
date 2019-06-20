@@ -104,4 +104,12 @@ class TextOrThingTests: XCTestCase {
         
         XCTAssertEqual(tName, "Steak")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }

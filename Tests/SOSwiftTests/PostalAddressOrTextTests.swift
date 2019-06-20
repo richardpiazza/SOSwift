@@ -104,4 +104,12 @@ class PostalAddressOrTextTests: XCTestCase {
         
         XCTAssertEqual(t, "Google Campus")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }

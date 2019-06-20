@@ -97,5 +97,12 @@ class ItemListOrderOrTextTests: XCTestCase {
         
         XCTAssertEqual(t, "Ascending?")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }
-

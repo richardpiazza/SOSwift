@@ -4,13 +4,22 @@ import SOSwiftVocabulary
 
 class ImageObjectOrURLTests: XCTestCase {
     
+    static var allTests = [
+        ("testSingleDecodes", testSingleDecodes),
+        ("testSingleEncodes", testSingleEncodes),
+        ("testMultipleDecodes", testMultipleDecodes),
+        ("testMultipleEncodes", testMultipleEncodes),
+    ]
+    
     fileprivate class TestClass: Codable, Testable {
         var imageObject: ImageObjectOrURL?
         var url: ImageObjectOrURL?
+        var multiple: [ImageObjectOrURL]?
         
         private enum CodingKeys: String, CodingKey {
             case imageObject
             case url
+            case multiple
         }
         
         init() {
@@ -20,60 +29,38 @@ class ImageObjectOrURLTests: XCTestCase {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.imageObject = try container.decodeImageObjectOrURLIfPresent(forKey: .imageObject)
             self.url = try container.decodeImageObjectOrURLIfPresent(forKey: .url)
+            self.multiple = try container.decodeIfPresent([SOImageObjectOrURL].self, forKey: .multiple)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.imageObject, forKey: .imageObject)
             try container.encodeIfPresent(self.url, forKey: .url)
+            try container.encodeIfPresent(multiple, forKey: .multiple)
         }
     }
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testSingleDecodes() {
+    func testSingleDecodes() throws {
         let json = """
-            {
-                "imageObject" : {
-                    "@type" : "ImageObject",
-                    "name" : "Water Bottle"
-                },
-                "url" : "https://www.squarespace.com"
-            }
+        {
+            "imageObject" : {
+                "@type" : "ImageObject",
+                "name" : "Water Bottle"
+            },
+            "url" : "https://www.squarespace.com"
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
+        let testObject = try TestClass.make(with: json)
         
-        guard let imageObject = testObject.imageObject as? ImageObject else {
-            XCTFail()
-            return
-        }
+        let imageObject = (testObject.imageObject as? SOImageObjectOrURL)?.imageObject
+        let url = (testObject.url as? SOImageObjectOrURL)?.url
         
-        XCTAssertEqual(imageObject.name, "Water Bottle")
-        
-        guard let url = testObject.url as? URL else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(url.host, "www.squarespace.com")
+        XCTAssertEqual(imageObject?.name, "Water Bottle")
+        XCTAssertEqual(url?.host, "www.squarespace.com")
     }
     
-    func testSingleEncodes() {
+    func testSingleEncodes() throws {
         let testObject = TestClass()
         
         let imageObject = SOImageObject()
@@ -82,13 +69,7 @@ class ImageObjectOrURLTests: XCTestCase {
         
         testObject.url = URL(string: "https://www.squareup.com")
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
+        let dictionary = try testObject.dictionary()
         
         guard let io = dictionary["imageObject"] as? [String : Any], let ioName = io["name"] as? String else {
             XCTFail()
@@ -103,6 +84,54 @@ class ImageObjectOrURLTests: XCTestCase {
         }
         
         XCTAssertEqual(url.host, "www.squareup.com")
+    }
+    
+    func testMultipleDecodes() throws {
+        let json = """
+        {
+            "multiple": [
+                {
+                    "@type" : "ImageObject",
+                    "name" : "Water Bottle"
+                },
+                "https://www.squarespace.com"
+            ]
+        }
+        """
+        
+        let testObject = try TestClass.make(with: json)
+        
+        let multiple = testObject.multiple as? [SOImageObjectOrURL]
+        XCTAssertEqual(multiple?.count, 2)
+        
+        let imageObject = multiple?[0].imageObject
+        let url = multiple?[1].url
+        
+        XCTAssertEqual(imageObject?.name, "Water Bottle")
+        XCTAssertEqual(url?.host, "www.squarespace.com")
+    }
+    
+    func testMultipleEncodes() throws {
+        let imageObject = SOImageObject()
+        imageObject.name = "Water Bottle"
+        
+        let url = URL(string: "https://www.squarespace.com")!
+        
+        var multiple = [SOImageObjectOrURL]()
+        multiple.append(.imageObject(value: imageObject))
+        multiple.append(.url(value: url))
+        
+        let testObject = TestClass()
+        testObject.multiple = multiple
+        
+        let dictionary = try testObject.dictionary()
+        
+        let values = dictionary["multiple"] as? [Any]
+        let io = values?[0] as? [String : Any]
+        let u = values?[1] as? String
+        
+        XCTAssertEqual(io?["name"] as? String, "Water Bottle")
+        XCTAssertEqual(u, "https://www.squarespace.com")
     }
 }
 

@@ -130,5 +130,13 @@ class ListItemOrTextOrThingTests: XCTestCase {
         
         XCTAssertEqual(tName, "T 2")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }
 

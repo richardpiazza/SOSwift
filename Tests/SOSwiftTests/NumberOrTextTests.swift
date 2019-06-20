@@ -98,5 +98,13 @@ class NumberOrTextTests: XCTestCase {
         
         XCTAssertEqual(t, "Almost Five")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }
 

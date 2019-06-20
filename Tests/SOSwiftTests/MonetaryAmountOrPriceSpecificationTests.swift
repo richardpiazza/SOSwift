@@ -109,5 +109,13 @@ class MonetaryAmountOrPriceSpecificationTests: XCTestCase {
         
         XCTAssertEqual(psName, "One Thousand")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }
 

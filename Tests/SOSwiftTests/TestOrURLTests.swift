@@ -98,4 +98,12 @@ class TextOrURLTests: XCTestCase {
         
         XCTAssertEqual(url.host, "commons.wikimedia.org")
     }
+    
+    func testMultipleDecodes() throws {
+        
+    }
+    
+    func testMultipleEncodes() throws {
+        
+    }
 }
