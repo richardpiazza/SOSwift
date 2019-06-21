@@ -1,33 +1,97 @@
 import Foundation
 import SOSwiftVocabulary
 
-// MARK: - OrganizationOrProgramMembership
+public enum SOOrganizationOrProgramMembership: OrganizationOrProgramMembership, Codable {
+    case organization(value: SOOrganization)
+    case programMembership(value: SOProgramMembership)
+    
+    public init(from decoder: Decoder) throws {
+        let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
+        let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
+        
+        guard let type = dictionary[SOThing.Keywords.type] as? String else {
+            throw DynamicError.invalidTypeKey
+        }
+        
+        let container = try decoder.singleValueContainer()
+        
+        switch type {
+        case SOOrganization.type:
+            let value = try container.decode(SOOrganization.self)
+            self = .organization(value: value)
+        case SOProgramMembership.type:
+            let value = try container.decode(SOProgramMembership.self)
+            self = .programMembership(value: value)
+        default:
+            throw DynamicError.invalidTypeKey
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        
+        switch self {
+        case .organization(let value):
+            try container.encode(value)
+        case .programMembership(let value):
+            try container.encode(value)
+        }
+    }
+    
+    public var organization: SOOrganization? {
+        switch self {
+        case .organization(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+    
+    public var programMembership: SOProgramMembership? {
+        switch self {
+        case .programMembership(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+}
+
+// MARK: - Encoding
 
 public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: OrganizationOrProgramMembership?, forKey key: K) throws {
-        if let typedValue = value as? SOOrganization {
+        guard let value = value else {
+            return
+        }
+        
+        if let typedValue = value as? SOOrganizationOrProgramMembership {
+            try self.encode(typedValue, forKey: key)
+        } else if let typedValue = value as? SOOrganization {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOProgramMembership {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    mutating func encodeIfPresent(_ values: [OrganizationOrProgramMembership]?, forKey key: K) throws {
-        guard let values = values else {
+    mutating func encodeIfPresent(_ value: [OrganizationOrProgramMembership]?, forKey key: K) throws {
+        guard let value = value else {
             return
         }
         
-        var subcontainer = self.nestedUnkeyedContainer(forKey: key)
+        var container = self.nestedUnkeyedContainer(forKey: key)
         
-        for value in values {
-            if let typedValue = value as? SOOrganization {
-                try subcontainer.encode(typedValue)
-            } else if let typedValue = value as? SOProgramMembership {
-                try subcontainer.encode(typedValue)
+        try value.forEach({ (object) in
+            if let typedValue = object as? SOOrganization {
+                try container.encode(typedValue)
+            } else if let typedValue = object as? SOProgramMembership {
+                try container.encode(typedValue)
             }
-        }
+        })
     }
 }
+
+// MARK: - Decoding
 
 public extension KeyedDecodingContainer {
     func decodeOrganizationOrProgramMembershipIfPresent(forKey key: K) throws -> OrganizationOrProgramMembership? {
@@ -36,18 +100,10 @@ public extension KeyedDecodingContainer {
         }
         
         do {
-            let dictionary = try self.decode(Dictionary<String, Any>.self, forKey: key)
-            if dictionary[SOThing.Keywords.type] as? String == SOOrganization.type {
-                return try self.decode(SOOrganization.self, forKey: key)
-            } else if dictionary[SOThing.Keywords.type] as? String == SOProgramMembership.type {
-                return try self.decode(SOProgramMembership.self, forKey: key)
-            }
+            return try self.decodeIfPresent(SOOrganizationOrProgramMembership.self, forKey: key)
         } catch {
+            return nil
         }
-        
-        print("Failed to decode `OrganizationOrProgramMembership` for key: \(key.stringValue).")
-        
-        return nil
     }
     
     func decodeOrganizationsOrProgramMembershipsIfPresent(forKey key: K) throws -> [OrganizationOrProgramMembership]? {
@@ -55,36 +111,10 @@ public extension KeyedDecodingContainer {
             return nil
         }
         
-        var decodables = [OrganizationOrProgramMembership]()
-        
         do {
-            let array = try self.decode([Any].self, forKey: key)
-            for element in array {
-                if let dictionary = element as? [String : Any] {
-                    let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions())
-                    if dictionary[SOThing.Keywords.type] as? String == SOOrganization.type {
-                        let decodable = try JSONDecoder().decode(SOOrganization.self, from: data)
-                        decodables.append(decodable)
-                    } else if dictionary[SOThing.Keywords.type] as? String == SOProgramMembership.type {
-                        let decodable = try JSONDecoder().decode(SOProgramMembership.self, from: data)
-                        decodables.append(decodable)
-                    }
-                }
-            }
-            
-            return decodables
+            return try self.decodeIfPresent([SOOrganizationOrProgramMembership].self, forKey: key)
         } catch {
+            return nil
         }
-        
-        do {
-            if let element = try self.decodeOrganizationOrProgramMembershipIfPresent(forKey: key) {
-                return [element]
-            }
-        } catch {
-        }
-        
-        print("Failed to decode `[OrganizationOrProgramMembership]` for key: \(key.stringValue).")
-        
-        return nil
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 import SOSwiftVocabulary
 
-// MARK: - Number
+// MARK: - Encoding
 
 public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: Number?, forKey key: K) throws {
@@ -12,6 +12,18 @@ public extension KeyedEncodingContainer {
         }
     }
 }
+
+public extension SingleValueEncodingContainer {
+    mutating func encode(_ value: Number) throws {
+        if let typedValue = value as? Int {
+            try self.encode(typedValue)
+        } else if let typedValue = value as? Double {
+            try self.encode(typedValue)
+        }
+    }
+}
+
+// MARK: - Decoding
 
 public extension KeyedDecodingContainer {
     func decodeNumberIfPresent(forKey key: K) throws -> Number? {
@@ -34,5 +46,17 @@ public extension KeyedDecodingContainer {
         print("Failed to decode `Number` for key: \(key.stringValue).")
         
         return nil
+    }
+}
+
+public extension SingleValueDecodingContainer {
+    func decodeNumber() throws -> Number {
+        do {
+            let value = try self.decode(Int.self)
+            return value
+        } catch {
+        }
+        
+        return try self.decode(Double.self)
     }
 }

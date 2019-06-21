@@ -55,31 +55,7 @@ public enum SODataFeedItemOrThingOrText: DataFeedItemOrThingOrText, Codable {
     }
 }
 
-public extension KeyedDecodingContainer {
-    func decodeDataFeedItemOrThingOrTextIfPresent(forKey key: K) throws -> DataFeedItemOrThingOrText? {
-        guard self.contains(key) else {
-            return nil
-        }
-        
-        do {
-            return try self.decodeIfPresent(SODataFeedItemOrThingOrText.self, forKey: key)
-        } catch {
-            return nil
-        }
-    }
-    
-    func decodeDataFeedItemsOrThingsOrTextsIfPresent(forKey key: K) throws -> [DataFeedItemOrThingOrText]? {
-        guard self.contains(key) else {
-            return nil
-        }
-        
-        do {
-            return try self.decodeIfPresent([SODataFeedItemOrThingOrText].self, forKey: key)
-        } catch {
-            return nil
-        }
-    }
-}
+// MARK: - Encoding
 
 public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: DataFeedItemOrThingOrText?, forKey key: K) throws {
@@ -115,5 +91,33 @@ public extension KeyedEncodingContainer {
                 try container.encode(typedValue)
             }
         })
+    }
+}
+
+// MARK: - Decoding
+
+public extension KeyedDecodingContainer {
+    func decodeDataFeedItemOrThingOrTextIfPresent(forKey key: K) throws -> DataFeedItemOrThingOrText? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            return try self.decodeIfPresent(SODataFeedItemOrThingOrText.self, forKey: key)
+        } catch {
+            return nil
+        }
+    }
+    
+    func decodeDataFeedItemsOrThingsOrTextsIfPresent(forKey key: K) throws -> [DataFeedItemOrThingOrText]? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            return try self.decodeIfPresent([SODataFeedItemOrThingOrText].self, forKey: key)
+        } catch {
+            return nil
+        }
     }
 }

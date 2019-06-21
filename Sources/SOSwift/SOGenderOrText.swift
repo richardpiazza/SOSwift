@@ -11,10 +11,9 @@ public enum SOGenderOrText: GenderOrText, Codable {
         
         if let gender = Gender(rawValue: value) {
             self = .gender(value: gender)
-            return
+        } else {
+            self = .text(value: value)
         }
-        
-        self = .text(value: value)
     }
     
     public func encode(to encoder: Encoder) throws {

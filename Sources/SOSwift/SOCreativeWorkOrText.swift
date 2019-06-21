@@ -67,31 +67,7 @@ public enum SOCreativeWorkOrText: CreativeWorkOrText, Codable {
     }
 }
 
-public extension KeyedDecodingContainer {
-    func decodeCreativeWorkOrTextIfPresent(forKey key: K) throws -> CreativeWorkOrText? {
-        guard self.contains(key) else {
-            return nil
-        }
-        
-        do {
-            return try self.decodeIfPresent(SOCreativeWorkOrText.self, forKey: key)
-        } catch {
-            return nil
-        }
-    }
-    
-    func decodeCreativeWorksOrTextsIfPresent(forKey key: K) throws -> [CreativeWorkOrText]? {
-        guard self.contains(key) else {
-            return nil
-        }
-        
-        do {
-            return try self.decodeIfPresent([SOCreativeWorkOrText].self, forKey: key)
-        } catch {
-            return nil
-        }
-    }
-}
+// MARK: - Encoding
 
 public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: CreativeWorkOrText?, forKey key: K) throws {
@@ -123,5 +99,33 @@ public extension KeyedEncodingContainer {
                 try container.encode(typedValue)
             }
         })
+    }
+}
+
+// MARK: - Decoding
+
+public extension KeyedDecodingContainer {
+    func decodeCreativeWorkOrTextIfPresent(forKey key: K) throws -> CreativeWorkOrText? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            return try self.decodeIfPresent(SOCreativeWorkOrText.self, forKey: key)
+        } catch {
+            return nil
+        }
+    }
+    
+    func decodeCreativeWorksOrTextsIfPresent(forKey key: K) throws -> [CreativeWorkOrText]? {
+        guard self.contains(key) else {
+            return nil
+        }
+        
+        do {
+            return try self.decodeIfPresent([SOCreativeWorkOrText].self, forKey: key)
+        } catch {
+            return nil
+        }
     }
 }
