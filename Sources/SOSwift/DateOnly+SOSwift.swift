@@ -33,7 +33,7 @@ fileprivate struct DateOnlyFormatter {
     }
 }
 
-public extension DateOnly {
+public extension SOSwiftVocabulary.DateOnly {
     var date: Date? {
         guard let value = self as? String else {
             return nil
@@ -48,7 +48,7 @@ public extension DateOnly {
 }
 
 public extension Date {
-    var dateOnly: DateOnly {
+    var dateOnly: SOSwiftVocabulary.DateOnly {
         if #available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
             return DateOnlyFormatter.iso8601.string(from: self)
         } else {
@@ -62,7 +62,7 @@ public extension Date {
 fileprivate let encodingContext = EncodingError.Context(codingPath: [], debugDescription: "Failed to encode DateOnly")
 
 public extension KeyedEncodingContainer {
-    mutating func encode(_ value: DateOnly, forKey key: K) throws {
+    mutating func encode(_ value: SOSwiftVocabulary.DateOnly, forKey key: K) throws {
         guard let typedValue = value as? String else {
             throw EncodingError.invalidValue(value, encodingContext)
         }
@@ -70,7 +70,7 @@ public extension KeyedEncodingContainer {
         try self.encode(typedValue, forKey: key)
     }
     
-    mutating func encodeIfPresent(_ value: DateOnly?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: SOSwiftVocabulary.DateOnly?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }
@@ -78,7 +78,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension SingleValueEncodingContainer {
-    mutating func encodeDateOnly(_ value: DateOnly) throws {
+    mutating func encodeDateOnly(_ value: SOSwiftVocabulary.DateOnly) throws {
         guard let date = value.date else {
             throw EncodingError.invalidValue(value, encodingContext)
         }
@@ -92,7 +92,7 @@ public extension SingleValueEncodingContainer {
 }
 
 public extension UnkeyedEncodingContainer {
-    mutating func encodeDateOnly(_ value: DateOnly) throws {
+    mutating func encodeDateOnly(_ value: SOSwiftVocabulary.DateOnly) throws {
         guard let date = value.date else {
             throw EncodingError.invalidValue(value, encodingContext)
         }
@@ -110,13 +110,13 @@ public extension UnkeyedEncodingContainer {
 fileprivate let decodingContext = DecodingError.Context(codingPath: [], debugDescription: "Failed to decode DateOnly")
 
 public extension KeyedDecodingContainer {
-    func decodeDateOnlyIfPresent(forKey key: K) throws -> DateOnly? {
+    func decodeDateOnlyIfPresent(forKey key: K) throws -> SOSwiftVocabulary.DateOnly? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            let value = try self.decode(String.self, forKey: key) as DateOnly
+            let value = try self.decode(String.self, forKey: key) as SOSwiftVocabulary.DateOnly
             if value.date != nil {
                 return value
             }
@@ -130,10 +130,10 @@ public extension KeyedDecodingContainer {
 }
 
 public extension SingleValueDecodingContainer {
-    func decodeDateOnly() throws -> DateOnly {
+    func decodeDateOnly() throws -> SOSwiftVocabulary.DateOnly {
         let value = try self.decode(String.self)
-        guard let date = (value as DateOnly).date else {
-            throw DecodingError.typeMismatch(DateOnly.self, decodingContext)
+        guard let date = (value as SOSwiftVocabulary.DateOnly).date else {
+            throw DecodingError.typeMismatch(SOSwiftVocabulary.DateOnly.self, decodingContext)
         }
         
         return date.dateOnly

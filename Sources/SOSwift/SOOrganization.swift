@@ -39,7 +39,7 @@ public class SOOrganization: SOThing, Organization {
     /// Statement on diversity policy by an Organization e.g. a NewsMediaOrganization. For a NewsMediaOrganization, a statement describing the newsroom’s diversity policy on both staffing and sources, typically providing staffing data.
     public var diversityPolicy: CreativeWorkOrURL?
     /// The date that this organization was dissolved.
-    public var dissolutionDate: DateOnly?
+    public var dissolutionDate: SOSwiftVocabulary.DateOnly?
     /// The Dun & Bradstreet DUNS number for identifying an organization or business person.
     public var duns: String?
     /// Email address.
@@ -55,7 +55,7 @@ public class SOOrganization: SOThing, Organization {
     /// A person who founded this organization.
     public var founders: [Person]?
     /// The date that this organization was founded.
-    public var foundingDate: DateOnly?
+    public var foundingDate: SOSwiftVocabulary.DateOnly?
     /// The place where the Organization was founded.
     public var foundingLocation: Place?
     /// A person or organization that supports (sponsors) something through some kind of financial contribution.
@@ -397,7 +397,7 @@ public class SOOrganization: SOThing, Organization {
         case CodingKeys.department.rawValue:
             self.department = value as? Organization
         case CodingKeys.dissolutionDate.rawValue:
-            self.dissolutionDate = value as? DateOnly
+            self.dissolutionDate = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.diversityPolicy.rawValue:
             self.diversityPolicy = value as? CreativeWorkOrURL
         case CodingKeys.duns.rawValue:
@@ -415,7 +415,7 @@ public class SOOrganization: SOThing, Organization {
         case "founders":
             self.founders = value as? [Person]
         case CodingKeys.foundingDate.rawValue:
-            self.foundingDate = value as? DateOnly
+            self.foundingDate = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.foundingLocation.rawValue:
             self.foundingLocation = value as? Place
         case CodingKeys.funder.rawValue:

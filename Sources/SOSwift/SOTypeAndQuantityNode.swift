@@ -15,7 +15,7 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
     /// The quantity of the goods included in the offer.
     public var amountOfThisGood: SOSwiftVocabulary.Number?
     /// The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
-    public var businessFunction: BusinessFunction?
+    public var businessFunction: SOSwiftVocabulary.BusinessFunction?
     /// The product that this structured value is referring to.
     public var typeOfGood: ProductOrService?
     /// The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
@@ -40,7 +40,7 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
         
         self.amountOfThisGood = try container.decodeNumberIfPresent(forKey: .amountOfThisGood)
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .businessFunction) {
-            self.businessFunction = BusinessFunction(rawValue: rawValue)
+            self.businessFunction = SOSwiftVocabulary.BusinessFunction(rawValue: rawValue)
         }
         self.typeOfGood = try container.decodeProductOrServiceIfPresent(forKey: .typeOfGood)
         self.unitCode = try container.decodeURLOrTextIfPresent(forKey: .unitCode)
@@ -84,7 +84,7 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
         case CodingKeys.amountOfThisGood.rawValue:
             self.amountOfThisGood = value as? SOSwiftVocabulary.Number
         case CodingKeys.businessFunction.rawValue:
-            self.businessFunction = value as? BusinessFunction
+            self.businessFunction = value as? SOSwiftVocabulary.BusinessFunction
         case CodingKeys.typeOfGood.rawValue:
             self.typeOfGood = value as? ProductOrService
         case CodingKeys.unitCode.rawValue:

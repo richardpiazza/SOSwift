@@ -13,7 +13,7 @@ public class SOMap: SOCreativeWork, Map {
     }
     
     /// Indicates the kind of Map, from the MapCategoryType Enumeration.
-    public var mapType: MapType?
+    public var mapType: SOSwiftVocabulary.MapType?
     
     private enum CodingKeys: String, CodingKey {
         case mapType
@@ -27,7 +27,7 @@ public class SOMap: SOCreativeWork, Map {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         if let value = try container.decodeIfPresent(String.self, forKey: .mapType) {
-            self.mapType = MapType(rawValue: value)
+            self.mapType = SOSwiftVocabulary.MapType(rawValue: value)
         }
         
         try super.init(from: decoder)
@@ -54,7 +54,7 @@ public class SOMap: SOCreativeWork, Map {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.mapType.rawValue:
-            self.mapType = value as? MapType
+            self.mapType = value as? SOSwiftVocabulary.MapType
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }

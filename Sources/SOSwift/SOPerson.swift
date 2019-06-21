@@ -23,7 +23,7 @@ public class SOPerson: SOThing, Person {
     /// An award won by or for this item.
     public var awards: [String]?
     /// Date of birth.
-    public var birthDate: DateOnly?
+    public var birthDate: SOSwiftVocabulary.DateOnly?
     /// The place where the person was born.
     public var birthPlace: Place?
     /// The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
@@ -35,7 +35,7 @@ public class SOPerson: SOThing, Person {
     /// A contact point for a person or organization.
     public var contactPoints: [ContactPoint]?
     /// Date of death.
-    public var deathDate: DateOnly?
+    public var deathDate: SOSwiftVocabulary.DateOnly?
     /// The place where the person died.
     public var deathPlace: Place?
     /// The Dun & Bradstreet DUNS number for identifying an organization or business person.
@@ -420,7 +420,7 @@ public class SOPerson: SOThing, Person {
         case "awards":
             self.awards = value as? [String]
         case CodingKeys.birthDate.rawValue:
-            self.birthDate = value as? DateOnly
+            self.birthDate = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.birthPlace.rawValue:
             self.birthPlace = value as? Place
         case "brands":
@@ -432,7 +432,7 @@ public class SOPerson: SOThing, Person {
         case "contactPoints":
             self.contactPoints = value as? [ContactPoint]
         case CodingKeys.deathDate.rawValue:
-            self.deathDate = value as? DateOnly
+            self.deathDate = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.deathPlace.rawValue:
             self.deathPlace = value as? Place
         case CodingKeys.duns.rawValue:

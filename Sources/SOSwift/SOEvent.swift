@@ -40,7 +40,7 @@ public class SOEvent: SOThing, Event {
     /// The end date and time of the item (in ISO 8601 date format).
     public var endDate: DateOnlyOrDateTime?
     /// An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled.
-    public var eventStatus: EventStatus?
+    public var eventStatus: SOSwiftVocabulary.EventStatus?
     /// A person or organization that supports (sponsors) something through some kind of financial contribution.
     public var funder: OrganizationOrPerson?
     /// The language of the content or performance or used in an action. Please use one of the language codes from the IETF BCP 47 standard. See also availableLanguage.
@@ -58,7 +58,7 @@ public class SOEvent: SOThing, Event {
     /// A performer at the event—for example, a presenter, musician, musical group or actor.
     public var performers: [OrganizationOrPerson]?
     /// Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated.
-    public var previousStartDate: DateOnly?
+    public var previousStartDate: SOSwiftVocabulary.DateOnly?
     /// The CreativeWork that captured all or part of this Event. Inverse property: recordedAt.
     public var recordedIn: CreativeWork?
     /// The number of attendee places for an event that remain unallocated.
@@ -136,7 +136,7 @@ public class SOEvent: SOThing, Event {
         self.duration = try container.decodeDurationIfPresent(forKey: .duration)
         self.endDate = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .endDate)
         if let value = try container.decodeIfPresent(String.self, forKey: .eventStatus) {
-            self.eventStatus = EventStatus(rawValue: value)
+            self.eventStatus = SOSwiftVocabulary.EventStatus(rawValue: value)
         }
         self.funder = try container.decodeOrganizationOrPersonIfPresent(forKey: .funder)
         self.inLanguage = try container.decodeLanguageOrTextIfPresent(forKey: .inLanguage)
@@ -298,7 +298,7 @@ public class SOEvent: SOThing, Event {
         case CodingKeys.endDate.rawValue:
             self.endDate = value as? DateOnlyOrDateTime
         case CodingKeys.eventStatus.rawValue:
-            self.eventStatus = value as? EventStatus
+            self.eventStatus = value as? SOSwiftVocabulary.EventStatus
         case CodingKeys.funder.rawValue:
             self.funder = value as? OrganizationOrPerson
         case CodingKeys.inLanguage.rawValue:
@@ -316,7 +316,7 @@ public class SOEvent: SOThing, Event {
         case "performers":
             self.performers = value as? [OrganizationOrPerson]
         case CodingKeys.previousStartDate.rawValue:
-            self.previousStartDate = value as? DateOnly
+            self.previousStartDate = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.recordedIn.rawValue:
             self.recordedIn = value as? CreativeWork
         case CodingKeys.remainingAttendeeCapacity.rawValue:

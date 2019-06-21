@@ -87,7 +87,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
     public var dateModified: DateOnlyOrDateTime?
     /// Date of first broadcast/publication.
-    public var datePublished: DateOnly?
+    public var datePublished: SOSwiftVocabulary.DateOnly?
     /// A link to the page containing the comments of the CreativeWork.
     public var discussionURL: URL?
     /// Specifies the Person who edited the CreativeWork.
@@ -115,7 +115,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. The most specific child type of InteractionCounter should be used.
     public var interactionStatistic: InteractionCounter?
     /// The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'.
-    public var interactivityType: Interactivity?
+    public var interactivityType: SOSwiftVocabulary.Interactivity?
     /// A flag to signal that the publication is accessible for free.
     public var isAccessibleForFree: Bool?
     /// A resource that was used in the creation of this resource. This term can be repeated for multiple sources. 
@@ -349,7 +349,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         self.inLanguage = try container.decodeLanguageOrTextIfPresent(forKey: .inLanguage)
         self.interactionStatistic = try container.decodeIfPresent(SOInteractionCounter.self, forKey: .interactionStatistic)
         if let value = try container.decodeIfPresent(String.self, forKey: .interactivityType) {
-            self.interactivityType = Interactivity(rawValue: value)
+            self.interactivityType = SOSwiftVocabulary.Interactivity(rawValue: value)
         }
         self.isAccessibleForFree = try container.decodeIfPresent(Bool.self, forKey: .isAccessibleForFree)
         self.basedOn = try container.decodeCreativeWorkOrProductOrURLIfPresent(forKey: .basedOn)
@@ -715,7 +715,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case CodingKeys.dateModified.rawValue:
             self.dateModified = value as? DateOnlyOrDateTime
         case CodingKeys.datePublished.rawValue:
-            self.datePublished = value as? DateOnly
+            self.datePublished = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.discussionURL.rawValue:
             self.discussionURL = value as? URL
         case CodingKeys.editor.rawValue:
@@ -743,7 +743,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case CodingKeys.interactionStatistic.rawValue:
             self.interactionStatistic = value as? InteractionCounter
         case CodingKeys.interactivityType.rawValue:
-            self.interactivityType = value as? Interactivity
+            self.interactivityType = value as? SOSwiftVocabulary.Interactivity
         case CodingKeys.isAccessibleForFree.rawValue:
             self.isAccessibleForFree = value as? Bool
         case "basedOn":

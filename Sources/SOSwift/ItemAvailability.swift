@@ -1,12 +1,18 @@
 import Foundation
-import SOSwiftVocabulary
 
-extension ItemAvailability: AttributedEnum {
-    public static var allCases: [ItemAvailability] {
-        return [.discontinued, .inStock, .inStoreOnly, .limitedAvailability, .onlineOnly, .outOfStock, .preOrder, .preSale, .soldOut]
-    }
+/// A list of possible product availability options.
+public enum ItemAvailability: String, CaseIterable, Codable {
+    case discontinued = "Discontinued"
+    case inStock = "InStock"
+    case inStoreOnly = "InStoreOnly"
+    case limitedAvailability = "LimitedAvailability"
+    case onlineOnly = "OnlineOnly"
+    case outOfStock = "OutOfStock"
+    case preOrder = "PreOrder"
+    case preSale = "PreSale"
+    case soldOut = "SoldOut"
     
-    public var displayName: String {
+    public var displayValue: String {
         switch self {
         case .discontinued: return "Discontinued"
         case .inStock: return "In Stock"

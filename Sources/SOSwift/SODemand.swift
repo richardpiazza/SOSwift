@@ -19,7 +19,7 @@ public class SODemand: SOIntangible, Demand {
     /// The geographic area where a service or offered item is provided. Supersedes serviceArea.
     public var areaServed: AreaServed?
     /// The availability of this item—for example In stock, Out of stock, Pre-order, etc.
-    public var availability: ItemAvailability?
+    public var availability: SOSwiftVocabulary.ItemAvailability?
     /// The end of the availability of the product or service included in the offer.
     public var availabilityEnds: DateTime?
     /// The beginning of the availability of the product or service included in the offer.
@@ -27,13 +27,13 @@ public class SODemand: SOIntangible, Demand {
     /// The place(s) from which the offer can be obtained (e.g. store locations).
     public var availableAtOrFrom: Place?
     /// The delivery method(s) available for this offer.
-    public var availableDeliveryMethod: DeliveryMethod?
+    public var availableDeliveryMethod: SOSwiftVocabulary.DeliveryMethod?
     /// The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
-    public var businessFunction: BusinessFunction?
+    public var businessFunction: SOSwiftVocabulary.BusinessFunction?
     /// The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup.
     public var deliveryLeadTime: QuantitativeValue?
     /// The type(s) of customers for which the given offer is valid.
-    public var eligibleCustomerType: BusinessEntityType?
+    public var eligibleCustomerType: SOSwiftVocabulary.BusinessEntityType?
     /// The duration for which the given offer is valid.
     public var eligibleDuration: QuantitativeValue?
     /// The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
@@ -122,20 +122,20 @@ public class SODemand: SOIntangible, Demand {
         self.advanceBookingRequirement = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .advanceBookingRequirement)
         self.areaServed = try container.decodeAreaServedIfPresent(forKey: .areaServed)
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .availability) {
-            self.availability = ItemAvailability(rawValue: rawValue)
+            self.availability = SOSwiftVocabulary.ItemAvailability(rawValue: rawValue)
         }
         self.availabilityEnds = try container.decodeDateTimeIfPresent(forKey: .availabilityEnds)
         self.availabilityStarts = try container.decodeDateTimeIfPresent(forKey: .availabilityStarts)
         self.availableAtOrFrom = try container.decodeIfPresent(SOPlace.self, forKey: .availableAtOrFrom)
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .availableDeliveryMethod) {
-            self.availableDeliveryMethod = DeliveryMethod(rawValue: rawValue)
+            self.availableDeliveryMethod = SOSwiftVocabulary.DeliveryMethod(rawValue: rawValue)
         }
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .businessFunction) {
-            self.businessFunction = BusinessFunction(rawValue: rawValue)
+            self.businessFunction = SOSwiftVocabulary.BusinessFunction(rawValue: rawValue)
         }
         self.deliveryLeadTime = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .deliveryLeadTime)
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .eligibleCustomerType) {
-            self.eligibleCustomerType = BusinessEntityType(rawValue: rawValue)
+            self.eligibleCustomerType = SOSwiftVocabulary.BusinessEntityType(rawValue: rawValue)
         }
         self.eligibleDuration = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .eligibleDuration)
         self.eligibleRegion = try container.decodeGeoShapeOrPlaceOrTextIfPresent(forKey: .eligibleRegion)
@@ -283,7 +283,7 @@ public class SODemand: SOIntangible, Demand {
         case CodingKeys.areaServed.rawValue:
             self.areaServed = value as? AreaServed
         case CodingKeys.availability.rawValue:
-            self.availability = value as? ItemAvailability
+            self.availability = value as? SOSwiftVocabulary.ItemAvailability
         case CodingKeys.availabilityEnds.rawValue:
             self.availabilityEnds = value as? DateTime
         case CodingKeys.availabilityStarts.rawValue:
@@ -291,13 +291,13 @@ public class SODemand: SOIntangible, Demand {
         case CodingKeys.availableAtOrFrom.rawValue:
             self.availableAtOrFrom = value as? Place
         case CodingKeys.availableDeliveryMethod.rawValue:
-            self.availableDeliveryMethod = value as? DeliveryMethod
+            self.availableDeliveryMethod = value as? SOSwiftVocabulary.DeliveryMethod
         case CodingKeys.businessFunction.rawValue:
-            self.businessFunction = value as? BusinessFunction
+            self.businessFunction = value as? SOSwiftVocabulary.BusinessFunction
         case CodingKeys.deliveryLeadTime.rawValue:
             self.deliveryLeadTime = value as? QuantitativeValue
         case CodingKeys.eligibleCustomerType.rawValue:
-            self.eligibleCustomerType = value as? BusinessEntityType
+            self.eligibleCustomerType = value as? SOSwiftVocabulary.BusinessEntityType
         case CodingKeys.eligibleDuration.rawValue:
             self.eligibleDuration = value as? QuantitativeValue
         case CodingKeys.eligibleQuantity.rawValue:

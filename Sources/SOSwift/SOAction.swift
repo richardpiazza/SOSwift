@@ -13,7 +13,7 @@ public class SOAction: SOThing, Action {
     }
     
     /// Indicates the current disposition of the Action.
-    public var actionStatus: ActionStatus?
+    public var actionStatus: SOSwiftVocabulary.ActionStatus?
     /// The direct performer or driver of the action (animate or inanimate). e.g. John wrote a book.
     public var agent: OrganizationOrPerson?
     /// The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to December.
@@ -59,7 +59,7 @@ public class SOAction: SOThing, Action {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         if let value = try container.decodeIfPresent(String.self, forKey: .actionStatus) {
-            self.actionStatus = ActionStatus(rawValue: value)
+            self.actionStatus = SOSwiftVocabulary.ActionStatus(rawValue: value)
         }
         self.agent = try container.decodeOrganizationOrPersonIfPresent(forKey: .agent)
         self.endTime = try container.decodeDateTimeIfPresent(forKey: .endTime)
@@ -126,7 +126,7 @@ public class SOAction: SOThing, Action {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.actionStatus.rawValue:
-            self.actionStatus = value as? ActionStatus
+            self.actionStatus = value as? SOSwiftVocabulary.ActionStatus
         case CodingKeys.agent.rawValue:
             self.agent = value as? OrganizationOrPerson
         case CodingKeys.endTime.rawValue:

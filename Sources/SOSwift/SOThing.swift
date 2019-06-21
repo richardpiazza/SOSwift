@@ -2,7 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 /// The most generic type of item.
-public class SOThing: Thing, Dynamic, Attributed {
+public class SOThing: Thing, Dynamic {
     
     public class var type: String {
         return "Thing"

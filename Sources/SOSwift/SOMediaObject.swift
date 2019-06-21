@@ -35,7 +35,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
     /// mp3, mpeg4, etc.
     public var encodingFormat: String?
     /// Date the content expires and is no longer useful or available. Useful for videos.
-    public var expires: DateOnly?
+    public var expires: SOSwiftVocabulary.DateOnly?
     /// The height of the item.
     public var height: DistanceOrQuantitativeValue?
     /// Player type required—for example, Flash or Silverlight.
@@ -47,7 +47,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
     /// Indicates if use of the media require a subscription (either paid or free).
     public var requiresSubscription: Bool?
     /// Date when this media object was uploaded to this site.
-    public var uploadDate: DateOnly?
+    public var uploadDate: SOSwiftVocabulary.DateOnly?
     /// The width of the item.
     public var width: DistanceOrQuantitativeValue?
     
@@ -179,7 +179,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         case CodingKeys.encodingFormat.rawValue:
             self.encodingFormat = value as? String
         case CodingKeys.expires.rawValue:
-            self.expires = value as? DateOnly
+            self.expires = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.height.rawValue:
             self.height = value as? DistanceOrQuantitativeValue
         case CodingKeys.playerType.rawValue:
@@ -191,7 +191,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         case CodingKeys.requiresSubscription.rawValue:
             self.requiresSubscription = value as? Bool
         case CodingKeys.uploadDate.rawValue:
-            self.uploadDate = value as? DateOnly
+            self.uploadDate = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.width.rawValue:
             self.width = value as? DistanceOrQuantitativeValue
         default:

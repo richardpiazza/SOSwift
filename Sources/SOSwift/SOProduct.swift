@@ -66,11 +66,11 @@ public class SOProduct: SOThing, Product {
     /// The product identifier, such as ISBN. For example: meta itemprop="productID" content="isbn:123-456-789".
     public var productID: String?
     /// The date of production of the item, e.g. vehicle.
-    public var productionDate: DateOnly?
+    public var productionDate: SOSwiftVocabulary.DateOnly?
     /// The date the item e.g. vehicle was purchased by the current owner.
-    public var purchaseDate: DateOnly?
+    public var purchaseDate: SOSwiftVocabulary.DateOnly?
     /// The release date of a product or product model. This can be used to distinguish the exact variant of a product.
-    public var releaseDate: DateOnly?
+    public var releaseDate: SOSwiftVocabulary.DateOnly?
     /// A review of the item.
     public var reviews: [Review]?
     /// The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
@@ -324,11 +324,11 @@ public class SOProduct: SOThing, Product {
         case CodingKeys.productID.rawValue:
             self.productID = value as? String
         case CodingKeys.productionDate.rawValue:
-            self.productionDate = value as? DateOnly
+            self.productionDate = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.purchaseDate.rawValue:
-            self.purchaseDate = value as? DateOnly
+            self.purchaseDate = value as? SOSwiftVocabulary.DateOnly
         case CodingKeys.releaseDate.rawValue:
-            self.releaseDate = value as? DateOnly
+            self.releaseDate = value as? SOSwiftVocabulary.DateOnly
         case "reviews":
             self.reviews = value as? [Review]
         case CodingKeys.sku.rawValue:
