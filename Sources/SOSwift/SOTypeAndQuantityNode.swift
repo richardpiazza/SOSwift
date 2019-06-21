@@ -13,7 +13,7 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
     }
     
     /// The quantity of the goods included in the offer.
-    public var amountOfThisGood: Number?
+    public var amountOfThisGood: SOSwiftVocabulary.Number?
     /// The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
     public var businessFunction: BusinessFunction?
     /// The product that this structured value is referring to.
@@ -82,7 +82,7 @@ public class SOTypeAndQuantityNode: SOStructuredValue, TypeAndQuantityNode {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.amountOfThisGood.rawValue:
-            self.amountOfThisGood = value as? Number
+            self.amountOfThisGood = value as? SOSwiftVocabulary.Number
         case CodingKeys.businessFunction.rawValue:
             self.businessFunction = value as? BusinessFunction
         case CodingKeys.typeOfGood.rawValue:

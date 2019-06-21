@@ -17,14 +17,14 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     }
     
     /// The upper value of some characteristic or property.
-    public var maxValue: Number?
+    public var maxValue: SOSwiftVocabulary.Number?
     /// A technique or technology used in a Dataset (or DataDownload, DataCatalog), corresponding to the method used for measuring the corresponding variable(s) (described using variableMeasured). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
     /// For example, if variableMeasured is: molecule concentration, measurementTechnique could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
     /// If the variableMeasured is "depression rating", the measurementTechnique could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
     ///If there are several variableMeasured properties recorded for some given data object, use a PropertyValue for each variableMeasured and attach the corresponding measurementTechnique.
     public var measurementTechnique: URLOrText?
     /// The lower value of some characteristic or property.
-    public var minValue: Number?
+    public var minValue: SOSwiftVocabulary.Number?
     /// A commonly used identifier for the characteristic represented by the property, e.g. a manufacturer or a standard code for a property. propertyID can be (1) a prefixed string, mainly meant to be used with standards for product properties; (2) a site-specific, non-prefixed string (e.g. the primary key of the property or the vendor-specific id of the property), or (3) a URL indicating the type of the property, either pointing to an external vocabulary, or a Web resource that describes the property (e.g. a glossary entry). Standards bodies should promote a standard prefix for the identifiers of properties from their standards.
     public var propertyID: URLOrText?
     /// The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
@@ -110,11 +110,11 @@ public class SOPropertyValue: SOStructuredValue, PropertyValue {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.maxValue.rawValue:
-            self.maxValue = value as? Number
+            self.maxValue = value as? SOSwiftVocabulary.Number
         case CodingKeys.measurementTechnique.rawValue:
             self.measurementTechnique = value as? URLOrText
         case CodingKeys.minValue.rawValue:
-            self.minValue = value as? Number
+            self.minValue = value as? SOSwiftVocabulary.Number
         case CodingKeys.propertyID.rawValue:
             self.propertyID = value as? URLOrText
         case CodingKeys.unitCode.rawValue:

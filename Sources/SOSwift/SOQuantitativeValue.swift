@@ -16,9 +16,9 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
     /// - note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. http://schema.org/width, http://schema.org/color, http://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
     public var additionalProperty: PropertyValue?
     /// The upper value of some characteristic or property.
-    public var maxValue: Number?
+    public var maxValue: SOSwiftVocabulary.Number?
     /// The lower value of some characteristic or property.
-    public var minValue: Number?
+    public var minValue: SOSwiftVocabulary.Number?
     /// The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
     public var unitCode: URLOrText?
     /// A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for unitCode.
@@ -99,9 +99,9 @@ public class SOQuantitativeValue: SOStructuredValue, QuantitativeValue {
         case CodingKeys.additionalProperty.rawValue:
             self.additionalProperty = value as? PropertyValue
         case CodingKeys.maxValue.rawValue:
-            self.maxValue = value as? Number
+            self.maxValue = value as? SOSwiftVocabulary.Number
         case CodingKeys.minValue.rawValue:
-            self.minValue = value as? Number
+            self.minValue = value as? SOSwiftVocabulary.Number
         case CodingKeys.unitCode.rawValue:
             self.unitCode = value as? URLOrText
         case CodingKeys.unitText.rawValue:

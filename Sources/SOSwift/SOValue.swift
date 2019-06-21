@@ -3,7 +3,7 @@ import SOSwiftVocabulary
 
 public enum SOValue: Value, Codable {
     case structuredValue(value: SOStructuredValue)
-    case number(value: Number)
+    case number(value: SOSwiftVocabulary.Number)
     case text(value: String)
     case bool(value: Bool)
     
@@ -78,7 +78,7 @@ public enum SOValue: Value, Codable {
         }
     }
     
-    public var number: Number? {
+    public var number: SOSwiftVocabulary.Number? {
         switch self {
         case .number(let value):
             return value

@@ -18,9 +18,9 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
     /// The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount.
     public var eligibleTransactionVolume: PriceSpecification?
     /// The highest price if the price is a range.
-    public var maxPrice: Number?
+    public var maxPrice: SOSwiftVocabulary.Number?
     /// The lowest price if the price is a range.
-    public var minPrice: Number?
+    public var minPrice: SOSwiftVocabulary.Number?
     /// The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes. Usage guidelines:
     /// - Use the priceCurrency property (with ISO 4217 codes e.g. "USD") instead of including ambiguous symbols such as '$' in the value.
     /// - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
@@ -117,9 +117,9 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
         case CodingKeys.eligibleTransactionVolume.rawValue:
             self.eligibleTransactionVolume = value as? PriceSpecification
         case CodingKeys.maxPrice.rawValue:
-            self.maxPrice = value as? Number
+            self.maxPrice = value as? SOSwiftVocabulary.Number
         case CodingKeys.minPrice.rawValue:
-            self.minPrice = value as? Number
+            self.minPrice = value as? SOSwiftVocabulary.Number
         case CodingKeys.price.rawValue:
             self.price = value as? NumberOrText
         case CodingKeys.priceCurrency.rawValue:

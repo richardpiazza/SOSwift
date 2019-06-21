@@ -14,7 +14,7 @@ public class SOWarrantyPromise: SOThing, WarrantyPromise {
     /// The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days.
     public var durationOfWarranty: QuantitativeValue?
     /// The scope of the warranty promise.
-    public var warrantyScope: WarrantyScope?
+    public var warrantyScope: SOSwiftVocabulary.WarrantyScope?
     
     private enum CodingKeys: String, CodingKey {
         case durationOfWarranty
@@ -30,7 +30,7 @@ public class SOWarrantyPromise: SOThing, WarrantyPromise {
         
         self.durationOfWarranty = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .durationOfWarranty)
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .warrantyScope) {
-            self.warrantyScope = WarrantyScope(rawValue: rawValue)
+            self.warrantyScope = SOSwiftVocabulary.WarrantyScope(rawValue: rawValue)
         }
         
         try super.init(from: decoder)
@@ -62,7 +62,7 @@ public class SOWarrantyPromise: SOThing, WarrantyPromise {
         case CodingKeys.durationOfWarranty.rawValue:
             self.durationOfWarranty = value as? QuantitativeValue
         case CodingKeys.warrantyScope.rawValue:
-            self.warrantyScope = value as? WarrantyScope
+            self.warrantyScope = value as? SOSwiftVocabulary.WarrantyScope
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }

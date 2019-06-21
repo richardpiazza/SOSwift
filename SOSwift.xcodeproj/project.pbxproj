@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		E15C8A5B22BD47B4007A5903 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C8A5A22BD47B4007A5903 /* Time.swift */; };
+		E15C8A5D22BD4B63007A5903 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C8A5C22BD4B63007A5903 /* Number.swift */; };
 		OBJ_383 /* AccessMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AccessMode.swift */; };
 		OBJ_384 /* AccessModeSufficient.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* AccessModeSufficient.swift */; };
 		OBJ_385 /* AccessibilityAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AccessibilityAPI.swift */; };
@@ -50,7 +51,7 @@
 		OBJ_408 /* MusicReleaseFormat+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* MusicReleaseFormat+SOSwift.swift */; };
 		OBJ_409 /* Number+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* Number+SOSwift.swift */; };
 		OBJ_410 /* Optional+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Optional+SOSwift.swift */; };
-		OBJ_411 /* PhysicalActivityCategory+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* PhysicalActivityCategory+SOSwift.swift */; };
+		OBJ_411 /* PhysicalActivityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* PhysicalActivityCategory.swift */; };
 		OBJ_412 /* SOAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* SOAction.swift */; };
 		OBJ_413 /* SOAdministrativeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* SOAdministrativeArea.swift */; };
 		OBJ_414 /* SOAggregateRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* SOAggregateRating.swift */; };
@@ -176,7 +177,7 @@
 		OBJ_534 /* URL+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_160 /* URL+SOSwift.swift */; };
 		OBJ_535 /* SOValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_161 /* SOValue.swift */; };
 		OBJ_536 /* ValueReference+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_162 /* ValueReference+SOSwift.swift */; };
-		OBJ_537 /* WarrantyScope+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_163 /* WarrantyScope+SOSwift.swift */; };
+		OBJ_537 /* WarrantyScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_163 /* WarrantyScope.swift */; };
 		OBJ_539 /* SOSwiftVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SOSwiftVocabulary::SOSwiftVocabulary::Product" /* SOSwiftVocabulary.framework */; };
 		OBJ_547 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_558 /* AlignmentObjectOrCourseOrTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_166 /* AlignmentObjectOrCourseOrTextTests.swift */; };
@@ -419,6 +420,7 @@
 
 /* Begin PBXFileReference section */
 		E15C8A5A22BD47B4007A5903 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		E15C8A5C22BD4B63007A5903 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		OBJ_10 /* AccessModeSufficient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessModeSufficient.swift; sourceTree = "<group>"; };
 		OBJ_100 /* SOMonetaryAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMonetaryAmount.swift; sourceTree = "<group>"; };
 		OBJ_101 /* SOMonetaryAmountOrPriceSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMonetaryAmountOrPriceSpecification.swift; sourceTree = "<group>"; };
@@ -489,7 +491,7 @@
 		OBJ_160 /* URL+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_161 /* SOValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOValue.swift; sourceTree = "<group>"; };
 		OBJ_162 /* ValueReference+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueReference+SOSwift.swift"; sourceTree = "<group>"; };
-		OBJ_163 /* WarrantyScope+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WarrantyScope+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_163 /* WarrantyScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantyScope.swift; sourceTree = "<group>"; };
 		OBJ_166 /* AlignmentObjectOrCourseOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentObjectOrCourseOrTextTests.swift; sourceTree = "<group>"; };
 		OBJ_167 /* AreaServedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaServedTests.swift; sourceTree = "<group>"; };
 		OBJ_168 /* BrandOrOrganizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandOrOrganizationTests.swift; sourceTree = "<group>"; };
@@ -711,7 +713,7 @@
 		OBJ_367 /* VideoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoObject.swift; sourceTree = "<group>"; };
 		OBJ_368 /* WarrantyPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantyPromise.swift; sourceTree = "<group>"; };
 		OBJ_369 /* WarrantyScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantyScope.swift; sourceTree = "<group>"; };
-		OBJ_37 /* PhysicalActivityCategory+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhysicalActivityCategory+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_37 /* PhysicalActivityCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalActivityCategory.swift; sourceTree = "<group>"; };
 		OBJ_370 /* Website.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Website.swift; sourceTree = "<group>"; };
 		OBJ_371 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/richardpiazza/Projects/SOSwift/.build/checkouts/SOSwiftVocabulary--2968763908581452961/Package.swift"; sourceTree = "<group>"; };
 		OBJ_376 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -1116,9 +1118,10 @@
 				OBJ_32 /* MapType+SOSwift.swift */,
 				OBJ_33 /* Mirror+SOSwift.swift */,
 				OBJ_34 /* MusicReleaseFormat+SOSwift.swift */,
+				E15C8A5C22BD4B63007A5903 /* Number.swift */,
 				OBJ_35 /* Number+SOSwift.swift */,
 				OBJ_36 /* Optional+SOSwift.swift */,
-				OBJ_37 /* PhysicalActivityCategory+SOSwift.swift */,
+				OBJ_37 /* PhysicalActivityCategory.swift */,
 				OBJ_38 /* SOAction.swift */,
 				OBJ_39 /* SOAdministrativeArea.swift */,
 				OBJ_40 /* SOAggregateRating.swift */,
@@ -1245,7 +1248,7 @@
 				OBJ_159 /* Time+SOSwift.swift */,
 				OBJ_160 /* URL+SOSwift.swift */,
 				OBJ_162 /* ValueReference+SOSwift.swift */,
-				OBJ_163 /* WarrantyScope+SOSwift.swift */,
+				OBJ_163 /* WarrantyScope.swift */,
 			);
 			name = SOSwift;
 			path = Sources/SOSwift;
@@ -1396,9 +1399,10 @@
 				OBJ_406 /* MapType+SOSwift.swift in Sources */,
 				OBJ_407 /* Mirror+SOSwift.swift in Sources */,
 				OBJ_408 /* MusicReleaseFormat+SOSwift.swift in Sources */,
+				E15C8A5D22BD4B63007A5903 /* Number.swift in Sources */,
 				OBJ_409 /* Number+SOSwift.swift in Sources */,
 				OBJ_410 /* Optional+SOSwift.swift in Sources */,
-				OBJ_411 /* PhysicalActivityCategory+SOSwift.swift in Sources */,
+				OBJ_411 /* PhysicalActivityCategory.swift in Sources */,
 				OBJ_412 /* SOAction.swift in Sources */,
 				OBJ_413 /* SOAdministrativeArea.swift in Sources */,
 				OBJ_414 /* SOAggregateRating.swift in Sources */,
@@ -1525,7 +1529,7 @@
 				OBJ_534 /* URL+SOSwift.swift in Sources */,
 				OBJ_535 /* SOValue.swift in Sources */,
 				OBJ_536 /* ValueReference+SOSwift.swift in Sources */,
-				OBJ_537 /* WarrantyScope+SOSwift.swift in Sources */,
+				OBJ_537 /* WarrantyScope.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

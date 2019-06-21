@@ -4,7 +4,7 @@ import SOSwiftVocabulary
 // MARK: - Encoding
 
 public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: Number?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: SOSwiftVocabulary.Number?, forKey key: K) throws {
         if let typedValue = value as? Int {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? Double {
@@ -14,7 +14,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension SingleValueEncodingContainer {
-    mutating func encode(_ value: Number) throws {
+    mutating func encode(_ value: SOSwiftVocabulary.Number) throws {
         if let typedValue = value as? Int {
             try self.encode(typedValue)
         } else if let typedValue = value as? Double {
@@ -26,7 +26,7 @@ public extension SingleValueEncodingContainer {
 // MARK: - Decoding
 
 public extension KeyedDecodingContainer {
-    func decodeNumberIfPresent(forKey key: K) throws -> Number? {
+    func decodeNumberIfPresent(forKey key: K) throws -> SOSwiftVocabulary.Number? {
         guard self.contains(key) else {
             return nil
         }
@@ -50,7 +50,7 @@ public extension KeyedDecodingContainer {
 }
 
 public extension SingleValueDecodingContainer {
-    func decodeNumber() throws -> Number {
+    func decodeNumber() throws -> SOSwiftVocabulary.Number {
         do {
             let value = try self.decode(Int.self)
             return value

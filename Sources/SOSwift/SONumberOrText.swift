@@ -2,7 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 public enum SONumberOrText: NumberOrText, Codable {
-    case number(value: Number)
+    case number(value: SOSwiftVocabulary.Number)
     case text(value: String)
     
     public init(from decoder: Decoder) throws {
@@ -31,7 +31,7 @@ public enum SONumberOrText: NumberOrText, Codable {
         }
     }
     
-    public var number: Number? {
+    public var number: SOSwiftVocabulary.Number? {
         switch self {
         case .number(let value):
             return value

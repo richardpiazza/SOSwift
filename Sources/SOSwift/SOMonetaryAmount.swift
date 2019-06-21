@@ -15,9 +15,9 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
     /// The currency in which the monetary amount is expressed (in 3-letter ISO 4217 format).
     public var currency: String?
     /// The upper value of some characteristic or property.
-    public var maxValue: Number?
+    public var maxValue: SOSwiftVocabulary.Number?
     /// The lower value of some characteristic or property.
-    public var minValue: Number?
+    public var minValue: SOSwiftVocabulary.Number?
     /// The date when the item becomes valid.
     public var validFrom: DateTime?
     /// The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
@@ -91,9 +91,9 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
         case CodingKeys.currency.rawValue:
             self.currency = value as? String
         case CodingKeys.maxValue.rawValue:
-            self.maxValue = value as? Number
+            self.maxValue = value as? SOSwiftVocabulary.Number
         case CodingKeys.minValue.rawValue:
-            self.minValue = value as? Number
+            self.minValue = value as? SOSwiftVocabulary.Number
         case CodingKeys.validFrom.rawValue:
             self.validFrom = value as? DateTime
         case CodingKeys.validThrough.rawValue:
