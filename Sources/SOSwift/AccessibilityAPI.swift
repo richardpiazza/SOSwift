@@ -1,12 +1,21 @@
 import Foundation
-import SOSwiftVocabulary
 
-extension AccessibilityAPI: AttributedEnum {
-    public static var allCases: [AccessibilityAPI] {
-        return [.androidAccessibility, .aria, .atk, .atSPI, .blackberryAccessibility, .iAccessible2, .iOSAccessibility, .javaAccessibility, .macOSXAccessibility, .msaa, .uiAutomation]
-    }
+/// Indicates that the resource is compatible with the referenced accessibility
+/// API.
+public enum AccessibilityAPI: String, CaseIterable, Codable {
+    case androidAccessibility = "AndroidAccessibility"
+    case aria = "ARIA"
+    case atk = "ATK"
+    case atSPI = "AT-SPI"
+    case blackberryAccessibility = "BlackberryAccessibility"
+    case iAccessible2 = "iAccessible2"
+    case iOSAccessibility = "iOSAccessibility"
+    case javaAccessibility = "JavaAccessibility"
+    case macOSXAccessibility = "MacOSXAccessibility"
+    case msaa = "MSAA"
+    case uiAutomation = "UIAutomation"
     
-    public var displayName: String {
+    public var displayValue: String {
         switch self {
         case .androidAccessibility: return "Android Accessibility"
         case .aria: return "Accessible Rich Internet Applications"

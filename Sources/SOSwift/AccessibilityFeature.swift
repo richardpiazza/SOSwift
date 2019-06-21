@@ -1,18 +1,41 @@
 import Foundation
-import SOSwiftVocabulary
 
-extension AccessibilityFeature: AttributedEnum {
-    public static var allCases: [AccessibilityFeature] {
-        return [
-            .alternativeText, .annotations, .audioDescription, .bookmarks, .braille, .captions, .chemML,
-            .describedMath, .displayTransformability, .highContrastAudio, .highContrastDisplay, .index, .largePrint,
-            .latex, .longDescription, .mathML, .none, .printPageNumbers, .readingOrder, .rubyAnnotations, .signLanguage,
-            .structuralNavigation, .synchronizedAudioText, .tableOfContents, .taggedPDF, .tactileGraphic,
-            .tactileObject, .timingControl, .transcript, .ttsMarkup, .unlocked
-        ]
-    }
+/// Content features of the resource, such as accessible media, supported
+/// enhancements for accessibility and alternatives.
+public enum AccessibilityFeature: String, CaseIterable, Codable {
+    case alternativeText = "alternativeText"
+    case annotations = "annotations"
+    case audioDescription = "audioDescription"
+    case bookmarks = "bookmarks"
+    case braille = "braille"
+    case captions = "captions"
+    case chemML = "ChemML"
+    case describedMath = "describedMath"
+    case displayTransformability = "displayTransformability"
+    case highContrastAudio = "highContrastAudio"
+    case highContrastDisplay = "highContrastDisplay"
+    case index = "index"
+    case largePrint = "largePrint"
+    case latex = "latex"
+    case longDescription = "longDescription"
+    case mathML = "MathML"
+    case none = "none"
+    case printPageNumbers = "printPageNumbers"
+    case readingOrder = "readingOrder"
+    case rubyAnnotations = "rubyAnnotations"
+    case signLanguage = "signLanguage"
+    case structuralNavigation = "structuralNavigation"
+    case synchronizedAudioText = "synchronizedAudioText"
+    case tableOfContents = "tableOfContents"
+    case taggedPDF = "taggedPDF"
+    case tactileGraphic = "tactileGraphic"
+    case tactileObject = "tactileObject"
+    case timingControl = "timingControl"
+    case transcript = "transcript"
+    case ttsMarkup = "ttsMarkup"
+    case unlocked = "unlocked"
     
-    public var displayName: String {
+    public var displayValue: String {
         switch self {
         case .alternativeText: return "Alternative Text"
         case .annotations: return "Annotations"

@@ -15,11 +15,11 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
     }
     
     /// The closing hour of the place or service on the given day(s) of the week.
-    public var closes: Time?
+    public var closes: SOSwiftVocabulary.Time?
     /// The day of the week for which these opening hours are valid.
     public var dayOfWeek: DayOfWeek?
     /// The opening hour of the place or service on the given day(s) of the week.
-    public var opens: Time?
+    public var opens: SOSwiftVocabulary.Time?
     /// The date when the item becomes valid.
     public var validFrom: DateTime?
     /// The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
@@ -84,11 +84,11 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.closes.rawValue:
-            self.closes = value as? Time
+            self.closes = value as? SOSwiftVocabulary.Time
         case CodingKeys.dayOfWeek.rawValue:
             self.dayOfWeek = value as? DayOfWeek
         case CodingKeys.opens.rawValue:
-            self.opens = value as? Time
+            self.opens = value as? SOSwiftVocabulary.Time
         case CodingKeys.validFrom.rawValue:
             self.validFrom = value as? DateTime
         case CodingKeys.validThrough.rawValue:

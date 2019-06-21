@@ -16,7 +16,7 @@ fileprivate struct TimeFormatter {
     }
 }
 
-public extension Time {
+public extension SOSwiftVocabulary.Time {
     var date: Date? {
         guard let value = self as? String else {
             return nil
@@ -31,7 +31,7 @@ public extension Time {
 }
 
 public extension Date {
-    var time: Time {
+    var time: SOSwiftVocabulary.Time {
         if #available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
             return TimeFormatter.iso8601.string(from: self)
         } else {
@@ -43,7 +43,7 @@ public extension Date {
 // MARK: - Time
 
 public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: Time?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: SOSwiftVocabulary.Time?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }
@@ -51,13 +51,13 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    func decodeTimeIfPresent(forKey key: K) throws -> Time? {
+    func decodeTimeIfPresent(forKey key: K) throws -> SOSwiftVocabulary.Time? {
         guard self.contains(key) else {
             return nil
         }
         
         do {
-            let value = try self.decode(String.self, forKey: key) as Time
+            let value = try self.decode(String.self, forKey: key) as SOSwiftVocabulary.Time
             if value.date != nil {
                 return value
             }

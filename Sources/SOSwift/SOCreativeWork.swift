@@ -31,17 +31,17 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// The subject matter of the content.
     public var about: Thing?
     /// The human sensory perceptual system or cognitive faculty through which a person may process or perceive information.
-    public var accessMode: AccessMode?
+    public var accessMode: SOSwiftVocabulary.AccessMode?
     /// A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource.
-    public var accessModeSufficients: [AccessModeSufficient]?
+    public var accessModeSufficients: [SOSwiftVocabulary.AccessModeSufficient]?
     /// Indicates that the resource is compatible with the referenced accessibility API
-    public var accessibilityAPI: AccessibilityAPI?
+    public var accessibilityAPI: SOSwiftVocabulary.AccessibilityAPI?
     /// Identifies input methods that are sufficient to fully control the described resource
-    public var accessibilityControl: AccessibilityControl?
+    public var accessibilityControl: SOSwiftVocabulary.AccessibilityControl?
     /// Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility
-    public var accessibilityFeature: AccessibilityFeature?
+    public var accessibilityFeature: SOSwiftVocabulary.AccessibilityFeature?
     /// A characteristic of the described resource that is physiologically dangerous to some users.
-    public var accessibilityHazard: AccessibilityHazard?
+    public var accessibilityHazard: SOSwiftVocabulary.AccessibilityHazard?
     /// A human-readable summary of specific accessibility features or deficiencies, consistent with the other accessibility metadata but expressing subtleties such as "short descriptions are present but long descriptions will be needed for non-visual users" or "short descriptions are present and no long descriptions are needed."
     public var accessibilitySummary: String?
     /// Specifies the Person that is legally accountable for the CreativeWork.
@@ -289,28 +289,28 @@ public class SOCreativeWork: SOThing, CreativeWork {
         
         self.about = try container.decodeIfPresent(SOThing.self, forKey: .about)
         if let value = try container.decodeIfPresent(String.self, forKey: .accessMode) {
-            self.accessMode = AccessMode(rawValue: value)
+            self.accessMode = SOSwiftVocabulary.AccessMode(rawValue: value)
         }
         if let value = try container.decodeArrayOrElementIfPresent(String.self, forKey: .accessModeSufficients) {
-            var accessModeSufficients = [AccessModeSufficient]()
+            var accessModeSufficients = [SOSwiftVocabulary.AccessModeSufficient]()
             value.forEach({ (v) in
-                if let ams = AccessModeSufficient(rawValue: v) {
+                if let ams = SOSwiftVocabulary.AccessModeSufficient(rawValue: v) {
                     accessModeSufficients.append(ams)
                 }
             })
             self.accessModeSufficients = accessModeSufficients
         }
         if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityAPI) {
-            self.accessibilityAPI = AccessibilityAPI(rawValue: value)
+            self.accessibilityAPI = SOSwiftVocabulary.AccessibilityAPI(rawValue: value)
         }
         if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityControl) {
-            self.accessibilityControl = AccessibilityControl(rawValue: value)
+            self.accessibilityControl = SOSwiftVocabulary.AccessibilityControl(rawValue: value)
         }
         if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityFeature) {
-            self.accessibilityFeature = AccessibilityFeature(rawValue: value)
+            self.accessibilityFeature = SOSwiftVocabulary.AccessibilityFeature(rawValue: value)
         }
         if let value = try container.decodeIfPresent(String.self, forKey: .accessibilityHazard) {
-            self.accessibilityHazard = AccessibilityHazard(rawValue: value)
+            self.accessibilityHazard = SOSwiftVocabulary.AccessibilityHazard(rawValue: value)
         }
         self.accessibilitySummary = try container.decodeIfPresent(String.self, forKey: .accessibilitySummary)
         self.accountablePerson = try container.decodeIfPresent(SOPerson.self, forKey: .accountablePerson)
@@ -659,17 +659,17 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case CodingKeys.about.rawValue:
             self.about = value as? Thing
         case CodingKeys.accessMode.rawValue:
-            self.accessMode = value as? AccessMode
+            self.accessMode = value as? SOSwiftVocabulary.AccessMode
         case "accessModeSufficients":
-            self.accessModeSufficients = value as? [AccessModeSufficient]
+            self.accessModeSufficients = value as? [SOSwiftVocabulary.AccessModeSufficient]
         case CodingKeys.accessibilityAPI.rawValue:
-            self.accessibilityAPI = value as? AccessibilityAPI
+            self.accessibilityAPI = value as? SOSwiftVocabulary.AccessibilityAPI
         case CodingKeys.accessibilityControl.rawValue:
-            self.accessibilityControl = value as? AccessibilityControl
+            self.accessibilityControl = value as? SOSwiftVocabulary.AccessibilityControl
         case CodingKeys.accessibilityFeature.rawValue:
-            self.accessibilityFeature = value as? AccessibilityFeature
+            self.accessibilityFeature = value as? SOSwiftVocabulary.AccessibilityFeature
         case CodingKeys.accessibilityHazard.rawValue:
-            self.accessibilityHazard = value as? AccessibilityHazard
+            self.accessibilityHazard = value as? SOSwiftVocabulary.AccessibilityHazard
         case CodingKeys.accessibilitySummary.rawValue:
             self.accessibilitySummary = value as? String
         case CodingKeys.accountablePerson.rawValue:
