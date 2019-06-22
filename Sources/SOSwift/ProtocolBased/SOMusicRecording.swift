@@ -15,7 +15,7 @@ public class SOMusicRecording: SOCreativeWork, MusicRecording {
     /// The artist that performed this album or recording.
     public var byArtist: MusicGroup?
     /// The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.
-    public var duration: Duration?
+    public var duration: SOSwiftVocabulary.Duration?
     /// The album to which this recording belongs.
     public var inAlbum: MusicAlbum?
     /// The playlist to which this recording belongs.
@@ -90,7 +90,7 @@ public class SOMusicRecording: SOCreativeWork, MusicRecording {
         case CodingKeys.byArtist.rawValue:
             self.byArtist = value as? MusicGroup
         case CodingKeys.duration.rawValue:
-            self.duration = value as? Duration
+            self.duration = value as? SOSwiftVocabulary.Duration
         case CodingKeys.inAlbum.rawValue:
             self.inAlbum = value as? MusicAlbum
         case CodingKeys.inPlaylist.rawValue:

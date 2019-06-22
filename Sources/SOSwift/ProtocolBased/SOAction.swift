@@ -18,7 +18,7 @@ public class SOAction: SOThing, Action {
     public var agent: OrganizationOrPerson?
     /// The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to December.
     /// - note: that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
-    public var endTime: DateTime?
+    public var endTime: SOSwiftVocabulary.DateTime?
     /// For failed actions, more information on the cause of the failure.
     public var error: Thing?
     /// The object that helped the agent perform the action. e.g. John wrote a book with a pen.
@@ -33,7 +33,7 @@ public class SOAction: SOThing, Action {
     public var result: Thing?
     /// The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to December.
     /// - note: that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
-    public var startTime: DateTime?
+    public var startTime: SOSwiftVocabulary.DateTime?
     /// Indicates a target EntryPoint for an Action.
     public var target: EntryPoint?
     
@@ -130,7 +130,7 @@ public class SOAction: SOThing, Action {
         case CodingKeys.agent.rawValue:
             self.agent = value as? OrganizationOrPerson
         case CodingKeys.endTime.rawValue:
-            self.endTime = value as? DateTime
+            self.endTime = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.error.rawValue:
             self.error = value as? Thing
         case CodingKeys.instrument.rawValue:
@@ -144,7 +144,7 @@ public class SOAction: SOThing, Action {
         case CodingKeys.result.rawValue:
             self.result = value as? Thing
         case CodingKeys.startTime.rawValue:
-            self.startTime = value as? DateTime
+            self.startTime = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.target.rawValue:
             self.target = value as? EntryPoint
         default:

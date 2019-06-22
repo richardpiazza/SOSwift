@@ -15,9 +15,9 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
     /// The organization or person from which the product was acquired.
     public var acquiredFrom: OrganizationOrPerson?
     /// The date and time of obtaining the product.
-    public var ownedFrom: DateTime?
+    public var ownedFrom: SOSwiftVocabulary.DateTime?
     /// The date and time of giving up ownership on the product.
-    public var ownedThrough: DateTime?
+    public var ownedThrough: SOSwiftVocabulary.DateTime?
     /// The product that this structured value is referring to.
     public var typeOfGood: ProductOrService?
     
@@ -75,9 +75,9 @@ public class SOOwnershipInfo: SOStructuredValue, OwnershipInfo {
         case CodingKeys.acquiredFrom.rawValue:
             self.acquiredFrom = value as? OrganizationOrPerson
         case CodingKeys.ownedFrom.rawValue:
-            self.ownedFrom = value as? DateTime
+            self.ownedFrom = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.ownedThrough.rawValue:
-            self.ownedThrough = value as? DateTime
+            self.ownedThrough = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.typeOfGood.rawValue:
             self.typeOfGood = value as? ProductOrService
         default:

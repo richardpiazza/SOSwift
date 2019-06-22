@@ -1,10 +1,11 @@
 import Foundation
 import SOSwiftVocabulary
 
-public class SOOffer: SOIntangible, Offer {
+/// A demand entity represents the public, not necessarily binding, not necessarily exclusive, announcement by an organization or person to seek a certain type of goods or services. For describing demand using this type, the very same properties used for Offer apply.
+public class SODemand: SOIntangible, Demand {
     
     public override class var type: String {
-        return "Offer"
+        return "Demand"
     }
     
     public override class var dynamicSubtypes: [Dynamic.Type] {
@@ -13,28 +14,22 @@ public class SOOffer: SOIntangible, Offer {
     
     /// The payment method(s) accepted by seller for this offer.
     public var acceptedPaymentMethod: Any?
-    /// An additional offer that can only be obtained in combination with the first base offer (e.g. supplements and extensions that are available for a surcharge).
-    public var addOn: Offer?
     /// The amount of time that is required between accepting the offer and the actual usage of the resource or service.
     public var advanceBookingRequirement: QuantitativeValue?
-    /// The overall rating, based on a collection of reviews or ratings, of the item.
-    public var aggregateRating: AggregateRating?
     /// The geographic area where a service or offered item is provided. Supersedes serviceArea.
     public var areaServed: AreaServed?
     /// The availability of this item—for example In stock, Out of stock, Pre-order, etc.
     public var availability: SOSwiftVocabulary.ItemAvailability?
     /// The end of the availability of the product or service included in the offer.
-    public var availabilityEnds: DateTime?
+    public var availabilityEnds: SOSwiftVocabulary.DateTime?
     /// The beginning of the availability of the product or service included in the offer.
-    public var availabilityStarts: DateTime?
+    public var availabilityStarts: SOSwiftVocabulary.DateTime?
     /// The place(s) from which the offer can be obtained (e.g. store locations).
     public var availableAtOrFrom: Place?
     /// The delivery method(s) available for this offer.
     public var availableDeliveryMethod: SOSwiftVocabulary.DeliveryMethod?
     /// The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
     public var businessFunction: SOSwiftVocabulary.BusinessFunction?
-    /// A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
-    public var category: PhysicalActivityCategoryOrThingOrText?
     /// The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup.
     public var deliveryLeadTime: QuantitativeValue?
     /// The type(s) of customers for which the given offer is valid.
@@ -67,25 +62,8 @@ public class SOOffer: SOIntangible, Offer {
     public var itemOffered: ProductOrService?
     /// The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
     public var mpn: String?
-    /// A pointer to the organization or person making the offer.
-    /// - Inverse property: makesOffer.
-    public var offeredBy: OrganizationOrPerson?
-    /// The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
-    /// Usage guidelines:
-    /// Use the priceCurrency property (with ISO 4217 codes e.g. "USD") instead of including ambiguous symbols such as '$' in the value.
-    /// Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
-    /// Note that both RDFa and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.
-    /// Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
-    public var price: NumberOrText?
-    /// The currency (in 3-letter ISO 4217 format) of the price or a price component, when attached to PriceSpecification and its subtypes.
-    public var priceCurrency: String?
     /// One or more detailed price specifications, indicating the unit price and delivery or payment charges.
     public var priceSpecification: PriceSpecification?
-    /// The date after which the price is no longer available.
-    public var priceValidUntil: SOSwiftVocabulary.DateOnly?
-    /// A review of the item. Supersedes reviews.
-    /// - schema.org property name: review
-    public var reviews: [Review]?
     /// An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
     public var seller: OrganizationOrPerson?
     /// The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer.
@@ -93,17 +71,15 @@ public class SOOffer: SOIntangible, Offer {
     /// The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
     public var sku: String?
     /// The date when the item becomes valid.
-    public var validFrom: DateTime?
+    public var validFrom: SOSwiftVocabulary.DateTime?
     /// The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
-    public var validThrough: DateTime?
+    public var validThrough: SOSwiftVocabulary.DateTime?
     /// The warranty promise(s) included in the offer. Supersedes warrantyPromise.
     public var warranty: WarrantyPromise?
     
     private enum CodingKeys: String, CodingKey {
         case acceptedPaymentMethod
-        case addOn
         case advanceBookingRequirement
-        case aggregateRating
         case areaServed
         case availability
         case availabilityEnds
@@ -111,7 +87,6 @@ public class SOOffer: SOIntangible, Offer {
         case availableAtOrFrom
         case availableDeliveryMethod
         case businessFunction
-        case category
         case deliveryLeadTime
         case eligibleCustomerType
         case eligibleDuration
@@ -128,12 +103,7 @@ public class SOOffer: SOIntangible, Offer {
         case itemCondition
         case itemOffered
         case mpn
-        case offeredBy
-        case price
-        case priceCurrency
         case priceSpecification
-        case priceValidUntil
-        case reviews = "review"
         case seller
         case serialNumber
         case sku
@@ -149,9 +119,7 @@ public class SOOffer: SOIntangible, Offer {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.addOn = try container.decodeIfPresent(SOOffer.self, forKey: .addOn)
         self.advanceBookingRequirement = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .advanceBookingRequirement)
-        self.aggregateRating = try container.decodeIfPresent(SOAggregateRating.self, forKey: .aggregateRating)
         self.areaServed = try container.decodeAreaServedIfPresent(forKey: .areaServed)
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .availability) {
             self.availability = SOSwiftVocabulary.ItemAvailability(rawValue: rawValue)
@@ -165,14 +133,13 @@ public class SOOffer: SOIntangible, Offer {
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .businessFunction) {
             self.businessFunction = SOSwiftVocabulary.BusinessFunction(rawValue: rawValue)
         }
-        self.category = try container.decodePhysicalActivityCategoryOrThingOrTextIfPresent(forKey: .category)
         self.deliveryLeadTime = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .deliveryLeadTime)
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .eligibleCustomerType) {
             self.eligibleCustomerType = SOSwiftVocabulary.BusinessEntityType(rawValue: rawValue)
         }
         self.eligibleDuration = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .eligibleDuration)
-        self.eligibleQuantity = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .eligibleQuantity)
         self.eligibleRegion = try container.decodeGeoShapeOrPlaceOrTextIfPresent(forKey: .eligibleRegion)
+        self.eligibleQuantity = try container.decodeIfPresent(SOQuantitativeValue.self, forKey: .eligibleQuantity)
         self.eligibleTransactionVolume = try container.decodeIfPresent(SOPriceSpecification.self, forKey: .eligibleTransactionVolume)
         self.gtin12 = try container.decodeIfPresent(String.self, forKey: .gtin12)
         self.gtin13 = try container.decodeIfPresent(String.self, forKey: .gtin13)
@@ -186,12 +153,7 @@ public class SOOffer: SOIntangible, Offer {
         }
         self.itemOffered = try container.decodeProductOrServiceIfPresent(forKey: .itemOffered)
         self.mpn = try container.decodeIfPresent(String.self, forKey: .mpn)
-        self.offeredBy = try container.decodeOrganizationOrPersonIfPresent(forKey: .offeredBy)
-        self.price = try container.decodeNumberOrTextIfPresent(forKey: .price)
-        self.priceCurrency = try container.decodeIfPresent(String.self, forKey: .priceCurrency)
         self.priceSpecification = try container.decodeIfPresent(SOPriceSpecification.self, forKey: .priceSpecification)
-        self.priceValidUntil = try container.decodeDateOnlyIfPresent(forKey: .priceValidUntil)
-        self.reviews = try container.decodeArrayOrElementIfPresent(SOReview.self, forKey: .reviews)
         self.seller = try container.decodeOrganizationOrPersonIfPresent(forKey: .seller)
         self.serialNumber = try container.decodeIfPresent(String.self, forKey: .serialNumber)
         self.sku = try container.decodeIfPresent(String.self, forKey: .sku)
@@ -205,9 +167,7 @@ public class SOOffer: SOIntangible, Offer {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encodeIfPresent(self.addOn, forKey: .addOn)
         try container.encodeIfPresent(self.advanceBookingRequirement, forKey: .advanceBookingRequirement)
-        try container.encodeIfPresent(self.aggregateRating, forKey: .aggregateRating)
         try container.encodeIfPresent(self.areaServed, forKey: .areaServed)
         try container.encodeIfPresent(self.availability?.rawValue, forKey: .availability)
         try container.encodeIfPresent(self.availabilityEnds, forKey: .availabilityEnds)
@@ -215,7 +175,6 @@ public class SOOffer: SOIntangible, Offer {
         try container.encodeIfPresent(self.availableAtOrFrom, forKey: .availableAtOrFrom)
         try container.encodeIfPresent(self.availableDeliveryMethod?.rawValue, forKey: .availableDeliveryMethod)
         try container.encodeIfPresent(self.businessFunction?.rawValue, forKey: .businessFunction)
-        try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.deliveryLeadTime, forKey: .deliveryLeadTime)
         try container.encodeIfPresent(self.eligibleCustomerType?.rawValue, forKey: .eligibleCustomerType)
         try container.encodeIfPresent(self.eligibleDuration, forKey: .eligibleDuration)
@@ -232,12 +191,7 @@ public class SOOffer: SOIntangible, Offer {
         try container.encodeIfPresent(self.itemCondition?.rawValue, forKey: .itemCondition)
         try container.encodeIfPresent(self.itemOffered, forKey: .itemOffered)
         try container.encodeIfPresent(self.mpn, forKey: .mpn)
-        try container.encodeIfPresent(self.offeredBy, forKey: .offeredBy)
-        try container.encodeIfPresent(self.price, forKey: .price)
-        try container.encodeIfPresent(self.priceCurrency, forKey: .priceCurrency)
         try container.encodeIfPresent(self.priceSpecification, forKey: .priceSpecification)
-        try container.encodeIfPresent(self.priceValidUntil, forKey: .priceValidUntil)
-        try container.encodeIfPresent(self.reviews, forKey: .reviews)
         try container.encodeIfPresent(self.seller, forKey: .seller)
         try container.encodeIfPresent(self.serialNumber, forKey: .serialNumber)
         try container.encodeIfPresent(self.sku, forKey: .sku)
@@ -253,12 +207,8 @@ public class SOOffer: SOIntangible, Offer {
         switch attributeName {
         case CodingKeys.acceptedPaymentMethod.rawValue:
             return "The payment method(s) accepted by seller for this offer."
-        case CodingKeys.addOn.rawValue:
-            return "An additional offer that can only be obtained in combination with the first base offer."
         case CodingKeys.advanceBookingRequirement.rawValue:
             return "The amount of time that is required between accepting the offer and the actual usage of the resource or service."
-        case CodingKeys.aggregateRating.rawValue:
-            return "The overall rating, based on a collection of reviews or ratings, of the item."
         case CodingKeys.areaServed.rawValue:
             return "The geographic area where a service or offered item is provided."
         case CodingKeys.availability.rawValue:
@@ -273,8 +223,6 @@ public class SOOffer: SOIntangible, Offer {
             return "The delivery method(s) available for this offer."
         case CodingKeys.businessFunction.rawValue:
             return "The business function of the offer or component of a bundle."
-        case CodingKeys.category.rawValue:
-            return "A category for the item."
         case CodingKeys.deliveryLeadTime.rawValue:
             return "The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup."
         case CodingKeys.eligibleCustomerType.rawValue:
@@ -307,18 +255,8 @@ public class SOOffer: SOIntangible, Offer {
             return "The item being offered."
         case CodingKeys.mpn.rawValue:
             return "The Manufacturer Part Number of the product, or the product to which the offer refers."
-        case CodingKeys.offeredBy.rawValue:
-            return "A pointer to the organization or person making the offer."
-        case CodingKeys.price.rawValue:
-            return "The offer price of a product."
-        case CodingKeys.priceCurrency.rawValue:
-            return "The currency of the price or a price component."
         case CodingKeys.priceSpecification.rawValue:
             return "One or more detailed price specifications, indicating the unit price and delivery or payment charges."
-        case CodingKeys.priceValidUntil.rawValue:
-            return "The date after which the price is no longer available."
-        case "reviews":
-            return "A review of the item."
         case CodingKeys.seller.rawValue:
             return " An entity which offers (sells / leases / lends / loans) the services / goods."
         case CodingKeys.serialNumber.rawValue:
@@ -340,28 +278,22 @@ public class SOOffer: SOIntangible, Offer {
         switch attributeName {
         case CodingKeys.acceptedPaymentMethod.rawValue:
             self.acceptedPaymentMethod = value
-        case CodingKeys.addOn.rawValue:
-            self.addOn = value as? Offer
         case CodingKeys.advanceBookingRequirement.rawValue:
             self.advanceBookingRequirement = value as? QuantitativeValue
-        case CodingKeys.aggregateRating.rawValue:
-            self.aggregateRating = value as? AggregateRating
         case CodingKeys.areaServed.rawValue:
             self.areaServed = value as? AreaServed
         case CodingKeys.availability.rawValue:
             self.availability = value as? SOSwiftVocabulary.ItemAvailability
         case CodingKeys.availabilityEnds.rawValue:
-            self.availabilityEnds = value as? DateTime
+            self.availabilityEnds = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.availabilityStarts.rawValue:
-            self.availabilityStarts = value as? DateTime
+            self.availabilityStarts = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.availableAtOrFrom.rawValue:
             self.availableAtOrFrom = value as? Place
         case CodingKeys.availableDeliveryMethod.rawValue:
             self.availableDeliveryMethod = value as? SOSwiftVocabulary.DeliveryMethod
         case CodingKeys.businessFunction.rawValue:
             self.businessFunction = value as? SOSwiftVocabulary.BusinessFunction
-        case CodingKeys.category.rawValue:
-            self.category = value as? PhysicalActivityCategoryOrThingOrText
         case CodingKeys.deliveryLeadTime.rawValue:
             self.deliveryLeadTime = value as? QuantitativeValue
         case CodingKeys.eligibleCustomerType.rawValue:
@@ -394,18 +326,8 @@ public class SOOffer: SOIntangible, Offer {
             self.itemOffered = value as? ProductOrService
         case CodingKeys.mpn.rawValue:
             self.mpn = value as? String
-        case CodingKeys.offeredBy.rawValue:
-            self.offeredBy = value as? OrganizationOrPerson
-        case CodingKeys.price.rawValue:
-            self.price = value as? NumberOrText
-        case CodingKeys.priceCurrency.rawValue:
-            self.priceCurrency = value as? String
         case CodingKeys.priceSpecification.rawValue:
             self.priceSpecification = value as? PriceSpecification
-        case CodingKeys.priceValidUntil.rawValue:
-            self.priceValidUntil = value as? SOSwiftVocabulary.DateOnly
-        case "reviews":
-            self.reviews = value as? [Review]
         case CodingKeys.seller.rawValue:
             self.seller = value as? OrganizationOrPerson
         case CodingKeys.serialNumber.rawValue:
@@ -413,9 +335,9 @@ public class SOOffer: SOIntangible, Offer {
         case CodingKeys.sku.rawValue:
             self.sku = value as? String
         case CodingKeys.validFrom.rawValue:
-            self.validFrom = value as? DateTime
+            self.validFrom = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.validThrough.rawValue:
-            self.validThrough = value as? DateTime
+            self.validThrough = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.warranty.rawValue:
             self.warranty = value as? WarrantyPromise
         default:
@@ -425,14 +347,14 @@ public class SOOffer: SOIntangible, Offer {
 }
 
 public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: Offer?, forKey key: K) throws {
-        if let typedValue = value as? SOOffer {
+    mutating func encodeIfPresent(_ value: Demand?, forKey key: K) throws {
+        if let typedValue = value as? SODemand {
             try self.encode(typedValue, forKey: key)
         }
     }
     
-    mutating func encodeIfPresent(_ value: [Offer]?, forKey key: K) throws {
-        if let typedValue = value as? [SOOffer] {
+    mutating func encodeIfPresent(_ value: [Demand]?, forKey key: K) throws {
+        if let typedValue = value as? [SODemand] {
             try self.encode(typedValue, forKey: key)
         }
     }

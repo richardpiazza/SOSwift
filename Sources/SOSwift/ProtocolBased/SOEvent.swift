@@ -34,9 +34,9 @@ public class SOEvent: SOThing, Event {
     /// A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
     public var directors: [Person]?
     /// The time admission will commence.
-    public var doorTime: DateTime?
+    public var doorTime: SOSwiftVocabulary.DateTime?
     /// The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.
-    public var duration: Duration?
+    public var duration: SOSwiftVocabulary.Duration?
     /// The end date and time of the item (in ISO 8601 date format).
     public var endDate: DateOnlyOrDateTime?
     /// An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled.
@@ -292,9 +292,9 @@ public class SOEvent: SOThing, Event {
         case "directors":
             self.directors = value as? [Person]
         case CodingKeys.doorTime.rawValue:
-            self.doorTime = value as? DateTime
+            self.doorTime = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.duration.rawValue:
-            self.duration = value as? Duration
+            self.duration = value as? SOSwiftVocabulary.Duration
         case CodingKeys.endDate.rawValue:
             self.endDate = value as? DateOnlyOrDateTime
         case CodingKeys.eventStatus.rawValue:

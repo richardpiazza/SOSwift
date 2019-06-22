@@ -2,7 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 public enum SODateTimeOrURLOrText: DateTimeOrURLOrText, Codable {
-    case dateTime(value: DateTime)
+    case dateTime(value: SOSwiftVocabulary.DateTime)
     case url(value: URL)
     case text(value: String)
     
@@ -44,7 +44,7 @@ public enum SODateTimeOrURLOrText: DateTimeOrURLOrText, Codable {
         }
     }
     
-    public var dateTime: DateTime? {
+    public var dateTime: SOSwiftVocabulary.DateTime? {
         switch self {
         case .dateTime(let value):
             return value
@@ -85,7 +85,7 @@ public extension KeyedEncodingContainer {
             return
         }
         
-        if let typedValue = value as? DateTime {
+        if let typedValue = value as? SOSwiftVocabulary.DateTime {
             try self.encodeIfPresent(typedValue, forKey: key)
         } else if let typedValue = value as? URL {
             try self.encode(typedValue, forKey: key)
@@ -107,7 +107,7 @@ public extension KeyedEncodingContainer {
         var container = nestedUnkeyedContainer(forKey: key)
         
         try value?.forEach({ (object) in
-            if let typedValue = object as? DateTime {
+            if let typedValue = object as? SOSwiftVocabulary.DateTime {
                 try container.encodeDateTime(typedValue)
             } else if let typedValue = object as? URL {
                 try container.encode(typedValue)

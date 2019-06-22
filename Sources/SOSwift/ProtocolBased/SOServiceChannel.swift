@@ -15,7 +15,7 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
     /// A language someone may use with the item. Please use one of the language codes from the IETF BCP 47 standard.
     public var availableLanguage: LanguageOrText?
     /// Estimated processing time for the service using this channel.
-    public var processingTime: Duration?
+    public var processingTime: SOSwiftVocabulary.Duration?
     /// The service provided by this channel.
     public var providesService: Service?
     /// The location (e.g. civic structure, local business, etc.) where a person can go to access the service.
@@ -103,7 +103,7 @@ public class SOServiceChannel: SOIntangible, ServiceChannel {
         case CodingKeys.availableLanguage.rawValue:
             self.availableLanguage = value as? LanguageOrText
         case CodingKeys.processingTime.rawValue:
-            self.processingTime = value as? Duration
+            self.processingTime = value as? SOSwiftVocabulary.Duration
         case CodingKeys.providesService.rawValue:
             self.providesService = value as? Service
         case CodingKeys.serviceLocation.rawValue:

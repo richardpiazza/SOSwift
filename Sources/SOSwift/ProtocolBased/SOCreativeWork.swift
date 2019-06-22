@@ -73,7 +73,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// Official rating of a piece of content—for example,'MPAA PG-13'.
     public var contentRating: String?
     /// The specific time described by a creative work, for works (e.g. articles, video objects etc.) that emphasise a particular moment within an Event.
-    public var contentReferenceTime: DateTime?
+    public var contentReferenceTime: SOSwiftVocabulary.DateTime?
     /// A secondary contributor to the CreativeWork or Event.
     public var contributor: OrganizationOrPerson?
     /// The party holding the legal copyright to the CreativeWork.
@@ -178,7 +178,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// A thumbnail image relevant to the Thing.
     public var thumbnailUrl: URL?
     /// Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'P30M', 'P1H25M'.
-    public var timeRequired: Duration?
+    public var timeRequired: SOSwiftVocabulary.Duration?
     /// The work that this work has been translated from. e.g. 物种起源 is a translationOf “On the Origin of Species”
     /// - Inverse property: workTranslation.
     public var translationOfWork: CreativeWork?
@@ -701,7 +701,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case CodingKeys.contentRating.rawValue:
             self.contentRating = value as? String
         case CodingKeys.contentReferenceTime.rawValue:
-            self.contentReferenceTime = value as? DateTime
+            self.contentReferenceTime = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.contributor.rawValue:
             self.contributor = value as? OrganizationOrPerson
         case CodingKeys.copyrightHolder.rawValue:
@@ -803,7 +803,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case CodingKeys.thumbnailUrl.rawValue:
             self.thumbnailUrl = value as? URL
         case CodingKeys.timeRequired.rawValue:
-            self.timeRequired = value as? Duration
+            self.timeRequired = value as? SOSwiftVocabulary.Duration
         case CodingKeys.translationOfWork.rawValue:
             self.translationOfWork = value as? CreativeWork
         case CodingKeys.translator.rawValue:

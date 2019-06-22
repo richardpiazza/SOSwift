@@ -19,9 +19,9 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
     /// The lower value of some characteristic or property.
     public var minValue: SOSwiftVocabulary.Number?
     /// The date when the item becomes valid.
-    public var validFrom: DateTime?
+    public var validFrom: SOSwiftVocabulary.DateTime?
     /// The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
-    public var validThrough: DateTime?
+    public var validThrough: SOSwiftVocabulary.DateTime?
     /// The value of the quantitative value or property value node.
     /// - For QuantitativeValue and MonetaryAmount, the recommended type for values is 'Number'.
     /// - For PropertyValue, it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
@@ -95,9 +95,9 @@ public class SOMonetaryAmount: SOThing, MonetaryAmount {
         case CodingKeys.minValue.rawValue:
             self.minValue = value as? SOSwiftVocabulary.Number
         case CodingKeys.validFrom.rawValue:
-            self.validFrom = value as? DateTime
+            self.validFrom = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.validThrough.rawValue:
-            self.validThrough = value as? DateTime
+            self.validThrough = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.value.rawValue:
             self.value = value as? Value
         default:

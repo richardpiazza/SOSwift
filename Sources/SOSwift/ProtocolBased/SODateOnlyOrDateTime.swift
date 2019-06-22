@@ -3,7 +3,7 @@ import SOSwiftVocabulary
 
 public enum SODateOnlyOrDateTime: DateOnlyOrDateTime, Codable {
     case dateOnly(value: SOSwiftVocabulary.DateOnly)
-    case dateTime(value: DateTime)
+    case dateTime(value: SOSwiftVocabulary.DateTime)
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -39,7 +39,7 @@ public enum SODateOnlyOrDateTime: DateOnlyOrDateTime, Codable {
         }
     }
     
-    public var dateTime: DateTime? {
+    public var dateTime: SOSwiftVocabulary.DateTime? {
         switch self {
         case .dateTime(let value):
             return value
@@ -55,7 +55,7 @@ public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: DateOnlyOrDateTime?, forKey key: K) throws {
         if let typedValue = value as? SODateOnlyOrDateTime {
             try self.encode(typedValue, forKey: key)
-        } else if let typedValue = value as? DateTime {
+        } else if let typedValue = value as? SOSwiftVocabulary.DateTime {
             try self.encode(typedValue, forKey: key)
         } else if let typedValue = value as? SOSwiftVocabulary.DateOnly {
             try self.encode(typedValue, forKey: key)
@@ -77,7 +77,7 @@ public extension KeyedEncodingContainer {
         try value?.forEach({ (object) in
             if let typedValue = object as? SOSwiftVocabulary.DateOnly {
                 try container.encodeDateOnly(typedValue)
-            } else if let typedValue = object as? DateTime {
+            } else if let typedValue = object as? SOSwiftVocabulary.DateTime {
                 try container.encodeDateTime(typedValue)
             }
         })

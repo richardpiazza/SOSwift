@@ -4,9 +4,9 @@ import SOSwiftVocabulary
 // Inspired From: https://github.com/Igor-Palaguta/YoutubeEngine/blob/master/Source/YoutubeEngine/Parser/NSDateComponents%2BISO8601.swift
 @available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *)
 fileprivate struct DurationFormatter {
-    var duration: Duration
+    var duration: SOSwiftVocabulary.Duration
     
-    init(_ duration: Duration) {
+    init(_ duration: SOSwiftVocabulary.Duration) {
         self.duration = duration
     }
     
@@ -14,7 +14,7 @@ fileprivate struct DurationFormatter {
     private static let weekUnitMappings: [Character : Calendar.Component] = ["W" : .weekOfYear]
     private static let timeUnitMappings: [Character : Calendar.Component] = ["H": .hour, "M": .minute, "S": .second]
     
-    static func duration(from dateComponents: DateComponents) -> Duration {
+    static func duration(from dateComponents: DateComponents) -> SOSwiftVocabulary.Duration {
         var duration: String = "P"
         if let weeks = dateComponents.weekOfYear {
             duration.append("\(weeks)W")
@@ -44,7 +44,7 @@ fileprivate struct DurationFormatter {
         return duration
     }
     
-    static func dateComponents(from duration: Duration) -> DateComponents {
+    static func dateComponents(from duration: SOSwiftVocabulary.Duration) -> DateComponents {
         var components = DateComponents()
         
         guard let value = duration as? String, value.hasPrefix("P") else {
@@ -131,7 +131,7 @@ fileprivate struct DurationFormatter {
     }
 }
 
-public extension Duration {
+public extension SOSwiftVocabulary.Duration {
     var dateComponents: DateComponents {
         if #available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
             return DurationFormatter.dateComponents(from: self)
@@ -142,7 +142,7 @@ public extension Duration {
 }
 
 public extension DateComponents {
-    var duration: Duration {
+    var duration: SOSwiftVocabulary.Duration {
         if #available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
             return DurationFormatter.duration(from: self)
         } else {
@@ -154,7 +154,7 @@ public extension DateComponents {
 // MARK: - Duration
 
 public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: Duration?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: SOSwiftVocabulary.Duration?, forKey key: K) throws {
         if let typedValue = value as? String {
             try self.encode(typedValue, forKey: key)
         }
@@ -162,7 +162,7 @@ public extension KeyedEncodingContainer {
 }
 
 public extension KeyedDecodingContainer {
-    func decodeDurationIfPresent(forKey key: K) throws -> Duration? {
+    func decodeDurationIfPresent(forKey key: K) throws -> SOSwiftVocabulary.Duration? {
         guard self.contains(key) else {
             return nil
         }

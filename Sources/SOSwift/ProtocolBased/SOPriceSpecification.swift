@@ -30,9 +30,9 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
     /// The currency (in 3-letter ISO 4217 format) of the price or a price component, when attached to PriceSpecification and its subtypes.
     public var priceCurrency: String?
     /// The date when the item becomes valid.
-    public var validFrom: DateTime?
+    public var validFrom: SOSwiftVocabulary.DateTime?
     /// The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
-    public var validThrough: DateTime?
+    public var validThrough: SOSwiftVocabulary.DateTime?
     /// Specifies whether the applicable value-added tax (VAT) is included in the price specification or not.
     public var valueAddedTaxIncluded: Bool?
     
@@ -125,9 +125,9 @@ public class SOPriceSpecification: SOStructuredValue, PriceSpecification {
         case CodingKeys.priceCurrency.rawValue:
             self.priceCurrency = value as? String
         case CodingKeys.validFrom.rawValue:
-            self.validFrom = value as? DateTime
+            self.validFrom = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.validThrough.rawValue:
-            self.validThrough = value as? DateTime
+            self.validThrough = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.valueAddedTaxIncluded.rawValue:
             self.valueAddedTaxIncluded = value as? Bool
         default:

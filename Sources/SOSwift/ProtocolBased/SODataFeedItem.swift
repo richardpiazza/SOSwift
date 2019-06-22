@@ -15,7 +15,7 @@ public class SODataFeedItem: SOIntangible, DataFeedItem {
     /// The date on which the CreativeWork was created or the item was added to a DataFeed.
     public var dateCreated: DateOnlyOrDateTime?
     /// The datetime the item was removed from the DataFeed.
-    public var dateDeleted: DateTime?
+    public var dateDeleted: SOSwiftVocabulary.DateTime?
     /// The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
     public var dateModified: DateOnlyOrDateTime?
     /// An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
@@ -75,7 +75,7 @@ public class SODataFeedItem: SOIntangible, DataFeedItem {
         case CodingKeys.dateCreated.rawValue:
             self.dateCreated = value as? DateOnlyOrDateTime
         case CodingKeys.dateDeleted.rawValue:
-            self.dateDeleted = value as? DateTime
+            self.dateDeleted = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.dateModified.rawValue:
             self.dateModified = value as? DateOnlyOrDateTime
         case CodingKeys.item.rawValue:

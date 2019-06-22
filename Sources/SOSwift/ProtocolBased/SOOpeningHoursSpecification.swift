@@ -21,9 +21,9 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
     /// The opening hour of the place or service on the given day(s) of the week.
     public var opens: SOSwiftVocabulary.Time?
     /// The date when the item becomes valid.
-    public var validFrom: DateTime?
+    public var validFrom: SOSwiftVocabulary.DateTime?
     /// The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
-    public var validThrough: DateTime?
+    public var validThrough: SOSwiftVocabulary.DateTime?
     
     private enum CodingKeys: String, CodingKey {
         case closes
@@ -90,9 +90,9 @@ public class SOOpeningHoursSpecification: SOStructuredValue, OpeningHoursSpecifi
         case CodingKeys.opens.rawValue:
             self.opens = value as? SOSwiftVocabulary.Time
         case CodingKeys.validFrom.rawValue:
-            self.validFrom = value as? DateTime
+            self.validFrom = value as? SOSwiftVocabulary.DateTime
         case CodingKeys.validThrough.rawValue:
-            self.validThrough = value as? DateTime
+            self.validThrough = value as? SOSwiftVocabulary.DateTime
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }

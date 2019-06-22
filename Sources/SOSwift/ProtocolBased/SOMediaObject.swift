@@ -27,7 +27,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
     /// Actual bytes of the media object, for example the image file or video file.
     public var contentUrl: URL?
     /// The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.
-    public var duration: Duration?
+    public var duration: SOSwiftVocabulary.Duration?
     /// A URL pointing to a player for a specific video. In general, this is the information in the src element of an embed tag and should not be the same as the content of the loc tag.
     public var embedUrl: URL?
     /// The CreativeWork encoded by this media object.
@@ -171,7 +171,7 @@ public class SOMediaObject: SOCreativeWork, MediaObject {
         case CodingKeys.contentUrl.rawValue:
             self.contentUrl = value as? URL
         case CodingKeys.duration.rawValue:
-            self.duration = value as? Duration
+            self.duration = value as? SOSwiftVocabulary.Duration
         case CodingKeys.embedUrl.rawValue:
             self.embedUrl = value as? URL
         case CodingKeys.encodesCreativeWork.rawValue:
