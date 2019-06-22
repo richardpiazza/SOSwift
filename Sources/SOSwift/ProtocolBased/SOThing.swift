@@ -2,7 +2,7 @@ import Foundation
 import SOSwiftVocabulary
 
 /// The most generic type of item.
-public class SOThing: Thing, Dynamic {
+public class SOThing: SOSwiftVocabulary.Thing, Dynamic {
     
     public class var type: String {
         return "Thing"
@@ -196,7 +196,7 @@ public class SOThing: Thing, Dynamic {
 }
 
 public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: Thing?, forKey key: K) throws {
+    mutating func encodeIfPresent(_ value: SOSwiftVocabulary.Thing?, forKey key: K) throws {
         if let typedValue = value as? SOThing {
             try self.encode(typedValue, forKey: key)
         }

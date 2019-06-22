@@ -19,7 +19,7 @@ public class SODataFeedItem: SOIntangible, DataFeedItem {
     /// The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
     public var dateModified: DateOnlyOrDateTime?
     /// An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
-    public var item: Thing?
+    public var item: SOSwiftVocabulary.Thing?
     
     private enum CodingKeys: String, CodingKey {
         case dateCreated
@@ -79,7 +79,7 @@ public class SODataFeedItem: SOIntangible, DataFeedItem {
         case CodingKeys.dateModified.rawValue:
             self.dateModified = value as? DateOnlyOrDateTime
         case CodingKeys.item.rawValue:
-            self.item = value as? Thing
+            self.item = value as? SOSwiftVocabulary.Thing
         default:
             super.setValue(value, forAttributeNamed: attributeName)
         }

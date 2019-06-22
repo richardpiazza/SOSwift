@@ -23,6 +23,29 @@
 /* Begin PBXBuildFile section */
 		E19C11DF22BE58F200FA1E67 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11DE22BE58F200FA1E67 /* DateTime.swift */; };
 		E19C11E122BE5AEE00FA1E67 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11E022BE5AEE00FA1E67 /* Duration.swift */; };
+		E19C11E322BE97B900FA1E67 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11E222BE97B900FA1E67 /* Thing.swift */; };
+		E19C11E522BE99E500FA1E67 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11E422BE99E400FA1E67 /* Schema.swift */; };
+		E19C11E722BEA03E00FA1E67 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11E622BEA03E00FA1E67 /* Action.swift */; };
+		E19C11E922BEA0DA00FA1E67 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11E822BEA0DA00FA1E67 /* Identifier.swift */; };
+		E19C11EB22BEA3F700FA1E67 /* Audience.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11EA22BEA3F700FA1E67 /* Audience.swift */; };
+		E19C11ED22BEA44700FA1E67 /* CreativeWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11EC22BEA44700FA1E67 /* CreativeWork.swift */; };
+		E19C11EF22BEAFC900FA1E67 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11EE22BEAFC900FA1E67 /* Event.swift */; };
+		E19C11F122BEB14D00FA1E67 /* GeoShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11F022BEB14D00FA1E67 /* GeoShape.swift */; };
+		E19C11F322BEB1C900FA1E67 /* NumberOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11F222BEB1C900FA1E67 /* NumberOrText.swift */; };
+		E19C11F522BEB22B00FA1E67 /* DateOnlyOrDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11F422BEB22B00FA1E67 /* DateOnlyOrDateTime.swift */; };
+		E19C11F722BEB2A500FA1E67 /* DateTimeOrURLOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11F622BEB2A500FA1E67 /* DateTimeOrURLOrText.swift */; };
+		E19C11F922BEB37000FA1E67 /* Intangible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11F822BEB37000FA1E67 /* Intangible.swift */; };
+		E19C11FB22BEB3A200FA1E67 /* MonetaryAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11FA22BEB3A200FA1E67 /* MonetaryAmount.swift */; };
+		E19C11FD22BEB44600FA1E67 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11FC22BEB44600FA1E67 /* Organization.swift */; };
+		E19C11FF22BEB5DF00FA1E67 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C11FE22BEB5DF00FA1E67 /* Person.swift */; };
+		E19C120122BEB75E00FA1E67 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C120022BEB75E00FA1E67 /* Place.swift */; };
+		E19C120322BEB83700FA1E67 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C120222BEB83700FA1E67 /* Product.swift */; };
+		E19C120522BEB94A00FA1E67 /* WarrentyPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C120422BEB94A00FA1E67 /* WarrentyPromise.swift */; };
+		E19C120722BEBA4C00FA1E67 /* CreativeWorkOrEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C120622BEBA4C00FA1E67 /* CreativeWorkOrEvent.swift */; };
+		E19C120922BEBAAC00FA1E67 /* CreativeWorkOrProductOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C120822BEBAAC00FA1E67 /* CreativeWorkOrProductOrURL.swift */; };
+		E19C120B22BEBB0400FA1E67 /* CreativeWorkOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C120A22BEBB0400FA1E67 /* CreativeWorkOrText.swift */; };
+		E19C120D22BEBB5500FA1E67 /* CreativeWorkOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C120C22BEBB5500FA1E67 /* CreativeWorkOrURL.swift */; };
+		E19C120F22BEBB9D00FA1E67 /* OrganizationOrPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C120E22BEBB9D00FA1E67 /* OrganizationOrPerson.swift */; };
 		OBJ_382 /* AccessMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AccessMode.swift */; };
 		OBJ_383 /* AccessModeSufficient.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* AccessModeSufficient.swift */; };
 		OBJ_384 /* AccessibilityAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AccessibilityAPI.swift */; };
@@ -30,150 +53,19 @@
 		OBJ_386 /* AccessibilityFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* AccessibilityFeature.swift */; };
 		OBJ_387 /* AccessibilityHazard.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* AccessibilityHazard.swift */; };
 		OBJ_388 /* ActionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* ActionStatus.swift */; };
-		OBJ_389 /* SOAreaServed.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* SOAreaServed.swift */; };
 		OBJ_390 /* BusinessEntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* BusinessEntityType.swift */; };
 		OBJ_391 /* BusinessFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* BusinessFunction.swift */; };
 		OBJ_392 /* Codable+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Codable+SOSwift.swift */; };
-		OBJ_393 /* DateOnly+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* DateOnly+SOSwift.swift */; };
 		OBJ_394 /* DateOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* DateOnly.swift */; };
-		OBJ_395 /* DateTime+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* DateTime+SOSwift.swift */; };
 		OBJ_396 /* DeliveryMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* DeliveryMethod.swift */; };
-		OBJ_397 /* Duration+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Duration+SOSwift.swift */; };
-		OBJ_398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Dynamic.swift */; };
 		OBJ_399 /* EventStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* EventStatus.swift */; };
 		OBJ_400 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Gender.swift */; };
 		OBJ_401 /* Interactivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Interactivity.swift */; };
 		OBJ_402 /* ItemAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* ItemAvailability.swift */; };
 		OBJ_403 /* MapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* MapType.swift */; };
 		OBJ_404 /* MusicReleaseFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* MusicReleaseFormat.swift */; };
-		OBJ_405 /* Number+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* Number+SOSwift.swift */; };
 		OBJ_406 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* Number.swift */; };
 		OBJ_407 /* PhysicalActivityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* PhysicalActivityCategory.swift */; };
-		OBJ_408 /* SOAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* SOAction.swift */; };
-		OBJ_409 /* SOAdministrativeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* SOAdministrativeArea.swift */; };
-		OBJ_410 /* SOAggregateRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* SOAggregateRating.swift */; };
-		OBJ_411 /* SOAlignmentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* SOAlignmentObject.swift */; };
-		OBJ_412 /* SOAlignmentObjectOrCourseOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* SOAlignmentObjectOrCourseOrText.swift */; };
-		OBJ_413 /* SOAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* SOAnswer.swift */; };
-		OBJ_414 /* SOArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* SOArticle.swift */; };
-		OBJ_415 /* SOAudience.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* SOAudience.swift */; };
-		OBJ_416 /* SOAudioObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* SOAudioObject.swift */; };
-		OBJ_417 /* SOBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* SOBrand.swift */; };
-		OBJ_418 /* SOBrandOrOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* SOBrandOrOrganization.swift */; };
-		OBJ_419 /* SOBroadcastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* SOBroadcastService.swift */; };
-		OBJ_420 /* SOComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* SOComment.swift */; };
-		OBJ_421 /* SOContactPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* SOContactPoint.swift */; };
-		OBJ_422 /* SOContactPointOrPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* SOContactPointOrPlace.swift */; };
-		OBJ_423 /* SOCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* SOCountry.swift */; };
-		OBJ_424 /* SOCountryOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* SOCountryOrText.swift */; };
-		OBJ_425 /* SOCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* SOCourse.swift */; };
-		OBJ_426 /* SOCourseInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* SOCourseInstance.swift */; };
-		OBJ_427 /* SOCreativeWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* SOCreativeWork.swift */; };
-		OBJ_428 /* SOCreativeWorkOrEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* SOCreativeWorkOrEvent.swift */; };
-		OBJ_429 /* SOCreativeWorkOrProductOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* SOCreativeWorkOrProductOrURL.swift */; };
-		OBJ_430 /* SOCreativeWorkOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* SOCreativeWorkOrText.swift */; };
-		OBJ_431 /* SOCreativeWorkOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* SOCreativeWorkOrURL.swift */; };
-		OBJ_432 /* SODataCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* SODataCatalog.swift */; };
-		OBJ_433 /* SODataDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* SODataDownload.swift */; };
-		OBJ_434 /* SODataFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_61 /* SODataFeed.swift */; };
-		OBJ_435 /* SODataFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* SODataFeedItem.swift */; };
-		OBJ_436 /* SODataFeedItemOrThingOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* SODataFeedItemOrThingOrText.swift */; };
-		OBJ_437 /* SODataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_64 /* SODataset.swift */; };
-		OBJ_438 /* SODateOnlyOrDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_65 /* SODateOnlyOrDateTime.swift */; };
-		OBJ_439 /* SODateTimeOrURLOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* SODateTimeOrURLOrText.swift */; };
-		OBJ_440 /* SODemand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* SODemand.swift */; };
-		OBJ_441 /* SODistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* SODistance.swift */; };
-		OBJ_442 /* SODistanceOrQuantitativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* SODistanceOrQuantitativeValue.swift */; };
-		OBJ_443 /* SOEducationalOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* SOEducationalOrganization.swift */; };
-		OBJ_444 /* SOEducationalOrganizationOrOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* SOEducationalOrganizationOrOrganization.swift */; };
-		OBJ_445 /* SOEntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* SOEntryPoint.swift */; };
-		OBJ_446 /* SOEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* SOEnumeration.swift */; };
-		OBJ_447 /* SOEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* SOEvent.swift */; };
-		OBJ_448 /* SOGenderOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* SOGenderOrText.swift */; };
-		OBJ_449 /* SOGeoCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* SOGeoCoordinates.swift */; };
-		OBJ_450 /* SOGeoCoordinatesOrGeoShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* SOGeoCoordinatesOrGeoShape.swift */; };
-		OBJ_451 /* SOGeoShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* SOGeoShape.swift */; };
-		OBJ_452 /* SOGeoShapeOrPlaceOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* SOGeoShapeOrPlaceOrText.swift */; };
-		OBJ_453 /* SOIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* SOIdentifier.swift */; };
-		OBJ_454 /* SOImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* SOImageObject.swift */; };
-		OBJ_455 /* SOImageObjectOrPhotograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_82 /* SOImageObjectOrPhotograph.swift */; };
-		OBJ_456 /* SOImageObjectOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_83 /* SOImageObjectOrURL.swift */; };
-		OBJ_457 /* SOIntangible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* SOIntangible.swift */; };
-		OBJ_458 /* SOIntegerOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* SOIntegerOrText.swift */; };
-		OBJ_459 /* SOInteractionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* SOInteractionCounter.swift */; };
-		OBJ_460 /* SOItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* SOItemList.swift */; };
-		OBJ_461 /* SOItemListOrMusicRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* SOItemListOrMusicRecording.swift */; };
-		OBJ_462 /* SOItemListOrderOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_89 /* SOItemListOrderOrText.swift */; };
-		OBJ_463 /* SOLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_90 /* SOLanguage.swift */; };
-		OBJ_464 /* SOLanguageOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* SOLanguageOrText.swift */; };
-		OBJ_465 /* SOListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_92 /* SOListItem.swift */; };
-		OBJ_466 /* SOListItemOrThingOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* SOListItemOrThingOrText.swift */; };
-		OBJ_467 /* SOLocationFeatureSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* SOLocationFeatureSpecification.swift */; };
-		OBJ_468 /* SOMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_95 /* SOMap.swift */; };
-		OBJ_469 /* SOMapOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* SOMapOrURL.swift */; };
-		OBJ_470 /* SOMediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_97 /* SOMediaObject.swift */; };
-		OBJ_471 /* SOMonetaryAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_98 /* SOMonetaryAmount.swift */; };
-		OBJ_472 /* SOMonetaryAmountOrPriceSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* SOMonetaryAmountOrPriceSpecification.swift */; };
-		OBJ_473 /* SOMusicAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_100 /* SOMusicAlbum.swift */; };
-		OBJ_474 /* SOMusicComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_101 /* SOMusicComposition.swift */; };
-		OBJ_475 /* SOMusicGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_102 /* SOMusicGroup.swift */; };
-		OBJ_476 /* SOMusicGroupOrPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_103 /* SOMusicGroupOrPerson.swift */; };
-		OBJ_477 /* SOMusicPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_104 /* SOMusicPlaylist.swift */; };
-		OBJ_478 /* SOMusicRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_105 /* SOMusicRecording.swift */; };
-		OBJ_479 /* SOMusicRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_106 /* SOMusicRelease.swift */; };
-		OBJ_480 /* SONewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_107 /* SONewsArticle.swift */; };
-		OBJ_481 /* SONumberOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_108 /* SONumberOrText.swift */; };
-		OBJ_482 /* SOOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_109 /* SOOccupation.swift */; };
-		OBJ_483 /* SOOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_110 /* SOOffer.swift */; };
-		OBJ_484 /* SOOfferCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_111 /* SOOfferCatalog.swift */; };
-		OBJ_485 /* SOOpeningHoursSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_112 /* SOOpeningHoursSpecification.swift */; };
-		OBJ_486 /* SOOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_113 /* SOOrganization.swift */; };
-		OBJ_487 /* SOOrganizationOrPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_114 /* SOOrganizationOrPerson.swift */; };
-		OBJ_488 /* SOOrganizationOrProgramMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_115 /* SOOrganizationOrProgramMembership.swift */; };
-		OBJ_489 /* SOOwnershipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_116 /* SOOwnershipInfo.swift */; };
-		OBJ_490 /* SOOwnershipInfoOrProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_117 /* SOOwnershipInfoOrProduct.swift */; };
-		OBJ_491 /* SOPerformingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_118 /* SOPerformingGroup.swift */; };
-		OBJ_492 /* SOPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_119 /* SOPerson.swift */; };
-		OBJ_493 /* SOPersonOrURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_120 /* SOPersonOrURL.swift */; };
-		OBJ_494 /* SOPhotograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_121 /* SOPhotograph.swift */; };
-		OBJ_495 /* SOPhysicalActivityCategoryOrThingOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_122 /* SOPhysicalActivityCategoryOrThingOrText.swift */; };
-		OBJ_496 /* SOPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_123 /* SOPlace.swift */; };
-		OBJ_497 /* SOPlaceOrPostalAddressOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_124 /* SOPlaceOrPostalAddressOrText.swift */; };
-		OBJ_498 /* SOPostalAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_125 /* SOPostalAddress.swift */; };
-		OBJ_499 /* SOPostalAddressOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_126 /* SOPostalAddressOrText.swift */; };
-		OBJ_500 /* SOPriceSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_127 /* SOPriceSpecification.swift */; };
-		OBJ_501 /* SOProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_128 /* SOProduct.swift */; };
-		OBJ_502 /* SOProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_129 /* SOProductModel.swift */; };
-		OBJ_503 /* SOProductModelOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_130 /* SOProductModelOrText.swift */; };
-		OBJ_504 /* SOProductOrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_131 /* SOProductOrService.swift */; };
-		OBJ_505 /* SOProductOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_132 /* SOProductOrText.swift */; };
-		OBJ_506 /* SOProductOrURLOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_133 /* SOProductOrURLOrText.swift */; };
-		OBJ_507 /* SOProgramMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_134 /* SOProgramMembership.swift */; };
-		OBJ_508 /* SOPropertyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_135 /* SOPropertyValue.swift */; };
-		OBJ_509 /* SOPropertyValueOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_136 /* SOPropertyValueOrText.swift */; };
-		OBJ_510 /* SOPublicationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_137 /* SOPublicationEvent.swift */; };
-		OBJ_511 /* SOQualitativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_138 /* SOQualitativeValue.swift */; };
-		OBJ_512 /* SOQuantitativeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_139 /* SOQuantitativeValue.swift */; };
-		OBJ_513 /* SOQuantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_140 /* SOQuantity.swift */; };
-		OBJ_514 /* SOQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_141 /* SOQuestion.swift */; };
-		OBJ_515 /* SORating.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_142 /* SORating.swift */; };
-		OBJ_516 /* SOReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_143 /* SOReview.swift */; };
-		OBJ_517 /* SOService.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* SOService.swift */; };
-		OBJ_518 /* SOServiceChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_145 /* SOServiceChannel.swift */; };
-		OBJ_519 /* SOSoftwareApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_146 /* SOSoftwareApplication.swift */; };
-		OBJ_520 /* SOSoftwareApplicationOrWebsite.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_147 /* SOSoftwareApplicationOrWebsite.swift */; };
-		OBJ_521 /* SOStructuredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_148 /* SOStructuredValue.swift */; };
-		OBJ_522 /* SOThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_149 /* SOThing.swift */; };
-		OBJ_523 /* SOThingOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_150 /* SOThingOrText.swift */; };
-		OBJ_524 /* SOTypeAndQuantityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_151 /* SOTypeAndQuantityNode.swift */; };
-		OBJ_525 /* SOURLOrText.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_152 /* SOURLOrText.swift */; };
-		OBJ_526 /* SOValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_153 /* SOValue.swift */; };
-		OBJ_527 /* SOValueReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_154 /* SOValueReference.swift */; };
-		OBJ_528 /* SOVideoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_155 /* SOVideoObject.swift */; };
-		OBJ_529 /* SOWarrantyPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_156 /* SOWarrantyPromise.swift */; };
-		OBJ_530 /* SOWebsite.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_157 /* SOWebsite.swift */; };
-		OBJ_531 /* String+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_158 /* String+SOSwift.swift */; };
-		OBJ_532 /* Time+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_159 /* Time+SOSwift.swift */; };
 		OBJ_533 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_160 /* Time.swift */; };
 		OBJ_534 /* URL+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_161 /* URL+SOSwift.swift */; };
 		OBJ_535 /* WarrantyScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_162 /* WarrantyScope.swift */; };
@@ -420,6 +312,29 @@
 /* Begin PBXFileReference section */
 		E19C11DE22BE58F200FA1E67 /* DateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		E19C11E022BE5AEE00FA1E67 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		E19C11E222BE97B900FA1E67 /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
+		E19C11E422BE99E400FA1E67 /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
+		E19C11E622BEA03E00FA1E67 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		E19C11E822BEA0DA00FA1E67 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		E19C11EA22BEA3F700FA1E67 /* Audience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audience.swift; sourceTree = "<group>"; };
+		E19C11EC22BEA44700FA1E67 /* CreativeWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWork.swift; sourceTree = "<group>"; };
+		E19C11EE22BEAFC900FA1E67 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		E19C11F022BEB14D00FA1E67 /* GeoShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoShape.swift; sourceTree = "<group>"; };
+		E19C11F222BEB1C900FA1E67 /* NumberOrText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOrText.swift; sourceTree = "<group>"; };
+		E19C11F422BEB22B00FA1E67 /* DateOnlyOrDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOnlyOrDateTime.swift; sourceTree = "<group>"; };
+		E19C11F622BEB2A500FA1E67 /* DateTimeOrURLOrText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeOrURLOrText.swift; sourceTree = "<group>"; };
+		E19C11F822BEB37000FA1E67 /* Intangible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intangible.swift; sourceTree = "<group>"; };
+		E19C11FA22BEB3A200FA1E67 /* MonetaryAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetaryAmount.swift; sourceTree = "<group>"; };
+		E19C11FC22BEB44600FA1E67 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		E19C11FE22BEB5DF00FA1E67 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		E19C120022BEB75E00FA1E67 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		E19C120222BEB83700FA1E67 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		E19C120422BEB94A00FA1E67 /* WarrentyPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrentyPromise.swift; sourceTree = "<group>"; };
+		E19C120622BEBA4C00FA1E67 /* CreativeWorkOrEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrEvent.swift; sourceTree = "<group>"; };
+		E19C120822BEBAAC00FA1E67 /* CreativeWorkOrProductOrURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrProductOrURL.swift; sourceTree = "<group>"; };
+		E19C120A22BEBB0400FA1E67 /* CreativeWorkOrText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrText.swift; sourceTree = "<group>"; };
+		E19C120C22BEBB5500FA1E67 /* CreativeWorkOrURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeWorkOrURL.swift; sourceTree = "<group>"; };
+		E19C120E22BEBB9D00FA1E67 /* OrganizationOrPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationOrPerson.swift; sourceTree = "<group>"; };
 		OBJ_10 /* AccessModeSufficient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessModeSufficient.swift; sourceTree = "<group>"; };
 		OBJ_100 /* SOMusicAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMusicAlbum.swift; sourceTree = "<group>"; };
 		OBJ_101 /* SOMusicComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOMusicComposition.swift; sourceTree = "<group>"; };
@@ -816,6 +731,8 @@
 		E19C11DD22BE577600FA1E67 /* ProtocolBased */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_25 /* Dynamic.swift */,
+				OBJ_158 /* String+SOSwift.swift */,
 				OBJ_24 /* Duration+SOSwift.swift */,
 				OBJ_22 /* DateTime+SOSwift.swift */,
 				OBJ_20 /* DateOnly+SOSwift.swift */,
@@ -1202,7 +1119,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1213,7 +1130,6 @@
 				OBJ_375 /* LICENSE */,
 				OBJ_376 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -1234,26 +1150,47 @@
 				OBJ_12 /* AccessibilityControl.swift */,
 				OBJ_13 /* AccessibilityFeature.swift */,
 				OBJ_14 /* AccessibilityHazard.swift */,
+				E19C11E622BEA03E00FA1E67 /* Action.swift */,
 				OBJ_15 /* ActionStatus.swift */,
+				E19C11EA22BEA3F700FA1E67 /* Audience.swift */,
 				OBJ_17 /* BusinessEntityType.swift */,
 				OBJ_18 /* BusinessFunction.swift */,
 				OBJ_19 /* Codable+SOSwift.swift */,
+				E19C11EC22BEA44700FA1E67 /* CreativeWork.swift */,
+				E19C120622BEBA4C00FA1E67 /* CreativeWorkOrEvent.swift */,
+				E19C120822BEBAAC00FA1E67 /* CreativeWorkOrProductOrURL.swift */,
+				E19C120A22BEBB0400FA1E67 /* CreativeWorkOrText.swift */,
+				E19C120C22BEBB5500FA1E67 /* CreativeWorkOrURL.swift */,
 				OBJ_21 /* DateOnly.swift */,
+				E19C11F422BEB22B00FA1E67 /* DateOnlyOrDateTime.swift */,
 				E19C11DE22BE58F200FA1E67 /* DateTime.swift */,
+				E19C11F622BEB2A500FA1E67 /* DateTimeOrURLOrText.swift */,
 				OBJ_23 /* DeliveryMethod.swift */,
 				E19C11E022BE5AEE00FA1E67 /* Duration.swift */,
-				OBJ_25 /* Dynamic.swift */,
+				E19C11EE22BEAFC900FA1E67 /* Event.swift */,
 				OBJ_26 /* EventStatus.swift */,
 				OBJ_27 /* Gender.swift */,
+				E19C11F022BEB14D00FA1E67 /* GeoShape.swift */,
+				E19C11E822BEA0DA00FA1E67 /* Identifier.swift */,
+				E19C11F822BEB37000FA1E67 /* Intangible.swift */,
 				OBJ_28 /* Interactivity.swift */,
 				OBJ_29 /* ItemAvailability.swift */,
 				OBJ_30 /* MapType.swift */,
+				E19C11FA22BEB3A200FA1E67 /* MonetaryAmount.swift */,
 				OBJ_31 /* MusicReleaseFormat.swift */,
 				OBJ_33 /* Number.swift */,
+				E19C11F222BEB1C900FA1E67 /* NumberOrText.swift */,
+				E19C11FC22BEB44600FA1E67 /* Organization.swift */,
+				E19C120E22BEBB9D00FA1E67 /* OrganizationOrPerson.swift */,
+				E19C11FE22BEB5DF00FA1E67 /* Person.swift */,
 				OBJ_34 /* PhysicalActivityCategory.swift */,
-				OBJ_158 /* String+SOSwift.swift */,
+				E19C120022BEB75E00FA1E67 /* Place.swift */,
+				E19C120222BEB83700FA1E67 /* Product.swift */,
+				E19C11E422BE99E400FA1E67 /* Schema.swift */,
+				E19C11E222BE97B900FA1E67 /* Thing.swift */,
 				OBJ_160 /* Time.swift */,
 				OBJ_161 /* URL+SOSwift.swift */,
+				E19C120422BEB94A00FA1E67 /* WarrentyPromise.swift */,
 				OBJ_162 /* WarrantyScope.swift */,
 			);
 			name = SOSwift;
@@ -1359,7 +1296,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_371 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1379,162 +1316,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				E19C11FB22BEB3A200FA1E67 /* MonetaryAmount.swift in Sources */,
 				OBJ_382 /* AccessMode.swift in Sources */,
 				OBJ_383 /* AccessModeSufficient.swift in Sources */,
+				E19C120D22BEBB5500FA1E67 /* CreativeWorkOrURL.swift in Sources */,
 				OBJ_384 /* AccessibilityAPI.swift in Sources */,
 				OBJ_385 /* AccessibilityControl.swift in Sources */,
+				E19C120522BEB94A00FA1E67 /* WarrentyPromise.swift in Sources */,
+				E19C11F922BEB37000FA1E67 /* Intangible.swift in Sources */,
+				E19C11ED22BEA44700FA1E67 /* CreativeWork.swift in Sources */,
 				OBJ_386 /* AccessibilityFeature.swift in Sources */,
+				E19C120722BEBA4C00FA1E67 /* CreativeWorkOrEvent.swift in Sources */,
 				OBJ_387 /* AccessibilityHazard.swift in Sources */,
 				OBJ_388 /* ActionStatus.swift in Sources */,
-				OBJ_389 /* SOAreaServed.swift in Sources */,
+				E19C11F522BEB22B00FA1E67 /* DateOnlyOrDateTime.swift in Sources */,
+				E19C120922BEBAAC00FA1E67 /* CreativeWorkOrProductOrURL.swift in Sources */,
+				E19C11EF22BEAFC900FA1E67 /* Event.swift in Sources */,
+				E19C11EB22BEA3F700FA1E67 /* Audience.swift in Sources */,
 				OBJ_390 /* BusinessEntityType.swift in Sources */,
 				OBJ_391 /* BusinessFunction.swift in Sources */,
 				OBJ_392 /* Codable+SOSwift.swift in Sources */,
-				OBJ_393 /* DateOnly+SOSwift.swift in Sources */,
 				OBJ_394 /* DateOnly.swift in Sources */,
-				OBJ_395 /* DateTime+SOSwift.swift in Sources */,
 				OBJ_396 /* DeliveryMethod.swift in Sources */,
-				OBJ_397 /* Duration+SOSwift.swift in Sources */,
-				OBJ_398 /* Dynamic.swift in Sources */,
+				E19C11E722BEA03E00FA1E67 /* Action.swift in Sources */,
 				OBJ_399 /* EventStatus.swift in Sources */,
+				E19C120B22BEBB0400FA1E67 /* CreativeWorkOrText.swift in Sources */,
 				OBJ_400 /* Gender.swift in Sources */,
+				E19C11F722BEB2A500FA1E67 /* DateTimeOrURLOrText.swift in Sources */,
+				E19C11E922BEA0DA00FA1E67 /* Identifier.swift in Sources */,
+				E19C11F122BEB14D00FA1E67 /* GeoShape.swift in Sources */,
 				OBJ_401 /* Interactivity.swift in Sources */,
 				OBJ_402 /* ItemAvailability.swift in Sources */,
 				OBJ_403 /* MapType.swift in Sources */,
 				OBJ_404 /* MusicReleaseFormat.swift in Sources */,
-				OBJ_405 /* Number+SOSwift.swift in Sources */,
+				E19C11FD22BEB44600FA1E67 /* Organization.swift in Sources */,
+				E19C120F22BEBB9D00FA1E67 /* OrganizationOrPerson.swift in Sources */,
+				E19C120122BEB75E00FA1E67 /* Place.swift in Sources */,
 				OBJ_406 /* Number.swift in Sources */,
+				E19C11FF22BEB5DF00FA1E67 /* Person.swift in Sources */,
 				OBJ_407 /* PhysicalActivityCategory.swift in Sources */,
-				OBJ_408 /* SOAction.swift in Sources */,
-				OBJ_409 /* SOAdministrativeArea.swift in Sources */,
-				OBJ_410 /* SOAggregateRating.swift in Sources */,
-				OBJ_411 /* SOAlignmentObject.swift in Sources */,
-				OBJ_412 /* SOAlignmentObjectOrCourseOrText.swift in Sources */,
-				OBJ_413 /* SOAnswer.swift in Sources */,
-				OBJ_414 /* SOArticle.swift in Sources */,
-				OBJ_415 /* SOAudience.swift in Sources */,
-				OBJ_416 /* SOAudioObject.swift in Sources */,
-				OBJ_417 /* SOBrand.swift in Sources */,
-				OBJ_418 /* SOBrandOrOrganization.swift in Sources */,
+				E19C11E522BE99E500FA1E67 /* Schema.swift in Sources */,
 				E19C11DF22BE58F200FA1E67 /* DateTime.swift in Sources */,
-				OBJ_419 /* SOBroadcastService.swift in Sources */,
-				OBJ_420 /* SOComment.swift in Sources */,
-				OBJ_421 /* SOContactPoint.swift in Sources */,
-				OBJ_422 /* SOContactPointOrPlace.swift in Sources */,
-				OBJ_423 /* SOCountry.swift in Sources */,
-				OBJ_424 /* SOCountryOrText.swift in Sources */,
-				OBJ_425 /* SOCourse.swift in Sources */,
-				OBJ_426 /* SOCourseInstance.swift in Sources */,
-				OBJ_427 /* SOCreativeWork.swift in Sources */,
-				OBJ_428 /* SOCreativeWorkOrEvent.swift in Sources */,
-				OBJ_429 /* SOCreativeWorkOrProductOrURL.swift in Sources */,
-				OBJ_430 /* SOCreativeWorkOrText.swift in Sources */,
-				OBJ_431 /* SOCreativeWorkOrURL.swift in Sources */,
-				OBJ_432 /* SODataCatalog.swift in Sources */,
-				OBJ_433 /* SODataDownload.swift in Sources */,
-				OBJ_434 /* SODataFeed.swift in Sources */,
-				OBJ_435 /* SODataFeedItem.swift in Sources */,
-				OBJ_436 /* SODataFeedItemOrThingOrText.swift in Sources */,
-				OBJ_437 /* SODataset.swift in Sources */,
-				OBJ_438 /* SODateOnlyOrDateTime.swift in Sources */,
-				OBJ_439 /* SODateTimeOrURLOrText.swift in Sources */,
-				OBJ_440 /* SODemand.swift in Sources */,
-				OBJ_441 /* SODistance.swift in Sources */,
-				OBJ_442 /* SODistanceOrQuantitativeValue.swift in Sources */,
-				OBJ_443 /* SOEducationalOrganization.swift in Sources */,
-				OBJ_444 /* SOEducationalOrganizationOrOrganization.swift in Sources */,
-				OBJ_445 /* SOEntryPoint.swift in Sources */,
-				OBJ_446 /* SOEnumeration.swift in Sources */,
-				OBJ_447 /* SOEvent.swift in Sources */,
-				OBJ_448 /* SOGenderOrText.swift in Sources */,
-				OBJ_449 /* SOGeoCoordinates.swift in Sources */,
-				OBJ_450 /* SOGeoCoordinatesOrGeoShape.swift in Sources */,
-				OBJ_451 /* SOGeoShape.swift in Sources */,
-				OBJ_452 /* SOGeoShapeOrPlaceOrText.swift in Sources */,
-				OBJ_453 /* SOIdentifier.swift in Sources */,
-				OBJ_454 /* SOImageObject.swift in Sources */,
-				OBJ_455 /* SOImageObjectOrPhotograph.swift in Sources */,
-				OBJ_456 /* SOImageObjectOrURL.swift in Sources */,
-				OBJ_457 /* SOIntangible.swift in Sources */,
-				OBJ_458 /* SOIntegerOrText.swift in Sources */,
-				OBJ_459 /* SOInteractionCounter.swift in Sources */,
-				OBJ_460 /* SOItemList.swift in Sources */,
-				OBJ_461 /* SOItemListOrMusicRecording.swift in Sources */,
-				OBJ_462 /* SOItemListOrderOrText.swift in Sources */,
-				OBJ_463 /* SOLanguage.swift in Sources */,
-				OBJ_464 /* SOLanguageOrText.swift in Sources */,
-				OBJ_465 /* SOListItem.swift in Sources */,
-				OBJ_466 /* SOListItemOrThingOrText.swift in Sources */,
-				OBJ_467 /* SOLocationFeatureSpecification.swift in Sources */,
-				OBJ_468 /* SOMap.swift in Sources */,
-				OBJ_469 /* SOMapOrURL.swift in Sources */,
-				OBJ_470 /* SOMediaObject.swift in Sources */,
-				OBJ_471 /* SOMonetaryAmount.swift in Sources */,
-				OBJ_472 /* SOMonetaryAmountOrPriceSpecification.swift in Sources */,
-				OBJ_473 /* SOMusicAlbum.swift in Sources */,
-				OBJ_474 /* SOMusicComposition.swift in Sources */,
-				OBJ_475 /* SOMusicGroup.swift in Sources */,
-				OBJ_476 /* SOMusicGroupOrPerson.swift in Sources */,
-				OBJ_477 /* SOMusicPlaylist.swift in Sources */,
-				OBJ_478 /* SOMusicRecording.swift in Sources */,
-				OBJ_479 /* SOMusicRelease.swift in Sources */,
-				OBJ_480 /* SONewsArticle.swift in Sources */,
-				OBJ_481 /* SONumberOrText.swift in Sources */,
-				OBJ_482 /* SOOccupation.swift in Sources */,
-				OBJ_483 /* SOOffer.swift in Sources */,
-				OBJ_484 /* SOOfferCatalog.swift in Sources */,
-				OBJ_485 /* SOOpeningHoursSpecification.swift in Sources */,
-				OBJ_486 /* SOOrganization.swift in Sources */,
-				OBJ_487 /* SOOrganizationOrPerson.swift in Sources */,
-				OBJ_488 /* SOOrganizationOrProgramMembership.swift in Sources */,
-				OBJ_489 /* SOOwnershipInfo.swift in Sources */,
-				OBJ_490 /* SOOwnershipInfoOrProduct.swift in Sources */,
-				OBJ_491 /* SOPerformingGroup.swift in Sources */,
-				OBJ_492 /* SOPerson.swift in Sources */,
-				OBJ_493 /* SOPersonOrURL.swift in Sources */,
-				OBJ_494 /* SOPhotograph.swift in Sources */,
-				OBJ_495 /* SOPhysicalActivityCategoryOrThingOrText.swift in Sources */,
-				OBJ_496 /* SOPlace.swift in Sources */,
-				OBJ_497 /* SOPlaceOrPostalAddressOrText.swift in Sources */,
-				OBJ_498 /* SOPostalAddress.swift in Sources */,
-				OBJ_499 /* SOPostalAddressOrText.swift in Sources */,
-				OBJ_500 /* SOPriceSpecification.swift in Sources */,
-				OBJ_501 /* SOProduct.swift in Sources */,
-				OBJ_502 /* SOProductModel.swift in Sources */,
-				OBJ_503 /* SOProductModelOrText.swift in Sources */,
-				OBJ_504 /* SOProductOrService.swift in Sources */,
-				OBJ_505 /* SOProductOrText.swift in Sources */,
-				OBJ_506 /* SOProductOrURLOrText.swift in Sources */,
-				OBJ_507 /* SOProgramMembership.swift in Sources */,
-				OBJ_508 /* SOPropertyValue.swift in Sources */,
-				OBJ_509 /* SOPropertyValueOrText.swift in Sources */,
-				OBJ_510 /* SOPublicationEvent.swift in Sources */,
-				OBJ_511 /* SOQualitativeValue.swift in Sources */,
-				OBJ_512 /* SOQuantitativeValue.swift in Sources */,
-				OBJ_513 /* SOQuantity.swift in Sources */,
-				OBJ_514 /* SOQuestion.swift in Sources */,
-				OBJ_515 /* SORating.swift in Sources */,
-				OBJ_516 /* SOReview.swift in Sources */,
-				OBJ_517 /* SOService.swift in Sources */,
-				OBJ_518 /* SOServiceChannel.swift in Sources */,
-				OBJ_519 /* SOSoftwareApplication.swift in Sources */,
-				OBJ_520 /* SOSoftwareApplicationOrWebsite.swift in Sources */,
-				OBJ_521 /* SOStructuredValue.swift in Sources */,
-				OBJ_522 /* SOThing.swift in Sources */,
-				OBJ_523 /* SOThingOrText.swift in Sources */,
-				OBJ_524 /* SOTypeAndQuantityNode.swift in Sources */,
-				OBJ_525 /* SOURLOrText.swift in Sources */,
-				OBJ_526 /* SOValue.swift in Sources */,
-				OBJ_527 /* SOValueReference.swift in Sources */,
+				E19C11E322BE97B900FA1E67 /* Thing.swift in Sources */,
 				E19C11E122BE5AEE00FA1E67 /* Duration.swift in Sources */,
-				OBJ_528 /* SOVideoObject.swift in Sources */,
-				OBJ_529 /* SOWarrantyPromise.swift in Sources */,
-				OBJ_530 /* SOWebsite.swift in Sources */,
-				OBJ_531 /* String+SOSwift.swift in Sources */,
-				OBJ_532 /* Time+SOSwift.swift in Sources */,
 				OBJ_533 /* Time.swift in Sources */,
 				OBJ_534 /* URL+SOSwift.swift in Sources */,
+				E19C11F322BEB1C900FA1E67 /* NumberOrText.swift in Sources */,
 				OBJ_535 /* WarrantyScope.swift in Sources */,
+				E19C120322BEB83700FA1E67 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

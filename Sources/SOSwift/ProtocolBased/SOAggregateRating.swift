@@ -12,7 +12,7 @@ public class SOAggregateRating: SORating, AggregateRating {
     }
     
     /// The item that is being reviewed/rated.
-    public var itemReviewed: Thing?
+    public var itemReviewed: SOSwiftVocabulary.Thing?
     /// The count of total number of ratings.
     public var ratingCount: Int?
     /// The count of total number of reviews.
@@ -65,7 +65,7 @@ public class SOAggregateRating: SORating, AggregateRating {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.itemReviewed.rawValue:
-            self.itemReviewed = value as? Thing
+            self.itemReviewed = value as? SOSwiftVocabulary.Thing
         case CodingKeys.ratingCount.rawValue:
             self.ratingCount = value as? Int
         case CodingKeys.reviewCount.rawValue:

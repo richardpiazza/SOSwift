@@ -1,4 +1,5 @@
 import Foundation
+import SOSwiftVocabulary
 
 public enum DynamicError: Error {
     case typeNotFound(type: String)

@@ -18,7 +18,7 @@ public class SOEvent: SOThing, Event {
     }
     
     /// The subject matter of the content.
-    public var about: Thing?
+    public var about: SOSwiftVocabulary.Thing?
     /// An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
     public var actors: [Person]?
     /// The overall rating, based on a collection of reviews or ratings, of the item.
@@ -276,7 +276,7 @@ public class SOEvent: SOThing, Event {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.about.rawValue:
-            self.about = value as? Thing
+            self.about = value as? SOSwiftVocabulary.Thing
         case "actors":
             self.actors = value as? [Person]
         case CodingKeys.aggregateRating.rawValue:

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Indicates the current disposition of the Action.
-public enum ActionStatus: String {
+public enum ActionStatus: String, CaseIterable, Codable {
     case active = "ActiveActionStatus"
     case completed = "CompletedActionStatus"
     case failed = "FailedActionStatus"

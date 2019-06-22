@@ -12,7 +12,7 @@ public class SOListItem: SOIntangible, ListItem {
     }
     
     /// An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
-    public var item: Thing?
+    public var item: SOSwiftVocabulary.Thing?
     /// A link to the ListItem that follows the current one.
     public var nextItem: ListItem?
     /// The position of an item in a series or sequence of items.
@@ -72,7 +72,7 @@ public class SOListItem: SOIntangible, ListItem {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.item.rawValue:
-            self.item = value as? Thing
+            self.item = value as? SOSwiftVocabulary.Thing
         case CodingKeys.nextItem.rawValue:
             self.nextItem = value as? ListItem
         case CodingKeys.position.rawValue:

@@ -29,7 +29,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     }
     
     /// The subject matter of the content.
-    public var about: Thing?
+    public var about: SOSwiftVocabulary.Thing?
     /// The human sensory perceptual system or cognitive faculty through which a person may process or perceive information.
     public var accessMode: SOSwiftVocabulary.AccessMode?
     /// A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource.
@@ -133,11 +133,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
     /// The location where the CreativeWork was created, which may not be the same as the location depicted in the CreativeWork.
     public var locationCreated: Place?
     /// Indicates the primary entity described in some page or other CreativeWork. Inverse property: mainEntityOfPage.
-    public var mainEntity: Thing?
+    public var mainEntity: SOSwiftVocabulary.Thing?
     /// A material that something is made from, e.g. leather, wool, cotton, paper.
     public var material: ProductOrURLOrText?
     /// Indicates that the CreativeWork contains a reference to, but is not necessarily about a concept.
-    public var mentions: Thing?
+    public var mentions: SOSwiftVocabulary.Thing?
     /// An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
     public var offers: [Offer]?
     /// The position of an item in a series or sequence of items.
@@ -657,7 +657,7 @@ public class SOCreativeWork: SOThing, CreativeWork {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.about.rawValue:
-            self.about = value as? Thing
+            self.about = value as? SOSwiftVocabulary.Thing
         case CodingKeys.accessMode.rawValue:
             self.accessMode = value as? SOSwiftVocabulary.AccessMode
         case "accessModeSufficients":
@@ -761,11 +761,11 @@ public class SOCreativeWork: SOThing, CreativeWork {
         case CodingKeys.locationCreated.rawValue:
             self.locationCreated = value as? Place
         case CodingKeys.mainEntity.rawValue:
-            self.mainEntity = value as? Thing
+            self.mainEntity = value as? SOSwiftVocabulary.Thing
         case CodingKeys.material.rawValue:
             self.material = value as? ProductOrURLOrText
         case CodingKeys.mentions.rawValue:
-            self.mentions = value as? Thing
+            self.mentions = value as? SOSwiftVocabulary.Thing
         case CodingKeys.offers.rawValue:
             self.offers = value as? [Offer]
         case CodingKeys.position.rawValue:

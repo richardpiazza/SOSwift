@@ -13,7 +13,7 @@ public class SOReview: SOCreativeWork, Review {
     }
     
     /// The item that is being reviewed/rated.
-    public var itemReviewed: Thing?
+    public var itemReviewed: SOSwiftVocabulary.Thing?
     /// This Review or Rating is relevant to this part or facet of the itemReviewed.
     public var reviewAspect: String?
     /// The actual body of the review.
@@ -74,7 +74,7 @@ public class SOReview: SOCreativeWork, Review {
     public override func setValue(_ value: Any?, forAttributeNamed attributeName: String) {
         switch attributeName {
         case CodingKeys.itemReviewed.rawValue:
-            self.itemReviewed = value as? Thing
+            self.itemReviewed = value as? SOSwiftVocabulary.Thing
         case CodingKeys.reviewAspect.rawValue:
             self.reviewAspect = value as? String
         case CodingKeys.reviewBody.rawValue:
