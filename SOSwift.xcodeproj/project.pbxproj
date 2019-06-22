@@ -41,7 +41,7 @@
 		OBJ_400 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Dynamic.swift */; };
 		OBJ_401 /* EventStatus+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* EventStatus+SOSwift.swift */; };
 		OBJ_402 /* Gender+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Gender+SOSwift.swift */; };
-		OBJ_403 /* Identifier+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Identifier+SOSwift.swift */; };
+		OBJ_403 /* SOIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* SOIdentifier.swift */; };
 		OBJ_404 /* Interactivity+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Interactivity+SOSwift.swift */; };
 		OBJ_405 /* ItemAvailability+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* ItemAvailability+SOSwift.swift */; };
 		OBJ_406 /* MapType+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* MapType+SOSwift.swift */; };
@@ -621,7 +621,7 @@
 		OBJ_287 /* InteractionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionCounter.swift; sourceTree = "<group>"; };
 		OBJ_288 /* Interactivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactivity.swift; sourceTree = "<group>"; };
 		OBJ_289 /* ItemAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAvailability.swift; sourceTree = "<group>"; };
-		OBJ_29 /* Identifier+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Identifier+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_29 /* SOIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOIdentifier.swift; sourceTree = "<group>"; };
 		OBJ_290 /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
 		OBJ_291 /* ItemListOrMusicRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListOrMusicRecording.swift; sourceTree = "<group>"; };
 		OBJ_292 /* ItemListOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListOrder.swift; sourceTree = "<group>"; };
@@ -1108,7 +1108,6 @@
 				OBJ_26 /* Dynamic.swift */,
 				OBJ_27 /* EventStatus+SOSwift.swift */,
 				OBJ_28 /* Gender+SOSwift.swift */,
-				OBJ_29 /* Identifier+SOSwift.swift */,
 				OBJ_30 /* Interactivity+SOSwift.swift */,
 				OBJ_31 /* ItemAvailability+SOSwift.swift */,
 				OBJ_32 /* MapType+SOSwift.swift */,
@@ -1162,6 +1161,7 @@
 				OBJ_80 /* SOGeoCoordinatesOrGeoShape.swift */,
 				OBJ_81 /* SOGeoShape.swift */,
 				OBJ_82 /* SOGeoShapeOrPlaceOrText.swift */,
+				OBJ_29 /* SOIdentifier.swift */,
 				OBJ_83 /* SOImageObject.swift */,
 				OBJ_84 /* SOImageObjectOrPhotograph.swift */,
 				OBJ_85 /* SOImageObjectOrURL.swift */,
@@ -1387,7 +1387,7 @@
 				OBJ_400 /* Dynamic.swift in Sources */,
 				OBJ_401 /* EventStatus+SOSwift.swift in Sources */,
 				OBJ_402 /* Gender+SOSwift.swift in Sources */,
-				OBJ_403 /* Identifier+SOSwift.swift in Sources */,
+				OBJ_403 /* SOIdentifier.swift in Sources */,
 				OBJ_404 /* Interactivity+SOSwift.swift in Sources */,
 				OBJ_405 /* ItemAvailability+SOSwift.swift in Sources */,
 				OBJ_406 /* MapType+SOSwift.swift in Sources */,
