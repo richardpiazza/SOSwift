@@ -1,7 +1,63 @@
 import Foundation
 import SOSwiftVocabulary
 
-// MARK: - ProductOrService
+public enum SOProductOrService: ProductOrService, Codable {
+    case product(value: SOProduct)
+    case service(value: SOService)
+    
+    public init(from decoder: Decoder) throws {
+        let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
+        let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
+        
+        guard let type = dictionary[SOThing.Keywords.type] as? String else {
+            throw DynamicError.invalidTypeKey
+        }
+        
+        let container = try decoder.singleValueContainer()
+        
+        switch type {
+        case SOProduct.type:
+            let value = try container.decode(SOProduct.self)
+            self = .product(value: value)
+        case SOService.type:
+            let value = try container.decode(SOService.self)
+            self = .service(value: value)
+        default:
+            throw DynamicError.invalidTypeKey
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        
+        switch self {
+        case .product(let value):
+            try container.encode(value)
+        case .service(let value):
+            try container.encode(value)
+        }
+    }
+    
+    public var product: SOProduct? {
+        switch self {
+        case .product(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+    
+    public var service: SOService? {
+        switch self {
+        case .service(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+}
+
+// MARK: - Encoding
 
 public extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: ProductOrService?, forKey key: K) throws {
@@ -28,6 +84,8 @@ public extension KeyedEncodingContainer {
         }
     }
 }
+
+// MARK: - Decoding
 
 public extension KeyedDecodingContainer {
     func decodeProductOrServiceIfPresent(forKey key: K) throws -> ProductOrService? {
