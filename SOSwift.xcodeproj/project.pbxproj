@@ -1250,7 +1250,7 @@
       };
       "OBJ_28" = {
          isa = "PBXFileReference";
-         path = "Identifier+SOSwift.swift";
+         path = "Interactivity.swift";
          sourceTree = "<group>";
       };
       "OBJ_280" = {
@@ -1305,7 +1305,7 @@
       };
       "OBJ_29" = {
          isa = "PBXFileReference";
-         path = "Interactivity.swift";
+         path = "ItemAvailability.swift";
          sourceTree = "<group>";
       };
       "OBJ_290" = {
@@ -1401,7 +1401,7 @@
       };
       "OBJ_30" = {
          isa = "PBXFileReference";
-         path = "ItemAvailability.swift";
+         path = "MapType.swift";
          sourceTree = "<group>";
       };
       "OBJ_300" = {
@@ -1456,7 +1456,7 @@
       };
       "OBJ_31" = {
          isa = "PBXFileReference";
-         path = "MapType.swift";
+         path = "MusicReleaseFormat.swift";
          sourceTree = "<group>";
       };
       "OBJ_310" = {
@@ -1511,7 +1511,7 @@
       };
       "OBJ_32" = {
          isa = "PBXFileReference";
-         path = "MusicReleaseFormat.swift";
+         path = "Number+SOSwift.swift";
          sourceTree = "<group>";
       };
       "OBJ_320" = {
@@ -1566,7 +1566,7 @@
       };
       "OBJ_33" = {
          isa = "PBXFileReference";
-         path = "Number+SOSwift.swift";
+         path = "Number.swift";
          sourceTree = "<group>";
       };
       "OBJ_330" = {
@@ -1621,7 +1621,7 @@
       };
       "OBJ_34" = {
          isa = "PBXFileReference";
-         path = "Number.swift";
+         path = "PhysicalActivityCategory.swift";
          sourceTree = "<group>";
       };
       "OBJ_340" = {
@@ -1676,7 +1676,7 @@
       };
       "OBJ_35" = {
          isa = "PBXFileReference";
-         path = "PhysicalActivityCategory.swift";
+         path = "SOAction.swift";
          sourceTree = "<group>";
       };
       "OBJ_350" = {
@@ -1731,7 +1731,7 @@
       };
       "OBJ_36" = {
          isa = "PBXFileReference";
-         path = "SOAction.swift";
+         path = "SOAdministrativeArea.swift";
          sourceTree = "<group>";
       };
       "OBJ_360" = {
@@ -1786,7 +1786,7 @@
       };
       "OBJ_37" = {
          isa = "PBXFileReference";
-         path = "SOAdministrativeArea.swift";
+         path = "SOAggregateRating.swift";
          sourceTree = "<group>";
       };
       "OBJ_370" = {
@@ -1799,9 +1799,9 @@
       "OBJ_371" = {
          isa = "PBXGroup";
          children = (
-            "SOSwiftVocabulary::SOSwiftVocabulary::Product",
             "SOSwift::SOSwift::Product",
-            "SOSwift::SOSwiftTests::Product"
+            "SOSwift::SOSwiftTests::Product",
+            "SOSwiftVocabulary::SOSwiftVocabulary::Product"
          );
          name = "Products";
          path = "";
@@ -1869,7 +1869,7 @@
       };
       "OBJ_38" = {
          isa = "PBXFileReference";
-         path = "SOAggregateRating.swift";
+         path = "SOAlignmentObject.swift";
          sourceTree = "<group>";
       };
       "OBJ_380" = {
@@ -2106,7 +2106,7 @@
       };
       "OBJ_39" = {
          isa = "PBXFileReference";
-         path = "SOAlignmentObject.swift";
+         path = "SOAlignmentObjectOrCourseOrText.swift";
          sourceTree = "<group>";
       };
       "OBJ_390" = {
@@ -2188,7 +2188,7 @@
       };
       "OBJ_40" = {
          isa = "PBXFileReference";
-         path = "SOAlignmentObjectOrCourseOrText.swift";
+         path = "SOAnswer.swift";
          sourceTree = "<group>";
       };
       "OBJ_400" = {
@@ -2233,7 +2233,7 @@
       };
       "OBJ_41" = {
          isa = "PBXFileReference";
-         path = "SOAnswer.swift";
+         path = "SOArticle.swift";
          sourceTree = "<group>";
       };
       "OBJ_410" = {
@@ -2278,7 +2278,7 @@
       };
       "OBJ_42" = {
          isa = "PBXFileReference";
-         path = "SOArticle.swift";
+         path = "SOAudience.swift";
          sourceTree = "<group>";
       };
       "OBJ_420" = {
@@ -2323,7 +2323,7 @@
       };
       "OBJ_43" = {
          isa = "PBXFileReference";
-         path = "SOAudience.swift";
+         path = "SOAudioObject.swift";
          sourceTree = "<group>";
       };
       "OBJ_430" = {
@@ -2368,7 +2368,7 @@
       };
       "OBJ_44" = {
          isa = "PBXFileReference";
-         path = "SOAudioObject.swift";
+         path = "SOBrand.swift";
          sourceTree = "<group>";
       };
       "OBJ_440" = {
@@ -2413,7 +2413,7 @@
       };
       "OBJ_45" = {
          isa = "PBXFileReference";
-         path = "SOBrand.swift";
+         path = "SOBrandOrOrganization.swift";
          sourceTree = "<group>";
       };
       "OBJ_450" = {
@@ -2458,7 +2458,7 @@
       };
       "OBJ_46" = {
          isa = "PBXFileReference";
-         path = "SOBrandOrOrganization.swift";
+         path = "SOBroadcastService.swift";
          sourceTree = "<group>";
       };
       "OBJ_460" = {
@@ -2503,7 +2503,7 @@
       };
       "OBJ_47" = {
          isa = "PBXFileReference";
-         path = "SOBroadcastService.swift";
+         path = "SOComment.swift";
          sourceTree = "<group>";
       };
       "OBJ_470" = {
@@ -2548,7 +2548,7 @@
       };
       "OBJ_48" = {
          isa = "PBXFileReference";
-         path = "SOComment.swift";
+         path = "SOContactPoint.swift";
          sourceTree = "<group>";
       };
       "OBJ_480" = {
@@ -2593,7 +2593,7 @@
       };
       "OBJ_49" = {
          isa = "PBXFileReference";
-         path = "SOContactPoint.swift";
+         path = "SOContactPointOrPlace.swift";
          sourceTree = "<group>";
       };
       "OBJ_490" = {
@@ -2652,7 +2652,7 @@
       };
       "OBJ_50" = {
          isa = "PBXFileReference";
-         path = "SOContactPointOrPlace.swift";
+         path = "SOCountry.swift";
          sourceTree = "<group>";
       };
       "OBJ_500" = {
@@ -2697,7 +2697,7 @@
       };
       "OBJ_51" = {
          isa = "PBXFileReference";
-         path = "SOCountry.swift";
+         path = "SOCountryOrText.swift";
          sourceTree = "<group>";
       };
       "OBJ_510" = {
@@ -2742,7 +2742,7 @@
       };
       "OBJ_52" = {
          isa = "PBXFileReference";
-         path = "SOCountryOrText.swift";
+         path = "SOCourse.swift";
          sourceTree = "<group>";
       };
       "OBJ_520" = {
@@ -2787,7 +2787,7 @@
       };
       "OBJ_53" = {
          isa = "PBXFileReference";
-         path = "SOCourse.swift";
+         path = "SOCourseInstance.swift";
          sourceTree = "<group>";
       };
       "OBJ_530" = {
@@ -2830,7 +2830,7 @@
       };
       "OBJ_54" = {
          isa = "PBXFileReference";
-         path = "SOCourseInstance.swift";
+         path = "SOCreativeWork.swift";
          sourceTree = "<group>";
       };
       "OBJ_541" = {
@@ -2911,7 +2911,7 @@
       };
       "OBJ_55" = {
          isa = "PBXFileReference";
-         path = "SOCreativeWork.swift";
+         path = "SOCreativeWorkOrEvent.swift";
          sourceTree = "<group>";
       };
       "OBJ_550" = {
@@ -3077,7 +3077,7 @@
       };
       "OBJ_56" = {
          isa = "PBXFileReference";
-         path = "SOCreativeWorkOrEvent.swift";
+         path = "SOCreativeWorkOrProductOrURL.swift";
          sourceTree = "<group>";
       };
       "OBJ_560" = {
@@ -3122,7 +3122,7 @@
       };
       "OBJ_57" = {
          isa = "PBXFileReference";
-         path = "SOCreativeWorkOrProductOrURL.swift";
+         path = "SOCreativeWorkOrText.swift";
          sourceTree = "<group>";
       };
       "OBJ_570" = {
@@ -3167,7 +3167,7 @@
       };
       "OBJ_58" = {
          isa = "PBXFileReference";
-         path = "SOCreativeWorkOrText.swift";
+         path = "SOCreativeWorkOrURL.swift";
          sourceTree = "<group>";
       };
       "OBJ_580" = {
@@ -3212,7 +3212,7 @@
       };
       "OBJ_59" = {
          isa = "PBXFileReference";
-         path = "SOCreativeWorkOrURL.swift";
+         path = "SODataCatalog.swift";
          sourceTree = "<group>";
       };
       "OBJ_590" = {
@@ -3263,7 +3263,7 @@
       };
       "OBJ_60" = {
          isa = "PBXFileReference";
-         path = "SODataCatalog.swift";
+         path = "SODataDownload.swift";
          sourceTree = "<group>";
       };
       "OBJ_600" = {
@@ -3311,7 +3311,7 @@
       };
       "OBJ_61" = {
          isa = "PBXFileReference";
-         path = "SODataDownload.swift";
+         path = "SODataFeed.swift";
          sourceTree = "<group>";
       };
       "OBJ_610" = {
@@ -3589,7 +3589,7 @@
       };
       "OBJ_62" = {
          isa = "PBXFileReference";
-         path = "SODataFeed.swift";
+         path = "SODataFeedItem.swift";
          sourceTree = "<group>";
       };
       "OBJ_620" = {
@@ -3634,7 +3634,7 @@
       };
       "OBJ_63" = {
          isa = "PBXFileReference";
-         path = "SODataFeedItem.swift";
+         path = "SODataFeedItemOrThingOrText.swift";
          sourceTree = "<group>";
       };
       "OBJ_630" = {
@@ -3679,7 +3679,7 @@
       };
       "OBJ_64" = {
          isa = "PBXFileReference";
-         path = "SODataFeedItemOrThingOrText.swift";
+         path = "SODataset.swift";
          sourceTree = "<group>";
       };
       "OBJ_640" = {
@@ -3724,7 +3724,7 @@
       };
       "OBJ_65" = {
          isa = "PBXFileReference";
-         path = "SODataset.swift";
+         path = "SODateOnlyOrDateTime.swift";
          sourceTree = "<group>";
       };
       "OBJ_650" = {
@@ -3769,7 +3769,7 @@
       };
       "OBJ_66" = {
          isa = "PBXFileReference";
-         path = "SODateOnlyOrDateTime.swift";
+         path = "SODateTimeOrURLOrText.swift";
          sourceTree = "<group>";
       };
       "OBJ_660" = {
@@ -3814,7 +3814,7 @@
       };
       "OBJ_67" = {
          isa = "PBXFileReference";
-         path = "SODateTimeOrURLOrText.swift";
+         path = "SODemand.swift";
          sourceTree = "<group>";
       };
       "OBJ_670" = {
@@ -3859,7 +3859,7 @@
       };
       "OBJ_68" = {
          isa = "PBXFileReference";
-         path = "SODemand.swift";
+         path = "SODistance.swift";
          sourceTree = "<group>";
       };
       "OBJ_680" = {
@@ -3904,7 +3904,7 @@
       };
       "OBJ_69" = {
          isa = "PBXFileReference";
-         path = "SODistance.swift";
+         path = "SODistanceOrQuantitativeValue.swift";
          sourceTree = "<group>";
       };
       "OBJ_690" = {
@@ -3958,7 +3958,7 @@
       };
       "OBJ_70" = {
          isa = "PBXFileReference";
-         path = "SODistanceOrQuantitativeValue.swift";
+         path = "SOEducationalOrganization.swift";
          sourceTree = "<group>";
       };
       "OBJ_700" = {
@@ -4003,7 +4003,7 @@
       };
       "OBJ_71" = {
          isa = "PBXFileReference";
-         path = "SOEducationalOrganization.swift";
+         path = "SOEducationalOrganizationOrOrganization.swift";
          sourceTree = "<group>";
       };
       "OBJ_710" = {
@@ -4048,7 +4048,7 @@
       };
       "OBJ_72" = {
          isa = "PBXFileReference";
-         path = "SOEducationalOrganizationOrOrganization.swift";
+         path = "SOEntryPoint.swift";
          sourceTree = "<group>";
       };
       "OBJ_720" = {
@@ -4093,7 +4093,7 @@
       };
       "OBJ_73" = {
          isa = "PBXFileReference";
-         path = "SOEntryPoint.swift";
+         path = "SOEnumeration.swift";
          sourceTree = "<group>";
       };
       "OBJ_730" = {
@@ -4138,7 +4138,7 @@
       };
       "OBJ_74" = {
          isa = "PBXFileReference";
-         path = "SOEnumeration.swift";
+         path = "SOEvent.swift";
          sourceTree = "<group>";
       };
       "OBJ_740" = {
@@ -4183,7 +4183,7 @@
       };
       "OBJ_75" = {
          isa = "PBXFileReference";
-         path = "SOEvent.swift";
+         path = "SOGenderOrText.swift";
          sourceTree = "<group>";
       };
       "OBJ_750" = {
@@ -4228,7 +4228,7 @@
       };
       "OBJ_76" = {
          isa = "PBXFileReference";
-         path = "SOGenderOrText.swift";
+         path = "SOGeoCoordinates.swift";
          sourceTree = "<group>";
       };
       "OBJ_760" = {
@@ -4275,7 +4275,7 @@
       };
       "OBJ_77" = {
          isa = "PBXFileReference";
-         path = "SOGeoCoordinates.swift";
+         path = "SOGeoCoordinatesOrGeoShape.swift";
          sourceTree = "<group>";
       };
       "OBJ_770" = {
@@ -4326,12 +4326,12 @@
       };
       "OBJ_78" = {
          isa = "PBXFileReference";
-         path = "SOGeoCoordinatesOrGeoShape.swift";
+         path = "SOGeoShape.swift";
          sourceTree = "<group>";
       };
       "OBJ_79" = {
          isa = "PBXFileReference";
-         path = "SOGeoShape.swift";
+         path = "SOGeoShapeOrPlaceOrText.swift";
          sourceTree = "<group>";
       };
       "OBJ_8" = {
@@ -4498,7 +4498,7 @@
       };
       "OBJ_80" = {
          isa = "PBXFileReference";
-         path = "SOGeoShapeOrPlaceOrText.swift";
+         path = "SOIdentifier.swift";
          sourceTree = "<group>";
       };
       "OBJ_81" = {
