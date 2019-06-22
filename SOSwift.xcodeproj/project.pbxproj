@@ -174,7 +174,7 @@
 		OBJ_533 /* Time+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_159 /* Time+SOSwift.swift */; };
 		OBJ_534 /* URL+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_160 /* URL+SOSwift.swift */; };
 		OBJ_535 /* SOValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_161 /* SOValue.swift */; };
-		OBJ_536 /* ValueReference+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_162 /* ValueReference+SOSwift.swift */; };
+		OBJ_536 /* SOValueReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_162 /* SOValueReference.swift */; };
 		OBJ_537 /* WarrantyScope+SOSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_163 /* WarrantyScope+SOSwift.swift */; };
 		OBJ_539 /* SOSwiftVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SOSwiftVocabulary::SOSwiftVocabulary::Product" /* SOSwiftVocabulary.framework */; };
 		OBJ_547 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
@@ -486,7 +486,7 @@
 		OBJ_16 /* AreaServed+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AreaServed+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_160 /* URL+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_161 /* SOValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOValue.swift; sourceTree = "<group>"; };
-		OBJ_162 /* ValueReference+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueReference+SOSwift.swift"; sourceTree = "<group>"; };
+		OBJ_162 /* SOValueReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOValueReference.swift; sourceTree = "<group>"; };
 		OBJ_163 /* WarrantyScope+SOSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WarrantyScope+SOSwift.swift"; sourceTree = "<group>"; };
 		OBJ_166 /* AlignmentObjectOrCourseOrTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentObjectOrCourseOrTextTests.swift; sourceTree = "<group>"; };
 		OBJ_167 /* AreaServedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaServedTests.swift; sourceTree = "<group>"; };
@@ -1235,13 +1235,13 @@
 				OBJ_153 /* SOTypeAndQuantityNode.swift */,
 				OBJ_154 /* SOURLOrText.swift */,
 				OBJ_161 /* SOValue.swift */,
+				OBJ_162 /* SOValueReference.swift */,
 				OBJ_155 /* SOVideoObject.swift */,
 				OBJ_156 /* SOWarrantyPromise.swift */,
 				OBJ_157 /* SOWebsite.swift */,
 				OBJ_158 /* String+SOSwift.swift */,
 				OBJ_159 /* Time+SOSwift.swift */,
 				OBJ_160 /* URL+SOSwift.swift */,
-				OBJ_162 /* ValueReference+SOSwift.swift */,
 				OBJ_163 /* WarrantyScope+SOSwift.swift */,
 			);
 			name = SOSwift;
@@ -1520,7 +1520,7 @@
 				OBJ_533 /* Time+SOSwift.swift in Sources */,
 				OBJ_534 /* URL+SOSwift.swift in Sources */,
 				OBJ_535 /* SOValue.swift in Sources */,
-				OBJ_536 /* ValueReference+SOSwift.swift in Sources */,
+				OBJ_536 /* SOValueReference.swift in Sources */,
 				OBJ_537 /* WarrantyScope+SOSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
