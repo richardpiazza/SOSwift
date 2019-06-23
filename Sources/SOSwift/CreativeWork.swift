@@ -43,20 +43,20 @@ public class CreativeWork: Thing {
     
     /// The overall rating, based on a collection of reviews or ratings, of the
     /// item.
-//    public var aggregateRating: AggregateRating?
+    public var aggregateRating: AggregateRating?
     
     /// A secondary title of the CreativeWork.
     public var alternativeHeadline: String?
     
     /// A media object that encodes this CreativeWork. This property is a
     /// synonym for encoding.
-//    public var associatedMedia: MediaObject?
+    public var associatedMedia: MediaObject?
     
     /// An intended audience, i.e. a group for whom something was created.
     public var audience: Audience?
     
     /// An embedded audio object.
-//    public var audio: AudioObject?
+    public var audio: AudioObject?
     
     /// The author of this content or rating. Please note that author is special
     /// in that HTML 5 provides a special mechanism for indicating authorship
@@ -75,7 +75,7 @@ public class CreativeWork: Thing {
     public var citation: CreativeWorkOrText?
     
     /// Comments, typically from users.
-//    public var comment: Comment?
+    public var comment: Comment?
     
     /// The number of comments this CreativeWork (e.g. Article, Question or
     /// Answer) has received. This is most applicable to works published in Web
@@ -126,7 +126,7 @@ public class CreativeWork: Thing {
     public var editor: Person?
     
     /// An alignment to an established educational framework.
-//    public var educationalAlignment: AlignmentObject?
+    public var educationalAlignment: AlignmentObject?
     
     /// The purpose of a work in the context of education; for example,
     /// 'assignment', 'group work'.
@@ -134,7 +134,7 @@ public class CreativeWork: Thing {
     
     /// A media object that encodes this CreativeWork. This property is a
     /// synonym for associatedMedia.
-//    public var encoding: MediaObject?
+    public var encoding: MediaObject?
     
     /// A creative work that this work is an example/instance/realization/
     /// derivation of.
@@ -149,14 +149,14 @@ public class CreativeWork: Thing {
     /// fileFormat information. Unregistered or niche file formats can be
     /// indicated instead via the most appropriate URL, e.g. defining Web page
     /// or a Wikipedia entry.
-//    public var fileFormat: URLOrText?
+    public var fileFormat: URLOrText?
     
     /// A person or organization that supports (sponsors) something through some
     /// kind of financial contribution.
     public var funder: OrganizationOrPerson?
     
     /// Genre of the creative work, broadcast channel or group.
-//    public var genre: URLOrText?
+    public var genre: URLOrText?
     
     /// Indicates a CreativeWork that is (in some sense) a part of this
     /// CreativeWork.
@@ -168,12 +168,12 @@ public class CreativeWork: Thing {
     
     /// The language of the content or performance or used in an action. Please
     /// use one of the language codes from the IETF BCP 47 standard.
-//    public var inLanguage: LanguageOrText?
+    public var inLanguage: LanguageOrText?
     
     /// The number of interactions for the CreativeWork using the WebSite or
     /// SoftwareApplication. The most specific child type of InteractionCounter
     /// should be used.
-//    public var interactionStatistic: InteractionCounter?
+    public var interactionStatistic: InteractionCounter?
     
     /// The predominant mode of learning supported by the learning resource.
     /// Acceptable values are 'active', 'expositive', or 'mixed'.
@@ -184,7 +184,7 @@ public class CreativeWork: Thing {
     
     /// A resource that was used in the creation of this resource. This term can
     /// be repeated for multiple sources.
-//    public var basedOn: CreativeWorkOrProductOrURL?
+    public var basedOn: CreativeWorkOrProductOrURL?
     
     /// Indicates whether this content is family friendly.
     public var isFamilyFriendly: Bool?
@@ -203,7 +203,7 @@ public class CreativeWork: Thing {
     
     /// A license document that applies to this content, typically indicated by
     /// URL.
-//    public var license: CreativeWorkOrURL?
+    public var license: CreativeWorkOrURL?
     
     /// The location where the CreativeWork was created, which may not be the
     /// same as the location depicted in the CreativeWork.
@@ -217,7 +217,7 @@ public class CreativeWork: Thing {
     
     /// A material that something is made from, e.g. leather, wool, cotton,
     /// paper.
-//    public var material: ProductOrURLOrText?
+    public var material: ProductOrURLOrText?
     
     /// Indicates that the CreativeWork contains a reference to, but is not
     /// necessarily about a concept.
@@ -226,10 +226,10 @@ public class CreativeWork: Thing {
     /// An offer to provide this item—for example, an offer to sell a product,
     /// rent the DVD of a movie, perform a service, or give away tickets to an
     /// event.
-//    public var offers: [Offer]?
+    public var offers: [Offer]?
     
     /// The position of an item in a series or sequence of items.
-//    public var position: IntegerOrText?
+    public var position: IntegerOrText?
     
     /// The person or organization who produced the work (e.g. music album,
     /// movie, tv/radio series etc.).
@@ -241,7 +241,7 @@ public class CreativeWork: Thing {
     public var provider: OrganizationOrPerson?
     
     /// A publication event associated with the item.
-//    public var publication: PublicationEvent?
+    public var publication: PublicationEvent?
     
     /// The publisher of the creative work.
     public var publisher: OrganizationOrPerson?
@@ -267,17 +267,17 @@ public class CreativeWork: Thing {
     
     /// The place and time the release was issued, expressed as a
     /// PublicationEvent.
-//    public var releasedEvent: PublicationEvent?
+    public var releasedEvent: PublicationEvent?
     
     /// A review of the item.
     /// - schema.org property name: review
-//    public var reviews: [Review]?
+    public var reviews: [Review]?
     
     /// Indicates (by URL or string) a particular version of a schema used in
     /// some CreativeWork. For example, a document could declare a schemaVersion
     /// using an URL such as http://schema.org/version/2.0/ if precise
     /// indication of schema version was required by some application.
-//    public var schemaVersion: URLOrText?
+    public var schemaVersion: URLOrText?
     
     /// The Organization on whose behalf the creator was working.
     public var sourceOrganization: Organization?
@@ -307,7 +307,7 @@ public class CreativeWork: Thing {
     /// Written works such as books may sometimes have precise temporal coverage
     /// too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601
     /// interval format format via "1939/1945".
-//    public var temporalCoverage: DateTimeOrURLOrText?
+    public var temporalCoverage: DateTimeOrURLOrText?
     
     /// The textual content of this CreativeWork.
     public var text: String?
@@ -334,10 +334,10 @@ public class CreativeWork: Thing {
     public var typicalAgeRange: String?
     
     /// The version of the CreativeWork embodied by a specified resource.
-//    public var version: IntegerOrText?
+    public var version: IntegerOrText?
     
     /// An embedded video object.
-//    public var video: VideoObject?
+    public var video: VideoObject?
     
     /// Example/instance/realization/derivation of the concept of this creative
     /// work. eg. The paperback edition, first edition, or eBook.

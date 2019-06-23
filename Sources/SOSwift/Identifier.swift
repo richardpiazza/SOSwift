@@ -3,7 +3,7 @@ import Foundation
 public typealias PropertyValueOrURLOrText = Identifier
 
 public enum Identifier: Codable {
-//    case propertyValue(value: SOPropertyValue)
+    case propertyValue(value: PropertyValue)
     case url(value: URL)
     case text(value: String)
     
@@ -39,9 +39,9 @@ public enum Identifier: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-//        case SOPropertyValue.type:
-//            let value = try container.decode(SOPropertyValue.self)
-//            self = .propertyValue(value: value)
+        case PropertyValue.schemaType:
+            let value = try container.decode(PropertyValue.self)
+            self = .propertyValue(value: value)
         default:
             throw Schema.typeDecodingError
         }
@@ -51,8 +51,8 @@ public enum Identifier: Codable {
         var container = encoder.singleValueContainer()
         
         switch self {
-//        case .propertyValue(let value):
-//            try container.encode(value)
+        case .propertyValue(let value):
+            try container.encode(value)
         case .url(let value):
             try container.encode(value)
         case .text(let value):
@@ -60,14 +60,14 @@ public enum Identifier: Codable {
         }
     }
     
-//    public var propertyValue: SOPropertyValue? {
-//        switch self {
-//        case .propertyValue(let value):
-//            return value
-//        default:
-//            return nil
-//        }
-//    }
+    public var propertyValue: PropertyValue? {
+        switch self {
+        case .propertyValue(let value):
+            return value
+        default:
+            return nil
+        }
+    }
     
     public var url: URL? {
         switch self {

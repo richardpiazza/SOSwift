@@ -28,7 +28,7 @@ public class Thing: Schema {
     
     /// An image of the item. This can be a URL or a fully described
     /// ImageObject.
-//    public var image: ImageObjectOrURL?
+    public var image: ImageObjectOrURL?
     
     /// Indicates a page (or other CreativeWork) for which this thing is the
     /// main entity being described.

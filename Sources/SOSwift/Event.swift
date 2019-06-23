@@ -11,7 +11,7 @@ public class Event: Thing {
     public var actors: [Person]?
     
     /// The overall rating, based on a collection of reviews or ratings, of the item.
-//    public var aggregateRating: AggregateRating?
+    public var aggregateRating: AggregateRating?
     
     /// A person or organization attending the event.
     public var attendees: [OrganizationOrPerson]?
@@ -53,7 +53,7 @@ public class Event: Thing {
     /// The language of the content or performance or used in an action. Please
     /// use one of the language codes from the IETF BCP 47 standard. See also
     /// availableLanguage.
-//    public var inLanguage: LanguageOrText?
+    public var inLanguage: LanguageOrText?
     
     /// A flag to signal that the publication is accessible for free.
     /// - **Supersedes**: _free_.
@@ -61,7 +61,7 @@ public class Event: Thing {
     
     /// The location of for example where the event is happening, an
     /// organization is located, or where an action takes place.
-//    public var location: PlaceOrPostalAddressOrText?
+    public var location: PlaceOrPostalAddressOrText?
     
     /// The total number of individuals that may attend an event or venue.
     public var maximumAttendeeCapacity: Int?
@@ -69,7 +69,7 @@ public class Event: Thing {
     /// An offer to provide this item—for example, an offer to sell a product,
     /// rent the DVD of a movie, perform a service, or give away tickets to an
     /// event.
-//    public var offers: [Offer]?
+    public var offers: [Offer]?
     
     /// An organizer of an Event.
     public var organizer: OrganizationOrPerson?
@@ -93,7 +93,7 @@ public class Event: Thing {
     public var remainingAttendeeCapacity: Int?
     
     /// A review of the item. Supersedes reviews.
-//    public var reviews: [Review]?
+    public var reviews: [Review]?
     
     /// A person or organization that supports a thing through a pledge,
     /// promise, or financial contribution. e.g. a sponsor of a Medical Study or
@@ -119,7 +119,7 @@ public class Event: Thing {
     /// Organization or person who adapts a creative work to different
     /// languages, regional  differences and technical requirements of a target
     /// market, or that translates during some event.
-//    public var translator: OrganizationOrPerson?
+    public var translator: OrganizationOrPerson?
     
     /// The typical expected age range, e.g. '7-9', '11-'.
     public var typicalAgeRange: String?

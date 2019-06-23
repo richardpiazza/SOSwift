@@ -7,31 +7,31 @@ public class Organization: Thing {
     /// statement about public engagement activities (for news media, the
     /// newsroom’s), including involving the public - digitally or otherwise -
     /// in coverage decisions, reporting and activities after publication.
-//    public var actionableFeedbackPolicy: CreativeWorkOrURL?
+    public var actionableFeedbackPolicy: CreativeWorkOrURL?
     
     /// Physical address of the item.
-//    public var address: PostalAddressOrText?
+    public var address: PostalAddressOrText?
     
     /// The overall rating, based on a collection of reviews or ratings, of the
     /// item.
-//    public var aggregateRating: AggregateRating?
+    public var aggregateRating: AggregateRating?
     
     /// Alumni of an organization.
     /// Inverse property: alumniOf.
     public var alumni: [Person]?
     
     /// The geographic area where a service or offered item is provided.
-//    public var areaServed: AreaServed?
+    public var areaServed: AreaServed?
     
     /// An award won by or for this item
     public var awards: [String]?
     
     /// The brand(s) associated with a product or service, or the brand(s)
     /// maintained by an organization or business person.
-//    public var brands: [BrandOrOrganization]?
+    public var brands: [BrandOrOrganization]?
     
     /// A contact point for a person or organization.
-//    public var contactPoints: [ContactPoint]?
+    public var contactPoints: [ContactPoint]?
     
     /// For an Organization (e.g. NewsMediaOrganization), a statement describing
     /// (in news media, the newsroom’s) disclosure and correction policy for
@@ -99,7 +99,7 @@ public class Organization: Thing {
     
     /// Indicates an OfferCatalog listing for this Organization, Person, or
     /// Service.
-//    public var offerCatalog: OfferCatalog?
+    public var offerCatalog: OfferCatalog?
     
     /// Points-of-Sales operated by the organization or person.
     public var pointsOfSales: [Place]?
@@ -118,14 +118,14 @@ public class Organization: Thing {
     
     /// The location of for example where the event is happening, an
     /// organization is located, or where an action takes place.
-//    public var location: PlaceOrPostalAddressOrText?
+    public var location: PlaceOrPostalAddressOrText?
     
     /// An associated logo.
-//    public var logo: ImageObjectOrURL?
+    public var logo: ImageObjectOrURL?
     
     /// A pointer to products or services offered by the organization or person.
     /// Inverse property: offeredBy.
-//    public var makesOffers: [Offer]?
+    public var makesOffers: [Offer]?
     
     /// A member of an Organization or a ProgramMembership. Organizations can be
     /// members of organizations; ProgramMembership is typically for
@@ -136,17 +136,17 @@ public class Organization: Thing {
     /// An Organization (or ProgramMembership) to which this Person or
     /// Organization belongs.
     /// - **Inverse property**: _member_
-//    public var memberOf: OrganizationOrProgramMembership?
+    public var memberOf: OrganizationOrProgramMembership?
     
     /// The North American Industry Classification System (NAICS) code for a
     /// particular organization or business person.
     public var naics: String?
     
     /// The number of employees in an organization e.g. business.
-//    public var numberOfEmployees: QuantitativeValue?
+    public var numberOfEmployees: QuantitativeValue?
     
     /// Products owned by the organization or person.
-//    public var owns: [OwnershipInfoOrProduct]?
+    public var owns: [OwnershipInfoOrProduct]?
     
     /// The larger organization that this organization is a subOrganization of,
     /// if any.
@@ -166,11 +166,11 @@ public class Organization: Thing {
     public var publishingPrinciples: CreativeWorkOrURL?
     
     /// A review of the item.
-//    public var reviews: [Review]?
+    public var reviews: [Review]?
     
     /// A pointer to products or services sought by the organization or person
     /// (demand).
-//    public var seeks: [Demand]?
+    public var seeks: [Demand]?
     
     /// A person or organization that supports a thing through a pledge,
     /// promise, or financial contribution. e.g. a sponsor of a Medical Study or

@@ -1,6 +1,6 @@
 import Foundation
 
-public class MonentaryAmount: Thing {
+public class MonetaryAmount: Thing {
     
     /// The currency in which the monetary amount is expressed (in 3-letter
     /// ISO 4217 format).
@@ -24,6 +24,6 @@ public class MonentaryAmount: Thing {
     ///         for values is 'Number'.
     /// - note: For PropertyValue, it can be 'Text;', 'Number', 'Boolean', or
     ///         'StructuredValue'.
-//    public var value: Value?
+    public var value: Value?
     
 }

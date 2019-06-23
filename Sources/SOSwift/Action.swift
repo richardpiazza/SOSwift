@@ -30,7 +30,7 @@ public class Action: Thing {
     
     /// The location of for example where the event is happening, an
     /// organization is located, or where an action takes place.
-//    public var location: PlaceOrPostalAddressOrText?
+    public var location: PlaceOrPostalAddressOrText?
     
     /// The object upon which the action is carried out, whose state is kept
     /// intact or changed. Also known as the semantic roles patient, affected or
@@ -59,6 +59,6 @@ public class Action: Thing {
     public var startTime: DateTime?
     
     /// Indicates a target EntryPoint for an Action.
-//    public var target: EntryPoint?
+    public var target: EntryPoint?
     
 }

@@ -3,11 +3,11 @@ import Foundation
 public class GeoShape: Thing {
     
     /// Physical address of the item.
-//    public var address: PostalAddressOrText?
+    public var address: PostalAddressOrText?
     
     /// The country. For example, USA. You can also provide the two-letter ISO
     /// 3166-1 alpha-2 country code.
-//    public var addressCountry: CountryOrText?
+    public var addressCountry: CountryOrText?
     
     /// A box is the area enclosed by the rectangle formed by two points. The
     /// first point is the lower corner, the second point is the upper corner. A

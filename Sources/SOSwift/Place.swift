@@ -11,20 +11,20 @@ public class Place: Thing {
     ///         typically expect such data to be provided using those
     ///         properties, rather than using the generic property/value
     ///         mechanism.
-//    public var additionalProperty: PropertyValue?
+    public var additionalProperty: PropertyValue?
     
     /// Physical address of the item.
-//    public var address: PostalAddressOrText?
+    public var address: PostalAddressOrText?
     
     /// The overall rating, based on a collection of reviews or ratings, of the
     /// item.
-//    public var aggregateRating: AggregateRating?
+    public var aggregateRating: AggregateRating?
     
     /// An amenity feature (e.g. a characteristic or service) of the
     /// Accommodation. This generic property does not make a statement about
     /// whether the feature is included in an offer for the main accommodation
     /// or available at extra costs.
-//    public var amenityFeature: LocationFeatureSpecification?
+    public var amenityFeature: LocationFeatureSpecification?
     
     /// A short textual code (also called "store code") that uniquely identifies
     /// a place of business. The code is typically assigned by the
@@ -50,7 +50,7 @@ public class Place: Thing {
     public var faxNumber: String?
     
     /// The geo coordinates of the place.
-//    public var geo: GeoCoordinatesOrGeoShape?
+    public var geo: GeoCoordinatesOrGeoShape?
     
     /// The Global Location Number (GLN, sometimes also referred to as
     /// International Location Number or ILN) of the respective organization,
@@ -59,7 +59,7 @@ public class Place: Thing {
     public var globalLocationNumber: String?
     
     /// A URL to a map of the place.
-//    public var map: MapOrURL?
+    public var map: MapOrURL?
     
     /// The International Standard of Industrial Classification of All Economic
     /// Activities (ISIC), Revision 4 code for a particular organization,
@@ -67,19 +67,19 @@ public class Place: Thing {
     public var isicV4: String?
     
     /// An associated logo.
-//    public var logo: ImageObjectOrURL?
+    public var logo: ImageObjectOrURL?
     
     /// The total number of individuals that may attend an event or venue.
     public var maximumAttendeeCapacity: Int?
     
     /// The opening hours of a certain place.
-//    public var openingHoursSpecification: [OpeningHoursSpecification]?
+    public var openingHoursSpecification: [OpeningHoursSpecification]?
     
     /// A photograph of this place.
-//    public var photos: [ImageObjectOrPhotograph]?
+    public var photos: [ImageObjectOrPhotograph]?
     
     /// A review of the item.
-//    public var reviews: [Review]?
+    public var reviews: [Review]?
     
     /// Indicates whether it is allowed to smoke in the place, e.g. in the
     /// restaurant, hotel or hotel room.
@@ -88,7 +88,7 @@ public class Place: Thing {
     /// The special opening hours of a certain place.
     /// Use this to explicitly override general opening hours brought in scope
     /// by openingHoursSpecification or openingHours.
-//    public var specialOpeningHoursSpecification: [OpeningHoursSpecification]?
+    public var specialOpeningHoursSpecification: [OpeningHoursSpecification]?
     
     /// The telephone number.
     public var telephone: String?

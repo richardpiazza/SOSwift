@@ -7,6 +7,6 @@ public class Audience: Thing {
     public var audienceType: String?
     
     /// The geographic area associated with the audience.
-//    public var geographicArea: AdministrativeArea?
+    public var geographicArea: AdministrativeArea?
     
 }

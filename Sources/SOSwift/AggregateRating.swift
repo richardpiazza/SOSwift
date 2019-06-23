@@ -1,0 +1,14 @@
+import Foundation
+
+public class AggregateRating: Rating {
+    
+    /// The item that is being reviewed/rated.
+    public var itemReviewed: Thing?
+    
+    /// The count of total number of ratings.
+    public var ratingCount: Int?
+    
+    /// The count of total number of reviews.
+    public var reviewCount: Int?
+    
+}

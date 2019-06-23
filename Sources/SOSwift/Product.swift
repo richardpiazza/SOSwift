@@ -11,11 +11,11 @@ public class Product: Thing {
     ///         typically expect such data to be provided using those
     ///         properties, rather than using the generic property/value
     ///         mechanism.
-//    public var additionalProperty: PropertyValue?
+    public var additionalProperty: PropertyValue?
     
     /// The overall rating, based on a collection of reviews or ratings, of the
     /// item.
-//    public var aggregateRating: AggregateRating?
+    public var aggregateRating: AggregateRating?
     
     /// An intended audience, i.e. a group for whom something was created.
     public var audience: Audience?
@@ -25,17 +25,17 @@ public class Product: Thing {
     
     /// The brand(s) associated with a product or service, or the brand(s)
     /// maintained by an organization or business person.
-//    public var brand: BrandOrOrganization?
+    public var brand: BrandOrOrganization?
     
     /// A category for the item. Greater signs or slashes can be used to
     /// informally indicate a category hierarchy.
-//    public var category: ThingOrText?
+    public var category: ThingOrText?
     
     /// The color of the product.
     public var color: String?
     
     /// The depth of the item.
-//    public var depth: DistanceOrQuantitativeValue?
+    public var depth: DistanceOrQuantitativeValue?
     
     /// The GTIN-12 code of the product, or the product to which the offer
     /// refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a
@@ -58,7 +58,7 @@ public class Product: Thing {
     public var gtin8: String?
     
     /// The height of the item.
-//    public var height: DistanceOrQuantitativeValue?
+    public var height: DistanceOrQuantitativeValue?
     
     /// A pointer to another product (or multiple products) for which this
     /// product is an accessory or spare part.
@@ -69,33 +69,33 @@ public class Product: Thing {
     public var consumableFor: [Product]?
     
     /// A pointer to another, somehow related product (or multiple products).
-//    public var relatedTo: [ProductOrService]?
+    public var relatedTo: [ProductOrService]?
     
     /// A pointer to another, functionally similar product (or multiple
     /// products).
-//    public var similarTo: [ProductOrService]?
+    public var similarTo: [ProductOrService]?
     
     /// A predefined value from OfferItemCondition or a textual description of
     /// the condition of the product or service, or the products or services
     /// included in the offer.
-//    public var itemCondition: OfferItemCondition?
+    public var itemCondition: OfferItemCondition?
     
     /// An associated logo.
-//    public var logo: ImageObjectOrURL?
+    public var logo: ImageObjectOrURL?
     
     /// The manufacturer of the product.
     public var manufacturer: Organization?
     
     /// A material that something is made from, e.g. leather, wool, cotton,
     /// paper.
-//    public var material: ProductOrURLOrText?
+    public var material: ProductOrURLOrText?
     
     /// The model of the product. Use with the URL of a ProductModel or a
     /// textual representation of the model identifier. The URL of the
     /// ProductModel can be from an external source. It is recommended to
     /// additionally provide strong product identifiers via the gtin8/gtin13/
     /// gtin14 and mpn properties.
-//    public var model: ProductModelOrText?
+    public var model: ProductModelOrText?
     
     /// The Manufacturer Part Number (MPN) of the product, or the product to
     /// which the offer refers.
@@ -104,7 +104,7 @@ public class Product: Thing {
     /// An offer to provide this item—for example, an offer to sell a product,
     /// rent the DVD of a movie, perform a service, or give away tickets to an
     /// event.
-//    public var offers: [Offer]?
+    public var offers: [Offer]?
     
     /// The product identifier, such as ISBN. For example: meta
     /// itemprop="productID" content="isbn:123-456-789".
@@ -121,17 +121,17 @@ public class Product: Thing {
     public var releaseDate: DateOnly?
     
     /// A review of the item.
-//    public var reviews: [Review]?
+    public var reviews: [Review]?
     
     /// The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a
     /// product or service, or the product to which the offer refers.
     public var sku: String?
     
     /// The weight of the product or person.
-//    public var weight: QuantitativeValue?
+    public var weight: QuantitativeValue?
     
     /// The width of the item.
-//    public var width: DistanceOrQuantitativeValue?
+    public var width: DistanceOrQuantitativeValue?
     
     private enum CodingKeys: String, CodingKey {
         case additionalProperty

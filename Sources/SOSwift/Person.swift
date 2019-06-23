@@ -6,7 +6,7 @@ public class Person: Thing {
     public var additionalName: String?
     
     /// Physical address of the item.
-//    public var address: PostalAddressOrText?
+    public var address: PostalAddressOrText?
     
     /// An organization that this person is affiliated with. For example, a
     /// school/university, a club, or a team.
@@ -14,7 +14,7 @@ public class Person: Thing {
     
     /// An organization that the person is an alumni of.
     /// - **Inverse property**: _alumni_
-//    public var alumniOf: EducationalOrganizationOrOrganization?
+    public var alumniOf: EducationalOrganizationOrOrganization?
     
     /// An award won by or for this item.
     public var awards: [String]?
@@ -27,16 +27,16 @@ public class Person: Thing {
     
     /// The brand(s) associated with a product or service, or the brand(s)
     /// maintained by an organization or business person.
-//    public var brands: [BrandOrOrganization]?
+    public var brands: [BrandOrOrganization]?
     
     /// A child of the person.
     public var children: [Person]?
     
     /// A colleague of the person.
-//    public var colleagues: [PersonOrURL]?
+    public var colleagues: [PersonOrURL]?
     
     /// A contact point for a person or organization.
-//    public var contactPoints: [ContactPoint]?
+    public var contactPoints: [ContactPoint]?
     
     /// Date of death.
     public var deathDate: DateOnly?
@@ -68,7 +68,7 @@ public class Person: Thing {
     /// Gender of the person. While http://schema.org/Male and
     /// http://schema.org/Female may be used, text strings are also acceptable
     /// for people who do not identify as a binary gender.
-//    public var gender: GenderOrText?
+    public var gender: GenderOrText?
     
     /// Given name. In the U.S., the first name of a Person. This can be used
     /// along with familyName instead of the name property.
@@ -82,16 +82,16 @@ public class Person: Thing {
     
     /// Indicates an OfferCatalog listing for this Organization, Person, or
     /// Service.
-//    public var offerCatalog: OfferCatalog?
+    public var offerCatalog: OfferCatalog?
     
     /// Points-of-Sales operated by the organization or person.
     public var pointsOfSales: [Place]?
     
     /// The height of the item.
-//    public var height: DistanceOrQuantitativeValue?
+    public var height: DistanceOrQuantitativeValue?
     
     /// A contact location for a person's residence.
-//    public var homeLocation: ContactPointOrPlace?
+    public var homeLocation: ContactPointOrPlace?
     
     /// An honorific prefix preceding a Person's name such as Dr/Mrs/Mr.
     public var honorificPrefix: String?
@@ -112,30 +112,30 @@ public class Person: Thing {
     
     /// A pointer to products or services offered by the organization or person.
     /// - **Inverse property**: _offeredBy_
-//    public var makesOffer: [Offer]?
+    public var makesOffer: [Offer]?
     
     /// An Organization (or ProgramMembership) to which this Person or
     /// Organization belongs.
     /// - **Inverse property**: _member_
-//    public var memberOf: [OrganizationOrProgramMembership]?
+    public var memberOf: [OrganizationOrProgramMembership]?
     
     /// The North American Industry Classification System (NAICS) code for a
     /// particular organization or business person.
     public var naics: String?
     
     /// Nationality of the person.
-//    public var nationality: Country?
+    public var nationality: Country?
     
     /// The total financial value of the person as calculated by subtracting
     /// assets from liabilities.
-//    public var netWorth: MonetaryAmountOrPriceSpecification?
+    public var netWorth: MonetaryAmountOrPriceSpecification?
     
     /// The Person's occupation. For past professions, use Role for expressing
     /// dates.
-//    public var occupation: Occupation?
+    public var occupation: Occupation?
     
     /// Products owned by the organization or person.
-//    public var owns: [ProductOrService]?
+    public var owns: [ProductOrService]?
     
     /// A parent of this person.
     public var parents: [Person]?
@@ -159,7 +159,7 @@ public class Person: Thing {
     
     /// A pointer to products or services sought by the organization or person
     /// (demand).
-//    public var seeks: [Demand]?
+    public var seeks: [Demand]?
     
     /// A sibling of the person.
     public var siblings: [Person]?
@@ -183,10 +183,10 @@ public class Person: Thing {
     public var vatID: String?
     
     /// The weight of the product or person.
-//    public var weight: QuantitativeValue?
+    public var weight: QuantitativeValue?
     
     /// A contact location for a person's place of work.
-//    public var workLocation: ContactPointOrPlace?
+    public var workLocation: ContactPointOrPlace?
     
     /// Organizations that the person works for.
     public var worksFor: [Organization]?
