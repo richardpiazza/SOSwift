@@ -38,6 +38,8 @@ playground.xcworkspace
 # Packages/
 .build/
 .swiftpm
+SOSwift.xcodeproj
+SOSwift.xcodeproj/*
 
 
 # CocoaPods
