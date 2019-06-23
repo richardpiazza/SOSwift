@@ -28,6 +28,9 @@ public class Schema: Codable {
         case identifier
     }
     
+    public init() {
+    }
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class PersonOrURLTests: XCTestCase {
     
@@ -80,7 +79,7 @@ class PersonOrURLTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let person = SOPerson()
+        let person = Person()
         person.name = "Jon Snow"
         testObject.person = person
         
@@ -155,7 +154,7 @@ class PersonOrURLTests: XCTestCase {
     func testMultipleEncodes() {
         let testObject = TestClass()
         
-        let person = SOPerson()
+        let person = Person()
         person.name = "Jon Snow"
         
         let wiki = URL(string: "https://en.wikipedia.org/wiki/Jon_Snow_(character)")!

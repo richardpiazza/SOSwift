@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class AlignmentObjectOrCourseOrTextTests: XCTestCase {
 
@@ -9,44 +8,8 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         var course: AlignmentObjectOrCourseOrText?
         var text: AlignmentObjectOrCourseOrText?
         var multiple: [AlignmentObjectOrCourseOrText]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case alignmentObject
-            case course
-            case text
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.alignmentObject = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .alignmentObject)
-            self.course = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .course)
-            self.text = try container.decodeAlignmentObjectOrCourseOrTextIfPresent(forKey: .text)
-            self.multiple = try container.decodeAlignmentObjectsOrCoursesOrTextsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.alignmentObject, forKey: .alignmentObject)
-            try container.encodeIfPresent(self.course, forKey: .course)
-            try container.encodeIfPresent(self.text, forKey: .text)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
     }
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testSingleDecodes() {
         let json = """
             {
@@ -81,8 +44,8 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         }
         
         XCTAssertNotNil(testable.alignmentObject)
-        XCTAssertTrue(testable.alignmentObject! is SOAlignmentObjectOrCourseOrText)
-        switch testable.alignmentObject! as! SOAlignmentObjectOrCourseOrText {
+        XCTAssertTrue(testable.alignmentObject! is AlignmentObjectOrCourseOrText)
+        switch testable.alignmentObject! as! AlignmentObjectOrCourseOrText {
         case .alignmentObject:
             break
         default:
@@ -90,8 +53,8 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         }
         
         XCTAssertNotNil(testable.course)
-        XCTAssertTrue(testable.course! is SOAlignmentObjectOrCourseOrText)
-        switch testable.course! as! SOAlignmentObjectOrCourseOrText {
+        XCTAssertTrue(testable.course! is AlignmentObjectOrCourseOrText)
+        switch testable.course! as! AlignmentObjectOrCourseOrText {
         case .course:
             break
         default:
@@ -99,8 +62,8 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         }
         
         XCTAssertNotNil(testable.text)
-        XCTAssertTrue(testable.text! is SOAlignmentObjectOrCourseOrText)
-        switch testable.text! as! SOAlignmentObjectOrCourseOrText {
+        XCTAssertTrue(testable.text! is AlignmentObjectOrCourseOrText)
+        switch testable.text! as! AlignmentObjectOrCourseOrText {
         case .text:
             break
         default:
@@ -154,7 +117,7 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 3)
         
-        guard let alignmentObject = multiple[0] as? SOAlignmentObjectOrCourseOrText else {
+        guard let alignmentObject = multiple[0] as? AlignmentObjectOrCourseOrText else {
             XCTFail()
             return
         }
@@ -166,7 +129,7 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
             break
         }
         
-        guard let course = multiple[1] as? SOAlignmentObjectOrCourseOrText else {
+        guard let course = multiple[1] as? AlignmentObjectOrCourseOrText else {
             XCTFail()
             return
         }
@@ -178,7 +141,7 @@ class AlignmentObjectOrCourseOrTextTests: XCTestCase {
             break
         }
         
-        guard let text = multiple[2] as? SOAlignmentObjectOrCourseOrText else {
+        guard let text = multiple[2] as? AlignmentObjectOrCourseOrText else {
             XCTFail()
             return
         }

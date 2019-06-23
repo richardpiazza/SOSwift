@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class OrganizationOrProgramMembershipTests: XCTestCase {
     
@@ -83,7 +82,7 @@ class OrganizationOrProgramMembershipTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let org = SOOrganization()
+        let org = Organization()
         org.name = "Microsoft"
         testObject.organization = org
         
@@ -163,7 +162,7 @@ class OrganizationOrProgramMembershipTests: XCTestCase {
     func testMultipleEncodes() {
         let testObject = TestClass()
         
-        let org = SOOrganization()
+        let org = Organization()
         org.name = "Microsoft"
         
         let prog = SOProgramMembership()

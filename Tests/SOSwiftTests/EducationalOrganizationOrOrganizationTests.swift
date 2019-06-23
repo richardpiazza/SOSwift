@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class EducationalOrganizationOrOrganizationTests: XCTestCase {
     
@@ -78,7 +77,7 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         edOrg.name = "Yale"
         testObject.educationalOrganization = edOrg
         
-        let org = SOOrganization()
+        let org = Organization()
         org.name = "Bob's"
         testObject.organization = org
         
@@ -143,7 +142,7 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         let educationalOrganization = SOEducationalOrganization()
         educationalOrganization.name = "Harvard"
         
-        let organization = SOOrganization()
+        let organization = Organization()
         organization.name = "Microsoft"
         
         var multiple: [SOEducationalOrganizationOrOrganization] = []

@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class OrganizationOrPersonTests: XCTestCase {
     
@@ -8,39 +7,6 @@ class OrganizationOrPersonTests: XCTestCase {
         var organization: OrganizationOrPerson?
         var person: OrganizationOrPerson?
         var multiple: [OrganizationOrPerson]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case organization
-            case person
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.organization = try container.decodeOrganizationOrPersonIfPresent(forKey: .organization)
-            self.person = try container.decodeOrganizationOrPersonIfPresent(forKey: .person)
-            self.multiple = try container.decodeOrganizationsOrPersonsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.organization, forKey: .organization)
-            try container.encodeIfPresent(self.person, forKey: .person)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -65,14 +31,14 @@ class OrganizationOrPersonTests: XCTestCase {
             return
         }
         
-        guard let org = testObject.organization as? Organization else {
+        guard let org = testObject.organization?.organization else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(org.name, "Apple")
         
-        guard let person = testObject.person as? Person else {
+        guard let person = testObject.person?.person else {
             XCTFail()
             return
         }
@@ -83,11 +49,11 @@ class OrganizationOrPersonTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let org = SOOrganization()
+        let org = Organization()
         org.name = "Microsoft"
         testObject.organization = org
         
-        let person = SOPerson()
+        let person = Person()
         person.name = "Satyamania"
         testObject.person = person
         
@@ -163,10 +129,10 @@ class OrganizationOrPersonTests: XCTestCase {
     func testMultipleEncodes() {
         let testObject = TestClass()
         
-        let org = SOOrganization()
+        let org = Organization()
         org.name = "Microsoft"
         
-        let person = SOPerson()
+        let person = Person()
         person.name = "Satyamania"
         
         testObject.multiple = [org, person]

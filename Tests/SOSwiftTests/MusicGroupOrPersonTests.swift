@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class MusicGroupOrPersonTests: XCTestCase {
     
@@ -83,7 +82,7 @@ class MusicGroupOrPersonTests: XCTestCase {
         musicGroup.name = "The Beatles"
         testObject.musicGroup = musicGroup
         
-        let person = SOPerson()
+        let person = Person()
         person.name = "Paul McCartney"
         testObject.person = person
         

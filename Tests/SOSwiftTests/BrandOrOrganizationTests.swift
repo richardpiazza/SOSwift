@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class BrandOrOrganizationTests: XCTestCase {
 
@@ -98,7 +97,7 @@ class BrandOrOrganizationTests: XCTestCase {
     func testSingleEncodes() {
         let testable = TestClass()
         testable.brand = SOBrandOrOrganization.brand(value: SOBrand())
-        testable.organization = SOBrandOrOrganization.organization(value: SOOrganization())
+        testable.organization = SOBrandOrOrganization.organization(value: Organization())
         
         let json: String
         do {
@@ -177,7 +176,7 @@ class BrandOrOrganizationTests: XCTestCase {
         let testable = TestClass()
         let brand = SOBrand()
         brand.name = "A Brand"
-        let organization = SOOrganization()
+        let organization = Organization()
         organization.name = "An Organization"
         testable.multiple = [brand, organization]
         

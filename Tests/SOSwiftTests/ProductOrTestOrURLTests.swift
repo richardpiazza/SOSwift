@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class ProductOrTextOrURLTests: XCTestCase {
     

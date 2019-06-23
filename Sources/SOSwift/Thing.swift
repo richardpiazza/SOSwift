@@ -54,5 +54,4 @@ public class Thing: Schema {
     /// URL of the item.
     public var url: URL?
     
-    
 }

@@ -1,6 +1,5 @@
 import Foundation
 @testable import SOSwift
-import SOSwiftVocabulary
 
 enum TestErrors: Error {
     case utf8Encoding

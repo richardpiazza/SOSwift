@@ -1,6 +1,5 @@
 import XCTest
 @testable import SOSwift
-import SOSwiftVocabulary
 
 class ImageObjectOrPhotographTests: XCTestCase {
     
@@ -15,29 +14,6 @@ class ImageObjectOrPhotographTests: XCTestCase {
         var imageObject: ImageObjectOrPhotograph?
         var photograph: ImageObjectOrPhotograph?
         var multiple: [ImageObjectOrPhotograph]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case imageObject
-            case photograph
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.imageObject = try container.decodeImageObjectOrPhotographIfPresent(forKey: .imageObject)
-            self.photograph = try container.decodeImageObjectOrPhotographIfPresent(forKey: .photograph)
-            self.multiple = try container.decodeImageObjectsOrPhotographsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.imageObject, forKey: .imageObject)
-            try container.encodeIfPresent(self.photograph, forKey: .photograph)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
     }
     
     func testSingleDecodes() throws {
@@ -56,14 +32,14 @@ class ImageObjectOrPhotographTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        guard let imageObject = (testObject.imageObject as? SOImageObjectOrPhotograph)?.imageObject else {
+        guard let imageObject = testObject.imageObject?.imageObject else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(imageObject.name, "An Image")
         
-        guard let photo = (testObject.photograph as? SOImageObjectOrPhotograph)?.photograph else {
+        guard let photo = testObject.photograph?.photograph else {
             XCTFail()
             return
         }
@@ -74,13 +50,13 @@ class ImageObjectOrPhotographTests: XCTestCase {
     func testSingleEncodes() throws {
         let testObject = TestClass()
         
-        let imageObject = SOImageObject()
+        let imageObject = ImageObject()
         imageObject.name = "Wacky"
-        testObject.imageObject = imageObject
+        testObject.imageObject = .imageObject(value: imageObject)
         
-        let photo = SOPhotograph()
+        let photo = Photograph()
         photo.name = "Taffy"
-        testObject.photograph = photo
+        testObject.photograph = .photo(value: photo)
         
         let dictionary = try testObject.dictionary()
         
@@ -117,7 +93,7 @@ class ImageObjectOrPhotographTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        guard let multiple = testObject.multiple as? [SOImageObjectOrPhotograph] else {
+        guard let multiple = testObject.multiple else {
             XCTFail()
             return
         }
@@ -132,13 +108,13 @@ class ImageObjectOrPhotographTests: XCTestCase {
     }
     
     func testMultipleEncodes() throws {
-        let imageObject = SOImageObject()
+        let imageObject = ImageObject()
         imageObject.name = "Fruit Plate"
         
-        let photograph = SOPhotograph()
+        let photograph = Photograph()
         photograph.name = "Cheese Board"
         
-        var multiple = [SOImageObjectOrPhotograph]()
+        var multiple = [ImageObjectOrPhotograph]()
         multiple.append(.imageObject(value: imageObject))
         multiple.append(.photograph(value: photograph))
         
