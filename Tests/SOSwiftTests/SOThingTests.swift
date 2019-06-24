@@ -4,18 +4,16 @@ import XCTest
 class ThingTests: XCTestCase {
     
     static var allTests = [
-        ("testThingEncodeContextAndType", testThingEncodeContextAndType)
+        ("testSchema", testSchema),
+        ("testSingleDecode", testSingleDecode),
+        ("testSingleEncode", testSingleEncode),
     ]
     
-    override func setUp() {
-        super.setUp()
+    func testSchema() throws {
+        XCTAssertEqual(Thing.schemaType, "Thing")
     }
     
-    override func tearDown() {
-        super.tearDown()
-    }
-    
-    func testThing() {
+    func testSingleDecode() throws {
         let json = """
             {
                 "additionalType" : "http://schema.org/MedicalEntity",
@@ -46,18 +44,10 @@ class ThingTests: XCTestCase {
             return
         }
 
-        var thing: Thing
+        let thing = try JSONDecoder().decode(Thing.self, from: data)
 
-        do {
-            thing = try JSONDecoder().decode(Thing.self, from: data)
-        } catch {
-            print(error)
-            XCTFail()
-            return
-        }
-
-        XCTAssertNotNil(thing.additionalType)
-        XCTAssertTrue(thing.additionalType == URL(string: "http://schema.org/MedicalEntity"))
+        XCTAssertEqual(thing.additionalType, URL(string: "http://schema.org/MedicalEntity"))
+        
         XCTAssertNotNil(thing.alternativeName)
         XCTAssertTrue(thing.alternativeName == "Pencil Pusher")
         XCTAssertNotNil(thing.description)
@@ -72,35 +62,21 @@ class ThingTests: XCTestCase {
         XCTAssertNotNil(thing.url)
     }
     
-    func testThingEncodeContextAndType() {
+    func testSingleEncode() throws {
         let thing = Thing()
-        let data: Data
-        do {
-            data = try JSONEncoder().encode(thing)
-        } catch {
-            XCTFail()
-            return
-        }
+        thing.identifier = .text(value: "1234567890")
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String : Any]
-        } catch {
-            XCTFail()
-            return
-        }
+        let data = try JSONEncoder().encode(thing)
+        let dictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String : Any]
         
-        guard let type = dictionary["@type"] as? String else {
-            XCTFail()
-            return
-        }
+        let id = dictionary["@id"] as? String
+        let type = dictionary["@type"] as? String
+        let context = dictionary["@context"] as? String
+        let identifier = dictionary["identifier"] as? String
         
-        guard let context = dictionary["@context"] as? String else {
-            XCTFail()
-            return
-        }
-        
+        XCTAssertEqual(id, "1234567890")
         XCTAssertEqual(type, "Thing")
         XCTAssertEqual(context, "http://www.schema.org")
+        XCTAssertEqual(identifier, "1234567890")
     }
 }

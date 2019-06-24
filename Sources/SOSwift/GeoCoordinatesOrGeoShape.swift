@@ -8,8 +8,8 @@ public enum GeoCoordinatesOrGeoShape: Codable {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         
-        guard let type = dictionary[Schema.CodingKeys.type.rawValue] as? String else {
-            throw Schema.typeDecodingError
+        guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {
+            throw SchemaErrors.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -22,7 +22,7 @@ public enum GeoCoordinatesOrGeoShape: Codable {
             let value = try container.decode(GeoShape.self)
             self = .geoShape(value: value)
         default:
-            throw Schema.typeDecodingError
+            throw SchemaErrors.typeDecodingError
         }
     }
     

@@ -38,8 +38,8 @@ public enum Value: Codable {
             return
         }
         
-        guard let type = jsonDictionary[Schema.CodingKeys.type.rawValue] as? String else {
-            throw Schema.typeDecodingError
+        guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
+            throw SchemaErrors.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -49,7 +49,7 @@ public enum Value: Codable {
             let value = try container.decode(StructuredValue.self)
             self = .structuredValue(value: value)
         default:
-            throw Schema.typeDecodingError
+            throw SchemaErrors.typeDecodingError
         }
     }
     

@@ -3,6 +3,7 @@ import Foundation
 public typealias PropertyValueOrURLOrText = Identifier
 
 public enum Identifier: Codable {
+    
     case propertyValue(value: PropertyValue)
     case url(value: URL)
     case text(value: String)
@@ -32,8 +33,8 @@ public enum Identifier: Codable {
             return
         }
         
-        guard let type = jsonDictionary[Schema.CodingKeys.type.rawValue] as? String else {
-            throw Schema.typeDecodingError
+        guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
+            throw SchemaErrors.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -43,7 +44,7 @@ public enum Identifier: Codable {
             let value = try container.decode(PropertyValue.self)
             self = .propertyValue(value: value)
         default:
-            throw Schema.typeDecodingError
+            throw SchemaErrors.typeDecodingError
         }
     }
     

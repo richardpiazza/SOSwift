@@ -11,8 +11,8 @@ public enum ValueReference: Codable {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         
-        guard let type = dictionary[Schema.CodingKeys.type.rawValue] as? String else {
-            throw Schema.typeDecodingError
+        guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {
+            throw SchemaErrors.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -34,7 +34,7 @@ public enum ValueReference: Codable {
             let value = try container.decode(StructuredValue.self)
             self = .structuredValue(value: value)
         default:
-            throw Schema.typeDecodingError
+            throw SchemaErrors.typeDecodingError
         }
     }
     
