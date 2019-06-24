@@ -22,7 +22,7 @@ public enum CountryOrText: Codable {
         }
         
         guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -32,7 +32,7 @@ public enum CountryOrText: Codable {
             let value = try container.decode(Country.self)
             self = .country(value: value)
         default:
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
     }
     

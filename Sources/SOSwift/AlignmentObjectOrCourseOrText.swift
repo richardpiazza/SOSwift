@@ -23,7 +23,7 @@ public enum AlignmentObjectOrCourseOrText: Codable {
         }
         
         guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -36,7 +36,7 @@ public enum AlignmentObjectOrCourseOrText: Codable {
             let value = try container.decode(Course.self)
             self = .course(value: value)
         default:
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
     }
     

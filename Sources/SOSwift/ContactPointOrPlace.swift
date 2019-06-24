@@ -9,7 +9,7 @@ public enum ContactPointOrPlace: Codable {
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         
         guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -22,7 +22,7 @@ public enum ContactPointOrPlace: Codable {
             let value = try container.decode(Place.self)
             self = .place(value: value)
         default:
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
     }
     

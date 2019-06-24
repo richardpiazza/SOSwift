@@ -22,7 +22,7 @@ public enum MapOrURL: Codable {
         }
         
         guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -32,7 +32,7 @@ public enum MapOrURL: Codable {
             let value = try container.decode(Map.self)
             self = .map(value: value)
         default:
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
     }
     

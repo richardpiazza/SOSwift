@@ -2,62 +2,38 @@ import XCTest
 @testable import SOSwift
 
 class IdentifierTests: XCTestCase {
-
-    fileprivate class TestClass: Codable, Testable {
+    
+    static var allTests = [
+        ("testSingleDecode", testSingleDecode),
+        ("testSingleEncode", testSingleEncode),
+    ]
+    
+    fileprivate class TestClass: Schema, Codable {
         var propertyValue: Identifier?
         var url: Identifier?
         var text: Identifier?
     }
 
-    func testSingleDecodes() {
+    func testSingleDecode() throws {
         let json = """
-            {
-                "propertyValue" : {
-                    "@type" : "PropertyValue",
-                    "value" : "valueText"
-                },
-                "url" : "http://www.google.com",
-                "text" : "1234567890"
-            }
+        {
+            "propertyValue" : {
+                "@type" : "PropertyValue",
+                "value" : "valueText"
+            },
+            "url" : "http://www.google.com",
+            "text" : "1234567890"
+        }
         """
         
-        let testable: TestClass
-        do {
-            testable = try TestClass.make(with: json)
-        } catch {
-            print(error)
-            XCTFail()
-            return
-        }
+        let testClass = try TestClass.make(with: json)
         
-        guard let propertyValue = testable.propertyValue as? PropertyValue else {
-            XCTFail()
-            return
-        }
-        
-        guard let value = propertyValue.value as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(value, "valueText")
-        
-        guard let url = testable.url as? URL else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(url.host, "www.google.com")
-        
-        guard let text = testable.text as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(text, "1234567890")
+        XCTAssertEqual(testClass.propertyValue?.propertyValue?.value?.text, "valueText")
+        XCTAssertEqual(testClass.url?.url, URL(string: "http://www.google.com"))
+        XCTAssertEqual(testClass.text?.text, "1234567890")
     }
     
-    func testSingleEncodes() {
+    func testSingleEncode() throws {
         let testObject = TestClass()
         
         let propertyValue = PropertyValue()
@@ -67,38 +43,17 @@ class IdentifierTests: XCTestCase {
         testObject.url = .url(value: URL(string: "https://www.apple.com")!)
         testObject.text = .text(value: "Thanks")
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let pv = dictionary["propertyValue"] as? [String : Any] else {
-            XCTFail()
-            return
-        }
-        
-        guard let pvValue = pv["value"] as? String else {
-            XCTFail()
-            return
-        }
+        let dictionary = try testObject.asDictionary()
+        let pv = dictionary["propertyValue"] as? [String : Any]
+        let pvValue = pv?["value"] as? String
         
         XCTAssertEqual(pvValue, "Six")
         
-        guard let u = dictionary["url"] as? String, let url = URL(string: u) else {
-            XCTFail()
-            return
-        }
+        let u = dictionary["url"] as? String
         
-        XCTAssertEqual(url.host, "www.apple.com")
+        XCTAssertEqual(u?.contains("www.apple.com"), true)
         
-        guard let t = dictionary["text"] as? String else {
-            XCTFail()
-            return
-        }
-        
+        let t = dictionary["text"] as? String
         XCTAssertEqual(t, "Thanks")
     }
 }

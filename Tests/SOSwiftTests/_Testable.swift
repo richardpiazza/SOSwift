@@ -11,6 +11,7 @@ protocol Testable {
 }
 
 extension Testable where Self : Codable {
+    @available(*, deprecated)
     func json() throws -> String {
         let data = try JSONEncoder().encode(self)
         guard let json = String(data: data, encoding: .utf8) else {
@@ -19,6 +20,7 @@ extension Testable where Self : Codable {
         return json
     }
     
+    @available(*, deprecated)
     func dictionary() throws -> [String : Any] {
         let json = try self.json()
         
@@ -33,6 +35,7 @@ extension Testable where Self : Codable {
         return dictionary
     }
     
+    @available(*, deprecated)
     static func make(with json: String) throws -> Self {
         guard let data = json.data(using: .utf8) else {
             throw TestErrors.utf8Encoding
@@ -51,5 +54,11 @@ extension Calendar {
 extension TimeZone {
     static var gmt: TimeZone {
         return TimeZone(secondsFromGMT: 0)!
+    }
+}
+
+extension Dictionary where Key == String, Value == Any {
+    subscript(codingKey: CodingKey) -> Value? {
+        return self[codingKey.stringValue]
     }
 }

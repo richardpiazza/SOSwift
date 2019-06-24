@@ -18,13 +18,3 @@ public extension URL {
         }
     }
 }
-
-// MARK: - URL
-
-public extension KeyedEncodingContainer {
-    mutating func encodeIfPresent(_ value: URL?, forKey key: K) throws {
-        if let typedValue = value {
-            try self.encode(typedValue, forKey: key)
-        }
-    }
-}

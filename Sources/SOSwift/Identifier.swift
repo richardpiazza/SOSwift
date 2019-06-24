@@ -22,8 +22,10 @@ public enum Identifier: Codable {
             let container = try decoder.singleValueContainer()
             do {
                 let value = try container.decode(URL.self)
-                self = .url(value: value)
-                return
+                if value.isValid {
+                    self = .url(value: value)
+                    return
+                }
             } catch {
                 
             }
@@ -34,7 +36,7 @@ public enum Identifier: Codable {
         }
         
         guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -44,7 +46,7 @@ public enum Identifier: Codable {
             let value = try container.decode(PropertyValue.self)
             self = .propertyValue(value: value)
         default:
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
     }
     

@@ -22,7 +22,7 @@ public enum CreativeWorkOrText: Codable {
         }
         
         guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
         
         let container = try decoder.singleValueContainer()
@@ -32,7 +32,7 @@ public enum CreativeWorkOrText: Codable {
             let value = try container.decode(CreativeWork.self)
             self = .creativeWork(value: value)
         default:
-            throw SchemaErrors.typeDecodingError
+            throw SchemaError.typeDecodingError
         }
     }
     

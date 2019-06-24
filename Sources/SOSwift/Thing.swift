@@ -60,7 +60,7 @@ public class Thing: Schema, Codable {
     /// URL of the item.
     public var url: URL?
     
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case additionalType
         case alternativeName
         case description
@@ -77,6 +77,11 @@ public class Thing: Schema, Codable {
     
     public init() {
         
+    }
+    
+    public convenience init(name: String) {
+        self.init()
+        self.name = name
     }
     
     public required init(from decoder: Decoder) throws {
