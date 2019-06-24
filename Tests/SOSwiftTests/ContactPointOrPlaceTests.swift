@@ -9,17 +9,7 @@ class ContactPointOrPlaceTests: XCTestCase {
         var multiple: [ContactPointOrPlace]?
     }
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testSingleDecodes() {
+    func testSingleDecodes() throws {
         let json = """
             {
                 "contactPoint" : {
@@ -33,40 +23,16 @@ class ContactPointOrPlaceTests: XCTestCase {
             }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
+        let testObject = try TestClass.make(with: json)
         
-        guard let contactPoint = testObject.contactPoint as? ContactPointOrPlace else {
-            XCTFail()
-            return
-        }
+        let contactPoint = testObject.contactPoint?.contactPoint
+        XCTAssertEqual(contactPoint?.name, "Contact Point")
         
-        switch contactPoint {
-        case .place:
-            XCTFail()
-        case .contactPoint(let value):
-            XCTAssertEqual(value.name, "Contact Point")
-        }
-        
-        guard let place = testObject.place as? ContactPointOrPlace else {
-            XCTFail()
-            return
-        }
-        
-        switch place {
-        case .contactPoint:
-            XCTFail()
-        case .place(let value):
-            XCTAssertEqual(value.name, "A Place")
-        }
+        let place = testObject.place?.place
+        XCTAssertEqual(place?.name, "A Place")
     }
     
-    func testSingleEncodes() {
+    func testSingleEncodes() throws {
         let testObject = TestClass()
         
         let contactPoint = ContactPoint()
