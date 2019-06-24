@@ -19,7 +19,6 @@ public enum SchemaKeys: String, CodingKey {
     case id = "@id"
     case context = "@context"
     case type = "@type"
-    case identifier
 }
 
 public enum SchemaErrors: Error {

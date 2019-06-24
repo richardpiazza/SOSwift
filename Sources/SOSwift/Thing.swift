@@ -65,6 +65,7 @@ public class Thing: Schema, Codable {
         case alternativeName
         case description
         case disambiguatingDescription
+        case identifier
         case image
         case mainEntityOfPage
         case name
@@ -80,9 +81,10 @@ public class Thing: Schema, Codable {
     
     public required init(from decoder: Decoder) throws {
         let schema = try decoder.container(keyedBy: SchemaKeys.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let id = try schema.decodeIfPresent(Identifier.self, forKey: .id)
-        let identifier = try schema.decodeIfPresent(Identifier.self, forKey: .identifier)
+        let identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
         
         switch (id, identifier) {
         case (.some(let id), .none):
@@ -92,8 +94,6 @@ public class Thing: Schema, Codable {
         case (.none, .none):
             break
         }
-        
-        let container = try decoder.container(keyedBy: CodingKeys.self)
         
         additionalType = try container.decodeIfPresent(URL.self, forKey: .additionalType)
         alternativeName = try container.decodeIfPresent(String.self, forKey: .alternativeName)
@@ -114,10 +114,10 @@ public class Thing: Schema, Codable {
         try schema.encode(Swift.type(of: self).schemaContext, forKey: .context)
         try schema.encode(Swift.type(of: self).schemaType, forKey: .type)
         try schema.encodeIfPresent(identifier, forKey: .id)
-        try schema.encodeIfPresent(identifier, forKey: .identifier)
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
+        try container.encodeIfPresent(identifier, forKey: .identifier)
         try container.encodeIfPresent(additionalType, forKey: .additionalType)
         try container.encodeIfPresent(alternativeName, forKey: .alternativeName)
         try container.encodeIfPresent(description, forKey: .description)
