@@ -6,36 +6,6 @@ class MapOrURLTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var map: MapOrURL?
         var url: MapOrURL?
-        
-        private enum CodingKeys: String, CodingKey {
-            case map
-            case url
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.map = try container.decodeMapOrURLIfPresent(forKey: .map)
-            self.url = try container.decodeMapOrURLIfPresent(forKey: .url)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.map, forKey: .map)
-            try container.encodeIfPresent(self.url, forKey: .url)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -75,11 +45,11 @@ class MapOrURLTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let map = SOMap()
+        let map = Map()
         map.name = "United States Map"
-        testObject.map = map
+        testObject.map = .map(value: map)
         
-        testObject.url = URL(string: "https://commons.wikimedia.org/wiki/Category:Maps_of_the_United_States")
+        testObject.url = .url(value: URL(string: "https://commons.wikimedia.org/wiki/Category:Maps_of_the_United_States")!)
         
         let dictionary: [String : Any]
         do {

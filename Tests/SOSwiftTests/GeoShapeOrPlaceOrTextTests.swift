@@ -15,33 +15,6 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
         var place: GeoShapeOrPlaceOrText?
         var text: GeoShapeOrPlaceOrText?
         var multiple: [GeoShapeOrPlaceOrText]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case geoShape
-            case place
-            case text
-            case multiple
-        }
-        
-        init() {
-            
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            geoShape = try container.decodeGeoShapeOrPlaceOrTextIfPresent(forKey: .geoShape)
-            place = try container.decodeGeoShapeOrPlaceOrTextIfPresent(forKey: .place)
-            text = try container.decodeGeoShapeOrPlaceOrTextIfPresent(forKey: .text)
-            multiple = try container.decodeGeoShapesOrPlacesOrTextsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(geoShape, forKey: .geoShape)
-            try container.encodeIfPresent(place, forKey: .place)
-            try container.encodeIfPresent(text, forKey: .text)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
     }
     
     func testSingleDecodes() throws {
@@ -61,9 +34,9 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        let geoShape = (testObject.geoShape as? SOGeoShapeOrPlaceOrText)?.geoShape
-        let place = (testObject.place as? SOGeoShapeOrPlaceOrText)?.place
-        let text = (testObject.text as? SOGeoShapeOrPlaceOrText)?.text
+        let geoShape = (testObject.geoShape as? GeoShapeOrPlaceOrText)?.geoShape
+        let place = (testObject.place as? GeoShapeOrPlaceOrText)?.place
+        let text = (testObject.text as? GeoShapeOrPlaceOrText)?.text
         
         XCTAssertEqual(geoShape?.name, "Squircle")
         XCTAssertEqual(place?.name, "Seattle")
@@ -71,18 +44,18 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
     }
     
     func testSingleEncodes() throws {
-        let geoShape = SOGeoShape()
+        let geoShape = GeoShape()
         geoShape.name = "Squircle"
         
-        let place = SOPlace()
+        let place = Place()
         place.name = "Seattle"
         
         let text = "Remember The Zune"
         
         let testObject = TestClass()
-        testObject.geoShape = SOGeoShapeOrPlaceOrText.geoShape(value: geoShape)
-        testObject.place = SOGeoShapeOrPlaceOrText.place(value: place)
-        testObject.text = SOGeoShapeOrPlaceOrText.text(value: text)
+        testObject.geoShape = GeoShapeOrPlaceOrText.geoShape(value: geoShape)
+        testObject.place = GeoShapeOrPlaceOrText.place(value: place)
+        testObject.text = GeoShapeOrPlaceOrText.text(value: text)
         
         let dictionary = try testObject.dictionary()
         
@@ -114,7 +87,7 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        guard let multiple = testObject.multiple as? [SOGeoShapeOrPlaceOrText] else {
+        guard let multiple = testObject.multiple as? [GeoShapeOrPlaceOrText] else {
             XCTFail()
             return
         }
@@ -131,15 +104,15 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
     }
     
     func testMultipleEncodes() throws {
-        let geoShape = SOGeoShape()
+        let geoShape = GeoShape()
         geoShape.name = "Squircle"
         
-        let place = SOPlace()
+        let place = Place()
         place.name = "Seattle"
         
         let text = "Remember The Zune"
         
-        var multiple = [SOGeoShapeOrPlaceOrText]()
+        var multiple = [GeoShapeOrPlaceOrText]()
         multiple.append(.geoShape(value: geoShape))
         multiple.append(.place(value: place))
         multiple.append(.text(value: text))

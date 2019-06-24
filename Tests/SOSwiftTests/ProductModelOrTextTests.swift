@@ -6,36 +6,6 @@ class ProductModelOrTextTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var productModel: ProductModelOrText?
         var text: ProductModelOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case productModel
-            case text
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.productModel = try container.decodeProductModelOrTextIfPresent(forKey: .productModel)
-            self.text = try container.decodeProductModelOrTextIfPresent(forKey: .text)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.productModel, forKey: .productModel)
-            try container.encodeIfPresent(self.text, forKey: .text)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -75,11 +45,11 @@ class ProductModelOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let productModel = SOProductModel()
+        let productModel = ProductModel()
         productModel.name = "MacBook"
-        testObject.productModel = productModel
+        testObject.productModel = .productModel(value: productModel)
         
-        testObject.text = "Laptop"
+        testObject.text = .text(value: "Laptop")
         
         let dictionary: [String : Any]
         do {

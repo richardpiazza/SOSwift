@@ -7,39 +7,6 @@ class CreativeWorkOrURLTests: XCTestCase {
         var creativeWork: CreativeWorkOrURL?
         var url: CreativeWorkOrURL?
         var multiple: [CreativeWorkOrURL]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case creativeWork
-            case url
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            creativeWork = try container.decodeCreativeWorkOrURLIfPresent(forKey: .creativeWork)
-            url = try container.decodeCreativeWorkOrURLIfPresent(forKey: .url)
-            multiple = try container.decodeCreativeWorksOrURLsifPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(creativeWork, forKey: .creativeWork)
-            try container.encodeIfPresent(url, forKey: .url)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() throws {
@@ -56,8 +23,8 @@ class CreativeWorkOrURLTests: XCTestCase {
         let testable = try TestClass.make(with: json)
         
         guard
-            let creativeWork = testable.creativeWork as? SOCreativeWorkOrURL,
-            let url = testable.url as? SOCreativeWorkOrURL
+            let creativeWork = testable.creativeWork as? CreativeWorkOrURL,
+            let url = testable.url as? CreativeWorkOrURL
             else {
                 XCTFail()
                 return
@@ -70,11 +37,10 @@ class CreativeWorkOrURLTests: XCTestCase {
     func testSingleEncodes() throws {
         let testable = TestClass()
         
-        let creativeWork = SOCreativeWork()
+        let creativeWork = CreativeWork()
         creativeWork.name = "Futurama"
-        testable.creativeWork = creativeWork
-        
-        testable.url = URL(string: "https://www.yahoo.com")
+        testable.creativeWork = .creativeWork(value: creativeWork)
+        testable.url = .url(value: URL(string: "https://www.yahoo.com")!)
         
         let dictionary = try testable.dictionary()
         
@@ -118,8 +84,8 @@ class CreativeWorkOrURLTests: XCTestCase {
         XCTAssertEqual(multiple.count, 2)
         
         guard
-            let creativeWork = multiple[0] as? SOCreativeWorkOrURL,
-            let url = multiple[1] as? SOCreativeWorkOrURL
+            let creativeWork = multiple[0] as? CreativeWorkOrURL,
+            let url = multiple[1] as? CreativeWorkOrURL
             else {
                 XCTFail()
                 return
@@ -131,9 +97,9 @@ class CreativeWorkOrURLTests: XCTestCase {
     
     func testMultipleEncodes() throws {
         let testable = TestClass()
-        let creativeWork = SOCreativeWork()
+        let creativeWork = CreativeWork()
         let url = URL(string: "www.yahoo.com")!
-        testable.multiple = [SOCreativeWorkOrURL.creativeWork(value: creativeWork), SOCreativeWorkOrURL.url(value: url)]
+        testable.multiple = [CreativeWorkOrURL.creativeWork(value: creativeWork), CreativeWorkOrURL.url(value: url)]
         
         let json = try testable.json()
         XCTAssertTrue(json.contains("\"multiple\":["))

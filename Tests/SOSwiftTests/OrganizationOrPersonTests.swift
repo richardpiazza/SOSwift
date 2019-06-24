@@ -51,11 +51,11 @@ class OrganizationOrPersonTests: XCTestCase {
         
         let org = Organization()
         org.name = "Microsoft"
-        testObject.organization = org
+        testObject.organization = .organization(value: org)
         
         let person = Person()
         person.name = "Satyamania"
-        testObject.person = person
+        testObject.person = .person(value: person)
         
         let dictionary: [String : Any]
         do {
@@ -135,7 +135,7 @@ class OrganizationOrPersonTests: XCTestCase {
         let person = Person()
         person.name = "Satyamania"
         
-        testObject.multiple = [org, person]
+        testObject.multiple = [.organization(value: org), .person(value: person)]
         
         let dictionary: [String : Any]
         do {

@@ -14,29 +14,6 @@ class GenderOrTextTests: XCTestCase {
         var gender: GenderOrText?
         var text: GenderOrText?
         var multiple: [GenderOrText]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case gender
-            case text
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.gender = try container.decodeGenderOrTextIfPresent(forKey: .gender)
-            self.text = try container.decodeGenderOrTextIfPresent(forKey: .text)
-            self.multiple = try container.decodeGendersOrTextsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.gender, forKey: .gender)
-            try container.encodeIfPresent(self.text, forKey: .text)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
     }
     
     func testSingleDecodes() {
@@ -55,14 +32,14 @@ class GenderOrTextTests: XCTestCase {
             return
         }
         
-        guard let gender = (testObject.gender as? SOGenderOrText)?.gender else {
+        guard let gender = (testObject.gender as? GenderOrText)?.gender else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(gender, .female)
         
-        guard let text = (testObject.text as? SOGenderOrText)?.text else {
+        guard let text = (testObject.text as? GenderOrText)?.text else {
             XCTFail()
             return
         }
@@ -73,8 +50,8 @@ class GenderOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        testObject.gender = Gender.male
-        testObject.text = "Gender Queer"
+        testObject.gender = .gender(value: Gender.male)
+        testObject.text = .text(value: "Gender Queer")
         
         let dictionary: [String : Any]
         do {
@@ -118,15 +95,15 @@ class GenderOrTextTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        let gender = (multiple[0] as? SOGenderOrText)?.gender
-        let text = (multiple[1] as? SOGenderOrText)?.text
+        let gender = (multiple[0] as? GenderOrText)?.gender
+        let text = (multiple[1] as? GenderOrText)?.text
         
         XCTAssertEqual(gender, .female)
         XCTAssertEqual(text, "Non-Binary")
     }
     
     func testMultipleEncodes() throws {
-        var multiple = [SOGenderOrText]()
+        var multiple = [GenderOrText]()
         multiple.append(.gender(value: .male))
         multiple.append(.text(value: "None of your business."))
         

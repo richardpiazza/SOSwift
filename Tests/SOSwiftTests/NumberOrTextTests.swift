@@ -6,36 +6,6 @@ class NumberOrTextTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var number: NumberOrText?
         var text: NumberOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case number
-            case text
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.number = try container.decodeNumberOrTextIfPresent(forKey: .number)
-            self.text = try container.decodeNumberOrTextIfPresent(forKey: .text)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.number, forKey: .number)
-            try container.encodeIfPresent(self.text, forKey: .text)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -72,8 +42,8 @@ class NumberOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        testObject.number = 4.7
-        testObject.text = "Almost Five"
+        testObject.number = .number(value: Number(rawValue: .floatingPoint(value: 4.7))!)
+        testObject.text = .text(value: "Almost Five")
         
         let dictionary: [String : Any]
         do {

@@ -7,29 +7,6 @@ class CountryOrTextTests: XCTestCase {
         var country: CountryOrText?
         var text: CountryOrText?
         var multiple: [CountryOrText]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case country
-            case text
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.country = try container.decodeCountryOrTextIfPresent(forKey: .country)
-            self.text = try container.decodeCountryOrTextIfPresent(forKey: .text)
-            self.multiple = try container.decodeCountriesOrTextsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.country, forKey: .country)
-            try container.encodeIfPresent(self.text, forKey: .text)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
     }
     
     override func setUp() {
@@ -61,7 +38,7 @@ class CountryOrTextTests: XCTestCase {
             return
         }
         
-        guard let country = testObject.country as? SOCountryOrText else {
+        guard let country = testObject.country as? CountryOrText else {
             XCTFail()
             return
         }
@@ -73,7 +50,7 @@ class CountryOrTextTests: XCTestCase {
             XCTFail()
         }
         
-        guard let text = testObject.text as? SOCountryOrText else {
+        guard let text = testObject.text as? CountryOrText else {
             XCTFail()
             return
         }
@@ -89,11 +66,11 @@ class CountryOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let country = SOCountry()
+        let country = Country()
         country.name = "Germany"
         
-        testObject.country = country
-        testObject.text = "South America"
+        testObject.country = .country(value: country)
+        testObject.text = .text(value: "South America")
         
         let dictionary: [String : Any]
         do {
@@ -145,7 +122,7 @@ class CountryOrTextTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard let country = multiple[0] as? SOCountryOrText else {
+        guard let country = multiple[0] as? CountryOrText else {
             XCTFail()
             return
         }
@@ -157,7 +134,7 @@ class CountryOrTextTests: XCTestCase {
             XCTFail()
         }
         
-        guard let text = multiple[1] as? SOCountryOrText else {
+        guard let text = multiple[1] as? CountryOrText else {
             XCTFail()
             return
         }
@@ -172,7 +149,7 @@ class CountryOrTextTests: XCTestCase {
     
     func testMultipleEncodes() throws {
         let testable = TestClass()
-        testable.multiple = [SOCountry(), "Hero"]
+        testable.multiple = [.country(value: Country()), .text(value: "Hero")]
         
         let json = try testable.json()
         XCTAssertTrue(json.contains("\"multiple\":["))

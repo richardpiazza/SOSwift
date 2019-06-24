@@ -15,32 +15,6 @@ class DateTimeOrTextOrURLTests: XCTestCase {
         var text: DateTimeOrURLOrText?
         var url: DateTimeOrURLOrText?
         var multiple: [DateTimeOrURLOrText]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case dateTime
-            case text
-            case url
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.dateTime = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .dateTime)
-            self.text = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .text)
-            self.url = try container.decodeDateTimeOrURLOrTextIfPresent(forKey: .url)
-            self.multiple = try container.decodeDateTimesOrURLsOrTextsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(dateTime, forKey: .dateTime)
-            try container.encodeIfPresent(text, forKey: .text)
-            try container.encodeIfPresent(url, forKey: .url)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
     }
     
     var dateComponents: DateComponents {
@@ -51,16 +25,6 @@ class DateTimeOrTextOrURLTests: XCTestCase {
         return "2017-10-26T02:13:00Z"
     }
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testSingleDecodes() {
         let json = """
             {
@@ -105,9 +69,9 @@ class DateTimeOrTextOrURLTests: XCTestCase {
 
     func testSingleEncodes() {
         let testObject = TestClass()
-        testObject.dateTime = dateComponents.date?.dateTime
-        testObject.text = "Goodbye"
-        testObject.url = URL(string: "https://www.apple.com")
+        testObject.dateTime = .dateTime(value: DateTime(date: dateComponents.date!))
+        testObject.text = .text(value: "Goodbye")
+        testObject.url = .url(value: URL(string: "https://www.apple.com")!)
         
         let dictionary: [String : Any]
         do {
@@ -165,9 +129,9 @@ class DateTimeOrTextOrURLTests: XCTestCase {
         XCTAssertEqual(multiple.count, 3)
         
         guard
-            let dateTime = multiple[0] as? SODateTimeOrURLOrText,
-            let url = multiple[1] as? SODateTimeOrURLOrText,
-            let text = multiple[2] as? SODateTimeOrURLOrText
+            let dateTime = multiple[0] as? DateTimeOrURLOrText,
+            let url = multiple[1] as? DateTimeOrURLOrText,
+            let text = multiple[2] as? DateTimeOrURLOrText
             else {
                 XCTFail()
                 return
@@ -203,9 +167,9 @@ class DateTimeOrTextOrURLTests: XCTestCase {
     }
     
     func testMultipleEncodes() throws {
-        let dateTime = SODateTimeOrURLOrText.dateTime(value: "2019-06-16T08:14:00-5000")
-        let url = SODateTimeOrURLOrText.url(value: URL(string: "https://www.google.com")!)
-        let text = SODateTimeOrURLOrText.text(value: "Hello World")
+        let dateTime = DateTimeOrURLOrText.dateTime(value: DateTime(rawValue: "2019-06-16T08:14:00-5000")!)
+        let url = DateTimeOrURLOrText.url(value: URL(string: "https://www.google.com")!)
+        let text = DateTimeOrURLOrText.text(value: "Hello World")
         
         let testObject = TestClass()
         testObject.multiple = [dateTime, url, text]

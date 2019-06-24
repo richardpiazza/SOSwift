@@ -8,42 +8,6 @@ class AreaServedTests: XCTestCase {
         var geoShape: AreaServed?
         var place: AreaServed?
         var text: AreaServed?
-        
-        private enum CodingKeys: String, CodingKey {
-            case administrativeArea
-            case geoShape
-            case place
-            case text
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.administrativeArea = try container.decodeAreaServedIfPresent(forKey: .administrativeArea)
-            self.geoShape = try container.decodeAreaServedIfPresent(forKey: .geoShape)
-            self.place = try container.decodeAreaServedIfPresent(forKey: .place)
-            self.text = try container.decodeAreaServedIfPresent(forKey: .text)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.administrativeArea, forKey: .administrativeArea)
-            try container.encodeIfPresent(self.geoShape, forKey: .geoShape)
-            try container.encodeIfPresent(self.place, forKey: .place)
-            try container.encodeIfPresent(self.text, forKey: .text)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -79,31 +43,27 @@ class AreaServedTests: XCTestCase {
         }
         
         XCTAssertNotNil(testable.administrativeArea)
-        XCTAssertTrue(testable.administrativeArea! is SOAdministrativeArea)
         XCTAssertNotNil(testable.geoShape)
-        XCTAssertTrue(testable.geoShape! is SOGeoShape)
         XCTAssertNotNil(testable.place)
-        XCTAssertTrue(testable.place! is SOPlace)
         XCTAssertNotNil(testable.text)
-        XCTAssertTrue(testable.text! is String)
     }
     
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let administrativeArea = SOAdministrativeArea()
+        let administrativeArea = AdministrativeArea()
         administrativeArea.name = "Area 1"
-        testObject.administrativeArea = administrativeArea
+        testObject.administrativeArea = .administrativeArea(value: administrativeArea)
         
-        let geoShape = SOGeoShape()
+        let geoShape = GeoShape()
         geoShape.name = "Area 2"
-        testObject.geoShape = geoShape
+        testObject.geoShape = .geoShape(value: geoShape)
         
-        let place = SOPlace()
+        let place = Place()
         place.name = "Area 3"
-        testObject.place = place
+        testObject.place = .place(value: place)
         
-        testObject.text = "Area 4"
+        testObject.text = .text(value: "Area 4")
         
         let dictionary: [String : Any]
         do {

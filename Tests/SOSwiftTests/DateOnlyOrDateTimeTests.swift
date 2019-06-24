@@ -14,41 +14,8 @@ class DateOnlyOrDateTimeTests: XCTestCase {
         var dateOnly: DateOnlyOrDateTime?
         var dateTime: DateOnlyOrDateTime?
         var multiple: [DateOnlyOrDateTime]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case dateOnly
-            case dateTime
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.dateOnly = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .dateOnly)
-            self.dateTime = try container.decodeDateOnlyOrDateTimeIfPresent(forKey: .dateTime)
-            self.multiple = try container.decodeDateOnlysOrDateTimesIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(dateOnly, forKey: CodingKeys.dateOnly)
-            try container.encodeIfPresent(dateTime, forKey: CodingKeys.dateTime)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
     }
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testSingleDecodes() {
         let json = """
             {
@@ -82,8 +49,8 @@ class DateOnlyOrDateTimeTests: XCTestCase {
     
     func testSingleEncodes() throws {
         let testObject = TestClass()
-        testObject.dateOnly = SODateOnlyOrDateTime.dateOnly(value: "2019-06-16")
-        testObject.dateTime = SODateOnlyOrDateTime.dateTime(value: "2019-06-16T08:14:00-5000")
+        testObject.dateOnly = .dateOnly(value: DateOnly(rawValue: "2019-06-16")!)
+        testObject.dateTime = .dateTime(value: DateTime(rawValue: "2019-06-16T08:14:00-5000")!)
         
         let dictionary = try testObject.dictionary()
         XCTAssertEqual(dictionary.keys.count, 2)
@@ -125,12 +92,12 @@ class DateOnlyOrDateTimeTests: XCTestCase {
         }
         
         XCTAssertEqual(multiple.count, 2)
-        guard let dateOnly = multiple[0] as? SODateOnlyOrDateTime else {
+        guard let dateOnly = multiple[0] as? DateOnlyOrDateTime else {
             XCTFail()
             return
         }
         
-        guard let dateTime = multiple[1] as? SODateOnlyOrDateTime else {
+        guard let dateTime = multiple[1] as? DateOnlyOrDateTime else {
             XCTFail()
             return
         }
@@ -163,8 +130,8 @@ class DateOnlyOrDateTimeTests: XCTestCase {
     }
     
     func testMultipleEncodes() throws {
-        let dateOnly = SODateOnlyOrDateTime.dateOnly(value: "2019-06-16")
-        let dateTime = SODateOnlyOrDateTime.dateTime(value: "2019-06-16T08:14:00-5000")
+        let dateOnly: DateOnlyOrDateTime = .dateOnly(value: DateOnly(rawValue: "2019-06-16")!)
+        let dateTime: DateOnlyOrDateTime = .dateTime(value: DateTime(rawValue: "2019-06-16T08:14:00-5000")!)
         
         let testObject = TestClass()
         testObject.multiple = [dateOnly, dateTime]

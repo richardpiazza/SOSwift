@@ -7,39 +7,6 @@ class PlaceOrPostalAddressOrTextTests: XCTestCase {
         var place: PlaceOrPostalAddressOrText?
         var postalAddress: PlaceOrPostalAddressOrText?
         var text: PlaceOrPostalAddressOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case place
-            case postalAddress
-            case text
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.place = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .place)
-            self.postalAddress = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .postalAddress)
-            self.text = try container.decodePlaceOrPostalAddressOrTextIfPresent(forKey: .text)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.place, forKey: .place)
-            try container.encodeIfPresent(self.postalAddress, forKey: .postalAddress)
-            try container.encodeIfPresent(self.text, forKey: .text)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -90,15 +57,15 @@ class PlaceOrPostalAddressOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let place = SOPlace()
+        let place = Place()
         place.name = "Google Campus"
-        testObject.place = place
+        testObject.place = .place(value: place)
         
-        let postalAddress = SOPostalAddress()
+        let postalAddress = PostalAddress()
         postalAddress.name = "Mountain View"
-        testObject.postalAddress = postalAddress
+        testObject.postalAddress = .postalAddress(value: postalAddress)
         
-        testObject.text = "The Googleplex"
+        testObject.text = .text(value: "The Googleplex")
         
         let dictionary: [String : Any]
         do {

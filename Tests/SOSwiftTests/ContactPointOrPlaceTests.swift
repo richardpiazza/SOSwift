@@ -7,29 +7,6 @@ class ContactPointOrPlaceTests: XCTestCase {
         var contactPoint: ContactPointOrPlace?
         var place: ContactPointOrPlace?
         var multiple: [ContactPointOrPlace]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case contactPoint
-            case place
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.contactPoint = try container.decodeContactPointOrPlaceIfPresent(forKey: .contactPoint)
-            self.place = try container.decodeContactPointOrPlaceIfPresent(forKey: .place)
-            self.multiple = try container.decodeContactPointsOrPlacesIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.contactPoint, forKey: .contactPoint)
-            try container.encodeIfPresent(self.place, forKey: .place)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
     }
     
     override func setUp() {
@@ -64,7 +41,7 @@ class ContactPointOrPlaceTests: XCTestCase {
             return
         }
         
-        guard let contactPoint = testObject.contactPoint as? SOContactPointOrPlace else {
+        guard let contactPoint = testObject.contactPoint as? ContactPointOrPlace else {
             XCTFail()
             return
         }
@@ -76,7 +53,7 @@ class ContactPointOrPlaceTests: XCTestCase {
             XCTAssertEqual(value.name, "Contact Point")
         }
         
-        guard let place = testObject.place as? SOContactPointOrPlace else {
+        guard let place = testObject.place as? ContactPointOrPlace else {
             XCTFail()
             return
         }
@@ -92,14 +69,14 @@ class ContactPointOrPlaceTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let contactPoint = SOContactPoint()
+        let contactPoint = ContactPoint()
         contactPoint.name = "Alpha"
         
-        let place = SOPlace()
+        let place = Place()
         place.name = "Beta"
         
-        testObject.contactPoint = contactPoint
-        testObject.place = place
+        testObject.contactPoint = .contactPoint(value: contactPoint)
+        testObject.place = .place(value: place)
         
         let json: String
         do {
@@ -172,7 +149,7 @@ class ContactPointOrPlaceTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard let contactPoint = multiple[0] as? SOContactPointOrPlace else {
+        guard let contactPoint = multiple[0] as? ContactPointOrPlace else {
             XCTFail()
             return
         }
@@ -184,7 +161,7 @@ class ContactPointOrPlaceTests: XCTestCase {
             XCTFail()
         }
         
-        guard let place = multiple[1] as? SOContactPointOrPlace else {
+        guard let place = multiple[1] as? ContactPointOrPlace else {
             XCTFail()
             return
         }
@@ -199,7 +176,7 @@ class ContactPointOrPlaceTests: XCTestCase {
     
     func testMultipleEncodes() throws {
         let testable = TestClass()
-        testable.multiple = [SOContactPoint(), SOPlace()]
+        testable.multiple = [.contactPoint(value: ContactPoint()), .place(value: Place())]
         
         let json = try testable.json()
         XCTAssertTrue(json.contains("\"multiple\":["))

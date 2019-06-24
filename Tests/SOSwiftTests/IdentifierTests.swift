@@ -7,39 +7,6 @@ class IdentifierTests: XCTestCase {
         var propertyValue: Identifier?
         var url: Identifier?
         var text: Identifier?
-        
-        private enum CodingKeys: String, CodingKey {
-            case propertyValue
-            case url
-            case text
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.propertyValue = try container.decodeIdentifierIfPresent(forKey: .propertyValue)
-            self.url = try container.decodeIdentifierIfPresent(forKey: .url)
-            self.text = try container.decodeIdentifierIfPresent(forKey: .text)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.propertyValue, forKey: .propertyValue)
-            try container.encodeIfPresent(self.url, forKey: .url)
-            try container.encodeIfPresent(self.text, forKey: .text)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
 
     func testSingleDecodes() {
@@ -93,12 +60,12 @@ class IdentifierTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let propertyValue = SOPropertyValue()
-        propertyValue.value = "Six"
-        testObject.propertyValue = propertyValue
+        let propertyValue = PropertyValue()
+        propertyValue.value = .text(value: "Six")
+        testObject.propertyValue = .propertyValue(value: propertyValue)
         
-        testObject.url = URL(string: "https://www.apple.com")
-        testObject.text = "Thanks"
+        testObject.url = .url(value: URL(string: "https://www.apple.com")!)
+        testObject.text = .text(value: "Thanks")
         
         let dictionary: [String : Any]
         do {

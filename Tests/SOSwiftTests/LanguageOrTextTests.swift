@@ -6,36 +6,6 @@ class LanguageOrTextTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var language: LanguageOrText?
         var text: LanguageOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case language
-            case text
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.language = try container.decodeLanguageOrTextIfPresent(forKey: .language)
-            self.text = try container.decodeLanguageOrTextIfPresent(forKey: .text)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.language, forKey: .language)
-            try container.encodeIfPresent(self.text, forKey: .text)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -75,11 +45,11 @@ class LanguageOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let language = SOLanguage()
+        let language = Language()
         language.name = "Vulcan"
-        testObject.language = language
+        testObject.language = .language(value: language)
         
-        testObject.text = "Google Translate"
+        testObject.text = .text(value: "Google Translate")
         
         let dictionary: [String : Any]
         do {

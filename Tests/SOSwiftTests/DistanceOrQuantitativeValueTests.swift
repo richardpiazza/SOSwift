@@ -14,29 +14,6 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
         var distance: DistanceOrQuantitativeValue?
         var quantitativeValue: DistanceOrQuantitativeValue?
         var multiple: [DistanceOrQuantitativeValue]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case distance
-            case quantitativeValue
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.distance = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .distance)
-            self.quantitativeValue = try container.decodeDistanceOrQuantitativeValueIfPresent(forKey: .quantitativeValue)
-            self.multiple = try container.decodeDistancesOrQuantitativeValuesIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.distance, forKey: .distance)
-            try container.encodeIfPresent(self.quantitativeValue, forKey: .quantitativeValue)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
     }
 
     func testSingleDecodes() {
@@ -63,7 +40,7 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
             return
         }
         
-        guard let distance = testObject.distance as? SODistanceOrQuantitativeValue else {
+        guard let distance = testObject.distance as? DistanceOrQuantitativeValue else {
             XCTFail()
             return
         }
@@ -75,7 +52,7 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
             XCTFail()
         }
         
-        guard let quantitativeValue = testObject.quantitativeValue as? SODistanceOrQuantitativeValue else {
+        guard let quantitativeValue = testObject.quantitativeValue as? DistanceOrQuantitativeValue else {
             XCTFail()
             return
         }
@@ -93,15 +70,15 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let distance = SODistance()
+        let distance = Distance()
         distance.name = "Kilometer"
-        testObject.distance = distance
+        testObject.distance = .distance(value: distance)
         
-        let quantitativeValue = SOQuantitativeValue()
+        let quantitativeValue = QuantitativeValue()
         quantitativeValue.name = "Range"
-        quantitativeValue.minValue = 0.0
-        quantitativeValue.maxValue = 1.0
-        testObject.quantitativeValue = quantitativeValue
+        quantitativeValue.minValue = Number(rawValue: .floatingPoint(value: 0.0))
+        quantitativeValue.maxValue = Number(rawValue: .floatingPoint(value: 1.0))
+        testObject.quantitativeValue = .quantitativeValue(value: quantitativeValue)
         
         let dictionary: [String : Any]
         do {
@@ -177,14 +154,14 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard let distance = (multiple[0] as? SODistanceOrQuantitativeValue)?.distance else {
+        guard let distance = (multiple[0] as? DistanceOrQuantitativeValue)?.distance else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(distance.name, "A Distance")
         
-        guard let quantitativeValue = (multiple[1] as? SODistanceOrQuantitativeValue)?.quantitativeValue else {
+        guard let quantitativeValue = (multiple[1] as? DistanceOrQuantitativeValue)?.quantitativeValue else {
             XCTFail()
             return
         }
@@ -195,15 +172,15 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
     }
     
     func testMultipleEncodes() throws {
-        let distance = SODistance()
+        let distance = Distance()
         distance.name = "Mile"
         
-        let quantitativeValue = SOQuantitativeValue()
+        let quantitativeValue = QuantitativeValue()
         quantitativeValue.name = "Lumens"
-        quantitativeValue.minValue = 0.0
-        quantitativeValue.maxValue = 4000
+        quantitativeValue.minValue = Number(rawValue: .floatingPoint(value: 0.0))
+        quantitativeValue.maxValue = Number(rawValue: .integer(value: 4000))
         
-        var multiple: [SODistanceOrQuantitativeValue] = []
+        var multiple: [DistanceOrQuantitativeValue] = []
         multiple.append(.distance(value: distance))
         multiple.append(.quantitativeValue(value: quantitativeValue))
         

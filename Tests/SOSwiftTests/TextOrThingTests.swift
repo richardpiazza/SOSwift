@@ -6,26 +6,6 @@ class TextOrThingTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var text: ThingOrText?
         var thing: ThingOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case text
-            case thing
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.text = try container.decodeThingOrTextIfPresent(forKey: .text)
-            self.thing = try container.decodeThingOrTextIfPresent(forKey: .thing)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.text, forKey: .text)
-            try container.encodeIfPresent(self.thing, forKey: .thing)
-        }
     }
     
     override func setUp() {
@@ -75,11 +55,11 @@ class TextOrThingTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        testObject.text = "Dinner"
+        testObject.text = .text(value: "Dinner")
         
-        let thing = SOThing()
+        let thing = Thing()
         thing.name = "Steak"
-        testObject.thing = thing
+        testObject.thing = .thing(value: thing)
         
         let dictionary: [String : Any]
         do {

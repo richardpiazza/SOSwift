@@ -8,46 +8,10 @@ class DateOnlyTests: XCTestCase {
         var invalidString: DateOnly?
         var invalidDataType: DateOnly?
         var nilValue: DateOnly?
-        
-        private enum CodingKeys: String, CodingKey {
-            case validDateString
-            case invalidString
-            case invalidDataType
-            case nilValue
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.validDateString = try container.decodeDateOnlyIfPresent(forKey: .validDateString)
-            self.invalidString = try container.decodeDateOnlyIfPresent(forKey: .invalidString)
-            self.invalidDataType = try container.decodeDateOnlyIfPresent(forKey: .invalidDataType)
-            self.nilValue = try container.decodeDateOnlyIfPresent(forKey: .nilValue)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.validDateString, forKey: .validDateString)
-            try container.encodeIfPresent(self.invalidString, forKey: .invalidString)
-            try container.encodeIfPresent(self.invalidDataType, forKey: .invalidDataType)
-            try container.encodeIfPresent(self.nilValue, forKey: .nilValue)
-        }
     }
     
     var dateComponents: DateComponents {
         return DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, era: nil, year: 2017, month: 10, day: 18, hour: 0, minute: 0, second: 0, nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -98,7 +62,7 @@ class DateOnlyTests: XCTestCase {
             return
         }
         
-        testObject.validDateString = componentsDate.dateOnly
+        testObject.validDateString = DateOnly(date: componentsDate)
         
         let dictionary: [String : Any]
         do {

@@ -6,36 +6,6 @@ class SoftwareApplicationOrWebsiteTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var softwareApplication: SoftwareApplicationOrWebsite?
         var website: SoftwareApplicationOrWebsite?
-        
-        private enum CodingKeys: String, CodingKey {
-            case softwareApplication
-            case website
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.softwareApplication = try container.decodeSoftwareApplicationOrWebsiteIfPresent(forKey: .softwareApplication)
-            self.website = try container.decodeSoftwareApplicationOrWebsiteIfPresent(forKey: .website)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.softwareApplication, forKey: .softwareApplication)
-            try container.encodeIfPresent(self.website, forKey: .website)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -78,13 +48,13 @@ class SoftwareApplicationOrWebsiteTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let software = SOSoftwareApplication()
+        let software = SoftwareApplication()
         software.name = "iOS"
-        testObject.softwareApplication = software
+        testObject.softwareApplication = .softwareApplication(value: software)
         
-        let website = SOWebsite()
+        let website = Website()
         website.url = URL(string: "https://www.apple.com/ios")
-        testObject.website = website
+        testObject.website = .website(value: website)
         
         let dictionary: [String : Any]
         do {

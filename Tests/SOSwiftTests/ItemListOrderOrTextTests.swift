@@ -6,36 +6,6 @@ class ItemListOrderOrTextTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var itemListOrder: ItemListOrderOrText?
         var text: ItemListOrderOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case itemListOrder
-            case text
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.itemListOrder = try container.decodeItemListOrderOrTextIfPresent(forKey: .itemListOrder)
-            self.text = try container.decodeItemListOrderOrTextIfPresent(forKey: .text)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.itemListOrder, forKey: .itemListOrder)
-            try container.encodeIfPresent(self.text, forKey: .text)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -71,8 +41,8 @@ class ItemListOrderOrTextTests: XCTestCase {
     
     func testSingleEncodes() {
         let testObject = TestClass()
-        testObject.itemListOrder = ItemListOrder.unordered
-        testObject.text = "Ascending?"
+        testObject.itemListOrder = .itemListOrder(value: .unordered)
+        testObject.text = .text(value: "Ascending?")
         
         let dictionary: [String : Any]
         do {

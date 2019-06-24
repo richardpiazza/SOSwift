@@ -9,45 +9,6 @@ class ValueTests: XCTestCase {
         var double: Value?
         var int: Value?
         var string: Value?
-        
-        private enum CodingKeys: String, CodingKey {
-            case structuredValue
-            case bool
-            case double
-            case int
-            case string
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.structuredValue = try container.decodeValueIfPresent(forKey: .structuredValue)
-            self.bool = try container.decodeValueIfPresent(forKey: .bool)
-            self.double = try container.decodeValueIfPresent(forKey: .double)
-            self.int = try container.decodeValueIfPresent(forKey: .int)
-            self.string = try container.decodeValueIfPresent(forKey: .string)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.structuredValue, forKey: .structuredValue)
-            try container.encodeIfPresent(self.bool, forKey: .bool)
-            try container.encodeIfPresent(self.double, forKey: .double)
-            try container.encodeIfPresent(self.int, forKey: .int)
-            try container.encodeIfPresent(self.string, forKey: .string)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -111,14 +72,13 @@ class ValueTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let structuredValue = SOStructuredValue()
+        let structuredValue = StructuredValue()
         structuredValue.name = "Hundreds"
-        testObject.structuredValue = structuredValue
-        
-        testObject.bool = false
-        testObject.double = 39.1
-        testObject.int = 100
-        testObject.string = "🔟"
+        testObject.structuredValue = .structuredValue(value: structuredValue)
+        testObject.bool = .bool(value: false)
+        testObject.double = .number(value: Number(rawValue: .floatingPoint(value: 39.1))!)
+        testObject.int = .number(value: Number(rawValue: .integer(value: 100))!)
+        testObject.string = .text(value: "🔟")
         
         let dictionary: [String : Any]
         do {

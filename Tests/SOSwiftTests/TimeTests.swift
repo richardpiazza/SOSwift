@@ -5,33 +5,6 @@ class TimeTests: XCTestCase {
     
     fileprivate class TestClass: Codable, Testable {
         var time: Time?
-        
-        private enum CodingKeys: String, CodingKey {
-            case time
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.time = try container.decodeTimeIfPresent(forKey: .time)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.time, forKey: .time)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -71,7 +44,7 @@ class TimeTests: XCTestCase {
         
         let dateComponents = DateComponents(calendar: Calendar.current, timeZone: TimeZone(secondsFromGMT: 0), era: nil, year: nil, month: nil, day: nil, hour: 11, minute: 22, second: 33, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
         
-        testObject.time = dateComponents.date?.time
+        testObject.time = Time(date: dateComponents.date!)
         
         let dictionary: [String : Any]
         do {

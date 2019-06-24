@@ -6,26 +6,6 @@ class PropertyValueOrTextTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var propertyValue: PropertyValueOrText?
         var text: PropertyValueOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case propertyValue
-            case text
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.propertyValue = try container.decodePropertyValueOrTextIfPresent(forKey: .propertyValue)
-            self.text = try container.decodePropertyValueOrTextIfPresent(forKey: .text)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.propertyValue, forKey: .propertyValue)
-            try container.encodeIfPresent(self.text, forKey: .text)
-        }
     }
     
     override func setUp() {
@@ -75,11 +55,10 @@ class PropertyValueOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let propertyValue = SOPropertyValue()
+        let propertyValue = PropertyValue()
         propertyValue.unitText = "mL"
-        testObject.propertyValue = propertyValue
-        
-        testObject.text = "Measure"
+        testObject.propertyValue = .propertyValue(value: propertyValue)
+        testObject.text = .text(value: "Measure")
         
         let dictionary: [String : Any]
         do {

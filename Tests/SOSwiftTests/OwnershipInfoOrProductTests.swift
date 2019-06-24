@@ -7,39 +7,6 @@ class OwnershipInfoOrProductTests: XCTestCase {
         var ownershipInfo: OwnershipInfoOrProduct?
         var product: OwnershipInfoOrProduct?
         var multiple: [OwnershipInfoOrProduct]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case ownershipInfo
-            case product
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.ownershipInfo = try container.decodeOwnershipInfoOrProductIfPresent(forKey: .ownershipInfo)
-            self.product = try container.decodeOwnershipInfoOrProductIfPresent(forKey: .product)
-            self.multiple = try container.decodeOwnershipInfosOrProductsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.ownershipInfo, forKey: .ownershipInfo)
-            try container.encodeIfPresent(self.product, forKey: .product)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -82,13 +49,13 @@ class OwnershipInfoOrProductTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let ownershipInfo = SOOwnershipInfo()
+        let ownershipInfo = OwnershipInfo()
         ownershipInfo.name = "Bob's"
-        testObject.ownershipInfo = ownershipInfo
+        testObject.ownershipInfo = .ownershipInfo(value: ownershipInfo)
         
-        let product = SOProduct()
+        let product = Product()
         product.name = "Burgers"
-        testObject.product = product
+        testObject.product = .product(value: product)
         
         let dictionary: [String : Any]
         do {
@@ -162,13 +129,13 @@ class OwnershipInfoOrProductTests: XCTestCase {
     func testMultipleEncodes() {
         let testObject = TestClass()
         
-        let ownershipInfo = SOOwnershipInfo()
+        let ownershipInfo = OwnershipInfo()
         ownershipInfo.name = "Microsoft"
         
-        let product = SOProduct()
+        let product = Product()
         product.name = "Tears & Headaches"
         
-        testObject.multiple = [ownershipInfo, product]
+        testObject.multiple = [.ownershipInfo(value: ownershipInfo), .product(value: product)]
         
         let dictionary: [String : Any]
         do {

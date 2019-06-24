@@ -7,29 +7,6 @@ class CreativeWorkOrEventTests: XCTestCase {
         var creativeWork: CreativeWorkOrEvent?
         var event: CreativeWorkOrEvent?
         var multiple: [CreativeWorkOrEvent]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case creativeWork
-            case event
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            creativeWork = try container.decodeCreativeWorkOrEventIfPresent(forKey: .creativeWork)
-            event = try container.decodeCreativeWorkOrEventIfPresent(forKey: .event)
-            multiple = try container.decodeCreativeWorksOrEventsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(creativeWork, forKey: .creativeWork)
-            try container.encodeIfPresent(event, forKey: .event)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
     }
     
     override func setUp() {
@@ -57,8 +34,8 @@ class CreativeWorkOrEventTests: XCTestCase {
         let testable = try TestClass.make(with: json)
         
         guard
-            let creativeWork = testable.creativeWork as? SOCreativeWorkOrEvent,
-            let event = testable.event as? SOCreativeWorkOrEvent
+            let creativeWork = testable.creativeWork as? CreativeWorkOrEvent,
+            let event = testable.event as? CreativeWorkOrEvent
             else {
                 XCTFail()
                 return
@@ -71,14 +48,14 @@ class CreativeWorkOrEventTests: XCTestCase {
     func testSingleEncode() throws {
         let testable = TestClass()
         
-        let creativeWork = SOCreativeWork()
+        let creativeWork = CreativeWork()
         creativeWork.name = "Technical Manual"
         
-        let event = SOEvent()
+        let event = Event()
         event.name = "Convention"
         
-        testable.creativeWork = SOCreativeWorkOrEvent.creativeWork(value: creativeWork)
-        testable.event = SOCreativeWorkOrEvent.event(value: event)
+        testable.creativeWork = CreativeWorkOrEvent.creativeWork(value: creativeWork)
+        testable.event = CreativeWorkOrEvent.event(value: event)
         
         let dictionary = try testable.dictionary()
         
@@ -125,8 +102,8 @@ class CreativeWorkOrEventTests: XCTestCase {
         XCTAssertEqual(multiple.count, 2)
         
         guard
-            let creativeWork = multiple[0] as? SOCreativeWorkOrEvent,
-            let event = multiple[1] as? SOCreativeWorkOrEvent
+            let creativeWork = multiple[0] as? CreativeWorkOrEvent,
+            let event = multiple[1] as? CreativeWorkOrEvent
             else {
                 XCTFail()
                 return
@@ -138,9 +115,9 @@ class CreativeWorkOrEventTests: XCTestCase {
     
     func testMultipleEncodes() throws {
         let testable = TestClass()
-        let creativeWork = SOCreativeWork()
-        let event = SOEvent()
-        testable.multiple = [SOCreativeWorkOrEvent.creativeWork(value: creativeWork), SOCreativeWorkOrEvent.event(value: event)]
+        let creativeWork = CreativeWork()
+        let event = Event()
+        testable.multiple = [CreativeWorkOrEvent.creativeWork(value: creativeWork), CreativeWorkOrEvent.event(value: event)]
         
         let json = try testable.json()
         XCTAssertTrue(json.contains("\"multiple\":["))

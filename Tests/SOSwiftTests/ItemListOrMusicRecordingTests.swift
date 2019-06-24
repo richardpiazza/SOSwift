@@ -7,39 +7,6 @@ class ItemListOrMusicRecordingTests: XCTestCase {
         var itemList: ItemListOrMusicRecording?
         var musicRecording: ItemListOrMusicRecording?
         var multiple: [ItemListOrMusicRecording]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case itemList
-            case musicRecording
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.itemList = try container.decodeItemListOrMusicRecordingIfPresent(forKey: .itemList)
-            self.musicRecording = try container.decodeItemListOrMusicRecordingIfPresent(forKey: .musicRecording)
-            self.multiple = try container.decodeItemListsOrMusicRecordingsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.itemList, forKey: .itemList)
-            try container.encodeIfPresent(self.musicRecording, forKey: .musicRecording)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -82,13 +49,13 @@ class ItemListOrMusicRecordingTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let itemList = SOItemList()
+        let itemList = ItemList()
         itemList.numberOfItems = 47
-        testObject.itemList = itemList
+        testObject.itemList = .itemList(value: itemList)
         
-        let musicRecording = SOMusicRecording()
+        let musicRecording = MusicRecording()
         musicRecording.name = "Rebel in the Rye"
-        testObject.musicRecording = musicRecording
+        testObject.musicRecording = .musicRecording(value: musicRecording)
         
         let dictionary: [String : Any]
         do {
@@ -160,13 +127,13 @@ class ItemListOrMusicRecordingTests: XCTestCase {
     func testMultipleEncodes() {
         let testObject = TestClass()
         
-        let itemList = SOItemList()
+        let itemList = ItemList()
         itemList.numberOfItems = 47
         
-        let musicRecording = SOMusicRecording()
+        let musicRecording = MusicRecording()
         musicRecording.name = "Rebel in the Rye"
         
-        testObject.multiple = [itemList, musicRecording]
+        testObject.multiple = [.itemList(value: itemList), .musicRecording(value: musicRecording)]
         
         let dictionary: [String : Any]
         do {

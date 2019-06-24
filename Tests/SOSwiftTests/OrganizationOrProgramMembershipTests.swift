@@ -7,39 +7,6 @@ class OrganizationOrProgramMembershipTests: XCTestCase {
         var organization: OrganizationOrProgramMembership?
         var programMembership: OrganizationOrProgramMembership?
         var multiple: [OrganizationOrProgramMembership]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case organization
-            case programMembership
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.organization = try container.decodeOrganizationOrProgramMembershipIfPresent(forKey: .organization)
-            self.programMembership = try container.decodeOrganizationOrProgramMembershipIfPresent(forKey: .programMembership)
-            self.multiple = try container.decodeOrganizationsOrProgramMembershipsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.organization, forKey: .organization)
-            try container.encodeIfPresent(self.programMembership, forKey: .programMembership)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -84,11 +51,11 @@ class OrganizationOrProgramMembershipTests: XCTestCase {
         
         let org = Organization()
         org.name = "Microsoft"
-        testObject.organization = org
+        testObject.organization = .organization(value: org)
         
-        let prog = SOProgramMembership()
+        let prog = ProgramMembership()
         prog.name = "Insider"
-        testObject.programMembership = prog
+        testObject.programMembership = .programMembership(value: prog)
         
         let dictionary: [String : Any]
         do {
@@ -165,10 +132,10 @@ class OrganizationOrProgramMembershipTests: XCTestCase {
         let org = Organization()
         org.name = "Microsoft"
         
-        let prog = SOProgramMembership()
+        let prog = ProgramMembership()
         prog.name = "Insider"
         
-        testObject.multiple = [org, prog]
+        testObject.multiple = [.organization(value: org), .programMembership(value: prog)]
         
         let dictionary: [String : Any]
         do {

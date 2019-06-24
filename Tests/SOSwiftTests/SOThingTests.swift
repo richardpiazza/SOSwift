@@ -1,10 +1,10 @@
 import XCTest
 @testable import SOSwift
 
-class SOThingTests: XCTestCase {
+class ThingTests: XCTestCase {
     
     static var allTests = [
-        ("testSOThingEncodeContextAndType", testSOThingEncodeContextAndType)
+        ("testThingEncodeContextAndType", testThingEncodeContextAndType)
     ]
     
     override func setUp() {
@@ -15,7 +15,7 @@ class SOThingTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSOThing() {
+    func testThing() {
         let json = """
             {
                 "additionalType" : "http://schema.org/MedicalEntity",
@@ -46,10 +46,10 @@ class SOThingTests: XCTestCase {
             return
         }
 
-        var thing: SOThing
+        var thing: Thing
 
         do {
-            thing = try JSONDecoder().decode(SOThing.self, from: data)
+            thing = try JSONDecoder().decode(Thing.self, from: data)
         } catch {
             print(error)
             XCTFail()
@@ -72,8 +72,8 @@ class SOThingTests: XCTestCase {
         XCTAssertNotNil(thing.url)
     }
     
-    func testSOThingEncodeContextAndType() {
-        let thing = SOThing()
+    func testThingEncodeContextAndType() {
+        let thing = Thing()
         let data: Data
         do {
             data = try JSONEncoder().encode(thing)

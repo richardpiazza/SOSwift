@@ -6,26 +6,6 @@ class TextOrURLTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var text: URLOrText?
         var url: URLOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case text
-            case url
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.text = try container.decodeURLOrTextIfPresent(forKey: .text)
-            self.url = try container.decodeURLOrTextIfPresent(forKey: .url)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.text, forKey: .text)
-            try container.encodeIfPresent(self.url, forKey: .url)
-        }
     }
     
     override func setUp() {
@@ -72,8 +52,8 @@ class TextOrURLTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        testObject.text = "Wikimedia Commons"
-        testObject.url = "https://commons.wikimedia.org"
+        testObject.text = .text(value: "Wikimedia Commons")
+        testObject.url = .url(value: URL(string: "https://commons.wikimedia.org")!)
         
         let dictionary: [String : Any]
         do {

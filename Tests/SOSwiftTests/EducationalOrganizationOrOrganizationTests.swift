@@ -14,29 +14,6 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         var educationalOrganization: EducationalOrganizationOrOrganization?
         var organization: EducationalOrganizationOrOrganization?
         var multiple: [EducationalOrganizationOrOrganization]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case educationalOrganization
-            case organization
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.educationalOrganization = try container.decodeEducationalOrganizationOrOrganizationIfPresent(forKey: .educationalOrganization)
-            self.organization = try container.decodeEducationalOrganizationOrOrganizationIfPresent(forKey: .organization)
-            self.multiple = try container.decodeEducationalOrganizationsOrOrganizationsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(educationalOrganization, forKey: .educationalOrganization)
-            try container.encodeIfPresent(organization, forKey: .organization)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
     }
     
     func testSingleDecodes() throws {
@@ -55,14 +32,14 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        guard let edOrg = (testObject.educationalOrganization as? SOEducationalOrganizationOrOrganization)?.educationalOrganization else {
+        guard let edOrg = (testObject.educationalOrganization as? EducationalOrganizationOrOrganization)?.educationalOrganization else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(edOrg.name, "Harvard")
         
-        guard let org = (testObject.organization as? SOEducationalOrganizationOrOrganization)?.organization else {
+        guard let org = (testObject.organization as? EducationalOrganizationOrOrganization)?.organization else {
             XCTFail()
             return
         }
@@ -73,13 +50,13 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
     func testSingleEncodes() throws {
         let testObject = TestClass()
         
-        let edOrg = SOEducationalOrganization()
+        let edOrg = EducationalOrganization()
         edOrg.name = "Yale"
-        testObject.educationalOrganization = edOrg
+        testObject.educationalOrganization = .educationalOrganization(value: edOrg)
         
         let org = Organization()
         org.name = "Bob's"
-        testObject.organization = org
+        testObject.organization = .organization(value: org)
         
         let dictionary = try testObject.dictionary()
         
@@ -123,14 +100,14 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard let educationOrganization = (multiple[0] as? SOEducationalOrganizationOrOrganization)?.educationalOrganization else {
+        guard let educationOrganization = (multiple[0] as? EducationalOrganizationOrOrganization)?.educationalOrganization else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(educationOrganization.name, "Harvard")
         
-        guard let organization = (multiple[1] as? SOEducationalOrganizationOrOrganization)?.organization else {
+        guard let organization = (multiple[1] as? EducationalOrganizationOrOrganization)?.organization else {
             XCTFail()
             return
         }
@@ -139,13 +116,13 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
     }
     
     func testMultipleEncodes() throws {
-        let educationalOrganization = SOEducationalOrganization()
+        let educationalOrganization = EducationalOrganization()
         educationalOrganization.name = "Harvard"
         
         let organization = Organization()
         organization.name = "Microsoft"
         
-        var multiple: [SOEducationalOrganizationOrOrganization] = []
+        var multiple: [EducationalOrganizationOrOrganization] = []
         multiple.append(.educationalOrganization(value: educationalOrganization))
         multiple.append(.organization(value: organization))
         

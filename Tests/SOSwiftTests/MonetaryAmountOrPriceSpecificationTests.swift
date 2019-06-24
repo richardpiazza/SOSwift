@@ -6,36 +6,6 @@ class MonetaryAmountOrPriceSpecificationTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var monetaryAmount: MonetaryAmountOrPriceSpecification?
         var priceSpecification: MonetaryAmountOrPriceSpecification?
-        
-        private enum CodingKeys: String, CodingKey {
-            case monetaryAmount
-            case priceSpecification
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.monetaryAmount = try container.decodeMonetaryAmountOrPriceSpecificationIfPresent(forKey: .monetaryAmount)
-            self.priceSpecification = try container.decodeMonetaryAmountOrPriceSpecificationIfPresent(forKey: .priceSpecification)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.monetaryAmount, forKey: .monetaryAmount)
-            try container.encodeIfPresent(self.priceSpecification, forKey: .priceSpecification)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -78,13 +48,13 @@ class MonetaryAmountOrPriceSpecificationTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let monetaryAmount = SOMonetaryAmount()
+        let monetaryAmount = MonetaryAmount()
         monetaryAmount.name = "One Hundred"
-        testObject.monetaryAmount = monetaryAmount
+        testObject.monetaryAmount = .monetaryAmount(value: monetaryAmount)
         
-        let priceSpecification = SOPriceSpecification()
+        let priceSpecification = PriceSpecification()
         priceSpecification.name = "One Thousand"
-        testObject.priceSpecification = priceSpecification
+        testObject.priceSpecification = .priceSpecification(value: priceSpecification)
         
         let dictionary: [String : Any]
         do {

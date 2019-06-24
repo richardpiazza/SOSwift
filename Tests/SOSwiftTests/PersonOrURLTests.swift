@@ -7,39 +7,6 @@ class PersonOrURLTests: XCTestCase {
         var person: PersonOrURL?
         var url: PersonOrURL?
         var multiple: [PersonOrURL]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case person
-            case url
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.person = try container.decodePersonOrURLIfPresent(forKey: .person)
-            self.url = try container.decodePersonOrURLIfPresent(forKey: .url)
-            self.multiple = try container.decodePersonsOrURLsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.person, forKey: .person)
-            try container.encodeIfPresent(self.url, forKey: .url)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -81,9 +48,9 @@ class PersonOrURLTests: XCTestCase {
         
         let person = Person()
         person.name = "Jon Snow"
-        testObject.person = person
+        testObject.person = .person(value: person)
         
-        testObject.url = URL(string: "https://en.wikipedia.org/wiki/Jon_Snow_(character)")
+        testObject.url = .url(value: URL(string: "https://en.wikipedia.org/wiki/Jon_Snow_(character)")!)
         
         let dictionary: [String : Any]
         do {
@@ -159,7 +126,7 @@ class PersonOrURLTests: XCTestCase {
         
         let wiki = URL(string: "https://en.wikipedia.org/wiki/Jon_Snow_(character)")!
         
-        testObject.multiple = [person, wiki]
+        testObject.multiple = [.person(value: person), .url(value: wiki)]
         
         let dictionary: [String : Any]
         do {

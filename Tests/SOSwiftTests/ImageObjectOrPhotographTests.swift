@@ -56,7 +56,7 @@ class ImageObjectOrPhotographTests: XCTestCase {
         
         let photo = Photograph()
         photo.name = "Taffy"
-        testObject.photograph = .photo(value: photo)
+        testObject.photograph = .photograph(value: photo)
         
         let dictionary = try testObject.dictionary()
         

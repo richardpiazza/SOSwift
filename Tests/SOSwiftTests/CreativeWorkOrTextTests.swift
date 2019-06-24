@@ -7,39 +7,6 @@ class CreativeWorkOrTextTests: XCTestCase {
         var creativeWork: CreativeWorkOrText?
         var text: CreativeWorkOrText?
         var multiple: [CreativeWorkOrText]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case creativeWork
-            case text
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            creativeWork = try container.decodeCreativeWorkOrTextIfPresent(forKey: .creativeWork)
-            text = try container.decodeCreativeWorkOrTextIfPresent(forKey: .text)
-            multiple = try container.decodeCreativeWorksOrTextsIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(creativeWork, forKey: .creativeWork)
-            try container.encodeIfPresent(text, forKey: .text)
-            try container.encodeIfPresent(multiple, forKey: .multiple)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() throws {
@@ -56,8 +23,8 @@ class CreativeWorkOrTextTests: XCTestCase {
         let testable = try TestClass.make(with: json)
         
         guard
-            let creativeWork = testable.creativeWork as? SOCreativeWorkOrText,
-            let text = testable.text as? SOCreativeWorkOrText
+            let creativeWork = testable.creativeWork as? CreativeWorkOrText,
+            let text = testable.text as? CreativeWorkOrText
             else {
                 XCTFail()
                 return
@@ -70,11 +37,10 @@ class CreativeWorkOrTextTests: XCTestCase {
     func testSingleEncodes() throws {
         let testable = TestClass()
         
-        let creativeWork = SOCreativeWork()
+        let creativeWork = CreativeWork()
         creativeWork.name = "Futurama"
-        testable.creativeWork = creativeWork
-        
-        testable.text = "Turtle"
+        testable.creativeWork = .creativeWork(value: creativeWork)
+        testable.text = .text(value: "Turtle")
         
         let dictionary = try testable.dictionary()
         
@@ -118,8 +84,8 @@ class CreativeWorkOrTextTests: XCTestCase {
         XCTAssertEqual(multiple.count, 2)
         
         guard
-            let creativeWork = multiple[0] as? SOCreativeWorkOrText,
-            let text = multiple[1] as? SOCreativeWorkOrText
+            let creativeWork = multiple[0] as? CreativeWorkOrText,
+            let text = multiple[1] as? CreativeWorkOrText
             else {
                 XCTFail()
                 return
@@ -131,9 +97,9 @@ class CreativeWorkOrTextTests: XCTestCase {
     
     func testMultipleEncodes() throws {
         let testable = TestClass()
-        let creativeWork = SOCreativeWork()
+        let creativeWork = CreativeWork()
         let text = "Turtle"
-        testable.multiple = [SOCreativeWorkOrText.creativeWork(value: creativeWork), SOCreativeWorkOrText.text(value: text)]
+        testable.multiple = [CreativeWorkOrText.creativeWork(value: creativeWork), CreativeWorkOrText.text(value: text)]
         
         let json = try testable.json()
         XCTAssertTrue(json.contains("\"multiple\":["))

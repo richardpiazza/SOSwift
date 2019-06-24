@@ -6,36 +6,6 @@ class MusicGroupOrPersonTests: XCTestCase {
     fileprivate class TestClass: Codable, Testable {
         var musicGroup: MusicGroupOrPerson?
         var person: MusicGroupOrPerson?
-        
-        private enum CodingKeys: String, CodingKey {
-            case musicGroup
-            case person
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.musicGroup = try container.decodeMusicGroupOrPersonIfPresent(forKey: .musicGroup)
-            self.person = try container.decodeMusicGroupOrPersonIfPresent(forKey: .person)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.musicGroup, forKey: .musicGroup)
-            try container.encodeIfPresent(self.person, forKey: .person)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -78,13 +48,13 @@ class MusicGroupOrPersonTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let musicGroup = SOMusicGroup()
+        let musicGroup = MusicGroup()
         musicGroup.name = "The Beatles"
-        testObject.musicGroup = musicGroup
+        testObject.musicGroup = .musicGroup(value: musicGroup)
         
         let person = Person()
         person.name = "Paul McCartney"
-        testObject.person = person
+        testObject.person = .person(value: person)
         
         let dictionary: [String : Any]
         do {

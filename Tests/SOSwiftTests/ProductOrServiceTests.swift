@@ -7,39 +7,6 @@ class ProductOrServiceTests: XCTestCase {
         var product: ProductOrService?
         var service: ProductOrService?
         var multiple: [ProductOrService]?
-        
-        private enum CodingKeys: String, CodingKey {
-            case product
-            case service
-            case multiple
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.product = try container.decodeProductOrServiceIfPresent(forKey: .product)
-            self.service = try container.decodeProductOrServiceIfPresent(forKey: .service)
-            self.multiple = try container.decodeProductsOrServicesIfPresent(forKey: .multiple)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.product, forKey: .product)
-            try container.encodeIfPresent(self.service, forKey: .service)
-            try container.encodeIfPresent(self.multiple, forKey: .multiple)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -82,13 +49,13 @@ class ProductOrServiceTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let product = SOProduct()
+        let product = Product()
         product.name = "Airplane"
-        testObject.product = product
+        testObject.product = .product(value: product)
         
-        let service = SOService()
+        let service = Service()
         service.name = "In-Flight WiFi"
-        testObject.service = service
+        testObject.service = .service(value: service)
         
         let dictionary: [String : Any]
         do {
@@ -162,13 +129,13 @@ class ProductOrServiceTests: XCTestCase {
     func testMultipleEncodes() {
         let testObject = TestClass()
         
-        let product = SOProduct()
+        let product = Product()
         product.name = "Airplane"
         
-        let service = SOService()
+        let service = Service()
         service.name = "In-Flight WiFi"
         
-        testObject.multiple = [product, service]
+        testObject.multiple = [.product(value: product), .service(value: service)]
         
         let dictionary: [String : Any]
         do {

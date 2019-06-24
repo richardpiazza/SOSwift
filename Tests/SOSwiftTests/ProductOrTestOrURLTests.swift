@@ -7,39 +7,6 @@ class ProductOrTextOrURLTests: XCTestCase {
         var product: ProductOrURLOrText?
         var text: ProductOrURLOrText?
         var url: ProductOrURLOrText?
-        
-        private enum CodingKeys: String, CodingKey {
-            case product
-            case text
-            case url
-        }
-        
-        init() {
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.product = try container.decodeProductOrURLOrTextIfPresent(forKey: .product)
-            self.text = try container.decodeProductOrURLOrTextIfPresent(forKey: .text)
-            self.url = try container.decodeProductOrURLOrTextIfPresent(forKey: .url)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(self.product, forKey: .product)
-            try container.encodeIfPresent(self.text, forKey: .text)
-            try container.encodeIfPresent(self.url, forKey: .url)
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSingleDecodes() {
@@ -87,12 +54,11 @@ class ProductOrTextOrURLTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        let product = SOProduct()
+        let product = Product()
         product.name = "MacBook"
-        testObject.product = product
-        
-        testObject.text = "Laptop"
-        testObject.url = URL(string: "https://www.apple.com/macbook")
+        testObject.product = .product(value: product)
+        testObject.text = .text(value: "Laptop")
+        testObject.url = .url(value: URL(string: "https://www.apple.com/macbook")!)
         
         let dictionary: [String : Any]
         do {
