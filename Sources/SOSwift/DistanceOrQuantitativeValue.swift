@@ -4,6 +4,14 @@ public enum DistanceOrQuantitativeValue: Codable {
     case distance(value: Distance)
     case quantitativeValue(value: QuantitativeValue)
     
+    public init(_ value: Distance) {
+        self = .distance(value: value)
+    }
+    
+    public init(_ value: QuantitativeValue) {
+        self = .quantitativeValue(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

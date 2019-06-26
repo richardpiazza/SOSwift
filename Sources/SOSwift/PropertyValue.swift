@@ -53,4 +53,48 @@ public class PropertyValue: StructuredValue {
     /// value, e.g. a reference temperature.
     public var valueReference: ValueReference?
     
+    internal enum PropertyValueCodingKeys: String, CodingKey {
+        case maxValue
+        case measurementTechnique
+        case minValue
+        case propertyID
+        case unitCode
+        case unitText
+        case value
+        case valueReferences
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: PropertyValueCodingKeys.self)
+        
+        maxValue = try container.decodeIfPresent(Number.self, forKey: .maxValue)
+        measurementTechnique = try container.decodeIfPresent(URLOrText.self, forKey: .measurementTechnique)
+        minValue = try container.decodeIfPresent(Number.self, forKey: .minValue)
+        propertyID = try container.decodeIfPresent(URLOrText.self, forKey: .propertyID)
+        unitCode = try container.decodeIfPresent(URLOrText.self, forKey: .unitCode)
+        unitText = try container.decodeIfPresent(String.self, forKey: .unitText)
+        value = try container.decodeIfPresent(Value.self, forKey: .value)
+        valueReference = try container.decodeIfPresent(ValueReference.self, forKey: .valueReferences)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: PropertyValueCodingKeys.self)
+        
+        try container.encodeIfPresent(maxValue, forKey: .maxValue)
+        try container.encodeIfPresent(measurementTechnique, forKey: .measurementTechnique)
+        try container.encodeIfPresent(minValue, forKey: .minValue)
+        try container.encodeIfPresent(propertyID, forKey: .propertyID)
+        try container.encodeIfPresent(unitCode, forKey: .unitCode)
+        try container.encodeIfPresent(unitText, forKey: .unitText)
+        try container.encodeIfPresent(value, forKey: .value)
+        try container.encodeIfPresent(valueReference, forKey: .valueReferences)
+        
+        try super.encode(to: encoder)
+    }
 }

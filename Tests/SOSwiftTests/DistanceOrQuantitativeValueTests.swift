@@ -76,8 +76,8 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
         
         let quantitativeValue = QuantitativeValue()
         quantitativeValue.name = "Range"
-        quantitativeValue.minValue = Number(rawValue: .floatingPoint(value: 0.0))
-        quantitativeValue.maxValue = Number(rawValue: .floatingPoint(value: 1.0))
+        quantitativeValue.minValue = .floatingPoint(value: 0.0)
+        quantitativeValue.maxValue = .floatingPoint(value: 1.0)
         testObject.quantitativeValue = .quantitativeValue(value: quantitativeValue)
         
         let dictionary: [String : Any]
@@ -177,8 +177,8 @@ class DistanceOrQuantitativeValueTests: XCTestCase {
         
         let quantitativeValue = QuantitativeValue()
         quantitativeValue.name = "Lumens"
-        quantitativeValue.minValue = Number(rawValue: .floatingPoint(value: 0.0))
-        quantitativeValue.maxValue = Number(rawValue: .integer(value: 4000))
+        quantitativeValue.minValue = .floatingPoint(value: 0.0)
+        quantitativeValue.maxValue = .integer(value: 4000)
         
         var multiple: [DistanceOrQuantitativeValue] = []
         multiple.append(.distance(value: distance))

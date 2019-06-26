@@ -5,8 +5,8 @@ class ThingTests: XCTestCase {
     
     static var allTests = [
         ("testSchema", testSchema),
-        ("testSingleDecode", testSingleDecode),
-        ("testSingleEncode", testSingleEncode),
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
     ]
     
     private let _additionalType = URL(string: "http://schema.org/MedicalEntity")
@@ -25,7 +25,7 @@ class ThingTests: XCTestCase {
         XCTAssertEqual(Thing.schemaType, "Thing")
     }
     
-    func testSingleDecode() throws {
+    func testDecode() throws {
         let json = """
         {
             "additionalType" : "http://schema.org/MedicalEntity",
@@ -76,7 +76,7 @@ class ThingTests: XCTestCase {
         XCTAssertEqual(thing_idOnly.identifier?.text, _identifier)
     }
     
-    func testSingleEncode() throws {
+    func testEncode() throws {
         let thing = Thing()
         thing.additionalType = _additionalType
         thing.alternativeName = _alternativeName
@@ -92,9 +92,9 @@ class ThingTests: XCTestCase {
         let data = try JSONEncoder().encode(thing)
         let dictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String : Any]
         
-        let id = dictionary["@id"] as? String
-        let type = dictionary["@type"] as? String
-        let context = dictionary["@context"] as? String
+        let id = dictionary[SchemaKeys.id.rawValue] as? String
+        let type = dictionary[SchemaKeys.type.rawValue] as? String
+        let context = dictionary[SchemaKeys.context.rawValue] as? String
         
         let additionalType = dictionary[Thing.CodingKeys.additionalType] as? String
         let alternativeName = dictionary[Thing.CodingKeys.alternativeName] as? String
@@ -107,9 +107,9 @@ class ThingTests: XCTestCase {
         let sameAs = dictionary[Thing.CodingKeys.sameAs] as? [String]
         let url = dictionary[Thing.CodingKeys.url] as? String
         
-        XCTAssertEqual(id, "1234567890")
-        XCTAssertEqual(type, "Thing")
-        XCTAssertEqual(context, "http://www.schema.org")
+        XCTAssertEqual(id, _identifier)
+        XCTAssertEqual(type, Thing.schemaType)
+        XCTAssertEqual(context, Thing.schemaContext)
         
         XCTAssertEqual(additionalType, _additionalType?.absoluteString)
         XCTAssertEqual(alternativeName, _alternativeName)

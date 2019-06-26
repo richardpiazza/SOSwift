@@ -76,8 +76,8 @@ class ValueTests: XCTestCase {
         structuredValue.name = "Hundreds"
         testObject.structuredValue = .structuredValue(value: structuredValue)
         testObject.bool = .bool(value: false)
-        testObject.double = .number(value: Number(rawValue: .floatingPoint(value: 39.1))!)
-        testObject.int = .number(value: Number(rawValue: .integer(value: 100))!)
+        testObject.double = Value(.floatingPoint(value: 39.1))
+        testObject.int = Value(.integer(value: 100))
         testObject.string = .text(value: "🔟")
         
         let dictionary: [String : Any]

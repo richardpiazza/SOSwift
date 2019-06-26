@@ -3,72 +3,44 @@ import XCTest
 
 class NumberTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
-        var int: Number?
-        var double: Number?
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
+        var integer: Number?
+        var floatingPoint: Number?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "int" : 47,
-                "double" : 42.42
-            }
+        {
+            "integer" : 47,
+            "floatingPoint" : 42.42
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
+        let testClass = try TestClass.make(with: json)
         
-        guard let int = testObject.int as? Int else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(int, 47)
-        
-        guard let double = testObject.double as? Double else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(double, 42.42)
-        
-        XCTAssertNil(testObject.int as? Double)
-        XCTAssertNil(testObject.double as? Int)
+        XCTAssertEqual(testClass.integer?.integer, 47)
+        XCTAssertNil(testClass.integer?.floatingPoint)
+        XCTAssertEqual(testClass.floatingPoint?.floatingPoint, 42.42)
+        XCTAssertNil(testClass.floatingPoint?.integer)
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
-        testObject.int = Number(rawValue: .integer(value: 12345))
-        testObject.double = Number(rawValue: .floatingPoint(value: 12.345))
+        testObject.integer = Number(12345)
+        testObject.floatingPoint = Number(12.345)
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
+        let dictionary = try testObject.asDictionary()
+        let integer = dictionary["integer"] as? Int
+        let floatingPoint = dictionary["floatingPoint"] as? Double
         
-        guard let i = dictionary["int"] as? Int else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(i, 12345)
-        
-        guard let f = dictionary["double"] as? Double else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(f, 12.345)
+        XCTAssertEqual(integer, 12345)
+        XCTAssertEqual(floatingPoint, 12.345)
     }
 }
 

@@ -3,7 +3,7 @@ import XCTest
 
 class PropertyValueOrTextTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var propertyValue: PropertyValueOrText?
         var text: PropertyValueOrText?
     }
@@ -18,7 +18,7 @@ class PropertyValueOrTextTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
             {
                 "propertyValue" : {
@@ -29,13 +29,7 @@ class PropertyValueOrTextTests: XCTestCase {
             }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
+        let testObject = try TestClass.make(with: json)
         
         guard let propertyValue = testObject.propertyValue as? PropertyValue, let value = propertyValue.value as? Int else {
             XCTFail()
@@ -52,7 +46,7 @@ class PropertyValueOrTextTests: XCTestCase {
         XCTAssertEqual(text, "Ultimate Answer")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let propertyValue = PropertyValue()
@@ -62,7 +56,7 @@ class PropertyValueOrTextTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
@@ -81,13 +75,5 @@ class PropertyValueOrTextTests: XCTestCase {
         }
         
         XCTAssertEqual(t, "Measure")
-    }
-    
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
-        
     }
 }

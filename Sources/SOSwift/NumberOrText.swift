@@ -4,6 +4,14 @@ public enum NumberOrText: Codable {
     case number(value: Number)
     case text(value: String)
     
+    public init(_ value: Number) {
+        self = .number(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         

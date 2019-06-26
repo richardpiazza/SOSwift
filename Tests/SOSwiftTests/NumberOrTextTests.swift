@@ -42,7 +42,7 @@ class NumberOrTextTests: XCTestCase {
     func testSingleEncodes() {
         let testObject = TestClass()
         
-        testObject.number = .number(value: Number(rawValue: .floatingPoint(value: 4.7))!)
+        testObject.number = NumberOrText(.floatingPoint(value: 4.7))
         testObject.text = .text(value: "Almost Five")
         
         let dictionary: [String : Any]

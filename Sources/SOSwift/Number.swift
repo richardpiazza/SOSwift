@@ -1,57 +1,45 @@
 import Foundation
 
-public struct Number: RawRepresentable, Codable {
+public enum Number: Codable {
+    case floatingPoint(value: Double)
+    case integer(value: Int)
     
-    public enum NumberRawValue: Codable {
-        case floatingPoint(value: Double)
-        case integer(value: Int)
-        
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            
-            do {
-                let value = try container.decode(Int.self)
-                self = .integer(value: value)
-                return
-            } catch {
-            }
-            
-            let value = try container.decode(Double.self)
-            self = .floatingPoint(value: value)
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            
-            switch self {
-            case .floatingPoint(let value):
-                try container.encode(value)
-            case .integer(let value):
-                try container.encode(value)
-            }
-        }
+    public init(_ value: Double) {
+        self = .floatingPoint(value: value)
     }
     
-    public typealias RawValue = NumberRawValue
-    
-    public var rawValue: NumberRawValue
-    
-    public init?(rawValue: NumberRawValue) {
-        self.rawValue = rawValue
+    public init(_ value: Int) {
+        self = .integer(value: value)
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.rawValue = try container.decode(NumberRawValue.self)
+        
+        do {
+            let value = try container.decode(Int.self)
+            self = .integer(value: value)
+            return
+        } catch {
+            
+        }
+        
+        let value = try container.decode(Double.self)
+        self = .floatingPoint(value: value)
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(rawValue)
+        
+        switch self {
+        case .floatingPoint(let value):
+            try container.encode(value)
+        case .integer(let value):
+            try container.encode(value)
+        }
     }
     
-    public var intValue: Int? {
-        switch rawValue {
+    public var integer: Int? {
+        switch self {
         case .integer(let value):
             return value
         default:
@@ -59,8 +47,8 @@ public struct Number: RawRepresentable, Codable {
         }
     }
     
-    public var doubleValue: Double? {
-        switch rawValue {
+    public var floatingPoint: Double? {
+        switch self {
         case .floatingPoint(let value):
             return value
         default:

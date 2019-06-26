@@ -6,6 +6,22 @@ public enum Value: Codable {
     case text(value: String)
     case bool(value: Bool)
     
+    public init(_ value: StructuredValue) {
+        self = .structuredValue(value: value)
+    }
+    
+    public init(_ value: Number) {
+        self = .number(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
+    public init(_ value: Bool) {
+        self = .bool(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         
