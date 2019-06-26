@@ -2,21 +2,16 @@ import XCTest
 @testable import SOSwift
 
 class DurationTests: XCTestCase {
-
-    let fullDuration: Duration = Duration(rawValue: "P1Y5M3DT10H20M8S")!
-    let weekDuration: Duration = Duration(rawValue: "P24W")!
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+    ]
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testDurationToDateComponents() {
+    let fullDuration: Duration = Duration(stringValue: "P1Y5M3DT10H20M8S")
+    let weekDuration: Duration = Duration(stringValue: "P24W")
+    
+    func testDecode() {
         let fullDateComponents = fullDuration.dateComponents
         XCTAssertEqual(fullDateComponents.year, 1)
         XCTAssertEqual(fullDateComponents.month, 5)
@@ -29,7 +24,7 @@ class DurationTests: XCTestCase {
         XCTAssertEqual(weekDateComponents.weekOfYear, 24)
     }
 
-    func testDateComponentsToDuration() {
+    func testEncode() {
         var fullDateComponents = DateComponents()
         fullDateComponents.year = 3
         fullDateComponents.month = 4
@@ -38,13 +33,13 @@ class DurationTests: XCTestCase {
         fullDateComponents.minute = 7
         fullDateComponents.second = 8
         
-        let fullDateDuration = Duration(dateComponents: fullDateComponents).rawValue
+        let fullDateDuration = Duration(dateComponents: fullDateComponents).stringValue
         XCTAssertEqual(fullDateDuration, "P3Y4M5DT6H7M8S")
         
         var weekDateComponents = DateComponents()
         weekDateComponents.weekOfYear = 44
         
-        let weekDateDuration = Duration(dateComponents: weekDateComponents).rawValue
+        let weekDateDuration = Duration(dateComponents: weekDateComponents).stringValue
         XCTAssertEqual(weekDateDuration, "P44W")
     }
 }

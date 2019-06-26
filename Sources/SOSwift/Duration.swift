@@ -3,91 +3,35 @@ import Foundation
 /// Quantity: Duration (use ISO 8601 duration format).
 ///
 /// Inspired From: [Igor-Palaguta](https://github.com/Igor-Palaguta/YoutubeEngine/blob/master/Source/YoutubeEngine/Parser/NSDateComponents%2BISO8601.swift)
-public struct Duration: RawRepresentable, Codable {
-    public typealias RawValue = String
+public struct Duration: Codable {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    private var _dateComponents: DateComponents
     
     public init(dateComponents: DateComponents) {
-        var duration: String = "P"
-        
-        if let weeks = dateComponents.weekOfYear {
-            duration.append("\(weeks)W")
-            self.rawValue = duration
-            return
-        }
-        
-        if let value = dateComponents.year {
-            duration.append("\(value)Y")
-        }
-        if let value = dateComponents.month {
-            duration.append("\(value)M")
-        }
-        if let value = dateComponents.day {
-            duration.append("\(value)D")
-        }
-        
-        duration.append("T")
-        
-        if let value = dateComponents.hour {
-            duration.append("\(value)H")
-        }
-        if let value = dateComponents.minute {
-            duration.append("\(value)M")
-        }
-        if let value = dateComponents.second {
-            duration.append("\(value)S")
-        }
-        
-        self.rawValue = duration
+        _dateComponents = dateComponents
+    }
+    
+    public init(stringValue: String) {
+        _dateComponents = components(for: stringValue)
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let value = try container.decode(String.self)
+        _dateComponents = components(for: value)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(stringValue)
+    }
+    
+    public var stringValue: String {
+        return durationString(from: _dateComponents)
     }
     
     public var dateComponents: DateComponents {
-        var components = DateComponents()
-        
-        let value = rawValue
-        
-        guard value.hasPrefix("P") else {
-            return components
-        }
-        
-        let durationString = String(value.dropFirst())
-        var dateUnits: [(Calendar.Component, Int)]
-        var timeUnits: [(Calendar.Component, Int)]?
-        
-        if let _ = durationString.range(of: "W") {
-            let weekUnits = units(for: durationString, mappings: weekUnitMappings)
-            for (component, value) in weekUnits {
-                components.setValue(value, for: component)
-            }
-            
-            return components
-        }
-        
-        if let separatorRange = durationString.range(of: "T") {
-            let date = String(durationString[..<separatorRange.lowerBound])
-            let time = String(durationString[separatorRange.upperBound...])
-            dateUnits = units(for: date, mappings: dateUnitMappings)
-            timeUnits = units(for: time, mappings: timeUnitMappings)
-        } else {
-            dateUnits = units(for: durationString, mappings: dateUnitMappings)
-        }
-        
-        for (component, value) in dateUnits {
-            components.setValue(value, for: component)
-        }
-        
-        if let times = timeUnits {
-            for (component, value) in times {
-                components.setValue(value, for: component)
-            }
-        }
-        
-        return components
+        return _dateComponents
     }
 }
 
@@ -145,4 +89,79 @@ fileprivate func units(for durationString: String, mappings: [Character : Calend
     }
     
     return components
+}
+
+fileprivate func components(for durationString: String) -> DateComponents {
+    var components = DateComponents()
+    
+    guard durationString.hasPrefix("P") else {
+        return components
+    }
+    
+    let componentsString = String(durationString.dropFirst())
+    var dateUnits: [(Calendar.Component, Int)]
+    var timeUnits: [(Calendar.Component, Int)]?
+    
+    if let _ = componentsString.range(of: "W") {
+        let weekUnits = units(for: componentsString, mappings: weekUnitMappings)
+        for (component, value) in weekUnits {
+            components.setValue(value, for: component)
+        }
+        
+        return components
+    }
+    
+    if let separatorRange = componentsString.range(of: "T") {
+        let date = String(componentsString[..<separatorRange.lowerBound])
+        let time = String(componentsString[separatorRange.upperBound...])
+        dateUnits = units(for: date, mappings: dateUnitMappings)
+        timeUnits = units(for: time, mappings: timeUnitMappings)
+    } else {
+        dateUnits = units(for: componentsString, mappings: dateUnitMappings)
+    }
+    
+    for (component, value) in dateUnits {
+        components.setValue(value, for: component)
+    }
+    
+    if let times = timeUnits {
+        for (component, value) in times {
+            components.setValue(value, for: component)
+        }
+    }
+    
+    return components
+}
+
+fileprivate func durationString(from dateComponents: DateComponents) -> String {
+    var duration: String = "P"
+    
+    if let weeks = dateComponents.weekOfYear {
+        duration.append("\(weeks)W")
+        return duration
+    }
+    
+    if let value = dateComponents.year {
+        duration.append("\(value)Y")
+    }
+    if let value = dateComponents.month {
+        duration.append("\(value)M")
+    }
+    if let value = dateComponents.day {
+        duration.append("\(value)D")
+    }
+    
+    duration.append("T")
+    
+    if let value = dateComponents.hour {
+        duration.append("\(value)H")
+    }
+    if let value = dateComponents.minute {
+        duration.append("\(value)M")
+    }
+    if let value = dateComponents.second {
+        duration.append("\(value)S")
+    }
+    
+    return duration
 }
