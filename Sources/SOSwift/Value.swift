@@ -23,42 +23,34 @@ public enum Value: Codable {
     }
     
     public init(from decoder: Decoder) throws {
-        var dictionary: [String : Any]?
+        let container = try decoder.singleValueContainer()
         
         do {
-            let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
-            dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
+            let value = try container.decode(Number.self)
+            self = .number(value: value)
+            return
         } catch {
-            
         }
         
-        guard let jsonDictionary = dictionary else {
-            let container = try decoder.singleValueContainer()
-            
-            do {
-                let value = try container.decode(Number.self)
-                self = .number(value: value)
-                return
-            } catch {
-            }
-            
-            do {
-                let value = try container.decode(Bool.self)
-                self = .bool(value: value)
-                return
-            } catch {
-            }
-            
+        do {
+            let value = try container.decode(Bool.self)
+            self = .bool(value: value)
+            return
+        } catch {
+        }
+        
+        do {
             let value = try container.decode(String.self)
             self = .text(value: value)
             return
+        } catch {
         }
         
-        guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
+        let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
+        let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
+        guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {
             throw SchemaError.typeDecodingError
         }
-        
-        let container = try decoder.singleValueContainer()
         
         switch type {
         case StructuredValue.schemaType:

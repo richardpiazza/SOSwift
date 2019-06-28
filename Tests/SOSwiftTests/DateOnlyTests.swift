@@ -2,8 +2,13 @@ import XCTest
 @testable import SOSwift
 
 class DateOnlyTests: XCTestCase {
-
-    fileprivate class TestClass: Codable, Testable {
+    
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var validDateString: DateOnly?
         var invalidString: DateOnly?
         var invalidDataType: DateOnly?
@@ -14,68 +19,33 @@ class DateOnlyTests: XCTestCase {
         return DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, era: nil, year: 2017, month: 10, day: 18, hour: 0, minute: 0, second: 0, nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "validDateString" : "2017-10-18",
-                "invalidString" : "invalid",
-                "invalidDataType" : 42
-            }
+        {
+            "validDateString" : "2017-10-18",
+            "invalidString" : "invalid",
+            "invalidDataType" : 42
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
+        let testClass = try TestClass.make(with: json)
+        XCTAssertNotNil(testClass.validDateString?.date)
+        XCTAssertNil(testClass.invalidString)
+        XCTAssertNil(testClass.invalidDataType)
+        XCTAssertNil(testClass.nilValue)
         
-        guard let validDateString = testObject.validDateString else {
-            XCTFail()
-            return
-        }
+        XCTAssertNotNil(dateComponents.date)
         
-        guard let validDateDate = validDateString.date else {
-            XCTFail()
-            return
-        }
-        
-        guard let componentsDate = dateComponents.date else {
-            XCTFail()
-            return
-        }
-        
-        let compare = Calendar.current.compare(validDateDate, to: componentsDate, toGranularity: .day)
+        let compare = Calendar.current.compare(testClass.validDateString!.date!, to: dateComponents.date!, toGranularity: .day)
         XCTAssertEqual(compare, .orderedSame)
-        
-        XCTAssertNil(testObject.invalidString)
-        XCTAssertNil(testObject.invalidDataType)
-        XCTAssertNil(testObject.nilValue)
     }
     
-    func testSingleEncodes() {
-        let testObject = TestClass()
+    func testEncode() throws {
+        let testClass = TestClass()
+        testClass.validDateString = DateOnly(date: dateComponents.date!)
         
-        guard let componentsDate = dateComponents.date else {
-            XCTFail()
-            return
-        }
-        
-        testObject.validDateString = DateOnly(date: componentsDate)
-        
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let valid = dictionary["validDateString"] as? String else {
-            XCTFail()
-            return
-        }
+        let dictionary = try testClass.asDictionary()
+        let valid = dictionary["validDateString"] as? String
         
         XCTAssertEqual(valid, "2017-10-18")
     }
