@@ -6,13 +6,14 @@ class DurationTests: XCTestCase {
     static var allTests = [
         ("testDecode", testDecode),
         ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
     ]
     
     let fullDuration: Duration = Duration(stringValue: "P1Y5M3DT10H20M8S")
     let weekDuration: Duration = Duration(stringValue: "P24W")
     
     func testDecode() {
-        let fullDateComponents = fullDuration.dateComponents
+        let fullDateComponents = fullDuration.rawValue
         XCTAssertEqual(fullDateComponents.year, 1)
         XCTAssertEqual(fullDateComponents.month, 5)
         XCTAssertEqual(fullDateComponents.day, 3)
@@ -20,7 +21,7 @@ class DurationTests: XCTestCase {
         XCTAssertEqual(fullDateComponents.minute, 20)
         XCTAssertEqual(fullDateComponents.second, 8)
         
-        let weekDateComponents = weekDuration.dateComponents
+        let weekDateComponents = weekDuration.rawValue
         XCTAssertEqual(weekDateComponents.weekOfYear, 24)
     }
 
@@ -33,13 +34,22 @@ class DurationTests: XCTestCase {
         fullDateComponents.minute = 7
         fullDateComponents.second = 8
         
-        let fullDateDuration = Duration(dateComponents: fullDateComponents).stringValue
+        let fullDateDuration = Duration(rawValue: fullDateComponents).stringValue
         XCTAssertEqual(fullDateDuration, "P3Y4M5DT6H7M8S")
         
         var weekDateComponents = DateComponents()
         weekDateComponents.weekOfYear = 44
         
-        let weekDateDuration = Duration(dateComponents: weekDateComponents).stringValue
+        let weekDateDuration = Duration(rawValue: weekDateComponents).stringValue
         XCTAssertEqual(weekDateDuration, "P44W")
+    }
+    
+    func testEquatability() throws {
+        let duration1 = Duration(stringValue: "P1Y6M")
+        let duration2 = Duration(stringValue: "P1Y6M")
+        let duration3 = Duration(stringValue: "P18W")
+        
+        XCTAssertEqual(duration1, duration2)
+        XCTAssertNotEqual(duration1, duration3)
     }
 }

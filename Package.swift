@@ -19,7 +19,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "SOSwift", dependencies: [], path: "Sources/SOSwift"),
-        .testTarget(name: "SOSwiftTests", dependencies: ["SOSwift"], path: "Tests/SOSwiftTests"),
+        .testTarget(name: "SOSwiftTests", dependencies: ["SOSwift"], path: "Tests/SOSwiftTests", exclude: ["Tests/SOSwiftTests/ToBeRewritten"]),
     ],
     swiftLanguageVersions: [.v4, .v4_2, .v5]
 )

@@ -47,7 +47,7 @@ class DateTimeOrTextOrURLTests: XCTestCase {
             return
         }
         
-        let dtDate = dateTime.date
+        let dtDate = dateTime.rawValue
         let dcDate = dateComponents.date
         
         XCTAssertEqual(dtDate, dcDate)
@@ -69,7 +69,7 @@ class DateTimeOrTextOrURLTests: XCTestCase {
 
     func testSingleEncodes() {
         let testObject = TestClass()
-        testObject.dateTime = .dateTime(value: DateTime(date: dateComponents.date!))
+        testObject.dateTime = .dateTime(value: DateTime(rawValue: dateComponents.date!))
         testObject.text = .text(value: "Goodbye")
         testObject.url = .url(value: URL(string: "https://www.apple.com")!)
         
@@ -140,12 +140,12 @@ class DateTimeOrTextOrURLTests: XCTestCase {
         switch dateTime {
         case .dateTime(let value):
             let components = DateComponents(calendar: .gregorian, timeZone: .gmt, era: nil, year: 2019, month: 6, day: 16, hour: 13, minute: 14, second: 0, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
-            guard let date = value.date, let compare = components.date else {
+            guard let compare = components.date else {
                 XCTFail()
                 return
             }
             
-            XCTAssertEqual(Calendar.gregorian.compare(date, to: compare, toGranularity: .second), .orderedSame)
+            XCTAssertEqual(Calendar.gregorian.compare(value.rawValue, to: compare, toGranularity: .second), .orderedSame)
         default:
             XCTFail()
         }
@@ -167,7 +167,7 @@ class DateTimeOrTextOrURLTests: XCTestCase {
     }
     
     func testMultipleEncodes() throws {
-        let dateTime = DateTimeOrURLOrText.dateTime(value: DateTime(rawValue: "2019-06-16T08:14:00-5000")!)
+        let dateTime = DateTimeOrURLOrText.dateTime(value: DateTime(stringValue: "2019-06-16T08:14:00-5000")!)
         let url = DateTimeOrURLOrText.url(value: URL(string: "https://www.google.com")!)
         let text = DateTimeOrURLOrText.text(value: "Hello World")
         

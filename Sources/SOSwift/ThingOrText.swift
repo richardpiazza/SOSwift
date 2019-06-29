@@ -4,28 +4,29 @@ public enum ThingOrText: Codable {
     case thing(value: Thing)
     case text(value: String)
     
+    public init(value: Thing) {
+        self = .thing(value: value)
+    }
+    
+    public init(value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
-        var dictionary: [String : Any]?
+        let container = try decoder.singleValueContainer()
         
         do {
-            let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
-            dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
-        } catch {
-            
-        }
-        
-        guard let jsonDictionary = dictionary else {
-            let container = try decoder.singleValueContainer()
             let value = try container.decode(String.self)
             self = .text(value: value)
             return
+        } catch {
         }
         
-        guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
+        let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
+        let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
+        guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {
             throw SchemaError.typeDecodingError
         }
-        
-        let container = try decoder.singleValueContainer()
         
         switch type {
         case Thing.schemaType:

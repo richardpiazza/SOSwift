@@ -23,6 +23,7 @@ public enum SchemaKeys: String, CodingKey {
 
 public enum SchemaError: Error {
     case typeDecodingError
+    case incorrectDateFormat
 }
 
 public enum SchemaDecodingError: Error {

@@ -37,20 +37,20 @@ class DateOnlyOrDateTimeTests: XCTestCase {
             return
         }
         
-        XCTAssertNotNil(dateOnly.date)
+        XCTAssertNotNil(dateOnly.rawValue)
         
         guard let dateTime = testObject.dateTime as? DateTime else {
             XCTFail()
             return
         }
         
-        XCTAssertNotNil(dateTime.date)
+        XCTAssertNotNil(dateTime.rawValue)
     }
     
     func testSingleEncodes() throws {
         let testObject = TestClass()
-        testObject.dateOnly = .dateOnly(value: DateOnly(rawValue: "2019-06-16")!)
-        testObject.dateTime = .dateTime(value: DateTime(rawValue: "2019-06-16T08:14:00-5000")!)
+        testObject.dateOnly = .dateOnly(value: DateOnly(stringValue: "2019-06-16")!)
+        testObject.dateTime = .dateTime(value: DateTime(stringValue: "2019-06-16T08:14:00-5000")!)
         
         let dictionary = try testObject.dictionary()
         XCTAssertEqual(dictionary.keys.count, 2)
@@ -105,12 +105,12 @@ class DateOnlyOrDateTimeTests: XCTestCase {
         switch dateOnly {
         case .dateOnly(let value):
             let components = DateComponents(calendar: .gregorian, timeZone: .gmt, era: nil, year: 2017, month: 10, day: 26, hour: 5, minute: 0, second: 0, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
-            guard let date = value.date, let compare = components.date else {
+            guard let compare = components.date else {
                 XCTFail()
                 return
             }
             
-            XCTAssertEqual(Calendar.gregorian.compare(date, to: compare, toGranularity: .day), .orderedSame)
+            XCTAssertEqual(Calendar.gregorian.compare(value.rawValue, to: compare, toGranularity: .day), .orderedSame)
         default:
             XCTFail()
         }
@@ -118,20 +118,20 @@ class DateOnlyOrDateTimeTests: XCTestCase {
         switch dateTime {
         case .dateTime(let value):
             let components = DateComponents(calendar: .gregorian, timeZone: .gmt, era: nil, year: 2017, month: 10, day: 26, hour: 1, minute: 58, second: 0, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
-            guard let date = value.date, let compare = components.date else {
+            guard let compare = components.date else {
                 XCTFail()
                 return
             }
             
-            XCTAssertEqual(Calendar.gregorian.compare(date, to: compare, toGranularity: .second), .orderedSame)
+            XCTAssertEqual(Calendar.gregorian.compare(value.rawValue, to: compare, toGranularity: .second), .orderedSame)
         default:
             XCTFail()
         }
     }
     
     func testMultipleEncodes() throws {
-        let dateOnly: DateOnlyOrDateTime = .dateOnly(value: DateOnly(rawValue: "2019-06-16")!)
-        let dateTime: DateOnlyOrDateTime = .dateTime(value: DateTime(rawValue: "2019-06-16T08:14:00-5000")!)
+        let dateOnly: DateOnlyOrDateTime = .dateOnly(value: DateOnly(stringValue: "2019-06-16")!)
+        let dateTime: DateOnlyOrDateTime = .dateTime(value: DateTime(stringValue: "2019-06-16T08:14:00-5000")!)
         
         let testObject = TestClass()
         testObject.multiple = [dateOnly, dateTime]
