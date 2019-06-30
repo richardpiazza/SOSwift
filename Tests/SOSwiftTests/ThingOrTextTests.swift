@@ -56,11 +56,11 @@ class ThingOrTextTests: XCTestCase {
     
     func testEncode() throws {
         let testClass = TestClass()
-        testClass.text = ThingOrText(value: "Dinner")
+        testClass.text = ThingOrText("Dinner")
         
         let thing = Thing()
         thing.name = "Steak"
-        testClass.thing = .thing(value: thing)
+        testClass.thing = ThingOrText(thing)
         
         let dictionary = try testClass.asDictionary()
         

@@ -5,6 +5,18 @@ public enum PlaceOrPostalAddressOrText: Codable {
     case postalAddress(value: PostalAddress)
     case text(value: String)
     
+    public init(_ value: Place) {
+        self = .place(value: value)
+    }
+    
+    public init(_ value: PostalAddress) {
+        self = .postalAddress(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

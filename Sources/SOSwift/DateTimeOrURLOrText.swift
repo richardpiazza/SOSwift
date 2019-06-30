@@ -1,22 +1,24 @@
 import Foundation
 
-public enum DateTimeOrURLOrText: Codable {
+public enum DateTimeOrURLOrText: Codable, Equatable {
     case dateTime(value: DateTime)
     case url(value: URL)
     case text(value: String)
     
+    public init(_ value: DateTime) {
+        self = .dateTime(value: value)
+    }
+    
+    public init(_ value: URL) {
+        self = .url(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        
-        do {
-            let value = try container.decode(URL.self)
-            if value.isValid {
-                self = .url(value: value)
-                return
-            }
-        } catch {
-            
-        }
         
         do {
             let value = try container.decode(DateTime.self)
@@ -27,7 +29,12 @@ public enum DateTimeOrURLOrText: Codable {
         }
         
         let value = try container.decode(String.self)
-        self = .text(value: value)
+        
+        if let url = URL(string: value), url.isValid {
+            self = .url(value: url)
+        } else {
+            self = .text(value: value)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {

@@ -1,6 +1,6 @@
 import Foundation
 
-public enum NumberOrText: Codable {
+public enum NumberOrText: Codable, Equatable {
     case number(value: Number)
     case text(value: String)
     

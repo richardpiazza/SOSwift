@@ -1,8 +1,16 @@
 import Foundation
 
-public enum DateOnlyOrDateTime: Codable {
+public enum DateOnlyOrDateTime: Codable, Equatable {
     case dateOnly(value: DateOnly)
     case dateTime(value: DateTime)
+    
+    public init(_ value: DateOnly) {
+        self = .dateOnly(value: value)
+    }
+    
+    public init(_ value: DateTime) {
+        self = .dateTime(value: value)
+    }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

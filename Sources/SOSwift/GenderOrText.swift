@@ -1,8 +1,16 @@
 import Foundation
 
-public enum GenderOrText: Codable {
+public enum GenderOrText: Codable, Equatable {
     case gender(value: Gender)
     case text(value: String)
+    
+    public init(_ value: Gender) {
+        self = .gender(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

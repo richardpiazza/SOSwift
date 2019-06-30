@@ -1,7 +1,7 @@
 import Foundation
 
-/// Content features of the resource, such as accessible media, supported
-/// enhancements for accessibility and alternatives.
+/// Content features of the resource, such as accessible media, supported enhancements for accessibility and
+/// alternatives.
 public enum AccessibilityFeature: String, CaseIterable, Codable {
     case alternativeText = "alternativeText"
     case annotations = "annotations"

@@ -1,8 +1,16 @@
 import Foundation
 
-public enum IntegerOrText: Codable {
+public enum IntegerOrText: Codable, Equatable {
     case integer(value: Int)
     case text(value: String)
+    
+    public init(_ value: Int) {
+        self = .integer(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

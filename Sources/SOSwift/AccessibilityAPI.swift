@@ -1,7 +1,6 @@
 import Foundation
 
-/// Indicates that the resource is compatible with the referenced accessibility
-/// API.
+/// Indicates that the resource is compatible with the referenced accessibility API.
 public enum AccessibilityAPI: String, CaseIterable, Codable {
     case androidAccessibility = "AndroidAccessibility"
     case aria = "ARIA"

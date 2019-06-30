@@ -1,24 +1,26 @@
 import Foundation
 
-public enum URLOrText: Codable {
+public enum URLOrText: Codable, Equatable {
     case url(value: URL)
     case text(value: String)
     
+    public init(_ value: URL) {
+        self = .url(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        
-        do {
-            let value = try container.decode(URL.self)
-            if value.isValid {
-                self = .url(value: value)
-                return
-            }
-        } catch {
-            
-        }
-        
         let value = try container.decode(String.self)
-        self = .text(value: value)
+        
+        if let url = URL(string: value), url.isValid {
+            self = .url(value: url)
+        } else {
+            self = .text(value: value)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {

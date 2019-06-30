@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Number: Equatable, Codable {
+public enum Number: Codable, Equatable {
     case floatingPoint(value: Double)
     case integer(value: Int)
     

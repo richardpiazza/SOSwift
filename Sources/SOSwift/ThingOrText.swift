@@ -4,11 +4,11 @@ public enum ThingOrText: Codable {
     case thing(value: Thing)
     case text(value: String)
     
-    public init(value: Thing) {
+    public init(_ value: Thing) {
         self = .thing(value: value)
     }
     
-    public init(value: String) {
+    public init(_ value: String) {
         self = .text(value: value)
     }
     
