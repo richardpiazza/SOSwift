@@ -9,12 +9,20 @@ class DateTimeTests: XCTestCase {
         ("testEquatability", testEquatability),
     ]
     
+    public static let dateTime1Components = DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 29, hour: 18, minute: 40, second: 37, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+    public static let dateTime1String = "2019-06-29T18:40:37Z"
+    public static let dateTime1 = DateTime(rawValue: dateTime1Components.date!)
+    
+    public static let dateTime2Components = DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 28, hour: 8, minute: 30, second: 0, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+    public static let dateTime2String = "2019-06-28T08:30:00Z"
+    public static let dateTime2 = DateTime(rawValue: dateTime2Components.date!)
+    
+    public static let dateTime3Components = DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 28, hour: 9, minute: 30, second: 0, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+    public static let dateTime3String = "2019-06-28T09:30:00Z"
+    public static let dateTime3 = DateTime(rawValue: dateTime3Components.date!)
+    
     fileprivate class TestClass: Codable, Schema {
         var dateTime: DateTime?
-    }
-    
-    private var dateComponents: DateComponents {
-        return DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 29, hour: 18, minute: 40, second: 37, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
     }
 
     func testDecode() throws {
@@ -26,23 +34,23 @@ class DateTimeTests: XCTestCase {
         
         let testClass = try TestClass.make(with: json)
         XCTAssertNotNil(testClass.dateTime)
-        XCTAssertNotNil(dateComponents.date)
+        XCTAssertNotNil(DateTimeTests.dateTime1Components.date)
         
-        let compare = Calendar.current.compare(testClass.dateTime!.rawValue, to: dateComponents.date!, toGranularity: .second)
+        let compare = Calendar.current.compare(testClass.dateTime!.rawValue, to: DateTimeTests.dateTime1Components.date!, toGranularity: .second)
         XCTAssertEqual(compare, .orderedSame)
     }
     
     func testEncode() throws {
-        XCTAssertNotNil(dateComponents.date)
+        XCTAssertNotNil(DateTimeTests.dateTime1Components.date)
         
         let testClass = TestClass()
-        testClass.dateTime = DateTime(rawValue: dateComponents.date!)
+        testClass.dateTime = DateTimeTests.dateTime1
         
         let dictionary = try testClass.asDictionary()
         
         let dateTime = dictionary["dateTime"] as? String
         
-        XCTAssertEqual(dateTime, DateTime(stringValue: "2019-06-29T18:40:37Z")?.stringValue)
+        XCTAssertEqual(dateTime, DateTime(stringValue: DateTimeTests.dateTime1String)?.stringValue)
     }
     
     func testEquatability() throws {

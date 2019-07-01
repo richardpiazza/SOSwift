@@ -9,17 +9,32 @@ class ThingTests: XCTestCase {
         ("testEncode", testEncode),
     ]
     
-    private let _additionalType = URL(string: "http://schema.org/MedicalEntity")
-    private let _alternativeName = "Pencil Pusher"
-    private let _description = "A cog in the machine."
-    private let _disambiguatingDescription = "An administrative pencil pusher."
-    private let _identifier = "1234567890"
-    private let _image = URL(string: "https://www.google.com/images/errors/robot.png")
-    private let _mainEntityOfPage = "Some Creative Work"
-    private let _name = "Bob's Hospital"
-    private let _potentialAction = "Go Go Gadget Arm"
-    private let _sameAs = URL(string: "https://www.facebook.com/bobshospital")
-    private let _url = URL(string: "http://www.bobshospital.com")
+    public static let _additionalType = URL(string: "http://schema.org/MedicalEntity")
+    public static let _alternativeName = "Pencil Pusher"
+    public static let _description = "A cog in the machine."
+    public static let _disambiguatingDescription = "An administrative pencil pusher."
+    public static let _identifier = "1234567890"
+    public static let _image = URL(string: "https://www.google.com/images/errors/robot.png")
+    public static let _mainEntityOfPage = "Some Creative Work"
+    public static let _name = "Bob's Hospital"
+    public static let _potentialAction = "Go Go Gadget Arm"
+    public static let _sameAs = URL(string: "https://www.facebook.com/bobshospital")
+    public static let _url = URL(string: "http://www.bobshospital.com")
+    
+    public static var thing: Thing {
+        let thing = Thing()
+        thing.additionalType = _additionalType
+        thing.alternativeName = _alternativeName
+        thing.description = _description
+        thing.disambiguatingDescription = _disambiguatingDescription
+        thing.identifier = .text(value: _identifier)
+        thing.mainEntityOfPage = .creativeWork(value: CreativeWork(name: _mainEntityOfPage))
+        thing.name = _name
+        thing.potentialAction = Action(name: _potentialAction)
+        thing.sameAs = [_sameAs!]
+        thing.url = _url
+        return thing
+    }
     
     func testSchema() throws {
         XCTAssertEqual(Thing.schemaType, "Thing")
@@ -53,44 +68,31 @@ class ThingTests: XCTestCase {
         
         let thing = try Thing.make(with: json)
 
-        XCTAssertEqual(thing.additionalType, _additionalType)
-        XCTAssertEqual(thing.alternativeName, _alternativeName)
-        XCTAssertEqual(thing.description, _description)
-        XCTAssertEqual(thing.disambiguatingDescription, _disambiguatingDescription)
-        XCTAssertEqual(thing.identifier?.text, _identifier)
-        XCTAssertEqual(thing.image?.url, _image)
-        XCTAssertEqual(thing.mainEntityOfPage?.creativeWork?.name, _mainEntityOfPage)
-        XCTAssertEqual(thing.name, _name)
-        XCTAssertEqual(thing.potentialAction?.name, _potentialAction)
-        XCTAssertEqual(thing.sameAs, [_sameAs!])
-        XCTAssertEqual(thing.url, _url)
+        XCTAssertEqual(thing.additionalType, ThingTests._additionalType)
+        XCTAssertEqual(thing.alternativeName, ThingTests._alternativeName)
+        XCTAssertEqual(thing.description, ThingTests._description)
+        XCTAssertEqual(thing.disambiguatingDescription, ThingTests._disambiguatingDescription)
+        XCTAssertEqual(thing.identifier?.text, ThingTests._identifier)
+        XCTAssertEqual(thing.image?.url, ThingTests._image)
+        XCTAssertEqual(thing.mainEntityOfPage?.creativeWork?.name, ThingTests._mainEntityOfPage)
+        XCTAssertEqual(thing.name, ThingTests._name)
+        XCTAssertEqual(thing.potentialAction?.name, ThingTests._potentialAction)
+        XCTAssertEqual(thing.sameAs, [ThingTests._sameAs!])
+        XCTAssertEqual(thing.url, ThingTests._url)
         
         let json_idOnly = """
         {
-            "@id": "\(_identifier)"
+            "@id": "\(ThingTests._identifier)"
         }
         """
         
         let thing_idOnly = try Thing.make(with: json_idOnly)
         
-        XCTAssertEqual(thing_idOnly.identifier?.text, _identifier)
+        XCTAssertEqual(thing_idOnly.identifier?.text, ThingTests._identifier)
     }
     
     func testEncode() throws {
-        let thing = Thing()
-        thing.additionalType = _additionalType
-        thing.alternativeName = _alternativeName
-        thing.description = _description
-        thing.disambiguatingDescription = _disambiguatingDescription
-        thing.identifier = .text(value: _identifier)
-        thing.mainEntityOfPage = .creativeWork(value: CreativeWork(name: _mainEntityOfPage))
-        thing.name = _name
-        thing.potentialAction = Action(name: _potentialAction)
-        thing.sameAs = [_sameAs!]
-        thing.url = _url
-        
-        let data = try JSONEncoder().encode(thing)
-        let dictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String : Any]
+        let dictionary = try ThingTests.thing.asDictionary()
         
         let id = dictionary[SchemaKeys.id.rawValue] as? String
         let type = dictionary[SchemaKeys.type.rawValue] as? String
@@ -107,20 +109,20 @@ class ThingTests: XCTestCase {
         let sameAs = dictionary[Thing.CodingKeys.sameAs] as? [String]
         let url = dictionary[Thing.CodingKeys.url] as? String
         
-        XCTAssertEqual(id, _identifier)
+        XCTAssertEqual(id, ThingTests._identifier)
         XCTAssertEqual(type, Thing.schemaType)
         XCTAssertEqual(context, Thing.schemaContext)
         
-        XCTAssertEqual(additionalType, _additionalType?.absoluteString)
-        XCTAssertEqual(alternativeName, _alternativeName)
-        XCTAssertEqual(description, _description)
-        XCTAssertEqual(disambiguatingDescription, _disambiguatingDescription)
-        XCTAssertEqual(identifier, _identifier)
-        XCTAssertEqual(mainEntityOfPage?["name"] as? String, _mainEntityOfPage)
-        XCTAssertEqual(name, _name)
-        XCTAssertEqual(potentialAction?["name"] as? String, _potentialAction)
-        XCTAssertEqual(sameAs, [_sameAs!.absoluteString])
-        XCTAssertEqual(url, _url?.absoluteString)
+        XCTAssertEqual(additionalType, ThingTests._additionalType?.absoluteString)
+        XCTAssertEqual(alternativeName, ThingTests._alternativeName)
+        XCTAssertEqual(description, ThingTests._description)
+        XCTAssertEqual(disambiguatingDescription, ThingTests._disambiguatingDescription)
+        XCTAssertEqual(identifier, ThingTests._identifier)
+        XCTAssertEqual(mainEntityOfPage?["name"] as? String, ThingTests._mainEntityOfPage)
+        XCTAssertEqual(name, ThingTests._name)
+        XCTAssertEqual(potentialAction?["name"] as? String, ThingTests._potentialAction)
+        XCTAssertEqual(sameAs, [ThingTests._sameAs!.absoluteString])
+        XCTAssertEqual(url, ThingTests._url?.absoluteString)
     }
 }
 
