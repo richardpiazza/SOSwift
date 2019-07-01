@@ -1,5 +1,9 @@
 import Foundation
 
+/// An action performed by a direct agent and indirect participants upon a direct object.
+///
+/// * Optionally happens at a location with the help of an inanimate instrument.
+/// * The execution of the action may produce a result.
 public class Action: Thing {
     
     /// Indicates the current disposition of the Action.
@@ -17,7 +21,7 @@ public class Action: Thing {
     /// actions that span a period of time, when the action was performed.
     ///
     /// ## Example
-    /// John wrote a book from January to December.
+    /// John wrote a book from January to **December**.
     ///
     /// - note: Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This
     ///         situation may be clarified in future revisions.
@@ -29,7 +33,7 @@ public class Action: Thing {
     /// The object that helped the agent perform the action.
     ///
     /// ## Example
-    /// John wrote a book with a pen.
+    /// John wrote a book with a **pen**.
     public var instrument: Thing?
     
     /// The location of for example where the event is happening, an organization is located, or where an action takes
@@ -42,19 +46,19 @@ public class Action: Thing {
     /// doesn't).
     ///
     /// ## Example
-    /// John read a book.
+    /// John read a **book**.
     public var object: Thing?
     
     /// Other co-agents that participated in the action indirectly.
     ///
     /// ## Example
-    /// John wrote a book with Steve.
+    /// John wrote a book with **Steve**.
     public var participant: OrganizationOrPerson?
     
     /// The result produced in the action.
     ///
     /// ## Example:
-    /// * John wrote a book.
+    /// * John wrote a **book**.
     public var result: Thing?
     
     /// The startTime of something.
@@ -63,7 +67,7 @@ public class Action: Thing {
     /// actions that span a period of time, when the action was performed.
     ///
     /// ## Example
-    /// John wrote a book from January to December.
+    /// John wrote a book from **January** to December.
     ///
     /// - note: Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This
     ///         situation may be clarified in future revisions.
