@@ -61,7 +61,7 @@ public class Thing: Schema, Codable {
     /// URL of the item.
     public var url: URL?
     
-    internal enum CodingKeys: String, CodingKey {
+    internal enum ThingCodingKeys: String, CodingKey {
         case additionalType
         case alternativeName
         case description
@@ -87,7 +87,7 @@ public class Thing: Schema, Codable {
     
     public required init(from decoder: Decoder) throws {
         let schema = try decoder.container(keyedBy: SchemaKeys.self)
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: ThingCodingKeys.self)
         
         let id = try schema.decodeIfPresent(Identifier.self, forKey: .id)
         let identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
@@ -121,7 +121,7 @@ public class Thing: Schema, Codable {
         try schema.encode(Swift.type(of: self).schemaType, forKey: .type)
         try schema.encodeIfPresent(identifier, forKey: .id)
         
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var container = encoder.container(keyedBy: ThingCodingKeys.self)
         
         try container.encodeIfPresent(identifier, forKey: .identifier)
         try container.encodeIfPresent(additionalType, forKey: .additionalType)

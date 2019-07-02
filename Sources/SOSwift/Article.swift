@@ -22,4 +22,32 @@ public class Article: CreativeWork {
     /// The number of words in the text of the Article.
     public var wordCount: Int?
     
+    internal enum ArticleCodingKeys: String, CodingKey {
+        case articleBody
+        case articleSection
+        case pageEnd
+        case pageStart
+        case pagination
+        case wordCount
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: ArticleCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ArticleCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

@@ -20,4 +20,31 @@ public class Rating: Intangible {
     /// The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
     public var worstRating: NumberOrText?
     
+    internal enum RatingCodingKeys: String, CodingKey {
+        case author
+        case bestRating
+        case ratingValue
+        case reviewAspect
+        case worstRating
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: RatingCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: RatingCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

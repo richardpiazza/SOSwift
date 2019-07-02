@@ -9,4 +9,27 @@ public class Website: CreativeWork {
     /// formats of, or the linking ISSN (ISSN-L) for, this serial publication.
     public var issn: String?
     
+    internal enum WebsiteCodingKeys: String, CodingKey {
+        case issn
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: WebsiteCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: WebsiteCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

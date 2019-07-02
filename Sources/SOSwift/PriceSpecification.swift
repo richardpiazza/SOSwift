@@ -50,4 +50,35 @@ public class PriceSpecification: StructuredValue {
     /// specification or not.
     public var valueAddedTaxIncluded: Bool?
     
+    internal enum PriceSpecificationCodingKeys: String, CodingKey {
+        case eligibleQuantity
+        case eligibleTransactionVolume
+        case maxPrice
+        case minPrice
+        case price
+        case priceCurrency
+        case validFrom
+        case validThrough
+        case valueAddedTaxIncluded
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: PriceSpecificationCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: PriceSpecificationCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

@@ -15,4 +15,29 @@ public class LocationFeatureSpecification: PropertyValue {
     /// salary period, or a period of opening hours.
     public var validThrough: DateTime?
     
+    internal enum LocationFeatureSpecificationCodingKeys: String, CodingKey {
+        case hoursAvailable
+        case validFrom
+        case validThrough
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: LocationFeatureSpecificationCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: LocationFeatureSpecificationCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

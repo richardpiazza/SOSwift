@@ -21,10 +21,29 @@ public class Course: CreativeWork {
     /// media or mode of study or to a specific section of students.
     public var courseInstance: CourseInstance?
     
-    private enum CodingKeys: String, CodingKey {
+    internal enum CourseCodingKeys: String, CodingKey {
         case courseCode
         case coursePrerequisites
         case courseInstance = "hasCourseInstance"
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: CourseCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CourseCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

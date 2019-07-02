@@ -1,7 +1,6 @@
 import Foundation
 
-/// The human sensory perceptual system or cognitive faculty through which a
-/// person may process or perceive information.
+/// The human sensory perceptual system or cognitive faculty through which a person may process or perceive information.
 public enum AccessMode: String, CaseIterable, Codable {
     case auditory = "auditory"
     case tactile = "tactile"

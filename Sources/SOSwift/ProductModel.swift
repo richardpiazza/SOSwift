@@ -17,4 +17,29 @@ public class ProductModel: Product {
     /// discontinued predecessor.
     public var successorOf: ProductModel?
     
+    internal enum ProductModelCodingKeys: String, CodingKey {
+        case isVariantOf
+        case predecessorOf
+        case successorOf
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: ProductModelCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ProductModelCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

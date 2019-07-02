@@ -16,4 +16,30 @@ public class OwnershipInfo: StructuredValue {
     /// The product that this structured value is referring to.
     public var typeOfGood: ProductOrService?
     
+    internal enum OwnershipInfoCodingKeys: String, CodingKey {
+        case acquiredFrom
+        case ownedFrom
+        case ownedThrough
+        case typeOfGood
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: OwnershipInfoCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: OwnershipInfoCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

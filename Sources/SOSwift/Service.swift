@@ -71,7 +71,7 @@ public class Service: Intangible {
     /// Human-readable terms of service documentation.
     public var termsOfService: String?
     
-    private enum CodingKeys: String, CodingKey {
+    internal enum ServiceCodingKeys: String, CodingKey {
         case aggregateRating
         case areaServed
         case audience
@@ -94,4 +94,23 @@ public class Service: Intangible {
         case termsOfService
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: ServiceCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ServiceCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

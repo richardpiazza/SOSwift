@@ -23,4 +23,28 @@ public class DataCatalog: CreativeWork {
     ///     measurementTechnique.
     public var measurementTechnique: URLOrText?
     
+    internal enum DataCatalogCodingKeys: String, CodingKey {
+        case dataset
+        case measurementTechnique
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: DataCatalogCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: DataCatalogCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

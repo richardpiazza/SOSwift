@@ -24,4 +24,31 @@ public class TypeAndQuantityNode: StructuredValue {
     /// cannot provide a standard unit code for unitCode.
     public var unitText: String?
     
+    internal enum TypeAndQuantityNodeCodingKeys: String, CodingKey {
+        case amountOfThisGood
+        case businessFunction
+        case typeOfGood
+        case unitCode
+        case unitText
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: TypeAndQuantityNodeCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeAndQuantityNodeCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

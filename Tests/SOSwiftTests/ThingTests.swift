@@ -98,16 +98,16 @@ class ThingTests: XCTestCase {
         let type = dictionary[SchemaKeys.type.rawValue] as? String
         let context = dictionary[SchemaKeys.context.rawValue] as? String
         
-        let additionalType = dictionary[Thing.CodingKeys.additionalType] as? String
-        let alternativeName = dictionary[Thing.CodingKeys.alternativeName] as? String
-        let description = dictionary[Thing.CodingKeys.description] as? String
-        let disambiguatingDescription = dictionary[Thing.CodingKeys.disambiguatingDescription] as? String
-        let identifier = dictionary[Thing.CodingKeys.identifier] as? String
-        let mainEntityOfPage = dictionary[Thing.CodingKeys.mainEntityOfPage] as? [String : Any]
-        let name = dictionary[Thing.CodingKeys.name] as? String
-        let potentialAction = dictionary[Thing.CodingKeys.potentialAction] as? [String : Any]
-        let sameAs = dictionary[Thing.CodingKeys.sameAs] as? [String]
-        let url = dictionary[Thing.CodingKeys.url] as? String
+        let additionalType = dictionary[Thing.ThingCodingKeys.additionalType] as? String
+        let alternativeName = dictionary[Thing.ThingCodingKeys.alternativeName] as? String
+        let description = dictionary[Thing.ThingCodingKeys.description] as? String
+        let disambiguatingDescription = dictionary[Thing.ThingCodingKeys.disambiguatingDescription] as? String
+        let identifier = dictionary[Thing.ThingCodingKeys.identifier] as? String
+        let mainEntityOfPage = dictionary[Thing.ThingCodingKeys.mainEntityOfPage] as? [String : Any]
+        let name = dictionary[Thing.ThingCodingKeys.name] as? String
+        let potentialAction = dictionary[Thing.ThingCodingKeys.potentialAction] as? [String : Any]
+        let sameAs = dictionary[Thing.ThingCodingKeys.sameAs] as? [String]
+        let url = dictionary[Thing.ThingCodingKeys.url] as? String
         
         XCTAssertEqual(id, ThingTests._identifier)
         XCTAssertEqual(type, Thing.schemaType)

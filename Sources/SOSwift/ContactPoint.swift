@@ -35,4 +35,34 @@ public class ContactPoint: StructuredValue {
     /// The telephone number.
     public var telephone: String?
     
+    internal enum ContactPointCodingKeys: String, CodingKey {
+        case areaServed
+        case availableLanguage
+        case contactOption
+        case contactType
+        case email
+        case faxNumber
+        case hoursAvailable
+        case productSupported
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: ContactPointCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ContactPointCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

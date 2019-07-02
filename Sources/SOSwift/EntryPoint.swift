@@ -25,4 +25,32 @@ public class EntryPoint: Intangible {
     /// execution of the action.
     public var urlTemplate: String?
     
+    internal enum EntryPointCodingKeys: String, CodingKey {
+        case actionApplication
+        case actionPlatform
+        case contentType
+        case encodingType
+        case httpMethod
+        case urlTemplate
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: EntryPointCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: EntryPointCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

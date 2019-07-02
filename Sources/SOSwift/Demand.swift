@@ -102,4 +102,59 @@ public class Demand: Intangible {
     /// The warranty promise(s) included in the offer. Supersedes warrantyPromise.
     public var warranty: WarrantyPromise?
     
+    internal enum DemandCodingKeys: String, CodingKey {
+        case acceptedPaymentMethod
+        case advanceBookingRequirement
+        case areaServed
+        case availability
+        case availabilityEnds
+        case availabilityStarts
+        case availableAtOrFrom
+        case availableDeliveryMethod
+        case businessFunction
+        case deliveryLeadTime
+        case eligibleCustomerType
+        case eligibleDuration
+        case eligibleQuantity
+        case eligibleRegion
+        case eligibleTransactionVolume
+        case gtin12
+        case gtin13
+        case gtin14
+        case gtin8
+        case includesObject
+        case ineligibleRegion
+        case inventoryLevel
+        case itemCondition
+        case itemOffered
+        case mpn
+        case priceSpecification
+        case seller
+        case serialNumber
+        case sku
+        case validFrom
+        case validThrough
+        case warranty
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: DemandCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: DemandCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
+
 }

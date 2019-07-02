@@ -15,4 +15,30 @@ public class ListItem: Intangible {
     /// A link to the ListItem that preceeds the current one.
     public var previousItem: ListItem?
     
+    internal enum ListItemCodingKeys: String, CodingKey {
+        case item
+        case nextItem
+        case position
+        case previousItem
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: ListItemCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ListItemCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

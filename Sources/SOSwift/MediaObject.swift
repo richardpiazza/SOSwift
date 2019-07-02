@@ -58,4 +58,42 @@ public class MediaObject: CreativeWork {
     /// The width of the item.
     public var width: DistanceOrQuantitativeValue?
     
+    internal enum MediaObjectCodingKeys: String, CodingKey {
+        case associatedArticle
+        case bitrate
+        case contentSize
+        case contentUrl
+        case duration
+        case embedUrl
+        case encodesCreativeWork
+        case encodingFormat
+        case expires
+        case height
+        case playerType
+        case productionCompant
+        case regionsAllowed
+        case requiresSubscription
+        case uploadDate
+        case width
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: MediaObjectCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: MediaObjectCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

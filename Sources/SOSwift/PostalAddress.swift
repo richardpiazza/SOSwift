@@ -21,6 +21,34 @@ public class PostalAddress: ContactPoint {
     /// The street address. For example, 1600 Amphitheatre Pkwy.
     public var streetAddress: String?
     
+    internal enum PostalAddressCodingKeys: String, CodingKey {
+        case addressCountry
+        case addressLocality
+        case addressRegion
+        case postOfficeBoxNumber
+        case postalCode
+        case streetAddress
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: PostalAddressCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: PostalAddressCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }
 
 public extension PostalAddress {

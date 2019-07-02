@@ -176,7 +176,7 @@ public class Offer: Intangible {
     /// The warranty promise(s) included in the offer. Supersedes warrantyPromise.
     public var warranty: WarrantyPromise?
     
-    private enum CodingKeys: String, CodingKey {
+    internal enum OfferCodingKeys: String, CodingKey {
         case acceptedPaymentMethod
         case addOn
         case advanceBookingRequirement
@@ -219,4 +219,23 @@ public class Offer: Intangible {
         case warranty
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: OfferCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: OfferCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

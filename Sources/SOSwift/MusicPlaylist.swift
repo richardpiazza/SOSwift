@@ -10,4 +10,28 @@ public class MusicPlaylist: CreativeWork {
     /// - schema.org property name: track
     public var tracks: [ItemListOrMusicRecording]?
     
+    internal enum MusicPlaylistCodingKeys: String, CodingKey {
+        case numTracks
+        case tracks
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: MusicPlaylistCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: MusicPlaylistCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

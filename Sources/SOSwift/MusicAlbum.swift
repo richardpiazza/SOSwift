@@ -15,4 +15,30 @@ public class MusicAlbum: MusicPlaylist {
     /// The artist that performed this album or recording.
     public var byArtist: MusicGroup?
     
+    internal enum MusicAlbumCodingKeys: String, CodingKey {
+        case albumProductionType
+        case albumRelease
+        case albumReleaseType
+        case byArtist
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: MusicAlbumCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: MusicAlbumCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

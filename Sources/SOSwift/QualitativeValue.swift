@@ -42,4 +42,34 @@ public class QualitativeValue: Enumeration {
     /// original value, e.g. a reference temperature.
     public var valueReference: ValueReference?
     
+    internal enum QualitativeValueCodingKeys: String, CodingKey {
+        case additionalProperty
+        case equal
+        case greater
+        case greaterOrEqual
+        case lesser
+        case lesserOrEqual
+        case nonEqual
+        case valueReference
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: QualitativeValueCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: QualitativeValueCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

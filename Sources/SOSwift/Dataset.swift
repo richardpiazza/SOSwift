@@ -38,4 +38,31 @@ public class Dataset: CreativeWork {
     /// and description using PropertyValue.
     public var variableMeasured: PropertyValueOrText?
     
+    internal enum DatasetCodingKeys: String, CodingKey {
+        case distribution
+        case includedInDataCatalog
+        case issn
+        case measurementTechnique
+        case variableMeasured
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: DatasetCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: DatasetCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

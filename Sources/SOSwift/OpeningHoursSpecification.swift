@@ -23,4 +23,31 @@ public class OpeningHoursSpecification: StructuredValue {
     /// The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
     public var validThrough: DateTime?
     
+    internal enum OpeningHoursSpecificationCodingKeys: String, CodingKey {
+        case closes
+        case dayOfWeek
+        case opens
+        case validFrom
+        case validThrough
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: OpeningHoursSpecificationCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: OpeningHoursSpecificationCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

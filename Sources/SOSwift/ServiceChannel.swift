@@ -28,4 +28,34 @@ public class ServiceChannel: Intangible {
     /// The website to access the service.
     public var serviceUrl: URL?
     
+    internal enum ServiceChannelCodingKeys: String, CodingKey {
+        case availableLanguage
+        case processingTime
+        case providesService
+        case serviceLocation
+        case servicePhone
+        case servicePostalAddress
+        case serviceSmsNumber
+        case serviceUrl
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: ServiceChannelCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ServiceChannelCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

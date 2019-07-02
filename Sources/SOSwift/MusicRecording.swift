@@ -22,4 +22,32 @@ public class MusicRecording: CreativeWork {
     /// - Inverse property: recordedAs.
     public var recordingOf: MusicComposition?
     
+    internal enum MusicRecordingCodingKeys: String, CodingKey {
+        case byArtist
+        case duration
+        case inAlbum
+        case inPlaylist
+        case isrcCode
+        case recordingOf
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: MusicRecordingCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: MusicRecordingCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

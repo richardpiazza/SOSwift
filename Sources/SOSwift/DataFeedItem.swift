@@ -18,4 +18,30 @@ public class DataFeedItem: Intangible {
     /// (e.g. an 'artist' in a list of 'artists')’.
     public var item: Thing?
     
+    internal enum DataFeedItemCodingKeys: String, CodingKey {
+        case dateCreated
+        case dateDeleted
+        case dateModified
+        case item
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: DataFeedItemCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: DataFeedItemCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

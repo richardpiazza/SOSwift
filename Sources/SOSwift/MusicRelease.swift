@@ -26,4 +26,32 @@ public class MusicRelease: MusicPlaylist {
     /// - Inverse property: albumRelease.
     public var releaseOf: MusicAlbum?
     
+    internal enum MusicReleaseCodingKeys: String, CodingKey {
+        case catalogNumber
+        case creditedTo
+        case duration
+        case musicReleaseFormat
+        case recordLabel
+        case releaseOf
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: MusicReleaseCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: MusicReleaseCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

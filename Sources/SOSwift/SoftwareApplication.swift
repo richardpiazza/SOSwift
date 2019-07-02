@@ -79,4 +79,47 @@ public class SoftwareApplication: CreativeWork {
     /// Supporting data for a SoftwareApplication.
     public var supportingData: DataFeed?
     
+    internal enum SoftwareApplicationCodingKey: String, CodingKey {
+        case applicationCategory
+        case applicationSubCategory
+        case applicationSuite
+        case availableOnDevice
+        case countriesNotSupported
+        case downloadUrl
+        case featureList
+        case fileSize
+        case installUrl
+        case memoryRequirements
+        case operationSystem
+        case permissions
+        case processorRequirements
+        case releaseNotes
+        case screenshot
+        case softwareAddOn
+        case softwareHelp
+        case softwareRequirements
+        case softwareVersion
+        case storageRequirements
+        case supportingDate
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: SoftwareApplicationCodingKey.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: SoftwareApplicationCodingKey.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

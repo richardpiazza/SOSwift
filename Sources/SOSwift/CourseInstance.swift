@@ -15,4 +15,28 @@ public class CourseInstance: Event {
     /// the CourseInstance.
     public var instructor: Person?
     
+    internal enum CourseInstanceCodingKeys: String, CodingKey {
+        case courseMode
+        case instructor
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: CourseInstanceCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CourseInstanceCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

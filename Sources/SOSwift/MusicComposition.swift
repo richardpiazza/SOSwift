@@ -35,4 +35,36 @@ public class MusicComposition: CreativeWork {
     /// - Inverse property: recordingOf.
     public var recordedAs: MusicRecording?
     
+    internal enum MusicCompositionCodingKeys: String, CodingKey {
+        case composer
+        case firstPerformance
+        case includedComposition
+        case iswcCode
+        case lyricist
+        case lyrics
+        case musicArrangement
+        case musicComponsitionForm
+        case musicalKey
+        case recordedAs
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: MusicCompositionCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: MusicCompositionCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

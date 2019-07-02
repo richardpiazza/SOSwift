@@ -22,4 +22,32 @@ public class GeoCoordinates: StructuredValue {
     /// The postal code. For example, 94043
     public var postalCode: String?
     
+    internal enum GeoCoordinatesCodingKeys: String, CodingKey {
+        case address
+        case addressCountry
+        case elevation
+        case latitude
+        case logitude
+        case postalCode
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: GeoCoordinatesCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: GeoCoordinatesCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

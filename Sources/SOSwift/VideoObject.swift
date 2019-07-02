@@ -30,7 +30,7 @@ public class VideoObject: MediaObject {
     /// The quality of the video.
     public var videoQuality: String?
     
-    private enum CodingKeys: String, CodingKey {
+    internal enum VideoObjectCodingKeys: String, CodingKey {
         case actors = "actor"
         case caption
         case directors = "director"
@@ -41,4 +41,23 @@ public class VideoObject: MediaObject {
         case videoQuality
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: VideoObjectCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: VideoObjectCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }
