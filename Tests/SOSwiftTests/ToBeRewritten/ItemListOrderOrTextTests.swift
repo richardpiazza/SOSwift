@@ -29,7 +29,7 @@ class ItemListOrderOrTextTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(ilo, .decending)
+        XCTAssertEqual(ilo, .descending)
         
         guard let t = testObject.text as? String else {
             XCTFail()

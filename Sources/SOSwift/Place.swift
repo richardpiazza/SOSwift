@@ -93,7 +93,7 @@ public class Place: Thing {
     /// The telephone number.
     public var telephone: String?
     
-    private enum CodingKeys: String, CodingKey {
+    private enum PlaceCodingKeys: String, CodingKey {
         case additionalProperty
         case address
         case aggregateRating
@@ -117,4 +117,23 @@ public class Place: Thing {
         case telephone
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: PlaceCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: PlaceCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

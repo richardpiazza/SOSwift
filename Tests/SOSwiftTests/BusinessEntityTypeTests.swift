@@ -1,0 +1,22 @@
+import XCTest
+@testable import SOSwift
+
+class BusinessEntityTypeTests: XCTestCase {
+    
+    static var allTests = [
+        ("testCaseIterable", testCaseIterable),
+        ("testDisplayValue", testDisplayValue),
+    ]
+    
+    func testCaseIterable() throws {
+        XCTAssertEqual(BusinessEntityType.allCases.count, 4)
+    }
+    
+    func testDisplayValue() throws {
+        XCTAssertEqual(BusinessEntityType.business.displayValue, "Business")
+        XCTAssertEqual(BusinessEntityType.endUser.displayValue, "End User")
+        XCTAssertEqual(BusinessEntityType.publicInstitution.displayValue, "Public Institution")
+        XCTAssertEqual(BusinessEntityType.reseller.displayValue, "Reseller")
+    }
+    
+}

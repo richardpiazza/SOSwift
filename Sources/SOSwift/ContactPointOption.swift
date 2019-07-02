@@ -7,7 +7,7 @@ public enum ContactPointOption: String, CaseIterable, Codable {
     
     public var displayValue: String {
         switch self {
-        case .hearingImparedSupported: return "Heading Impared Supported"
+        case .hearingImparedSupported: return "Hearing Impared Supported"
         case .tollFree: return "Toll Free"
         }
     }

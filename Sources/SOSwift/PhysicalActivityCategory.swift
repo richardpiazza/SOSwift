@@ -16,7 +16,7 @@ public enum PhysicalActivityCategory: String, CaseIterable, Codable {
         case .anaerobic: return "Anaerobic Activity"
         case .balance: return "Balance"
         case .flexibility: return "Flexibility"
-        case .leisureTime: return "Leisure"
+        case .leisureTime: return "Leisure Time"
         case .occupational: return "Occupational"
         case .strengthTraining: return "Strength Training"
         }

@@ -351,7 +351,7 @@ public class CreativeWork: Thing {
     /// - **Inverse property**: _translationOfWork_
     public var workTranslation: CreativeWork?
     
-    private enum CodingKeys: String, CodingKey {
+    internal enum CreativeWorkCodingKeys: String, CodingKey {
         case about
         case accessMode
         case accessModeSufficients = "accessModeSufficient"
@@ -435,4 +435,23 @@ public class CreativeWork: Thing {
         case workTranslation
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: CreativeWorkCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CreativeWorkCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

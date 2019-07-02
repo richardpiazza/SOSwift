@@ -26,4 +26,32 @@ public class MonetaryAmount: Thing {
     ///         'StructuredValue'.
     public var value: Value?
     
+    internal enum MonetaryAmountCodingKeys: String, CodingKey {
+        case currency
+        case maxValue
+        case minValue
+        case validFrom
+        case validThrough
+        case value
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: MonetaryAmountCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: MonetaryAmountCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

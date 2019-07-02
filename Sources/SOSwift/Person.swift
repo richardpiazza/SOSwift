@@ -191,7 +191,7 @@ public class Person: Thing {
     /// Organizations that the person works for.
     public var worksFor: [Organization]?
     
-    private enum CodingKeys: String, CodingKey {
+    internal enum PersonCodingKeys: String, CodingKey {
         case additionalName
         case address
         case affiliation
@@ -246,4 +246,23 @@ public class Person: Thing {
         case worksFor
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: PersonCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: PersonCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

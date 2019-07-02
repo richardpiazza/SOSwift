@@ -36,4 +36,34 @@ public class GeoShape: Thing {
     /// The postal code. For example, 94043.
     public var postalCode: String?
     
+    internal enum GeoShapeCodingKeys: String, CodingKey {
+        case address
+        case addressCountry
+        case box
+        case circle
+        case elevation
+        case line
+        case polygon
+        case postalCode
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: GeoShapeCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: GeoShapeCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }

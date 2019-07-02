@@ -9,4 +9,28 @@ public class WarrantyPromise: Thing {
     /// The scope of the warranty promise.
     public var warrantyScope: WarrantyScope?
     
+    internal enum WarrantyPromiseCodingKeys: String, CodingKey {
+        case durationOfWarranty
+        case warrantScope
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: WarrantyPromiseCodingKeys.self)
+        
+        
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: WarrantyPromiseCodingKeys.self)
+        
+        
+        
+        try super.encode(to: encoder)
+    }
 }
