@@ -3,12 +3,18 @@ import XCTest
 
 class ItemListOrderOrTextTests: XCTestCase {
     
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
     fileprivate class TestClass: Codable, Testable {
         var itemListOrder: ItemListOrderOrText?
         var text: ItemListOrderOrText?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
             {
                 "itemListOrder" : "ItemListOrderDescending",
@@ -16,30 +22,13 @@ class ItemListOrderOrTextTests: XCTestCase {
             }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
+        let testObject = try TestClass.make(with: json)
         
-        guard let ilo = testObject.itemListOrder as? ItemListOrder else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(ilo, .descending)
-        
-        guard let t = testObject.text as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(t, "Some Text")
+        XCTAssertEqual(testObject.itemListOrder?.itemListOrder, .descending)
+        XCTAssertEqual(testObject.text?.text, "Some Text")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         testObject.itemListOrder = .itemListOrder(value: .unordered)
         testObject.text = .text(value: "Ascending?")
@@ -67,11 +56,7 @@ class ItemListOrderOrTextTests: XCTestCase {
         XCTAssertEqual(t, "Ascending?")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
+    func testEquatability() throws {
         
     }
 }

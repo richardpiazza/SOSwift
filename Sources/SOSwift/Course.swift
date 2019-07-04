@@ -36,13 +36,17 @@ public class Course: CreativeWork {
         
         let container = try decoder.container(keyedBy: CourseCodingKeys.self)
         
-        
+        courseCode = try container.decodeIfPresent(String.self, forKey: .courseCode)
+        coursePrerequisites = try container.decodeIfPresent([AlignmentObjectOrCourseOrText].self, forKey: .coursePrerequisites)
+        courseInstance = try container.decodeIfPresent(CourseInstance.self, forKey: .courseInstance)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CourseCodingKeys.self)
         
-        
+        try container.encodeIfPresent(courseCode, forKey: .courseCode)
+        try container.encodeIfPresent(coursePrerequisites, forKey: .coursePrerequisites)
+        try container.encodeIfPresent(courseInstance, forKey: .courseInstance)
         
         try super.encode(to: encoder)
     }

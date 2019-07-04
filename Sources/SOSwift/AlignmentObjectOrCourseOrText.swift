@@ -5,6 +5,18 @@ public enum AlignmentObjectOrCourseOrText: Codable {
     case course(value: Course)
     case text(value: String)
     
+    public init(_ value: AlignmentObject) {
+        self = .alignmentObject(value: value)
+    }
+    
+    public init(_ value: Course) {
+        self = .course(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

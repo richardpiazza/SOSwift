@@ -3,102 +3,86 @@ import XCTest
 
 class AreaServedTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var administrativeArea: AreaServed?
         var geoShape: AreaServed?
         var place: AreaServed?
         var text: AreaServed?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "administrativeArea" : {
-                    "@type" : "AdministrativeArea",
-                    "name" : "Administrative Area"
-                },
-                "geoShape" : {
-                    "@type" : "GeoShape",
-                    "name" : "Geo Shape"
-                },
-                "place" : {
-                    "@type" : "Place",
-                    "name" : "Place"
-                },
-                "text" : "String"
-            }
+        {
+            "administrativeArea" : {
+                "@type" : "AdministrativeArea",
+                "name" : "Administrative Area"
+            },
+            "geoShape" : {
+                "@type" : "GeoShape",
+                "name" : "Geo Shape"
+            },
+            "place" : {
+                "@type" : "Place",
+                "name" : "Place"
+            },
+            "text" : "String"
+        }
         """
         
-        guard let data = json.data(using: .utf8) else {
-            XCTFail()
-            return
-        }
+        let testClass = try TestClass.make(with: json)
         
-        let testable: TestClass
-        do {
-            testable = try JSONDecoder().decode(TestClass.self, from: data)
-        } catch {
-            XCTFail()
-            return
-        }
+        XCTAssertEqual(testClass.administrativeArea?.administrativeArea?.name, "Administrative Area")
+        XCTAssertNil(testClass.administrativeArea?.geoShape)
+        XCTAssertNil(testClass.administrativeArea?.place)
+        XCTAssertNil(testClass.administrativeArea?.text)
         
-        XCTAssertNotNil(testable.administrativeArea)
-        XCTAssertNotNil(testable.geoShape)
-        XCTAssertNotNil(testable.place)
-        XCTAssertNotNil(testable.text)
+        XCTAssertEqual(testClass.geoShape?.geoShape?.name, "Geo Shape")
+        XCTAssertNil(testClass.geoShape?.administrativeArea)
+        XCTAssertNil(testClass.geoShape?.place)
+        XCTAssertNil(testClass.geoShape?.text)
+        
+        XCTAssertEqual(testClass.place?.place?.name, "Place")
+        XCTAssertNil(testClass.place?.administrativeArea)
+        XCTAssertNil(testClass.place?.geoShape)
+        XCTAssertNil(testClass.place?.text)
+        
+        XCTAssertEqual(testClass.text?.text, "String")
+        XCTAssertNil(testClass.text?.administrativeArea)
+        XCTAssertNil(testClass.text?.geoShape)
+        XCTAssertNil(testClass.text?.place)
     }
     
-    func testSingleEncodes() {
-        let testObject = TestClass()
-        
+    func testEncode() throws {
         let administrativeArea = AdministrativeArea()
         administrativeArea.name = "Area 1"
-        testObject.administrativeArea = .administrativeArea(value: administrativeArea)
         
         let geoShape = GeoShape()
         geoShape.name = "Area 2"
-        testObject.geoShape = .geoShape(value: geoShape)
         
         let place = Place()
         place.name = "Area 3"
-        testObject.place = .place(value: place)
         
-        testObject.text = .text(value: "Area 4")
+        let testClass = TestClass()
+        testClass.administrativeArea = AreaServed(administrativeArea)
+        testClass.geoShape = AreaServed(geoShape)
+        testClass.place = AreaServed(place)
+        testClass.text = AreaServed("Area 4")
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
+        let dictionary = try testClass.asDictionary()
         
-        guard let aa = dictionary["administrativeArea"] as? [String : Any], let aaName = aa["name"] as? String else {
-            XCTFail()
-            return
-        }
+        let a1 = dictionary["administrativeArea"] as? [String : Any]
+        let a2 = dictionary["geoShape"] as? [String : Any]
+        let a3 = dictionary["place"] as? [String : Any]
+        let a4 = dictionary["text"] as? String
         
-        XCTAssertEqual(aaName, "Area 1")
-        
-        guard let gs = dictionary["geoShape"] as? [String : Any], let gsName = gs["name"] as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(gsName, "Area 2")
-        
-        guard let p = dictionary["place"] as? [String : Any], let pName = p["name"] as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(pName, "Area 3")
-        
-        guard let t = dictionary["text"] as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(t, "Area 4")
+        XCTAssertEqual(a1?["name"] as? String, "Area 1")
+        XCTAssertEqual(a2?["name"] as? String, "Area 2")
+        XCTAssertEqual(a3?["name"] as? String, "Area 3")
+        XCTAssertEqual(a4, "Area 4")
     }
 }

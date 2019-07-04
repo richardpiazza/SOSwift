@@ -4,10 +4,9 @@ import XCTest
 class GeoCoordinatesOrGeoShapeTests: XCTestCase {
     
     static var allTests = [
-        ("testSingleDecodes", testSingleDecodes),
-        ("testSingleEncodes", testSingleEncodes),
-        ("testMultipleDecodes", testMultipleDecodes),
-        ("testMultipleEncodes", testMultipleEncodes),
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
     ]
     
     fileprivate class TestClass: Codable, Testable {
@@ -16,7 +15,7 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
         var multiple: [GeoCoordinatesOrGeoShape]?
     }
     
-    func testSingleDecodes() throws {
+    func testDecode() throws {
         let json = """
             {
                 "geoCoordinates" : {
@@ -38,7 +37,7 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
         XCTAssertEqual(geoShape?.name, "There")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let geoCoordinates = GeoCoordinates()
@@ -72,62 +71,8 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
         XCTAssertEqual(gsName, "Work")
     }
     
-    func testMultipleDecodes() throws {
-        let json = """
-        {
-            "multiple": [
-                {
-                    "@type" : "GeoCoordinates",
-                    "name" : "Here"
-                },
-                {
-                    "@type" : "GeoShape",
-                    "name" : "There"
-                }
-            ]
-        }
-        """
+    func testEquatability() throws {
         
-        let testObject = try TestClass.make(with: json)
-        
-        guard let multiple = testObject.multiple else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(multiple.count, 2)
-        
-        let coordinates = (multiple[0] as? GeoCoordinatesOrGeoShape)?.geoCoordinates
-        let shape = (multiple[1] as? GeoCoordinatesOrGeoShape)?.geoShape
-        
-        XCTAssertEqual(coordinates?.name, "Here")
-        XCTAssertEqual(shape?.name, "There")
-    }
-    
-    func testMultipleEncodes() throws {
-        let coordinates = GeoCoordinates()
-        coordinates.postalCode = "12345"
-        
-        let shape = GeoShape()
-        shape.postalCode = "54321"
-        
-        var multiple = [GeoCoordinatesOrGeoShape]()
-        multiple.append(.geoCoordinates(value: coordinates))
-        multiple.append(.geoShape(value: shape))
-        
-        let testObject = TestClass()
-        testObject.multiple = multiple
-        
-        let dictionary = try testObject.dictionary()
-        XCTAssertEqual(dictionary.keys.count, 1)
-        
-        guard let value = dictionary["multiple"] as? [[String : Any]] else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(value[0]["postalCode"] as? String, "12345")
-        XCTAssertEqual(value[1]["postalCode"] as? String, "54321")
     }
 }
 

@@ -13,13 +13,10 @@ public class PropertyValue: StructuredValue {
     /// The upper value of some characteristic or property.
     public var maxValue: Number?
     
-    /// A technique or technology used in a Dataset (or DataDownload, DataCatalog),
-    /// corresponding to the method used for measuring the corresponding variable(s)
-    /// (described using variableMeasured). This is oriented towards scientific and
-    /// scholarly dataset publication but may have broader applicability; it is not
-    /// intended as a full representation of measurement, but rather as a high level
-    /// summary for dataset discovery.
-    public var measurementTechnique: URLOrText?
+    /// A technique or technology used corresponding to the method used for measuring the corresponding variable(s).
+    ///
+    /// See _MeasurementTechnique_ for more information.
+    public var measurementTechnique: MeasurementTechnique?
     
     /// The lower value of some characteristic or property.
     public var minValue: Number?

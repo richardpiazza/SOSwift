@@ -26,13 +26,17 @@ public class AggregateRating: Rating {
         
         let container = try decoder.container(keyedBy: AggregateRatingCodingKeys.self)
         
-        
+        itemReviewed = try container.decodeIfPresent(Thing.self, forKey: .itemReviewed)
+        ratingCount = try container.decodeIfPresent(Int.self, forKey: .ratingCount)
+        reviewCount = try container.decodeIfPresent(Int.self, forKey: .reviewCount)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: AggregateRatingCodingKeys.self)
         
-        
+        try container.encodeIfPresent(itemReviewed, forKey: .itemReviewed)
+        try container.encodeIfPresent(ratingCount, forKey: .ratingCount)
+        try container.encodeIfPresent(reviewCount, forKey: .reviewCount)
         
         try super.encode(to: encoder)
     }

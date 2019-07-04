@@ -19,13 +19,13 @@ public class AudioObject: MediaObject {
         
         let container = try decoder.container(keyedBy: AudioObjectCodingKeys.self)
         
-        
+        transcript = try container.decodeIfPresent(String.self, forKey: .transcript)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: AudioObjectCodingKeys.self)
         
-        
+        try container.encodeIfPresent(transcript, forKey: .transcript)
         
         try super.encode(to: encoder)
     }

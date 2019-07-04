@@ -8,6 +8,22 @@ public enum AreaServed: Codable {
     case place(value: Place)
     case text(value: String)
     
+    public init(_ value: AdministrativeArea) {
+        self = .administrativeArea(value: value)
+    }
+    
+    public init(_ value: GeoShape) {
+        self = .geoShape(value: value)
+    }
+    
+    public init(_ value: Place) {
+        self = .place(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         
