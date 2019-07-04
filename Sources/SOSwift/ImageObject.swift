@@ -31,13 +31,19 @@ public class ImageObject: MediaObject {
         
         let container = try decoder.container(keyedBy: ImageObjectCodingKeys.self)
         
-        
+        caption = try container.decodeIfPresent(String.self, forKey: .caption)
+        exifData = try container.decodeIfPresent(PropertyValueOrText.self, forKey: .exifData)
+        representativeOfPage = try container.decodeIfPresent(Bool.self, forKey: .representativeOfPage)
+        thumbnail = try container.decodeIfPresent(ImageObject.self, forKey: .thumbnail)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ImageObjectCodingKeys.self)
         
-        
+        try container.encodeIfPresent(caption, forKey: .caption)
+        try container.encodeIfPresent(exifData, forKey: .exifData)
+        try container.encodeIfPresent(representativeOfPage, forKey: .representativeOfPage)
+        try container.encodeIfPresent(thumbnail, forKey: .thumbnail)
         
         try super.encode(to: encoder)
     }

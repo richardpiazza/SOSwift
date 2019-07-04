@@ -1,7 +1,6 @@
 import Foundation
 
-/// Enumerated for values for itemListOrder for indicating how an
-/// ordered ItemList is organized.
+/// Enumerated for values for itemListOrder for indicating how an ordered ItemList is organized.
 public enum ItemListOrder: String, CaseIterable, Codable {
     case ascending = "ItemListOrderAscending"
     case descending = "ItemListOrderDescending"

@@ -5,6 +5,18 @@ public enum ListItemOrThingOrText: Codable {
     case thing(value: Thing)
     case text(value: String)
     
+    public init(_ value: ListItem) {
+        self = .listItem(value: value)
+    }
+    
+    public init(_ value: Thing) {
+        self = .thing(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

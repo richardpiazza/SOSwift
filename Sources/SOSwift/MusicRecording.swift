@@ -40,13 +40,23 @@ public class MusicRecording: CreativeWork {
         
         let container = try decoder.container(keyedBy: MusicRecordingCodingKeys.self)
         
-        
+        byArtist = try container.decodeIfPresent(MusicGroup.self, forKey: .byArtist)
+        duration = try container.decodeIfPresent(Duration.self, forKey: .duration)
+        inAlbum = try container.decodeIfPresent(MusicAlbum.self, forKey: .inAlbum)
+        inPlaylist = try container.decodeIfPresent(MusicPlaylist.self, forKey: .inPlaylist)
+        isrcCode = try container.decodeIfPresent(String.self, forKey: .isrcCode)
+        recordingOf = try container.decodeIfPresent(MusicComposition.self, forKey: .recordingOf)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: MusicRecordingCodingKeys.self)
         
-        
+        try container.encodeIfPresent(byArtist, forKey: .byArtist)
+        try container.encodeIfPresent(duration, forKey: .duration)
+        try container.encodeIfPresent(inAlbum, forKey: .inAlbum)
+        try container.encodeIfPresent(inPlaylist, forKey: .inPlaylist)
+        try container.encodeIfPresent(isrcCode, forKey: .isrcCode)
+        try container.encodeIfPresent(recordingOf, forKey: .recordingOf)
         
         try super.encode(to: encoder)
     }

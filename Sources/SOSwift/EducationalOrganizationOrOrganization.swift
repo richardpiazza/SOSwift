@@ -4,6 +4,14 @@ public enum EducationalOrganizationOrOrganization: Codable {
     case educationalOrganization(value: EducationalOrganization)
     case organization(value: Organization)
     
+    public init(_ value: EducationalOrganization) {
+        self = .educationalOrganization(value: value)
+    }
+    
+    public init(_ value: Organization) {
+        self = .organization(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

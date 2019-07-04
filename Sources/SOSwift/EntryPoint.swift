@@ -43,13 +43,23 @@ public class EntryPoint: Intangible {
         
         let container = try decoder.container(keyedBy: EntryPointCodingKeys.self)
         
-        
+        actionApplication = try container.decodeIfPresent(SoftwareApplication.self, forKey: .actionApplication)
+        actionPlatform = try container.decodeIfPresent(URLOrText.self, forKey: .actionPlatform)
+        contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
+        encodingType = try container.decodeIfPresent(String.self, forKey: .encodingType)
+        httpMethod = try container.decodeIfPresent(String.self, forKey: .httpMethod)
+        urlTemplate = try container.decodeIfPresent(String.self, forKey: .urlTemplate)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: EntryPointCodingKeys.self)
         
-        
+        try container.encodeIfPresent(actionApplication, forKey: .actionApplication)
+        try container.encodeIfPresent(actionPlatform, forKey: .actionPlatform)
+        try container.encodeIfPresent(contentType, forKey: .contentType)
+        try container.encodeIfPresent(encodingType, forKey: .encodingType)
+        try container.encodeIfPresent(httpMethod, forKey: .httpMethod)
+        try container.encodeIfPresent(urlTemplate, forKey: .urlTemplate)
         
         try super.encode(to: encoder)
     }

@@ -4,6 +4,14 @@ public enum ItemListOrMusicRecording: Codable {
     case itemList(value: ItemList)
     case musicRecording(value: MusicRecording)
     
+    public init(_ value: ItemList) {
+        self = .itemList(value: value)
+    }
+    
+    public init(_ value: MusicRecording) {
+        self = .musicRecording(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

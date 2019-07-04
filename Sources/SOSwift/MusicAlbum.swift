@@ -31,13 +31,19 @@ public class MusicAlbum: MusicPlaylist {
         
         let container = try decoder.container(keyedBy: MusicAlbumCodingKeys.self)
         
-        
+        albumProductionType = try container.decodeIfPresent(MusicAlbumProduction.self, forKey: .albumProductionType)
+        albumRelease = try container.decodeIfPresent(MusicRelease.self, forKey: .albumRelease)
+        albumReleaseType = try container.decodeIfPresent(MusicAlbumRelease.self, forKey: .albumReleaseType)
+        byArtist = try container.decodeIfPresent(MusicGroup.self, forKey: .byArtist)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: MusicAlbumCodingKeys.self)
         
-        
+        try container.encodeIfPresent(albumProductionType, forKey: .albumProductionType)
+        try container.encodeIfPresent(albumRelease, forKey: .albumRelease)
+        try container.encodeIfPresent(albumReleaseType, forKey: .albumReleaseType)
+        try container.encodeIfPresent(byArtist, forKey: .byArtist)
         
         try super.encode(to: encoder)
     }

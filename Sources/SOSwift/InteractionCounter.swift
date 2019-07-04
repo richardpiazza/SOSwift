@@ -29,13 +29,17 @@ public class InteractionCounter: StructuredValue {
         
         let container = try decoder.container(keyedBy: InteractionCounterCodingKeys.self)
         
-        
+        interactionService = try container.decodeIfPresent(SoftwareApplicationOrWebsite.self, forKey: .interactionService)
+        interactionType = try container.decodeIfPresent(Action.self, forKey: .interactionType)
+        userInteractionCount = try container.decodeIfPresent(Int.self, forKey: .userInteractionCount)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: InteractionCounterCodingKeys.self)
         
-        
+        try container.encodeIfPresent(interactionService, forKey: .interactionService)
+        try container.encodeIfPresent(interactionType, forKey: .interactionType)
+        try container.encodeIfPresent(userInteractionCount, forKey: .userInteractionCount)
         
         try super.encode(to: encoder)
     }

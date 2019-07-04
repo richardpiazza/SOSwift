@@ -30,13 +30,17 @@ public class LocationFeatureSpecification: PropertyValue {
         
         let container = try decoder.container(keyedBy: LocationFeatureSpecificationCodingKeys.self)
         
-        
+        hoursAvailable = try container.decodeIfPresent([OpeningHoursSpecification].self, forKey: .hoursAvailable)
+        validFrom = try container.decodeIfPresent(DateTime.self, forKey: .validFrom)
+        validThrough = try container.decodeIfPresent(DateTime.self, forKey: .validThrough)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: LocationFeatureSpecificationCodingKeys.self)
         
-        
+        try container.encodeIfPresent(hoursAvailable, forKey: .hoursAvailable)
+        try container.encodeIfPresent(validFrom, forKey: .validFrom)
+        try container.encodeIfPresent(validThrough, forKey: .validThrough)
         
         try super.encode(to: encoder)
     }

@@ -1,7 +1,6 @@
 import Foundation
 
-/// Classification of the album by it's type of content: soundtrack,
-/// live album, studio album, etc.
+/// Classification of the album by it's type of content: soundtrack, live album, studio album, etc.
 public enum MusicAlbumProduction: String, CaseIterable, Codable {
     case compilation = "CompilationAlbum"
     case djMix = "DJMixAlbum"

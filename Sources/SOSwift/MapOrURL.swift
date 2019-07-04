@@ -4,6 +4,14 @@ public enum MapOrURL: Codable {
     case map(value: Map)
     case url(value: URL)
     
+    public init(_ value: Map) {
+        self = .map(value: value)
+    }
+    
+    public init(_ value: URL) {
+        self = .url(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

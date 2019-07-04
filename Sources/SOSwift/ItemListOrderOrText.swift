@@ -4,6 +4,14 @@ public enum ItemListOrderOrText: Codable {
     case itemListOrder(value: ItemListOrder)
     case text(value: String)
     
+    public init(_ value: ItemListOrder) {
+        self = .itemListOrder(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         

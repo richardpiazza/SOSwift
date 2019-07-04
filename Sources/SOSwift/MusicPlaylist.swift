@@ -24,13 +24,15 @@ public class MusicPlaylist: CreativeWork {
         
         let container = try decoder.container(keyedBy: MusicPlaylistCodingKeys.self)
         
-        
+        numTracks = try container.decodeIfPresent(Int.self, forKey: .numTracks)
+        tracks = try container.decodeIfPresent([ItemListOrMusicRecording].self, forKey: .tracks)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: MusicPlaylistCodingKeys.self)
         
-        
+        try container.encodeIfPresent(numTracks, forKey: .numTracks)
+        try container.encodeIfPresent(tracks, forKey: .tracks)
         
         try super.encode(to: encoder)
     }

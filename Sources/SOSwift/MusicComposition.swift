@@ -43,7 +43,7 @@ public class MusicComposition: CreativeWork {
         case lyricist
         case lyrics
         case musicArrangement
-        case musicComponsitionForm
+        case musicCompositionForm
         case musicalKey
         case recordedAs
     }
@@ -57,13 +57,31 @@ public class MusicComposition: CreativeWork {
         
         let container = try decoder.container(keyedBy: MusicCompositionCodingKeys.self)
         
-        
+        composer = try container.decodeIfPresent(OrganizationOrPerson.self, forKey: .composer)
+        firstPerformance = try container.decodeIfPresent(Event.self, forKey: .firstPerformance)
+        includedComposition = try container.decodeIfPresent(MusicComposition.self, forKey: .includedComposition)
+        iswcCode = try container.decodeIfPresent(String.self, forKey: .iswcCode)
+        lyricist = try container.decodeIfPresent(Person.self, forKey: .lyricist)
+        lyrics = try container.decodeIfPresent(CreativeWork.self, forKey: .lyrics)
+        musicArrangement = try container.decodeIfPresent(MusicComposition.self, forKey: .musicArrangement)
+        musicCompositionForm = try container.decodeIfPresent(String.self, forKey: .musicCompositionForm)
+        musicalKey = try container.decodeIfPresent(String.self, forKey: .musicalKey)
+        recordedAs = try container.decodeIfPresent(MusicRecording.self, forKey: .recordedAs)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: MusicCompositionCodingKeys.self)
         
-        
+        try container.encodeIfPresent(composer, forKey: .composer)
+        try container.encodeIfPresent(firstPerformance, forKey: .firstPerformance)
+        try container.encodeIfPresent(includedComposition, forKey: .includedComposition)
+        try container.encodeIfPresent(iswcCode, forKey: .iswcCode)
+        try container.encodeIfPresent(lyricist, forKey: .lyricist)
+        try container.encodeIfPresent(lyrics, forKey: .lyrics)
+        try container.encodeIfPresent(musicArrangement, forKey: .musicArrangement)
+        try container.encodeIfPresent(musicCompositionForm, forKey: .musicCompositionForm)
+        try container.encodeIfPresent(musicalKey, forKey: .musicalKey)
+        try container.encodeIfPresent(recordedAs, forKey: .recordedAs)
         
         try super.encode(to: encoder)
     }

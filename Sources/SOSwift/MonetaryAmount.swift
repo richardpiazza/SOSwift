@@ -20,10 +20,9 @@ public class MonetaryAmount: Thing {
     public var validThrough: DateTime?
     
     /// The value of the quantitative value or property value node.
-    /// - note: For QuantitativeValue and MonetaryAmount, the recommended type
-    ///         for values is 'Number'.
-    /// - note: For PropertyValue, it can be 'Text;', 'Number', 'Boolean', or
-    ///         'StructuredValue'.
+    ///
+    /// * For QuantitativeValue and MonetaryAmount, the recommended type for values is 'Number'.
+    /// * For PropertyValue, it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
     public var value: Value?
     
     internal enum MonetaryAmountCodingKeys: String, CodingKey {
@@ -44,13 +43,23 @@ public class MonetaryAmount: Thing {
         
         let container = try decoder.container(keyedBy: MonetaryAmountCodingKeys.self)
         
-        
+        currency = try container.decodeIfPresent(String.self, forKey: .currency)
+        maxValue = try container.decodeIfPresent(Number.self, forKey: .maxValue)
+        minValue = try container.decodeIfPresent(Number.self, forKey: .minValue)
+        validFrom = try container.decodeIfPresent(DateTime.self, forKey: .validFrom)
+        validThrough = try container.decodeIfPresent(DateTime.self, forKey: .validThrough)
+        value = try container.decodeIfPresent(Value.self, forKey: .value)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: MonetaryAmountCodingKeys.self)
         
-        
+        try container.encodeIfPresent(currency, forKey: .currency)
+        try container.encodeIfPresent(maxValue, forKey: .maxValue)
+        try container.encodeIfPresent(minValue, forKey: .minValue)
+        try container.encodeIfPresent(validFrom, forKey: .validFrom)
+        try container.encodeIfPresent(validThrough, forKey: .validThrough)
+        try container.encodeIfPresent(value, forKey: .value)
         
         try super.encode(to: encoder)
     }

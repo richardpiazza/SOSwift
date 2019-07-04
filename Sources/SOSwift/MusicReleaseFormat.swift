@@ -1,7 +1,6 @@
 import Foundation
 
-/// Format of this release (the type of recording media used, ie. compact disc,
-/// digital media, LP, etc.).
+/// Format of this release (the type of recording media used, ie. compact disc, digital media, LP, etc.).
 public enum MusicReleaseFormat: String, CaseIterable, Codable {
     case cd = "CDFormat"
     case cassette = "CassetteFormat"

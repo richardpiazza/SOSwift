@@ -28,13 +28,17 @@ public class MusicGroup: PerformingGroup {
         
         let container = try decoder.container(keyedBy: MusicGroupCodingKeys.self)
         
-        
+        album = try container.decodeIfPresent([MusicAlbum].self, forKey: .album)
+        genre = try container.decodeIfPresent(URLOrText.self, forKey: .genre)
+        tracks = try container.decodeIfPresent([ItemListOrMusicRecording].self, forKey: .tracks)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: MusicGroupCodingKeys.self)
         
-        
+        try container.encodeIfPresent(album, forKey: .album)
+        try container.encodeIfPresent(genre, forKey: .genre)
+        try container.encodeIfPresent(tracks, forKey: .tracks)
         
         try super.encode(to: encoder)
     }

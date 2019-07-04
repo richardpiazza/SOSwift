@@ -31,13 +31,19 @@ public class ListItem: Intangible {
         
         let container = try decoder.container(keyedBy: ListItemCodingKeys.self)
         
-        
+        item = try container.decodeIfPresent(Thing.self, forKey: .item)
+        nextItem = try container.decodeIfPresent(ListItem.self, forKey: .nextItem)
+        position = try container.decodeIfPresent(IntegerOrText.self, forKey: .position)
+        previousItem = try container.decodeIfPresent(ListItem.self, forKey: .previousItem)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ListItemCodingKeys.self)
         
-        
+        try container.encodeIfPresent(item, forKey: .item)
+        try container.encodeIfPresent(nextItem, forKey: .nextItem)
+        try container.encodeIfPresent(position, forKey: .position)
+        try container.encodeIfPresent(previousItem, forKey: .previousItem)
         
         try super.encode(to: encoder)
     }

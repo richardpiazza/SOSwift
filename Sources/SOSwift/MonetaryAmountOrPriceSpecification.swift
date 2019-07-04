@@ -4,6 +4,14 @@ public enum MonetaryAmountOrPriceSpecification: Codable {
     case monetaryAmount(value: MonetaryAmount)
     case priceSpecification(value: PriceSpecification)
     
+    public init(_ value: MonetaryAmount) {
+        self = .monetaryAmount(value: value)
+    }
+    
+    public init(_ value: PriceSpecification) {
+        self = .priceSpecification(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

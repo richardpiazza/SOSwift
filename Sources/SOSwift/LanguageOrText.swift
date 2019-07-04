@@ -4,6 +4,14 @@ public enum LanguageOrText: Codable {
     case language(value: Language)
     case text(value: String)
     
+    public init(_ value: Language) {
+        self = .language(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

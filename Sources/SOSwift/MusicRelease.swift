@@ -44,13 +44,23 @@ public class MusicRelease: MusicPlaylist {
         
         let container = try decoder.container(keyedBy: MusicReleaseCodingKeys.self)
         
-        
+        catalogNumber = try container.decodeIfPresent(String.self, forKey: .catalogNumber)
+        creditedTo = try container.decodeIfPresent(OrganizationOrPerson.self, forKey: .creditedTo)
+        duration = try container.decodeIfPresent(Duration.self, forKey: .duration)
+        musicReleaseFormat = try container.decodeIfPresent(MusicReleaseFormat.self, forKey: .musicReleaseFormat)
+        recordLabel = try container.decodeIfPresent(Organization.self, forKey: .recordLabel)
+        releaseOf = try container.decodeIfPresent(MusicAlbum.self, forKey: .releaseOf)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: MusicReleaseCodingKeys.self)
         
-        
+        try container.encodeIfPresent(catalogNumber, forKey: .catalogNumber)
+        try container.encodeIfPresent(creditedTo, forKey: .creditedTo)
+        try container.encodeIfPresent(duration, forKey: .duration)
+        try container.encodeIfPresent(musicReleaseFormat, forKey: .musicReleaseFormat)
+        try container.encodeIfPresent(recordLabel, forKey: .recordLabel)
+        try container.encodeIfPresent(releaseOf, forKey: .releaseOf)
         
         try super.encode(to: encoder)
     }

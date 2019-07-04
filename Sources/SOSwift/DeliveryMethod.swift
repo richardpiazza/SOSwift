@@ -1,10 +1,10 @@
 import Foundation
 
-/// A delivery method is a standardized procedure for transferring the product
-/// or service to the destination of fulfillment chosen by the customer.
-/// Delivery methods are characterized by the means of transportation used, and
-/// by the organization or group that is the contracting party for the sending
-/// organization or person.
+/// A delivery method is a standardized procedure for transferring the product or service to the destination of
+/// fulfillment chosen by the customer.
+///
+/// Delivery methods are characterized by the means of transportation used, and by the organization or group that is the
+/// contracting party for the sending organization or person.
 public enum DeliveryMethod: String, CaseIterable, Codable {
     case directDownload = "DeliveryModeDirectDownload"
     case frieght = "DeliveryModeFrieght"

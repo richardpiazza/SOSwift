@@ -4,6 +4,14 @@ public enum GeoCoordinatesOrGeoShape: Codable {
     case geoCoordinates(value: GeoCoordinates)
     case geoShape(value: GeoShape)
     
+    public init(_ value: GeoCoordinates) {
+        self = .geoCoordinates(value: value)
+    }
+    
+    public init(_ value: GeoShape) {
+        self = .geoShape(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

@@ -35,13 +35,21 @@ public class NewsArticle: Article {
         
         let container = try decoder.container(keyedBy: NewsArticleCodingKeys.self)
         
-        
+        dateline = try container.decodeIfPresent(String.self, forKey: .dateline)
+        printColumn = try container.decodeIfPresent(String.self, forKey: .printColumn)
+        printEdition = try container.decodeIfPresent(String.self, forKey: .printEdition)
+        printPage = try container.decodeIfPresent(String.self, forKey: .printPage)
+        printSection = try container.decodeIfPresent(String.self, forKey: .printSection)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: NewsArticleCodingKeys.self)
         
-        
+        try container.encodeIfPresent(dateline, forKey: .dateline)
+        try container.encodeIfPresent(printColumn, forKey: .printColumn)
+        try container.encodeIfPresent(printEdition, forKey: .printEdition)
+        try container.encodeIfPresent(printPage, forKey: .printPage)
+        try container.encodeIfPresent(printSection, forKey: .printSection)
         
         try super.encode(to: encoder)
     }

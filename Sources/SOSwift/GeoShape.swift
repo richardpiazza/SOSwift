@@ -56,13 +56,27 @@ public class GeoShape: Thing {
         
         let container = try decoder.container(keyedBy: GeoShapeCodingKeys.self)
         
-        
+        address = try container.decodeIfPresent(PostalAddressOrText.self, forKey: .address)
+        addressCountry = try container.decodeIfPresent(CountryOrText.self, forKey: .addressCountry)
+        box = try container.decodeIfPresent(String.self, forKey: .box)
+        circle = try container.decodeIfPresent(String.self, forKey: .circle)
+        elevation = try container.decodeIfPresent(NumberOrText.self, forKey: .elevation)
+        line = try container.decodeIfPresent(String.self, forKey: .line)
+        polygon = try container.decodeIfPresent(String.self, forKey: .polygon)
+        postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: GeoShapeCodingKeys.self)
         
-        
+        try container.encodeIfPresent(address, forKey: .address)
+        try container.encodeIfPresent(addressCountry, forKey: .addressCountry)
+        try container.encodeIfPresent(box, forKey: .box)
+        try container.encodeIfPresent(circle, forKey: .circle)
+        try container.encodeIfPresent(elevation, forKey: .elevation)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(polygon, forKey: .polygon)
+        try container.encodeIfPresent(postalCode, forKey: .postalCode)
         
         try super.encode(to: encoder)
     }

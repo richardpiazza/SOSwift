@@ -4,6 +4,14 @@ public enum ImageObjectOrURL: Codable {
     case imageObject(value: ImageObject)
     case url(value: URL)
     
+    public init(_ value: ImageObject) {
+        self = .imageObject(value: value)
+    }
+    
+    public init(_ value: URL) {
+        self = .url(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

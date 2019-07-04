@@ -4,6 +4,14 @@ public enum ImageObjectOrPhotograph: Codable {
     case imageObject(value: ImageObject)
     case photograph(value: Photograph)
     
+    public init(_ value: ImageObject) {
+        self = .imageObject(value: value)
+    }
+    
+    public init(_ value: Photograph) {
+        self = .photograph(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

@@ -1,7 +1,7 @@
 import Foundation
 
-/// A media object, such as an image, video, or audio object embedded in a web page
-/// or a downloadable dataset i.e. DataDownload.
+/// A media object, such as an image, video, or audio object embedded in a web page or a downloadable dataset.
+///
 /// - note: that a creative work may have many media objects associated with it on
 ///         the same web page. For example, a page about a single song
 ///         (MusicRecording) may have a music video (VideoObject), and a high and
@@ -70,7 +70,7 @@ public class MediaObject: CreativeWork {
         case expires
         case height
         case playerType
-        case productionCompant
+        case productionCompany
         case regionsAllowed
         case requiresSubscription
         case uploadDate
@@ -86,13 +86,44 @@ public class MediaObject: CreativeWork {
         
         let container = try decoder.container(keyedBy: MediaObjectCodingKeys.self)
         
+        associatedArticle = try container.decodeIfPresent(NewsArticle.self, forKey: .associatedArticle)
+        bitrate = try container.decodeIfPresent(String.self, forKey: .bitrate)
+        contentSize = try container.decodeIfPresent(String.self, forKey: .contentSize)
+        contentUrl = try container.decodeIfPresent(URL.self, forKey: .contentUrl)
+        duration = try container.decodeIfPresent(Duration.self, forKey: .duration)
+        embedUrl = try container.decodeIfPresent(URL.self, forKey: .embedUrl)
+        encodesCreativeWork = try container.decodeIfPresent(CreativeWork.self, forKey: .encodesCreativeWork)
+        encodingFormat = try container.decodeIfPresent(String.self, forKey: .encodingFormat)
+        expires = try container.decodeIfPresent(DateOnly.self, forKey: .expires)
+        height = try container.decodeIfPresent(DistanceOrQuantitativeValue.self, forKey: .height)
+        playerType = try container.decodeIfPresent(String.self, forKey: .playerType)
+        productionCompany = try container.decodeIfPresent(Organization.self, forKey: .productionCompany)
+        regionsAllowed = try container.decodeIfPresent(Place.self, forKey: .regionsAllowed)
+        requiresSubscription = try container.decodeIfPresent(Bool.self, forKey: .requiresSubscription)
+        uploadDate = try container.decodeIfPresent(DateOnly.self, forKey: .uploadDate)
+        width = try container.decodeIfPresent(DistanceOrQuantitativeValue.self, forKey: .width)
         
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: MediaObjectCodingKeys.self)
         
-        
+        try container.encodeIfPresent(associatedArticle, forKey: .associatedArticle)
+        try container.encodeIfPresent(bitrate, forKey: .bitrate)
+        try container.encodeIfPresent(contentSize, forKey: .contentSize)
+        try container.encodeIfPresent(contentUrl, forKey: .contentUrl)
+        try container.encodeIfPresent(duration, forKey: .duration)
+        try container.encodeIfPresent(embedUrl, forKey: .embedUrl)
+        try container.encodeIfPresent(encodesCreativeWork, forKey: .encodesCreativeWork)
+        try container.encodeIfPresent(encodingFormat, forKey: .encodingFormat)
+        try container.encodeIfPresent(expires, forKey: .expires)
+        try container.encodeIfPresent(height, forKey: .height)
+        try container.encodeIfPresent(playerType, forKey: .playerType)
+        try container.encodeIfPresent(productionCompany, forKey: .productionCompany)
+        try container.encodeIfPresent(regionsAllowed, forKey: .regionsAllowed)
+        try container.encodeIfPresent(requiresSubscription, forKey: .requiresSubscription)
+        try container.encodeIfPresent(uploadDate, forKey: .uploadDate)
+        try container.encodeIfPresent(width, forKey: .width)
         
         try super.encode(to: encoder)
     }
