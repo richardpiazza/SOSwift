@@ -29,13 +29,15 @@ public class CourseInstance: Event {
         
         let container = try decoder.container(keyedBy: CourseInstanceCodingKeys.self)
         
-        
+        courseMode = try container.decodeIfPresent(URLOrText.self, forKey: .courseMode)
+        instructor = try container.decodeIfPresent(Person.self, forKey: .instructor)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CourseInstanceCodingKeys.self)
         
-        
+        try container.encodeIfPresent(courseMode, forKey: .courseMode)
+        try container.encodeIfPresent(instructor, forKey: .instructor)
         
         try super.encode(to: encoder)
     }

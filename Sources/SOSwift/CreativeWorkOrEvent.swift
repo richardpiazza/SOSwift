@@ -4,6 +4,14 @@ public enum CreativeWorkOrEvent: Codable {
     case creativeWork(value: CreativeWork)
     case event(value: Event)
     
+    public init(_ value: CreativeWork) {
+        self = .creativeWork(value: value)
+    }
+    
+    public init(_ value: Event) {
+        self = .event(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

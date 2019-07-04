@@ -1,8 +1,8 @@
 import Foundation
 
-public typealias AdministrativeAreaOrGeoShapeOrPlaceOrText = AreaServed
+public typealias AreaServed = AdministrativeAreaOrGeoShapeOrPlaceOrText
 
-public enum AreaServed: Codable {
+public enum AdministrativeAreaOrGeoShapeOrPlaceOrText: Codable {
     case administrativeArea(value: AdministrativeArea)
     case geoShape(value: GeoShape)
     case place(value: Place)

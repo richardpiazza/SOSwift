@@ -20,13 +20,13 @@ public class DataDownload: MediaObject {
         
         let container = try decoder.container(keyedBy: DataDownloadCodingKeys.self)
         
-        
+        measurementTechnique = try container.decodeIfPresent(MeasurementTechnique.self, forKey: .measurementTechnique)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DataDownloadCodingKeys.self)
         
-        
+        try container.encodeIfPresent(measurementTechnique, forKey: .measurementTechnique)
         
         try super.encode(to: encoder)
     }

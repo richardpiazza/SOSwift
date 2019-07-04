@@ -1,5 +1,6 @@
 import Foundation
 
+/// A contact point—for example, a Customer Complaints department.
 public class ContactPoint: StructuredValue {
     
     /// The geographic area where a service or offered item is provided.
@@ -44,6 +45,7 @@ public class ContactPoint: StructuredValue {
         case faxNumber
         case hoursAvailable
         case productSupported
+        case telephone
     }
     
     public override init() {
@@ -55,13 +57,29 @@ public class ContactPoint: StructuredValue {
         
         let container = try decoder.container(keyedBy: ContactPointCodingKeys.self)
         
-        
+        areaServed = try container.decodeIfPresent(AreaServed.self, forKey: .areaServed)
+        availableLanguage = try container.decodeIfPresent(LanguageOrText.self, forKey: .availableLanguage)
+        contactOption = try container.decodeIfPresent(ContactPointOption.self, forKey: .contactOption)
+        contactType = try container.decodeIfPresent(String.self, forKey: .contactType)
+        email = try container.decodeIfPresent(String.self, forKey: .email)
+        faxNumber = try container.decodeIfPresent(String.self, forKey: .faxNumber)
+        hoursAvailable = try container.decodeIfPresent([OpeningHoursSpecification].self, forKey: .hoursAvailable)
+        productSupported = try container.decodeIfPresent(ProductOrText.self, forKey: .productSupported)
+        telephone = try container.decodeIfPresent(String.self, forKey: .telephone)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ContactPointCodingKeys.self)
         
-        
+        try container.encodeIfPresent(areaServed, forKey: .areaServed)
+        try container.encodeIfPresent(availableLanguage, forKey: .availableLanguage)
+        try container.encodeIfPresent(contactOption, forKey: .contactOption)
+        try container.encodeIfPresent(contactType, forKey: .contactType)
+        try container.encodeIfPresent(email, forKey: .email)
+        try container.encodeIfPresent(faxNumber, forKey: .faxNumber)
+        try container.encodeIfPresent(hoursAvailable, forKey: .hoursAvailable)
+        try container.encodeIfPresent(productSupported, forKey: .productSupported)
+        try container.encodeIfPresent(telephone, forKey: .telephone)
         
         try super.encode(to: encoder)
     }

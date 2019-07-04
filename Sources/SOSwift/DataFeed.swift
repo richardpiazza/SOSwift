@@ -18,13 +18,13 @@ public class DataFeed: Dataset {
         
         let container = try decoder.container(keyedBy: DataFeedCodingKeys.self)
         
-        
+        dataFeedElement = try container.decodeIfPresent(DataFeedItemOrThingOrText.self, forKey: .dataFeedElement)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DataFeedCodingKeys.self)
         
-        
+        try container.encodeIfPresent(dataFeedElement, forKey: .dataFeedElement)
         
         try super.encode(to: encoder)
     }

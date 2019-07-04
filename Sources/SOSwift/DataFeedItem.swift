@@ -34,13 +34,19 @@ public class DataFeedItem: Intangible {
         
         let container = try decoder.container(keyedBy: DataFeedItemCodingKeys.self)
         
-        
+        dateCreated = try container.decodeIfPresent(DateOnlyOrDateTime.self, forKey: .dateCreated)
+        dateDeleted = try container.decodeIfPresent(DateTime.self, forKey: .dateDeleted)
+        dateModified = try container.decodeIfPresent(DateOnlyOrDateTime.self, forKey: .dateModified)
+        item = try container.decodeIfPresent(Thing.self, forKey: .item)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DataFeedItemCodingKeys.self)
         
-        
+        try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
+        try container.encodeIfPresent(dateDeleted, forKey: .dateDeleted)
+        try container.encodeIfPresent(dateModified, forKey: .dateModified)
+        try container.encodeIfPresent(item, forKey: .item)
         
         try super.encode(to: encoder)
     }

@@ -26,13 +26,15 @@ public class DataCatalog: CreativeWork {
         
         let container = try decoder.container(keyedBy: DataCatalogCodingKeys.self)
         
-        
+        dataset = try container.decodeIfPresent(Dataset.self, forKey: .dataset)
+        measurementTechnique = try container.decodeIfPresent(MeasurementTechnique.self, forKey: .measurementTechnique)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DataCatalogCodingKeys.self)
         
-        
+        try container.encodeIfPresent(dataset, forKey: .dataset)
+        try container.encodeIfPresent(measurementTechnique, forKey: .measurementTechnique)
         
         try super.encode(to: encoder)
     }

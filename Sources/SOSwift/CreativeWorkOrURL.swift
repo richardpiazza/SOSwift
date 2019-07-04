@@ -4,6 +4,14 @@ public enum CreativeWorkOrURL: Codable {
     case creativeWork(value: CreativeWork)
     case url(value: URL)
     
+    public init(_ value: CreativeWork) {
+        self = .creativeWork(value: value)
+    }
+    
+    public init(_ value: URL) {
+        self = .url(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

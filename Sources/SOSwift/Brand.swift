@@ -1,5 +1,6 @@
 import Foundation
 
+/// A brand is a name used by an organization or business person for labeling a product, product group, or similar.
 public class Brand: Intangible {
     
     /// The overall rating, based on a collection of reviews or ratings, of the item.
@@ -9,7 +10,9 @@ public class Brand: Intangible {
     public var logo: ImageObjectOrURL?
     
     /// A review of the item.
-    /// - **schema.org property name**: _review_
+    ///
+    /// ## Schema.org Property Name
+    /// _review_
     public var reviews: [Review]?
     
     internal enum BrandCodingKeys: String, CodingKey {
@@ -27,13 +30,17 @@ public class Brand: Intangible {
         
         let container = try decoder.container(keyedBy: BrandCodingKeys.self)
         
-        
+        aggregateRating = try container.decodeIfPresent(AggregateRating.self, forKey: .aggregateRating)
+        logo = try container.decodeIfPresent(ImageObjectOrURL.self, forKey: .logo)
+        reviews = try container.decodeIfPresent([Review].self, forKey: .reviews)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: BrandCodingKeys.self)
         
-        
+        try container.encodeIfPresent(aggregateRating, forKey: .aggregateRating)
+        try container.encodeIfPresent(logo, forKey: .logo)
+        try container.encodeIfPresent(reviews, forKey: .reviews)
         
         try super.encode(to: encoder)
     }

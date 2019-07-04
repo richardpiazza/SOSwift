@@ -1,5 +1,6 @@
 import Foundation
 
+/// The average rating based on multiple ratings or reviews
 public class AggregateRating: Rating {
     
     /// The item that is being reviewed/rated.

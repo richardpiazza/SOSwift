@@ -43,13 +43,21 @@ public class Dataset: CreativeWork {
         
         let container = try decoder.container(keyedBy: DatasetCodingKeys.self)
         
-        
+        distribution = try container.decodeIfPresent(DataDownload.self, forKey: .distribution)
+        includedInDataCatalog = try container.decodeIfPresent(DataCatalog.self, forKey: .includedInDataCatalog)
+        issn = try container.decodeIfPresent(String.self, forKey: .issn)
+        measurementTechnique = try container.decodeIfPresent(MeasurementTechnique.self, forKey: .measurementTechnique)
+        variableMeasured = try container.decodeIfPresent(PropertyValueOrText.self, forKey: .variableMeasured)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DatasetCodingKeys.self)
         
-        
+        try container.encodeIfPresent(distribution, forKey: .distribution)
+        try container.encodeIfPresent(includedInDataCatalog, forKey: .includedInDataCatalog)
+        try container.encodeIfPresent(issn, forKey: .issn)
+        try container.encodeIfPresent(measurementTechnique, forKey: .measurementTechnique)
+        try container.encodeIfPresent(variableMeasured, forKey: .variableMeasured)
         
         try super.encode(to: encoder)
     }
