@@ -14,8 +14,7 @@ let package = Package(
         .library(name: "SOSwift", targets: ["SOSwift"]),
     ],
     dependencies: [
-//        .package(url: "https://github.com/richardpiazza/SOSwiftVocabulary", .upToNextMinor(from: "1.6.0"))
-//        "SOSwiftVocabulary"
+        
     ],
     targets: [
         .target(name: "SOSwift", dependencies: [], path: "Sources/SOSwift"),
