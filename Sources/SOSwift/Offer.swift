@@ -3,7 +3,7 @@ import Foundation
 public class Offer: Intangible {
     
     /// The payment method(s) accepted by seller for this offer.
-    public var acceptedPaymentMethod: Any?
+    public var acceptedPaymentMethod: LoanOrCreditOrPaymentMethod?
     
     /// An additional offer that can only be obtained in combination with
     /// the first base offer (e.g. supplements and extensions that are available
@@ -228,7 +228,7 @@ public class Offer: Intangible {
         
         let container = try decoder.container(keyedBy: OfferCodingKeys.self)
         
-        // TODO: acceptedPaymentMethod
+        acceptedPaymentMethod = try container.decodeIfPresent(LoanOrCreditOrPaymentMethod.self, forKey: .acceptedPaymentMethod)
         addOn = try container.decodeIfPresent(Offer.self, forKey: .addOn)
         advanceBookingRequirement = try container.decodeIfPresent(QuantitativeValue.self, forKey: .advanceBookingRequirement)
         aggregateRating = try container.decodeIfPresent(AggregateRating.self, forKey: .aggregateRating)
@@ -273,6 +273,7 @@ public class Offer: Intangible {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: OfferCodingKeys.self)
         
+        try container.encodeIfPresent(acceptedPaymentMethod, forKey: .acceptedPaymentMethod)
         try container.encodeIfPresent(addOn, forKey: .addOn)
         try container.encodeIfPresent(advanceBookingRequirement, forKey: .advanceBookingRequirement)
         try container.encodeIfPresent(aggregateRating, forKey: .aggregateRating)

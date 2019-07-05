@@ -7,7 +7,7 @@ import Foundation
 public class Demand: Intangible {
     
     /// The payment method(s) accepted by seller for this offer.
-    public var acceptedPaymentMethod: Any?
+    public var acceptedPaymentMethod: LoanOrCreditOrPaymentMethod?
     
     /// The amount of time that is required between accepting the offer and the actual usage of the resource or service.
     public var advanceBookingRequirement: QuantitativeValue?
@@ -146,7 +146,7 @@ public class Demand: Intangible {
         
         let container = try decoder.container(keyedBy: DemandCodingKeys.self)
         
-        // TODO: AcceptedPaymentMethod
+        acceptedPaymentMethod = try container.decodeIfPresent(LoanOrCreditOrPaymentMethod.self, forKey: .acceptedPaymentMethod)
         advanceBookingRequirement = try container.decodeIfPresent(QuantitativeValue.self, forKey: .advanceBookingRequirement)
         areaServed = try container.decodeIfPresent(AreaServed.self, forKey: .areaServed)
         availability = try container.decodeIfPresent(ItemAvailability.self, forKey: .availability)
@@ -183,6 +183,7 @@ public class Demand: Intangible {
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DemandCodingKeys.self)
         
+        try container.encodeIfPresent(acceptedPaymentMethod, forKey: .acceptedPaymentMethod)
         try container.encodeIfPresent(advanceBookingRequirement, forKey: .advanceBookingRequirement)
         try container.encodeIfPresent(areaServed, forKey: .areaServed)
         try container.encodeIfPresent(availability, forKey: .availability)
