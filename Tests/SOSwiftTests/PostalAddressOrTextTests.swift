@@ -3,46 +3,34 @@ import XCTest
 
 class PostalAddressOrTextTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var postalAddress: PostalAddressOrText?
         var text: PostalAddressOrText?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "postalAddress" : {
-                    "@type" : "PostalAddress",
-                    "name" : "Infinite Loop"
-                },
-                "text" : "Apple Campus"
-            }
+        {
+            "postalAddress" : {
+                "@type" : "PostalAddress",
+                "name" : "Infinite Loop"
+            },
+            "text" : "Apple Campus"
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let postalAddress = testObject.postalAddress as? PostalAddress else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(postalAddress.name, "Infinite Loop")
-        
-        guard let text = testObject.text as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(text, "Apple Campus")
+        let testObject = try TestClass.make(with: json)
+        XCTAssertEqual(testObject.postalAddress?.postalAddress?.name, "Infinite Loop")
+        XCTAssertEqual(testObject.text?.text, "Apple Campus")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let postalAddress = PostalAddress()
@@ -53,7 +41,7 @@ class PostalAddressOrTextTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
@@ -74,11 +62,7 @@ class PostalAddressOrTextTests: XCTestCase {
         XCTAssertEqual(t, "Google Campus")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
+    func testEquatability() throws {
         
     }
 }

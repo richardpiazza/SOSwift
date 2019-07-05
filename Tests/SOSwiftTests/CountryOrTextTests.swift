@@ -3,7 +3,7 @@ import XCTest
 
 class CountryOrTextTests: XCTestCase {
 
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var country: CountryOrText?
         var text: CountryOrText?
         var multiple: [CountryOrText]?
@@ -74,7 +74,7 @@ class CountryOrTextTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
@@ -151,7 +151,7 @@ class CountryOrTextTests: XCTestCase {
         let testable = TestClass()
         testable.multiple = [.country(value: Country()), .text(value: "Hero")]
         
-        let json = try testable.json()
+        let json = try testable.asJSON()
         XCTAssertTrue(json.contains("\"multiple\":["))
     }
 }

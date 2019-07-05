@@ -10,7 +10,7 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
         ("testMultipleEncodes", testMultipleEncodes),
     ]
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var geoShape: GeoShapeOrPlaceOrText?
         var place: GeoShapeOrPlaceOrText?
         var text: GeoShapeOrPlaceOrText?
@@ -57,7 +57,7 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
         testObject.place = GeoShapeOrPlaceOrText.place(value: place)
         testObject.text = GeoShapeOrPlaceOrText.text(value: text)
         
-        let dictionary = try testObject.dictionary()
+        let dictionary = try testObject.asDictionary()
         
         let gs = dictionary["geoShape"] as? [String : Any]
         let p = dictionary["place"] as? [String : Any]
@@ -120,7 +120,7 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
         let testObject = TestClass()
         testObject.multiple = multiple
         
-        let dictionary = try testObject.dictionary()
+        let dictionary = try testObject.asDictionary()
         
         let values = dictionary["multiple"] as? [Any]
         

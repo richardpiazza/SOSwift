@@ -32,13 +32,19 @@ public class OwnershipInfo: StructuredValue {
         
         let container = try decoder.container(keyedBy: OwnershipInfoCodingKeys.self)
         
-        
+        acquiredFrom = try container.decodeIfPresent(OrganizationOrPerson.self, forKey: .acquiredFrom)
+        ownedFrom = try container.decodeIfPresent(DateTime.self, forKey: .ownedFrom)
+        ownedThrough = try container.decodeIfPresent(DateTime.self, forKey: .ownedThrough)
+        typeOfGood = try container.decodeIfPresent(ProductOrService.self, forKey: .typeOfGood)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: OwnershipInfoCodingKeys.self)
         
-        
+        try container.encodeIfPresent(acquiredFrom, forKey: .acquiredFrom)
+        try container.encodeIfPresent(ownedFrom, forKey: .ownedFrom)
+        try container.encodeIfPresent(ownedThrough, forKey: .ownedThrough)
+        try container.encodeIfPresent(typeOfGood, forKey: .typeOfGood)
         
         try super.encode(to: encoder)
     }

@@ -71,13 +71,29 @@ public class PriceSpecification: StructuredValue {
         
         let container = try decoder.container(keyedBy: PriceSpecificationCodingKeys.self)
         
-        
+        eligibleQuantity = try container.decodeIfPresent(QuantitativeValue.self, forKey: .eligibleQuantity)
+        eligibleTransactionVolume = try container.decodeIfPresent(PriceSpecification.self, forKey: .eligibleTransactionVolume)
+        maxPrice = try container.decodeIfPresent(Number.self, forKey: .maxPrice)
+        minPrice = try container.decodeIfPresent(Number.self, forKey: .minPrice)
+        price = try container.decodeIfPresent(NumberOrText.self, forKey: .price)
+        priceCurrency = try container.decodeIfPresent(String.self, forKey: .priceCurrency)
+        validFrom = try container.decodeIfPresent(DateTime.self, forKey: .validFrom)
+        validThrough = try container.decodeIfPresent(DateTime.self, forKey: .validThrough)
+        valueAddedTaxIncluded = try container.decodeIfPresent(Bool.self, forKey: .valueAddedTaxIncluded)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: PriceSpecificationCodingKeys.self)
         
-        
+        try container.encodeIfPresent(eligibleQuantity, forKey: .eligibleQuantity)
+        try container.encodeIfPresent(eligibleTransactionVolume, forKey: .eligibleTransactionVolume)
+        try container.encodeIfPresent(maxPrice, forKey: .maxPrice)
+        try container.encodeIfPresent(minPrice, forKey: .minPrice)
+        try container.encodeIfPresent(price, forKey: .price)
+        try container.encodeIfPresent(priceCurrency, forKey: .priceCurrency)
+        try container.encodeIfPresent(validFrom, forKey: .validFrom)
+        try container.encodeIfPresent(validThrough, forKey: .validThrough)
+        try container.encodeIfPresent(valueAddedTaxIncluded, forKey: .valueAddedTaxIncluded)
         
         try super.encode(to: encoder)
     }

@@ -9,7 +9,7 @@ class ItemListOrMusicRecordingTests: XCTestCase {
         ("testEquatability", testEquatability),
     ]
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var itemList: ItemListOrMusicRecording?
         var musicRecording: ItemListOrMusicRecording?
         var multiple: [ItemListOrMusicRecording]?
@@ -46,7 +46,7 @@ class ItemListOrMusicRecordingTests: XCTestCase {
         musicRecording.name = "Rebel in the Rye"
         testObject.musicRecording = .musicRecording(value: musicRecording)
         
-        let dictionary = try testObject.dictionary()
+        let dictionary = try testObject.asDictionary()
         
         let li = dictionary["itemList"] as? [String : Any]
         let liCount = li?["numberOfItems"] as? Int

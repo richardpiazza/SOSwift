@@ -4,6 +4,14 @@ public enum PersonOrURL: Codable {
     case person(value: Person)
     case url(value: URL)
     
+    public init(_ value: Person) {
+        self = .person(value: value)
+    }
+    
+    public init(_ value: URL) {
+        self = .url(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

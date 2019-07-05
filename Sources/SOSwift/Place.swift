@@ -126,13 +126,53 @@ public class Place: Thing {
         
         let container = try decoder.container(keyedBy: PlaceCodingKeys.self)
         
-        
+        additionalProperty = try container.decodeIfPresent(PropertyValue.self, forKey: .additionalProperty)
+        address = try container.decodeIfPresent(PostalAddressOrText.self, forKey: .address)
+        aggregateRating = try container.decodeIfPresent(AggregateRating.self, forKey: .aggregateRating)
+        amenityFeature = try container.decodeIfPresent(LocationFeatureSpecification.self, forKey: .amenityFeature)
+        branchCode = try container.decodeIfPresent(String.self, forKey: .branchCode)
+        containedInPlace = try container.decodeIfPresent(Place.self, forKey: .containedInPlace)
+        containsPlaces = try container.decodeIfPresent([Place].self, forKey: .containsPlaces)
+        events = try container.decodeIfPresent([Event].self, forKey: .events)
+        faxNumber = try container.decodeIfPresent(String.self, forKey: .faxNumber)
+        geo = try container.decodeIfPresent(GeoCoordinatesOrGeoShape.self, forKey: .geo)
+        globalLocationNumber = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber)
+        map = try container.decodeIfPresent(MapOrURL.self, forKey: .map)
+        isicV4 = try container.decodeIfPresent(String.self, forKey: .isicV4)
+        logo = try container.decodeIfPresent(ImageObjectOrURL.self, forKey: .logo)
+        maximumAttendeeCapacity = try container.decodeIfPresent(Int.self, forKey: .maximumAttendeeCapacity)
+        openingHoursSpecification = try container.decodeIfPresent([OpeningHoursSpecification].self, forKey: .openingHoursSpecification)
+        photos = try container.decodeIfPresent([ImageObjectOrPhotograph].self, forKey: .photos)
+        reviews = try container.decodeIfPresent([Review].self, forKey: .reviews)
+        smokingAllowed = try container.decodeIfPresent(Bool.self, forKey: .smokingAllowed)
+        specialOpeningHoursSpecification = try container.decodeIfPresent([OpeningHoursSpecification].self, forKey: .specialOpeningHoursSpecification)
+        telephone = try container.decodeIfPresent(String.self, forKey: .telephone)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: PlaceCodingKeys.self)
         
-        
+        try container.encodeIfPresent(additionalProperty, forKey: .additionalProperty)
+        try container.encodeIfPresent(address, forKey: .address)
+        try container.encodeIfPresent(aggregateRating, forKey: .aggregateRating)
+        try container.encodeIfPresent(amenityFeature, forKey: .amenityFeature)
+        try container.encodeIfPresent(branchCode, forKey: .branchCode)
+        try container.encodeIfPresent(containedInPlace, forKey: .containedInPlace)
+        try container.encodeIfPresent(containsPlaces, forKey: .containsPlaces)
+        try container.encodeIfPresent(events, forKey: .events)
+        try container.encodeIfPresent(faxNumber, forKey: .faxNumber)
+        try container.encodeIfPresent(geo, forKey: .geo)
+        try container.encodeIfPresent(globalLocationNumber, forKey: .globalLocationNumber)
+        try container.encodeIfPresent(map, forKey: .map)
+        try container.encodeIfPresent(isicV4, forKey: .isicV4)
+        try container.encodeIfPresent(logo, forKey: .logo)
+        try container.encodeIfPresent(maximumAttendeeCapacity, forKey: .maximumAttendeeCapacity)
+        try container.encodeIfPresent(openingHoursSpecification, forKey: .openingHoursSpecification)
+        try container.encodeIfPresent(photos, forKey: .photos)
+        try container.encodeIfPresent(reviews, forKey: .reviews)
+        try container.encodeIfPresent(smokingAllowed, forKey: .smokingAllowed)
+        try container.encodeIfPresent(specialOpeningHoursSpecification, forKey: .specialOpeningHoursSpecification)
+        try container.encodeIfPresent(telephone, forKey: .telephone)
         
         try super.encode(to: encoder)
     }

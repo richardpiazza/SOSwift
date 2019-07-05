@@ -10,7 +10,7 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         ("testMultipleEncodes", testMultipleEncodes),
     ]
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var educationalOrganization: EducationalOrganizationOrOrganization?
         var organization: EducationalOrganizationOrOrganization?
         var multiple: [EducationalOrganizationOrOrganization]?
@@ -58,7 +58,7 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         org.name = "Bob's"
         testObject.organization = .organization(value: org)
         
-        let dictionary = try testObject.dictionary()
+        let dictionary = try testObject.asDictionary()
         
         guard let eO = dictionary["educationalOrganization"] as? [String : Any] else {
             XCTFail()
@@ -129,7 +129,7 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         let testObject = TestClass()
         testObject.multiple = multiple
         
-        let dictionary = try testObject.dictionary()
+        let dictionary = try testObject.asDictionary()
         XCTAssertEqual(dictionary.keys.count, 1)
         
         guard let values = dictionary["multiple"] as? [[String : Any]] else {

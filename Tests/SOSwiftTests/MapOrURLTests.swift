@@ -3,46 +3,34 @@ import XCTest
 
 class MapOrURLTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var map: MapOrURL?
         var url: MapOrURL?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "map" : {
-                    "@type" : "Map",
-                    "name" : "World Map"
-                },
-                "url" : "https://en.wikipedia.org/wiki/World_map"
-            }
+        {
+            "map" : {
+                "@type" : "Map",
+                "name" : "World Map"
+            },
+            "url" : "https://en.wikipedia.org/wiki/World_map"
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let map = testObject.map as? Map else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(map.name, "World Map")
-        
-        guard let url = testObject.url as? URL else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(url.host, "en.wikipedia.org")
+        let testObject = try TestClass.make(with: json)
+        XCTAssertEqual(testObject.map?.map?.name, "World Map")
+        XCTAssertEqual(testObject.url?.url?.host, "en.wikipedia.org")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let map = Map()
@@ -51,13 +39,7 @@ class MapOrURLTests: XCTestCase {
         
         testObject.url = .url(value: URL(string: "https://commons.wikimedia.org/wiki/Category:Maps_of_the_United_States")!)
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
+        let dictionary = try testObject.asDictionary()
         
         guard let m = dictionary["map"] as? [String : Any], let mName = m["name"] as? String else {
             XCTFail()
@@ -74,11 +56,7 @@ class MapOrURLTests: XCTestCase {
         XCTAssertEqual(url.host, "commons.wikimedia.org")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
+    func testEquatability() throws {
         
     }
 }

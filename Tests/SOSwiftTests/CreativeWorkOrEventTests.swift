@@ -3,7 +3,7 @@ import XCTest
 
 class CreativeWorkOrEventTests: XCTestCase {
 
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var creativeWork: CreativeWorkOrEvent?
         var event: CreativeWorkOrEvent?
         var multiple: [CreativeWorkOrEvent]?
@@ -57,7 +57,7 @@ class CreativeWorkOrEventTests: XCTestCase {
         testable.creativeWork = CreativeWorkOrEvent.creativeWork(value: creativeWork)
         testable.event = CreativeWorkOrEvent.event(value: event)
         
-        let dictionary = try testable.dictionary()
+        let dictionary = try testable.asDictionary()
         
         guard
             let cw = dictionary["creativeWork"] as? [String : Any],
@@ -119,7 +119,7 @@ class CreativeWorkOrEventTests: XCTestCase {
         let event = Event()
         testable.multiple = [CreativeWorkOrEvent.creativeWork(value: creativeWork), CreativeWorkOrEvent.event(value: event)]
         
-        let json = try testable.json()
+        let json = try testable.asJSON()
         XCTAssertTrue(json.contains("\"multiple\":["))
     }
 }

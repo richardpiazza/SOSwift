@@ -62,13 +62,27 @@ public class QualitativeValue: Enumeration {
         
         let container = try decoder.container(keyedBy: QualitativeValueCodingKeys.self)
         
-        
+        additionalProperty = try container.decodeIfPresent(PropertyValue.self, forKey: .additionalProperty)
+        equal = try container.decodeIfPresent(QualitativeValue.self, forKey: .equal)
+        greater = try container.decodeIfPresent(QualitativeValue.self, forKey: .greater)
+        greaterOrEqual = try container.decodeIfPresent(QualitativeValue.self, forKey: .greaterOrEqual)
+        lesser = try container.decodeIfPresent(QualitativeValue.self, forKey: .lesser)
+        lesserOrEqual = try container.decodeIfPresent(QualitativeValue.self, forKey: .lesserOrEqual)
+        nonEqual = try container.decodeIfPresent(QualitativeValue.self, forKey: .nonEqual)
+        valueReference = try container.decodeIfPresent(ValueReference.self, forKey: .valueReference)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: QualitativeValueCodingKeys.self)
         
-        
+        try container.encodeIfPresent(additionalProperty, forKey: .additionalProperty)
+        try container.encodeIfPresent(equal, forKey: .equal)
+        try container.encodeIfPresent(greater, forKey: .greater)
+        try container.encodeIfPresent(greaterOrEqual, forKey: .greaterOrEqual)
+        try container.encodeIfPresent(lesser, forKey: .lesser)
+        try container.encodeIfPresent(lesserOrEqual, forKey: .lesserOrEqual)
+        try container.encodeIfPresent(nonEqual, forKey: .nonEqual)
+        try container.encodeIfPresent(valueReference, forKey: .valueReference)
         
         try super.encode(to: encoder)
     }

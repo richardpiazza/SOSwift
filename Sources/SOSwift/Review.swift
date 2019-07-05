@@ -20,6 +20,7 @@ public class Review: CreativeWork {
     public var reviewRating: Rating?
     
     internal enum ReviewCodingKeys: String, CodingKey {
+        case itemReviewed
         case reviewAspect
         case reviewBody
         case reviewRating
@@ -34,13 +35,19 @@ public class Review: CreativeWork {
         
         let container = try decoder.container(keyedBy: ReviewCodingKeys.self)
         
-        
+        itemReviewed = try container.decodeIfPresent(Thing.self, forKey: .itemReviewed)
+        reviewAspect = try container.decodeIfPresent(String.self, forKey: .reviewAspect)
+        reviewBody = try container.decodeIfPresent(String.self, forKey: .reviewBody)
+        reviewRating = try container.decodeIfPresent(Rating.self, forKey: .reviewRating)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ReviewCodingKeys.self)
         
-        
+        try container.encodeIfPresent(itemReviewed, forKey: .itemReviewed)
+        try container.encodeIfPresent(reviewAspect, forKey: .reviewAspect)
+        try container.encodeIfPresent(reviewBody, forKey: .reviewBody)
+        try container.encodeIfPresent(reviewRating, forKey: .reviewRating)
         
         try super.encode(to: encoder)
     }

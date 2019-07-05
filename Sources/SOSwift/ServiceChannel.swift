@@ -48,13 +48,27 @@ public class ServiceChannel: Intangible {
         
         let container = try decoder.container(keyedBy: ServiceChannelCodingKeys.self)
         
-        
+        availableLanguage = try container.decodeIfPresent(LanguageOrText.self, forKey: .availableLanguage)
+        processingTime = try container.decodeIfPresent(Duration.self, forKey: .processingTime)
+        providesService = try container.decodeIfPresent(Service.self, forKey: .providesService)
+        serviceLocation = try container.decodeIfPresent(Place.self, forKey: .serviceLocation)
+        servicePhone = try container.decodeIfPresent(ContactPoint.self, forKey: .servicePhone)
+        servicePostalAddress = try container.decodeIfPresent(PostalAddress.self, forKey: .servicePostalAddress)
+        serviceSmsNumber = try container.decodeIfPresent(ContactPoint.self, forKey: .serviceSmsNumber)
+        serviceUrl = try container.decodeIfPresent(URL.self, forKey: .serviceUrl)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ServiceChannelCodingKeys.self)
         
-        
+        try container.encodeIfPresent(availableLanguage, forKey: .availableLanguage)
+        try container.encodeIfPresent(processingTime, forKey: .processingTime)
+        try container.encodeIfPresent(providesService, forKey: .providesService)
+        try container.encodeIfPresent(serviceLocation, forKey: .serviceLocation)
+        try container.encodeIfPresent(servicePhone, forKey: .servicePhone)
+        try container.encodeIfPresent(servicePostalAddress, forKey: .servicePostalAddress)
+        try container.encodeIfPresent(serviceSmsNumber, forKey: .serviceSmsNumber)
+        try container.encodeIfPresent(serviceUrl, forKey: .serviceUrl)
         
         try super.encode(to: encoder)
     }

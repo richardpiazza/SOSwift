@@ -41,13 +41,21 @@ public class TypeAndQuantityNode: StructuredValue {
         
         let container = try decoder.container(keyedBy: TypeAndQuantityNodeCodingKeys.self)
         
-        
+        amountOfThisGood = try container.decodeIfPresent(Number.self, forKey: .amountOfThisGood)
+        businessFunction = try container.decodeIfPresent(BusinessFunction.self, forKey: .businessFunction)
+        typeOfGood = try container.decodeIfPresent(ProductOrService.self, forKey: .typeOfGood)
+        unitCode = try container.decodeIfPresent(URLOrText.self, forKey: .unitCode)
+        unitText = try container.decodeIfPresent(String.self, forKey: .unitText)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: TypeAndQuantityNodeCodingKeys.self)
         
-        
+        try container.encodeIfPresent(amountOfThisGood, forKey: .amountOfThisGood)
+        try container.encodeIfPresent(businessFunction, forKey: .businessFunction)
+        try container.encodeIfPresent(typeOfGood, forKey: .typeOfGood)
+        try container.encodeIfPresent(unitCode, forKey: .unitCode)
+        try container.encodeIfPresent(unitText, forKey: .unitText)
         
         try super.encode(to: encoder)
     }

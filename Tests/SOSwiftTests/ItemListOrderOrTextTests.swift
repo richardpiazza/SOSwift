@@ -9,7 +9,7 @@ class ItemListOrderOrTextTests: XCTestCase {
         ("testEquatability", testEquatability),
     ]
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var itemListOrder: ItemListOrderOrText?
         var text: ItemListOrderOrText?
     }
@@ -35,7 +35,7 @@ class ItemListOrderOrTextTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return

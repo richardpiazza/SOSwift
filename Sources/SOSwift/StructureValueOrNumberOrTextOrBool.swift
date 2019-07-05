@@ -1,6 +1,8 @@
 import Foundation
 
-public enum Value: Codable {
+public typealias Value = StructureValueOrNumberOrTextOrBool
+
+public enum StructureValueOrNumberOrTextOrBool: Codable {
     case structuredValue(value: StructuredValue)
     case number(value: Number)
     case text(value: String)

@@ -3,46 +3,34 @@ import XCTest
 
 class ProductModelOrTextTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var productModel: ProductModelOrText?
         var text: ProductModelOrText?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "productModel" : {
-                    "@type" : "ProductModel",
-                    "name" : "iMac"
-                },
-                "text" : "Desktop"
-            }
+        {
+            "productModel" : {
+                "@type" : "ProductModel",
+                "name" : "iMac"
+            },
+            "text" : "Desktop"
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let productModel = testObject.productModel as? ProductModel else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(productModel.name, "iMac")
-        
-        guard let text = testObject.text as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(text, "Desktop")
+        let testObject = try TestClass.make(with: json)
+        XCTAssertEqual(testObject.productModel?.productModel?.name, "iMac")
+        XCTAssertEqual(testObject.text?.text, "Desktop")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let productModel = ProductModel()
@@ -53,7 +41,7 @@ class ProductModelOrTextTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
@@ -74,11 +62,7 @@ class ProductModelOrTextTests: XCTestCase {
         XCTAssertEqual(t, "Laptop")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
+    func testEquatability() throws {
         
     }
 }

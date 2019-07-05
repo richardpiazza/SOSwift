@@ -90,7 +90,7 @@ public class SoftwareApplication: CreativeWork {
         case fileSize
         case installUrl
         case memoryRequirements
-        case operationSystem
+        case operatingSystem
         case permissions
         case processorRequirements
         case releaseNotes
@@ -100,7 +100,7 @@ public class SoftwareApplication: CreativeWork {
         case softwareRequirements
         case softwareVersion
         case storageRequirements
-        case supportingDate
+        case supportingData
     }
     
     public override init() {
@@ -112,13 +112,53 @@ public class SoftwareApplication: CreativeWork {
         
         let container = try decoder.container(keyedBy: SoftwareApplicationCodingKey.self)
         
-        
+        applicationCategory = try container.decodeIfPresent(URLOrText.self, forKey: .applicationCategory)
+        applicationSubCategory = try container.decodeIfPresent(URLOrText.self, forKey: .applicationSubCategory)
+        applicationSuite = try container.decodeIfPresent(String.self, forKey: .applicationSuite)
+        availableOnDevice = try container.decodeIfPresent(String.self, forKey: .availableOnDevice)
+        countriesNotSupported = try container.decodeIfPresent(String.self, forKey: .countriesNotSupported)
+        downloadUrl = try container.decodeIfPresent(URL.self, forKey: .downloadUrl)
+        featureList = try container.decodeIfPresent(URLOrText.self, forKey: .featureList)
+        fileSize = try container.decodeIfPresent(String.self, forKey: .fileSize)
+        installUrl = try container.decodeIfPresent(URL.self, forKey: .installUrl)
+        memoryRequirements = try container.decodeIfPresent(URLOrText.self, forKey: .memoryRequirements)
+        operatingSystem = try container.decodeIfPresent(String.self, forKey: .operatingSystem)
+        permissions = try container.decodeIfPresent(String.self, forKey: .permissions)
+        processorRequirements = try container.decodeIfPresent(String.self, forKey: .processorRequirements)
+        releaseNotes = try container.decodeIfPresent(URLOrText.self, forKey: .releaseNotes)
+        screenshot = try container.decodeIfPresent(ImageObjectOrURL.self, forKey: .screenshot)
+        softwareAddOn = try container.decodeIfPresent(SoftwareApplication.self, forKey: .softwareAddOn)
+        softwareHelp = try container.decodeIfPresent(CreativeWork.self, forKey: .softwareHelp)
+        softwareRequirements = try container.decodeIfPresent(URLOrText.self, forKey: .softwareRequirements)
+        softwareVersion = try container.decodeIfPresent(String.self, forKey: .softwareVersion)
+        storageRequirements = try container.decodeIfPresent(URLOrText.self, forKey: .storageRequirements)
+        supportingData = try container.decodeIfPresent(DataFeed.self, forKey: .supportingData)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: SoftwareApplicationCodingKey.self)
         
-        
+        try container.encodeIfPresent(applicationCategory, forKey: .applicationCategory)
+        try container.encodeIfPresent(applicationSubCategory, forKey: .applicationSubCategory)
+        try container.encodeIfPresent(applicationSuite, forKey: .applicationSuite)
+        try container.encodeIfPresent(availableOnDevice, forKey: .availableOnDevice)
+        try container.encodeIfPresent(countriesNotSupported, forKey: .countriesNotSupported)
+        try container.encodeIfPresent(downloadUrl, forKey: .downloadUrl)
+        try container.encodeIfPresent(featureList, forKey: .featureList)
+        try container.encodeIfPresent(fileSize, forKey: .fileSize)
+        try container.encodeIfPresent(installUrl, forKey: .installUrl)
+        try container.encodeIfPresent(memoryRequirements, forKey: .memoryRequirements)
+        try container.encodeIfPresent(operatingSystem, forKey: .operatingSystem)
+        try container.encodeIfPresent(permissions, forKey: .permissions)
+        try container.encodeIfPresent(processorRequirements, forKey: .processorRequirements)
+        try container.encodeIfPresent(releaseNotes, forKey: .releaseNotes)
+        try container.encodeIfPresent(screenshot, forKey: .screenshot)
+        try container.encodeIfPresent(softwareAddOn, forKey: .softwareAddOn)
+        try container.encodeIfPresent(softwareHelp, forKey: .softwareHelp)
+        try container.encodeIfPresent(softwareRequirements, forKey: .softwareRequirements)
+        try container.encodeIfPresent(softwareVersion, forKey: .softwareVersion)
+        try container.encodeIfPresent(storageRequirements, forKey: .storageRequirements)
+        try container.encodeIfPresent(supportingData, forKey: .supportingData)
         
         try super.encode(to: encoder)
     }

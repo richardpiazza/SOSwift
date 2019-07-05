@@ -3,49 +3,37 @@ import XCTest
 
 class SoftwareApplicationOrWebsiteTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var softwareApplication: SoftwareApplicationOrWebsite?
         var website: SoftwareApplicationOrWebsite?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "softwareApplication" : {
-                    "@type" : "SoftwareApplication",
-                    "name" : "Mac OS X"
-                },
-                "website" : {
-                    "@type" : "Website",
-                    "url" : "https://www.apple.com/macos"
-                }
+        {
+            "softwareApplication" : {
+                "@type" : "SoftwareApplication",
+                "name" : "Mac OS X"
+            },
+            "website" : {
+                "@type" : "Website",
+                "url" : "https://www.apple.com/macos"
             }
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let softwareApplication = testObject.softwareApplication as? SoftwareApplication else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(softwareApplication.name, "Mac OS X")
-        
-        guard let website = testObject.website as? Website else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(website.url?.host, "www.apple.com")
+        let testObject = try TestClass.make(with: json)
+        XCTAssertEqual(testObject.softwareApplication?.softwareApplication?.name, "Mac OS X")
+        XCTAssertEqual(testObject.website?.website?.url?.host, "www.apple.com")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let software = SoftwareApplication()
@@ -58,7 +46,7 @@ class SoftwareApplicationOrWebsiteTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
@@ -79,11 +67,7 @@ class SoftwareApplicationOrWebsiteTests: XCTestCase {
         XCTAssertEqual(url.path, "/ios")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
+    func testEquatability() throws {
         
     }
 }

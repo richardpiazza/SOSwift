@@ -22,13 +22,13 @@ public class Website: CreativeWork {
         
         let container = try decoder.container(keyedBy: WebsiteCodingKeys.self)
         
-        
+        issn = try container.decodeIfPresent(String.self, forKey: .issn)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: WebsiteCodingKeys.self)
         
-        
+        try container.encodeIfPresent(issn, forKey: .issn)
         
         try super.encode(to: encoder)
     }

@@ -9,7 +9,7 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
         ("testEquatability", testEquatability),
     ]
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var geoCoordinates: GeoCoordinatesOrGeoShape?
         var geoShape: GeoCoordinatesOrGeoShape?
         var multiple: [GeoCoordinatesOrGeoShape]?
@@ -50,7 +50,7 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return

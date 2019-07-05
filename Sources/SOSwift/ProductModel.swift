@@ -32,13 +32,17 @@ public class ProductModel: Product {
         
         let container = try decoder.container(keyedBy: ProductModelCodingKeys.self)
         
-        
+        isVariantOf = try container.decodeIfPresent(ProductModel.self, forKey: .isVariantOf)
+        predecessorOf = try container.decodeIfPresent(ProductModel.self, forKey: .predecessorOf)
+        successorOf = try container.decodeIfPresent(ProductModel.self, forKey: .successorOf)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ProductModelCodingKeys.self)
         
-        
+        try container.encodeIfPresent(isVariantOf, forKey: .isVariantOf)
+        try container.encodeIfPresent(predecessorOf, forKey: .predecessorOf)
+        try container.encodeIfPresent(successorOf, forKey: .successorOf)
         
         try super.encode(to: encoder)
     }

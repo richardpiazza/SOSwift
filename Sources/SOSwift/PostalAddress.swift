@@ -39,13 +39,23 @@ public class PostalAddress: ContactPoint {
         
         let container = try decoder.container(keyedBy: PostalAddressCodingKeys.self)
         
-        
+        addressCountry = try container.decodeIfPresent(CountryOrText.self, forKey: .addressCountry)
+        addressLocality = try container.decodeIfPresent(String.self, forKey: .addressLocality)
+        addressRegion = try container.decodeIfPresent(String.self, forKey: .addressRegion)
+        postOfficeBoxNumber = try container.decodeIfPresent(String.self, forKey: .postOfficeBoxNumber)
+        postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
+        streetAddress = try container.decodeIfPresent(String.self, forKey: .streetAddress)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: PostalAddressCodingKeys.self)
         
-        
+        try container.encodeIfPresent(addressCountry, forKey: .addressCountry)
+        try container.encodeIfPresent(addressLocality, forKey: .addressLocality)
+        try container.encodeIfPresent(addressRegion, forKey: .addressRegion)
+        try container.encodeIfPresent(postOfficeBoxNumber, forKey: .postOfficeBoxNumber)
+        try container.encodeIfPresent(postalCode, forKey: .postalCode)
+        try container.encodeIfPresent(streetAddress, forKey: .streetAddress)
         
         try super.encode(to: encoder)
     }

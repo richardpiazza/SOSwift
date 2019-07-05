@@ -4,6 +4,14 @@ public enum OwnershipInfoOrProduct: Codable {
     case ownershipInfo(value: OwnershipInfo)
     case product(value: Product)
     
+    public init(_ value: OwnershipInfo) {
+        self = .ownershipInfo(value: value)
+    }
+    
+    public init(_ value: Product) {
+        self = .product(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

@@ -1,11 +1,33 @@
 import Foundation
 
-public enum ValueReference: Codable {
+public typealias ValueReference = EnumerationOrPropertyValueOrQualitativeValueOrQuantitativeValueOrStructuredValue
+
+public enum EnumerationOrPropertyValueOrQualitativeValueOrQuantitativeValueOrStructuredValue: Codable {
     case enumeration(value: Enumeration)
     case propertyValue(value: PropertyValue)
     case qualitativeValue(value: QualitativeValue)
     case quantitativeValue(value: QuantitativeValue)
     case structuredValue(value: StructuredValue)
+    
+    public init(_ value: Enumeration) {
+        self = .enumeration(value: value)
+    }
+    
+    public init(_ value: PropertyValue) {
+        self = .propertyValue(value: value)
+    }
+    
+    public init(_ value: QualitativeValue) {
+        self = .qualitativeValue(value: value)
+    }
+    
+    public init(_ value: QuantitativeValue) {
+        self = .quantitativeValue(value: value)
+    }
+    
+    public init(_ value: StructuredValue) {
+        self = .structuredValue(value: value)
+    }
     
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)

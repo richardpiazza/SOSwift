@@ -3,7 +3,7 @@ import XCTest
 
 class CreativeWorkOrURLTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var creativeWork: CreativeWorkOrURL?
         var url: CreativeWorkOrURL?
         var multiple: [CreativeWorkOrURL]?
@@ -42,7 +42,7 @@ class CreativeWorkOrURLTests: XCTestCase {
         testable.creativeWork = .creativeWork(value: creativeWork)
         testable.url = .url(value: URL(string: "https://www.yahoo.com")!)
         
-        let dictionary = try testable.dictionary()
+        let dictionary = try testable.asDictionary()
         
         guard
             let cw = dictionary["creativeWork"] as? [String : Any],
@@ -101,7 +101,7 @@ class CreativeWorkOrURLTests: XCTestCase {
         let url = URL(string: "www.yahoo.com")!
         testable.multiple = [CreativeWorkOrURL.creativeWork(value: creativeWork), CreativeWorkOrURL.url(value: url)]
         
-        let json = try testable.json()
+        let json = try testable.asJSON()
         XCTAssertTrue(json.contains("\"multiple\":["))
     }
 }

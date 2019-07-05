@@ -40,13 +40,21 @@ public class OpeningHoursSpecification: StructuredValue {
         
         let container = try decoder.container(keyedBy: OpeningHoursSpecificationCodingKeys.self)
         
-        
+        closes = try container.decodeIfPresent(Time.self, forKey: .closes)
+        dayOfWeek = try container.decodeIfPresent(DayOfWeek.self, forKey: .dayOfWeek)
+        opens = try container.decodeIfPresent(Time.self, forKey: .opens)
+        validFrom = try container.decodeIfPresent(DateTime.self, forKey: .validFrom)
+        validThrough = try container.decodeIfPresent(DateTime.self, forKey: .validThrough)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: OpeningHoursSpecificationCodingKeys.self)
         
-        
+        try container.encodeIfPresent(closes, forKey: .closes)
+        try container.encodeIfPresent(dayOfWeek, forKey: .dayOfWeek)
+        try container.encodeIfPresent(opens, forKey: .opens)
+        try container.encodeIfPresent(validFrom, forKey: .validFrom)
+        try container.encodeIfPresent(validThrough, forKey: .validThrough)
         
         try super.encode(to: encoder)
     }

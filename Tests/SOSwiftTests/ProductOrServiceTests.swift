@@ -3,50 +3,38 @@ import XCTest
 
 class ProductOrServiceTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var product: ProductOrService?
         var service: ProductOrService?
         var multiple: [ProductOrService]?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "product" : {
-                    "@type" : "Product",
-                    "name" : "Toyota Camery"
-                },
-                "service" : {
-                    "@type" : "Service",
-                    "name" : "Tune-up"
-                }
+        {
+            "product" : {
+                "@type" : "Product",
+                "name" : "Toyota Camery"
+            },
+            "service" : {
+                "@type" : "Service",
+                "name" : "Tune-up"
             }
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let product = testObject.product as? Product else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(product.name, "Toyota Camery")
-        
-        guard let service = testObject.service as? Service else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(service.name, "Tune-up")
+        let testObject = try TestClass.make(with: json)
+        XCTAssertEqual(testObject.product?.product?.name, "Toyota Camery")
+        XCTAssertEqual(testObject.service?.service?.name, "Tune-up")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let product = Product()
@@ -59,7 +47,7 @@ class ProductOrServiceTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
@@ -80,88 +68,6 @@ class ProductOrServiceTests: XCTestCase {
         XCTAssertEqual(sName, "In-Flight WiFi")
     }
     
-    func testMultipleDecodes() {
-        let json = """
-            {
-                "multiple" : [
-                    {
-                        "@type" : "Product",
-                        "name" : "Toyota Camery"
-                    },
-                    {
-                        "@type" : "Service",
-                        "name" : "Tune-up"
-                    }
-                ]
-            }
-        """
-        
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let multiple = testObject.multiple else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(multiple.count, 2)
-        
-        guard let product = multiple[0] as? Product else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(product.name, "Toyota Camery")
-        
-        guard let service = multiple[1] as? Service else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(service.name, "Tune-up")
-    }
-    
-    func testMultipleEncodes() {
-        let testObject = TestClass()
-        
-        let product = Product()
-        product.name = "Airplane"
-        
-        let service = Service()
-        service.name = "In-Flight WiFi"
-        
-        testObject.multiple = [.product(value: product), .service(value: service)]
-        
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let multiple = dictionary["multiple"] as? [Any] else {
-            XCTFail()
-            return
-        }
-        
-        guard let p = multiple[0] as? [String : Any], let pName = p["name"] as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(pName, "Airplane")
-        
-        guard let s = multiple[1] as? [String : Any], let sName = s["name"] as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(sName, "In-Flight WiFi")
+    func testEquatability() throws {
     }
 }

@@ -4,6 +4,14 @@ public enum PropertyValueOrText: Codable {
     case propertyValue(value: PropertyValue)
     case text(value: String)
     
+    public init(_ value: PropertyValue) {
+        self = .propertyValue(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

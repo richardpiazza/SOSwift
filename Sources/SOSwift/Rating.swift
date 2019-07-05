@@ -37,13 +37,21 @@ public class Rating: Intangible {
         
         let container = try decoder.container(keyedBy: RatingCodingKeys.self)
         
-        
+        author = try container.decodeIfPresent(OrganizationOrPerson.self, forKey: .author)
+        bestRating = try container.decodeIfPresent(NumberOrText.self, forKey: .bestRating)
+        ratingValue = try container.decodeIfPresent(NumberOrText.self, forKey: .ratingValue)
+        reviewAspect = try container.decodeIfPresent(String.self, forKey: .reviewAspect)
+        worstRating = try container.decodeIfPresent(NumberOrText.self, forKey: .worstRating)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: RatingCodingKeys.self)
         
-        
+        try container.encodeIfPresent(author, forKey: .author)
+        try container.encodeIfPresent(bestRating, forKey: .bestRating)
+        try container.encodeIfPresent(ratingValue, forKey: .ratingValue)
+        try container.encodeIfPresent(reviewAspect, forKey: .reviewAspect)
+        try container.encodeIfPresent(worstRating, forKey: .worstRating)
         
         try super.encode(to: encoder)
     }

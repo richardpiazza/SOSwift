@@ -4,6 +4,14 @@ public enum SoftwareApplicationOrWebsite: Codable {
     case softwareApplication(value: SoftwareApplication)
     case website(value: Website)
     
+    public init(_ value: SoftwareApplication) {
+        self = .softwareApplication(value: value)
+    }
+    
+    public init(_ value: Website) {
+        self = .website(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

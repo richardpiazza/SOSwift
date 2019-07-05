@@ -4,19 +4,18 @@ import XCTest
 class ImageObjectOrURLTests: XCTestCase {
     
     static var allTests = [
-        ("testSingleDecodes", testSingleDecodes),
-        ("testSingleEncodes", testSingleEncodes),
-        ("testMultipleDecodes", testMultipleDecodes),
-        ("testMultipleEncodes", testMultipleEncodes),
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
     ]
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var imageObject: ImageObjectOrURL?
         var url: ImageObjectOrURL?
         var multiple: [ImageObjectOrURL]?
     }
     
-    func testSingleDecodes() throws {
+    func testDecode() throws {
         let json = """
         {
             "imageObject" : {
@@ -28,15 +27,11 @@ class ImageObjectOrURLTests: XCTestCase {
         """
         
         let testObject = try TestClass.make(with: json)
-        
-        let imageObject = (testObject.imageObject as? ImageObjectOrURL)?.imageObject
-        let url = (testObject.url as? ImageObjectOrURL)?.url
-        
-        XCTAssertEqual(imageObject?.name, "Water Bottle")
-        XCTAssertEqual(url?.host, "www.squarespace.com")
+        XCTAssertEqual(testObject.imageObject?.imageObject?.name, "Water Bottle")
+        XCTAssertEqual(testObject.url?.url?.host, "www.squarespace.com")
     }
     
-    func testSingleEncodes() throws {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let imageObject = ImageObject()
@@ -45,7 +40,7 @@ class ImageObjectOrURLTests: XCTestCase {
         
         testObject.url = .url(value: URL(string: "https://www.squareup.com")!)
         
-        let dictionary = try testObject.dictionary()
+        let dictionary = try testObject.asDictionary()
         
         guard let io = dictionary["imageObject"] as? [String : Any], let ioName = io["name"] as? String else {
             XCTFail()
@@ -62,52 +57,7 @@ class ImageObjectOrURLTests: XCTestCase {
         XCTAssertEqual(url.host, "www.squareup.com")
     }
     
-    func testMultipleDecodes() throws {
-        let json = """
-        {
-            "multiple": [
-                {
-                    "@type" : "ImageObject",
-                    "name" : "Water Bottle"
-                },
-                "https://www.squarespace.com"
-            ]
-        }
-        """
-        
-        let testObject = try TestClass.make(with: json)
-        
-        let multiple = testObject.multiple as? [ImageObjectOrURL]
-        XCTAssertEqual(multiple?.count, 2)
-        
-        let imageObject = multiple?[0].imageObject
-        let url = multiple?[1].url
-        
-        XCTAssertEqual(imageObject?.name, "Water Bottle")
-        XCTAssertEqual(url?.host, "www.squarespace.com")
-    }
-    
-    func testMultipleEncodes() throws {
-        let imageObject = ImageObject()
-        imageObject.name = "Water Bottle"
-        
-        let url = URL(string: "https://www.squarespace.com")!
-        
-        var multiple = [ImageObjectOrURL]()
-        multiple.append(.imageObject(value: imageObject))
-        multiple.append(.url(value: url))
-        
-        let testObject = TestClass()
-        testObject.multiple = multiple
-        
-        let dictionary = try testObject.dictionary()
-        
-        let values = dictionary["multiple"] as? [Any]
-        let io = values?[0] as? [String : Any]
-        let u = values?[1] as? String
-        
-        XCTAssertEqual(io?["name"] as? String, "Water Bottle")
-        XCTAssertEqual(u, "https://www.squarespace.com")
+    func testEquatability() throws {
     }
 }
 

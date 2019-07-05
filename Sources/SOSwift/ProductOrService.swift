@@ -4,6 +4,14 @@ public enum ProductOrService: Codable {
     case product(value: Product)
     case service(value: Service)
     
+    public init(_ value: Product) {
+        self = .product(value: value)
+    }
+    
+    public init(_ value: Service) {
+        self = .service(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)

@@ -5,6 +5,18 @@ public enum ProductOrURLOrText: Codable {
     case url(value: URL)
     case text(value: String)
     
+    public init(_ value: Product) {
+        self = .product(value: value)
+    }
+    
+    public init(_ value: URL) {
+        self = .url(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         
@@ -17,16 +29,14 @@ public enum ProductOrURLOrText: Codable {
         
         guard let jsonDictionary = dictionary else {
             let container = try decoder.singleValueContainer()
-            do {
-                let value = try container.decode(URL.self)
-                self = .url(value: value)
-                return
-            } catch {
-                
+            let value = try container.decode(String.self)
+            
+            if let url = URL(string: value), url.isValid {
+                self = .url(value: url)
+            } else {
+                self = .text(value: value)
             }
             
-            let value = try container.decode(String.self)
-            self = .text(value: value)
             return
         }
         

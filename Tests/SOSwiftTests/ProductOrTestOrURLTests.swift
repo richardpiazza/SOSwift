@@ -3,55 +3,37 @@ import XCTest
 
 class ProductOrTextOrURLTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var product: ProductOrURLOrText?
         var text: ProductOrURLOrText?
         var url: ProductOrURLOrText?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "product" : {
-                    "@type" : "Product",
-                    "name" : "iMac"
-                },
-                "text" : "Desktop",
-                "url" : "https://www.apple.com/imac"
-            }
+        {
+            "product" : {
+                "@type" : "Product",
+                "name" : "iMac"
+            },
+            "text" : "Desktop",
+            "url" : "https://www.apple.com/imac"
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let product = testObject.product as? Product else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(product.name, "iMac")
-        
-        guard let text = testObject.text as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(text, "Desktop")
-        
-        guard let url = testObject.url as? URL else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(url.host, "www.apple.com")
+        let testObject = try TestClass.make(with: json)
+        XCTAssertEqual(testObject.product?.product?.name, "iMac")
+        XCTAssertEqual(testObject.text?.text, "Desktop")
+        XCTAssertEqual(testObject.url?.url?.host, "www.apple.com")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let product = Product()
@@ -62,7 +44,7 @@ class ProductOrTextOrURLTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
@@ -90,11 +72,7 @@ class ProductOrTextOrURLTests: XCTestCase {
         XCTAssertEqual(url.host, "www.apple.com")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
+    func testEquatability() throws {
         
     }
 }

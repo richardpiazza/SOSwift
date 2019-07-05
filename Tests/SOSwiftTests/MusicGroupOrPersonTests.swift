@@ -3,49 +3,37 @@ import XCTest
 
 class MusicGroupOrPersonTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var musicGroup: MusicGroupOrPerson?
         var person: MusicGroupOrPerson?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "musicGroup" : {
-                    "@type" : "MusicGroup",
-                    "name" : "Young Beautiful in a Hurry"
-                },
-                "person" : {
-                    "@type" : "Person",
-                    "name" : "Brendan McCreary"
-                }
+        {
+            "musicGroup" : {
+                "@type" : "MusicGroup",
+                "name" : "Young Beautiful in a Hurry"
+            },
+            "person" : {
+                "@type" : "Person",
+                "name" : "Brendan McCreary"
             }
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let musicGroup = testObject.musicGroup as? MusicGroup else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(musicGroup.name, "Young Beautiful in a Hurry")
-        
-        guard let person = testObject.person as? Person else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(person.name, "Brendan McCreary")
+        let testObject = try TestClass.make(with: json)
+        XCTAssertEqual(testObject.musicGroup?.musicGroup?.name, "Young Beautiful in a Hurry")
+        XCTAssertEqual(testObject.person?.person?.name, "Brendan McCreary")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let musicGroup = MusicGroup()
@@ -56,13 +44,7 @@ class MusicGroupOrPersonTests: XCTestCase {
         person.name = "Paul McCartney"
         testObject.person = .person(value: person)
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
+        let dictionary = try testObject.asDictionary()
         
         guard let mg = dictionary["musicGroup"] as? [String : Any], let mgName = mg["name"] as? String else {
             XCTFail()
@@ -77,6 +59,9 @@ class MusicGroupOrPersonTests: XCTestCase {
         }
         
         XCTAssertEqual(pName, "Paul McCartney")
+    }
+    
+    func testEquatability() throws {
     }
 }
 

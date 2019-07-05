@@ -50,13 +50,27 @@ public class VideoObject: MediaObject {
         
         let container = try decoder.container(keyedBy: VideoObjectCodingKeys.self)
         
-        
+        actors = try container.decodeIfPresent([Person].self, forKey: .actors)
+        caption = try container.decodeIfPresent(String.self, forKey: .caption)
+        directors = try container.decodeIfPresent([Person].self, forKey: .directors)
+        musicBy = try container.decodeIfPresent(MusicGroupOrPerson.self, forKey: .musicBy)
+        thumbnail = try container.decodeIfPresent(ImageObject.self, forKey: .thumbnail)
+        transcript = try container.decodeIfPresent(String.self, forKey: .transcript)
+        videoFrameSize = try container.decodeIfPresent(String.self, forKey: .videoFrameSize)
+        videoQuality = try container.decodeIfPresent(String.self, forKey: .videoQuality)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: VideoObjectCodingKeys.self)
         
-        
+        try container.encodeIfPresent(actors, forKey: .actors)
+        try container.encodeIfPresent(caption, forKey: .caption)
+        try container.encodeIfPresent(directors, forKey: .directors)
+        try container.encodeIfPresent(musicBy, forKey: .musicBy)
+        try container.encodeIfPresent(thumbnail, forKey: .thumbnail)
+        try container.encodeIfPresent(transcript, forKey: .transcript)
+        try container.encodeIfPresent(videoFrameSize, forKey: .videoFrameSize)
+        try container.encodeIfPresent(videoQuality, forKey: .videoQuality)
         
         try super.encode(to: encoder)
     }

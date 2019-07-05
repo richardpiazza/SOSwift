@@ -3,7 +3,7 @@ import XCTest
 
 class ContactPointOrPlaceTests: XCTestCase {
 
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var contactPoint: ContactPointOrPlace?
         var place: ContactPointOrPlace?
         var multiple: [ContactPointOrPlace]?
@@ -46,7 +46,7 @@ class ContactPointOrPlaceTests: XCTestCase {
         
         let json: String
         do {
-            json = try testObject.json()
+            json = try testObject.asJSON()
         } catch {
             XCTFail()
             return
@@ -144,7 +144,7 @@ class ContactPointOrPlaceTests: XCTestCase {
         let testable = TestClass()
         testable.multiple = [.contactPoint(value: ContactPoint()), .place(value: Place())]
         
-        let json = try testable.json()
+        let json = try testable.asJSON()
         XCTAssertTrue(json.contains("\"multiple\":["))
     }
 }

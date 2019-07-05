@@ -103,13 +103,51 @@ public class Service: Intangible {
         
         let container = try decoder.container(keyedBy: ServiceCodingKeys.self)
         
-        
+        aggregateRating = try container.decodeIfPresent(AggregateRating.self, forKey: .aggregateRating)
+        areaServed = try container.decodeIfPresent(AreaServed.self, forKey: .areaServed)
+        audience = try container.decodeIfPresent(Audience.self, forKey: .audience)
+        availableChannel = try container.decodeIfPresent(ServiceChannel.self, forKey: .availableChannel)
+        awards = try container.decodeIfPresent([String].self, forKey: .awards)
+        brands = try container.decodeIfPresent([BrandOrOrganization].self, forKey: .brands)
+        broker = try container.decodeIfPresent(OrganizationOrPerson.self, forKey: .broker)
+        category = try container.decodeIfPresent(PhysicalActivityCategoryOrThingOrText.self, forKey: .category)
+        offerCatalog = try container.decodeIfPresent(OfferCatalog.self, forKey: .offerCatalog)
+        hoursAvailable = try container.decodeIfPresent([OpeningHoursSpecification].self, forKey: .hoursAvailable)
+        relatedTo = try container.decodeIfPresent([ProductOrService].self, forKey: .relatedTo)
+        similarTo = try container.decodeIfPresent([ProductOrService].self, forKey: .similarTo)
+        logo = try container.decodeIfPresent(ImageObjectOrURL.self, forKey: .logo)
+        offers = try container.decodeIfPresent([Offer].self, forKey: .offers)
+        provider = try container.decodeIfPresent(OrganizationOrPerson.self, forKey: .provider)
+        providerMobility = try container.decodeIfPresent(String.self, forKey: .providerMobility)
+        reviews = try container.decodeIfPresent([Review].self, forKey: .reviews)
+        serviceOutput = try container.decodeIfPresent(Thing.self, forKey: .serviceOutput)
+        serviceType = try container.decodeIfPresent(String.self, forKey: .serviceType)
+        termsOfService = try container.decodeIfPresent(String.self, forKey: .termsOfService)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ServiceCodingKeys.self)
         
-        
+        try container.encodeIfPresent(aggregateRating, forKey: .aggregateRating)
+        try container.encodeIfPresent(areaServed, forKey: .areaServed)
+        try container.encodeIfPresent(audience, forKey: .audience)
+        try container.encodeIfPresent(availableChannel, forKey: .availableChannel)
+        try container.encodeIfPresent(awards, forKey: .awards)
+        try container.encodeIfPresent(brands, forKey: .brands)
+        try container.encodeIfPresent(broker, forKey: .broker)
+        try container.encodeIfPresent(category, forKey: .category)
+        try container.encodeIfPresent(offerCatalog, forKey: .offerCatalog)
+        try container.encodeIfPresent(hoursAvailable, forKey: .hoursAvailable)
+        try container.encodeIfPresent(relatedTo, forKey: .relatedTo)
+        try container.encodeIfPresent(similarTo, forKey: .similarTo)
+        try container.encodeIfPresent(logo, forKey: .logo)
+        try container.encodeIfPresent(offers, forKey: .offers)
+        try container.encodeIfPresent(provider, forKey: .provider)
+        try container.encodeIfPresent(providerMobility, forKey: .providerMobility)
+        try container.encodeIfPresent(reviews, forKey: .reviews)
+        try container.encodeIfPresent(serviceOutput, forKey: .serviceOutput)
+        try container.encodeIfPresent(serviceType, forKey: .serviceType)
+        try container.encodeIfPresent(termsOfService, forKey: .termsOfService)
         
         try super.encode(to: encoder)
     }

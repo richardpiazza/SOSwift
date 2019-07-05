@@ -10,7 +10,7 @@ class ImageObjectOrPhotographTests: XCTestCase {
         ("testMultipleEncodes", testMultipleEncodes),
     ]
     
-    fileprivate class TestClass: Codable, Testable {
+    fileprivate class TestClass: Codable, Schema {
         var imageObject: ImageObjectOrPhotograph?
         var photograph: ImageObjectOrPhotograph?
         var multiple: [ImageObjectOrPhotograph]?
@@ -58,7 +58,7 @@ class ImageObjectOrPhotographTests: XCTestCase {
         photo.name = "Taffy"
         testObject.photograph = .photograph(value: photo)
         
-        let dictionary = try testObject.dictionary()
+        let dictionary = try testObject.asDictionary()
         
         guard let io = dictionary["imageObject"] as? [String : Any], let ioName = io["name"] as? String else {
             XCTFail()
@@ -121,7 +121,7 @@ class ImageObjectOrPhotographTests: XCTestCase {
         let testObject = TestClass()
         testObject.multiple = multiple
         
-        let dictionary = try testObject.dictionary()
+        let dictionary = try testObject.asDictionary()
         
         let values = dictionary["multiple"] as? [[String : Any]]
         XCTAssertEqual(values?.count, 2)

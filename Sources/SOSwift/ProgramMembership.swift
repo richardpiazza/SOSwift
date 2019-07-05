@@ -36,13 +36,19 @@ public class ProgramMembership: Intangible {
         
         let container = try decoder.container(keyedBy: ProgramMembershipCodingKeys.self)
         
-        
+        hostingOrganization = try container.decodeIfPresent(Organization.self, forKey: .hostingOrganization)
+        members = try container.decodeIfPresent([OrganizationOrPerson].self, forKey: .members)
+        membershipNumber = try container.decodeIfPresent(String.self, forKey: .membershipNumber)
+        programName = try container.decodeIfPresent(String.self, forKey: .programName)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ProgramMembershipCodingKeys.self)
         
-        
+        try container.encodeIfPresent(hostingOrganization, forKey: .hostingOrganization)
+        try container.encodeIfPresent(members, forKey: .members)
+        try container.encodeIfPresent(membershipNumber, forKey: .membershipNumber)
+        try container.encodeIfPresent(programName, forKey: .programName)
         
         try super.encode(to: encoder)
     }

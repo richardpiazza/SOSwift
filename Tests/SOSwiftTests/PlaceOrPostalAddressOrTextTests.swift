@@ -3,58 +3,40 @@ import XCTest
 
 class PlaceOrPostalAddressOrTextTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var place: PlaceOrPostalAddressOrText?
         var postalAddress: PlaceOrPostalAddressOrText?
         var text: PlaceOrPostalAddressOrText?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "place" : {
-                    "@type" : "Place",
-                    "name" : "Apple Campus"
-                },
-                "postalAddress" : {
-                    "@type" : "PostalAddress",
-                    "name" : "Infinite Loop"
-                },
-                "text" : "Pre-Spaceship"
-            }
+        {
+            "place" : {
+                "@type" : "Place",
+                "name" : "Apple Campus"
+            },
+            "postalAddress" : {
+                "@type" : "PostalAddress",
+                "name" : "Infinite Loop"
+            },
+            "text" : "Pre-Spaceship"
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let place = testObject.place as? Place else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(place.name, "Apple Campus")
-        
-        guard let postalAddress = testObject.postalAddress as? PostalAddress else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(postalAddress.name, "Infinite Loop")
-        
-        guard let text = testObject.text as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(text, "Pre-Spaceship")
+        let testObject = try TestClass.make(with: json)
+        XCTAssertEqual(testObject.place?.place?.name, "Apple Campus")
+        XCTAssertEqual(testObject.postalAddress?.postalAddress?.name, "Infinite Loop")
+        XCTAssertEqual(testObject.text?.text, "Pre-Spaceship")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let place = Place()
@@ -69,7 +51,7 @@ class PlaceOrPostalAddressOrTextTests: XCTestCase {
         
         let dictionary: [String : Any]
         do {
-            dictionary = try testObject.dictionary()
+            dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
@@ -97,11 +79,7 @@ class PlaceOrPostalAddressOrTextTests: XCTestCase {
         XCTAssertEqual(t, "The Googleplex")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
+    func testEquatability() throws {
         
     }
 }

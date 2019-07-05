@@ -11,7 +11,7 @@ public class WarrantyPromise: Thing {
     
     internal enum WarrantyPromiseCodingKeys: String, CodingKey {
         case durationOfWarranty
-        case warrantScope
+        case warrantyScope
     }
     
     public override init() {
@@ -23,13 +23,15 @@ public class WarrantyPromise: Thing {
         
         let container = try decoder.container(keyedBy: WarrantyPromiseCodingKeys.self)
         
-        
+        durationOfWarranty = try container.decodeIfPresent(QuantitativeValue.self, forKey: .durationOfWarranty)
+        warrantyScope = try container.decodeIfPresent(WarrantyScope.self, forKey: .warrantyScope)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: WarrantyPromiseCodingKeys.self)
         
-        
+        try container.encodeIfPresent(durationOfWarranty, forKey: .durationOfWarranty)
+        try container.encodeIfPresent(warrantyScope, forKey: .warrantyScope)
         
         try super.encode(to: encoder)
     }

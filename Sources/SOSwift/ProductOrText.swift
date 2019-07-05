@@ -4,6 +4,14 @@ public enum ProductOrText: Codable {
     case product(value: Product)
     case text(value: String)
     
+    public init(_ value: Product) {
+        self = .product(value: value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value: value)
+    }
+    
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         

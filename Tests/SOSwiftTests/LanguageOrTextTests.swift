@@ -3,12 +3,18 @@ import XCTest
 
 class LanguageOrTextTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var language: LanguageOrText?
         var text: LanguageOrText?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
             {
                 "language" : {
@@ -19,30 +25,14 @@ class LanguageOrTextTests: XCTestCase {
             }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let language = testObject.language as? Language else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(language.name, "Klingon")
-        
-        guard let text = testObject.text as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(text, "Universal Translator")
+        let testClass = try TestClass.make(with: json)
+        XCTAssertEqual(testClass.language?.language?.name, "Klingon")
+        XCTAssertNil(testClass.language?.text)
+        XCTAssertEqual(testClass.text?.text, "Universal Translator")
+        XCTAssertNil(testClass.text?.language)
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let language = Language()
@@ -51,13 +41,7 @@ class LanguageOrTextTests: XCTestCase {
         
         testObject.text = .text(value: "Google Translate")
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
+        let dictionary = try testObject.asDictionary()
         
         guard let l = dictionary["language"] as? [String : Any], let lName = l["name"] as? String else {
             XCTFail()
@@ -74,12 +58,7 @@ class LanguageOrTextTests: XCTestCase {
         XCTAssertEqual(t, "Google Translate")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
-        
+    func testEquatability() throws {
     }
 }
 

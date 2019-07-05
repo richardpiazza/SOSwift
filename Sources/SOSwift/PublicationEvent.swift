@@ -25,13 +25,15 @@ public class PublicationEvent: Event {
         
         let container = try decoder.container(keyedBy: PublicationEventCodingKeys.self)
         
-        
+        publishedBy = try container.decodeIfPresent(OrganizationOrPerson.self, forKey: .publishedBy)
+        publishedOn = try container.decodeIfPresent(BroadcastService.self, forKey: .publishedOn)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: PublicationEventCodingKeys.self)
         
-        
+        try container.encodeIfPresent(publishedBy, forKey: .publishedBy)
+        try container.encodeIfPresent(publishedOn, forKey: .publishedOn)
         
         try super.encode(to: encoder)
     }

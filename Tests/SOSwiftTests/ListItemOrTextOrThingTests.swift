@@ -3,58 +3,40 @@ import XCTest
 
 class ListItemOrTextOrThingTests: XCTestCase {
     
-    fileprivate class TestClass: Codable, Testable {
+    static var allTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquatability", testEquatability),
+    ]
+    
+    fileprivate class TestClass: Codable, Schema {
         var listItem: ListItemOrThingOrText?
         var text: ListItemOrThingOrText?
         var thing: ListItemOrThingOrText?
     }
     
-    func testSingleDecodes() {
+    func testDecode() throws {
         let json = """
-            {
-                "listItem" : {
-                    "@type" : "ListItem",
-                    "name" : "List Item"
-                },
-                "text" : "Some Text",
-                "thing" : {
-                    "@type" : "Thing",
-                    "name" : "A Thing"
-                }
+        {
+            "listItem" : {
+                "@type" : "ListItem",
+                "name" : "List Item"
+            },
+            "text" : "Some Text",
+            "thing" : {
+                "@type" : "Thing",
+                "name" : "A Thing"
             }
+        }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
-        
-        guard let listItem = testObject.listItem as? ListItem else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(listItem.name, "List Item")
-        
-        guard let text = testObject.text as? String else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(text, "Some Text")
-        
-        guard let thing = testObject.thing as? Thing else {
-            XCTFail()
-            return
-        }
-        
-        XCTAssertEqual(thing.name, "A Thing")
+        let testClass = try TestClass.make(with: json)
+        XCTAssertEqual(testClass.listItem?.listItem?.name, "List Item")
+        XCTAssertEqual(testClass.text?.text, "Some Text")
+        XCTAssertEqual(testClass.thing?.thing?.name, "A Thing")
     }
     
-    func testSingleEncodes() {
+    func testEncode() throws {
         let testObject = TestClass()
         
         let listItem = ListItem()
@@ -67,13 +49,7 @@ class ListItemOrTextOrThingTests: XCTestCase {
         thing.name = "T 2"
         testObject.thing = .thing(value: thing)
         
-        let dictionary: [String : Any]
-        do {
-            dictionary = try testObject.dictionary()
-        } catch {
-            XCTFail()
-            return
-        }
+        let dictionary = try testObject.asDictionary()
         
         guard let li = dictionary["listItem"] as? [String : Any], let liName = li["name"] as? String else {
             XCTFail()
@@ -97,12 +73,7 @@ class ListItemOrTextOrThingTests: XCTestCase {
         XCTAssertEqual(tName, "T 2")
     }
     
-    func testMultipleDecodes() throws {
-        
-    }
-    
-    func testMultipleEncodes() throws {
-        
+    func testEquatability() throws {
     }
 }
 

@@ -41,13 +41,21 @@ public class Question: CreativeWork {
         
         let container = try decoder.container(keyedBy: QuestionCodingKeys.self)
         
-        
+        acceptedAnswer = try container.decodeIfPresent(Answer.self, forKey: .acceptedAnswer)
+        answerCount = try container.decodeIfPresent(Int.self, forKey: .answerCount)
+        downvoteCount = try container.decodeIfPresent(Int.self, forKey: .downvoteCount)
+        suggestedAnswer = try container.decodeIfPresent(Answer.self, forKey: .suggestedAnswer)
+        upvoteCount = try container.decodeIfPresent(Int.self, forKey: .upvoteCount)
     }
     
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: QuestionCodingKeys.self)
         
-        
+        try container.encodeIfPresent(acceptedAnswer, forKey: .acceptedAnswer)
+        try container.encodeIfPresent(answerCount, forKey: .answerCount)
+        try container.encodeIfPresent(downvoteCount, forKey: .downvoteCount)
+        try container.encodeIfPresent(suggestedAnswer, forKey: .suggestedAnswer)
+        try container.encodeIfPresent(upvoteCount, forKey: .upvoteCount)
         
         try super.encode(to: encoder)
     }
