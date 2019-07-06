@@ -74,7 +74,7 @@ public extension Schema where Self: Encodable {
         let dictionary = try asDictionary(jsonEncoder: jsonEncoder)
         
         var options: JSONSerialization.WritingOptions = .init()
-        if #available(OSX 10.13, *) {
+        if #available(OSX 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *) {
             options.insert(.sortedKeys)
         }
         
@@ -92,7 +92,7 @@ public extension Schema where Self: Encodable {
         
         var options: JSONSerialization.WritingOptions = .init()
         options.insert(.prettyPrinted)
-        if #available(OSX 10.13, *) {
+        if #available(OSX 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *) {
             options.insert(.sortedKeys)
         }
         
