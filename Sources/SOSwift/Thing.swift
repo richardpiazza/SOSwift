@@ -118,7 +118,7 @@ public class Thing: Schema, Codable {
         var schema = encoder.container(keyedBy: SchemaKeys.self)
         
         try schema.encode(Swift.type(of: self).schemaContext, forKey: .context)
-        try schema.encode(Swift.type(of: self).schemaType, forKey: .type)
+        try schema.encode(Swift.type(of: self).schemaName, forKey: .type)
         try schema.encodeIfPresent(identifier, forKey: .id)
         
         var container = encoder.container(keyedBy: ThingCodingKeys.self)

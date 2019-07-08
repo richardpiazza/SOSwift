@@ -40,19 +40,19 @@ public enum EnumerationOrPropertyValueOrQualitativeValueOrQuantitativeValueOrStr
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Enumeration.schemaType:
+        case Enumeration.schemaName:
             let value = try container.decode(Enumeration.self)
             self = .enumeration(value: value)
-        case PropertyValue.schemaType:
+        case PropertyValue.schemaName:
             let value = try container.decode(PropertyValue.self)
             self = .propertyValue(value: value)
-        case QualitativeValue.schemaType:
+        case QualitativeValue.schemaName:
             let value = try container.decode(QualitativeValue.self)
             self = .qualitativeValue(value: value)
-        case QuantitativeValue.schemaType:
+        case QuantitativeValue.schemaName:
             let value = try container.decode(QuantitativeValue.self)
             self = .quantitativeValue(value: value)
-        case StructuredValue.schemaType:
+        case StructuredValue.schemaName:
             let value = try container.decode(StructuredValue.self)
             self = .structuredValue(value: value)
         default:

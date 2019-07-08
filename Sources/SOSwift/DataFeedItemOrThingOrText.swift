@@ -41,10 +41,10 @@ public enum DataFeedItemOrThingOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case DataFeedItem.schemaType:
+        case DataFeedItem.schemaName:
             let value = try container.decode(DataFeedItem.self)
             self = .dataFeedItem(value: value)
-        case Thing.schemaType:
+        case Thing.schemaName:
             let value = try container.decode(Thing.self)
             self = .thing(value: value)
         default:

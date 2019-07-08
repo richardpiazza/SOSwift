@@ -16,7 +16,7 @@ class CommentTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(Comment.schemaType, "Comment")
+        XCTAssertEqual(Comment.schemaName, "Comment")
     }
     
     func testDecode() throws {

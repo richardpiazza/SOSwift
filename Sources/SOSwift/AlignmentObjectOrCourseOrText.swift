@@ -41,10 +41,10 @@ public enum AlignmentObjectOrCourseOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case AlignmentObject.schemaType:
+        case AlignmentObject.schemaName:
             let value = try container.decode(AlignmentObject.self)
             self = .alignmentObject(value: value)
-        case Course.schemaType:
+        case Course.schemaName:
             let value = try container.decode(Course.self)
             self = .course(value: value)
         default:

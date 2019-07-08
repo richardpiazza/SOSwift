@@ -36,7 +36,7 @@ public enum NumberOrQuantitativeValue: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case QuantitativeValue.schemaType:
+        case QuantitativeValue.schemaName:
             let value = try container.decode(QuantitativeValue.self)
             self = .quantitativeValue(value: value)
         default:

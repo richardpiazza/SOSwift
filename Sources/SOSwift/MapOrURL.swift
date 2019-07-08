@@ -36,7 +36,7 @@ public enum MapOrURL: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Map.schemaType:
+        case Map.schemaName:
             let value = try container.decode(Map.self)
             self = .map(value: value)
         default:

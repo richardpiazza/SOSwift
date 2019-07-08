@@ -46,7 +46,7 @@ class EventTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(Event.schemaType, "Event")
+        XCTAssertEqual(Event.schemaName, "Event")
     }
     
     func testDecode() throws {

@@ -16,7 +16,7 @@ class DataCatalogTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(DataCatalog.schemaType, "DataCatalog")
+        XCTAssertEqual(DataCatalog.schemaName, "DataCatalog")
     }
     
     func testDecode() throws {

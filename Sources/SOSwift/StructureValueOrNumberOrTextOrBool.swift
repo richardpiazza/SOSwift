@@ -55,7 +55,7 @@ public enum StructureValueOrNumberOrTextOrBool: Codable {
         }
         
         switch type {
-        case StructuredValue.schemaType:
+        case StructuredValue.schemaName:
             let value = try container.decode(StructuredValue.self)
             self = .structuredValue(value: value)
         default:

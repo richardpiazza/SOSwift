@@ -48,13 +48,13 @@ public enum AdministrativeAreaOrGeoShapeOrPlaceOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case AdministrativeArea.schemaType:
+        case AdministrativeArea.schemaName:
             let value = try container.decode(AdministrativeArea.self)
             self = .administrativeArea(value: value)
-        case GeoShape.schemaType:
+        case GeoShape.schemaName:
             let value = try container.decode(GeoShape.self)
             self = .geoShape(value: value)
-        case Place.schemaType:
+        case Place.schemaName:
             let value = try container.decode(Place.self)
             self = .place(value: value)
         default:

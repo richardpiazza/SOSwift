@@ -15,10 +15,10 @@ public enum ContactPointOrPlace: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case ContactPoint.schemaType:
+        case ContactPoint.schemaName:
             let value = try container.decode(ContactPoint.self)
             self = .contactPoint(value: value)
-        case Place.schemaType:
+        case Place.schemaName:
             let value = try container.decode(Place.self)
             self = .place(value: value)
         default:

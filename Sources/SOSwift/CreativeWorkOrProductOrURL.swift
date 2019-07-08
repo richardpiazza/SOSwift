@@ -41,10 +41,10 @@ public enum CreativeWorkOrProductOrURL: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case CreativeWork.schemaType:
+        case CreativeWork.schemaName:
             let value = try container.decode(CreativeWork.self)
             self = .creativeWork(value: value)
-        case Product.schemaType:
+        case Product.schemaName:
             let value = try container.decode(Product.self)
             self = .product(value: value)
         default:

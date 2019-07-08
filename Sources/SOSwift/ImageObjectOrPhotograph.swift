@@ -23,10 +23,10 @@ public enum ImageObjectOrPhotograph: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case ImageObject.schemaType:
+        case ImageObject.schemaName:
             let value = try container.decode(ImageObject.self)
             self = .imageObject(value: value)
-        case Photograph.schemaType:
+        case Photograph.schemaName:
             let value = try container.decode(Photograph.self)
             self = .photograph(value: value)
         default:

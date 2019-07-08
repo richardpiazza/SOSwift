@@ -16,7 +16,7 @@ class DataFeedTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(DataFeed.schemaType, "DataFeed")
+        XCTAssertEqual(DataFeed.schemaName, "DataFeed")
     }
     
     func testDecode() throws {

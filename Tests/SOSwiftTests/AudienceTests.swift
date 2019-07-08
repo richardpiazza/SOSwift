@@ -24,7 +24,7 @@ class AudienceTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(Audience.schemaType, "Audience")
+        XCTAssertEqual(Audience.schemaName, "Audience")
     }
     
     func testDecode() throws {

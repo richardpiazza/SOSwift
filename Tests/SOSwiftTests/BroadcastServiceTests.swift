@@ -19,7 +19,7 @@ class BroadcastServiceTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(BroadcastService.schemaType, "BroadcastService")
+        XCTAssertEqual(BroadcastService.schemaName, "BroadcastService")
     }
     
     func testDecode() throws {

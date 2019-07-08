@@ -1,8 +1,8 @@
 import Foundation
 
-public typealias PropertyValueOrURLOrText = Identifier
+public typealias Identifier = PropertyValueOrURLOrText
 
-public enum Identifier: Codable {
+public enum PropertyValueOrURLOrText: Codable {
     
     case propertyValue(value: PropertyValue)
     case url(value: URL)
@@ -51,7 +51,7 @@ public enum Identifier: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case PropertyValue.schemaType:
+        case PropertyValue.schemaName:
             let value = try container.decode(PropertyValue.self)
             self = .propertyValue(value: value)
         default:

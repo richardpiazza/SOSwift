@@ -36,7 +36,7 @@ public enum PropertyValueOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case PropertyValue.schemaType:
+        case PropertyValue.schemaName:
             let value = try container.decode(PropertyValue.self)
             self = .propertyValue(value: value)
         default:

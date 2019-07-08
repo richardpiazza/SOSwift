@@ -18,7 +18,7 @@ class AudioObjectTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(AudioObject.schemaType, "AudioObject")
+        XCTAssertEqual(AudioObject.schemaName, "AudioObject")
     }
     
     func testDecode() throws {

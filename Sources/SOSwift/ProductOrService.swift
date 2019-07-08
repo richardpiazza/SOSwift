@@ -23,10 +23,10 @@ public enum ProductOrService: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Product.schemaType:
+        case Product.schemaName:
             let value = try container.decode(Product.self)
             self = .product(value: value)
-        case Service.schemaType:
+        case Service.schemaName:
             let value = try container.decode(Service.self)
             self = .service(value: value)
         default:

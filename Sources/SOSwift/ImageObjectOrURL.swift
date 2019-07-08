@@ -36,7 +36,7 @@ public enum ImageObjectOrURL: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case ImageObject.schemaType:
+        case ImageObject.schemaName:
             let value = try container.decode(ImageObject.self)
             self = .imageObject(value: value)
         default:

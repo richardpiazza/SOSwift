@@ -21,7 +21,7 @@ class AggregateRatingTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(AggregateRating.schemaType, "AggregateRating")
+        XCTAssertEqual(AggregateRating.schemaName, "AggregateRating")
     }
     
     func testDecode() throws {

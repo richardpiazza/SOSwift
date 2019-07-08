@@ -23,10 +23,10 @@ public enum OwnershipInfoOrProduct: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case OwnershipInfo.schemaType:
+        case OwnershipInfo.schemaName:
             let value = try container.decode(OwnershipInfo.self)
             self = .ownershipInfo(value: value)
-        case Product.schemaType:
+        case Product.schemaName:
             let value = try container.decode(Product.self)
             self = .product(value: value)
         default:

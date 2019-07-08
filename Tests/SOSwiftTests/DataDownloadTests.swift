@@ -16,7 +16,7 @@ class DataDownloadTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(DataDownload.schemaType, "DataDownload")
+        XCTAssertEqual(DataDownload.schemaName, "DataDownload")
     }
     
     func testDecode() throws {

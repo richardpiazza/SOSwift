@@ -29,7 +29,7 @@ public enum ThingOrText: Codable {
         }
         
         switch type {
-        case Thing.schemaType:
+        case Thing.schemaName:
             let value = try container.decode(Thing.self)
             self = .thing(value: value)
         default:

@@ -36,7 +36,7 @@ public enum MonetaryAmountOrNumber: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case MonetaryAmount.schemaType:
+        case MonetaryAmount.schemaName:
             let value = try container.decode(MonetaryAmount.self)
             self = .monetaryAmount(value: value)
         default:

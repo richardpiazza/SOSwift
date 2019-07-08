@@ -28,7 +28,7 @@ public enum CountryOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Country.schemaType:
+        case Country.schemaName:
             let value = try container.decode(Country.self)
             self = .country(value: value)
         default:

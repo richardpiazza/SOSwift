@@ -37,7 +37,7 @@ class ThingTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(Thing.schemaType, "Thing")
+        XCTAssertEqual(Thing.schemaName, "Thing")
     }
     
     func testDecode() throws {
@@ -110,7 +110,7 @@ class ThingTests: XCTestCase {
         let url = dictionary[Thing.ThingCodingKeys.url] as? String
         
         XCTAssertEqual(id, ThingTests._identifier)
-        XCTAssertEqual(type, Thing.schemaType)
+        XCTAssertEqual(type, Thing.schemaName)
         XCTAssertEqual(context, Thing.schemaContext)
         
         XCTAssertEqual(additionalType, ThingTests._additionalType?.absoluteString)

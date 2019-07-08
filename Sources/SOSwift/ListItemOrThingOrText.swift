@@ -41,10 +41,10 @@ public enum ListItemOrThingOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case ListItem.schemaType:
+        case ListItem.schemaName:
             let value = try container.decode(ListItem.self)
             self = .listItem(value: value)
-        case Thing.schemaType:
+        case Thing.schemaName:
             let value = try container.decode(Thing.self)
             self = .thing(value: value)
         default:

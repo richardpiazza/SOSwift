@@ -3,7 +3,7 @@ import Foundation
 // Inspired by https://gist.github.com/mbuchetics/c9bc6c22033014aa0c550d3b4324411a
 // From: https://gist.github.com/loudmouth/332e8d89d8de2c1eaf81875cfcd22e24
 
-struct JSONCodingKeys: CodingKey {
+internal struct JSONCodingKeys: CodingKey {
     var stringValue: String
     
     init?(stringValue: String) {
@@ -19,7 +19,7 @@ struct JSONCodingKeys: CodingKey {
 }
 
 
-extension KeyedDecodingContainer {
+public extension KeyedDecodingContainer {
     
     func decode(_ type: Dictionary<String, Any>.Type, forKey key: K) throws -> Dictionary<String, Any> {
         let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
@@ -67,31 +67,9 @@ extension KeyedDecodingContainer {
         }
         return dictionary
     }
-    
-    func decodeArrayOrElementIfPresent<T>(_ type: T.Type, forKey key: K) throws -> Array<T>? where T : Decodable {
-        guard contains(key) else {
-            return nil
-        }
-        
-        do {
-            if let array = try self.decodeIfPresent([T].self, forKey: key) {
-                return array
-            }
-        } catch {
-        }
-        
-        do {
-            if let element = try self.decodeIfPresent(T.self, forKey: key) {
-                return [element]
-            }
-        } catch {
-        }
-        
-        return nil
-    }
 }
 
-extension UnkeyedDecodingContainer {
+public extension UnkeyedDecodingContainer {
     
     mutating func decode(_ type: Array<Any>.Type) throws -> Array<Any> {
         var array: [Any] = []
@@ -112,7 +90,6 @@ extension UnkeyedDecodingContainer {
     }
     
     mutating func decode(_ type: Dictionary<String, Any>.Type) throws -> Dictionary<String, Any> {
-        
         let nestedContainer = try self.nestedContainer(keyedBy: JSONCodingKeys.self)
         return try nestedContainer.decode(type)
     }

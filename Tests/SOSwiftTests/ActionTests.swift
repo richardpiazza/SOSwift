@@ -70,7 +70,7 @@ class ActionTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(Action.schemaType, "Action")
+        XCTAssertEqual(Action.schemaName, "Action")
     }
     
     func testDecode() throws {

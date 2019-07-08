@@ -23,10 +23,10 @@ public enum BrandOrOrganization: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Brand.schemaType:
+        case Brand.schemaName:
             let value = try container.decode(Brand.self)
             self = .brand(value: value)
-        case Organization.schemaType:
+        case Organization.schemaName:
             let value = try container.decode(Organization.self)
             self = .organization(value: value)
         default:

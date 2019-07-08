@@ -36,7 +36,7 @@ public enum LanguageOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Language.schemaType:
+        case Language.schemaName:
             let value = try container.decode(Language.self)
             self = .language(value: value)
         default:

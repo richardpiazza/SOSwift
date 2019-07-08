@@ -23,10 +23,10 @@ public enum CreativeWorkOrEvent: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case CreativeWork.schemaType:
+        case CreativeWork.schemaName:
             let value = try container.decode(CreativeWork.self)
             self = .creativeWork(value: value)
-        case Event.schemaType:
+        case Event.schemaName:
             let value = try container.decode(Event.self)
             self = .event(value: value)
         default:

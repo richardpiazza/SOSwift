@@ -23,10 +23,10 @@ public enum GeoCoordinatesOrGeoShape: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case GeoCoordinates.schemaType:
+        case GeoCoordinates.schemaName:
             let value = try container.decode(GeoCoordinates.self)
             self = .geoCoordinates(value: value)
-        case GeoShape.schemaType:
+        case GeoShape.schemaName:
             let value = try container.decode(GeoShape.self)
             self = .geoShape(value: value)
         default:

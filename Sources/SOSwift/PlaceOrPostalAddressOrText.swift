@@ -41,10 +41,10 @@ public enum PlaceOrPostalAddressOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Place.schemaType:
+        case Place.schemaName:
             let value = try container.decode(Place.self)
             self = .place(value: value)
-        case PostalAddress.schemaType:
+        case PostalAddress.schemaName:
             let value = try container.decode(PostalAddress.self)
             self = .postalAddress(value: value)
         default:

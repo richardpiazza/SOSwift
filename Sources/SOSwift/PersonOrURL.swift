@@ -36,7 +36,7 @@ public enum PersonOrURL: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Person.schemaType:
+        case Person.schemaName:
             let value = try container.decode(Person.self)
             self = .person(value: value)
         default:

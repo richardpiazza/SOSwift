@@ -28,7 +28,7 @@ class ArticleTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(Article.schemaType, "Article")
+        XCTAssertEqual(Article.schemaName, "Article")
     }
     
     func testDecode() throws {

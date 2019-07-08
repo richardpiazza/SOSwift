@@ -16,7 +16,7 @@ class CourseInstanceTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(CourseInstance.schemaType, "CourseInstance")
+        XCTAssertEqual(CourseInstance.schemaName, "CourseInstance")
     }
     
     func testDecode() throws {

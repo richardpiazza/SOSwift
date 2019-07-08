@@ -36,7 +36,7 @@ public enum ProductOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Product.schemaType:
+        case Product.schemaName:
             let value = try container.decode(Product.self)
             self = .product(value: value)
         default:

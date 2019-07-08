@@ -23,10 +23,10 @@ public enum ItemListOrMusicRecording: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case ItemList.schemaType:
+        case ItemList.schemaName:
             let value = try container.decode(ItemList.self)
             self = .itemList(value: value)
-        case MusicRecording.schemaType:
+        case MusicRecording.schemaName:
             let value = try container.decode(MusicRecording.self)
             self = .musicRecording(value: value)
         default:

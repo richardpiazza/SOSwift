@@ -16,7 +16,7 @@ class OrganizationTests: XCTestCase {
     }
     
     func testSchema() throws {
-        XCTAssertEqual(Organization.schemaType, "Organization")
+        XCTAssertEqual(Organization.schemaName, "Organization")
     }
     
     func testDecode() throws {

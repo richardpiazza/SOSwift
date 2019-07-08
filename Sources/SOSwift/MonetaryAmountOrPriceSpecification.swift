@@ -23,10 +23,10 @@ public enum MonetaryAmountOrPriceSpecification: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case MonetaryAmount.schemaType:
+        case MonetaryAmount.schemaName:
             let value = try container.decode(MonetaryAmount.self)
             self = .monetaryAmount(value: value)
-        case PriceSpecification.schemaType:
+        case PriceSpecification.schemaName:
             let value = try container.decode(PriceSpecification.self)
             self = .priceSpecification(value: value)
         default:

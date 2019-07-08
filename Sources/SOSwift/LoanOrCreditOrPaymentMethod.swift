@@ -36,7 +36,7 @@ public enum LoanOrCreditOrPaymentMethod: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case LoanOrCredit.schemaType:
+        case LoanOrCredit.schemaName:
             let value = try container.decode(LoanOrCredit.self)
             self = .loanOrCredit(value: value)
         default:

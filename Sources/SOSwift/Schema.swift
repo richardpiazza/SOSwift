@@ -2,7 +2,8 @@ import Foundation
 
 public protocol Schema {
     static var schemaContext: String { get }
-    static var schemaType: String { get }
+    static var schemaName: String { get }
+    static var schemaType: SchemaType? { get }
 }
 
 public extension Schema {
@@ -10,10 +11,16 @@ public extension Schema {
         return "http://www.schema.org"
     }
     
-    static var schemaType: String {
+    static var schemaName: String {
         return String(describing: self)
     }
+    
+    static var schemaType: SchemaType? {
+        return SchemaType(rawValue: String(describing: self))
+    }
 }
+
+public typealias SchemaCodable = Schema & Codable
 
 public enum SchemaKeys: String, CodingKey {
     case id = "@id"

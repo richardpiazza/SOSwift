@@ -23,10 +23,10 @@ public enum SoftwareApplicationOrWebsite: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case SoftwareApplication.schemaType:
+        case SoftwareApplication.schemaName:
             let value = try container.decode(SoftwareApplication.self)
             self = .softwareApplication(value: value)
-        case Website.schemaType:
+        case Website.schemaName:
             let value = try container.decode(Website.self)
             self = .website(value: value)
         default:
