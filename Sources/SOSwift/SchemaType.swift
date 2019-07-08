@@ -82,7 +82,7 @@ public enum SchemaType: String, CaseIterable {
     case warrantyPromise = "WarrantyPromise"
     case website = "Website"
     
-    var type: SchemaCodable.Type {
+    public var type: SchemaCodable.Type {
         switch self {
         case .action: return Action.self
         case .administrativeArea: return AdministrativeArea.self
