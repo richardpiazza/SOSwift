@@ -1,44 +1,45 @@
 import Foundation
 
-// Inspired by https://gist.github.com/mbuchetics/c9bc6c22033014aa0c550d3b4324411a
-// From: https://gist.github.com/loudmouth/332e8d89d8de2c1eaf81875cfcd22e24
+// Inspiration:
+// * https://gist.github.com/mbuchetics/c9bc6c22033014aa0c550d3b4324411a
+// * https://gist.github.com/loudmouth/332e8d89d8de2c1eaf81875cfcd22e24
+// * https://stackoverflow.com/questions/47575309/how-to-encode-a-property-with-type-of-json-dictionary-in-swift-4-encodable-proto
 
-internal struct JSONCodingKeys: CodingKey {
-    var stringValue: String
+public struct JSONCodingKeys: CodingKey {
+    public var stringValue: String
     
-    init?(stringValue: String) {
+    public init(stringValue: String) {
         self.stringValue = stringValue
     }
     
-    var intValue: Int?
+    public var intValue: Int?
     
-    init?(intValue: Int) {
+    public init(intValue: Int) {
         self.init(stringValue: "\(intValue)")
         self.intValue = intValue
     }
 }
 
 
-public extension KeyedDecodingContainer {
-    
-    func decode(_ type: Dictionary<String, Any>.Type, forKey key: K) throws -> Dictionary<String, Any> {
+public extension KeyedDecodingContainerProtocol {
+    func decode(_ type: Dictionary<String, Any>.Type, forKey key: Key) throws -> Dictionary<String, Any> {
         let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         return try container.decode(type)
     }
     
-    func decodeIfPresent(_ type: Dictionary<String, Any>.Type, forKey key: K) throws -> Dictionary<String, Any>? {
+    func decodeIfPresent(_ type: Dictionary<String, Any>.Type, forKey key: Key) throws -> Dictionary<String, Any>? {
         guard contains(key) else {
             return nil
         }
         return try decode(type, forKey: key)
     }
     
-    func decode(_ type: Array<Any>.Type, forKey key: K) throws -> Array<Any> {
+    func decode(_ type: Array<Any>.Type, forKey key: Key) throws -> Array<Any> {
         var container = try self.nestedUnkeyedContainer(forKey: key)
         return try container.decode(type)
     }
     
-    func decodeIfPresent(_ type: Array<Any>.Type, forKey key: K) throws -> Array<Any>? {
+    func decodeIfPresent(_ type: Array<Any>.Type, forKey key: Key) throws -> Array<Any>? {
         guard contains(key) else {
             return nil
         }
@@ -69,8 +70,64 @@ public extension KeyedDecodingContainer {
     }
 }
 
-public extension UnkeyedDecodingContainer {
+public extension KeyedEncodingContainerProtocol {
+    mutating func encode(_ value: Dictionary<String, Any>, forKey key: Key) throws {
+        var container = nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
+        try container.encode(value)
+    }
     
+    mutating func encodeIfPresent(_ value: Dictionary<String, Any>?, forKey key: Key) throws {
+        guard let value = value else {
+            return
+        }
+        
+        try encode(value, forKey: key)
+    }
+    
+    mutating func encode(_ value: Array<Any>, forKey key: Key) throws {
+        var container = nestedUnkeyedContainer(forKey: key)
+        try container.encode(value)
+    }
+    
+    mutating func encodeIfPresent(_ value: Array<Any>?, forKey key: Key) throws {
+        guard let value = value else {
+            return
+        }
+        
+        try encode(value, forKey: key)
+    }
+}
+
+public extension KeyedEncodingContainerProtocol where Key == JSONCodingKeys {
+    mutating func encode(_ value: Dictionary<String, Any>) throws {
+        for (index, element) in value {
+            let key = JSONCodingKeys(stringValue: index)
+            
+            switch element {
+            case let primitive as Bool:
+                try encode(primitive, forKey: key)
+            case let primitive as Int:
+                try encode(primitive, forKey: key)
+            case let primitive as Double:
+                try encode(primitive, forKey: key)
+            case let primitive as String:
+                try encode(primitive, forKey: key)
+            case let primitive as Dictionary<String, Any>:
+                try encode(primitive, forKey: key)
+            case let primitive as Array<Any>:
+                try encode(primitive, forKey: key)
+            case Optional<Any>.none:
+                try encodeNil(forKey: key)
+            default:
+                let context = EncodingError.Context(codingPath: [key], debugDescription: "Invalid Decoding Value")
+                throw EncodingError.invalidValue(element, context)
+            }
+        }
+    }
+}
+
+public extension UnkeyedDecodingContainer {
+    /// Decode an array of primintive types
     mutating func decode(_ type: Array<Any>.Type) throws -> Array<Any> {
         var array: [Any] = []
         while isAtEnd == false {
@@ -89,8 +146,40 @@ public extension UnkeyedDecodingContainer {
         return array
     }
     
+    /// Decode a dictionary supporting primitive types
     mutating func decode(_ type: Dictionary<String, Any>.Type) throws -> Dictionary<String, Any> {
         let nestedContainer = try self.nestedContainer(keyedBy: JSONCodingKeys.self)
         return try nestedContainer.decode(type)
+    }
+}
+
+public extension UnkeyedEncodingContainer {
+    mutating func encode(_ value: Array<Any>) throws {
+        for (index, element) in value.enumerated() {
+            switch element {
+            case let primitive as Bool:
+                try encode(primitive)
+            case let primitive as Int:
+                try encode(primitive)
+            case let primitive as Double:
+                try encode(primitive)
+            case let primitive as String:
+                try encode(primitive)
+            case let primitive as Dictionary<String, Any>:
+                try encode(primitive)
+            case let primitive as Array<Any>:
+                try encode(primitive)
+            case Optional<Any>.none:
+                try encodeNil()
+            default:
+                let context = EncodingError.Context(codingPath: [JSONCodingKeys(intValue: index)], debugDescription: "Invalid Encoding Value")
+                throw EncodingError.invalidValue(element, context)
+            }
+        }
+    }
+    
+    mutating func encode(_ value: Dictionary<String, Any>) throws {
+        var container = nestedContainer(keyedBy: JSONCodingKeys.self)
+        try container.encode(value)
     }
 }
