@@ -22,7 +22,7 @@ public enum ThingOrText: Codable {
         } catch {
         }
         
-        let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
+        let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {
             throw SchemaError.typeDecodingError

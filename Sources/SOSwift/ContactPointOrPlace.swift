@@ -5,7 +5,7 @@ public enum ContactPointOrPlace: Codable {
     case place(value: Place)
     
     public init(from decoder: Decoder) throws {
-        let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
+        let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
         let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         
         guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {

@@ -16,7 +16,7 @@ public enum NumberOrQuantitativeValue: Codable {
         var dictionary: [String : Any]?
         
         do {
-            let jsonContainer = try decoder.container(keyedBy: JSONCodingKeys.self)
+            let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
             dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         } catch {
             
