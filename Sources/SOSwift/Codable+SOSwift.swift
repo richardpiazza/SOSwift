@@ -17,7 +17,7 @@ import Foundation
 /// * [https://gist.github.com/mbuchetics/c9bc6c22033014aa0c550d3b4324411a](https://gist.github.com/mbuchetics/c9bc6c22033014aa0c550d3b4324411a)
 /// * [https://gist.github.com/loudmouth/332e8d89d8de2c1eaf81875cfcd22e24](https://gist.github.com/loudmouth/332e8d89d8de2c1eaf81875cfcd22e24)
 /// * [https://stackoverflow.com/questions/47575309/how-to-encode-a-property-with-type-of-json-dictionary-in-swift-4-encodable-proto](https://stackoverflow.com/questions/47575309/how-to-encode-a-property-with-type-of-json-dictionary-in-swift-4-encodable-proto)
-public struct DictionaryKeys: CodingKey {
+internal struct DictionaryKeys: CodingKey {
     public var stringValue: String
     public var intValue: Int?
     
@@ -31,7 +31,7 @@ public struct DictionaryKeys: CodingKey {
     }
 }
 
-public extension KeyedDecodingContainerProtocol {
+internal extension KeyedDecodingContainerProtocol {
     /// Decodes a value of the given type for the given key.
     ///
     /// - parameter type: The type of value to decode.
@@ -109,7 +109,7 @@ public extension KeyedDecodingContainerProtocol {
     }
 }
 
-public extension KeyedDecodingContainerProtocol where Key == DictionaryKeys {
+internal extension KeyedDecodingContainerProtocol where Key == DictionaryKeys {
     /// Decodes a value of the given type for the given key.
     ///
     /// - parameter type: The type of value to decode.
@@ -151,7 +151,7 @@ public extension KeyedDecodingContainerProtocol where Key == DictionaryKeys {
     }
 }
 
-public extension UnkeyedDecodingContainer {
+internal extension UnkeyedDecodingContainer {
     /// Decodes a value of the given type.
     ///
     /// - parameter type: The type of value to decode.
@@ -207,7 +207,7 @@ public extension UnkeyedDecodingContainer {
     }
 }
 
-public extension KeyedEncodingContainerProtocol {
+internal extension KeyedEncodingContainerProtocol {
     /// Encodes the given value for the given key.
     ///
     /// - parameter value: The value to encode.
@@ -259,7 +259,7 @@ public extension KeyedEncodingContainerProtocol {
     }
 }
 
-public extension KeyedEncodingContainerProtocol where Key == DictionaryKeys {
+internal extension KeyedEncodingContainerProtocol where Key == DictionaryKeys {
     /// Encodes the given value for the given key.
     ///
     /// - parameter value: The value to encode.
@@ -292,7 +292,7 @@ public extension KeyedEncodingContainerProtocol where Key == DictionaryKeys {
     }
 }
 
-public extension UnkeyedEncodingContainer {
+internal extension UnkeyedEncodingContainer {
     /// Encodes the given value.
     ///
     /// - parameter value: The value to encode.
