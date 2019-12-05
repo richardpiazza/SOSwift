@@ -22,12 +22,9 @@ class CreativeWorkOrURLTests: XCTestCase {
         
         let testable = try TestClass.make(with: json)
         
-        guard
-            let creativeWork = testable.creativeWork as? CreativeWorkOrURL,
-            let url = testable.url as? CreativeWorkOrURL
-            else {
-                XCTFail()
-                return
+        guard let creativeWork = testable.creativeWork, let url = testable.url else {
+            XCTFail()
+            return
         }
         
         XCTAssertEqual(creativeWork.creativeWork?.name, "Futurama")
@@ -83,13 +80,8 @@ class CreativeWorkOrURLTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard
-            let creativeWork = multiple[0] as? CreativeWorkOrURL,
-            let url = multiple[1] as? CreativeWorkOrURL
-            else {
-                XCTFail()
-                return
-        }
+        let creativeWork = multiple[0]
+        let url = multiple[1]
         
         XCTAssertEqual(creativeWork.creativeWork?.name, "Futurama")
         XCTAssertEqual(url.url?.host, "www.yahoo.com")

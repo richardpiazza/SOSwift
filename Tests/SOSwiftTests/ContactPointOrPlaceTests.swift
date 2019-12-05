@@ -115,10 +115,7 @@ class ContactPointOrPlaceTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard let contactPoint = multiple[0] as? ContactPointOrPlace else {
-            XCTFail()
-            return
-        }
+        let contactPoint = multiple[0]
         
         switch contactPoint {
         case .contactPoint(let value):
@@ -127,10 +124,7 @@ class ContactPointOrPlaceTests: XCTestCase {
             XCTFail()
         }
         
-        guard let place = multiple[1] as? ContactPointOrPlace else {
-            XCTFail()
-            return
-        }
+        let place = multiple[1]
         
         switch place {
         case .place(let value):

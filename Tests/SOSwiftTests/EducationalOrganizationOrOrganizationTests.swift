@@ -32,14 +32,14 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        guard let edOrg = (testObject.educationalOrganization as? EducationalOrganizationOrOrganization)?.educationalOrganization else {
+        guard let edOrg = testObject.educationalOrganization?.educationalOrganization else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(edOrg.name, "Harvard")
         
-        guard let org = (testObject.organization as? EducationalOrganizationOrOrganization)?.organization else {
+        guard let org = testObject.organization?.organization else {
             XCTFail()
             return
         }
@@ -100,14 +100,14 @@ class EducationalOrganizationOrOrganizationTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard let educationOrganization = (multiple[0] as? EducationalOrganizationOrOrganization)?.educationalOrganization else {
+        guard let educationOrganization = multiple[0].educationalOrganization else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(educationOrganization.name, "Harvard")
         
-        guard let organization = (multiple[1] as? EducationalOrganizationOrOrganization)?.organization else {
+        guard let organization = multiple[1].organization else {
             XCTFail()
             return
         }

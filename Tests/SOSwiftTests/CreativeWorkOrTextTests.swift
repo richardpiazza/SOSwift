@@ -22,12 +22,9 @@ class CreativeWorkOrTextTests: XCTestCase {
         
         let testable = try TestClass.make(with: json)
         
-        guard
-            let creativeWork = testable.creativeWork as? CreativeWorkOrText,
-            let text = testable.text as? CreativeWorkOrText
-            else {
-                XCTFail()
-                return
+        guard let creativeWork = testable.creativeWork, let text = testable.text else {
+            XCTFail()
+            return
         }
         
         XCTAssertEqual(creativeWork.creativeWork?.name, "Futurama")
@@ -83,13 +80,8 @@ class CreativeWorkOrTextTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard
-            let creativeWork = multiple[0] as? CreativeWorkOrText,
-            let text = multiple[1] as? CreativeWorkOrText
-            else {
-                XCTFail()
-                return
-        }
+        let creativeWork = multiple[0]
+        let text = multiple[1]
         
         XCTAssertEqual(creativeWork.creativeWork?.name, "Futurama")
         XCTAssertEqual(text.text, "Turtle")

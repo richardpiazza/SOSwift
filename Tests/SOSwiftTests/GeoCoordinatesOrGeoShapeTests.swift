@@ -31,9 +31,9 @@ class GeoCoordinatesOrGeoShapeTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        let geoCoordinates = (testObject.geoCoordinates as? GeoCoordinatesOrGeoShape)?.geoCoordinates
+        let geoCoordinates = testObject.geoCoordinates?.geoCoordinates
         XCTAssertEqual(geoCoordinates?.name, "Here")
-        let geoShape = (testObject.geoShape as? GeoCoordinatesOrGeoShape)?.geoShape
+        let geoShape = testObject.geoShape?.geoShape
         XCTAssertEqual(geoShape?.name, "There")
     }
     

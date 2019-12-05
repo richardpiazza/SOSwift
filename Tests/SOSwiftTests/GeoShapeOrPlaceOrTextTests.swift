@@ -34,9 +34,9 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        let geoShape = (testObject.geoShape as? GeoShapeOrPlaceOrText)?.geoShape
-        let place = (testObject.place as? GeoShapeOrPlaceOrText)?.place
-        let text = (testObject.text as? GeoShapeOrPlaceOrText)?.text
+        let geoShape = testObject.geoShape?.geoShape
+        let place = testObject.place?.place
+        let text = testObject.text?.text
         
         XCTAssertEqual(geoShape?.name, "Squircle")
         XCTAssertEqual(place?.name, "Seattle")
@@ -87,7 +87,7 @@ class GeoShapeOrPlaceOrTextTests: XCTestCase {
         
         let testObject = try TestClass.make(with: json)
         
-        guard let multiple = testObject.multiple as? [GeoShapeOrPlaceOrText] else {
+        guard let multiple = testObject.multiple else {
             XCTFail()
             return
         }

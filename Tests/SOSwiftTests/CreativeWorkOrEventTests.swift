@@ -33,12 +33,9 @@ class CreativeWorkOrEventTests: XCTestCase {
         
         let testable = try TestClass.make(with: json)
         
-        guard
-            let creativeWork = testable.creativeWork as? CreativeWorkOrEvent,
-            let event = testable.event as? CreativeWorkOrEvent
-            else {
-                XCTFail()
-                return
+        guard let creativeWork = testable.creativeWork, let event = testable.event else {
+            XCTFail()
+            return
         }
         
         XCTAssertEqual(creativeWork.creativeWork?.name, "Technical Manual")
@@ -101,13 +98,8 @@ class CreativeWorkOrEventTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard
-            let creativeWork = multiple[0] as? CreativeWorkOrEvent,
-            let event = multiple[1] as? CreativeWorkOrEvent
-            else {
-                XCTFail()
-                return
-        }
+        let creativeWork = multiple[0]
+        let event = multiple[1]
         
         XCTAssertEqual(creativeWork.creativeWork?.name, "Technical Manual")
         XCTAssertEqual(event.event?.name, "Convention")

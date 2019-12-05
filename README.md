@@ -1,6 +1,4 @@
 # SOSwift
-[![Version](https://img.shields.io/cocoapods/v/SOSwift.svg?style=flat)](http://cocoadocs.org/docsets/SOSwift)
-[![Platform](https://img.shields.io/cocoapods/p/SOSwift.svg?style=flat)](http://cocoadocs.org/docsets/SOSwift)
 
 A swift implementation of Schema.org structured data vocabulary.
 
@@ -8,14 +6,11 @@ Schema.org is a collaborative, community activity with a mission to create, main
 
 ## How to Use
 
-__CocoaPods__
-
-    pod 'SOSwift', '~> 2.5'
-
-
 __Swift Package Manager__
 
-    .package(url: "https://github.com/richardpiazza/SOSwift", .upToNextMinor(from: "2.5.0"))
+```swift
+.package(url: "https://github.com/richardpiazza/SOSwift", .upToNextMinor(from: "3.0.0"))
+```
 
 ### Schema.org
 

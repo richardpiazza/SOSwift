@@ -38,7 +38,7 @@ class CountryOrTextTests: XCTestCase {
             return
         }
         
-        guard let country = testObject.country as? CountryOrText else {
+        guard let country = testObject.country else {
             XCTFail()
             return
         }
@@ -50,7 +50,7 @@ class CountryOrTextTests: XCTestCase {
             XCTFail()
         }
         
-        guard let text = testObject.text as? CountryOrText else {
+        guard let text = testObject.text else {
             XCTFail()
             return
         }
@@ -122,10 +122,7 @@ class CountryOrTextTests: XCTestCase {
         
         XCTAssertEqual(multiple.count, 2)
         
-        guard let country = multiple[0] as? CountryOrText else {
-            XCTFail()
-            return
-        }
+        let country = multiple[0]
         
         switch country {
         case .country(let value):
@@ -134,10 +131,7 @@ class CountryOrTextTests: XCTestCase {
             XCTFail()
         }
         
-        guard let text = multiple[1] as? CountryOrText else {
-            XCTFail()
-            return
-        }
+        let text = multiple[1]
         
         switch text {
         case .text(let value):
