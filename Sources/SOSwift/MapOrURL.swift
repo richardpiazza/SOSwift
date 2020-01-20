@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum MapOrURL: Codable {
     case map(value: Map)

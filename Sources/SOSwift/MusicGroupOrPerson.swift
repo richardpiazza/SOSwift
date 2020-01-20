@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum MusicGroupOrPerson: Codable {
     case musicGroup(value: MusicGroup)

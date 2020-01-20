@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public typealias Value = StructureValueOrNumberOrTextOrBool
 

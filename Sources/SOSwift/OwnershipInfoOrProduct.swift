@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum OwnershipInfoOrProduct: Codable {
     case ownershipInfo(value: OwnershipInfo)

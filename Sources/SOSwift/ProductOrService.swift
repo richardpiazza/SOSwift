@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum ProductOrService: Codable {
     case product(value: Product)

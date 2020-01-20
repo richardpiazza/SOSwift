@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum PhysicalActivityCategoryOrThingOrText: Codable {
     case physicalActivityCategory(value: PhysicalActivityCategory)

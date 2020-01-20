@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum ContactPointOrPlace: Codable {
     case contactPoint(value: ContactPoint)

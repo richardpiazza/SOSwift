@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum ImageObjectOrPhotograph: Codable {
     case imageObject(value: ImageObject)

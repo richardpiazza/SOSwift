@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum SoftwareApplicationOrWebsite: Codable {
     case softwareApplication(value: SoftwareApplication)

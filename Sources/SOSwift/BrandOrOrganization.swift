@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum BrandOrOrganization: Codable {
     case brand(value: Brand)

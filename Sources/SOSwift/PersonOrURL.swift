@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum PersonOrURL: Codable {
     case person(value: Person)

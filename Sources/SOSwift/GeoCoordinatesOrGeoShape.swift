@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum GeoCoordinatesOrGeoShape: Codable {
     case geoCoordinates(value: GeoCoordinates)

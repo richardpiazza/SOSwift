@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum EducationalOrganizationOrOrganization: Codable {
     case educationalOrganization(value: EducationalOrganization)

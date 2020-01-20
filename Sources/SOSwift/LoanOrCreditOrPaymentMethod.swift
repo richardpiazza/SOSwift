@@ -1,4 +1,5 @@
 import Foundation
+import CodablePlus
 
 public enum LoanOrCreditOrPaymentMethod: Codable {
     case loanOrCredit(value: LoanOrCredit)
