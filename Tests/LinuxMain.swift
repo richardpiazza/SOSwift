@@ -1,6 +1,7 @@
 import XCTest
-@testable import SOSwiftTests
 
-XCTMain([
-    testCase(SOSwiftTests.allTests)
-])
+import SOSwiftTests
+
+var tests = [XCTestCaseEntry]()
+tests += SOSwiftTests.allTests()
+XCTMain(tests)
