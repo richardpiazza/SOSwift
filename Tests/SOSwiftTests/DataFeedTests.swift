@@ -26,13 +26,11 @@ class DataFeedTests: XCTestCase {
         }
         """
         
-        let dataFeed = try DataFeed.make(with: json)
-        
+        _ = try DataFeed.make(with: json)
     }
     
     func testEncode() throws {
-        let dictionary = try DataFeedTests.dataFeed.asDictionary()
-        
+        _ = try DataFeedTests.dataFeed.asDictionary()
     }
     
 }

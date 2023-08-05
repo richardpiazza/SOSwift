@@ -3,12 +3,6 @@ import XCTest
 
 class OrganizationTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static var organization: Organization {
         let organization = Organization()
         
@@ -26,13 +20,11 @@ class OrganizationTests: XCTestCase {
         }
         """
         
-        let organization = try Organization.make(with: json)
-        
+        _ = try Organization.make(with: json)
     }
     
     func testEncode() throws {
-        let dictionary = try OrganizationTests.organization.asDictionary()
-        
+        _ = try OrganizationTests.organization.asDictionary()
     }
     
 }

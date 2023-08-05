@@ -3,11 +3,6 @@ import XCTest
 
 class MapTypeTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(MapType.allCases.count, 4)
     }

@@ -3,12 +3,6 @@ import XCTest
 
 class DataCatalogTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static var dataCatalog: DataCatalog {
         let dataCatalog = DataCatalog()
         
@@ -26,13 +20,11 @@ class DataCatalogTests: XCTestCase {
         }
         """
         
-        let dataCatalog = try DataCatalog.make(with: json)
-        
+        _ = try DataCatalog.make(with: json)
     }
     
     func testEncode() throws {
-        let dictionary = try DataCatalogTests.dataCatalog.asDictionary()
-        
+        _ = try DataCatalogTests.dataCatalog.asDictionary()
     }
     
 }

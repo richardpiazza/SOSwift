@@ -3,11 +3,6 @@ import XCTest
 
 class IdentifierTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var propertyValue: Identifier?
         var url: Identifier?

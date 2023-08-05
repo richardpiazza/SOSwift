@@ -2,12 +2,6 @@ import XCTest
 @testable import SOSwift
 
 class DateTimeTests: XCTestCase {
-
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
     
     public static let dateTime1Components = DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 29, hour: 18, minute: 40, second: 37, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
     public static let dateTime1String = "2019-06-29T18:40:37Z"

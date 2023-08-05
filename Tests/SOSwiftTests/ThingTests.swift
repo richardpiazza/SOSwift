@@ -3,12 +3,6 @@ import XCTest
 
 class ThingTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static let _additionalType = URL(string: "http://schema.org/MedicalEntity")
     public static let _alternativeName = "Pencil Pusher"
     public static let _description = "A cog in the machine."

@@ -3,11 +3,6 @@ import XCTest
 
 class BusinessEntityTypeTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(BusinessEntityType.allCases.count, 4)
     }

@@ -3,12 +3,6 @@ import XCTest
 
 class PostalAddressOrTextTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var postalAddress: PostalAddressOrText?
         var text: PostalAddressOrText?

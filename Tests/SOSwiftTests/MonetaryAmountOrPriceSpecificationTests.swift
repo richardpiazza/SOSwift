@@ -3,12 +3,6 @@ import XCTest
 
 class MonetaryAmountOrPriceSpecificationTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var monetaryAmount: MonetaryAmountOrPriceSpecification?
         var priceSpecification: MonetaryAmountOrPriceSpecification?

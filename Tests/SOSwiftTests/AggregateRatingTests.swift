@@ -2,14 +2,7 @@ import XCTest
 @testable import SOSwift
 
 class AggregateRatingTests: XCTestCase {
-    
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
-    public static let _ratingCount = 4000
+        public static let _ratingCount = 4000
     public static let _reviewCount = 1500
     
     public static var aggregateRating: AggregateRating {

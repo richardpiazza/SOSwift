@@ -3,12 +3,6 @@ import XCTest
 
 class ProductOrServiceTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var product: ProductOrService?
         var service: ProductOrService?

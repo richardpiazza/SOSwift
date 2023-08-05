@@ -3,11 +3,6 @@ import XCTest
 
 class DayOfWeekTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(DayOfWeek.allCases.count, 8)
     }

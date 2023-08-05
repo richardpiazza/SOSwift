@@ -3,12 +3,6 @@ import XCTest
 
 class EventTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static var event: Event {
         let event = Event()
         event.about = ThingTests.thing

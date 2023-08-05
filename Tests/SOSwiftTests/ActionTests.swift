@@ -3,12 +3,6 @@ import XCTest
 
 class ActionTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static let _actionStatus = ActionStatus.completed.rawValue
     public static let _agent = "Bob"
     public static let _endTime = "2019-06-30T13:16:17Z"

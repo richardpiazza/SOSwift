@@ -3,11 +3,6 @@ import XCTest
 
 class AreaServedTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var administrativeArea: AreaServed?
         var geoShape: AreaServed?

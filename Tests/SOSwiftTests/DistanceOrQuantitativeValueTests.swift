@@ -3,11 +3,6 @@ import XCTest
 
 class DistanceOrQuantitativeValueTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var distance: DistanceOrQuantitativeValue?
         var quantitativeValue: DistanceOrQuantitativeValue?

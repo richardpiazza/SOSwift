@@ -3,11 +3,6 @@ import XCTest
 
 class WarrantyScopeTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(WarrantyScope.allCases.count, 3)
     }

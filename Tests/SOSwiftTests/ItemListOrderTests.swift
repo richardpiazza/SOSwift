@@ -3,11 +3,6 @@ import XCTest
 
 class ItemListOrderTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(ItemListOrder.allCases.count, 3)
     }

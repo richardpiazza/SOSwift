@@ -3,11 +3,6 @@ import XCTest
 
 class ValueTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var structuredValue: Value?
         var bool: Value?

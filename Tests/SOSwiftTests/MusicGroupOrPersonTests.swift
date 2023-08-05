@@ -3,12 +3,6 @@ import XCTest
 
 class MusicGroupOrPersonTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var musicGroup: MusicGroupOrPerson?
         var person: MusicGroupOrPerson?

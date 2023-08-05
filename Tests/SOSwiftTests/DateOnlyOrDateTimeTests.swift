@@ -3,12 +3,6 @@ import XCTest
 
 class DateOnlyOrDateTimeTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var dateOnly: DateOnlyOrDateTime?
         var dateTime: DateOnlyOrDateTime?

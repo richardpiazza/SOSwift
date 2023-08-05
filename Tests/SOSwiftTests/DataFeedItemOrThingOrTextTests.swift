@@ -3,12 +3,6 @@ import XCTest
 
 class DataFeedItemOrThingOrTextTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     func testDecode() throws {
         
     }

@@ -3,12 +3,6 @@ import XCTest
 
 class ProductModelOrTextTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var productModel: ProductModelOrText?
         var text: ProductModelOrText?

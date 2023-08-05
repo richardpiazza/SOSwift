@@ -3,13 +3,6 @@ import XCTest
 
 class ImageObjectOrPhotographTests: XCTestCase {
     
-    static var allTests = [
-        ("testSingleDecodes", testSingleDecodes),
-        ("testSingleEncodes", testSingleEncodes),
-        ("testMultipleDecodes", testMultipleDecodes),
-        ("testMultipleEncodes", testMultipleEncodes),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var imageObject: ImageObjectOrPhotograph?
         var photograph: ImageObjectOrPhotograph?

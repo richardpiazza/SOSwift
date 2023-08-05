@@ -3,11 +3,6 @@ import XCTest
 
 class MusicAlbumReleaseTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(MusicAlbumRelease.allCases.count, 4)
     }

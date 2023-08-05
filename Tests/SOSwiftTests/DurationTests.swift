@@ -3,12 +3,6 @@ import XCTest
 
 class DurationTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     let fullDuration: Duration = Duration(stringValue: "P1Y5M3DT10H20M8S")
     let weekDuration: Duration = Duration(stringValue: "P24W")
     
