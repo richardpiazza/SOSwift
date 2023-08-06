@@ -4,7 +4,7 @@ import Foundation
 /// 'US' or the garment sizes 'S', 'M', 'L', and 'XL'.
 public class QualitativeValue: Enumeration {
     
-    /// A property-value pair representing an additional characteristics of the entitity,
+    /// A property-value pair representing an additional characteristics of the entity,
     /// e.g. a product feature or another characteristic for which there is no
     /// matching property in schema.org.
     /// - note: Publishers should be aware that applications designed to use

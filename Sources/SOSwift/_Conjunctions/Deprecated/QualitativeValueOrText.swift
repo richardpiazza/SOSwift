@@ -1,9 +1,16 @@
-import Foundation
 import CodablePlus
 
-public enum CountryOrText: Codable {
-    case country(value: Country)
-    case text(value: String)
+public enum QualitativeValueOrText: Codable {
+    case qualitativeValue(QualitativeValue)
+    case text(String)
+    
+    public init(_ value: QualitativeValue) {
+        self = .qualitativeValue(value)
+    }
+    
+    public init(_ value: String) {
+        self = .text(value)
+    }
     
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
@@ -12,13 +19,10 @@ public enum CountryOrText: Codable {
             let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
             dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         } catch {
-            
         }
         
         guard let jsonDictionary = dictionary else {
-            let container = try decoder.singleValueContainer()
-            let value = try container.decode(String.self)
-            self = .text(value: value)
+            self = .text(try decoder.stringContents())
             return
         }
         
@@ -29,9 +33,9 @@ public enum CountryOrText: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case Country.schemaName:
-            let value = try container.decode(Country.self)
-            self = .country(value: value)
+        case QualitativeValue.schemaName:
+            let value = try container.decode(QualitativeValue.self)
+            self = .qualitativeValue(value)
         default:
             throw SchemaError.typeDecodingError
         }
@@ -39,29 +43,28 @@ public enum CountryOrText: Codable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
+        
         switch self {
-        case .country(let value):
+        case .qualitativeValue(let value):
             try container.encode(value)
         case .text(let value):
             try container.encode(value)
         }
     }
     
-    public var country: Country? {
-        switch self {
-        case .country(let value):
-            return value
-        default:
+    public var qualitativeValue: QualitativeValue? {
+        guard case .qualitativeValue(let value) = self else {
             return nil
         }
+        
+        return value
     }
     
     public var text: String? {
-        switch self {
-        case .text(let value):
-            return value
-        default:
+        guard case .text(let value) = self else {
             return nil
         }
+        
+        return value
     }
 }

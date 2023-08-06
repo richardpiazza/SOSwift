@@ -5,7 +5,7 @@ public enum MapType: String, CaseIterable, Codable {
     case parking = "ParkingMap"
     case seating = "SeatingMap"
     case transit = "TransitMap"
-    case venue = "VanueMap"
+    case venue = "VenueMap"
     
     public var displayValue: String {
         switch self {
