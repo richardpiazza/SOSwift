@@ -1,6 +1,7 @@
 import XCTest
 @testable import SOSwift
 
+#if canImport(ObjectiveC)
 class DurationTests: XCTestCase {
     
     let fullDuration: Duration = Duration(stringValue: "P1Y5M3DT10H20M8S")
@@ -47,3 +48,4 @@ class DurationTests: XCTestCase {
         XCTAssertNotEqual(duration1, duration3)
     }
 }
+#endif
