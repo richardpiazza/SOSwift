@@ -4,8 +4,8 @@ import XCTest
 class GenderOrTextTests: XCTestCase {
     
     fileprivate class TestClass: Codable, Schema {
-        var gender: GenderOrText?
-        var text: GenderOrText?
+        var gender: Gender?
+        var text: Gender?
     }
     
     func testDecode() throws {
@@ -18,26 +18,26 @@ class GenderOrTextTests: XCTestCase {
         
         let testClass = try TestClass.make(with: json)
         
-        XCTAssertEqual(testClass.gender?.gender, .female)
+        XCTAssertEqual(testClass.gender?.genderType, .female)
         XCTAssertNil(testClass.gender?.text)
         XCTAssertEqual(testClass.text?.text, "Non-Binary")
-        XCTAssertNil(testClass.text?.gender)
+        XCTAssertNil(testClass.text?.genderType)
     }
     
     func testEncode() throws {
         let testClass = TestClass()
-        testClass.gender = GenderOrText(Gender.male)
-        testClass.text = GenderOrText("Gender Queer")
+        testClass.gender = Gender(GenderType.male)
+        testClass.text = Gender("Gender Queer")
         
         let dictionary = try testClass.asDictionary()
-        XCTAssertEqual(dictionary["gender"] as? String, Gender.male.rawValue)
+        XCTAssertEqual(dictionary["gender"] as? String, GenderType.male.rawValue)
         XCTAssertEqual(dictionary["text"] as? String, "Gender Queer")
     }
     
     func testEquatability() throws {
-        let t1 = GenderOrText(.female)
-        let t2 = GenderOrText(.female)
-        let t3 = GenderOrText("Trans")
+        let t1 = Gender(.female)
+        let t2 = Gender(.female)
+        let t3 = Gender("Trans")
         
         XCTAssertEqual(t1, t2)
         XCTAssertNotEqual(t1, t3)

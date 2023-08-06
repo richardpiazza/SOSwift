@@ -1,6 +1,7 @@
 import Foundation
 import CodablePlus
 
+@available(*, deprecated, renamed: "QuantitativeValueOrNumber")
 public enum NumberOrQuantitativeValue: Codable {
     case number(value: Number)
     case quantitativeValue(value: QuantitativeValue)

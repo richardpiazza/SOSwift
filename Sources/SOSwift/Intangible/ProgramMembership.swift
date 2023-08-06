@@ -8,8 +8,8 @@ public class ProgramMembership: Intangible {
     public var hostingOrganization: Organization?
     
     /// A member of an Organization or a ProgramMembership. Organizations
-    /// can be members of organizations; ProgramMembership is typically for i
-    /// ndividuals.
+    /// can be members of organizations; ProgramMembership is typically for individuals.
+    /// 
     /// - **Supersedes** _members_, _musicGroupMember_
     /// - **Inverse property**: _memberOf_
     public var members: [OrganizationOrPerson]?

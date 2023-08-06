@@ -65,10 +65,8 @@ public class Person: Thing {
     /// kind of financial contribution.
     public var funder: OrganizationOrPerson?
     
-    /// Gender of the person. While http://schema.org/Male and
-    /// http://schema.org/Female may be used, text strings are also acceptable
-    /// for people who do not identify as a binary gender.
-    public var gender: GenderOrText?
+    /// Gender of the person.
+    public var gender: Gender?
     
     /// Given name. In the U.S., the first name of a Person. This can be used
     /// along with familyName instead of the name property.
@@ -274,7 +272,7 @@ public class Person: Thing {
         faxNumber = try container.decodeIfPresent(String.self, forKey: .faxNumber)
         follows = try container.decodeIfPresent([Person].self, forKey: .follows)
         funder = try container.decodeIfPresent(OrganizationOrPerson.self, forKey: .funder)
-        gender = try container.decodeIfPresent(GenderOrText.self, forKey: .gender)
+        gender = try container.decodeIfPresent(Gender.self, forKey: .gender)
         givenName = try container.decodeIfPresent(String.self, forKey: .givenName)
         globalLocationNumber = try container.decodeIfPresent(String.self, forKey: .globalLocationNumber)
         offerCatalog = try container.decodeIfPresent(OfferCatalog.self, forKey: .offerCatalog)
