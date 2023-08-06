@@ -3,11 +3,6 @@ import XCTest
 
 class ContactPointOptionTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(ContactPointOption.allCases.count, 2)
     }

@@ -77,12 +77,35 @@ public class Thing: Schema, Codable {
     }
     
     public init() {
-        
     }
     
-    public convenience init(name: String) {
+    public convenience init(
+        additionalType: URL? = nil,
+        alternativeName: String? = nil,
+        description: String? = nil,
+        disambiguatingDescription: String? = nil,
+        identifier: Identifier? = nil,
+        image: ImageObjectOrURL? = nil,
+        mainEntityOfPage: CreativeWorkOrURL? = nil,
+        name: String? = nil,
+        potentialAction: Action? = nil,
+        sameAs: [URL]? = nil,
+        subjectOf: CreativeWorkOrEvent? = nil,
+        url: URL? = nil
+    ) {
         self.init()
+        self.additionalType = additionalType
+        self.alternativeName = alternativeName
+        self.description = description
+        self.disambiguatingDescription = disambiguatingDescription
+        self.identifier = identifier
+        self.image = image
+        self.mainEntityOfPage = mainEntityOfPage
         self.name = name
+        self.potentialAction = potentialAction
+        self.sameAs = sameAs
+        self.subjectOf = subjectOf
+        self.url = url
     }
     
     public required init(from decoder: Decoder) throws {

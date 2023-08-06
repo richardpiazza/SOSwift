@@ -3,12 +3,6 @@ import XCTest
 
 class AudioObjectTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static let _transcript = "These are the most compelling words I can give."
     
     public static var audioObject: AudioObject {

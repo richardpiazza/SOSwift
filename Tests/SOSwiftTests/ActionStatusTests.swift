@@ -3,11 +3,6 @@ import XCTest
 
 class ActionStatusTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(ActionStatus.allCases.count, 4)
     }

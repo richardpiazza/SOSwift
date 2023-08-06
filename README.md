@@ -2,13 +2,8 @@
 
 A swift implementation of Schema.org structured data vocabulary.
 
-<p>
-  <img src="https://github.com/richardpiazza/SOSwift/workflows/Swift/badge.svg?branch=main" />
-  <img src="https://img.shields.io/badge/Swift-5.1-orange.svg" />
-  <a href="https://twitter.com/richardpiazza">
-    <img src="https://img.shields.io/badge/twitter-@richardpiazza-blue.svg?style=flat" alt="Twitter: @richardpiazza" />
-  </a>
-</p>
+[![Swift](https://github.com/richardpiazza/SOSwift/actions/workflows/swift.yml/badge.svg?branch=main)](https://github.com/richardpiazza/SOSwift/actions/workflows/swift.yml)
+
 
 ## Usage
 
@@ -19,7 +14,7 @@ dependency within your `Package.swift` manifest:
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/richardpiazza/SOSwift.git", .upToNextMinor(from: "1.1.0"))
+        .package(url: "https://github.com/richardpiazza/SOSwift.git", .upToNextMajor(from: "3.0.0"))
     ],
     ...
 )

@@ -3,11 +3,6 @@ import XCTest
 
 class OfferItemConditionTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(OfferItemCondition.allCases.count, 4)
     }

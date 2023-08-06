@@ -3,11 +3,6 @@ import XCTest
 
 class AlignmentObjectOrCourseOrTextTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var alignmentObject: AlignmentObjectOrCourseOrText?
         var course: AlignmentObjectOrCourseOrText?

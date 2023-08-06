@@ -3,11 +3,6 @@ import XCTest
 
 class BusinessFunctionTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(BusinessFunction.allCases.count, 8)
     }

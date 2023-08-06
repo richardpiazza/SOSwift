@@ -9,17 +9,7 @@ class CountryOrTextTests: XCTestCase {
         var multiple: [CountryOrText]?
     }
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testSingleDecodes() {
+    func testSingleDecodes() throws {
         let json = """
         {
             "country" : {
@@ -30,37 +20,13 @@ class CountryOrTextTests: XCTestCase {
         }
         """
         
-        let testObject: TestClass
-        do {
-            testObject = try TestClass.make(with: json)
-        } catch {
-            XCTFail()
-            return
-        }
+        let testObject: TestClass = try TestClass.make(with: json)
         
-        guard let country = testObject.country else {
-            XCTFail()
-            return
-        }
+        let country = try XCTUnwrap(testObject.country)
+        XCTAssertEqual(country.country?.name, "Poland")
         
-        switch country {
-        case .country(let value):
-            XCTAssertEqual(value.name, "Poland")
-        default:
-            XCTFail()
-        }
-        
-        guard let text = testObject.text else {
-            XCTFail()
-            return
-        }
-        
-        switch text {
-        case .text(let value):
-            XCTAssertEqual(value, "United States")
-        default:
-            XCTFail()
-        }
+        let text = try XCTUnwrap(testObject.text)
+        XCTAssertEqual(text.text, "United States")
     }
     
     func testSingleEncodes() {
@@ -123,22 +89,10 @@ class CountryOrTextTests: XCTestCase {
         XCTAssertEqual(multiple.count, 2)
         
         let country = multiple[0]
-        
-        switch country {
-        case .country(let value):
-            XCTAssertEqual(value.name, "Poland")
-        default:
-            XCTFail()
-        }
+        XCTAssertEqual(country.country?.name, "Poland")
         
         let text = multiple[1]
-        
-        switch text {
-        case .text(let value):
-            XCTAssertEqual(value, "United States")
-        default:
-            XCTFail()
-        }
+        XCTAssertEqual(text.text, "United States")
     }
     
     func testMultipleEncodes() throws {

@@ -3,11 +3,6 @@ import XCTest
 
 class AccessModeSufficientTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(AccessModeSufficient.allCases.count, 4)
     }

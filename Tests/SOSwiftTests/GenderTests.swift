@@ -3,11 +3,6 @@ import XCTest
 
 class GenderTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(Gender.allCases.count, 2)
     }

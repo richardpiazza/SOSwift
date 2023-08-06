@@ -3,12 +3,6 @@ import XCTest
 
 class BroadcastServiceTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static let _audienceType = "Programmers"
     public static let _geographicArea = "5ft of a computer"
     
@@ -32,13 +26,11 @@ class BroadcastServiceTests: XCTestCase {
         }
         """
         
-        let broadcastService = try BroadcastService.make(with: json)
-        
+        _ = try BroadcastService.make(with: json)
     }
     
     func testEncode() throws {
-        let dictionary = try BroadcastServiceTests.broadcastService.asDictionary()
-        
+        _ = try BroadcastServiceTests.broadcastService.asDictionary()
     }
     
 }

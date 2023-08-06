@@ -3,12 +3,6 @@ import XCTest
 
 class OrganizationOrPersonTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var organization: OrganizationOrPerson?
         var person: OrganizationOrPerson?

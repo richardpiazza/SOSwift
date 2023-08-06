@@ -3,12 +3,6 @@ import XCTest
 
 class DataFeedItemTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static var dataFeedItem: DataFeedItem {
         let dataFeedItem = DataFeedItem()
         
@@ -26,13 +20,11 @@ class DataFeedItemTests: XCTestCase {
         }
         """
         
-        let dataFeedItem = try DataFeedItem.make(with: json)
-        
+        _ = try DataFeedItem.make(with: json)
     }
     
     func testEncode() throws {
-        let dictionary = try DataFeedItemTests.dataFeedItem.asDictionary()
-        
+        _ = try DataFeedItemTests.dataFeedItem.asDictionary()
     }
     
 }

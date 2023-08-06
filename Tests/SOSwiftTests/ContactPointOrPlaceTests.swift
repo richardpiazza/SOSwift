@@ -116,22 +116,10 @@ class ContactPointOrPlaceTests: XCTestCase {
         XCTAssertEqual(multiple.count, 2)
         
         let contactPoint = multiple[0]
-        
-        switch contactPoint {
-        case .contactPoint(let value):
-            XCTAssertEqual(value.name, "CP Item")
-        default:
-            XCTFail()
-        }
+        XCTAssertEqual(contactPoint.contactPoint?.name, "CP Item")
         
         let place = multiple[1]
-        
-        switch place {
-        case .place(let value):
-            XCTAssertEqual(value.name, "P Item")
-        default:
-            XCTFail()
-        }
+        XCTAssertEqual(place.place?.name, "P Item")
     }
     
     func testMultipleEncodes() throws {

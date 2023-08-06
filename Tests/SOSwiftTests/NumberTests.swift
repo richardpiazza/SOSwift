@@ -3,12 +3,6 @@ import XCTest
 
 class NumberTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var integer: Number?
         var floatingPoint: Number?

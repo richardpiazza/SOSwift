@@ -3,12 +3,6 @@ import XCTest
 
 class AudienceTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static let _audienceType = "Programmers"
     public static let _geographicArea = "5ft of a computer"
     

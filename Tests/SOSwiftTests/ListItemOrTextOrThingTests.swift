@@ -3,12 +3,6 @@ import XCTest
 
 class ListItemOrTextOrThingTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-        ("testEquatability", testEquatability),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var listItem: ListItemOrThingOrText?
         var text: ListItemOrThingOrText?

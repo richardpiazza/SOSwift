@@ -3,12 +3,6 @@ import XCTest
 
 class CourseInstanceTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static var courseInstance: CourseInstance {
         let courseInstance = CourseInstance()
         
@@ -26,13 +20,11 @@ class CourseInstanceTests: XCTestCase {
         }
         """
         
-        let courseInstance = try CourseInstance.make(with: json)
-        
+        _ = try CourseInstance.make(with: json)
     }
     
     func testEncode() throws {
-        let dictionary = try CourseInstanceTests.courseInstance.asDictionary()
-        
+        _ = try CourseInstanceTests.courseInstance.asDictionary()
     }
     
 }

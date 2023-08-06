@@ -3,11 +3,6 @@ import XCTest
 
 class ThingOrTextTests: XCTestCase {
     
-    static var allTests = [
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     fileprivate class TestClass: Codable, Schema {
         var text: ThingOrText?
         var thing: ThingOrText?

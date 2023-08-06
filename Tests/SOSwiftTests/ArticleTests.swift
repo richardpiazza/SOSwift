@@ -2,13 +2,7 @@ import XCTest
 @testable import SOSwift
 
 class ArticleTests: XCTestCase {
-    
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
+
     public static let _articleBody = "This is the article body"
     public static let _articleSection = "Lifestyle"
     public static let _pageEnd = 138

@@ -3,12 +3,6 @@ import XCTest
 
 class CommentTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static var comment: Comment {
         let comment = Comment()
         
@@ -26,13 +20,11 @@ class CommentTests: XCTestCase {
         }
         """
         
-        let comment = try Comment.make(with: json)
-        
+        _ = try Comment.make(with: json)
     }
     
     func testEncode() throws {
-        let dictionary = try CommentTests.comment.asDictionary()
-        
+        _ = try CommentTests.comment.asDictionary()
     }
     
 }

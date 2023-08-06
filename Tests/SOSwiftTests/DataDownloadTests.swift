@@ -3,12 +3,6 @@ import XCTest
 
 class DataDownloadTests: XCTestCase {
     
-    static var allTests = [
-        ("testSchema", testSchema),
-        ("testDecode", testDecode),
-        ("testEncode", testEncode),
-    ]
-    
     public static var dataDownload: DataDownload {
         let dataDownload = DataDownload()
         
@@ -26,13 +20,11 @@ class DataDownloadTests: XCTestCase {
         }
         """
         
-        let dataDownload = try DataDownload.make(with: json)
-        
+        _ = try DataDownload.make(with: json)
     }
     
     func testEncode() throws {
-        let dictionary = try DataDownloadTests.dataDownload.asDictionary()
-        
+        _ = try DataDownloadTests.dataDownload.asDictionary()
     }
     
 }

@@ -3,11 +3,6 @@ import XCTest
 
 class AccessibilityFeatureTests: XCTestCase {
     
-    static var allTests = [
-        ("testCaseIterable", testCaseIterable),
-        ("testDisplayValue", testDisplayValue),
-    ]
-    
     func testCaseIterable() throws {
         XCTAssertEqual(AccessibilityFeature.allCases.count, 31)
     }
