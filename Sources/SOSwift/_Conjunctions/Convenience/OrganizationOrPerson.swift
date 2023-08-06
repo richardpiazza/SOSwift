@@ -1,66 +1,14 @@
-import Foundation
-import CodablePlus
+public typealias OrganizationOrPerson = SingleSchemaConjunction<Organization, Person>
 
-public enum OrganizationOrPerson: Codable {
-    case organization(value: Organization)
-    case person(value: Person)
+public extension OrganizationOrPerson {
+    var organization: Organization? { first }
+    var person: Person? { second }
     
-    public init(_ value: Organization) {
-        self = .organization(value: value)
+    static func organization(value: Organization) -> Self {
+        .first(value)
     }
     
-    public init(_ value: Person) {
-        self = .person(value: value)
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
-        let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
-        
-        guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaError.typeDecodingError
-        }
-        
-        let container = try decoder.singleValueContainer()
-        
-        switch type {
-        case Organization.schemaName:
-            let value = try container.decode(Organization.self)
-            self = .organization(value: value)
-        case Person.schemaName:
-            let value = try container.decode(Person.self)
-            self = .person(value: value)
-        default:
-            throw SchemaError.typeDecodingError
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        
-        switch self {
-        case .organization(let value):
-            try container.encode(value)
-        case .person(let value):
-            try container.encode(value)
-        }
-    }
-    
-    public var organization: Organization? {
-        switch self {
-        case .organization(let value):
-            return value
-        default:
-            return nil
-        }
-    }
-    
-    public var person: Person? {
-        switch self {
-        case .person(let value):
-            return value
-        default:
-            return nil
-        }
+    static func person(value: Person) -> Self {
+        .second(value)
     }
 }

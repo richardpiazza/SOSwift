@@ -1,11 +1,18 @@
 import CodablePlus
 
-/// A type which represents a choice between four (4) options; The _last_ always being of type `String`.
-public enum TripleTextConjunction<First: SchemaCodable, Second: SchemaCodable, Third: SchemaCodable>: Codable {
+/// A type which represents a choice between three (5) options; all of which are `SchemaCodable`.
+public enum QuadrupleSchemaConjunction<
+    First: SchemaCodable,
+    Second: SchemaCodable,
+    Third: SchemaCodable,
+    Fourth: SchemaCodable,
+    Fifth: SchemaCodable
+>: Codable {
     case first(First)
     case second(Second)
     case third(Third)
-    case last(String)
+    case fourth(Fourth)
+    case fifth(Fifth)
     
     public init(_ value: First) {
         self = .first(value)
@@ -19,24 +26,17 @@ public enum TripleTextConjunction<First: SchemaCodable, Second: SchemaCodable, T
         self = .third(value)
     }
     
-    public init(_ value: String) {
-        self = .last(value)
+    public init(_ value: Fourth) {
+        self = .fourth(value)
+    }
+    
+    public init(_ value: Fifth) {
+        self = .fifth(value)
     }
     
     public init(from decoder: Decoder) throws {
-        var dictionary: [String : Any]?
-        
-        do {
-            let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
-            dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
-        } catch {
-        }
-        
-        guard let jsonDictionary = dictionary else {
-            let value = try decoder.stringContents()
-            self = .last(value)
-            return
-        }
+        let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
+        let jsonDictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         
         guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
             throw SchemaError.typeDecodingError
@@ -54,6 +54,12 @@ public enum TripleTextConjunction<First: SchemaCodable, Second: SchemaCodable, T
         case Third.schemaName:
             let value = try container.decode(Third.self)
             self = .third(value)
+        case Fourth.schemaName:
+            let value = try container.decode(Fourth.self)
+            self = .fourth(value)
+        case Fifth.schemaName:
+            let value = try container.decode(Fifth.self)
+            self = .fifth(value)
         default:
             throw SchemaError.typeDecodingError
         }
@@ -69,7 +75,9 @@ public enum TripleTextConjunction<First: SchemaCodable, Second: SchemaCodable, T
             try container.encode(value)
         case .third(let value):
             try container.encode(value)
-        case .last(let value):
+        case .fourth(let value):
+            try container.encode(value)
+        case .fifth(let value):
             try container.encode(value)
         }
     }
@@ -98,8 +106,16 @@ public enum TripleTextConjunction<First: SchemaCodable, Second: SchemaCodable, T
         return value
     }
     
-    public var last: String? {
-        guard case .last(let value) = self else {
+    public var fourth: Fourth? {
+        guard case .fourth(let value) = self else {
+            return nil
+        }
+        
+        return value
+    }
+    
+    public var fifth: Fifth? {
+        guard case .fifth(let value) = self else {
             return nil
         }
         

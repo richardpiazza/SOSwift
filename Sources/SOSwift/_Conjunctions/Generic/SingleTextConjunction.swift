@@ -1,16 +1,15 @@
-import Foundation
 import CodablePlus
 
-/// A type which represents a choice between two (2) options: the `First` being `SchemaCodable` and the _last_ being `URL`.
-public enum SingleURLConjunction<First: SchemaCodable>: Codable {
+/// A type which represents a choice between two (2) options: the `First` being `SchemaCodable` and the _last_ being `String`.
+public enum SingleTextConjunction<First: SchemaCodable>: Codable {
     case first(First)
-    case last(URL)
+    case last(String)
     
     public init(_ value: First) {
         self = .first(value)
     }
     
-    public init(_ value: URL) {
+    public init(_ value: String) {
         self = .last(value)
     }
     
@@ -24,7 +23,7 @@ public enum SingleURLConjunction<First: SchemaCodable>: Codable {
         }
         
         guard let jsonDictionary = dictionary else {
-            let value = try decoder.urlContents()
+            let value = try decoder.stringContents()
             self = .last(value)
             return
         }
@@ -63,11 +62,17 @@ public enum SingleURLConjunction<First: SchemaCodable>: Codable {
         return value
     }
     
-    public var last: URL? {
+    public var last: String? {
         guard case .last(let value) = self else {
             return nil
         }
         
         return value
+    }
+    
+    public var text: String? { last }
+    
+    public static func text(value: String) -> Self {
+        .last(value)
     }
 }

@@ -1,57 +1,24 @@
-import Foundation
-import CodablePlus
+public typealias ContactPointOrPlace = SingleSchemaConjunction<ContactPoint, Place>
 
-public enum ContactPointOrPlace: Codable {
-    case contactPoint(value: ContactPoint)
-    case place(value: Place)
+public extension ContactPointOrPlace {
+    var contactPoint: ContactPoint? { first }
+    var place: Place? { second }
     
-    public init(from decoder: Decoder) throws {
-        let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
-        let dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
-        
-        guard let type = dictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaError.typeDecodingError
-        }
-        
-        let container = try decoder.singleValueContainer()
-        
-        switch type {
-        case ContactPoint.schemaName:
-            let value = try container.decode(ContactPoint.self)
-            self = .contactPoint(value: value)
-        case Place.schemaName:
-            let value = try container.decode(Place.self)
-            self = .place(value: value)
-        default:
-            throw SchemaError.typeDecodingError
-        }
+    @available(*, deprecated, renamed: "init(_:)")
+    init(value: ContactPoint) {
+        self = .first(value)
     }
     
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .contactPoint(let value):
-            try container.encode(value)
-        case .place(let value):
-            try container.encode(value)
-        }
+    @available(*, deprecated, renamed: "init(_:)")
+    init(value: Place) {
+        self = .second(value)
     }
     
-    public var contactPoint: ContactPoint? {
-        switch self {
-        case .contactPoint(let value):
-            return value
-        default:
-            return nil
-        }
+    static func contactPoint(value: ContactPoint) -> Self {
+        .first(value)
     }
     
-    public var place: Place? {
-        switch self {
-        case .place(let value):
-            return value
-        default:
-            return nil
-        }
+    static func place(value: Place) -> Self {
+        .second(value)
     }
 }

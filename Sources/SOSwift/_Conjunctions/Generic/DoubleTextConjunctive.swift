@@ -1,12 +1,17 @@
 import CodablePlus
 
-/// A type which represents a choice between two (2) options: the `First` being `SchemaCodable` and the _last_ being `String`.
-public enum SingleTextConjunction<First: SchemaCodable>: Codable {
+/// A type which represents a choice between three (3) options; The _last_ always being of type `String`.
+public enum DoubleTextConjunction<First: SchemaCodable, Second: SchemaCodable>: Codable {
     case first(First)
+    case second(Second)
     case last(String)
     
     public init(_ value: First) {
         self = .first(value)
+    }
+    
+    public init(_ value: Second) {
+        self = .second(value)
     }
     
     public init(_ value: String) {
@@ -38,6 +43,9 @@ public enum SingleTextConjunction<First: SchemaCodable>: Codable {
         case First.schemaName:
             let value = try container.decode(First.self)
             self = .first(value)
+        case Second.schemaName:
+            let value = try container.decode(Second.self)
+            self = .second(value)
         default:
             throw SchemaError.typeDecodingError
         }
@@ -48,6 +56,8 @@ public enum SingleTextConjunction<First: SchemaCodable>: Codable {
         
         switch self {
         case .first(let value):
+            try container.encode(value)
+        case .second(let value):
             try container.encode(value)
         case .last(let value):
             try container.encode(value)
@@ -62,11 +72,25 @@ public enum SingleTextConjunction<First: SchemaCodable>: Codable {
         return value
     }
     
+    public var second: Second? {
+        guard case .second(let value) = self else {
+            return nil
+        }
+        
+        return value
+    }
+    
     public var last: String? {
         guard case .last(let value) = self else {
             return nil
         }
         
         return value
+    }
+    
+    public var text: String? { last }
+    
+    public static func text(value: String) -> Self {
+        .last(value)
     }
 }

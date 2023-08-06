@@ -1,10 +1,11 @@
+import Foundation
 import CodablePlus
 
-/// A type which represents a choice between three (3) options; The _last_ always being of type `String`.
-public enum DoubleTextConjunction<First: SchemaCodable, Second: SchemaCodable>: Codable {
+/// A type which represents a choice between three (3) options; The _last_ always being of type `URL`.
+public enum DoubleURLConjunction<First: SchemaCodable, Second: SchemaCodable>: Codable {
     case first(First)
     case second(Second)
-    case last(String)
+    case last(URL)
     
     public init(_ value: First) {
         self = .first(value)
@@ -14,7 +15,7 @@ public enum DoubleTextConjunction<First: SchemaCodable, Second: SchemaCodable>: 
         self = .second(value)
     }
     
-    public init(_ value: String) {
+    public init(_ value: URL) {
         self = .last(value)
     }
     
@@ -28,7 +29,7 @@ public enum DoubleTextConjunction<First: SchemaCodable, Second: SchemaCodable>: 
         }
         
         guard let jsonDictionary = dictionary else {
-            let value = try decoder.stringContents()
+            let value = try decoder.urlContents()
             self = .last(value)
             return
         }
@@ -80,11 +81,17 @@ public enum DoubleTextConjunction<First: SchemaCodable, Second: SchemaCodable>: 
         return value
     }
     
-    public var last: String? {
+    public var last: URL? {
         guard case .last(let value) = self else {
             return nil
         }
         
         return value
+    }
+    
+    public var url: URL? { last }
+    
+    public static func url(value: URL) -> Self {
+        .last(value)
     }
 }

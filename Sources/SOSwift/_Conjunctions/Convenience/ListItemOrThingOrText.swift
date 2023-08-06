@@ -1,95 +1,14 @@
-import Foundation
-import CodablePlus
+public typealias ListItemOrThingOrText = DoubleTextConjunction<ListItem, Thing>
 
-public enum ListItemOrThingOrText: Codable {
-    case listItem(value: ListItem)
-    case thing(value: Thing)
-    case text(value: String)
+public extension ListItemOrThingOrText {
+    var listItem: ListItem? { first }
+    var thing: Thing? { second }
     
-    public init(_ value: ListItem) {
-        self = .listItem(value: value)
+    static func listItem(value: ListItem) -> Self {
+        .first(value)
     }
     
-    public init(_ value: Thing) {
-        self = .thing(value: value)
-    }
-    
-    public init(_ value: String) {
-        self = .text(value: value)
-    }
-    
-    public init(from decoder: Decoder) throws {
-        var dictionary: [String : Any]?
-        
-        do {
-            let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
-            dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
-        } catch {
-            
-        }
-        
-        guard let jsonDictionary = dictionary else {
-            let container = try decoder.singleValueContainer()
-            let value = try container.decode(String.self)
-            self = .text(value: value)
-            return
-        }
-        
-        guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
-            throw SchemaError.typeDecodingError
-        }
-        
-        let container = try decoder.singleValueContainer()
-        
-        switch type {
-        case ListItem.schemaName:
-            let value = try container.decode(ListItem.self)
-            self = .listItem(value: value)
-        case Thing.schemaName:
-            let value = try container.decode(Thing.self)
-            self = .thing(value: value)
-        default:
-            throw SchemaError.typeDecodingError
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        
-        switch self {
-        case .listItem(let value):
-            try container.encode(value)
-        case .thing(let value):
-            try container.encode(value)
-        case .text(let value):
-            try container.encode(value)
-        }
-    }
-    
-    public var listItem: ListItem? {
-        switch self {
-        case .listItem(let value):
-            return value
-        default:
-            return nil
-        }
-    }
-    
-    public var thing: Thing? {
-        switch self {
-        case .thing(let value):
-            return value
-        default:
-            return nil
-        }
-    }
-    
-    public var text: String? {
-        switch self {
-        case .text(let value):
-            return value
-        default:
-            return nil
-        }
+    static func thing(value: Thing) -> Self {
+        .second(value)
     }
 }

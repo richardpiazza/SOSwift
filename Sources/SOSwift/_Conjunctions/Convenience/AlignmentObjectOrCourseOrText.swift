@@ -3,5 +3,4 @@ public typealias AlignmentObjectOrCourseOrText = DoubleTextConjunction<Alignment
 public extension AlignmentObjectOrCourseOrText {
     var alignmentObject: AlignmentObject? { first }
     var course: Course? { second }
-    var text: String? { last }
 }
