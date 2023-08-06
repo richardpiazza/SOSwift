@@ -1,18 +1,18 @@
-import Foundation
 import CodablePlus
 
-public enum LoanOrCreditOrPaymentMethod: Codable {
-    case loanOrCredit(value: LoanOrCredit)
-    case paymentMethod(value: PaymentMethod)
-    
-    public init(_ value: LoanOrCredit) {
-        self = .loanOrCredit(value: value)
+/// A type which represents a choice between two (2) options: the _first_ being `SchemaCodable` and the _last_ being `Codable`.
+public enum SingleSchemaCodableConjunction<First: SchemaCodable, Second: Codable & Equatable>: Codable {
+    case first(First)
+    case second(Second)
+
+    public init(_ value: First) {
+        self = .first(value)
     }
-    
-    public init(_ value: PaymentMethod) {
-        self = .paymentMethod(value: value)
+
+    public init(_ value: Second) {
+        self = .second(value)
     }
-    
+
     public init(from decoder: Decoder) throws {
         var dictionary: [String : Any]?
         
@@ -20,13 +20,12 @@ public enum LoanOrCreditOrPaymentMethod: Codable {
             let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
             dictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
         } catch {
-            
         }
         
         guard let jsonDictionary = dictionary else {
             let container = try decoder.singleValueContainer()
-            let value = try container.decode(PaymentMethod.self)
-            self = .paymentMethod(value: value)
+            let value = try container.decode(Second.self)
+            self = .second(value)
             return
         }
         
@@ -37,40 +36,38 @@ public enum LoanOrCreditOrPaymentMethod: Codable {
         let container = try decoder.singleValueContainer()
         
         switch type {
-        case LoanOrCredit.schemaName:
-            let value = try container.decode(LoanOrCredit.self)
-            self = .loanOrCredit(value: value)
+        case First.schemaName:
+            let value = try container.decode(First.self)
+            self = .first(value)
         default:
             throw SchemaError.typeDecodingError
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         
         switch self {
-        case .loanOrCredit(let value):
+        case .first(let value):
             try container.encode(value)
-        case .paymentMethod(let value):
+        case .second(let value):
             try container.encode(value)
         }
     }
-    
-    public var loanOrCredit: LoanOrCredit? {
-        switch self {
-        case .loanOrCredit(let value):
-            return value
-        default:
+
+    public var first: First? {
+        guard case .first(let value) = self else {
             return nil
         }
+        
+        return value
     }
-    
-    public var paymentMethod: PaymentMethod? {
-        switch self {
-        case .paymentMethod(let value):
-            return value
-        default:
+
+    public var second: Second? {
+        guard case .second(let value) = self else {
             return nil
         }
+        
+        return value
     }
 }

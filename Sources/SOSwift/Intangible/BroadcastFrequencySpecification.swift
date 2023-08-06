@@ -2,7 +2,7 @@
 public class BroadcastFrequencySpecification: Intangible {
     
     /// The frequency in MHz for a particular broadcast.
-    public var broadcastFrequencyValue: NumberOrQuantitativeValue?
+    public var broadcastFrequencyValue: QuantitativeValueOrNumber?
     
     /// The modulation (e.g. FM, AM, etc) used by a particular broadcast service.
     public var broadcastSignalModulation: QualitativeValueOrText?
@@ -21,7 +21,7 @@ public class BroadcastFrequencySpecification: Intangible {
     }
     
     public convenience init(
-        broadcastFrequencyValue: NumberOrQuantitativeValue? = nil,
+        broadcastFrequencyValue: QuantitativeValueOrNumber? = nil,
         broadcastSignalModulation: QualitativeValueOrText? = nil,
         broadcastSubChannel: String? = nil
     ) {
@@ -36,7 +36,7 @@ public class BroadcastFrequencySpecification: Intangible {
         
         let container = try decoder.container(keyedBy: BroadcastFrequencySpecificationCodingKeys.self)
         
-        broadcastFrequencyValue = try container.decodeIfPresent(NumberOrQuantitativeValue.self, forKey: .broadcastFrequencyValue)
+        broadcastFrequencyValue = try container.decodeIfPresent(QuantitativeValueOrNumber.self, forKey: .broadcastFrequencyValue)
         broadcastSignalModulation = try container.decodeIfPresent(QualitativeValueOrText.self, forKey: .broadcastSignalModulation)
         broadcastSubChannel = try container.decodeIfPresent(String.self, forKey: .broadcastSubChannel)
     }

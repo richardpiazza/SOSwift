@@ -9,7 +9,7 @@ public class FinancialProduct: Service {
     /// that represents the actual yearly cost of funds over the term of a loan.
     ///
     /// This includes any fees or additional costs associated with the transaction.
-    public var annualPercentageRate: NumberOrQuantitativeValue?
+    public var annualPercentageRate: QuantitativeValueOrNumber?
     
     /// Description of fees, commissions, and other terms applied either to a class of financial product, or by a
     /// financial service organization.
@@ -18,7 +18,7 @@ public class FinancialProduct: Service {
     /// The interest rate, charged or paid, applicable to the financial product.
     ///
     /// - note: This is different from the calculated annualPercentageRate.
-    public var interestRate: NumberOrQuantitativeValue?
+    public var interestRate: QuantitativeValueOrNumber?
     
     internal enum FinancialProductCodingKeys: String, CodingKey {
         case annualPercentageRate
@@ -31,9 +31,9 @@ public class FinancialProduct: Service {
         
         let container = try decoder.container(keyedBy: FinancialProductCodingKeys.self)
         
-        annualPercentageRate = try container.decodeIfPresent(NumberOrQuantitativeValue.self, forKey: .annualPercentageRate)
+        annualPercentageRate = try container.decodeIfPresent(QuantitativeValueOrNumber.self, forKey: .annualPercentageRate)
         feesAndCommissionsSpecification = try container.decodeIfPresent(URLOrText.self, forKey: .feesAndCommissionsSpecification)
-        interestRate = try container.decodeIfPresent(NumberOrQuantitativeValue.self, forKey: .interestRate)
+        interestRate = try container.decodeIfPresent(QuantitativeValueOrNumber.self, forKey: .interestRate)
     }
     
     public override func encode(to encoder: Encoder) throws {

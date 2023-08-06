@@ -4,11 +4,11 @@ import XCTest
 class GenderTests: XCTestCase {
     
     func testCaseIterable() throws {
-        XCTAssertEqual(Gender.allCases.count, 2)
+        XCTAssertEqual(GenderType.allCases.count, 2)
     }
     
     func testDisplayValue() throws {
-        XCTAssertEqual(Gender.female.displayValue, "Female")
-        XCTAssertEqual(Gender.male.displayValue, "Male")
+        XCTAssertEqual(GenderType.female.displayValue, "Female")
+        XCTAssertEqual(GenderType.male.displayValue, "Male")
     }
 }
