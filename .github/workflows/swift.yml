@@ -11,13 +11,13 @@ jobs:
   SwiftActions:
     strategy:
       matrix:
-        os: [macos-12, ubuntu-latest]
+        os: [macos-15, ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
 
     steps:
     - name: Checkout Source
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Swift Build
       uses: SwiftActions/SwiftBuild@main
