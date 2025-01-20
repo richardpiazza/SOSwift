@@ -11,19 +11,18 @@ public enum PaymentMethod: String, CaseIterable, Codable {
     case googleCheckout = "GoogleCheckout"
     case payPal = "PayPal"
     case paySwarm = "PaySwarm"
-    
+
     public var displayValue: String {
         switch self {
-        case .byBankTransferInAdvance: return "By Bank Transfer (In Advance)"
-        case .byInvoice: return "By Invoice"
-        case .cash: return "Cash"
-        case .checkInAdvance: return "Check (In Advance)"
-        case .cod: return "Cash/Check On Delivery"
-        case .directDebit: return "Direct Debit"
-        case .googleCheckout: return "Google Checkout"
-        case .payPal: return "PayPal"
-        case .paySwarm: return "PaySwarm"
+        case .byBankTransferInAdvance: "By Bank Transfer (In Advance)"
+        case .byInvoice: "By Invoice"
+        case .cash: "Cash"
+        case .checkInAdvance: "Check (In Advance)"
+        case .cod: "Cash/Check On Delivery"
+        case .directDebit: "Direct Debit"
+        case .googleCheckout: "Google Checkout"
+        case .payPal: "PayPal"
+        case .paySwarm: "PaySwarm"
         }
     }
 }
-

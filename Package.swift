@@ -1,14 +1,16 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.9
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "SOSwift",
     platforms: [
-        .macOS(.v10_12),
-        .iOS(.v10),
-        .tvOS(.v10),
-        .watchOS(.v3),
+        .macOS(.v12),
+        .macCatalyst(.v15),
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v8),
     ],
     products: [
         .library(
@@ -16,9 +18,7 @@ let package = Package(
             targets: ["SOSwift"]),
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/richardpiazza/CodablePlus",
-            .upToNextMinor(from: "0.4.0"))
+        .package(url: "https://github.com/richardpiazza/CodablePlus", from: "1.0.0"),
     ],
     targets: [
         .target(

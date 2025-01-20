@@ -15,22 +15,20 @@ public enum SingleCodableTextConjunction<First: Codable & Equatable>: Codable, E
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        
+
         do {
             let value = try container.decode(First.self)
             self = .first(value)
             return
-        } catch {
-            
-        }
-        
+        } catch {}
+
         let value = try container.decode(String.self)
         self = .last(value)
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        
+
         switch self {
         case .first(let value):
             try container.encode(value)
@@ -43,7 +41,7 @@ public enum SingleCodableTextConjunction<First: Codable & Equatable>: Codable, E
         guard case .first(let value) = self else {
             return nil
         }
-        
+
         return value
     }
 
@@ -51,7 +49,7 @@ public enum SingleCodableTextConjunction<First: Codable & Equatable>: Codable, E
         guard case .last(let value) = self else {
             return nil
         }
-        
+
         return value
     }
 

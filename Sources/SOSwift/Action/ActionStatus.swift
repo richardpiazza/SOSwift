@@ -6,13 +6,13 @@ public enum ActionStatus: String, CaseIterable, Codable {
     case completed = "CompletedActionStatus"
     case failed = "FailedActionStatus"
     case potential = "PotentialActionStatus"
-    
+
     public var displayValue: String {
         switch self {
-        case .active: return "Active"
-        case .completed: return "Completed"
-        case .failed: return "Failed"
-        case .potential: return "Potential"
+        case .active: "Active"
+        case .completed: "Completed"
+        case .failed: "Failed"
+        case .potential: "Potential"
         }
     }
 }

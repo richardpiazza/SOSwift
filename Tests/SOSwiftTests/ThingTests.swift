@@ -1,8 +1,8 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class ThingTests: XCTestCase {
-    
+
     public static let _additionalType = URL(string: "http://schema.org/MedicalEntity")
     public static let _alternativeName = "Pencil Pusher"
     public static let _description = "A cog in the machine."
@@ -14,7 +14,7 @@ class ThingTests: XCTestCase {
     public static let _potentialAction = "Go Go Gadget Arm"
     public static let _sameAs = URL(string: "https://www.facebook.com/bobshospital")
     public static let _url = URL(string: "http://www.bobshospital.com")
-    
+
     public static var thing: Thing {
         let thing = Thing()
         thing.additionalType = _additionalType
@@ -29,11 +29,11 @@ class ThingTests: XCTestCase {
         thing.url = _url
         return thing
     }
-    
+
     func testSchema() throws {
         XCTAssertEqual(Thing.schemaName, "Thing")
     }
-    
+
     func testDecode() throws {
         let json = """
         {
@@ -59,7 +59,7 @@ class ThingTests: XCTestCase {
             "url" : "http://www.bobshospital.com"
         }
         """
-        
+
         let thing = try Thing.make(with: json)
 
         XCTAssertEqual(thing.additionalType, ThingTests._additionalType)
@@ -73,40 +73,40 @@ class ThingTests: XCTestCase {
         XCTAssertEqual(thing.potentialAction?.name, ThingTests._potentialAction)
         XCTAssertEqual(thing.sameAs, [ThingTests._sameAs!])
         XCTAssertEqual(thing.url, ThingTests._url)
-        
+
         let json_idOnly = """
         {
             "@id": "\(ThingTests._identifier)"
         }
         """
-        
+
         let thing_idOnly = try Thing.make(with: json_idOnly)
-        
+
         XCTAssertEqual(thing_idOnly.identifier?.text, ThingTests._identifier)
     }
-    
+
     func testEncode() throws {
         let dictionary = try ThingTests.thing.asDictionary()
-        
+
         let id = dictionary[SchemaKeys.id.rawValue] as? String
         let type = dictionary[SchemaKeys.type.rawValue] as? String
         let context = dictionary[SchemaKeys.context.rawValue] as? String
-        
+
         let additionalType = dictionary[Thing.ThingCodingKeys.additionalType] as? String
         let alternativeName = dictionary[Thing.ThingCodingKeys.alternativeName] as? String
         let description = dictionary[Thing.ThingCodingKeys.description] as? String
         let disambiguatingDescription = dictionary[Thing.ThingCodingKeys.disambiguatingDescription] as? String
         let identifier = dictionary[Thing.ThingCodingKeys.identifier] as? String
-        let mainEntityOfPage = dictionary[Thing.ThingCodingKeys.mainEntityOfPage] as? [String : Any]
+        let mainEntityOfPage = dictionary[Thing.ThingCodingKeys.mainEntityOfPage] as? [String: Any]
         let name = dictionary[Thing.ThingCodingKeys.name] as? String
-        let potentialAction = dictionary[Thing.ThingCodingKeys.potentialAction] as? [String : Any]
+        let potentialAction = dictionary[Thing.ThingCodingKeys.potentialAction] as? [String: Any]
         let sameAs = dictionary[Thing.ThingCodingKeys.sameAs] as? [String]
         let url = dictionary[Thing.ThingCodingKeys.url] as? String
-        
+
         XCTAssertEqual(id, ThingTests._identifier)
         XCTAssertEqual(type, Thing.schemaName)
         XCTAssertEqual(context, Thing.schemaContext)
-        
+
         XCTAssertEqual(additionalType, ThingTests._additionalType?.absoluteString)
         XCTAssertEqual(alternativeName, ThingTests._alternativeName)
         XCTAssertEqual(description, ThingTests._description)
@@ -119,5 +119,3 @@ class ThingTests: XCTestCase {
         XCTAssertEqual(url, ThingTests._url?.absoluteString)
     }
 }
-
-

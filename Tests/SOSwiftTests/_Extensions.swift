@@ -3,18 +3,18 @@ import Foundation
 
 extension Calendar {
     static var gregorian: Calendar {
-        return Calendar(identifier: .gregorian)
+        Calendar(identifier: .gregorian)
     }
 }
 
 extension TimeZone {
     static var gmt: TimeZone {
-        return TimeZone(secondsFromGMT: 0)!
+        TimeZone(secondsFromGMT: 0)!
     }
 }
 
-extension Dictionary where Key == String, Value == Any {
+extension [String: Any] {
     subscript(codingKey: CodingKey) -> Value? {
-        return self[codingKey.stringValue]
+        self[codingKey.stringValue]
     }
 }

@@ -1,7 +1,3 @@
 import Foundation
 
-public class Language: Intangible {
-    
-    
-    
-}
+public class Language: Intangible {}

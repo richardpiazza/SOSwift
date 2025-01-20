@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class DayOfWeekTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(DayOfWeek.allCases.count, 8)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(DayOfWeek.friday.displayValue, "Friday")
         XCTAssertEqual(DayOfWeek.monday.displayValue, "Monday")
@@ -17,5 +17,4 @@ class DayOfWeekTests: XCTestCase {
         XCTAssertEqual(DayOfWeek.tuesday.displayValue, "Tuesday")
         XCTAssertEqual(DayOfWeek.wednesday.displayValue, "Wednesday")
     }
-    
 }

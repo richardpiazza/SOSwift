@@ -9,16 +9,16 @@ public enum MusicReleaseFormat: String, CaseIterable, Codable {
     case digital = "DigitalFormat"
     case laserDisc = "LaserDiscFormat"
     case vinyl = "VinylFormat"
-    
+
     public var displayValue: String {
         switch self {
-        case .cd: return "CD"
-        case .cassette: return "Cassette"
-        case .dvd: return "DVD"
-        case .digitalAudioTape: return "Digital Tape"
-        case .digital: return "Digital"
-        case .laserDisc: return "Laser Disc"
-        case .vinyl: return "Vinyl"
+        case .cd: "CD"
+        case .cassette: "Cassette"
+        case .dvd: "DVD"
+        case .digitalAudioTape: "Digital Tape"
+        case .digital: "Digital"
+        case .laserDisc: "Laser Disc"
+        case .vinyl: "Vinyl"
         }
     }
 }

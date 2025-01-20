@@ -7,11 +7,11 @@ import Foundation
 public enum GenderType: String, CaseIterable, Codable {
     case female = "Female"
     case male = "Male"
-    
+
     public var displayValue: String {
         switch self {
-        case .female: return "Female"
-        case .male: return "Male"
+        case .female: "Female"
+        case .male: "Male"
         }
     }
 }

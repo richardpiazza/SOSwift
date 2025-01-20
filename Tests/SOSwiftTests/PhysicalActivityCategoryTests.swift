@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class PhysicalActivityCategoryTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(PhysicalActivityCategory.allCases.count, 7)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(PhysicalActivityCategory.aerobic.displayValue, "Aerobic Activity")
         XCTAssertEqual(PhysicalActivityCategory.anaerobic.displayValue, "Anaerobic Activity")
@@ -16,5 +16,4 @@ class PhysicalActivityCategoryTests: XCTestCase {
         XCTAssertEqual(PhysicalActivityCategory.occupational.displayValue, "Occupational")
         XCTAssertEqual(PhysicalActivityCategory.strengthTraining.displayValue, "Strength Training")
     }
-    
 }

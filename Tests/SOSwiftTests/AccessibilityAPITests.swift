@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class AccessibilityAPITests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(AccessibilityAPI.allCases.count, 11)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(AccessibilityAPI.androidAccessibility.displayValue, "Android Accessibility")
         XCTAssertEqual(AccessibilityAPI.aria.displayValue, "Accessible Rich Internet Applications")
@@ -20,5 +20,4 @@ class AccessibilityAPITests: XCTestCase {
         XCTAssertEqual(AccessibilityAPI.msaa.displayValue, "Microsoft Active Accessibility")
         XCTAssertEqual(AccessibilityAPI.uiAutomation.displayValue, "UI Automation")
     }
-    
 }

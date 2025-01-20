@@ -14,17 +14,17 @@ public enum DeliveryMethod: String, CaseIterable, Codable {
     case dhl = "DHL"
     case federalExpress = "FederalExpress"
     case ups = "UPS"
-    
+
     public var displayValue: String {
         switch self {
-        case .directDownload: return "Direct Download"
-        case .frieght: return "Frieght"
-        case .mail: return "Postal"
-        case .ownFleet: return "Own Fleet"
-        case .pickUp: return "Pick Up"
-        case .dhl: return "DHL"
-        case .federalExpress: return "FedEX"
-        case .ups: return "UPS"
+        case .directDownload: "Direct Download"
+        case .frieght: "Frieght"
+        case .mail: "Postal"
+        case .ownFleet: "Own Fleet"
+        case .pickUp: "Pick Up"
+        case .dhl: "DHL"
+        case .federalExpress: "FedEX"
+        case .ups: "UPS"
         }
     }
 }

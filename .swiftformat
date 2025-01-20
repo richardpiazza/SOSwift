@@ -1,0 +1,16 @@
+# Compiler
+--languagemode 5
+--swiftversion 5.9
+
+# Options
+--exclude build
+--exclude derivedData
+--ifdef no-indent
+--indent 4
+
+# Rules
+--disable blankLinesAtStartOfScope
+--disable hoistPatternLet
+--disable redundantType
+--disable unusedArguments
+--disable wrapArguments

@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class BusinessFunctionTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(BusinessFunction.allCases.count, 8)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(BusinessFunction.constructionInstallation.displayValue, "Construction Installation")
         XCTAssertEqual(BusinessFunction.dispose.displayValue, "Dispose")
@@ -17,5 +17,4 @@ class BusinessFunctionTests: XCTestCase {
         XCTAssertEqual(BusinessFunction.sell.displayValue, "Sell")
         XCTAssertEqual(BusinessFunction.buy.displayValue, "Buy")
     }
-    
 }

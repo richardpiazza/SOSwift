@@ -3,20 +3,20 @@ import Foundation
 public enum DateOnlyOrDateTime: Codable, Equatable {
     case dateOnly(value: DateOnly)
     case dateTime(value: DateTime)
-    
+
     public init(_ value: DateOnly) {
         self = .dateOnly(value: value)
     }
-    
+
     public init(_ value: DateTime) {
         self = .dateTime(value: value)
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        
+
         let value = try container.decode(String.self)
-        
+
         if value.count > 10 || value.contains("T") || value.contains(":") {
             let dateTime = try container.decode(DateTime.self)
             self = .dateTime(value: dateTime)
@@ -25,10 +25,10 @@ public enum DateOnlyOrDateTime: Codable, Equatable {
             self = .dateOnly(value: dateOnly)
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        
+
         switch self {
         case .dateOnly(let value):
             try container.encode(value)
@@ -36,22 +36,22 @@ public enum DateOnlyOrDateTime: Codable, Equatable {
             try container.encode(value)
         }
     }
-    
+
     public var dateOnly: DateOnly? {
         switch self {
         case .dateOnly(let value):
-            return value
+            value
         default:
-            return nil
+            nil
         }
     }
-    
+
     public var dateTime: DateTime? {
         switch self {
         case .dateTime(let value):
-            return value
+            value
         default:
-            return nil
+            nil
         }
     }
 }

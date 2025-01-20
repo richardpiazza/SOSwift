@@ -1,8 +1,4 @@
 import Foundation
 
 /// A photograph.
-public class Photograph: CreativeWork {
-    
-    
-    
-}
+public class Photograph: CreativeWork {}

@@ -7,13 +7,13 @@ public enum BusinessEntityType: String, CaseIterable, Codable {
     case endUser = "Enduser"
     case publicInstitution = "PublicInstitution"
     case reseller = "Reseller"
-    
+
     public var displayValue: String {
         switch self {
-        case .business: return "Business"
-        case .endUser: return "End User"
-        case .publicInstitution: return "Public Institution"
-        case .reseller: return "Reseller"
+        case .business: "Business"
+        case .endUser: "End User"
+        case .publicInstitution: "Public Institution"
+        case .reseller: "Reseller"
         }
     }
 }
