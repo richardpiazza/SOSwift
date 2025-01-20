@@ -81,89 +81,89 @@ public enum SchemaType: String, CaseIterable {
     case videoObject = "VideoObject"
     case warrantyPromise = "WarrantyPromise"
     case website = "Website"
-    
+
     public var type: SchemaCodable.Type {
         switch self {
-        case .action: return Action.self
-        case .administrativeArea: return AdministrativeArea.self
-        case .alignmentObject: return AlignmentObject.self
-        case .answer: return Answer.self
-        case .article: return Article.self
-        case .audience: return Audience.self
-        case .audioObject: return AudioObject.self
-        case .brand: return Brand.self
-        case .broadcastService: return BroadcastService.self
-        case .comment: return Comment.self
-        case .contactPoint: return ContactPoint.self
-        case .country: return Country.self
-        case .course: return Course.self
-        case .courseInstance: return CourseInstance.self
-        case .creativeWork: return CreativeWork.self
-        case .dataCatalog: return DataCatalog.self
-        case .dataDownload: return DataDownload.self
-        case .dataFeed: return DataFeed.self
-        case .dataFeedItem: return DataFeedItem.self
-        case .dataset: return Dataset.self
-        case .demand: return Demand.self
-        case .distance: return Distance.self
-        case .educationalOrganization: return EducationalOrganization.self
-        case .entryPoint: return EntryPoint.self
-        case .enumeration: return Enumeration.self
-        case .event: return Event.self
-        case .financialProduct: return FinancialProduct.self
-        case .geoCoordinates: return GeoCoordinates.self
-        case .geoShape: return GeoShape.self
-        case .imageObject: return ImageObject.self
-        case .intangible: return Intangible.self
-        case .interactionCounter: return InteractionCounter.self
-        case .itemList: return ItemList.self
-        case .language: return Language.self
-        case .listItem: return ListItem.self
-        case .loanOrCredit: return LoanOrCredit.self
-        case .locationFeatureSpecification: return LocationFeatureSpecification.self
-        case .map: return Map.self
-        case .mediaObject: return MediaObject.self
-        case .monetaryAmount: return MonetaryAmount.self
-        case .musicAlbum: return MusicAlbum.self
-        case .musicComposition: return MusicComposition.self
-        case .musicGroup: return MusicGroup.self
-        case .musicPlaylist: return MusicPlaylist.self
-        case .musicRecording: return MusicRecording.self
-        case .musicRelease: return MusicRelease.self
-        case .newsArticle: return NewsArticle.self
-        case .occupation: return Occupation.self
-        case .offer: return Offer.self
-        case .offerCatalog: return OfferCatalog.self
-        case .openingHoursSpecification: return OpeningHoursSpecification.self
-        case .organization: return Organization.self
-        case .ownershipInfo: return OwnershipInfo.self
-        case .performingGroup: return PerformingGroup.self
-        case .person: return Person.self
-        case .photograph: return Photograph.self
-        case .place: return Place.self
-        case .postalAddress: return PostalAddress.self
-        case .priceSpecification: return PriceSpecification.self
-        case .product: return Product.self
-        case .productModel: return ProductModel.self
-        case .programMembership: return ProgramMembership.self
-        case .propertyValue: return PropertyValue.self
-        case .publicationEvent: return PublicationEvent.self
-        case .qualitativeValue: return QualitativeValue.self
-        case .quantitativeValue: return QuantitativeValue.self
-        case .quantity: return Quantity.self
-        case .question: return Question.self
-        case .rating: return Rating.self
-        case .repaymentSpecification: return RepaymentSpecification.self
-        case .review: return Review.self
-        case .service: return Service.self
-        case .serviceChannel: return ServiceChannel.self
-        case .softwareApplication: return SoftwareApplication.self
-        case .structuredValue: return StructuredValue.self
-        case .thing: return Thing.self
-        case .typeAndQuantityNode: return TypeAndQuantityNode.self
-        case .videoObject: return VideoObject.self
-        case .warrantyPromise: return WarrantyPromise.self
-        case .website: return Website.self
+        case .action: Action.self
+        case .administrativeArea: AdministrativeArea.self
+        case .alignmentObject: AlignmentObject.self
+        case .answer: Answer.self
+        case .article: Article.self
+        case .audience: Audience.self
+        case .audioObject: AudioObject.self
+        case .brand: Brand.self
+        case .broadcastService: BroadcastService.self
+        case .comment: Comment.self
+        case .contactPoint: ContactPoint.self
+        case .country: Country.self
+        case .course: Course.self
+        case .courseInstance: CourseInstance.self
+        case .creativeWork: CreativeWork.self
+        case .dataCatalog: DataCatalog.self
+        case .dataDownload: DataDownload.self
+        case .dataFeed: DataFeed.self
+        case .dataFeedItem: DataFeedItem.self
+        case .dataset: Dataset.self
+        case .demand: Demand.self
+        case .distance: Distance.self
+        case .educationalOrganization: EducationalOrganization.self
+        case .entryPoint: EntryPoint.self
+        case .enumeration: Enumeration.self
+        case .event: Event.self
+        case .financialProduct: FinancialProduct.self
+        case .geoCoordinates: GeoCoordinates.self
+        case .geoShape: GeoShape.self
+        case .imageObject: ImageObject.self
+        case .intangible: Intangible.self
+        case .interactionCounter: InteractionCounter.self
+        case .itemList: ItemList.self
+        case .language: Language.self
+        case .listItem: ListItem.self
+        case .loanOrCredit: LoanOrCredit.self
+        case .locationFeatureSpecification: LocationFeatureSpecification.self
+        case .map: Map.self
+        case .mediaObject: MediaObject.self
+        case .monetaryAmount: MonetaryAmount.self
+        case .musicAlbum: MusicAlbum.self
+        case .musicComposition: MusicComposition.self
+        case .musicGroup: MusicGroup.self
+        case .musicPlaylist: MusicPlaylist.self
+        case .musicRecording: MusicRecording.self
+        case .musicRelease: MusicRelease.self
+        case .newsArticle: NewsArticle.self
+        case .occupation: Occupation.self
+        case .offer: Offer.self
+        case .offerCatalog: OfferCatalog.self
+        case .openingHoursSpecification: OpeningHoursSpecification.self
+        case .organization: Organization.self
+        case .ownershipInfo: OwnershipInfo.self
+        case .performingGroup: PerformingGroup.self
+        case .person: Person.self
+        case .photograph: Photograph.self
+        case .place: Place.self
+        case .postalAddress: PostalAddress.self
+        case .priceSpecification: PriceSpecification.self
+        case .product: Product.self
+        case .productModel: ProductModel.self
+        case .programMembership: ProgramMembership.self
+        case .propertyValue: PropertyValue.self
+        case .publicationEvent: PublicationEvent.self
+        case .qualitativeValue: QualitativeValue.self
+        case .quantitativeValue: QuantitativeValue.self
+        case .quantity: Quantity.self
+        case .question: Question.self
+        case .rating: Rating.self
+        case .repaymentSpecification: RepaymentSpecification.self
+        case .review: Review.self
+        case .service: Service.self
+        case .serviceChannel: ServiceChannel.self
+        case .softwareApplication: SoftwareApplication.self
+        case .structuredValue: StructuredValue.self
+        case .thing: Thing.self
+        case .typeAndQuantityNode: TypeAndQuantityNode.self
+        case .videoObject: VideoObject.self
+        case .warrantyPromise: WarrantyPromise.self
+        case .website: Website.self
         }
     }
 }

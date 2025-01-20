@@ -1,8 +1,8 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class EventTests: XCTestCase {
-    
+
     public static var event: Event {
         let event = Event()
         event.about = ThingTests.thing
@@ -38,11 +38,11 @@ class EventTests: XCTestCase {
         event.workPerformed = nil
         return event
     }
-    
+
     func testSchema() throws {
         XCTAssertEqual(Event.schemaName, "Event")
     }
-    
+
     func testDecode() throws {
         let json = """
         {
@@ -56,18 +56,18 @@ class EventTests: XCTestCase {
                     "name": ""
                 }
             ],
-            
+
         }
         """
-        
+
         let _ = try Event.make(with: json)
     }
-    
+
     func testEncode() throws {
         let dictionary = try EventTests.event.asDictionary()
-        
+
         let doorTime = dictionary[Event.EventCodingKeys.doorTime.rawValue] as? String
-        
+
         XCTAssertEqual(doorTime, DateTimeTests.dateTime2String)
     }
 }

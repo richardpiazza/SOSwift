@@ -4,24 +4,24 @@ import Foundation
 /// of this type are used for markup. It is recommended to use `MonetaryAmount` to
 /// describe independent amounts of money such as a salary, credit card limits, etc.
 public class PriceSpecification: StructuredValue {
-    
+
     /// The interval and unit of measurement of ordering quantities for which the offer
     /// or price specification is valid. This allows e.g. specifying that a certain freight
     /// charge is valid only for a certain quantity.
     public var eligibleQuantity: QuantitativeValue?
-    
+
     /// The transaction volume, in a monetary unit, for which the offer or price
     /// specification is valid, e.g. for indicating a minimal purchasing volume, to
     /// express free shipping above a certain order volume, or to limit the acceptance
     /// of credit cards to purchases to a certain minimal amount.
     public var eligibleTransactionVolume: PriceSpecification?
-    
+
     /// The highest price if the price is a range.
     public var maxPrice: Number?
-    
+
     /// The lowest price if the price is a range.
     public var minPrice: Number?
-    
+
     /// The offer price of a product, or of a price component when attached to
     /// PriceSpecification and its subtypes.
     /// Usage guidelines:
@@ -34,23 +34,23 @@ public class PriceSpecification: StructuredValue {
     /// - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039))
     ///     rather than superficially similiar Unicode symbols.
     public var price: NumberOrText?
-    
+
     /// The currency (in 3-letter ISO 4217 format) of the price or a price component,
     /// when attached to PriceSpecification and its subtypes.
     public var priceCurrency: String?
-    
+
     /// The date when the item becomes valid.
     public var validFrom: DateTime?
-    
+
     /// The date after when the item is not valid. For example the end of an offer, salary
     /// period, or a period of opening hours.
     public var validThrough: DateTime?
-    
+
     /// Specifies whether the applicable value-added tax (VAT) is included in the price
     /// specification or not.
     public var valueAddedTaxIncluded: Bool?
-    
-    internal enum PriceSpecificationCodingKeys: String, CodingKey {
+
+    enum PriceSpecificationCodingKeys: String, CodingKey {
         case eligibleQuantity
         case eligibleTransactionVolume
         case maxPrice
@@ -61,16 +61,16 @@ public class PriceSpecification: StructuredValue {
         case validThrough
         case valueAddedTaxIncluded
     }
-    
-    public override init() {
+
+    override public init() {
         super.init()
     }
-    
+
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
-        
+
         let container = try decoder.container(keyedBy: PriceSpecificationCodingKeys.self)
-        
+
         eligibleQuantity = try container.decodeIfPresent(QuantitativeValue.self, forKey: .eligibleQuantity)
         eligibleTransactionVolume = try container.decodeIfPresent(PriceSpecification.self, forKey: .eligibleTransactionVolume)
         maxPrice = try container.decodeIfPresent(Number.self, forKey: .maxPrice)
@@ -81,10 +81,10 @@ public class PriceSpecification: StructuredValue {
         validThrough = try container.decodeIfPresent(DateTime.self, forKey: .validThrough)
         valueAddedTaxIncluded = try container.decodeIfPresent(Bool.self, forKey: .valueAddedTaxIncluded)
     }
-    
-    public override func encode(to encoder: Encoder) throws {
+
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: PriceSpecificationCodingKeys.self)
-        
+
         try container.encodeIfPresent(eligibleQuantity, forKey: .eligibleQuantity)
         try container.encodeIfPresent(eligibleTransactionVolume, forKey: .eligibleTransactionVolume)
         try container.encodeIfPresent(maxPrice, forKey: .maxPrice)
@@ -94,7 +94,7 @@ public class PriceSpecification: StructuredValue {
         try container.encodeIfPresent(validFrom, forKey: .validFrom)
         try container.encodeIfPresent(validThrough, forKey: .validThrough)
         try container.encodeIfPresent(valueAddedTaxIncluded, forKey: .valueAddedTaxIncluded)
-        
+
         try super.encode(to: encoder)
     }
 }

@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class MusicAlbumProductionTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(MusicAlbumProduction.allCases.count, 9)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(MusicAlbumProduction.compilation.displayValue, "Compilation")
         XCTAssertEqual(MusicAlbumProduction.djMix.displayValue, "DJ Mix")
@@ -18,5 +18,4 @@ class MusicAlbumProductionTests: XCTestCase {
         XCTAssertEqual(MusicAlbumProduction.spokenWord.displayValue, "Spoken Word")
         XCTAssertEqual(MusicAlbumProduction.studio.displayValue, "Studio")
     }
-    
 }

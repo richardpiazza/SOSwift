@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class AccessModeTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(AccessMode.allCases.count, 11)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(AccessMode.auditory.displayValue, "Auditory")
         XCTAssertEqual(AccessMode.tactile.displayValue, "Tactile")
@@ -20,5 +20,4 @@ class AccessModeTests: XCTestCase {
         XCTAssertEqual(AccessMode.musicOnVisual.displayValue, "Music-On-Visual")
         XCTAssertEqual(AccessMode.textOnVisual.displayValue, "Text-On-Visual")
     }
-    
 }

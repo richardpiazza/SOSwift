@@ -11,12 +11,12 @@ public enum DayOfWeek: String, CaseIterable, Codable {
     case thursday = "Thursday"
     case tuesday = "Tuesday"
     case wednesday = "Wednesday"
-    
+
     public var displayValue: String {
         switch self {
-        case .publicHolidays: return "Public Holidays"
+        case .publicHolidays: "Public Holidays"
         default:
-            return rawValue
+            rawValue
         }
     }
 }

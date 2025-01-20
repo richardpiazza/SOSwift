@@ -4,27 +4,27 @@ public class BroadcastChannel: Intangible {
     ///
     /// In US, this is typically a number.
     public var broadcastChannelId: String?
-    
+
     /// The frequency used for over-the-air broadcasts.
     ///
     /// Numeric values or simple ranges, e.g. 87-99. In addition a shortcut idiom is supported for frequencies of AM and FM radio channels, e.g. "87 FM".
     public var broadcastFrequency: SingleTextConjunction<BroadcastFrequencySpecification>?
-    
+
     /// The type of service required to have access to the channel (e.g. Standard or Premium).
     public var broadcastServiceTier: String?
-    
+
     /// Genre of the creative work, broadcast channel or group.
     public var genre: URLOrText?
-    
+
     /// The `CableOrSatelliteService` offering the channel.
     public var inBroadcastLineup: CableOrSatelliteService?
-    
+
     /// The `BroadcastService` offered on this channel.
     ///
     /// Inverse property: hasBroadcastChannel
     public var providesBroadcastService: BroadcastService?
-    
-    internal enum BroadcastChannelCodingKeys: String, CodingKey {
+
+    enum BroadcastChannelCodingKeys: String, CodingKey {
         case broadcastChannelId
         case broadcastFrequency
         case broadcastServiceTier
@@ -32,18 +32,18 @@ public class BroadcastChannel: Intangible {
         case inBroadcastLineup
         case providesBroadcastService
     }
-    
-    public override init() {
+
+    override public init() {
         super.init()
     }
-    
+
     public convenience init(
         broadcastChannelId: String? = nil,
         broadcastFrequency: SingleTextConjunction<BroadcastFrequencySpecification>? = nil,
         broadcastServiceTier: String? = nil,
         genre: URLOrText? = nil,
         inBroadcastLineup: CableOrSatelliteService? = nil,
-       providesBroadcastService: BroadcastService? = nil
+        providesBroadcastService: BroadcastService? = nil
     ) {
         self.init()
         self.broadcastChannelId = broadcastChannelId
@@ -53,12 +53,12 @@ public class BroadcastChannel: Intangible {
         self.inBroadcastLineup = inBroadcastLineup
         self.providesBroadcastService = providesBroadcastService
     }
-    
+
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
-        
+
         let container = try decoder.container(keyedBy: BroadcastChannelCodingKeys.self)
-        
+
         broadcastChannelId = try container.decodeIfPresent(String.self, forKey: .broadcastChannelId)
         broadcastFrequency = try container.decodeIfPresent(SingleTextConjunction<BroadcastFrequencySpecification>.self, forKey: .broadcastFrequency)
         broadcastServiceTier = try container.decodeIfPresent(String.self, forKey: .broadcastServiceTier)
@@ -66,17 +66,17 @@ public class BroadcastChannel: Intangible {
         inBroadcastLineup = try container.decodeIfPresent(CableOrSatelliteService.self, forKey: .inBroadcastLineup)
         providesBroadcastService = try container.decodeIfPresent(BroadcastService.self, forKey: .providesBroadcastService)
     }
-    
-    public override func encode(to encoder: Encoder) throws {
+
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: BroadcastChannelCodingKeys.self)
-        
+
         try container.encodeIfPresent(broadcastChannelId, forKey: .broadcastChannelId)
         try container.encodeIfPresent(broadcastFrequency, forKey: .broadcastFrequency)
         try container.encodeIfPresent(broadcastServiceTier, forKey: .broadcastServiceTier)
         try container.encodeIfPresent(genre, forKey: .genre)
         try container.encodeIfPresent(inBroadcastLineup, forKey: .inBroadcastLineup)
         try container.encodeIfPresent(providesBroadcastService, forKey: .providesBroadcastService)
-        
+
         try super.encode(to: encoder)
     }
 }

@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class ItemAvailabilityTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(ItemAvailability.allCases.count, 9)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(ItemAvailability.discontinued.displayValue, "Discontinued")
         XCTAssertEqual(ItemAvailability.inStock.displayValue, "In Stock")
@@ -18,5 +18,4 @@ class ItemAvailabilityTests: XCTestCase {
         XCTAssertEqual(ItemAvailability.preSale.displayValue, "Pre-Sale")
         XCTAssertEqual(ItemAvailability.soldOut.displayValue, "Sold Out")
     }
-    
 }

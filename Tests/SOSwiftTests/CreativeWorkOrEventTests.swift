@@ -1,5 +1,5 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class CreativeWorkOrEventTests: XCTestCase {
 
@@ -8,7 +8,7 @@ class CreativeWorkOrEventTests: XCTestCase {
         var event: CreativeWorkOrEvent?
         var multiple: [CreativeWorkOrEvent]?
     }
-    
+
     func testSingleDecode() throws {
         let json = """
         {
@@ -22,44 +22,44 @@ class CreativeWorkOrEventTests: XCTestCase {
             }
         }
         """
-        
+
         let testable = try TestClass.make(with: json)
-        
+
         guard let creativeWork = testable.creativeWork, let event = testable.event else {
             XCTFail()
             return
         }
-        
+
         XCTAssertEqual(creativeWork.creativeWork?.name, "Technical Manual")
         XCTAssertEqual(event.event?.name, "Convention")
     }
-    
+
     func testSingleEncode() throws {
         let testable = TestClass()
-        
+
         let creativeWork = CreativeWork()
         creativeWork.name = "Technical Manual"
-        
+
         let event = Event()
         event.name = "Convention"
-        
+
         testable.creativeWork = CreativeWorkOrEvent.creativeWork(value: creativeWork)
         testable.event = CreativeWorkOrEvent.event(value: event)
-        
+
         let dictionary = try testable.asDictionary()
-        
+
         guard
-            let cw = dictionary["creativeWork"] as? [String : Any],
-            let e = dictionary["event"] as? [String : Any]
-            else {
-                XCTFail()
-                return
+            let cw = dictionary["creativeWork"] as? [String: Any],
+            let e = dictionary["event"] as? [String: Any]
+        else {
+            XCTFail()
+            return
         }
-        
+
         XCTAssertEqual(cw["name"] as? String, "Technical Manual")
         XCTAssertEqual(e["name"] as? String, "Convention")
     }
-    
+
     func testMultipleDecodes() throws {
         let json = """
         {
@@ -75,34 +75,34 @@ class CreativeWorkOrEventTests: XCTestCase {
             ]
         }
         """
-        
+
         guard let data = json.data(using: .utf8) else {
             XCTFail()
             return
         }
-        
+
         let testable = try JSONDecoder().decode(TestClass.self, from: data)
-        
+
         guard let multiple = testable.multiple else {
             XCTFail()
             return
         }
-        
+
         XCTAssertEqual(multiple.count, 2)
-        
+
         let creativeWork = multiple[0]
         let event = multiple[1]
-        
+
         XCTAssertEqual(creativeWork.creativeWork?.name, "Technical Manual")
         XCTAssertEqual(event.event?.name, "Convention")
     }
-    
+
     func testMultipleEncodes() throws {
         let testable = TestClass()
         let creativeWork = CreativeWork()
         let event = Event()
         testable.multiple = [CreativeWorkOrEvent.creativeWork(value: creativeWork), CreativeWorkOrEvent.event(value: event)]
-        
+
         let json = try testable.asJSON()
         XCTAssertTrue(json.contains("\"multiple\":["))
     }

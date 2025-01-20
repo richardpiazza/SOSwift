@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class AccessibilityFeatureTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(AccessibilityFeature.allCases.count, 31)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(AccessibilityFeature.alternativeText.displayValue, "Alternative Text")
         XCTAssertEqual(AccessibilityFeature.annotations.displayValue, "Annotations")
@@ -40,5 +40,4 @@ class AccessibilityFeatureTests: XCTestCase {
         XCTAssertEqual(AccessibilityFeature.ttsMarkup.displayValue, "TTS Markup")
         XCTAssertEqual(AccessibilityFeature.unlocked.displayValue, "Unlocked")
     }
-    
 }

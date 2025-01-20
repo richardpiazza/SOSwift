@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class DeliveryMethodTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(DeliveryMethod.allCases.count, 8)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(DeliveryMethod.directDownload.displayValue, "Direct Download")
         XCTAssertEqual(DeliveryMethod.frieght.displayValue, "Frieght")
@@ -17,5 +17,4 @@ class DeliveryMethodTests: XCTestCase {
         XCTAssertEqual(DeliveryMethod.federalExpress.displayValue, "FedEX")
         XCTAssertEqual(DeliveryMethod.ups.displayValue, "UPS")
     }
-    
 }

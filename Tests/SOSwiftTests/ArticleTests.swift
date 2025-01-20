@@ -1,5 +1,5 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class ArticleTests: XCTestCase {
 
@@ -9,7 +9,7 @@ class ArticleTests: XCTestCase {
     public static let _pageStart = 135
     public static let _pagination = "135-138"
     public static let _wordCount = 1234
-    
+
     public static var article: Article {
         let article = Article()
         article.articleBody = _articleBody
@@ -20,11 +20,11 @@ class ArticleTests: XCTestCase {
         article.wordCount = _wordCount
         return article
     }
-    
+
     func testSchema() throws {
         XCTAssertEqual(Article.schemaName, "Article")
     }
-    
+
     func testDecode() throws {
         let json = """
         {
@@ -36,9 +36,9 @@ class ArticleTests: XCTestCase {
             "wordCount": 50
         }
         """
-        
+
         let article = try Article.make(with: json)
-        
+
         XCTAssertEqual(article.articleBody, "Headline")
         XCTAssertEqual(article.articleSection, "Front Page")
         XCTAssertEqual(article.pageEnd?.integer, 1)
@@ -46,17 +46,17 @@ class ArticleTests: XCTestCase {
         XCTAssertEqual(article.pagination, "1-1")
         XCTAssertEqual(article.wordCount, 50)
     }
-    
+
     func testEncode() throws {
         let dictionary = try ArticleTests.article.asDictionary()
-        
+
         let articleBody = dictionary[Article.ArticleCodingKeys.articleBody.rawValue] as? String
         let articleSection = dictionary[Article.ArticleCodingKeys.articleSection.rawValue] as? String
         let pageEnd = dictionary[Article.ArticleCodingKeys.pageEnd.rawValue] as? Int
         let pageStart = dictionary[Article.ArticleCodingKeys.pageStart.rawValue] as? Int
         let pagination = dictionary[Article.ArticleCodingKeys.pagination.rawValue] as? String
         let wordCount = dictionary[Article.ArticleCodingKeys.wordCount.rawValue] as? Int
-        
+
         XCTAssertEqual(articleBody, ArticleTests._articleBody)
         XCTAssertEqual(articleSection, ArticleTests._articleSection)
         XCTAssertEqual(pageEnd, ArticleTests._pageEnd)
@@ -64,5 +64,4 @@ class ArticleTests: XCTestCase {
         XCTAssertEqual(pagination, ArticleTests._pagination)
         XCTAssertEqual(wordCount, ArticleTests._wordCount)
     }
-    
 }

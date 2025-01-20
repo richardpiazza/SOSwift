@@ -6,13 +6,13 @@ public enum MapType: String, CaseIterable, Codable {
     case seating = "SeatingMap"
     case transit = "TransitMap"
     case venue = "VenueMap"
-    
+
     public var displayValue: String {
         switch self {
-        case .parking: return "Parking"
-        case .seating: return "Seating"
-        case .transit: return "Transit"
-        case .venue: return "Venue"
+        case .parking: "Parking"
+        case .seating: "Seating"
+        case .transit: "Transit"
+        case .venue: "Venue"
         }
     }
 }

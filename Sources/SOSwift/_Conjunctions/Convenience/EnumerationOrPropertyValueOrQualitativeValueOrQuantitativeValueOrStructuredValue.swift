@@ -1,5 +1,5 @@
-import Foundation
 import CodablePlus
+import Foundation
 
 public typealias ValueReference = EnumerationOrPropertyValueOrQualitativeValueOrQuantitativeValueOrStructuredValue
 

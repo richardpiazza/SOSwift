@@ -11,18 +11,18 @@ public enum ItemAvailability: String, CaseIterable, Codable {
     case preOrder = "PreOrder"
     case preSale = "PreSale"
     case soldOut = "SoldOut"
-    
+
     public var displayValue: String {
         switch self {
-        case .discontinued: return "Discontinued"
-        case .inStock: return "In Stock"
-        case .inStoreOnly: return "In Store Only"
-        case .limitedAvailability: return "Limited Availability"
-        case .onlineOnly: return "Online Only"
-        case .outOfStock: return "Out of Stock"
-        case .preOrder: return "Pre-Order"
-        case .preSale: return "Pre-Sale"
-        case .soldOut: return "Sold Out"
+        case .discontinued: "Discontinued"
+        case .inStock: "In Stock"
+        case .inStoreOnly: "In Store Only"
+        case .limitedAvailability: "Limited Availability"
+        case .onlineOnly: "Online Only"
+        case .outOfStock: "Out of Stock"
+        case .preOrder: "Pre-Order"
+        case .preSale: "Pre-Sale"
+        case .soldOut: "Sold Out"
         }
     }
 }

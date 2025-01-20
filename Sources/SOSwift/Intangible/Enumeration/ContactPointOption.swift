@@ -4,11 +4,11 @@ import Foundation
 public enum ContactPointOption: String, CaseIterable, Codable {
     case hearingImparedSupported = "HearingImparedSupported"
     case tollFree = "TollFree"
-    
+
     public var displayValue: String {
         switch self {
-        case .hearingImparedSupported: return "Hearing Impared Supported"
-        case .tollFree: return "Toll Free"
+        case .hearingImparedSupported: "Hearing Impared Supported"
+        case .tollFree: "Toll Free"
         }
     }
 }

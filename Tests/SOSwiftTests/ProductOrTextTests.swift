@@ -1,13 +1,13 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class ProductOrTextTests: XCTestCase {
-    
+
     fileprivate class TestClass: Codable, Schema {
         var product: ProductOrText?
         var text: ProductOrText?
     }
-    
+
     func testDecode() throws {
         let json = """
         {
@@ -18,44 +18,42 @@ class ProductOrTextTests: XCTestCase {
             "text" : "Desktop"
         }
         """
-        
+
         let testObject = try TestClass.make(with: json)
         XCTAssertEqual(testObject.product?.product?.name, "iMac")
         XCTAssertEqual(testObject.text?.text, "Desktop")
     }
-    
+
     func testEncode() throws {
         let testObject = TestClass()
-        
+
         let product = Product()
         product.name = "MacBook"
         testObject.product = .product(value: product)
         testObject.text = .text(value: "Laptop")
-        
-        let dictionary: [String : Any]
+
+        let dictionary: [String: Any]
         do {
             dictionary = try testObject.asDictionary()
         } catch {
             XCTFail()
             return
         }
-        
-        guard let p = dictionary["product"] as? [String : Any], let pName = p["name"] as? String else {
+
+        guard let p = dictionary["product"] as? [String: Any], let pName = p["name"] as? String else {
             XCTFail()
             return
         }
-        
+
         XCTAssertEqual(pName, "MacBook")
-        
+
         guard let t = dictionary["text"] as? String else {
             XCTFail()
             return
         }
-        
+
         XCTAssertEqual(t, "Laptop")
     }
-    
-    func testEquatability() throws {
-        
-    }
+
+    func testEquatability() throws {}
 }

@@ -1,15 +1,15 @@
 import Foundation
 
 public enum Interactivity: String, CaseIterable, Codable {
-    case active = "active"
-    case expositive = "expositive"
-    case mixed = "mixed"
-    
+    case active
+    case expositive
+    case mixed
+
     public var displayValue: String {
         switch self {
-        case .active: return "Active"
-        case .expositive: return "Expositive"
-        case .mixed: return "Mixed"
+        case .active: "Active"
+        case .expositive: "Expositive"
+        case .mixed: "Mixed"
         }
     }
 }

@@ -6,13 +6,13 @@ public enum EventStatus: String, CaseIterable, Codable {
     case postponed = "EventPostponed"
     case rescheduled = "EventRescheduled"
     case scheduled = "EventScheduled"
-    
+
     public var displayValue: String {
         switch self {
-        case .cancelled: return "Cancelled"
-        case .postponed: return "Postponed"
-        case .rescheduled: return "Rescheduled"
-        case .scheduled: return "Scheduled"
+        case .cancelled: "Cancelled"
+        case .postponed: "Postponed"
+        case .rescheduled: "Rescheduled"
+        case .scheduled: "Scheduled"
         }
     }
 }

@@ -1,8 +1,8 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class ActionTests: XCTestCase {
-    
+
     public static let _actionStatus = ActionStatus.completed.rawValue
     public static let _agent = "Bob"
     public static let _endTime = "2019-06-30T13:16:17Z"
@@ -14,32 +14,32 @@ class ActionTests: XCTestCase {
     public static let _result = "Horrible Scar"
     public static let _startTime = "2019-06-30T08:34:22Z"
     public static let _target = "None"
-    
+
     public static var action: Action {
         let bob = Person()
         bob.name = "Bob"
-        
+
         let error = Thing()
         error.name = "Slipped"
-        
+
         let instrument = Thing()
         instrument.name = "Scalpel"
-        
+
         let place = Place()
         place.name = "Bob's Hospital"
-        
+
         let object = Thing()
         object.name = "Patient"
-        
+
         let participant = Person()
         participant.name = "Adam"
-        
+
         let result = Thing()
         result.name = "Horrible Scar"
-        
+
         let target = EntryPoint()
         target.name = "None"
-        
+
         let action = Action()
         action.actionStatus = .completed
         action.agent = OrganizationOrPerson(bob)
@@ -54,19 +54,19 @@ class ActionTests: XCTestCase {
         action.target = target
         return action
     }
-    
+
     private static var startTimeComponents: DateComponents {
-        return DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 30, hour: 8, minute: 34, second: 22, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+        DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 30, hour: 8, minute: 34, second: 22, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
     }
-    
+
     private static var endTimeComponents: DateComponents {
-        return DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 30, hour: 13, minute: 16, second: 17, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+        DateComponents(calendar: Calendar.current, timeZone: TimeZone.gmt, era: nil, year: 2019, month: 6, day: 30, hour: 13, minute: 16, second: 17, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
     }
-    
+
     func testSchema() throws {
         XCTAssertEqual(Action.schemaName, "Action")
     }
-    
+
     func testDecode() throws {
         let json = """
         {
@@ -107,7 +107,7 @@ class ActionTests: XCTestCase {
             }
         }
         """
-        
+
         let action = try Action.make(with: json)
         XCTAssertEqual(action.actionStatus, .completed)
         XCTAssertEqual(action.agent?.person?.name, ActionTests._agent)
@@ -121,22 +121,22 @@ class ActionTests: XCTestCase {
         XCTAssertEqual(action.startTime?.rawValue, ActionTests.startTimeComponents.date)
         XCTAssertEqual(action.target?.name, ActionTests._target)
     }
-    
+
     func testEncode() throws {
         let dictionary = try ActionTests.action.asDictionary()
-        
+
         let actionStatus = dictionary[Action.ActionCodingKeys.actionStatus.rawValue] as? String
-        let agent = dictionary[Action.ActionCodingKeys.agent.rawValue] as? [String : Any]
+        let agent = dictionary[Action.ActionCodingKeys.agent.rawValue] as? [String: Any]
         let endTime = dictionary[Action.ActionCodingKeys.endTime.rawValue] as? String
-        let error = dictionary[Action.ActionCodingKeys.error.rawValue] as? [String : Any]
-        let instrument = dictionary[Action.ActionCodingKeys.instrument.rawValue] as? [String : Any]
-        let location = dictionary[Action.ActionCodingKeys.location.rawValue] as? [String : Any]
-        let object = dictionary[Action.ActionCodingKeys.object.rawValue] as? [String : Any]
-        let participant = dictionary[Action.ActionCodingKeys.participant.rawValue] as? [String : Any]
-        let result = dictionary[Action.ActionCodingKeys.result.rawValue] as? [String : Any]
+        let error = dictionary[Action.ActionCodingKeys.error.rawValue] as? [String: Any]
+        let instrument = dictionary[Action.ActionCodingKeys.instrument.rawValue] as? [String: Any]
+        let location = dictionary[Action.ActionCodingKeys.location.rawValue] as? [String: Any]
+        let object = dictionary[Action.ActionCodingKeys.object.rawValue] as? [String: Any]
+        let participant = dictionary[Action.ActionCodingKeys.participant.rawValue] as? [String: Any]
+        let result = dictionary[Action.ActionCodingKeys.result.rawValue] as? [String: Any]
         let startTime = dictionary[Action.ActionCodingKeys.startTime.rawValue] as? String
-        let target = dictionary[Action.ActionCodingKeys.target.rawValue] as? [String : Any]
-        
+        let target = dictionary[Action.ActionCodingKeys.target.rawValue] as? [String: Any]
+
         XCTAssertEqual(actionStatus, ActionTests._actionStatus)
         XCTAssertEqual(agent?["name"] as? String, ActionTests._agent)
         XCTAssertEqual(endTime, ActionTests._endTime)
@@ -149,5 +149,4 @@ class ActionTests: XCTestCase {
         XCTAssertEqual(startTime, ActionTests._startTime)
         XCTAssertEqual(target?["name"] as? String, ActionTests._target)
     }
-    
 }

@@ -1,8 +1,4 @@
 import Foundation
 
 /// A country.
-public class Country: AdministrativeArea {
-    
-    
-    
-}
+public class Country: AdministrativeArea {}

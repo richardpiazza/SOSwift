@@ -10,23 +10,23 @@ import Foundation
 /// * If the property is not set in the positive or negative or is specifically set to unknown, the state of hazards is
 ///     not known.
 public enum AccessibilityHazard: String, CaseIterable, Codable {
-    case flashing = "flashing"
-    case noFlashingHazard = "noFlashingHazard"
-    case motionSimulation = "motionSimulation"
-    case noMotionSimulation = "noMotionSimulation"
-    case sound = "sound"
-    case noSoundHazard = "noSoundHazard"
-    case unknown = "unknown"
-    
+    case flashing
+    case noFlashingHazard
+    case motionSimulation
+    case noMotionSimulation
+    case sound
+    case noSoundHazard
+    case unknown
+
     public var displayValue: String {
         switch self {
-        case .flashing: return "Flashing"
-        case .noFlashingHazard: return "No Flashing Hazard"
-        case .motionSimulation: return "Motion Simulation"
-        case .noMotionSimulation: return "No Motion Simulation"
-        case .sound: return "Sound"
-        case .noSoundHazard: return "No Sound Hazard"
-        case .unknown: return "Unknown"
+        case .flashing: "Flashing"
+        case .noFlashingHazard: "No Flashing Hazard"
+        case .motionSimulation: "Motion Simulation"
+        case .noMotionSimulation: "No Motion Simulation"
+        case .sound: "Sound"
+        case .noSoundHazard: "No Sound Hazard"
+        case .unknown: "Unknown"
         }
     }
 }

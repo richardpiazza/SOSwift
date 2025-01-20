@@ -11,18 +11,18 @@ public enum MusicAlbumProduction: String, CaseIterable, Codable {
     case soundtrack = "SoundtrackAlbum"
     case spokenWord = "SpokenWordAlbum"
     case studio = "StudioAlbum"
-    
+
     public var displayValue: String {
         switch self {
-        case .compilation: return "Compilation"
-        case .djMix: return "DJ Mix"
-        case .demo: return "Demo"
-        case .live: return "Live"
-        case .mixtape: return "Mixtape"
-        case .remix: return "Remix"
-        case .soundtrack: return "Soundtrack"
-        case .spokenWord: return "Spoken Word"
-        case .studio: return "Studio"
+        case .compilation: "Compilation"
+        case .djMix: "DJ Mix"
+        case .demo: "Demo"
+        case .live: "Live"
+        case .mixtape: "Mixtape"
+        case .remix: "Remix"
+        case .soundtrack: "Soundtrack"
+        case .spokenWord: "Spoken Word"
+        case .studio: "Studio"
         }
     }
 }

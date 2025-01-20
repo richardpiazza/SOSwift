@@ -9,16 +9,16 @@ public enum PhysicalActivityCategory: String, CaseIterable, Codable {
     case leisureTime = "LeisureTimeActivity"
     case occupational = "OccupationalActivity"
     case strengthTraining = "StrengthTraining"
-    
+
     public var displayValue: String {
         switch self {
-        case .aerobic: return "Aerobic Activity"
-        case .anaerobic: return "Anaerobic Activity"
-        case .balance: return "Balance"
-        case .flexibility: return "Flexibility"
-        case .leisureTime: return "Leisure Time"
-        case .occupational: return "Occupational"
-        case .strengthTraining: return "Strength Training"
+        case .aerobic: "Aerobic Activity"
+        case .anaerobic: "Anaerobic Activity"
+        case .balance: "Balance"
+        case .flexibility: "Flexibility"
+        case .leisureTime: "Leisure Time"
+        case .occupational: "Occupational"
+        case .strengthTraining: "Strength Training"
         }
     }
 }

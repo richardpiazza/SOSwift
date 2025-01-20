@@ -1,12 +1,12 @@
-import XCTest
 @testable import SOSwift
+import XCTest
 
 class AccessibilityHazardTests: XCTestCase {
-    
+
     func testCaseIterable() throws {
         XCTAssertEqual(AccessibilityHazard.allCases.count, 7)
     }
-    
+
     func testDisplayValue() throws {
         XCTAssertEqual(AccessibilityHazard.flashing.displayValue, "Flashing")
         XCTAssertEqual(AccessibilityHazard.noFlashingHazard.displayValue, "No Flashing Hazard")
@@ -16,5 +16,4 @@ class AccessibilityHazardTests: XCTestCase {
         XCTAssertEqual(AccessibilityHazard.noSoundHazard.displayValue, "No Sound Hazard")
         XCTAssertEqual(AccessibilityHazard.unknown.displayValue, "Unknown")
     }
-    
 }

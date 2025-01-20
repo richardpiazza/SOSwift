@@ -7,55 +7,55 @@ import Foundation
 /// If the value for the closes property is less than the value for the opens property
 /// then the hour range is assumed to span over the next day.
 public class OpeningHoursSpecification: StructuredValue {
-    
+
     /// The closing hour of the place or service on the given day(s) of the week.
     public var closes: Time?
-    
+
     /// The day of the week for which these opening hours are valid.
     public var dayOfWeek: DayOfWeek?
-    
+
     /// The opening hour of the place or service on the given day(s) of the week.
     public var opens: Time?
-    
+
     /// The date when the item becomes valid.
     public var validFrom: DateTime?
-    
+
     /// The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
     public var validThrough: DateTime?
-    
-    internal enum OpeningHoursSpecificationCodingKeys: String, CodingKey {
+
+    enum OpeningHoursSpecificationCodingKeys: String, CodingKey {
         case closes
         case dayOfWeek
         case opens
         case validFrom
         case validThrough
     }
-    
-    public override init() {
+
+    override public init() {
         super.init()
     }
-    
+
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
-        
+
         let container = try decoder.container(keyedBy: OpeningHoursSpecificationCodingKeys.self)
-        
+
         closes = try container.decodeIfPresent(Time.self, forKey: .closes)
         dayOfWeek = try container.decodeIfPresent(DayOfWeek.self, forKey: .dayOfWeek)
         opens = try container.decodeIfPresent(Time.self, forKey: .opens)
         validFrom = try container.decodeIfPresent(DateTime.self, forKey: .validFrom)
         validThrough = try container.decodeIfPresent(DateTime.self, forKey: .validThrough)
     }
-    
-    public override func encode(to encoder: Encoder) throws {
+
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: OpeningHoursSpecificationCodingKeys.self)
-        
+
         try container.encodeIfPresent(closes, forKey: .closes)
         try container.encodeIfPresent(dayOfWeek, forKey: .dayOfWeek)
         try container.encodeIfPresent(opens, forKey: .opens)
         try container.encodeIfPresent(validFrom, forKey: .validFrom)
         try container.encodeIfPresent(validThrough, forKey: .validThrough)
-        
+
         try super.encode(to: encoder)
     }
 }

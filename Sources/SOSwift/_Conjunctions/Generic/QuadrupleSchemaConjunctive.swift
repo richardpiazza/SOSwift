@@ -13,37 +13,37 @@ public enum QuadrupleSchemaConjunction<
     case third(Third)
     case fourth(Fourth)
     case fifth(Fifth)
-    
+
     public init(_ value: First) {
         self = .first(value)
     }
-    
+
     public init(_ value: Second) {
         self = .second(value)
     }
-    
+
     public init(_ value: Third) {
         self = .third(value)
     }
-    
+
     public init(_ value: Fourth) {
         self = .fourth(value)
     }
-    
+
     public init(_ value: Fifth) {
         self = .fifth(value)
     }
-    
+
     public init(from decoder: Decoder) throws {
         let jsonContainer = try decoder.container(keyedBy: DictionaryKeys.self)
-        let jsonDictionary = try jsonContainer.decode(Dictionary<String, Any>.self)
-        
+        let jsonDictionary = try jsonContainer.decode([String: Any].self)
+
         guard let type = jsonDictionary[SchemaKeys.type.rawValue] as? String else {
             throw SchemaError.typeDecodingError
         }
-        
+
         let container = try decoder.singleValueContainer()
-        
+
         switch type {
         case First.schemaName:
             let value = try container.decode(First.self)
@@ -64,10 +64,10 @@ public enum QuadrupleSchemaConjunction<
             throw SchemaError.typeDecodingError
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        
+
         switch self {
         case .first(let value):
             try container.encode(value)
@@ -81,44 +81,44 @@ public enum QuadrupleSchemaConjunction<
             try container.encode(value)
         }
     }
-    
+
     public var first: First? {
         guard case .first(let value) = self else {
             return nil
         }
-        
+
         return value
     }
-    
+
     public var second: Second? {
         guard case .second(let value) = self else {
             return nil
         }
-        
+
         return value
     }
-    
+
     public var third: Third? {
         guard case .third(let value) = self else {
             return nil
         }
-        
+
         return value
     }
-    
+
     public var fourth: Fourth? {
         guard case .fourth(let value) = self else {
             return nil
         }
-        
+
         return value
     }
-    
+
     public var fifth: Fifth? {
         guard case .fifth(let value) = self else {
             return nil
         }
-        
+
         return value
     }
 }

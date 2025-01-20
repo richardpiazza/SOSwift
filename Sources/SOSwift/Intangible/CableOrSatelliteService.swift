@@ -1,2 +1,1 @@
-public class CableOrSatelliteService: Service {
-}
+public class CableOrSatelliteService: Service {}
