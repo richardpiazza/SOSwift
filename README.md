@@ -2,31 +2,10 @@
 
 A swift implementation of Schema.org structured data vocabulary.
 
-[![Swift](https://github.com/richardpiazza/SOSwift/actions/workflows/swift.yml/badge.svg?branch=main)](https://github.com/richardpiazza/SOSwift/actions/workflows/swift.yml)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frichardpiazza%2FSOSwift%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/richardpiazza/SOSwift)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frichardpiazza%2FSOSwift%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/richardpiazza/SOSwift)
 
-
-## Usage
-
-**SOSwift** is distributed using the [Swift Package Manager](https://swift.org/package-manager). To install it into a project, add it as a 
-dependency within your `Package.swift` manifest:
-
-```swift
-let package = Package(
-    ...
-    dependencies: [
-        .package(url: "https://github.com/richardpiazza/SOSwift.git", .upToNextMajor(from: "3.0.0"))
-    ],
-    ...
-)
-```
-
-Then import the **SOSwift** package wherever you'd like to use it:
-
-```swift
-import SOSwift
-```
-
-### Schema.org
+## Schema.org
 
 Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the 
 Internet, on web pages, in email messages, and beyond. This library implements some of the core vocabulary in the Swift language.
@@ -49,3 +28,25 @@ Many of the classes use a has/is prefix on non-boolean variable names. This voca
 __Pluralization__
 
 Classes with singular names of clearly arrays of types has been pluralized for clarity and consistency.
+
+
+## Usage
+
+**SOSwift** is distributed using the [Swift Package Manager](https://swift.org/package-manager). To install it into a project, add it as a 
+dependency within your `Package.swift` manifest:
+
+```swift
+let package = Package(
+    ...
+    dependencies: [
+        .package(url: "https://github.com/richardpiazza/SOSwift.git", .upToNextMajor(from: "3.0.0"))
+    ],
+    ...
+)
+```
+
+Then import the **SOSwift** package wherever you'd like to use it:
+
+```swift
+import SOSwift
+```
